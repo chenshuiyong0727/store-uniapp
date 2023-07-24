@@ -1,8 +1,8 @@
 <template>
   <view>
-    
-    <nav-bar title='和家健脑' :isShowRightIcon="false" :isShowLeftIcon="false"></nav-bar>
-   
+
+    <nav-bar title='柒月贰柒' :isShowRightIcon="false" :isShowLeftIcon="false"></nav-bar>
+
     <view class="container">
       <view class="top">
         <view class="user-msg">
@@ -95,7 +95,7 @@
             <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-my-9.png'"></image>
             <view>账号设置</view>
           </view>
-          
+
         </view>
       </view>
       <view style="padding-bottom: 50rpx;">
@@ -143,7 +143,7 @@
         this.orderNum = {}
         this.countOrderTap = {}
       }
-      
+
 			//this.handleUserInfo()
     },
     methods: {
@@ -262,7 +262,7 @@
       height: 203.75rpx;
       // background: linear-gradient(180deg, #7B3A88 0%, #964DA5 100%);
       background: url('https://natt.yimed.cn:11902/static/operateSteps/portalH5/pages/my-img-1.png?t=1') no-repeat top center;
-      background-size: 750rpx 203.75rpx; 
+      background-size: 750rpx 203.75rpx;
       padding: 27.5rpx 28.75rpx 0 28.75rpx;
       box-sizing: border-box;
       color: #fff;
@@ -329,7 +329,7 @@
             top: 7rpx;
             right: 0;
             transform: rotate(45deg);
-            
+
           }
         }
       }
@@ -392,7 +392,7 @@
         }
       }
     }
-    
+
   }
   @media screen and (max-width: 500px) {
     .container {
@@ -408,7 +408,7 @@
           height: 124rpx;
           margin-right: 28rpx;
         }
-    
+
         .nick-name {
           font-size: 34rpx;
         }
@@ -567,7 +567,7 @@
           }
         }
       }
-      
+
     }
   }
   @media screen and (width: 360px) and (height: 729px) {

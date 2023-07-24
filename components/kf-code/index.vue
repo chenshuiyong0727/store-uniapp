@@ -6,7 +6,7 @@
       </view>
       <view class="title">微信扫描二维码，添加客服</view>
       <image class="ewm" show-menu-by-longpress :src="imgPrefix + '/static/operateSteps/qrcode/'+ ewmName +'.jpg'"></image>
-      <view class="tip">和家健脑客服</view>
+      <view class="tip">柒月贰柒客服</view>
     </view>
   </view>
 </template>
@@ -52,7 +52,7 @@
       box-sizing: border-box;
       .close {
         text-align: right;
-      
+
         .icon-close {
           padding: 7.32rpx;
           margin-right: -7.32rpx;

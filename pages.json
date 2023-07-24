@@ -3,7 +3,7 @@
     {
       "path": "pages/index/index",
       "style": {
-        "navigationBarTitleText": "和家健脑"
+        "navigationBarTitleText": "柒月贰柒"
         // #ifdef APP-PLUS
         ,
         "enablePullDownRefresh": true
@@ -12,11 +12,11 @@
     },
     // {
     // 	"path" : "pages/archives/index",
-    // 	"style" :                                                                                    
+    // 	"style" :
     // 	{
     // 		"navigationBarTitleText": "健康档案",
     // 		"enablePullDownRefresh": false
-    // 	}	
+    // 	}
     // },
     {
       "path": "pages/my/index",
@@ -224,7 +224,7 @@
         "enablePullDownRefresh": false
       }
     },
-    
+
     // {
     //   "path": "pages/health-class/index",
     //   "style": {
@@ -375,7 +375,7 @@
     {
       "path": "pages/web-view/web-view",
       "style": {
-        "navigationBarTitleText": "和家健脑",
+        "navigationBarTitleText": "柒月贰柒",
         "enablePullDownRefresh": false
       }
     }
@@ -406,13 +406,13 @@
     ]
   },
   "globalStyle": {
-   
+
     "rpxCalcMaxDeviceWidth": 600,
     "rpxCalcBaseDeviceWidth": 600,
     "rpxCalcIncludeWidth": 600,
-    
+
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "和家健脑门户网站",
+    "navigationBarTitleText": "柒月贰柒门户网站",
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8",
     "onReachBottomDistance": 50,

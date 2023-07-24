@@ -63,7 +63,7 @@
     methods: {
       initSysDict() {
         this.$request({
-          url: '/gw/h5/v1/base/sys/dict/listSysDictFront',
+          url: '/gw/op/v1/base/sys/dict/listSysDict',
           method: 'post'
         }).then(res => {
           if (res.status === 1000) {

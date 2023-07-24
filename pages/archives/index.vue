@@ -1,8 +1,8 @@
 <template>
   <view>
-  
-    <nav-bar title='和家健脑' :isShowRightIcon="false" :isShowLeftIcon="false"></nav-bar>
-   
+
+    <nav-bar title='柒月贰柒' :isShowRightIcon="false" :isShowLeftIcon="false"></nav-bar>
+
     <!-- <view class="container">
       <view class="cognition common">
         <view class="title">认知训练</view>

@@ -1,8 +1,8 @@
 <template>
   <view>
-   
-    <nav-bar title='和家健脑'></nav-bar>
-  
+
+    <nav-bar title='柒月贰柒'></nav-bar>
+
     <view class="container">
       <rich-text :nodes="articleDetail.detail"></rich-text>
     </view>

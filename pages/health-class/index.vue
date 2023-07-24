@@ -9,7 +9,7 @@
 			<view class="right-box">
 				<text class="right-top">唤醒你的大脑，每天起床十分钟手1111131dfssdfsdfsdfsdf</text>
 				<text class="right-center">零基础 10分钟</text>
-				<text class="right-bottom">和家健脑 官方教程</text>
+				<text class="right-bottom">柒月贰柒 官方教程</text>
 			</view>
 		 </view>
      <view class="class-item">
@@ -19,7 +19,7 @@
 			<view class="right-box">
 				<text class="right-top">唤醒你的大脑，每天起床十分钟手1111131dfssdfsdfsdfsdf</text>
 				<text class="right-center">零基础 10分钟</text>
-				<text class="right-bottom">和家健脑 官方教程</text>
+				<text class="right-bottom">柒月贰柒 官方教程</text>
 			</view>
 		</view>
     <view class="class-item">
@@ -29,7 +29,7 @@
 			<view class="right-box">
 				<text class="right-top">唤醒你的大脑，每天起床十分钟手1111131dfssdfsdfsdfsdf</text>
 				<text class="right-center">零基础 10分钟</text>
-				<text class="right-bottom">和家健脑 官方教程</text>
+				<text class="right-bottom">柒月贰柒 官方教程</text>
 			</view>
 		</view>
     <view class="class-item">
@@ -39,7 +39,7 @@
 			<view class="right-box">
 				<text class="right-top">唤醒你的大脑，每天起床十分钟手1111131dfssdfsdfsdfsdf</text>
 				<text class="right-center">零基础 10分钟</text>
-				<text class="right-bottom">和家健脑 官方教程</text>
+				<text class="right-bottom">柒月贰柒 官方教程</text>
 			</view>
 		</view>
 	</view>

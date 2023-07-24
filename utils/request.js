@@ -1,7 +1,7 @@
 import { envSetting } from './env.js'
 // import { isTokenExpire } from './util.js'
 
-export const myRequest = (options = {}, isShowLoading = true) => {
+export const request = (options = {}, isShowLoading = true) => {
   // let timeOut = 50
   if (options.data && options.data.token) {
     // 如果请求带token参数，则说明该接口需要登录，则往header中添加portalTokenAuth字段
@@ -75,6 +75,8 @@ const doRequst = (options, isShowLoading) => {
           const body = {
             status: res.data.sub_code,
             msg: res.data.sub_msg,
+			subCode: res.data.sub_code,
+			subMsg: res.data.sub_msg,
             data: res.data ? res.data.data : null
           }
           resolve(body);

@@ -1,8 +1,8 @@
 <template>
   <view>
-   
+
     <nav-bar :title="title"></nav-bar>
-    
+
     <view class="container">
       <view class="top">
         <image
@@ -25,8 +25,8 @@
         </view>
         <view class="xy">
           <image @click="checkedAgrHandle" :src="agreementChecked ? imgPrefix + '/static/operateSteps/portalH5/pages/exercise-xy-checked.png' : imgPrefix + '/static/operateSteps/portalH5/pages/exercise-xy.png'"></image>
-          <view>开通前请阅读<text @click="goToAgreement">《和家健脑用户服务协议》</text>
-            <text @click="toPrivateService">《和家健脑隐私服务协议》</text></view>
+          <view>开通前请阅读<text @click="goToAgreement">《柒月贰柒用户服务协议》</text>
+            <text @click="toPrivateService">《柒月贰柒隐私服务协议》</text></view>
           </view>
         <view>
           <payment
@@ -47,7 +47,7 @@
       <fab :isOpenFabMenu="isPad ? true : false"></fab>
       <!--end 侧边栏-->
     </view>
-    
+
   </view>
 </template>
 
@@ -249,7 +249,7 @@ export default {
       .xy {
         font-size: 24rpx;
         margin-top: 50rpx;
-        
+
         padding: 0 50rpx;
         image {
           width: 24rpx;

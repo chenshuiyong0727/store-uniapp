@@ -1,5 +1,10 @@
 {
   "dependencies": {
+    "async-validator": "^1.11.5",
+    "core-js": "^3.31.1",
+    "crypto-js": "^4.1.1",
+    "element-ui": "^2.15.13",
+    "mint-ui": "^2.2.13",
     "pinyin-pro": "^3.13.0",
     "vconsole": "^3.14.7",
     "weixin-js-sdk": "^1.6.0"

@@ -1,7 +1,7 @@
 <template>
   <view class="register-container">
     <view class="title-text">
-      <text>和家健脑</text>
+      <text>柒月贰柒</text>
     </view>
 
     <view class="top-container">

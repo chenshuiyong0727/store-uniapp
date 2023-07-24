@@ -1,7 +1,7 @@
 <template>
   <view>
     <!-- #ifndef H5 -->
-    <nav-bar title='和家健脑' :isShowRightIcon="false" :isShowLeftIcon="false"></nav-bar>
+    <nav-bar title='柒月贰柒' :isShowRightIcon="false" :isShowLeftIcon="false"></nav-bar>
     <!-- #endif -->
     <view class="container">
       <view class="evalution-wrap">
@@ -107,14 +107,14 @@
           </view>
         </view>
       </view>
-      
+
       <swiper class="swiper" circular :indicator-dots="false" :autoplay="true" v-if="bannerList.length">
         <swiper-item v-for="item in bannerList" :key="item.id" @click="goToPage(item)">
           <image :src="imgPrefix + item.imgUrl"></image>
         </swiper-item>
       </swiper>
 
-      
+
       <view class="news-wrap">
         <view class="title">大脑科普</view>
         <view class="content">
@@ -132,13 +132,13 @@
       <!-- 绑定推荐码后的弹窗 -->
       <view class="popupWrap" v-if="isShowBindedPopup">
         <view class="popup">
-					<image 
-						src="https://natt.yimed.cn:11902/static/operateSteps/close11-15.png" 
+					<image
+						src="https://natt.yimed.cn:11902/static/operateSteps/close11-15.png"
 						class="close"
 						@click.stop="isShowBindedPopup = false">
 					</image>
-					<image 
-						src="https://natt.yimed.cn:11902/static/operateSteps/experienceNowBtn11-15.png" 
+					<image
+						src="https://natt.yimed.cn:11902/static/operateSteps/experienceNowBtn11-15.png"
 						class="experienceNowBtn"
 						@click.stop="isShowBindedPopup = false;judgeLogin()">
 					</image>
@@ -215,10 +215,10 @@
       this.getBannerList()
       // this.queryBtnDescribe()
       this.queryFastSieveNum()
-      
+
     },
     async onShow() {
-      
+
 			if (!this.crossLoad) { // 第二次进来清除掉参数
 				this.param = {}
 			} else {
@@ -228,7 +228,7 @@
 			await getUserInfoGlobal()
       this.userInfo = uni.getStorageSync('userInfo') ? JSON.parse(uni.getStorageSync('userInfo')) : {}
 			this.promoteCodeHandle() // 推荐码处理逻辑
-      
+
       if (this.userInfo && JSON.stringify(this.userInfo) != '{}') {
         // 是否惠夏宝用户
         this.queryHuiXiaScreening()
@@ -368,11 +368,11 @@
       //         icon: 'none',
       //         duration: 2000
       //       })
-            
+
       //     }
       //   })
       // },
-			// 推荐码处理逻辑 
+			// 推荐码处理逻辑
 			promoteCodeHandle () {
 				let promoteInfo = uni.getStorageSync('promoteInfo') || {}
 				if (this.param.promoteCode) {
@@ -421,7 +421,7 @@
 					}
 				})
 			},
-      
+
 			// 显示绑定推荐码后的弹窗
 			showBindedPopup () {
 				this.isShowBindedPopup = false
@@ -510,7 +510,7 @@
             param = '?userId=' + this.userInfo.userId
           }
           // #endif
-          
+
           // #ifdef APP-PLUS
           let routes = getCurrentPages()
           let curRoute = routes[routes.length - 1].route
@@ -555,11 +555,11 @@
         this.getBannerList()
         // this.queryBtnDescribe()
         setTimeout(() => {
-         uni.stopPullDownRefresh()  
+         uni.stopPullDownRefresh()
         }, 1500)
       },
       // #endif
-      
+
       queryMyOrderNum() {
         return new Promise((resolve) => {
           this.$request({
@@ -638,7 +638,7 @@
     background-image: linear-gradient(180deg, #E6F9F6 0%, #F3F4F5 100%) no-repeat;
     background-size: 750rpx 702.5rpx;
     background-color: #F3F8F8;
-    
+
     .evalution-wrap {
       display: flex;
       .evalution-wrap-left {
@@ -685,7 +685,7 @@
             }
           }
         }
-        
+
         .button {
           width: 150rpx;
           height: 45rpx;
@@ -743,9 +743,9 @@
               content: '';
               width: 0;
               height: 0;
-              border-left: 15rpx solid transparent;  
-              border-right: 15rpx solid transparent;  
-              border-bottom: 15rpx solid #FFE0B5; 
+              border-left: 15rpx solid transparent;
+              border-right: 15rpx solid transparent;
+              border-bottom: 15rpx solid #FFE0B5;
             }
           }
           .dh-close {
@@ -828,7 +828,7 @@
           color: #E0B04A;
           padding-bottom: 25rpx;
         }
-        
+
       }
       .train-wrap-right {
         .img-1 {
@@ -981,7 +981,7 @@
         }
       }
     }
-    
+
     .swiper {
       width: 100%;
       height: 131.87rpx;
@@ -1002,7 +1002,7 @@
       padding: 30rpx 0;
       color: #999;
     }
-    
+
     .box-alert {
       width: 100%;
       height: 100%;
@@ -1065,7 +1065,7 @@
           }
           .content {
             margin-top: 20rpx;
-            
+
             .img {
               width: 150rpx;
               height: 150rpx;
@@ -1082,7 +1082,7 @@
                   margin-top: 20rpx;
                 }
               }
-              
+
             }
           }
           .button {
@@ -1092,7 +1092,7 @@
             font-size: 34rpx;
             border-radius: 36rpx;
             margin: 20rpx auto 0 auto;
-            
+
             image {
               width: 20rpx;
               height: 20rpx;
@@ -1123,9 +1123,9 @@
                 content: '';
                 width: 0;
                 height: 0;
-                border-left: 20rpx solid transparent;  
-                border-right: 20rpx solid transparent;  
-                border-bottom: 20rpx solid #FFE0B5; 
+                border-left: 20rpx solid transparent;
+                border-right: 20rpx solid transparent;
+                border-bottom: 20rpx solid #FFE0B5;
               }
             }
             .dh-close {
@@ -1198,7 +1198,7 @@
             box-sizing: border-box;
             margin-right: -34rpx;
           }
-          
+
         }
         .train-wrap-right {
           flex: 0 0 320rpx;
@@ -1207,7 +1207,7 @@
             height: 320rpx;
             margin-top: -38rpx;
           }
-        } 
+        }
         .button {
           width: 648rpx;
           height: 72rpx;
@@ -1322,8 +1322,8 @@
           }
         }
       }
-      
-      
+
+
       .swiper {
         width: 100%;
         height: 140rpx;
@@ -1334,7 +1334,7 @@
           border-radius: 20rpx;
         }
       }
-    
+
       .link {
         width: 750rpx;
         max-width: 750rpx;
@@ -1349,17 +1349,17 @@
         padding: 30rpx;
         border-radius: 30rpx;
         font-size: 34rpx;
-       
+
         .btn {
           width: 422rpx;
           height: 84rpx;
-         
+
           border-radius: 10rpx;
           line-height: 84rpx;
           margin-top: 40rpx;
         }
         .close {
-          
+
           padding: 15rpx;
           margin-bottom: 40rpx;
         }
@@ -1405,7 +1405,7 @@
   }
   @media screen and (width: 360px) {
     .container {
-     
+
       .evalution-wrap {
         .evalution-wrap-left {
           .content {
