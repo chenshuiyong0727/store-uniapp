@@ -1,8 +1,8 @@
 <template>
   <view>
-   
+
     <nav-bar title='趣味健脑'></nav-bar>
-    
+
     <view class="applet-detail-contain">
       <view class="common direction">
         <view class="_h6">{{trainDetail.name}}</view>
@@ -25,13 +25,13 @@
         <view class="_h6">操作图示</view>
         <view class="content">
           <view class="list" v-if="trainDetail.operationDiagramOne">
-            <image :src="imgPrefix + trainDetail.operationDiagramOne" />
+            <image :src="fileUrl + trainDetail.operationDiagramOne" />
           </view>
           <view class="list" v-if="trainDetail.operationDiagramTwo">
-            <image :src="imgPrefix + trainDetail.operationDiagramTwo" />
+            <image :src="fileUrl + trainDetail.operationDiagramTwo" />
           </view>
           <view class="list" v-if="trainDetail.operationDiagramThree">
-            <image :src="imgPrefix + trainDetail.operationDiagramThree" />
+            <image :src="fileUrl + trainDetail.operationDiagramThree" />
           </view>
         </view>
       </view>
@@ -62,7 +62,7 @@
         trainId: -1,
         trainDetail: {},
         userInfo: {},
-        imgPrefix: this.$imgPrefix
+        fileUrl: this.$fileUrl
       }
     },
     onLoad(options) {
@@ -84,12 +84,12 @@
             }
           }).then(res => {
             if (res.status === 1000) {
-             
+
               this._formateData(res.data, 'trainingDirectionOne')
               this._formateData(res.data, 'trainingDirectionThree')
               this._formateData(res.data, 'trainingDirectionTwo')
               this.trainDetail = res.data
-             
+
             } else {
               uni.showToast({
                 title: res.msg,

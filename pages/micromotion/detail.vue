@@ -1,14 +1,14 @@
 <template>
   <view>
-   
+
     <nav-bar title='健脑运动'></nav-bar>
-    
+
     <view class="container">
       <view :class="[isPad ? '' : 'mobile-v-top']">
         <view class="video-content">
-          <video v-if="detailData.videoUrl" id="myVideo" class="video" :src='imgPrefix + detailData.videoUrl' :poster="imgPrefix + detailData.imgUrl" controls object-fit='contain'></video>
-          <!-- <video v-if="detailData.videoUrl" id="myVideo" class="video" :src='videoSrc' :poster="imgPrefix + detailData.imgUrl" controls object-fit='contain'></video> -->
-         
+          <video v-if="detailData.videoUrl" id="myVideo" class="video" :src='fileUrl + detailData.videoUrl' :poster="fileUrl + detailData.imgUrl" controls object-fit='contain'></video>
+          <!-- <video v-if="detailData.videoUrl" id="myVideo" class="video" :src='videoSrc' :poster="fileUrl + detailData.imgUrl" controls object-fit='contain'></video> -->
+
           <!-- <view class="desc desc-landscape">
             <rich-text :nodes="detailData.detail"></rich-text>
           </view> -->
@@ -19,7 +19,7 @@
       </view>
       <!-- <view class="desc desc-portrait">
         <view><rich-text :nodes="detailData.detailPhone"></rich-text></view>
-       
+
       </view> -->
       <!--侧边栏-->
       <fab v-if="isShowFab" :isOpenFabMenu="isPad ? true : false" :isSpecialTop="true"></fab>
@@ -49,7 +49,7 @@
         videoSrc: '',
         videoPlay: null,
         isPad: this.$pad,
-        imgPrefix: this.$imgPrefix
+        fileUrl: this.$fileUrl
       }
     },
     onLoad(options) {
@@ -63,10 +63,10 @@
       uni.setStorageSync(this.userInfo.userId + '-hasDoMicromotion', 'yes')
     },
     onReady() {
-      
+
     },
     methods: {
-      
+
       // initVideo(src) {
       //   // #ifdef H5
       //   // let video = document.createElement('video')
@@ -115,7 +115,7 @@
       //     loop: false, // 导致视频一结束就重新开始。 视频播放结束后，是否循环播放
       //     screenshot:true,
       //     // controlBar: {
-            
+
       //     //   timeDivider: true, // 时间分割线
       //     //   durationDisplay: true, // 总时间
       //     //   progressControl: true, // 进度条
@@ -132,7 +132,7 @@
       //   })
       //   // #endif
       // },
-      
+
       getDetail() {
         this.$request({
           url: '/gw/h5/v1/front/ucServicePack/microSport/detail',
@@ -188,7 +188,7 @@
   // ::v-deep .vjs-button>.vjs-icon-placeholder:before {
   //   line-height: 1.2;
   // }
-  
+
   @media screen and (max-width: 500px) {
     .container {
       max-width: 750rpx;
@@ -200,7 +200,7 @@
       .video-content {
         display: flex;
         height: 448rpx;
-    
+
         .video {
           width: 100%;
           height: auto;
@@ -213,7 +213,7 @@
       //   font-size: 44rpx;
       //   padding: 26rpx 28rpx;
       // }
-      
+
       // .desc {
       //   margin: 20rpx auto;
       //   width: 694rpx;
@@ -223,6 +223,6 @@
       //   background-color: #fff;
       //   color: #666666;
       // }
-    } 
+    }
   }
 </style>

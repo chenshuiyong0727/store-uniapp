@@ -1,31 +1,31 @@
 <template>
   <view>
-   
+
     <nav-bar title='认知症数字疗法'></nav-bar>
- 
+
     <view class="container">
       <block v-if="isPad">
-        <image class="img-1" :src="imgPrefix + '/static/operateSteps/cognitive-new-training-1.png?t=1'"></image>
-        <image class="img-2" :src="imgPrefix + '/static/operateSteps/cognitive-new-training-2.png?t=1'"></image>
-        <image class="img-3" :src="imgPrefix + '/static/operateSteps/cognitive-new-training-3.png?t=1'"></image>
-        <image class="img-4" :src="imgPrefix + '/static/operateSteps/cognitive-new-training-4.png?t=1'"></image>
-        <image class="img-5" :src="imgPrefix + '/static/operateSteps/cognitive-new-training-5.png?t=1'"></image>
-        <image class="img-6" :src="imgPrefix + '/static/operateSteps/cognitive-new-training-6.png?t=1'"></image>
-        <image class="img-7" :src="imgPrefix + '/static/operateSteps/cognitive-new-training-7.png?t=1'"></image>
-        <image class="img-8" :src="imgPrefix + '/static/operateSteps/cognitive-new-training-8.png?t=1'"></image>
-        <image class="img-9" :src="imgPrefix + '/static/operateSteps/cognitive-new-training-9.png?t=1'"></image>
+        <image class="img-1" :src="fileUrl + '/static/operateSteps/cognitive-new-training-1.png?t=1'"></image>
+        <image class="img-2" :src="fileUrl + '/static/operateSteps/cognitive-new-training-2.png?t=1'"></image>
+        <image class="img-3" :src="fileUrl + '/static/operateSteps/cognitive-new-training-3.png?t=1'"></image>
+        <image class="img-4" :src="fileUrl + '/static/operateSteps/cognitive-new-training-4.png?t=1'"></image>
+        <image class="img-5" :src="fileUrl + '/static/operateSteps/cognitive-new-training-5.png?t=1'"></image>
+        <image class="img-6" :src="fileUrl + '/static/operateSteps/cognitive-new-training-6.png?t=1'"></image>
+        <image class="img-7" :src="fileUrl + '/static/operateSteps/cognitive-new-training-7.png?t=1'"></image>
+        <image class="img-8" :src="fileUrl + '/static/operateSteps/cognitive-new-training-8.png?t=1'"></image>
+        <image class="img-9" :src="fileUrl + '/static/operateSteps/cognitive-new-training-9.png?t=1'"></image>
       </block>
       <block v-else>
-        <image class="img-1" :src="imgPrefix + '/static/operateSteps/mobile-cognitive-new-training-1.png?t=1'"></image>
-        <image class="img-2" :src="imgPrefix + '/static/operateSteps/mobile-cognitive-new-training-2.png?t=1'"></image>
-        <image class="img-3" :src="imgPrefix + '/static/operateSteps/mobile-cognitive-new-training-3.png?t=1'"></image>
-        <image class="img-4" :src="imgPrefix + '/static/operateSteps/mobile-cognitive-new-training-4.png?t=1'"></image>
-        <image class="img-5" :src="imgPrefix + '/static/operateSteps/mobile-cognitive-new-training-5.png?t=1'"></image>
-        <image class="img-6" :src="imgPrefix + '/static/operateSteps/mobile-cognitive-new-training-6.png?t=1'"></image>
-        <image class="img-7" :src="imgPrefix + '/static/operateSteps/mobile-cognitive-new-training-7.png?t=1'"></image>
-        <image class="img-8" :src="imgPrefix + '/static/operateSteps/mobile-cognitive-new-training-8.png?t=1'"></image>
-        <image class="img-9" :src="imgPrefix + '/static/operateSteps/mobile-cognitive-new-training-9.png?t=1'"></image>
-        
+        <image class="img-1" :src="fileUrl + '/static/operateSteps/mobile-cognitive-new-training-1.png?t=1'"></image>
+        <image class="img-2" :src="fileUrl + '/static/operateSteps/mobile-cognitive-new-training-2.png?t=1'"></image>
+        <image class="img-3" :src="fileUrl + '/static/operateSteps/mobile-cognitive-new-training-3.png?t=1'"></image>
+        <image class="img-4" :src="fileUrl + '/static/operateSteps/mobile-cognitive-new-training-4.png?t=1'"></image>
+        <image class="img-5" :src="fileUrl + '/static/operateSteps/mobile-cognitive-new-training-5.png?t=1'"></image>
+        <image class="img-6" :src="fileUrl + '/static/operateSteps/mobile-cognitive-new-training-6.png?t=1'"></image>
+        <image class="img-7" :src="fileUrl + '/static/operateSteps/mobile-cognitive-new-training-7.png?t=1'"></image>
+        <image class="img-8" :src="fileUrl + '/static/operateSteps/mobile-cognitive-new-training-8.png?t=1'"></image>
+        <image class="img-9" :src="fileUrl + '/static/operateSteps/mobile-cognitive-new-training-9.png?t=1'"></image>
+
       </block>
       <view class="bottom" v-if="showBtm=='true'">
         <view class="kf" @click="showKfCode">
@@ -60,7 +60,7 @@
     data() {
       return {
         userInfo: {},
-        imgPrefix: this.$imgPrefix,
+        fileUrl: this.$fileUrl,
         isPad: this.$pad,
         isShowKfCode: false,
         showBtm: 'true',
@@ -167,23 +167,23 @@
     bottom: 0;
     left: 50%;
     margin-left: -375.09rpx;
-  
+
     .kf {
       margin-left: 10rpx;
-  
+
       image {
         width: 32.23rpx;
         height: 32.23rpx;
         margin: 0 auto;
         display: block;
       }
-  
+
       &>view {
         font-size: 11.72rpx;
         color: #5796F8;
       }
     }
-  
+
     .btm-right {
       .btn-buy {
         width: 622.71rpx;
@@ -228,15 +228,15 @@
       }
       .img-7 {
         height: 486rpx;
-        
+
       }
       .img-8 {
         height: 892rpx;
-        
+
       }
       .img-9 {
         height: 872rpx;
-        
+
       }
     }
     .bottom {
@@ -247,12 +247,12 @@
           width: 60rpx;
           height: 60rpx;
         }
-    
+
         &>view {
           font-size: 22rpx;
         }
       }
-    
+
       .btm-right {
         .btn-buy {
           width: 490rpx;

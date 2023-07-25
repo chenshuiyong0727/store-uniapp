@@ -1,12 +1,12 @@
 <template>
-  <view :class="[styles.paddingLeft ? 'tip-pad-left' : 'tip-pad-right' ,'tip-container']" 
-    :style="{ left: leftPos + 'rpx', bottom: bottomPos + 'rpx', position: positionType, width: styles.width, height: styles.height, backgroundImage: 'url('+imgPrefix +'/static/operateSteps/'+styles.bgImgName+'.png)', backgroundSize: '100% 100%' }">
+  <view :class="[styles.paddingLeft ? 'tip-pad-left' : 'tip-pad-right' ,'tip-container']"
+    :style="{ left: leftPos + 'rpx', bottom: bottomPos + 'rpx', position: positionType, width: styles.width, height: styles.height, backgroundImage: 'url('+fileUrl +'/static/operateSteps/'+styles.bgImgName+'.png)', backgroundSize: '100% 100%' }">
     <view class="content">
-      <!-- <image v-if="isShowGesture" :class="['gesture-ani-'+gestureType, 'gesture']" :animation="animationData" :style="{ left: gestureLeftPos + 'rpx', top: gestureTopPos + 'rpx' }" :src="imgPrefix + '/static/operateSteps/gesture'+gestureType+'.png'"></image> -->
+      <!-- <image v-if="isShowGesture" :class="['gesture-ani-'+gestureType, 'gesture']" :animation="animationData" :style="{ left: gestureLeftPos + 'rpx', top: gestureTopPos + 'rpx' }" :src="fileUrl + '/static/operateSteps/gesture'+gestureType+'.png'"></image> -->
       <view v-if="isShowGesture" class="gesture" :style="{ left: gestureLeftPos + 'rpx', top: gestureTopPos + 'rpx' }">
         <view class="gesture-shadow">
-          <image class="gesture-img" :src="imgPrefix + '/static/operateSteps/gesture'+gestureType+'.gif'"></image>
-          <image :class="[gestureType == 2 ? 'shadow-img-2' : '' ,'shadow-img']" :src="imgPrefix + '/static/operateSteps/img-guid-shadow'+gestureType+'.png'"></image>
+          <image class="gesture-img" :src="fileUrl + '/static/operateSteps/gesture'+gestureType+'.gif'"></image>
+          <image :class="[gestureType == 2 ? 'shadow-img-2' : '' ,'shadow-img']" :src="fileUrl + '/static/operateSteps/img-guid-shadow'+gestureType+'.png'"></image>
         </view>
       </view>
       <view class="type-1" :style="styles.specialPadding ? styles.specialPadding : ''">
@@ -16,11 +16,11 @@
             <view v-for="(item, index) in guidContent.descList" :key="index">{{item}}</view>
           </view>
         </view>
-        <view 
-        :class="[styles.paddingLeft ? 'guid-close-left' : 'guid-close-right', 'guid-close']" 
+        <view
+        :class="[styles.paddingLeft ? 'guid-close-left' : 'guid-close-right', 'guid-close']"
         @click="closeGuidHandle"
         :style="styles.closePos ? styles.closePos : ''">
-        <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/guid-close.png'"></image>
+        <image :src="fileUrl + '/static/operateSteps/portalH5/pages/guid-close.png'"></image>
       </view>
       </view>
     </view>
@@ -70,7 +70,7 @@
     data() {
       return {
         animationData: {},
-        imgPrefix: this.$imgPrefix
+        fileUrl: this.$fileUrl
       }
     },
     methods: {
@@ -116,9 +116,9 @@
             bottom: 0;
           }
         }
-        
+
       }
-      
+
       // .gesture-ani-1 {
       //   animation:mymove 1s infinite alternate;
       // }
@@ -276,18 +276,18 @@
   .tip-pad-right {
     padding: 40rpx 21.98rpx 0 70rpx;
   }
-  
+
   @media screen and (max-width: 500px) {
     .tip-container {
       width: 452rpx;
       font-size: 28rpx;
-      
+
       .content {
         .gesture {
           width: 140rpx;
           height: 140rpx;
           position: absolute;
-          
+
           .gesture-shadow {
             .gesture-img {
               width: 140rpx;

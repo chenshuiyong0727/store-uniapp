@@ -9,18 +9,18 @@
           <view @click="goFastSieve">
             <view class="title">认知<text class="text-style">障碍筛查</text></view>
             <view class="content">
-              <view class="img"><image :src="imgPrefix + '/static/operateSteps/icon-pg.gif'"></image></view>
+              <view class="img"><image :src="fileUrl + '/static/operateSteps/icon-pg.gif'"></image></view>
               <view class="content-right">
                 <view class="p1">已筛查<text>{{fastSieveNum}}</text></view>
                 <view class="button" v-if="isPad">
                   <text>立即筛查</text>
-                  <image :src="imgPrefix +'/static/operateSteps/portalH5/pages/index-img-7.png'"></image>
+                  <image :src="fileUrl +'/static/operateSteps/portalH5/pages/index-img-7.png'"></image>
                 </view>
               </view>
             </view>
             <view class="button" v-if="!isPad">
               <text>立即筛查</text>
-              <image :src="imgPrefix +'/static/operateSteps/portalH5/pages/index-img-7.png'"></image>
+              <image :src="fileUrl +'/static/operateSteps/portalH5/pages/index-img-7.png'"></image>
             </view>
           </view>
           <view class="dh-tip-wrap" v-if="isShowDhTip">
@@ -29,7 +29,7 @@
               <view @click.stop="goDhHandle">兑换报告</view>
             </view>
             <view class="dh-close" @click.stop="DhCloseHandle">
-              <image :src="imgPrefix +'/static/operateSteps/portalH5/pages/close-new.png'"></image>
+              <image :src="fileUrl +'/static/operateSteps/portalH5/pages/close-new.png'"></image>
             </view>
           </view>
         </view>
@@ -39,20 +39,20 @@
               <view class="title">认知评估</view>
               <view class="button">
                 <text>去评估</text>
-                <image :src="imgPrefix +'/static/operateSteps/portalH5/pages/index-img-8.png'"></image>
+                <image :src="fileUrl +'/static/operateSteps/portalH5/pages/index-img-8.png'"></image>
               </view>
             </view>
-            <image class="img" :src="imgPrefix +'/static/operateSteps/portalH5/pages/index-img-2.png'"></image>
+            <image class="img" :src="fileUrl +'/static/operateSteps/portalH5/pages/index-img-2.png'"></image>
           </view>
           <view class="item item2" @click="naveToPageByLogin('/pages/consulting-service/index')">
             <view class="item-left">
               <view class="title">咨询专家</view>
               <view class="button">
                 <text>去咨询</text>
-                <image :src="imgPrefix +'/static/operateSteps/portalH5/pages/index-img-10.png'"></image>
+                <image :src="fileUrl +'/static/operateSteps/portalH5/pages/index-img-10.png'"></image>
               </view>
             </view>
-            <image class="img" :src="imgPrefix +'/static/operateSteps/portalH5/pages/index-img-3.png'"></image>
+            <image class="img" :src="fileUrl +'/static/operateSteps/portalH5/pages/index-img-3.png'"></image>
           </view>
         </view>
       </view>
@@ -62,15 +62,15 @@
           <view class="p1">药品监管局已认证</view>
           <view class="button" v-if="isPad">
             <text>立即训练</text>
-            <image :src="imgPrefix +'/static/operateSteps/portalH5/pages/index-img-9.png'"></image>
+            <image :src="fileUrl +'/static/operateSteps/portalH5/pages/index-img-9.png'"></image>
           </view>
         </view>
         <view class="train-wrap-right">
-          <image class="img-1" :src="isPad ? imgPrefix + '/static/operateSteps/portalH5/pages/index-img-pad-4.png' : imgPrefix + '/static/operateSteps/portalH5/pages/index-img-mobile-4.png'"></image>
+          <image class="img-1" :src="isPad ? fileUrl + '/static/operateSteps/portalH5/pages/index-img-pad-4.png' : fileUrl + '/static/operateSteps/portalH5/pages/index-img-mobile-4.png'"></image>
         </view>
         <view class="button" v-if="!isPad">
           <text>立即训练</text>
-          <image :src="imgPrefix +'/static/operateSteps/portalH5/pages/index-img-9.png'"></image>
+          <image :src="fileUrl +'/static/operateSteps/portalH5/pages/index-img-9.png'"></image>
         </view>
       </view>
       <view class="game-wrap">
@@ -80,7 +80,7 @@
             <view class="item-left">
               <swiper class="swiper-img" circular :indicator-dots="false" :autoplay="true" interval="3000" duration="200">
                 <swiper-item v-for="item in gameImgList" :key="item.frontId">
-                  <image :src="imgPrefix + item.imgUrl" mode="aspectFill"></image>
+                  <image :src="fileUrl + item.imgUrl" mode="aspectFill"></image>
                 </swiper-item>
               </swiper>
               <view class="bg-shadow"></view>
@@ -89,19 +89,19 @@
               <view class="title">趣味健脑</view>
               <view class="desc">
                 <text>去锻炼</text>
-                <image :src="imgPrefix +'/static/operateSteps/portalH5/pages/index-img-9.png'"></image>
+                <image :src="fileUrl +'/static/operateSteps/portalH5/pages/index-img-9.png'"></image>
               </view>
             </view>
           </view>
           <view class="item item-exercise" @click="goPageHandle(2)">
             <view class="item-left">
-              <image class="img-exercise" :src="imgPrefix +'/static/operateSteps/portalH5/pages/index-img-6.png'"></image>
+              <image class="img-exercise" :src="fileUrl +'/static/operateSteps/portalH5/pages/index-img-6.png'"></image>
             </view>
             <view class="item-right">
               <view class="title">健脑运动</view>
               <view class="desc">
                 <text>去运动</text>
-                <image :src="imgPrefix +'/static/operateSteps/portalH5/pages/index-img-9.png'"></image>
+                <image :src="fileUrl +'/static/operateSteps/portalH5/pages/index-img-9.png'"></image>
               </view>
             </view>
           </view>
@@ -110,7 +110,7 @@
 
       <swiper class="swiper" circular :indicator-dots="false" :autoplay="true" v-if="bannerList.length">
         <swiper-item v-for="item in bannerList" :key="item.id" @click="goToPage(item)">
-          <image :src="imgPrefix + item.imgUrl"></image>
+          <image :src="fileUrl + item.imgUrl"></image>
         </swiper-item>
       </swiper>
 
@@ -119,7 +119,7 @@
         <view class="title">大脑科普</view>
         <view class="content">
           <view :class="['item']" v-for="(item, index) in articleList" :key="item.id" @click="goArticleDetail(item.id, item.title)">
-            <image :src="imgPrefix + item.imgUrl"></image>
+            <image :src="fileUrl + item.imgUrl"></image>
             <view class="detail">
               {{item.title}}
             </view>
@@ -174,7 +174,7 @@
       return {
         userInfo: {},
         isPad: this.$pad,
-        imgPrefix: this.$imgPrefix,
+        fileUrl: this.$fileUrl,
         articleList: [],
         scrollTop: 10,
         pageSize: 10,

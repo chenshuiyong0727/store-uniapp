@@ -1,6 +1,6 @@
 <template>
   <view>
-   
+
     <nav-bar title='认知筛查记录' :backUrl="backUrl"></nav-bar>
 
     <view class="container">
@@ -9,26 +9,26 @@
           <view v-if="!isPad" class="report-time brToHalf">{{item.reporttime | formateTime}}</view>
           <view class="list-bottom">
             <view class="list-left">
-              
+
               <view class="item item-2">
                 <view>筛查结果</view>
                 <view>
                   <block v-if="item.status === 0 || item.status === -1">
-                    <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-unnormal.png'"></image>
+                    <image :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-unnormal.png'"></image>
                     <text>未完成筛查</text>
                   </block>
                   <block v-else>
                     <block v-if="item.lockStatus == 1">
-                      <image v-if="item.type == 'N'" :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-normal.png'"></image>
-                      <image v-else :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-danger.png'"></image>
+                      <image v-if="item.type == 'N'" :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-normal.png'"></image>
+                      <image v-else :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-danger.png'"></image>
                       <text :class="[item.type == 'N' ? '' : '_color']">{{item.type | dictToDesc('EVALUATIONTYPE')}}</text>
                     </block>
                     <block v-else>
-                      <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-lock-2.png'"></image>
+                      <image :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-lock-2.png'"></image>
                       <text class="_color3">待解锁报告</text>
                     </block>
                   </block>
-                  <!-- <image :src="item.type != 'N' ? imgPrefix + '/static/operateSteps/portalH5/pages/icon-unnormal.png' : imgPrefix + '/static/operateSteps/portalH5/pages/icon-normal.png'"></image> -->
+                  <!-- <image :src="item.type != 'N' ? fileUrl + '/static/operateSteps/portalH5/pages/icon-unnormal.png' : fileUrl + '/static/operateSteps/portalH5/pages/icon-normal.png'"></image> -->
                 </view>
               </view>
               <view class="item" v-if="isPad">
@@ -36,7 +36,7 @@
                 <view>{{item.reporttime | formateTime}}</view>
               </view>
               <view class="item">
-                <view>实付款</view> 
+                <view>实付款</view>
                 <view v-if="item.lockStatus == 1">¥{{item.price ? item.price / 100 : '--'}}</view>
                 <view v-else>待付款</view>
               </view>
@@ -45,7 +45,7 @@
             <view v-if="item.status === 1 && item.lockStatus == 1" class="btn btn-report" @click="lookReportHandle(item.orderid)">查看报告</view>
             <view class="btn" v-else-if="item.status === 0" @click="goEvaluation(item.orderid)">继续筛查</view>
             <view class="text-cancel" v-else-if="item.status === -1">订单已取消</view>
-            
+
           </view>
         </view>
       </block>
@@ -78,7 +78,7 @@
         orderList: [],
         isDoneRequest: false,
         isPad: this.$pad,
-        imgPrefix: this.$imgPrefix,
+        fileUrl: this.$fileUrl,
         thirdToken: '',
         crossLoad: false,
         backUrl: ''
@@ -185,9 +185,9 @@
 </script>
   <style lang="scss" scoped>
   @function tovmin($rpx){
-    @return #{$rpx * 100 / 750}vmin; 
+    @return #{$rpx * 100 / 750}vmin;
   }
-            
+
   .container {
     width: 100%;
     max-width: tovmin(750.02);

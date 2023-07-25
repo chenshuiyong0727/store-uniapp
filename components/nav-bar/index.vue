@@ -9,7 +9,8 @@
         </view>
       </block>
       <view class="middle">
-        <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-logo.png'"></image>
+        <!-- <image :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-logo.png'"></image> -->
+		<!-- <image src="../../static/img/logo/logo.png"></image> -->
         <text>{{title}}</text>
       </view>
       <block slot="right">
@@ -18,7 +19,7 @@
           <view>首页</view>
         </view>
       </block>
-      
+
     </uni-nav-bar>
     <!-- #ifdef APP-PLUS -->
     <view class="network-tip" v-if="showNetworkTip">
@@ -29,7 +30,7 @@
       </view>
     </view>
     <!-- #endif -->
-    
+
   </view>
 </template>
 
@@ -63,11 +64,11 @@
         default: false
       }
     },
-    
+
     data() {
       return {
         isPad: this.$pad,
-        imgPrefix: this.$imgPrefix,
+        fileUrl: this.$fileUrl,
         isWechat: this.$isWechat,
         isShowRightIconCopy: true,
         // #ifdef APP-PLUS
@@ -77,7 +78,7 @@
         // #endif
       }
     },
-    
+
     mounted() {
       this.isShowRightIconCopy = this.isShowRightIcon
       // #ifdef APP-PLUS
@@ -87,8 +88,8 @@
       this.isShowRightIconCopy = false
       // #endif
     },
-    
-    // #ifdef MP 
+
+    // #ifdef MP
     options: {
       styleIsolation: 'shared'
     },
@@ -100,7 +101,7 @@
       backHandle() {
         if (this.backUrl) {
           navigateTo(this.backUrl)
-          
+
         } else {
           const pages = getCurrentPages()
           let prevPage = pages[pages.length - 2]
@@ -159,7 +160,7 @@
     background-color: #fff;
     padding-top: var(--status-bar-height);
   }
-  
+
   .left, .right {
     display: flex;
     align-items: center;
@@ -216,10 +217,10 @@
           padding: 14.65rpx;
           margin: -21.98rpx -21.98rpx 0 0;
           display: inline-block;
-         
+
         }
       }
-      
+
       .img-1 {
         clear: both;
         width: 205.13rpx;
@@ -250,7 +251,7 @@
       image {
         width: 66rpx;
         height: 66rpx;
-       
+
         margin-right: 15rpx;
       }
     }
@@ -268,7 +269,7 @@
             margin: -30rpx -30rpx 0 0;
           }
         }
-        
+
         .img-1 {
           width: 360rpx;
           height: 360rpx;
@@ -283,7 +284,7 @@
     }
     /* #endif */
   }
-  
+
   /* #ifdef MP */
   ::v-deep .uni-navbar {
     padding-top: var(--status-bar-height) !important;
@@ -304,7 +305,7 @@
         height: 38px;
       }
     }
-    
+
   }
   /* #endif */
 </style>

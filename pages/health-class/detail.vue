@@ -1,7 +1,7 @@
 <template>
   <view class="container">
     <view class="image-box">
-      <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/haibao.png'"></image>
+      <image :src="fileUrl + '/static/operateSteps/portalH5/pages/haibao.png'"></image>
     </view>
     <view class="bottom-container">
       <view class="left-box">
@@ -18,7 +18,7 @@
   export default {
     data() {
       return {
-        imgPrefix: this.$imgPrefix
+        fileUrl: this.$fileUrl
       }
     }
   }

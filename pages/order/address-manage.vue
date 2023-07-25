@@ -11,11 +11,11 @@
             </view>
             <view class="item-right">
               <view class="operate edit" @click="editHandle(item)">
-                <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/edit.png'"></image>
+                <image :src="fileUrl + '/static/operateSteps/portalH5/pages/edit.png'"></image>
                 <view>修改</view>
               </view>
               <view class="operate delete" @click="showDeleteBox(item)">
-                <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/delete.png'"></image>
+                <image :src="fileUrl + '/static/operateSteps/portalH5/pages/delete.png'"></image>
                 <view>删除</view>
               </view>
             </view>
@@ -25,7 +25,7 @@
       <block v-if="requestDone && !addressList.length">
         <view class="empty"><empty-data tips="当前暂无收货地址"></empty-data></view>
       </block>
-      <view class="add-btn" @click="goToPage('/pages/order/add-address')"><image :src="imgPrefix + '/static/operateSteps/portalH5/pages/add.png'"></image><text>新增收货地址</text></view>
+      <view class="add-btn" @click="goToPage('/pages/order/add-address')"><image :src="fileUrl + '/static/operateSteps/portalH5/pages/add.png'"></image><text>新增收货地址</text></view>
       <view class="delete-box" v-if="isShowDeleteBox">
         <view class="delete-box-content">
           <view class="title">确定要删除该地址吗？</view>
@@ -56,7 +56,7 @@
     data() {
       return {
         isPad: this.$pad,
-        imgPrefix: this.$imgPrefix,
+        fileUrl: this.$fileUrl,
         userInfo: {},
         addressList: [],
         isShowDeleteBox: false,
@@ -253,7 +253,7 @@
             color: #fff;
             font-weight: bold;
             background-color: #43C9A7;
-            
+
           }
           &>view:nth-child(1) {
             color: #43C9A7;
@@ -349,7 +349,7 @@
               border-radius: 12rpx;
               line-height: 100rpx;
               font-size: 40rpx;
-              
+
             }
           }
         }

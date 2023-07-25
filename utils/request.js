@@ -3,54 +3,11 @@ import { envSetting } from './env.js'
 
 export const request = (options = {}, isShowLoading = true) => {
   // let timeOut = 50
-  if (options.data && options.data.token) {
+  if (uni.getStorageSync('org_token_auth')) {
     // 如果请求带token参数，则说明该接口需要登录，则往header中添加portalTokenAuth字段
     options.header = {
-      portalTokenAuth: options.data.token
+      tokenAuth: uni.getStorageSync('org_token_auth')
     }
-    // let userInfo = uni.getStorageSync('userInfo') ? JSON.parse(uni.getStorageSync('userInfo')) : {}
-    // let tokenExpireTime = userInfo.tokenExpireTime ? userInfo.tokenExpireTime : new Date()
-    // console.log(isTokenExpire(tokenExpireTime))
-    // if (isTokenExpire(tokenExpireTime) === 2) {
-    //   // 登录过期，跳转登录页面
-    //   uni.removeStorageSync('userInfo');
-    //   uni.navigateTo({
-    //     url: '/pages/login/index'
-    //   })
-    // } else if (isTokenExpire(tokenExpireTime) === 1 && options.url != '/gw/h5/v1/front/user/token/refresh') {
-    //   // 5分钟之后token即将过期
-    //   timeOut = 1000
-    //   let refreshParam = {
-    //     userId: userInfo.userId,
-    //     token: userInfo.token,
-    //     refreshToken: userInfo.refreshToken
-    //   }
-    //   uni.request({
-    //     url: `${envSetting.baseURL}/gw/h5/v1/front/user/token/refresh`,
-    //     method: 'post',
-    //     data: refreshParam,
-    //     success: (res) => {
-    //       if (res.data.code == 1) {
-    //         if (res.data.sub_code == 10005) {
-    //           // token过期，跳转登录页面
-    //           uni.removeStorageSync('userInfo');
-    //           uni.navigateTo({
-    //             url: '/pages/login/index'
-    //           })
-    //         } else {
-    //           userInfo.token = res.data.data.token
-    //           userInfo.tokenExpireTime = res.data.data.tokenExpireTime
-    //           userInfo.refreshToken = res.data.data.refreshToken
-    //           // 更新用户信息缓存
-    //           uni.setStorageSync('userInfo', JSON.stringify(userInfo))
-    //           options.header = {
-    //             portalTokenAuth: res.data.data.token
-    //           }
-    //         }
-    //       }
-    //     }
-    //   })
-    // }
   }
   return doRequst(options, isShowLoading)
 }
@@ -102,7 +59,7 @@ const doRequst = (options, isShowLoading) => {
             icon: 'fail'
           });
         }
-    
+
       },
       fail: (err) => {
         uni.showToast({

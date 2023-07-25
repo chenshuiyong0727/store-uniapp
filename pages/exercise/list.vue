@@ -5,14 +5,14 @@
       <view :class="[item.status == 0 ? 'lock': '','item']" v-for="item in todayList.data" :key="item.id" @click="beginExercise(item)">
         <view class="img">
           <image class="img-1" :mode="item.imgUrl.indexOf('../') > -1 ? 'aspectFit' : 'scaleToFill'" :src="isPad ? item.imgUrl : item.imgUrlPhone" lazy-load @error="imgLoadErrorHandle(item)"></image>
-          <image :class="[item.status == 2 ? 'img-unlock' : '','img-2']" v-if="item.exerciseStatus != 1" :src="item.status == 0 ? imgPrefix + '/static/operateSteps/portalH5/pages/exercise-img-4.png' : item.status == 1 ? imgPrefix + '/static/operateSteps/portalH5/pages/exercise-img-2.png' : imgPrefix + '/static/operateSteps/portalH5/pages/exercise-img-5.png'"></image>
+          <image :class="[item.status == 2 ? 'img-unlock' : '','img-2']" v-if="item.exerciseStatus != 1" :src="item.status == 0 ? fileUrl + '/static/operateSteps/portalH5/pages/exercise-img-4.png' : item.status == 1 ? fileUrl + '/static/operateSteps/portalH5/pages/exercise-img-2.png' : fileUrl + '/static/operateSteps/portalH5/pages/exercise-img-5.png'"></image>
           <image class="img-lock" v-if="item.status == 0" src="../../static/images/applet/icon_lock.png"></image>
-          <image class="img-today" v-if="item.exerciseStatus == 1" :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-today.png'"></image>
+          <image class="img-today" v-if="item.exerciseStatus == 1" :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-today.png'"></image>
         </view>
         <view>
           <view class="title">{{item.name}}</view>
           <view class="desc">{{item.description}}</view>
-          <view class="btn-go" v-if="isPad"><text>{{item.status == 0 ? '立即解锁' : item.exerciseStatus == 1 ? '再次锻炼' : '马上锻炼'}}</text><image :src="item.status == 0 ? imgPrefix + '/static/operateSteps/portalH5/pages/right-icon.png' : imgPrefix + '/static/operateSteps/portalH5/pages/exercise-img-3.png'"></image></view>
+          <view class="btn-go" v-if="isPad"><text>{{item.status == 0 ? '立即解锁' : item.exerciseStatus == 1 ? '再次锻炼' : '马上锻炼'}}</text><image :src="item.status == 0 ? fileUrl + '/static/operateSteps/portalH5/pages/right-icon.png' : fileUrl + '/static/operateSteps/portalH5/pages/exercise-img-3.png'"></image></view>
         </view>
       </view>
     </view>
@@ -22,14 +22,14 @@
       <view :class="[item.status == 0 ? 'lock': '','item']" v-for="item in allList.data" :key="item.id" @click="beginExercise(item)">
         <view class="img">
           <image class="img-1" :mode="item.imgUrl.indexOf('../') > -1 ? 'aspectFit' : 'scaleToFill'" :src="isPad ? item.imgUrl : item.imgUrlPhone" lazy-load @error="imgLoadErrorHandle(item)"></image>
-          <image :class="[item.status == 2 ? 'img-unlock' : '','img-2']" v-if="item.exerciseStatus != 1" :src="item.status == 0 ? imgPrefix + '/static/operateSteps/portalH5/pages/exercise-img-4.png' : item.status == 1 ? imgPrefix + '/static/operateSteps/portalH5/pages/exercise-img-2.png' : imgPrefix + '/static/operateSteps/portalH5/pages/exercise-img-5.png'"></image>
+          <image :class="[item.status == 2 ? 'img-unlock' : '','img-2']" v-if="item.exerciseStatus != 1" :src="item.status == 0 ? fileUrl + '/static/operateSteps/portalH5/pages/exercise-img-4.png' : item.status == 1 ? fileUrl + '/static/operateSteps/portalH5/pages/exercise-img-2.png' : fileUrl + '/static/operateSteps/portalH5/pages/exercise-img-5.png'"></image>
           <image class="img-lock" v-if="item.status == 0" src="../../static/images/applet/icon_lock.png"></image>
-          <image class="img-today" v-if="item.exerciseStatus == 1" :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-today.png'"></image>
+          <image class="img-today" v-if="item.exerciseStatus == 1" :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-today.png'"></image>
         </view>
         <view>
           <view class="title">{{item.name}}</view>
           <view class="desc">{{item.description}}</view>
-          <view class="btn-go" v-if="isPad"><text>{{item.status == 0 ? '立即解锁' : item.exerciseStatus == 1 ? '再次锻炼' : '马上锻炼'}}</text><image :src="item.status == 0 ? imgPrefix + '/static/operateSteps/portalH5/pages/right-icon.png' : imgPrefix + '/static/operateSteps/portalH5/pages/exercise-img-3.png'"></image></view>
+          <view class="btn-go" v-if="isPad"><text>{{item.status == 0 ? '立即解锁' : item.exerciseStatus == 1 ? '再次锻炼' : '马上锻炼'}}</text><image :src="item.status == 0 ? fileUrl + '/static/operateSteps/portalH5/pages/right-icon.png' : fileUrl + '/static/operateSteps/portalH5/pages/exercise-img-3.png'"></image></view>
         </view>
       </view>
     </view>
@@ -55,7 +55,7 @@
     data() {
       return {
         userInfo: {},
-        imgPrefix: this.$imgPrefix,
+        fileUrl: this.$fileUrl,
         isPad: this.$pad,
         swiperIndex: 1,
         pageSize: 10,
@@ -105,8 +105,8 @@
           if (res.status === 1000) {
             let dataList = res.data ? res.data.list : []
             dataList.forEach((item, index, array) => {
-              array[index].imgUrl = `${this.imgPrefix}${item.imgUrl}`
-              array[index].imgUrlPhone = `${this.imgPrefix}${item.imgUrlPhone}`
+              array[index].imgUrl = `${this.fileUrl}${item.imgUrl}`
+              array[index].imgUrlPhone = `${this.fileUrl}${item.imgUrlPhone}`
             })
             if (type == 1) {
               this.todayList.totalCount = res.data ? res.data.pageInfo.totalCount : 0
@@ -159,7 +159,7 @@
                 })
               }
             })
-            
+
           })
         } else {
           // 跳转服务包购买
@@ -185,7 +185,7 @@
             this.getGameList(this.swiperIndex)
           }
         }
-        
+
       },
       imgLoadErrorHandle(item) {
         item['imgUrl'] = '../../static/images/pages/load-fail.png'
@@ -262,7 +262,7 @@
         }
         text {
           vertical-align: middle;
-          
+
         }
       }
     }

@@ -5,7 +5,7 @@
       <view class="address-list" v-if="addressListArr.length">
         <scroll-view scroll-y="true" class="scroll-Y">
           <view class="item" v-for="(item, index) in addressListArr" :key="item.id" @click="chooseItemHandle(item, index)">
-            <image :src="index == currentIndex ? imgPrefix + '/static/operateSteps/portalH5/pages/radio-checked.png' : imgPrefix + '/static/operateSteps/portalH5/pages/radio.png'"></image>
+            <image :src="index == currentIndex ? fileUrl + '/static/operateSteps/portalH5/pages/radio-checked.png' : fileUrl + '/static/operateSteps/portalH5/pages/radio.png'"></image>
             <view class="detail">
               <view>
                 <text>{{item.receiveUserName}}</text>
@@ -15,7 +15,7 @@
             </view>
           </view>
         </scroll-view>
-        
+
       </view>
     </view>
   </view>
@@ -29,7 +29,7 @@
         isShowAddressSelect: false,
         addressListArr: [],
         currentIndex: -1,
-        imgPrefix: this.$imgPrefix
+        fileUrl: this.$fileUrl
       }
     },
     mounted() {
@@ -154,7 +154,7 @@
   @media screen and (max-width: 500px) {
     .list-container {
       .content {
-       
+
         border-top-left-radius: 40rpx;
         border-top-right-radius: 40rpx;
         font-size: 32rpx;

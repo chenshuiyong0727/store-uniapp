@@ -1,33 +1,33 @@
 <template>
   <view>
-   
+
     <nav-bar title='认知症数字疗法' :backUrl="specailBack == 1 ? '/pages/index/index' : ''"></nav-bar>
-   
+
     <view class="container">
       <view class="top">
-        <image class="doctor" :src="imgPrefix + '/static/operateSteps/portalH5/pages/recommend-img-2.png'"></image>
+        <image class="doctor" :src="fileUrl + '/static/operateSteps/portalH5/pages/recommend-img-2.png'"></image>
         <view class="top-desc">
           <view class="_h6">
             <view>已为您生成专属认知症数字疗法</view>
-            <view class="what" @click="goToPage" v-if="isPad"><text>什么是认知症数字疗法？</text><image :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-go.png'"></image></view>
+            <view class="what" @click="goToPage" v-if="isPad"><text>什么是认知症数字疗法？</text><image :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-go.png'"></image></view>
           </view>
           <view>我们为您制定了个性化的认知症数字疗法方案，更有效的进行针对训练</view>
-          <view class="what" @click="goToPage" v-if="!isPad"><text>什么是认知症数字疗法？</text><image :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-go.png'"></image></view>
+          <view class="what" @click="goToPage" v-if="!isPad"><text>什么是认知症数字疗法？</text><image :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-go.png'"></image></view>
         </view>
       </view>
-      
+
      <!-- <view class="_p1" v-if="isPad">根据您的筛查结果，推荐方案为：</view> -->
       <block v-if="recommendGoods.length">
         <view class="recommendation-bit">
           <view class="list" v-for="(item, index) in recommendGoods" :key="item.goodsId">
             <view class="title">
               <view>
-                <image v-if="isPad" :src="imgPrefix + item.imgUrl"></image>
-                <image v-else :src="imgPrefix + item.appImgUrl"></image>
+                <image v-if="isPad" :src="fileUrl + item.imgUrl"></image>
+                <image v-else :src="fileUrl + item.appImgUrl"></image>
                 <text>{{item.title}}</text>
               </view>
-              <image v-if="!item.payStatus || item.payStatus == 0" class="img-recommend" :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-recommend-flag.png'"></image>
-              <image v-else class="img-recommend img-buy-flag" :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-buy-flag.png'"></image>
+              <image v-if="!item.payStatus || item.payStatus == 0" class="img-recommend" :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-recommend-flag.png'"></image>
+              <image v-else class="img-recommend img-buy-flag" :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-buy-flag.png'"></image>
             </view>
             <view class="desc">
               <view class="desc-left">
@@ -38,24 +38,24 @@
                   <text v-for="label in item.labelList" :key="label">{{label}}</text>
                 </view>
               </view>
-              <image class="desc-mobile" :src="isPad ? imgPrefix + '/static/operateSteps/portalH5/pages/img-jl.png' : imgPrefix + '/static/operateSteps/portalH5/pages/img-jl-2.png'"></image>
+              <image class="desc-mobile" :src="isPad ? fileUrl + '/static/operateSteps/portalH5/pages/img-jl.png' : fileUrl + '/static/operateSteps/portalH5/pages/img-jl-2.png'"></image>
               <view class="desc-right">
                 <view class="fl-list">
                   <view class="fl-list-top">
-                    <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-kfs.png'"></image>
+                    <image :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-kfs.png'"></image>
                     <text>专属健康管理师</text>
                   </view>
                   <view class="fl-list-item">
                     <view class="item">
-                      <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-dg.png'"></image>
+                      <image :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-dg.png'"></image>
                       <text>健康管理师全程指导</text>
                     </view>
                     <view class="item">
-                      <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-dg.png'"></image>
+                      <image :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-dg.png'"></image>
                       <text>1对1咨询帮助</text>
                     </view>
                     <view class="item">
-                      <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-dg.png'"></image>
+                      <image :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-dg.png'"></image>
                       <text>健康管理师定期关怀</text>
                     </view>
                   </view>
@@ -70,13 +70,13 @@
                   <view>¥{{item.originalAmount / 100}}</view>
                 </view>
                 <view class="health-consulting" v-if="!isPad && (item.payStatus && item.payStatus == 1)" @click="showKfCode">
-                  <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-gls.png'"></image>
+                  <image :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-gls.png'"></image>
                   <view>健康管理师</view>
                 </view>
               </view>
               <view class="btm-right">
                 <view class="health-consulting" v-if="isPad && (item.payStatus && item.payStatus == 1)" @click="showKfCode">
-                  <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-gls.png'"></image>
+                  <image :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-gls.png'"></image>
                   <view>健康管理师</view>
                 </view>
                 <view class="button-group">
@@ -100,14 +100,14 @@
       </block>
       <view class="more-production">
         <view class="title">更多产品</view>
-        <image class="split" :src="imgPrefix + '/static/operateSteps/portalH5/pages/split.png'"></image>
+        <image class="split" :src="fileUrl + '/static/operateSteps/portalH5/pages/split.png'"></image>
         <view class="production">
           <view class="list" v-for="item in otherGoodsList" :key="item.goodsId">
             <view class="list-top">
-              <image class="img-bg" :src="imgPrefix + '/static/operateSteps/portalH5/pages/img-bg-2.png'"></image>
+              <image class="img-bg" :src="fileUrl + '/static/operateSteps/portalH5/pages/img-bg-2.png'"></image>
               <view class="_tit">
-                <image v-if="isPad" :src="imgPrefix + item.imgUrl"></image>
-                <image v-else :src="imgPrefix + item.appImgUrl"></image>
+                <image v-if="isPad" :src="fileUrl + item.imgUrl"></image>
+                <image v-else :src="fileUrl + item.appImgUrl"></image>
                 <text>{{item.title}}</text>
               </view>
               <view class="desc-content">
@@ -119,7 +119,7 @@
                 </view>
               </view>
             </view>
-            
+
             <view class="list-btm">
               <view class="price" v-if="!item.payStatus || item.payStatus == 0">
                 <view v-if="item.amount / 100 > 0">¥<text>{{item.amount / 100}}</text></view>
@@ -182,7 +182,7 @@
         isPad: this.$pad,
         // 是否是从第三方页面跳回 0=>否 1=>是
         specailBack: 0,
-        imgPrefix: this.$imgPrefix
+        fileUrl: this.$fileUrl
       }
     },
     onLoad(options) {
@@ -216,7 +216,7 @@
               // 如果有已支付订单
               this.recommendGoods = res.data ? res.data.filter(item => item.payStatus == '1' && item.businessType == '2210081722147310027') : []
               this.otherGoodsList = res.data ? res.data.filter(item => item.payStatus == '0') : []
-              
+
             } else {
               // 没有已支付订单
               this.recommendGoods = res.data ? res.data.filter(item => item.recommend == '1') : []
@@ -368,7 +368,7 @@
       margin: -21.98rpx 0 24.18rpx 0;
       .list {
         margin-bottom: 29.3rpx;
-        
+
         .title {
           font-size: 26.37rpx;
           font-weight: bold;
@@ -509,8 +509,8 @@
                   font-weight: bold;
                   padding-right: 13.18rpx;
                 }
-               
-              }       
+
+              }
               &>view:nth-child(2) {
                 font-size: 17.58rpx;
                 color: #B3B3B3;
@@ -587,7 +587,7 @@
             margin: 0 4.39rpx 7.33rpx 0;
             display: inline-block;
           }
-          
+
         }
         .list-top {
           height: 256.41rpx;
@@ -618,7 +618,7 @@
               height: 48.35rpx;
             }
           }
-      
+
           .desc {
             font-size: 17.58rpx;
             margin: 14.65rpx 0;
@@ -631,8 +631,8 @@
             word-break: break-all;
           }
         }
-        
-        
+
+
         .list-btm {
           border-bottom-left-radius: 14.65rpx;
           border-bottom-right-radius: 14.65rpx;
@@ -645,7 +645,7 @@
             align-items: baseline;
             justify-content: center;
             &>view:nth-child(1) {
-              
+
               padding-right: 7.33rpx;
               font-size: 16.12rpx;
               color: #F06F6F;
@@ -719,18 +719,18 @@
             font-size: 34rpx;
           }
         }
-    
+
         &>view._view:nth-child(1) {
           border-top-left-radius: 12rpx;
           border-bottom-left-radius: 12rpx;
         }
-    
+
         &>view._view:nth-child(2) {
           border-top-right-radius: 12rpx;
           border-bottom-right-radius: 12rpx;
         }
       }
-    
+
       .recommendation-bit {
         padding: 30rpx 20rpx 35rpx 20rpx;
         box-shadow: 0px 4px 20px 0px rgba(0,0,0,0.07);
@@ -847,7 +847,7 @@
                     line-height: 60rpx;
                     padding-right: 18rpx;
                   }
-                }        
+                }
                 &>view:nth-child(2) {
                   font-size: 30rpx;
                 }
@@ -872,19 +872,19 @@
           margin-bottom: 0rpx;
         }
       }
-    
+
       .more-production {
         padding: 0 18rpx;
         .title {
           font-size: 36rpx;
         }
-    
+
         .split {
           width: 326rpx;
           height: 20rpx;
           margin: 8rpx auto 14rpx auto;
         }
-    
+
         .production {
           flex-direction: column;
           .button-group {
@@ -906,7 +906,7 @@
               border-radius: 12rpx;
               margin: 0 20rpx 10rpx 0;
             }
-            
+
           }
           .list-top {
             height: 484rpx;
@@ -927,15 +927,15 @@
                 height: 100rpx;
               }
             }
-        
+
             .desc {
               font-size: 32rpx;
               margin: 14rpx 0 36rpx 0;
               -webkit-line-clamp: 2;
             }
           }
-          
-          
+
+
           .list-btm {
             border-bottom-left-radius: 20rpx;
             border-bottom-right-radius: 20rpx;

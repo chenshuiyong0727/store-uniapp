@@ -4,7 +4,7 @@
     <view class="container">
       <view class="top">
         <view>请填写收货地址，用于购买商品后寄送</view>
-        <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/renwu.png'"></image>
+        <image :src="fileUrl + '/static/operateSteps/portalH5/pages/renwu.png'"></image>
       </view>
       <view class="form-box">
         <view class="form-input">
@@ -50,7 +50,7 @@
     data() {
       return {
         isPad: this.$pad,
-        imgPrefix: this.$imgPrefix,
+        fileUrl: this.$fileUrl,
         addressId: '',
         userInfo: {},
         queryParam: {
@@ -77,7 +77,7 @@
       showCityListHandle() {
         this.$refs.city.isShowAddressSelect = true
         setTimeout(() => {
-         this.$refs.city.isShowContentFlag = true  
+         this.$refs.city.isShowContentFlag = true
         }, 10)
       },
       getAddressHandle(addressData) {
@@ -243,14 +243,14 @@
             padding-left: 20rpx;
             padding-right: 20rpx;
           }
-          
+
           .uni-input-placeholder {
             font-size: 22.5rpx;
           }
         }
       }
       .form-input-2 {
-        &>view:nth-child(2) { 
+        &>view:nth-child(2) {
           height: 87.5rpx;
           line-height: auto;
           ._textarea {
@@ -301,7 +301,7 @@
           line-height: 78rpx;
           border-radius: 40rpx;
           padding-right: 20rpx;
-          
+
         }
         &>image {
           width: 86rpx;
@@ -325,14 +325,14 @@
             line-height: 88rpx;
             font-size: 36rpx;
             border-radius: 12rpx;
-            
+
             .uni-input-placeholder {
               font-size: 36rpx;
             }
           }
         }
         .form-input-2 {
-          &>view:nth-child(2) { 
+          &>view:nth-child(2) {
             height: 192rpx;
             ._textarea {
               padding: 18rpx 24rpx;

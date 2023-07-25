@@ -3,35 +3,35 @@
     <nav-bar title='认知障碍筛查' :backUrl="backUrl"></nav-bar>
     <view class="container">
       <block v-if="isPad">
-        <image class="img-1" :src="imgPrefix + '/static/operateSteps/evaluation-new2-img-1.png?t=1'"/>
-        <image class="img-2" :src="imgPrefix + '/static/operateSteps/evaluation-new2-img-2.png?t=1'"/>
-        <image class="img-3" :src="imgPrefix + '/static/operateSteps/evaluation-new2-img-3.png?t=1'"/>
-        <image class="img-4" :src="imgPrefix + '/static/operateSteps/evaluation-new2-img-4.png?t=1'"/>
-        <image class="img-5" :src="imgPrefix + '/static/operateSteps/evaluation-new2-img-5.png?t=1'"/>
-        <image class="img-6" :src="imgPrefix + '/static/operateSteps/evaluation-new2-img-6.png?t=1'"/>
-        <image class="img-7" :src="imgPrefix + '/static/operateSteps/evaluation-new2-img-7.png?t=1'"/>
-        <image class="img-8-1" :src="imgPrefix + '/static/operateSteps/evaluation-new2-img-8-1.png?t=1'"/>
-        <image class="img-8" :src="imgPrefix + '/static/operateSteps/evaluation-new2-img-8.png?t=1'"/>
-        <image class="img-9" :src="imgPrefix + '/static/operateSteps/evaluation-new2-img-9.png?t=1'"/>
-        <image class="img-10-1" :src="imgPrefix + '/static/operateSteps/evaluation-new2-img-10-1.png?t=1'"/>
-        <image class="img-10" :src="imgPrefix + '/static/operateSteps/evaluation-new2-img-10.png?t=1'"/>
-        <image class="img-11" :src="imgPrefix + '/static/operateSteps/evaluation-new2-img-11.png?t=1'"/>
+        <image class="img-1" :src="fileUrl + '/static/operateSteps/evaluation-new2-img-1.png?t=1'"/>
+        <image class="img-2" :src="fileUrl + '/static/operateSteps/evaluation-new2-img-2.png?t=1'"/>
+        <image class="img-3" :src="fileUrl + '/static/operateSteps/evaluation-new2-img-3.png?t=1'"/>
+        <image class="img-4" :src="fileUrl + '/static/operateSteps/evaluation-new2-img-4.png?t=1'"/>
+        <image class="img-5" :src="fileUrl + '/static/operateSteps/evaluation-new2-img-5.png?t=1'"/>
+        <image class="img-6" :src="fileUrl + '/static/operateSteps/evaluation-new2-img-6.png?t=1'"/>
+        <image class="img-7" :src="fileUrl + '/static/operateSteps/evaluation-new2-img-7.png?t=1'"/>
+        <image class="img-8-1" :src="fileUrl + '/static/operateSteps/evaluation-new2-img-8-1.png?t=1'"/>
+        <image class="img-8" :src="fileUrl + '/static/operateSteps/evaluation-new2-img-8.png?t=1'"/>
+        <image class="img-9" :src="fileUrl + '/static/operateSteps/evaluation-new2-img-9.png?t=1'"/>
+        <image class="img-10-1" :src="fileUrl + '/static/operateSteps/evaluation-new2-img-10-1.png?t=1'"/>
+        <image class="img-10" :src="fileUrl + '/static/operateSteps/evaluation-new2-img-10.png?t=1'"/>
+        <image class="img-11" :src="fileUrl + '/static/operateSteps/evaluation-new2-img-11.png?t=1'"/>
 
       </block>
       <block v-else>
-        <image class="img-1" :src="imgPrefix + '/static/operateSteps/mobile-evaluation-new2-img-1.png?t=1'"/>
-        <image class="img-2" :src="imgPrefix + '/static/operateSteps/mobile-evaluation-new2-img-2.png?t=1'"/>
-        <image class="img-3" :src="imgPrefix + '/static/operateSteps/mobile-evaluation-new2-img-3.png?t=1'"/>
-        <image class="img-4" :src="imgPrefix + '/static/operateSteps/mobile-evaluation-new2-img-4.png?t=1'"/>
-        <image class="img-5" :src="imgPrefix + '/static/operateSteps/mobile-evaluation-new2-img-5.png?t=1'"/>
-        <image class="img-6" :src="imgPrefix + '/static/operateSteps/mobile-evaluation-new2-img-6.png?t=1'"/>
-        <image class="img-7" :src="imgPrefix + '/static/operateSteps/mobile-evaluation-new2-img-7.png?t=1'"/>
-        <image class="img-8-1" :src="imgPrefix + '/static/operateSteps/mobile-evaluation-new2-img-8-1.png?t=1'"/>
-        <image class="img-8" :src="imgPrefix + '/static/operateSteps/mobile-evaluation-new2-img-8.png?t=1'"/>
-        <image class="img-9-1" :src="imgPrefix + '/static/operateSteps/mobile-evaluation-new2-img-9-1.png?t=1'"/>
-        <image class="img-9-2" :src="imgPrefix + '/static/operateSteps/mobile-evaluation-new2-img-9-2.png?t=1'"/>
-        <image class="img-9-3" :src="imgPrefix + '/static/operateSteps/mobile-evaluation-new2-img-9-3.png?t=1'"/>
-        <image class="img-10" :src="imgPrefix + '/static/operateSteps/mobile-evaluation-new2-img-10.png?t=1'"/>
+        <image class="img-1" :src="fileUrl + '/static/operateSteps/mobile-evaluation-new2-img-1.png?t=1'"/>
+        <image class="img-2" :src="fileUrl + '/static/operateSteps/mobile-evaluation-new2-img-2.png?t=1'"/>
+        <image class="img-3" :src="fileUrl + '/static/operateSteps/mobile-evaluation-new2-img-3.png?t=1'"/>
+        <image class="img-4" :src="fileUrl + '/static/operateSteps/mobile-evaluation-new2-img-4.png?t=1'"/>
+        <image class="img-5" :src="fileUrl + '/static/operateSteps/mobile-evaluation-new2-img-5.png?t=1'"/>
+        <image class="img-6" :src="fileUrl + '/static/operateSteps/mobile-evaluation-new2-img-6.png?t=1'"/>
+        <image class="img-7" :src="fileUrl + '/static/operateSteps/mobile-evaluation-new2-img-7.png?t=1'"/>
+        <image class="img-8-1" :src="fileUrl + '/static/operateSteps/mobile-evaluation-new2-img-8-1.png?t=1'"/>
+        <image class="img-8" :src="fileUrl + '/static/operateSteps/mobile-evaluation-new2-img-8.png?t=1'"/>
+        <image class="img-9-1" :src="fileUrl + '/static/operateSteps/mobile-evaluation-new2-img-9-1.png?t=1'"/>
+        <image class="img-9-2" :src="fileUrl + '/static/operateSteps/mobile-evaluation-new2-img-9-2.png?t=1'"/>
+        <image class="img-9-3" :src="fileUrl + '/static/operateSteps/mobile-evaluation-new2-img-9-3.png?t=1'"/>
+        <image class="img-10" :src="fileUrl + '/static/operateSteps/mobile-evaluation-new2-img-10.png?t=1'"/>
       </block>
       <view class="bottom">
         <view class="kf" @click="showKfCode">
@@ -57,7 +57,7 @@
                   <view :class="['btn-evaluation', 'btn-common', evaluationData.orderNum ? '' : 'btn-evaluation-full']"><text>立即筛查</text></view>
                 </payment>
               </view>
-              
+
             </view>
         </view>
       </view>
@@ -91,7 +91,7 @@
     data() {
       return {
         userInfo: {},
-        imgPrefix: this.$imgPrefix,
+        fileUrl: this.$fileUrl,
         isPad: this.$pad,
         isWechat: this.$isWechat,
         payOrderId: '',
@@ -139,7 +139,7 @@
       } else {
         this.crossLoad = false
       }
-      
+
     },
     methods: {
       getGoodsList() {
@@ -263,7 +263,7 @@
         // 替换浏览器的url值，防止刷新页面后出现支付结果弹窗
         window.history.replaceState(null, null, url)
         // #endif
-        
+
         // #ifdef APP-PLUS
         if (param) {
           url = `/${curRoute}?${param}&backdelta=2`
@@ -309,15 +309,15 @@
     .img-4 {
       height: 288.64rpx;
     }
-    
+
     .img-5 {
       height: 137rpx;
     }
-    
+
     .img-6 {
       height: 434.43rpx;
     }
-    
+
     .img-7 {
       height: 84.25rpx;
     }
@@ -354,24 +354,24 @@
       z-index: 13;
       .kf {
         margin-left: 32.23rpx;
-    
+
         image {
           width: 32.23rpx;
           height: 32.23rpx;
           margin: 0 auto;
           display: block;
         }
-    
+
         &>view {
           font-size: 11.72rpx;
           color: #5796F8;
         }
       }
-    
+
       .btm-right {
         display: flex;
         align-items: center;
-        
+
         // .btn-buy, .btn-buy-get {
         //   display: flex;
         //   justify-content: center;
@@ -397,7 +397,7 @@
         // }
         .btn-unlock {
           width: 307.69rpx;
-          
+
         }
         .btn-evaluation {
           width: 307.69rpx;
@@ -458,26 +458,26 @@
       .img-1 {
         height: 660rpx;
       }
-      
+
       .img-2 {
         height: 184rpx;
       }
-      
+
       .img-3 {
         height: 706rpx;
       }
-      
+
       .img-4 {
         height: 732rpx;
       }
       .img-5 {
         height: 350rpx;
       }
-      
+
       .img-6 {
         height: 920rpx;
       }
-      
+
       .img-7 {
         height: 160rpx;
       }
@@ -499,7 +499,7 @@
       .img-10 {
         height: 656rpx;
       }
-      
+
       .bottom {
         height:116rpx;
         .kf {
@@ -508,15 +508,15 @@
             width: 60rpx;
             height: 60rpx;
           }
-      
+
           &>view {
             font-size: 22rpx;
           }
         }
-      
+
         .btm-right {
           // .btn-buy, .btn-buy-get {
-            
+
           //   height: 92rpx;
           //   font-size: 34rpx;
           //   .price-1 {
@@ -559,7 +559,7 @@
           // }
           .btn-unlock {
             width: 305rpx;
-            
+
           }
           .btn-evaluation {
             width: 305rpx;
@@ -568,7 +568,7 @@
             width: 600rpx;
           }
           .btn-common {
-            
+
             height: 92rpx;
             font-size: 34rpx;
             border-radius: 12rpx;

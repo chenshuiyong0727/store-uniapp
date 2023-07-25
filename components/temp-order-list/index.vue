@@ -4,7 +4,7 @@
       <view class="item" v-for="item in orderDataList" :key="item.orderNo">
         <view class="item-top brToHalf">
           <view>
-            <image :src="orderType == 1 ? imgPrefix + '/static/operateSteps/portalH5/pages/icon-vip-3.png' : imgPrefix + '/static/operateSteps/portalH5/pages/icon-vip-1.png'"></image>
+            <image :src="orderType == 1 ? fileUrl + '/static/operateSteps/portalH5/pages/icon-vip-3.png' : fileUrl + '/static/operateSteps/portalH5/pages/icon-vip-1.png'"></image>
             <text>{{orderType == 1 ? '趣味健脑' : '健脑运动'}}服务包</text>
           </view>
           <view v-if="isPad" :class="[item.type == 1 ? '' : 'refund']">{{item.type == 1 ? '已付款' : '已退款'}}</view>
@@ -18,7 +18,7 @@
           <view>
             <view class="title">订单号</view>
             <view class="order-style">{{item.orderNo}}</view>
-            <view class="copy" @click="copyHandle(item.orderNo)"><image class="img-copy" :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-copy.png'"></image></view>
+            <view class="copy" @click="copyHandle(item.orderNo)"><image class="img-copy" :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-copy.png'"></image></view>
           </view>
           <view>
             <view class="title">开通时间</view>
@@ -63,7 +63,7 @@
         buyOrigin: [],
         isDoneRequest: false,
         isPad: this.$pad,
-        imgPrefix: this.$imgPrefix
+        fileUrl: this.$fileUrl
       }
     },
     mounted() {
@@ -177,7 +177,7 @@
           .img-copy {
             width: 16.11rpx;
             height: 16.11rpx;
-            
+
           }
         }
       }
@@ -259,15 +259,15 @@
               width: 36rpx;
               height: 36rpx;
               padding: 10rpx;
-            
+
               right: -10rpx;
               bottom: 20rpx;
-             
+
             }
             .img-copy {
               width: 36rpx;
               height: 36rpx;
-              
+
             }
           }
         }

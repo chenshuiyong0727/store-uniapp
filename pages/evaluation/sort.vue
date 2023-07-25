@@ -1,14 +1,14 @@
 <template>
   <view>
-   
+
     <nav-bar title='认知障碍筛查'></nav-bar>
-   
+
     <view :class="[isPad ? '': 'mobile-container','container']">
       <view class="title">为了筛查更加准确，请选择</view>
       <view class="question">
         <view class="item">
           <view class="_h6">
-            <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/sort-birthday.png'"></image>
+            <image :src="fileUrl + '/static/operateSteps/portalH5/pages/sort-birthday.png'"></image>
             <view>出生年份</view>
           </view>
           <view class="option">
@@ -23,7 +23,7 @@
 
         <view class="item">
           <view class="_h6">
-            <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/sort-education.png'"></image>
+            <image :src="fileUrl + '/static/operateSteps/portalH5/pages/sort-education.png'"></image>
             <view>教育程度</view>
           </view>
           <view class="option">
@@ -81,7 +81,7 @@
         defaultValueIndex: 0,
         payOrderId: '',
         currentPickerValue: '',
-        imgPrefix: this.$imgPrefix
+        fileUrl: this.$fileUrl
       }
     },
     onLoad(options) {
@@ -318,10 +318,10 @@
           margin: 0 35rpx 0 30rpx;
         }
       }
-      
+
     }
   }
-  
+
   @media screen and (max-width: 500px) {
     .container {
       max-width: 750rpx;
@@ -331,10 +331,10 @@
         font-size: 40rpx;
         padding: 136rpx 0 0rpx 0;
       }
-    
+
       .question {
         margin-top: 90rpx;
-        
+
         .item {
           margin-bottom: 80rpx;
           .option {
@@ -359,7 +359,7 @@
             margin-right: 10rpx;
           }
         }
-    
+
         .box {
           width: 652rpx;
           height: 96rpx;
@@ -371,7 +371,7 @@
             font-size: 36rpx;
           }
         }
-    
+
         .select-icon {
           &::after {
             width: 15rpx;
@@ -379,7 +379,7 @@
             right: 24rpx;
           }
         }
-        
+
         .next-content {
           display: flex;
           align-items: center;
@@ -396,7 +396,7 @@
             // height: 92rpx;
             // line-height: 92rpx;
             // text-align: center;
-            
+
             // font-size: 34rpx;
             // color: #333;
             // text-decoration: none;

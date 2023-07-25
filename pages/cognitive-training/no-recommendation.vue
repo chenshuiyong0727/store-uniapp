@@ -1,20 +1,20 @@
 <template>
   <view>
-   
+
     <nav-bar title='认知症数字疗法' :backUrl="specailBack == 1 ? '/pages/index/index' : ''"></nav-bar>
-  
+
     <view class="container">
       <block v-if="purchasedGoods.length">
         <view class="recommendation-bit">
           <view class="purchased-list" v-for="(item, index) in purchasedGoods" :key="item.goodsId">
             <view class="title">
               <view>
-                <image v-if="isPad" :src="imgPrefix + item.imgUrl"></image>
-                <image v-else :src="imgPrefix + item.appImgUrl"></image>
+                <image v-if="isPad" :src="fileUrl + item.imgUrl"></image>
+                <image v-else :src="fileUrl + item.appImgUrl"></image>
                 <text>{{item.title}}</text>
               </view>
-              <image v-if="!item.payStatus || item.payStatus == 0" class="img-recommend" :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-recommend-flag.png'"></image>
-              <image v-else class="img-recommend img-buy-flag" :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-buy-flag.png'"></image>
+              <image v-if="!item.payStatus || item.payStatus == 0" class="img-recommend" :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-recommend-flag.png'"></image>
+              <image v-else class="img-recommend img-buy-flag" :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-buy-flag.png'"></image>
             </view>
             <view class="desc">
               <view class="desc-left">
@@ -25,24 +25,24 @@
                   <text v-for="label in item.labelList" :key="label">{{label}}</text>
                 </view>
               </view>
-              <image class="desc-mobile" :src="isPad ? imgPrefix + '/static/operateSteps/portalH5/pages/img-jl.png' : imgPrefix + '/static/operateSteps/portalH5/pages/img-jl-2.png'"></image>
+              <image class="desc-mobile" :src="isPad ? fileUrl + '/static/operateSteps/portalH5/pages/img-jl.png' : fileUrl + '/static/operateSteps/portalH5/pages/img-jl-2.png'"></image>
               <view class="desc-right">
                 <view class="fl-list">
                   <view class="fl-list-top">
-                    <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-kfs.png'"></image>
+                    <image :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-kfs.png'"></image>
                     <text>专属健康管理师</text>
                   </view>
                   <view class="fl-list-item">
                     <view class="item">
-                      <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-dg.png'"></image>
+                      <image :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-dg.png'"></image>
                       <text>健康管理师全程指导</text>
                     </view>
                     <view class="item">
-                      <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-dg.png'"></image>
+                      <image :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-dg.png'"></image>
                       <text>1对1咨询帮助</text>
                     </view>
                     <view class="item">
-                      <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-dg.png'"></image>
+                      <image :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-dg.png'"></image>
                       <text>健康管理师定期关怀</text>
                     </view>
                   </view>
@@ -57,13 +57,13 @@
                   <view>¥{{item.originalAmount / 100}}</view>
                 </view>
                 <view class="health-consulting" v-if="!isPad && (item.payStatus && item.payStatus == 1)" @click="showKfCode">
-                  <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-gls.png'"></image>
+                  <image :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-gls.png'"></image>
                   <view>健康管理师</view>
                 </view>
               </view>
               <view class="btm-right">
                 <view class="health-consulting" v-if="isPad && (item.payStatus && item.payStatus == 1)" @click="showKfCode">
-                  <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-gls.png'"></image>
+                  <image :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-gls.png'"></image>
                   <view>健康管理师</view>
                 </view>
                 <view class="button-group">
@@ -83,17 +83,17 @@
               </view>
             </view>
           </view>
-      
+
         </view>
       </block>
-      
+
       <view class="production">
         <view class="list" v-for="(item, index) in goodsList" :key="item.goodsId">
           <view class="list-top">
-            <image class="img-bg" :src="imgPrefix + '/static/operateSteps/portalH5/pages/img-bg-2.png'"></image>
+            <image class="img-bg" :src="fileUrl + '/static/operateSteps/portalH5/pages/img-bg-2.png'"></image>
             <view class="_tit">
-              <image v-if="isPad" :src="imgPrefix + item.imgUrl"></image>
-              <image v-else :src="imgPrefix + item.appImgUrl"></image>
+              <image v-if="isPad" :src="fileUrl + item.imgUrl"></image>
+              <image v-else :src="fileUrl + item.appImgUrl"></image>
               <text>{{item.title}}</text>
             </view>
             <view class="desc-content">
@@ -105,18 +105,18 @@
               </view>
             </view>
           </view>
-          
+
           <view class="list-btm">
             <view class="price">
               <view v-if="item.amount / 100 > 0">¥<text>{{item.amount / 100}}</text></view>
               <view v-else><text>限时免费</text></view>
               <view>¥{{item.originalAmount / 100}}</view>
             </view>
-            
+
             <view class="button-group">
               <view class="_view" v-if="!item.payStatus || item.payStatus == 0">
                 <text class="_text" @click="goDetail(item.goodsId)">计划详情</text>
-                
+
               </view>
               <view class="_view" v-else @click="showKfCode">添加健康管理师</view>
               <view class="_view">
@@ -166,7 +166,7 @@
         orderParam: {},
         // 是否是从第三方页面跳回 0=>否 1=>是
         specailBack: 0,
-        imgPrefix: this.$imgPrefix,
+        fileUrl: this.$fileUrl,
         purchasedGoods: []
       }
     },
@@ -237,7 +237,7 @@
       goDetail(goodsId) {
         navigateTo('/pages/cognitive-training/detail?goodsId=' + goodsId + '&isRcommend=false')
       },
-      
+
     }
   }
 </script>
@@ -287,7 +287,7 @@
         color: #fff;
       }
     }
-    
+
     .recommendation-bit {
       padding: 18.32rpx 11.72rpx 17.58rpx 11.72rpx;
       background: #F5F5F5;
@@ -298,7 +298,7 @@
       margin: 29.3rpx 0 24.18rpx 0;
       .purchased-list {
         margin-bottom: 29.3rpx;
-        
+
         .title {
           font-size: 26.37rpx;
           font-weight: bold;
@@ -360,7 +360,7 @@
               color: #CC7635;
               &>text {
                 padding: 4.4rpx 17.58rpx;
-                
+
                 display: inline-block;
                 margin: 0 7.33rpx 7.33rpx 0;
                 border-radius: 4.4rpx;
@@ -440,16 +440,16 @@
                   font-weight: bold;
                   padding-right: 13.18rpx;
                 }
-               
+
               }
-                        
+
               &>view:nth-child(2) {
                 font-size: 17.58rpx;
                 color: #B3B3B3;
                 text-decoration: line-through;
               }
             }
-            
+
           }
           .btm-right {
             display: flex;
@@ -491,15 +491,15 @@
           margin: 0 4.39rpx 7.33rpx 0;
           display: inline-block;
         }
-        
+
       }
     }
-    
-    
-    
+
+
+
 
     .list {
-      
+
       width: 357.51rpx;
       box-sizing: border-box;
       background-color: #fff;
@@ -549,8 +549,8 @@
           word-break: break-all;
         }
       }
-      
-      
+
+
       .list-btm {
         border-bottom-left-radius: 14.65rpx;
         border-bottom-right-radius: 14.65rpx;
@@ -563,7 +563,7 @@
           align-items: baseline;
           justify-content: center;
           &>view:nth-child(1) {
-            
+
             padding-right: 7.33rpx;
             font-size: 16.12rpx;
             color: #F06F6F;
@@ -595,7 +595,7 @@
     .container {
       max-width: 750rpx;
       font-size: 32rpx;
-    
+
       .button-group {
         &>view._view {
           width: 350rpx;
@@ -606,18 +606,18 @@
             font-size: 34rpx;
           }
         }
-    
+
         &>view._view:nth-child(1) {
           border-top-left-radius: 12rpx;
           border-bottom-left-radius: 12rpx;
         }
-    
+
         &>view._view:nth-child(2) {
           border-top-right-radius: 12rpx;
           border-bottom-right-radius: 12rpx;
         }
       }
-      
+
       .recommendation-bit {
         padding: 30rpx 20rpx 35rpx 20rpx;
         box-shadow: 0px 4px 20px 0px rgba(0,0,0,0.07);
@@ -657,7 +657,7 @@
               background-size: 708rpx 384rpx;
               padding: 32rpx 36rpx;
               font-size: 32rpx;
-              
+
               .d-l-content {
                 line-height: 44rpx;
                 max-height: 140rpx;
@@ -736,9 +736,9 @@
                     line-height: 60rpx;
                     padding-right: 18rpx;
                   }
-                 
+
                 }
-                            
+
                 &>view:nth-child(2) {
                   font-size: 30rpx;
                 }
@@ -760,7 +760,7 @@
           margin-bottom: 0rpx;
         }
       }
-    
+
       .production {
         margin-top: 0rpx;
         flex-direction: column;
@@ -773,10 +773,10 @@
             margin: 0 20rpx 10rpx 0;
           }
         }
-            
+
       }
-      
-      
+
+
       .list {
         width: 712rpx;
         border-radius: 20rpx;
@@ -801,15 +801,15 @@
               height: 100rpx;
             }
           }
-    
+
           .desc {
             font-size: 32rpx;
             margin: 14rpx 0 36rpx 0;
             -webkit-line-clamp: 2;
           }
         }
-        
-        
+
+
         .list-btm {
           border-bottom-left-radius: 20rpx;
           border-bottom-right-radius: 20rpx;
@@ -829,7 +829,7 @@
           }
         }
       }
-    
+
     }
   }
 </style>

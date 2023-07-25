@@ -22,8 +22,8 @@
         </view>
       </view>
       <view class="explain-container">
-        <image v-if="isPad" :src="imgPrefix + '/static/operateSteps/portalH5/send-back-explain-img-1.png'"></image>
-        <image v-else :src="imgPrefix + '/static/operateSteps/portalH5/send-back-explain-img-2.png'"></image>
+        <image v-if="isPad" :src="fileUrl + '/static/operateSteps/portalH5/send-back-explain-img-1.png'"></image>
+        <image v-else :src="fileUrl + '/static/operateSteps/portalH5/send-back-explain-img-2.png'"></image>
       </view>
       <view class="btn-container">
         <view @click="returnBack">返回</view>
@@ -46,7 +46,7 @@
       return {
         isShowLogisticsPopover: false,
         detailData: {},
-        imgPrefix: this.$imgPrefix,
+        fileUrl: this.$fileUrl,
         isPad: this.$pad
       }
     },
@@ -152,7 +152,7 @@
           color: #6B6B6B;
         }
         .flex-right {
-          
+
           margin-left: 31.25rpx;
           font-size: 23.75rpx;
           color: #333333;

@@ -16,7 +16,7 @@
         :class="['gesture-ani-' + gestureType, 'gesture']"
         :animation="animationData"
         :style="{ left: gestureLeftPos + 'rpx', top: gestureTopPos + 'rpx' }"
-        :src="imgPrefix + '/static/operateSteps/portalH5/pages/gesture' + gestureType + '.png'"
+        :src="fileUrl + '/static/operateSteps/portalH5/pages/gesture' + gestureType + '.png'"
       ></image>
       <div class="flex-box">
         <image
@@ -28,12 +28,12 @@
             right: '-30rpx',
             top: imageTop + 'rpx',
           }"
-          :src="imgPrefix + '/static/operateSteps/icon-guid-tip.png'"
+          :src="fileUrl + '/static/operateSteps/icon-guid-tip.png'"
         ></image>
         <image
           v-else
           class="left-img"
-          :src="imgPrefix + '/static/operateSteps/portalH5/pages/renwu.png'"
+          :src="fileUrl + '/static/operateSteps/portalH5/pages/renwu.png'"
         ></image>
         <view
           :style="{
@@ -133,7 +133,7 @@ export default {
   data() {
     return {
       animationData: {},
-      imgPrefix: this.$imgPrefix
+      fileUrl: this.$fileUrl
     }
   },
   mounted() {

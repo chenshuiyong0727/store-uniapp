@@ -23,7 +23,7 @@ Vue.use(networkTip)
 Vue.filter('formatTime', formatTime)
 
 Vue.prototype.$request = request // 挂载到原型上
-Vue.prototype.$imgPrefix = envSetting.imgPrefix
+Vue.prototype.$fileUrl = envSetting.fileUrl
 
 // 判断是否是平板
 uni.getSystemInfo({
@@ -51,7 +51,7 @@ uni.getSystemInfo({
   } else {
     Vue.prototype.$isWechat = false
   }
-  
+
 // #endif
 
 // #ifdef APP-PLUS

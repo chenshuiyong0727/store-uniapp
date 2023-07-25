@@ -1,11 +1,11 @@
 <template>
   <view>
-   
+
     <nav-bar title='认知症数字疗法'></nav-bar>
-  
+
     <view class="container">
-      <image class="logo" :src="imgPrefix + '/static/operateSteps/portalH5/pages/logo.png'"></image>
-      <image class="mobile-tip" :src="imgPrefix + '/static/operateSteps/portalH5/pages/mobile-tip.png'"></image>
+      <image class="logo" :src="fileUrl + '/static/operateSteps/portalH5/pages/logo.png'"></image>
+      <image class="mobile-tip" :src="fileUrl + '/static/operateSteps/portalH5/pages/mobile-tip.png'"></image>
     </view>
     <!--侧边栏-->
     <fab :isOpenFabMenu="isPad ? true : false"></fab>
@@ -24,7 +24,7 @@
     data() {
       return {
         isPad: this.$pad,
-        imgPrefix: this.$imgPrefix
+        fileUrl: this.$fileUrl
       }
     }
   }

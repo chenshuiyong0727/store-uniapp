@@ -5,7 +5,7 @@
       <view class="content-top">
         <view>您购买的数字疗法，包含训练平板{{addressFlag == 1 ? '租赁' : ''}}</view>
         <view>请选择收货地址，用于平板的寄送</view>
-        <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/renwu.png'"></image>
+        <image :src="fileUrl + '/static/operateSteps/portalH5/pages/renwu.png'"></image>
       </view>
       <view class="select-address" @click="showAddressListHandle" v-if="addressListArr.length">选择收货地址</view>
       <view class="form-box">
@@ -29,7 +29,7 @@
       <view class="protocol">
         <checkbox-group @change="checkAgreement">
           <view class="check-box">
-            <checkbox value="1" :checked="boxChecked" /> 
+            <checkbox value="1" :checked="boxChecked" />
             <view>我已阅读并同意<text class="link" @click="showProtocolHandle">《租赁服务协议》</text><text class="link link2" @click="showProtocolHandle">立即查看</text></view>
           </view>
         </checkbox-group>
@@ -63,7 +63,7 @@
     },
     data() {
       return {
-        imgPrefix: this.$imgPrefix,
+        fileUrl: this.$fileUrl,
         isShowContentFlag: false,
         isShowAddressSelect: false,
         queryParam: {
@@ -113,19 +113,19 @@
       showCityListHandle() {
         this.$refs.city.isShowAddressSelect = true
         setTimeout(() => {
-         this.$refs.city.isShowContentFlag = true  
+         this.$refs.city.isShowContentFlag = true
         }, 10)
       },
       showAddressListHandle() {
         this.$refs.addressList.isShowAddressSelect = true
         setTimeout(() => {
-         this.$refs.addressList.isShowContentFlag = true  
+         this.$refs.addressList.isShowContentFlag = true
         }, 10)
       },
       showProtocolHandle() {
         this.$refs.protocol.isShowAddressSelect = true
         setTimeout(() => {
-         this.$refs.protocol.isShowContentFlag = true  
+         this.$refs.protocol.isShowContentFlag = true
         }, 10)
       },
       closeHandle() {
@@ -183,7 +183,7 @@
           //   title: '请先阅读并同意用户租赁协议',
           //   icon: 'none',
           //   duration: 2000
-          // }) 
+          // })
           return this.isShowProtocolTip = true
         }
         this.$emit('getAddressFormVal', this.queryParam)
@@ -239,7 +239,7 @@
         padding: 10rpx;
       }
       .content-top {
-        
+
         padding-top: 35rpx;
         &>view:nth-child(1) {
           font-size: 20rpx;
@@ -298,22 +298,22 @@
             border: 1px solid #D1D1D1;
             border-radius: 7.5rpx;
             font-weight: normal;
-            
+
             input {
               width: 100%;
               height: 100%;
               padding-left: 20rpx;
               padding-right: 20rpx;
-              box-sizing: border-box            
+              box-sizing: border-box
             }
-            
+
             .uni-input-placeholder {
               font-size: 22.5rpx;
             }
           }
         }
         .form-input-2 {
-          &>view:nth-child(2) { 
+          &>view:nth-child(2) {
             height: 87.5rpx;
             line-height: auto;
             ._textarea {
@@ -385,7 +385,7 @@
             font-size: 32rpx;
             width: 652rpx;
             padding-left: 80rpx;
-            
+
           }
           &>view:nth-child(2) {
             font-size: 36rpx;
@@ -396,7 +396,7 @@
             margin: 8rpx auto 0 auto;
             padding-left: 80rpx;
             box-sizing: border-box;
-           
+
           }
           &>image {
             width: 86rpx;
@@ -425,14 +425,14 @@
               line-height: 88rpx;
               font-size: 36rpx;
               border-radius: 12rpx;
-              
+
               .uni-input-placeholder {
                 font-size: 36rpx;
               }
             }
           }
           .form-input-2 {
-            &>view:nth-child(2) { 
+            &>view:nth-child(2) {
               height: 162rpx;
               ._textarea {
                 width: 100%;

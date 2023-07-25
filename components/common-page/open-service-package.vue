@@ -9,8 +9,8 @@
           class="title"
           :src="
             pageType == 1
-              ? imgPrefix + '/static/operateSteps/portalH5/pages/exercise-title-1.png?t=1'
-              : imgPrefix + '/static/operateSteps/portalH5/pages/exercise-title-2.png?t=1'
+              ? fileUrl + '/static/operateSteps/portalH5/pages/exercise-title-1.png?t=1'
+              : fileUrl + '/static/operateSteps/portalH5/pages/exercise-title-2.png?t=1'
           "
         ></image>
         <view class="service-msg">
@@ -24,7 +24,7 @@
           <view class="origin-price">¥{{ goodsData.originalAmount / 100 }}</view>
         </view>
         <view class="xy">
-          <image @click="checkedAgrHandle" :src="agreementChecked ? imgPrefix + '/static/operateSteps/portalH5/pages/exercise-xy-checked.png' : imgPrefix + '/static/operateSteps/portalH5/pages/exercise-xy.png'"></image>
+          <image @click="checkedAgrHandle" :src="agreementChecked ? fileUrl + '/static/operateSteps/portalH5/pages/exercise-xy-checked.png' : fileUrl + '/static/operateSteps/portalH5/pages/exercise-xy.png'"></image>
           <view>开通前请阅读<text @click="goToAgreement">《柒月贰柒用户服务协议》</text>
             <text @click="toPrivateService">《柒月贰柒隐私服务协议》</text></view>
           </view>
@@ -75,7 +75,7 @@ export default {
   },
   data() {
     return {
-      imgPrefix: this.$imgPrefix,
+      fileUrl: this.$fileUrl,
       agreementChecked: false,
       userInfo: {},
       goodsData: {},

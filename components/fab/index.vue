@@ -1,7 +1,7 @@
 <template>
   <!--#ifndef MP-->
   <view
-    :class="[isPad ? 'fab-pad-container' : 'fab-mobile-container', 'fab-container']" 
+    :class="[isPad ? 'fab-pad-container' : 'fab-mobile-container', 'fab-container']"
     @touchstart="touchstart"
     @touchmove.prevent="touchmove"
     @touchend="touchend"
@@ -10,7 +10,7 @@
   <!--#endif-->
   <!--#ifdef MP-->
   <view
-    :class="[isPad ? 'fab-pad-container' : 'fab-mobile-container', 'fab-container']" 
+    :class="[isPad ? 'fab-pad-container' : 'fab-mobile-container', 'fab-container']"
     @touchstart="touchstart"
     @touchmove.stop.prevent="touchmove"
     @touchend.stop.prevent="touchend"
@@ -20,25 +20,25 @@
     <view class="content">
       <view :class="[isDirectionDown ? 'down' : 'up', 'content-main']" id="content-main">
         <view class="tx" id="avatar" @click="showMenuHandle($event, 1)">
-          <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-guid-tip2.png'"></image>
+          <image :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-guid-tip2.png'"></image>
         </view>
         <view :class="[isExpandFabMenu ? 'show-menu-style' : 'hide-menu-style', 'wrap']" :style="{ height: wrapHeight + 'px', top: operateWrapTop + 'px' }">
           <view class="list">
             <view class="item" v-if="isShowUseGuid" @click="useGuidHandle">
-              <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/fab-icon-guid.png'"></image>
+              <image :src="fileUrl + '/static/operateSteps/portalH5/pages/fab-icon-guid.png'"></image>
               <view>使用引导</view>
             </view>
             <view class="item" v-if="isShowUseHelp" @click="showKfCode">
-              <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/fab-icon-kf.png'"></image>
+              <image :src="fileUrl + '/static/operateSteps/portalH5/pages/fab-icon-kf.png'"></image>
               <view>客服帮助</view>
             </view>
             <view class="item" v-if="isShowBackHome" @click="goBackHome">
-              <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/fab-icon-home.png'"></image>
+              <image :src="fileUrl + '/static/operateSteps/portalH5/pages/fab-icon-home.png'"></image>
               <view>返回首页</view>
             </view>
             <!-- #ifdef H5 -->
             <view class="item" v-if="isShowDownApp" @click="goDownApp">
-              <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/fab-icon-down.png'"></image>
+              <image :src="fileUrl + '/static/operateSteps/portalH5/pages/fab-icon-down.png'"></image>
               <view>下载APP</view>
             </view>
             <!-- #endif -->
@@ -85,7 +85,7 @@
         type: String,
         default: 'down'
       }
-      
+
     },
     data() {
       return {
@@ -93,7 +93,7 @@
         openFlagText: '关闭',
         isShowKfCode: false,
         isPad: this.$pad,
-        imgPrefix: this.$imgPrefix,
+        fileUrl: this.$fileUrl,
         isExpandFabMenu: true,
         startPos: {},
         movePos: {},
@@ -112,9 +112,9 @@
         isFirstEntry: true
       }
     },
-    
+
     mounted() {
-      
+
         uni.getSystemInfo({
           success: (res) => {
             this.systemInfo = res
@@ -122,9 +122,9 @@
             console.log('4',this.systemInfo)
           }
         })
-        
-      
-      
+
+
+
       getApp().watch(this.screenChangeHandle, 'isChangeScreen')
     },
     destroyed() {
@@ -133,7 +133,7 @@
     methods: {
       // 屏幕旋转变化
       screenChangeHandle() {
-        
+
         // this.systemInfo = uni.getSystemInfoSync()
         setTimeout(() => {
           console.log('6', uni.getSystemInfoSync())
@@ -150,26 +150,26 @@
             }).exec()
             getApp().globalData.currentScreenStatus = this.systemInfo.deviceOrientation
           }
-          
-          
-          
+
+
+
         }, 300)
-        
+
         //[this.systemInfo.screenWidth, this.systemInfo.screenHeight] = [this.systemInfo.screenHeight, this.systemInfo.screenWidth]
         //this.initFab()
         // uni.getSystemInfo({
         //   success: (res) => {
         //     this.systemInfo = res
-        
+
         //   }
         // })
-        
-        
+
+
         // 刷新本页面
         // this.$router.go(0)
       },
       initFab() {
-        
+
         this.isExpandFabMenu = this.isOpenFabMenu
         this.isDirectionDown = this.direction == 'down' ? true : false
         if (this.isExpandFabMenu) {
@@ -180,7 +180,7 @@
         }
         this.systemInfo = uni.getSystemInfoSync()
         let element = "#content-main"
-        
+
         let query = uni.createSelectorQuery().in(this)
         query.select(element).boundingClientRect(data => {
           if (data) {
@@ -199,14 +199,14 @@
             if (this.isDirectionDown) {
               // this.openFlagTop = data.height
             }
-            
+
           }
         }).exec()
       },
       setHeight() {
         let element = ".list"
         let query = uni.createSelectorQuery().in(this)
-        
+
         query.select(element).boundingClientRect(data => {
           if (data) {
             this.wrapHeight = data.height
@@ -229,7 +229,7 @@
           this.wrapHeight = 50
           this.openFlagText = '展开'
           this.operateWrap.height = this.wrapHeight + 70
-          
+
           if (type == 1) {
             if (e.detail.y + 40 + this.avatarWrap.height >= this.systemInfo.windowHeight / 2 + 200) {
               this.isDirectionDown = false
@@ -237,7 +237,7 @@
               this.isDirectionDown = true
             }
           }
-          
+
           if (this.isDirectionDown) {
             this.openFlagTop = this.wrapHeight
             this.operateWrapTop = 4
@@ -246,8 +246,8 @@
             this.operateWrapTop = 4
           }
         }
-        
-        
+
+
         // this.$nextTick(() => {
         //   this.operateWrap.height = this.wrapHeight + 70
         //   // let element = "#content-main"
@@ -260,7 +260,7 @@
         //   //   }
         //   // }).exec()
         // })
-        
+
       },
       showKfCode() {
         this.isShowKfCode = true
@@ -283,7 +283,7 @@
       },
       touchstart(e) {
         this.longClick = 0
-        
+
         if (this.isFirstEntry && this.isExpandFabMenu) {
           this.setHeight()
           this.isFirstEntry = false
@@ -314,21 +314,21 @@
         } else {
           this.leftPos = `${this.movePos.x - this.avatarWrap.width / 2}px`
         }
-        
+
         if (this.movePos.y - this.operateWrap.height / 2 <= 120) {
           if (this.isDirectionDown) {
             this.topPos = `${120}px`
           } else {
             this.topPos = `${140}px`
           }
-          
+
         } else if (this.movePos.y + this.operateWrap.height - this.operateWrap.height/2 > this.systemInfo.windowHeight) {
           if (this.isDirectionDown) {
             this.topPos = `${this.systemInfo.windowHeight - this.operateWrap.height - 20}px`
           } else {
             this.topPos = `${this.systemInfo.windowHeight - this.avatarWrap.height - 20}px`
           }
-          
+
         } else {
           this.topPos = `${this.movePos.y - this.avatarWrap.height / 2}px`
         }
@@ -358,7 +358,7 @@
           } else {
             this.topPos =  `${this.endPos.y - this.avatarWrap.height / 2 - 20}px`
           }
-          
+
           if (!this.isExpandFabMenu) {
             if (this.movePos.y + 40 + this.avatarWrap.height >= this.systemInfo.windowHeight / 2 + 200) {
               this.isDirectionDown = false
@@ -366,7 +366,7 @@
               this.isDirectionDown = true
             }
           }
-          
+
           this.hasTouchMove = false
           this.longClick = 0
           this.timer = null
@@ -388,7 +388,7 @@
   .fab-container {
     width: 73.26rpx;
     position: fixed;
-    
+
     right: 180rpx;
     z-index: 12;
     //transition: all 0.1s;
@@ -403,9 +403,9 @@
           border-radius: 50%;
           background-color: rgba(190, 217, 255, 0.35);
           position: absolute;
-          
+
           z-index: 2;
-          
+
           image {
             width: 73.26rpx;
             height: 100.37rpx;
@@ -426,8 +426,8 @@
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          
-          
+
+
           .item {
             font-size: 16rpx;
             color: #5D80B0;
@@ -447,7 +447,7 @@
           }
         }
         .open-flag {
-          
+
           width: 54.95rpx;
           height: 20.51rpx;
           line-height: 23rpx;
@@ -508,7 +508,7 @@
       }
     }
   }
-  
+
   // @media screen and (min-width: 501px) and (max-width: 801px) {
   //   .fab-pad-container {
   //     top: 40%;
@@ -521,7 +521,7 @@
   //     right: 0;
   //   }
   // }
-  // @media screen and (min-width: 801px) { 
+  // @media screen and (min-width: 801px) {
   //   .fab-pad-container {
   //     top: 146.52rpx;
   //     right: 160rpx;
@@ -544,7 +544,7 @@
             width: 112rpx;
             height: 112rpx;
             margin-bottom: 0rpx;
-            
+
             image {
               width: 112rpx;
               height: 152rpx;
@@ -553,7 +553,7 @@
           }
           .wrap {
             border-radius: 56rpx;
-            
+
           }
           .show-menu-style {
             // margin-top: 20rpx;
@@ -564,7 +564,7 @@
             opacity: 0;
           }
           .list {
-            
+
             .item {
               font-size: 22rpx;
               padding: 15rpx 0;

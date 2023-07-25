@@ -4,7 +4,7 @@
       <!-- <view class="close" v-if="!payReturnMsg.payRes && buyType != 4">
         <uni-icons class="icon-close" type="closeempty" size="25" color="#333" @click="closeHandle"></uni-icons>
       </view> -->
-      <image class="pay-img" :src="payReturnMsg.payRes ? imgPrefix + '/static/operateSteps/portalH5/pages/pay-success.png' : imgPrefix + '/static/operateSteps/portalH5/pages/icon-pay-fail.png'"></image>
+      <image class="pay-img" :src="payReturnMsg.payRes ? fileUrl + '/static/operateSteps/portalH5/pages/pay-success.png' : fileUrl + '/static/operateSteps/portalH5/pages/icon-pay-fail.png'"></image>
       <view :class="[payReturnMsg.payRes ? 'desc-success' : '','desc']">{{payReturnMsg.payRes ? '支付成功' : '支付失败'}}</view>
       <view class="cutdwon-time" v-if="buyType == 1 && payReturnMsg.payRes">即将打开筛查报告...{{dwonTime}}</view>
       <block v-if="payReturnMsg.payRes">
@@ -12,7 +12,7 @@
           <view class="btn btn-go" @click="goNextHandle">{{buyType == 1 ? '查看报告' : '立即训练'}}</view>
           <view v-if="buyType == 5" class="btn btn-close" @click="closeHandle">稍后训练</view>
         </block>
-        
+
         <block v-else-if="buyType == 2 || buyType == 3">
           <view class="_color">请在您预约的时间</view>
           <view class="_appoint-time">{{appointmentTime}}</view>
@@ -76,7 +76,7 @@
     data() {
       return {
         isShowKfCode: false,
-        imgPrefix: this.$imgPrefix,
+        fileUrl: this.$fileUrl,
         dwonTime: 3,
         timer: null,
         userInfo: {}
@@ -161,7 +161,7 @@
           margin-right: -7.32rpx;
         }
       }
-      
+
       .cutdwon-time {
         text-align: center;
         font-size: 20rpx;
@@ -284,33 +284,33 @@
         width: 520rpx;
         padding: 30rpx;
         border-radius: 20rpx;
-    
+
         .close {
           .icon-close {
             padding: 10rpx;
             margin-right: -10rpx;
           }
         }
-        
+
         .cutdwon-time {
           font-size: 32rpx;
           padding-top: 8rpx;
           padding-bottom: 42rpx;
         }
-    
+
         .pay-img {
           width: 160rpx;
           height: 160rpx;
           margin: -20rpx auto 14rpx auto;
         }
-    
+
         .desc {
           height: 40rpx;
           line-height: 40rpx;
           font-size: 34rpx;
           padding: 0rpx 0 20rpx 0;
         }
-    
+
         .btn {
           width: 422rpx;
           height: 84rpx;
@@ -318,7 +318,7 @@
           border-radius: 12rpx;
           font-size: 34rpx;
         }
-    
+
         .btn-go {
           margin-bottom: 12rpx;
         }
@@ -347,7 +347,7 @@
         }
         .pay-fail {
           color: #333;
-          
+
         }
         .fail-help {
           width: 520rpx;

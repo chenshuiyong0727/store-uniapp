@@ -9,7 +9,7 @@
       </view>
       <view class="box-common box-product">
         <view class="box-flex">
-          <view class="flex-left"><image :src="imgPrefix + detailData.iconUrl"></image></view>
+          <view class="flex-left"><image :src="fileUrl + detailData.iconUrl"></image></view>
           <view class="flex-right">
             <view class="sub-title text-ellipsis">{{detailData.subject || '--'}}</view>
             <view class="desc">{{detailData.body || '--'}}</view>
@@ -71,7 +71,7 @@
           <view @click="goPage">寄还说明</view>
           <view @click="showLogisticsPopover">{{detailData.recycleStatus == 1 ? '填写' : '修改'}}物流信息</view>
         </view>
-        
+
       </view>
       <view class="box-common">
         <view class="_t">{{detailData.businessType == '2210081722313010031' ? '筛查明细' : '订单明细'}}</view>
@@ -194,7 +194,7 @@
       </view>
       <view class="fixed-bottom" v-if="detailData.orderStatus == 10">
         <view class="kf" @click="showKfCode">
-          <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/evaluation-img-5.png'"></image>
+          <image :src="fileUrl + '/static/operateSteps/portalH5/pages/evaluation-img-5.png'"></image>
           <view>客服咨询</view>
         </view>
         <view class="price">
@@ -230,7 +230,7 @@
     },
     data() {
       return {
-        imgPrefix: this.$imgPrefix,
+        fileUrl: this.$fileUrl,
         isPad: this.$pad,
         payOrderId: '',
         detailData: {},
@@ -357,7 +357,7 @@
         }
         this.getOrderDetail()
       },
-     
+
       // 跳转研一训练
       goCognitiveTraining() {
         let routes = getCurrentPages() //获取加载的页面
@@ -597,7 +597,7 @@
             color: #666;
             padding-top: 10rpx;
           }
-        } 
+        }
       }
     }
     .fixed-bottom {
@@ -649,7 +649,7 @@
           width: 431.25rpx;
           height: 56.25rpx;
           text-align: center;
-          
+
           border-radius: 7.5rpx;
           background-color: #43C9A7;
           color: #fff;
@@ -789,7 +789,7 @@
               font-size: 32rpx;
               padding-top: 25rpx;
             }
-          } 
+          }
         }
       }
       .box-mobile-money {
@@ -803,7 +803,7 @@
             }
           }
         }
-        
+
       }
       .fixed-bottom {
         height: 116rpx;

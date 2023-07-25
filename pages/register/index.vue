@@ -5,7 +5,7 @@
     </view>
 
     <view class="top-container">
-      <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/registerSuccess-icon.png'"></image>
+      <image :src="fileUrl + '/static/operateSteps/portalH5/pages/registerSuccess-icon.png'"></image>
       <text>注册成功</text>
     </view>
     <view class="enter-family">恭喜您加入 健脑大家庭</view>
@@ -53,12 +53,12 @@
       <view class="new-code" v-if="enterCode">
         <image
           class="divider-image"
-          :src="imgPrefix + '/static/operateSteps/portalH5/pages/renzheng.png'"
+          :src="fileUrl + '/static/operateSteps/portalH5/pages/renzheng.png'"
         ></image>
         <text class="user-name">{{ userName }}用户</text>
         <image
           class="user-image"
-          :src="imgPrefix + '/static/operateSteps/portalH5/pages/user.png'"
+          :src="fileUrl + '/static/operateSteps/portalH5/pages/user.png'"
         ></image>
       </view>
       <!-- <view v-if="!enterCode" class="footer-text"
@@ -100,7 +100,7 @@ export default {
       // isGuidTip: false,
       fixTop: false,
       isPad: this.$pad,
-      imgPrefix: this.$imgPrefix,
+      fileUrl: this.$fileUrl,
       errorCode: false,
       mustCode: false,
       enterCode: false,

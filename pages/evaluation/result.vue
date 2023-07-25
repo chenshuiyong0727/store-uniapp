@@ -1,15 +1,15 @@
 <template>
   <view>
-    
+
     <nav-bar title='认知障碍筛查' :backdelta="backdelta"></nav-bar>
-    
+
     <view class="container" v-if="isPad">
       <view class="title"><text>根据您的基本情况，推荐您使用</text><text class="reset" @click="naveToPage('/pages/evaluation/sort')">重新填写基本情况</text></view>
       <view :class="[isGuidTip1 ? 'guid-tip' : '', 'box']">
         <view v-if="isGuidTip1" class="guid-top">
-          
+
           <view class="content1">
-            <image class="img" :src="imgPrefix + '/static/operateSteps/portalH5/pages/recommend-img-2.png'"></image>
+            <image class="img" :src="fileUrl + '/static/operateSteps/portalH5/pages/recommend-img-2.png'"></image>
             <view class="guid-middle">
               <view class="guid-desc">{{recommendGoods.businessType == "2210081722239380029" ? "如果您独立评估有困难，可以选择【认知评估】由专业评估师，1对1为您提供评估服务" : "根据您的基本情况，推荐您优先使用【认知障碍筛查】的方式，评估大脑是否存在认知风险"}}</view>
             </view>
@@ -21,8 +21,8 @@
           </view>
         </view>
         <view class="img-content">
-          <image class="img-1" :src="imgPrefix + recommendGoods.imgUrl" />
-          <image class="recommend" :src="imgPrefix + '/static/operateSteps/portalH5/pages/recommend2.png'"></image>
+          <image class="img-1" :src="fileUrl + recommendGoods.imgUrl" />
+          <image class="recommend" :src="fileUrl + '/static/operateSteps/portalH5/pages/recommend2.png'"></image>
         </view>
         <view class="_right">
           <view class="_r-top">
@@ -73,12 +73,12 @@
       <view class="title"><text>其他评估方式</text></view>
       <view :class="[isGuidTip2 ? 'guid-tip' : '', 'box']" v-for="item in otherGoodsList" :key="item.goodsId">
         <view v-if="isGuidTip2" class="guid-top">
-          <image class="img" :src="imgPrefix + '/static/operateSteps/portalH5/pages/recommend-img-2.png'"></image>
+          <image class="img" :src="fileUrl + '/static/operateSteps/portalH5/pages/recommend-img-2.png'"></image>
           <view class="guid-desc">{{item.businessType == "2210081722239380029" ? "如果您独立评估有困难，可以选择【认知评估】由专业评估师，1对1为您提供评估服务" : "根据您的基本情况，推荐您优先使用【认知障碍筛查】的方式，评估大脑是否存在认知风险"}}</view>
           <view class="guid-btn" @click="showGuid(2)">了解下一步</view>
           <uni-icons class="guid-close" type="closeempty" size="20" color="#fff" @click="closeGuid"></uni-icons>
         </view>
-        <view class="img-content"><image class="img-1" :src="imgPrefix + item.imgUrl" /></view>
+        <view class="img-content"><image class="img-1" :src="fileUrl + item.imgUrl" /></view>
         <view class="_right">
           <view class="_r-top">
             <text class="_txt1">{{item.title}}</text>
@@ -127,9 +127,9 @@
       <view :class="[isGuidTip1 ? 'guid-tip' : '', 'box']">
         <!--引导弹层-->
         <view v-if="isGuidTip1" class="guid-top">
-          
+
           <view class="content1">
-            <image class="img" :src="imgPrefix + '/static/operateSteps/portalH5/pages/recommend-img-2.png'"></image>
+            <image class="img" :src="fileUrl + '/static/operateSteps/portalH5/pages/recommend-img-2.png'"></image>
             <view class="guid-middle">
               <view class="guid-desc">{{recommendGoods.businessType == "2210081722239380029" ? "如果您独立评估有困难，可以选择【认知评估】由专业评估师，1对1为您提供评估服务" : "根据您的基本情况，推荐您优先使用【认知障碍筛查】的方式，评估大脑是否存在认知风险"}}</view>
             </view>
@@ -143,9 +143,9 @@
         <!--end-->
         <view class="m-box-top">
           <view class="img-1">
-            <image :src="imgPrefix + recommendGoods.appImgUrl" />
+            <image :src="fileUrl + recommendGoods.appImgUrl" />
             <view class="m-subtitle" v-if="recommendGoods.subTitle">{{recommendGoods.subTitle}}</view>
-            <image class="recommend" :src="imgPrefix + '/static/operateSteps/portalH5/pages/recommend2.png'"></image>
+            <image class="recommend" :src="fileUrl + '/static/operateSteps/portalH5/pages/recommend2.png'"></image>
           </view>
           <view class="m-desc">
             <view class="title">
@@ -188,14 +188,14 @@
           <text class="m-appoint-time" v-if="recommendGoods.businessType == '2210081722239380029' && (recommendGoods.payStatus == 1)">预约时间：{{recommendGoods.appointmentTime}}</text>
         </view>
       </view>
-      
+
       <view class="title"><text>其他评估方式</text></view>
       <view :class="[isGuidTip2 ? 'guid-tip' : '', 'box']" v-for="item in otherGoodsList" :key="item.goodsId">
         <!--引导弹层-->
         <view v-if="isGuidTip2" class="guid-top">
-          
+
           <view class="content1">
-            <image class="img" :src="imgPrefix + '/static/operateSteps/portalH5/pages/recommend-img-2.png'"></image>
+            <image class="img" :src="fileUrl + '/static/operateSteps/portalH5/pages/recommend-img-2.png'"></image>
             <view class="guid-middle">
               <view class="guid-desc">{{item.businessType == "2210081722239380029" ? "如果您独立评估有困难，可以选择【认知评估】由专业评估师，1对1为您提供评估服务" : "根据您的基本情况，推荐您优先使用【认知障碍筛查】的方式，评估大脑是否存在认知风险"}}</view>
             </view>
@@ -209,7 +209,7 @@
         <!--end-->
         <view class="m-box-top">
           <view class="img-1">
-            <image :src="imgPrefix + item.appImgUrl" />
+            <image :src="fileUrl + item.appImgUrl" />
             <view class="m-subtitle m-subtitle-color" v-if="item.subTitle">{{item.subTitle}}</view>
           </view>
           <view class="m-desc">
@@ -291,7 +291,7 @@
         payMsg: '',
         otherGoodsList: [],
         recommendGoods: {},
-        imgPrefix: this.$imgPrefix,
+        fileUrl: this.$fileUrl,
         isPad: this.$pad,
         payReturnMsg: {},
         isGuidTip1: false,
@@ -421,7 +421,7 @@
         this.payOrderId = res.payOrderId
       },
       goNextHandle() {
-        
+
         this.isShowPayResult = false
         // #ifdef APP-PLUS
         let routes = getCurrentPages()
@@ -447,8 +447,8 @@
           this.goEvaluation(this.payReturnMsg.payOrderId)
         }
         // #endif
-        
-        
+
+
       },
       closeHandle() {
         // this.isShowPayResult = false
@@ -461,10 +461,10 @@
         // 替换浏览器的url值，防止刷新页面后出现支付结果弹窗
         window.history.replaceState(null, null, window.location.href.split('?')[0])
         // #endif
-        
+
         // #ifdef APP-PLUS
         // 重定向url值，防止刷新页面后出现支付结果弹窗
-        
+
         uni.redirectTo({
           url: '/pages/evaluation/result?backdelta=2'
         })
@@ -538,7 +538,7 @@
       padding: 17.58rpx 0 17.58rpx 17.58rpx;
       box-sizing: border-box;
       display: flex;
-      
+
       .img-content {
         position: relative;
         .img-1 {
@@ -555,7 +555,7 @@
           left: 0;
         }
       }
-      
+
       ._right {
         flex: 1;
       }
@@ -588,7 +588,7 @@
           border-bottom: 1px solid #753C81;
           border-left: 1px solid #753C81;
           color: #753C81;
-          
+
         }
       }
 
@@ -692,7 +692,7 @@
             border-bottom-left-radius: 7.32rpx;
           }
           .appoint-time {
-            
+
             position: absolute;
             font-size: 13.18rpx;
             color: #502459;
@@ -766,7 +766,7 @@
       }
     }
   }
-  
+
   .container-mobile {
     padding: 0 30rpx 30rpx 30rpx;
     .title {
@@ -852,12 +852,12 @@
       padding: 0;
       .m-box-top {
         padding: 30rpx;
-       
+
       }
       .img-1 {
         width: 626rpx;
         height: 348rpx;
-        
+
         margin-right: 0rpx;
         position: relative;
         image {

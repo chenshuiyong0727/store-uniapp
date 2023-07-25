@@ -1,8 +1,8 @@
 <template>
   <view>
-    
+
     <nav-bar title='推荐锻炼' :backUrl="specailBack == 1 ? '/pages/index/index' : ''"></nav-bar>
-    
+
     <view class="container">
       <view class="top">
         <view class="_h6">
@@ -11,7 +11,7 @@
         </view>
         <view class="desc">我们推荐您进行大脑数字锻炼，更有效的锻炼大脑</view>
         <view v-if="!isPad" class="link" @click="goToPage">什么是大脑锻炼？</view>
-        <image class="doctor" :src="imgPrefix + '/static/operateSteps/portalH5/pages/recommend-img-2.png'"></image>
+        <image class="doctor" :src="fileUrl + '/static/operateSteps/portalH5/pages/recommend-img-2.png'"></image>
       </view>
       <view class="production">
         <view class="list" v-for="item in productionList" :key="item.goodsId">
@@ -19,16 +19,16 @@
             <view class="img">
               <swiper class="swiper-img" circular :indicator-dots="false" :autoplay="true" interval="3000" duration="200">
                 <swiper-item v-for="gameItme in gameImgList" :key="gameItme.id">
-                  <image :src="imgPrefix + gameItme.imgUrl" mode="aspectFill"></image>
+                  <image :src="fileUrl + gameItme.imgUrl" mode="aspectFill"></image>
                 </swiper-item>
               </swiper>
-              
-              <image class="shadow" :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-shadow.png'"></image>
+
+              <image class="shadow" :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-shadow.png'"></image>
             </view>
           </view>
           <view class="top-img top-img-2" v-else>
             <view class="img">
-              <image :src="imgPrefix + '/static/operateSteps/icon-micromotion.png'"></image>
+              <image :src="fileUrl + '/static/operateSteps/icon-micromotion.png'"></image>
             </view>
           </view>
           <view class="list-btm">
@@ -41,7 +41,7 @@
                 <text v-for="label in item.labelList" :key="label">{{label}}</text>
               </view>
             </view>
-            
+
             <view class="btn" @click="goPageHandle(item.businessType == '2210130902263070058' ? 1 : 2)">{{item.businessType == '2210130902263070058' ? '立即锻炼' : '立即运动'}}</view>
           </view>
         </view>
@@ -68,7 +68,7 @@
       return {
         userInfo: {},
         productionList: [],
-        imgPrefix: this.$imgPrefix,
+        fileUrl: this.$fileUrl,
         isPad: this.$pad,
         isWechat: this.$isWechat,
         // 是否是从第三方页面跳回 0=>否 1=>是
@@ -86,7 +86,7 @@
       this.userInfo = uni.getStorageSync('userInfo') ? JSON.parse(uni.getStorageSync('userInfo')) : {}
       this.getExeGoods()
       this.getMicGoods()
-      
+
     },
     methods: {
       getExeGoods() {
@@ -192,7 +192,7 @@
       border-radius: 14.65rpx;
       position: relative;
       margin-top: 17.58rpx;
-    
+
       .doctor {
         width: 58.6rpx;
         height: 80.57rpx;
@@ -200,14 +200,14 @@
         bottom: 0;
         left: -7.32rpx;
       }
-    
+
       ._h6 {
         font-size: 17.58rpx;
         font-weight: bold;
         padding-bottom: 7.32rpx;
         display: flex;
         align-items: center;
-    
+
         &>view:nth-child(2) {
           color: #43C9A7;
           text-decoration: underline;
@@ -215,15 +215,15 @@
           font-weight: normal;
         }
       }
-    
+
       .desc {
         font-size: 13.18rpx;
         color: #666;
       }
     }
-    
-    
-    
+
+
+
     .production {
       display: flex;
       flex-wrap: wrap;
@@ -231,7 +231,7 @@
       margin-top: 17.58rpx;
     }
     .list {
-      
+
       // .top-img {
       //   width: 100%;
       //   height: 80.57rpx;
@@ -257,7 +257,7 @@
             width: 271.06rpx;
             height: 112.82rpx;
             border-radius: 14.65rpx;
-            
+
           }
           .shadow {
             position: absolute;
@@ -293,18 +293,18 @@
         font-size: 17.58rpx;
         font-weight: bold;
       }
-      
+
       .desc-content {
         min-height: 91.58rpx;
       }
-      
+
       .desc {
         font-size: 11.72rpx;
         line-height: 19.78rpx;
         color: #999;
         margin: 8.79rpx 0;
       }
-      
+
       ._label {
         &>text {
           padding: 3.66rpx 7.32rpx;
@@ -315,7 +315,7 @@
           margin-right: 4.39rpx;
         }
       }
-      
+
       .btn {
         width: 215.34rpx;
         height: 35.16rpx;
@@ -337,18 +337,18 @@
         padding: 20rpx 20rpx 20rpx 164rpx;
         border-radius: 20rpx;
         margin-top: 32rpx;
-      
+
         .doctor {
           width: 144rpx;
           height: 198rpx;
           left: 0rpx;
         }
-      
+
         ._h6 {
           font-size: 30rpx;
           padding-bottom: 10rpx;
         }
-      
+
         .desc {
           font-size: 26rpx;
           color: #999;
@@ -361,9 +361,9 @@
           font-weight: normal;
         }
       }
-      
-      
-      
+
+
+
       .production {
         flex-direction: column;
         margin-top: 32rpx;
@@ -384,7 +384,7 @@
               width: 518rpx;
               height: 216rpx;
               border-radius: 20rpx;
-              
+
             }
             .shadow {
               position: absolute;
@@ -415,22 +415,22 @@
           }
         }
         .list-btm {
-          
+
         }
         ._tit {
           font-size: 40rpx;
         }
-        
+
         .desc-content {
           min-height: 190rpx;
         }
-        
+
         .desc {
           font-size: 28rpx;
           line-height: 40rpx;
           margin: 24rpx 0;
         }
-        
+
         ._label {
           &>text {
             padding: 6rpx 12rpx;
@@ -439,7 +439,7 @@
             margin-right: 12rpx;
           }
         }
-        
+
         .btn {
           width: 636rpx;
           height: 96rpx;

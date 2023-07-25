@@ -23,10 +23,10 @@
         </view>
       </view>
       <view class="pay-type">
-        <view 
-          :class="['item', item.value == 4 && exchangeCodeStatus == 2 ? 'item-disabled' : '']" 
-          v-for="(item, index) in payType" 
-          :key="index" 
+        <view
+          :class="['item', item.value == 4 && exchangeCodeStatus == 2 ? 'item-disabled' : '']"
+          v-for="(item, index) in payType"
+          :key="index"
           @click="choosePayType(item, index)">
             <image class="item-icon" :src="item.icon"></image>
             <view class="item-right">
@@ -36,8 +36,8 @@
                 <text class="sort" v-if="item.value == 4 && exchangeCodeStatus == 2">（暂不可用）</text>
               </view>
               <view>
-                <image v-if="exchangeCodeStatus == 1 || (exchangeCodeStatus == 2 && item.value != 4)" :src="currentTypeIndex == index ? imgPrefix + '/static/operateSteps/portalH5/pages/pre-pay-img-2-v3.png' : imgPrefix + '/static/operateSteps/portalH5/pages/pre-pay-img-1-v3.png'"></image>
-                <image v-else :src="imgPrefix + '/static/operateSteps/portalH5/pages/pre-pay-img-1-disabled-v3.png'"></image>
+                <image v-if="exchangeCodeStatus == 1 || (exchangeCodeStatus == 2 && item.value != 4)" :src="currentTypeIndex == index ? fileUrl + '/static/operateSteps/portalH5/pages/pre-pay-img-2-v3.png' : fileUrl + '/static/operateSteps/portalH5/pages/pre-pay-img-1-v3.png'"></image>
+                <image v-else :src="fileUrl + '/static/operateSteps/portalH5/pages/pre-pay-img-1-disabled-v3.png'"></image>
               </view>
             </view>
         </view>
@@ -51,9 +51,9 @@
           <view class="input-box">
             <input class="input" v-model="codeValue" placeholder="请输入兑换码，验证通过即可解锁报告"/>
           </view>
-          <view v-if="codeValue" class="delete" @click="deleteCodeValue"><image :src="imgPrefix + '/static/operateSteps/portalH5/pages/pre-pay-img-8-v3.png'"></image></view>
+          <view v-if="codeValue" class="delete" @click="deleteCodeValue"><image :src="fileUrl + '/static/operateSteps/portalH5/pages/pre-pay-img-8-v3.png'"></image></view>
         </view>
-        <view v-if="isShowErrorTip" class="error-tip"><image :src="imgPrefix + '/static/operateSteps/portalH5/pages/pre-pay-img-7-v3.png'"></image><text>{{errorTip}}</text></view>
+        <view v-if="isShowErrorTip" class="error-tip"><image :src="fileUrl + '/static/operateSteps/portalH5/pages/pre-pay-img-7-v3.png'"></image><text>{{errorTip}}</text></view>
       </view>
       <view class="btn" @click="exchangePayHandle" v-if="currentTypeValue.value == 4"><text class="_text">立即兑换</text></view>
       <view v-else class="btn">
@@ -70,9 +70,9 @@
       <!--兑换码使用说明-->
       <view class="dhm-box" v-if="isShowGifBox">
         <view class="box-content">
-          <view class="close" @click="closeDhmBox"><image :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-close.png'"></image></view>
+          <view class="close" @click="closeDhmBox"><image :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-close.png'"></image></view>
           <view class="title">兑换码使用说明</view>
-          <image class="img-gif" :src="imgPrefix + '/static/operateSteps/portalH5/pages/dhm.gif'"></image>
+          <image class="img-gif" :src="fileUrl + '/static/operateSteps/portalH5/pages/dhm.gif'"></image>
           <view class="btn-close" @click="closeDhmBox">我懂了</view>
         </view>
       </view>
@@ -80,7 +80,7 @@
     </view>
     <pay-result v-if="isShowPayResult" @closeHandle="closeHandle" @goNextHandle="nextHandle" @goBack="goBack" :payReturnMsg="payReturnMsg" :btnText="payResultText" :buyType="buyType" :appointmentTime="appointmentTime">
     </pay-result>
-    
+
   </view>
 </template>
 
@@ -98,7 +98,7 @@
     data() {
       return {
         title: '解锁报告',
-        imgPrefix: this.$imgPrefix,
+        fileUrl: this.$fileUrl,
         isPad: this.$pad,
         currentTypeIndex: 0,
         currentTypeValue: {},
@@ -151,12 +151,12 @@
           // this.payType[0].isShow = false
           payType = [
             {
-              icon: this.$imgPrefix + '/static/operateSteps/portalH5/pages/pre-pay-img-4-v3.png',
+              icon: this.$fileUrl + '/static/operateSteps/portalH5/pages/pre-pay-img-4-v3.png',
               name: '微信支付',
               value: 2
             },
             {
-              icon: this.$imgPrefix + '/static/operateSteps/portalH5/pages/pre-pay-img-5-v3.png',
+              icon: this.$fileUrl + '/static/operateSteps/portalH5/pages/pre-pay-img-5-v3.png',
               name: '支付宝支付',
               value: 3
             }
@@ -168,7 +168,7 @@
               // this.payType[0].isShow = false
               payType = [
                 {
-                  icon: this.$imgPrefix + '/static/operateSteps/portalH5/pages/pre-pay-img-4-v3.png',
+                  icon: this.$fileUrl + '/static/operateSteps/portalH5/pages/pre-pay-img-4-v3.png',
                   name: '微信支付',
                   value: 2
                 }
@@ -177,7 +177,7 @@
               // this.payType[1].isShow = false
               payType = [
                 {
-                  icon: this.$imgPrefix + '/static/operateSteps/portalH5/pages/pre-pay-img-6-v3.png',
+                  icon: this.$fileUrl + '/static/operateSteps/portalH5/pages/pre-pay-img-6-v3.png',
                   name: '普通支付',
                   value: 1
                 }
@@ -186,7 +186,7 @@
           } else if (this.platform == 'APPLET') {
             payType = [
               {
-                icon: this.$imgPrefix + '/static/operateSteps/portalH5/pages/pre-pay-img-4-v3.png',
+                icon: this.$fileUrl + '/static/operateSteps/portalH5/pages/pre-pay-img-4-v3.png',
                 name: '微信支付',
                 value: 2
               }
@@ -194,7 +194,7 @@
           } else if (this.platform == 'APP') {
             payType = [
               {
-                icon: this.$imgPrefix + '/static/operateSteps/portalH5/pages/pre-pay-img-6-v3.png',
+                icon: this.$fileUrl + '/static/operateSteps/portalH5/pages/pre-pay-img-6-v3.png',
                 name: '普通支付',
                 value: 1
               }
@@ -202,7 +202,7 @@
           }
         }
         payType.push({
-          icon: this.$imgPrefix + '/static/operateSteps/portalH5/pages/pre-pay-img-3-v3.png',
+          icon: this.$fileUrl + '/static/operateSteps/portalH5/pages/pre-pay-img-3-v3.png',
           name: '兑换码',
           value: 4
         })
@@ -221,7 +221,7 @@
           if (res.status === 1000) {
             this.orderDetail = res.data ? res.data : {}
             switch(res.data.businessType) {
-              case '2209231329175690029': 
+              case '2209231329175690029':
                 this.payResultText = '咨询'
                 this.buyType = '3'
                 this.title = '咨询专家'
@@ -301,7 +301,7 @@
             url: '/pages/micromotion/list'
           })
         }
-        
+
       },
       payFreeHandle() {
         // 免单，无需重新支付
@@ -455,7 +455,7 @@
               duration: 2000
             })
           }
-        }) 
+        })
       },
       closeDhmBox() {
         this.isShowGifBox = false
@@ -464,7 +464,7 @@
         this.isShowGifBox = true
       }
     }
-    
+
   }
 </script>
 
@@ -510,13 +510,13 @@
             &>text:nth-child(2) {
               font-size: 22.5rpx;
             }
-            
+
           }
           .discount {
             color: #F9411B;
           }
         }
-        
+
       }
       .price-bottom {
         padding-top: 23.75rpx;
@@ -547,7 +547,7 @@
       margin-top: 13.75rpx;
       .item {
         display: flex;
-        
+
         justify-content: space-between;
         align-items: center;
         .item-icon {
@@ -576,7 +576,7 @@
             width: 25rpx;
             height: 25rpx;
           }
-          
+
         }
       }
       .item:last-child {
@@ -669,11 +669,11 @@
     }
     .btn {
       font-size: 22.5rpx;
-      
+
       font-weight: bold;
       width: 441.25rpx;
       height: 62.5rpx;
-      
+
       text-align: center;
       border-radius: 31.25rpx;
       margin: 37.5rpx auto 0 auto;
@@ -739,7 +739,7 @@
       }
     }
   }
-  
+
   @media screen and (max-width: 500px) {
     .container {
       padding: 0rpx 22rpx 30rpx 22rpx;
@@ -768,7 +768,7 @@
               }
             }
           }
-          
+
         }
         .price-bottom {
           padding-top: 38rpx;
@@ -811,7 +811,7 @@
               width: 40rpx;
               height: 40rpx;
             }
-            
+
           }
         }
       }
@@ -826,7 +826,7 @@
         &>view:nth-child(2) {
           margin-top: 16rpx;
           .input-box {
-            
+
           }
           .input {
             width: 100%;
@@ -835,7 +835,7 @@
             line-height: 108rpx;
             font-size: 48rpx;
             border-radius: 20rpx;
-            
+
           }
           .uni-input-placeholder {
             font-size: 34rpx;

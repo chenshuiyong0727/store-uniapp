@@ -6,15 +6,15 @@
           <view class="title">请选择，您需要的服务：</view>
           <view class="type-list">
             <view :class="[(index == 0 && reportList.length && index == currentReportTypeIndex) || (index != 0 && index == currentReportTypeIndex) ? 'on' : '']" v-for="(item, index) in reportTypeList" :key="index" @click="chooseConsultingType(item, index)">
-              <view class="no-report" v-if="index== 0 && !reportList.length"><image :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-no-report-1.png'"></image><text>您当前没有评估报告，无法选择此项服务</text></view>
+              <view class="no-report" v-if="index== 0 && !reportList.length"><image :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-no-report-1.png'"></image><text>您当前没有评估报告，无法选择此项服务</text></view>
               <view :class="[index==0 && reportList.length ? '' : 'content0' ,'content']">
                 <view class="type-list-left">
-                  <image class="img-1" :src="index == 0 && !reportList.length ? imgPrefix + '/static/operateSteps/portalH5/pages/icon-no-report-2.png' : item.imgUrl"></image>
+                  <image class="img-1" :src="index == 0 && !reportList.length ? fileUrl + '/static/operateSteps/portalH5/pages/icon-no-report-2.png' : item.imgUrl"></image>
                   <view :class="[index == 0 && !reportList.length ? 'no-font' : '']">{{item.title}}</view>
                 </view>
-                <image class="img-2" :src="(index == 0 && reportList.length && index== currentReportTypeIndex) || (index != 0 && index == currentReportTypeIndex) ? imgPrefix + '/static/operateSteps/portalH5/pages/icon-checked.png' : imgPrefix + '/static/operateSteps/portalH5/pages/icon-check.png'"></image>
+                <image class="img-2" :src="(index == 0 && reportList.length && index== currentReportTypeIndex) || (index != 0 && index == currentReportTypeIndex) ? fileUrl + '/static/operateSteps/portalH5/pages/icon-checked.png' : fileUrl + '/static/operateSteps/portalH5/pages/icon-check.png'"></image>
               </view>
-              
+
             </view>
           </view>
           <view class="btn-group">
@@ -25,23 +25,23 @@
       <swiper-item>
       	<view class="step-1">
           <view class="step-title">
-            <image :src="isPad ? imgPrefix + '/static/operateSteps/step1.png' : imgPrefix + '/static/operateSteps/mobile-step1.png'"></image>
+            <image :src="isPad ? fileUrl + '/static/operateSteps/step1.png' : fileUrl + '/static/operateSteps/mobile-step1.png'"></image>
           </view>
-          
+
           <view class="form-box">
-            
+
             <view class="title">请选择{{appointType == 1 && reAppointFlag !=1 && businessParams.visitType == 10008 ? '评估报告及' : ''}}咨询时间</view>
             <view class="form-input form-input-spec" v-if="appointType == 1 && reAppointFlag != 1 && businessParams.visitType == 10008">
-              
+
               <view class="re-title">
                 <text>请选择评估报告</text>
                 <view class="re-choose" @click="showReportBoxHandle" v-if="!isPad && businessParams.sid">
-                  <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-rechange.png'"></image>
+                  <image :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-rechange.png'"></image>
                   <text>重新选择</text>
                 </view>
               </view>
               <view v-if="!businessParams.sid">
-                <image class="img-add" @click="showReportBoxHandle" :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-add.png'"></image>
+                <image class="img-add" @click="showReportBoxHandle" :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-add.png'"></image>
                 <view class="tip" @click="showReportBoxHandle">
                   <text>请选择您的评估报告</text>
                 </view>
@@ -51,7 +51,7 @@
                 <view class="name"><text>{{ chooseReportData.userName }}</text><text>{{chooseReportData.age}}</text><text>{{chooseReportData.education}}</text></view>
                 <view class="type">评估类型：认知评估</view>
                 <view class="re-choose" @click="showReportBoxHandle" v-if="isPad">
-                  <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-rechange.png'"></image>
+                  <image :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-rechange.png'"></image>
                   <text>重新选择</text>
                 </view>
               </view>
@@ -63,9 +63,9 @@
               </view>
             </view>
           </view>
-          
+
           <view :class="[reAppointFlag == 1 ? 'btn-group-center' : '', 'btn-group']" v-if="appointType == 1">
-            <view class="btn-pre" v-if="reAppointFlag != 1" @click="setSwiperCurr(0, 'step-begin')"><image :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-pre.png'"></image><text>上一步</text></view>
+            <view class="btn-pre" v-if="reAppointFlag != 1" @click="setSwiperCurr(0, 'step-begin')"><image :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-pre.png'"></image><text>上一步</text></view>
             <view :class="[(businessParams.visitType == 10008 && businessParams.sid && appointTimeText) || (businessParams.visitType != 10008 && appointTimeText) ? '' : 'btn-disabled','btn-next']">
               <text v-if="reAppointFlag != 1" class="next-text" @click="setSwiperCurr(2, 'step-2')">下一步</text>
               <text v-if="reAppointFlag == 1" class="next-text" @click="setSwiperCurr(1, 'step-2')">下一步</text>
@@ -79,7 +79,7 @@
       <swiper-item>
         <view class="step-2">
           <view class="step-title">
-            <image :src="isPad ? imgPrefix + '/static/operateSteps/step1.png' : imgPrefix + '/static/operateSteps/mobile-step1.png'"></image>
+            <image :src="isPad ? fileUrl + '/static/operateSteps/step1.png' : fileUrl + '/static/operateSteps/mobile-step1.png'"></image>
           </view>
           <view class="form-box">
             <view class="title">请填写预约信息</view>
@@ -95,7 +95,7 @@
               <view class="sex">
                 <uni-data-select class="uni-sex-input" v-model="businessParams.gender" :localdata="sexArr" @change="sexChange" placeholder="请选择性别"></uni-data-select>
               </view>
-              
+
             </view>
             <view class="form-input">
               <view>出生日期</view>
@@ -109,7 +109,7 @@
                 <view class="uni-input" @click="showPicker('selector')">{{ educationName || '请选择学历' }}</view>
               </view>
             </view>
-            
+
           </view>
         </view>
       </swiper-item>
@@ -117,19 +117,19 @@
     <!--提交表单-->
     <view class="btn-appoint" v-if="((appointType == 1 && currentSwiperIndex == 2) || (appointType == 2 && currentSwiperIndex == 1) || (appointType == 1 && currentSwiperIndex == 1 && reAppointFlag == 1)) && isCanShowBtn">
       <view v-if="appointType == 1">
-        <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-pre.png'"></image>
+        <image :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-pre.png'"></image>
         <text v-if="reAppointFlag != 1" @click="setSwiperCurr(1, 'step-1')">上一步</text>
         <text v-else @click="setSwiperCurr(0, 'step-1')">上一步</text>
       </view>
-      <view @click="setSwiperCurr(0, 'step-1')" v-else><image :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-pre.png'"></image><text>上一步</text></view>
+      <view @click="setSwiperCurr(0, 'step-1')" v-else><image :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-pre.png'"></image><text>上一步</text></view>
       <view>
-        <payment 
-          @goBack="goBack" 
-          @closePayResultHandle="closePayResultHandle" 
-          :price="buyParams.amount" 
-          :goodsId="buyParams.goodsId" 
-          :addressFlag="+buyParams.addressFlag" 
-          :businessParams="businessParams" 
+        <payment
+          @goBack="goBack"
+          @closePayResultHandle="closePayResultHandle"
+          :price="buyParams.amount"
+          :goodsId="buyParams.goodsId"
+          :addressFlag="+buyParams.addressFlag"
+          :businessParams="businessParams"
           :buyType="appointType == 1 ? '3' : '2'"
           :createOrderType="createOrderType"
           :rePayOrderId="rePayOrderId"
@@ -142,9 +142,9 @@
           </text>
         </payment>
       </view>
-      
+
       <view @click="showKfCode"><image src="../../static/images/applet/icon_kefu.png"></image><text>客服咨询</text></view>
-      
+
     </view>
     <!--end-->
     <!--评估报告弹窗-->
@@ -181,7 +181,7 @@
     <picker-custom v-if="isShowCustomPicker" :currentPickerValue="currentPickerValue" :mode="mode" :range="range" :range-key="rangKey" :default-index="defaultValueIndex" @getDateValue="getDateValue" @getSelectorValue="getSelectorValue" @closePicker="closePicker"></picker-custom>
     <choose-time v-if="isShowAppointTime" :appointTimeText="appointTimeText" :appointType="appointType" :schedulingDateData="schedulingDateData" @getAppointmentValue="getAppointmentValue" @closeAppointTimeBox="closeAppointTimeBox"></choose-time>
     <kf-code v-if="isShowKfCode" @closeKfHandle="closeKfHandle" :ewmName="appointType == 1 ? 'jkzx-xqy' : 'rgpg-xqy'"></kf-code>
-   
+
   </view>
 </template>
 
@@ -191,8 +191,8 @@
   import emptyData from '@/components/empty-data'
   import kfCode from '@/components/kf-code'
   import payment from '@/components/payment'
-  
-  
+
+
   // import tip from '@/components/guid-tip/tip'
   import {isTimeExpire, navigateTo} from  '@/utils/util'
   export default {
@@ -246,20 +246,20 @@
         educationName: '',
         eduArr: [],
         appointTimeText: '',
-        imgPrefix: this.$imgPrefix,
+        fileUrl: this.$fileUrl,
         reportTypeList: [
           {
-            imgUrl: this.$imgPrefix + '/static/operateSteps/portalH5/pages/icon-direction-1.png',
+            imgUrl: this.$fileUrl + '/static/operateSteps/portalH5/pages/icon-direction-1.png',
             value: 10008,
             title: '认知报告解读'
           },
           {
-            imgUrl: this.$imgPrefix + '/static/operateSteps/portalH5/pages/icon-direction-2.png',
+            imgUrl: this.$fileUrl + '/static/operateSteps/portalH5/pages/icon-direction-2.png',
             value: 10003,
             title: '老年痴呆就诊/照护指导'
           },
           {
-            imgUrl: this.$imgPrefix + '/static/operateSteps/portalH5/pages/icon-direction-3.png',
+            imgUrl: this.$fileUrl + '/static/operateSteps/portalH5/pages/icon-direction-3.png',
             value: 10003,
             title: '大脑相关疾病就医咨询'
           }
@@ -343,15 +343,15 @@
           }
         })
       },
-      
+
       initData() {
         if (this.userInfo.info) {
           if (this.userInfo.info.birthDate) {
             this.businessParams.birthDay = this.userInfo.info.birthDate
           }
-      
+
           this.businessParams.gender = this.userInfo.info.gender === 0 ? 0 : this.userInfo.info.gender === 1 ? 1 : ''
-          
+
           this.businessParams.userName = this.userInfo.info.userRealName ? this.userInfo.info.userRealName : ''
           this.showAgeValue = this.businessParams.birthDay ?
             this.businessParams.birthDay :
@@ -397,7 +397,7 @@
               this.sexName = ''
             }
             if (this.appointType == 1) {
-              this.businessParams.doctorId = res.data.doctorId 
+              this.businessParams.doctorId = res.data.doctorId
             }
             let sysDictList = []
             if (uni.getStorageSync('sysDictList')) {
@@ -421,7 +421,7 @@
                 }
               })
             }
-            
+
           }
         })
       },
@@ -447,7 +447,7 @@
           this.businessParams.visitType = item.value
           this.businessParams.serviceName = item.title
         }
-        
+
       },
       setSwiperCurr(index, _class = '') {
         if (index == 2 || (this.appointType == 2 && index == 1)) {
@@ -463,7 +463,7 @@
               icon: 'none',
               duration: 2000
             })
-            
+
           }
         }
         this.setSwiperHeight(_class)
@@ -485,7 +485,7 @@
       },
       inputChange(e) {
         this.businessParams.userName = e.detail.value
-        
+
       },
       sexChange(e) {
         this.businessParams.gender = e
@@ -564,7 +564,7 @@
             }
           })
         }
-        
+
       },
       getAppointmentValue(value) {
         this.businessParams.dayStr = value.dayStr
@@ -647,7 +647,7 @@
           // 认知评估
           this.goToPage()
         }
-        
+
       },
       goToPage() {
         getApp().goAppointmentDetail({
@@ -665,15 +665,15 @@
             // #ifdef APP-PLUS || H5
             this.swiperHeight = data.height
             // #endif
-            
+
             // #ifdef MP
             if (this.$pad) {
               this.swiperHeight = data.height * 1.2
-              
+
             } else {
               this.swiperHeight = data.height
             }
-            
+
             // #endif
           }
         }).exec()
@@ -753,18 +753,18 @@
       .type-list {
         &>view {
           width: 383.88rpx;
-          
-          
+
+
           font-size: 19.05rpx;
           border: 1.47rpx solid #fff;
           border-radius: 7.33rpx;
           background-color: #fff;
-          
+
           box-sizing: border-box;
           margin: 0 auto 8.79rpx auto;
           .no-report {
             color: #FFB12F;
-            
+
             image {
               width: 14.65rpx;
               height: 13.19rpx;
@@ -831,13 +831,13 @@
         height: 62.99rpx;
         line-height: 62.99rpx;
         margin-bottom: 14.65rpx;
-      
+
         &>view:nth-child(1) {
           width: 109.89rpx;
           color: #333;
           font-size: 19.05rpx;
         }
-      
+
         &>view:nth-child(2) {
           flex: 1;
           height: 52.75rpx;
@@ -849,7 +849,7 @@
           .input-name {
             width: 278.39rpx;
           }
-          
+
           .picker-master {
             width: 100%;
             height: 100%;
@@ -866,7 +866,7 @@
           border-radius: 4.4rpx;
           padding-left: 14.65rpx;
           box-sizing: border-box;
-          
+
         }
         &>view.name {
           width: 278.39rpx;
@@ -875,7 +875,7 @@
         &>view.name {
           margin-right: 10.26rpx;
         }
-      
+
         .uni-input, ::v-deep .uni-select {
           height: 52.75rpx;
           line-height: 52.75rpx;
@@ -885,7 +885,7 @@
           font-size: 21.98rpx;
           color: #333;
         }
-         
+
         .uni-input-placeholder, ::v-deep .uni-select__input-placeholder {
           font-size: 21.98rpx;
           color: #C9C9C9;
@@ -893,7 +893,7 @@
         .picker-placeholder {
           color: #C9C9C9;
         }
-      
+
         .edit {
           color: #43C9A7;
         }
@@ -915,7 +915,7 @@
         height: auto;
         align-items: flex-start;
         &>view:nth-child(2) {
-          
+
           height: auto;
           padding: 14.65rpx;
           .img-add {
@@ -934,19 +934,19 @@
           color: #666666;
           font-size: 17.58rpx;
           position: relative;
-      
+
           &>view {
             height: 27.11rpx;
             line-height: 27.11rpx;
             padding-bottom: 8.79rpx;
           }
-      
+
           ._h6 {
             color: #333;
             font-weight: bold;
             font-size: 19.05rpx;
           }
-      
+
           .name>text:nth-child(2) {
             padding: 0 14.65rpx;
           }
@@ -967,12 +967,12 @@
           }
         }
       }
-      
+
     }
     .guid-tip {
       position: relative;
       z-index: 3;
-    
+
       border-top-left-radius: 0 !important;
       border-top-right-radius: 0 !important;
       border: 2.2rpx solid #336CEA;
@@ -1012,9 +1012,9 @@
         font-size: 19.05rpx;
         font-weight: bold;
         color: #fff;
-        
+
         line-height: 27.11rpx;
-        
+
       }
       .guid-btn {
         width: 144.32rpx;
@@ -1089,7 +1089,7 @@
           display: block;
           margin-bottom: 2.93rpx;
         }
-        
+
       }
     }
     .get-report-box {
@@ -1103,7 +1103,7 @@
       align-items: center;
       justify-content: center;
       z-index: 99;
-    
+
       .box-content {
         width: 386.73rpx;
         padding: 18.31rpx;
@@ -1111,24 +1111,24 @@
         border-radius: 14.65rpx;
         background-color: #f5f5f5;
         font-size: 14.65rpx;
-    
+
         .c-top {
           display: flex;
           align-items: center;
           justify-content: space-between;
           margin-bottom: 5.86rpx;
-    
+
           .close {
             padding: 7.32rpx;
             margin-right: -7.32rpx;
           }
         }
-    
+
         .list-container {
           max-height: 366.22rpx;
           overflow-y: auto;
         }
-    
+
         .report-list {
           width: 351.57rpx;
           border-radius: 7.32rpx;
@@ -1138,25 +1138,25 @@
           margin-top: 8.79rpx;
           color: #666666;
           font-size: 14.65rpx;
-    
+
           &>view {
             padding-bottom: 8.79rpx;
           }
-    
+
           ._h6 {
             color: #333;
             font-weight: bold;
           }
-    
+
           .name>text:nth-child(2) {
             padding: 0 14.65rpx;
           }
         }
-    
+
         .confirm-rep {
           border: 1.46rpx solid #43C9A7;
         }
-    
+
         .btn {
           width: 281.99rpx;
           height: 45.41rpx;
@@ -1168,12 +1168,12 @@
           color: #fff;
           font-size: 17.58rpx;
         }
-    
+
         .no-data {
           .c-top {
             justify-content: flex-end;
           }
-    
+
           .empty {
             margin-top: -73.24rpx;
           }
@@ -1234,7 +1234,7 @@
             border-radius: 20rpx;
             padding: 0 24rpx;
             margin: 0 auto 20rpx auto;
-            
+
             .no-report {
               color: #FFB12F;
               font-size: 24rpx;
@@ -1259,7 +1259,7 @@
               align-items: center;
               justify-content: space-between;
             }
-            
+
             .img-1 {
               width: 110rpx;
               height: 82rpx;
@@ -1309,12 +1309,12 @@
           height: auto;
           line-height: auto;
           margin-bottom: 30rpx;
-        
+
           &>view:nth-child(1) {
             width: 100%;
             font-size: 30rpx;
           }
-        
+
           &>view:nth-child(2) {
             width: 100%;
             height: 98rpx;
@@ -1329,12 +1329,12 @@
             border-radius: 12rpx;
             padding-left: 0rpx;
             width: 100%;
-            
+
           }
           &>view.name {
             margin-right: 0;
             flex: 1 1 auto;
-            
+
           }
           &>view.sex {
             margin-right: 0;
@@ -1342,7 +1342,7 @@
             border: none;
             padding-left: 0;
           }
-        
+
           .uni-input, ::v-deep .uni-select {
             height: 98rpx;
             line-height: 98rpx;
@@ -1352,14 +1352,14 @@
           ::v-deep .uni-select__selector-item {
             font-size: 40rpx;
           }
-           
+
           .uni-input-placeholder, ::v-deep .uni-select__input-placeholder {
             font-size: 40rpx;
           }
         }
       }
       .step-1 {
-        
+
         .form-input-spec {
           height: auto;
           .re-title {
@@ -1407,21 +1407,21 @@
               line-height: 45rpx;
               padding-bottom: 14rpx;
             }
-        
+
             ._h6 {
               font-size: 40rpx;
             }
-        
+
             .name>text:nth-child(2) {
               padding: 0 40rpx;
             }
-            
+
           }
         }
-        
+
       }
       .btn-appoint {
-            
+
         width: 750rpx;
         max-width: 750rpx;
         margin-left: -375rpx;
@@ -1454,56 +1454,56 @@
             display: block;
             margin-bottom: 0rpx;
           }
-          
+
         }
       }
       .get-report-box {
-      
+
         .box-content {
           width: 660rpx;
           padding: 20rpx;
           border-radius: 20rpx;
           font-size: 30rpx;
-      
+
           .c-top {
             margin-bottom: 32rpx;
-      
+
             .close {
               padding: 20rpx;
               margin-right: -20rpx;
             }
           }
-      
+
           .list-container {
             max-height: 520rpx;
           }
-      
+
           .report-list {
             width: 620rpx;
             border-radius: 20rpx;
             padding: 34rpx 20rpx;
-            
+
             margin-top: 12rpx;
-            
+
             font-size: 32rpx;
-      
+
             &>view {
               padding-bottom: 14rpx;
             }
-      
+
             ._h6 {
               padding-bottom: 28rpx;
             }
-      
+
             .name>text:nth-child(2) {
               padding: 0 40rpx;
             }
           }
-      
+
           .confirm-rep {
             border: 2rpx solid #502459;
           }
-      
+
           .btn {
             width: 620rpx;
             height: 98rpx;
@@ -1512,7 +1512,7 @@
             line-height: 98rpx;
             font-size: 40rpx;
           }
-      
+
           .no-data {
             .empty {
               margin-top: -73.24rpx;

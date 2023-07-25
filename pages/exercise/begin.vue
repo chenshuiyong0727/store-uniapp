@@ -2,18 +2,18 @@
   <begin title='趣味健脑' :pageType="1" :showBtm='showBtm'>
     <view class="img-box" slot="imgs">
       <block v-if="isPad">
-        <image class="img-1" :src="imgPrefix + '/static/operateSteps/exercise-begin-1.png?t=1'"></image>
-        <image class="img-2" :src="imgPrefix + '/static/operateSteps/exercise-begin-2.png?t=1'"></image>
-        <image class="img-3" :src="imgPrefix + '/static/operateSteps/exercise-begin-3.png?t=1'"></image>
-        <image class="img-4" :src="imgPrefix + '/static/operateSteps/exercise-begin-4.png?t=1'"></image>
-        <image class="img-5" :src="imgPrefix + '/static/operateSteps/exercise-begin-5.png?t=1'"></image>
+        <image class="img-1" :src="fileUrl + '/static/operateSteps/exercise-begin-1.png?t=1'"></image>
+        <image class="img-2" :src="fileUrl + '/static/operateSteps/exercise-begin-2.png?t=1'"></image>
+        <image class="img-3" :src="fileUrl + '/static/operateSteps/exercise-begin-3.png?t=1'"></image>
+        <image class="img-4" :src="fileUrl + '/static/operateSteps/exercise-begin-4.png?t=1'"></image>
+        <image class="img-5" :src="fileUrl + '/static/operateSteps/exercise-begin-5.png?t=1'"></image>
       </block>
       <block v-else>
-        <image class="img-1" :src="imgPrefix + '/static/operateSteps/mobile-exercise-begin-1.png?t=1'"></image>
-        <image class="img-2" :src="imgPrefix + '/static/operateSteps/mobile-exercise-begin-2.png?t=1'"></image>
-        <image class="img-3" :src="imgPrefix + '/static/operateSteps/mobile-exercise-begin-3.png?t=1'"></image>
-        <image class="img-4" :src="imgPrefix + '/static/operateSteps/mobile-exercise-begin-4.png?t=1'"></image>
-        <image class="img-5" :src="imgPrefix + '/static/operateSteps/mobile-exercise-begin-5.png?t=1'"></image>
+        <image class="img-1" :src="fileUrl + '/static/operateSteps/mobile-exercise-begin-1.png?t=1'"></image>
+        <image class="img-2" :src="fileUrl + '/static/operateSteps/mobile-exercise-begin-2.png?t=1'"></image>
+        <image class="img-3" :src="fileUrl + '/static/operateSteps/mobile-exercise-begin-3.png?t=1'"></image>
+        <image class="img-4" :src="fileUrl + '/static/operateSteps/mobile-exercise-begin-4.png?t=1'"></image>
+        <image class="img-5" :src="fileUrl + '/static/operateSteps/mobile-exercise-begin-5.png?t=1'"></image>
       </block>
     </view>
     <!--侧边栏-->
@@ -38,7 +38,7 @@
     data() {
       return {
         userInfo: {},
-        imgPrefix: this.$imgPrefix,
+        fileUrl: this.$fileUrl,
         isPad: this.$pad,
         showBtm: 'true'
       }
@@ -74,7 +74,7 @@
       height: 505.49rpx;
     }
   }
-  
+
   @media screen and (max-width: 500px) {
     .img-box {
       image {
@@ -97,5 +97,5 @@
       }
     }
   }
-  
+
 </style>

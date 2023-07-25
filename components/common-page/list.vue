@@ -1,8 +1,8 @@
 <template>
   <view>
-   
+
     <nav-bar :title='title' backUrl="/pages/index/index"></nav-bar>
-   
+
     <view :class="[serviceMsg.status != 1 ? 'padding-btm' : '' ,'container']">
       <view class="swith-tab">
         <view :class="currentIndex == 0 ? 'on' : ''" @click="setCurr(0)">今日{{pageType == 1 ? '锻炼' : '跟练'}}</view>
@@ -12,7 +12,7 @@
         <swiper-item>
         	<view class="swiper-item" id="content-wrap0">
             <view :class="[serviceMsg.status == 0 ? '' : 'top-margin-btm' ,'top']">
-              <image class="img-1" :src="imgPrefix + '/static/operateSteps/portalH5/pages/recommend-img-2.png'"></image>
+              <image class="img-1" :src="fileUrl + '/static/operateSteps/portalH5/pages/recommend-img-2.png'"></image>
               <view class="left">
                 <view>今日{{pageType == 1 ? '锻炼' : '健脑运动'}}已开放 坚持锻炼效果更佳</view>
                 <view v-if="serviceMsg.status != 1 && isPad">解锁全部{{pageType == 1 ? '锻炼' : '健脑运动'}} 保持大脑年轻态</view>
@@ -21,7 +21,7 @@
                 <view class="btn-vip" @click="openServicePackage" v-if="serviceMsg.status != 1">全部解锁</view>
                 <view v-else class="vip-msg">
                   <view>
-                    <image :src="pageType == 1 ? imgPrefix + '/static/operateSteps/portalH5/pages/icon-vip-3.png' : imgPrefix + '/static/operateSteps/portalH5/pages/icon-vip-1.png'"></image>
+                    <image :src="pageType == 1 ? fileUrl + '/static/operateSteps/portalH5/pages/icon-vip-3.png' : fileUrl + '/static/operateSteps/portalH5/pages/icon-vip-1.png'"></image>
                     <view>{{pageType == 1 ? '趣味健脑' : '健脑运动'}}服务包</view>
                   </view>
                   <view>服务包有效期至{{serviceMsg.expireDate}}</view>
@@ -30,7 +30,7 @@
             </view>
             <view v-if="!isPad && serviceMsg.status == 1" class="mobile-vip-msg">
               <view>
-                <image :src="pageType == 1 ? imgPrefix + '/static/operateSteps/portalH5/pages/icon-vip-3.png' : imgPrefix + '/static/operateSteps/portalH5/pages/icon-vip-1.png'"></image>
+                <image :src="pageType == 1 ? fileUrl + '/static/operateSteps/portalH5/pages/icon-vip-3.png' : fileUrl + '/static/operateSteps/portalH5/pages/icon-vip-1.png'"></image>
                 <view>{{pageType == 1 ? '趣味健脑' : '健脑运动'}}服务包</view>
               </view>
               <view>服务包有效期至{{serviceMsg.expireDate}}</view>
@@ -42,7 +42,7 @@
         <swiper-item>
         	<view class="swiper-item" id="content-wrap1">
             <view :class="[serviceMsg.status == 0 ? '' : 'top-margin-btm' ,'top']">
-              <image class="img-1" :src="imgPrefix + '/static/operateSteps/portalH5/pages/recommend-img-2.png'"></image>
+              <image class="img-1" :src="fileUrl + '/static/operateSteps/portalH5/pages/recommend-img-2.png'"></image>
               <view class="left">
                 <view>解锁全部{{pageType == 1 ? '锻炼项' : '健脑运动'}}，每日锻炼，保持大脑年轻态</view>
               </view>
@@ -50,7 +50,7 @@
                 <view class="btn-vip" @click="openServicePackage" v-if="serviceMsg.status != 1">全部解锁</view>
                 <view v-else class="vip-msg">
                   <view>
-                    <image :src="pageType == 1 ? imgPrefix + '/static/operateSteps/portalH5/pages/icon-vip-3.png' : imgPrefix + '/static/operateSteps/portalH5/pages/icon-vip-1.png'"></image>
+                    <image :src="pageType == 1 ? fileUrl + '/static/operateSteps/portalH5/pages/icon-vip-3.png' : fileUrl + '/static/operateSteps/portalH5/pages/icon-vip-1.png'"></image>
                     <view>{{pageType == 1 ? '趣味健脑' : '健脑运动'}}服务包</view>
                   </view>
                   <view>服务包有效期至{{serviceMsg.expireDate}}</view>
@@ -59,7 +59,7 @@
             </view>
             <view v-if="!isPad && serviceMsg.status == 1" class="mobile-vip-msg">
               <view>
-                <image :src="pageType == 1 ? imgPrefix + '/static/operateSteps/portalH5/pages/icon-vip-3.png' : imgPrefix + '/static/operateSteps/portalH5/pages/icon-vip-1.png'"></image>
+                <image :src="pageType == 1 ? fileUrl + '/static/operateSteps/portalH5/pages/icon-vip-3.png' : fileUrl + '/static/operateSteps/portalH5/pages/icon-vip-1.png'"></image>
                 <view>{{pageType == 1 ? '趣味健脑' : '健脑运动'}}服务包</view>
               </view>
               <view>服务包有效期至{{serviceMsg.expireDate}}</view>
@@ -71,7 +71,7 @@
       </swiper>
       <slot name="fab"></slot>
     </view>
-    
+
     <!--移动端 解锁全部按钮-->
     <view class="unlock-vip" v-if="!isPad && serviceMsg.status != 1">
       <view>解锁全部锻炼，保持大脑年轻态</view>
@@ -83,30 +83,30 @@
         <view class="title">恭喜获得{{popVo.dateNum}}天服务包</view>
         <view class="sub-title">有效期至{{popVo.expireDate}}</view>
         <view class="list">
-          <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-pop-2.png'"></image>
+          <image :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-pop-2.png'"></image>
           <text>专属客服服务</text>
         </view>
         <view class="list">
-          <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-pop-3.png'"></image>
+          <image :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-pop-3.png'"></image>
           <text>每日个性推荐</text>
         </view>
         <view class="list">
-          <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-pop-1.png'"></image>
+          <image :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-pop-1.png'"></image>
           <text>解锁全部服务</text>
         </view>
         <view class="btn-close" @click="closePopHandle">确定</view>
       </view>
-      
+
     </view>
-    
+
   </view>
 </template>
 
 <script>
-  
+
   import { navigateTo } from '../../utils/util.js'
   import navBar from '@/components/nav-bar'
-  
+
   export default {
     components: {
       navBar
@@ -133,7 +133,7 @@
         popVo: {},
         isPad: this.$pad,
         isWechat: this.$isWechat,
-        imgPrefix: this.$imgPrefix
+        fileUrl: this.$fileUrl
       }
     },
     mounted() {
@@ -202,7 +202,7 @@
       closePopHandle() {
         this.isShowPop = false
       },
-      
+
     }
   }
 </script>
@@ -334,7 +334,7 @@
       margin-top: 10.99rpx;
     }
   }
-  
+
   .pop-box {
     width: 100%;
     height: 100%;
@@ -396,7 +396,7 @@
   .unlock-vip {
     display: none;
   }
-  
+
   @media screen and (max-width: 500px) {
     .container {
       width: 750rpx;
@@ -480,12 +480,12 @@
         margin-top: 0rpx;
         margin-bottom: 20rpx;
       }
-      
+
     }
     .padding-btm {
       padding-bottom: 230rpx;
     }
-    
+
     .unlock-vip  {
       display: block;
       width: 750rpx;
@@ -511,7 +511,7 @@
         margin: 14rpx auto 0 auto;
       }
     }
-    
+
     .pop-box {
       .pop-content {
         width: 520rpx;

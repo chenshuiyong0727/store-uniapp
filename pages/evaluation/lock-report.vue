@@ -4,7 +4,7 @@
     <view class="container">
       <view class="top">
         <view class="top-left">
-          <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/report-img-4-v3.png'"></image>
+          <image :src="fileUrl + '/static/operateSteps/portalH5/pages/report-img-4-v3.png'"></image>
         </view>
         <view class="top-right">
           <view class="tip">
@@ -13,53 +13,53 @@
           </view>
           <view class="button">
             <view class="p3">{{lockStatus == 1 ? '解锁报告' : '完成支付，解锁报告'}}</view>
-            <view class="p4" @click="unlockReportHandle"><image :src="imgPrefix + '/static/operateSteps/portalH5/pages/report-img-3-v3.png'"></image></view>
+            <view class="p4" @click="unlockReportHandle"><image :src="fileUrl + '/static/operateSteps/portalH5/pages/report-img-3-v3.png'"></image></view>
           </view>
         </view>
       </view>
-     <!-- <image class="img-1" :src="isPad ? imgPrefix + '/static/operateSteps/portalH5/pages/report-pad-img-2-v3.png' : imgPrefix + '/static/operateSteps/portalH5/pages/report-mobile-img-2-v3.png'"></image> -->
-      <image class="img-2" :src="isPad ? imgPrefix + '/static/operateSteps/portalH5/pages/report-pad-img-5-v3.png' : imgPrefix + '/static/operateSteps/portalH5/pages/report-mobile-img-5-v3.png'"></image>
-      <image class="img-3" :src="isPad ? imgPrefix + '/static/operateSteps/portalH5/pages/report-pad-img-6-v3.png' : imgPrefix + '/static/operateSteps/portalH5/pages/report-mobile-img-6-v3.png'"></image>
-      <image class="img-4" :src="isPad ? imgPrefix + '/static/operateSteps/portalH5/pages/report-pad-img-7-v3.png' : imgPrefix + '/static/operateSteps/portalH5/pages/report-mobile-img-7-v3.png'"></image>
+     <!-- <image class="img-1" :src="isPad ? fileUrl + '/static/operateSteps/portalH5/pages/report-pad-img-2-v3.png' : fileUrl + '/static/operateSteps/portalH5/pages/report-mobile-img-2-v3.png'"></image> -->
+      <image class="img-2" :src="isPad ? fileUrl + '/static/operateSteps/portalH5/pages/report-pad-img-5-v3.png' : fileUrl + '/static/operateSteps/portalH5/pages/report-mobile-img-5-v3.png'"></image>
+      <image class="img-3" :src="isPad ? fileUrl + '/static/operateSteps/portalH5/pages/report-pad-img-6-v3.png' : fileUrl + '/static/operateSteps/portalH5/pages/report-mobile-img-6-v3.png'"></image>
+      <image class="img-4" :src="isPad ? fileUrl + '/static/operateSteps/portalH5/pages/report-pad-img-7-v3.png' : fileUrl + '/static/operateSteps/portalH5/pages/report-mobile-img-7-v3.png'"></image>
       <view class="btn-unlock">
         <!-- <view class="btn-look-report" v-if="isHuiXiaUser && huiXiaUserData.useTimes > 0" @click="goReportList">查看已有报告</view> -->
         <view @click="unlockReportHandle">{{(isHuiXiaUser && (huiXiaUserData.allTimes - huiXiaUserData.useTimes > 0) || lockStatus == 1) ? '查看报告' : '解锁报告'}}</view>
-        
+
       </view>
       <!--惠夏宝兑换提示-->
       <view class="img-tip" v-if="isHuiXiaUser">
-        <image v-if="huiXiaUserData.useTimes > 0" :src="imgPrefix + '/static/operateSteps/portalH5/pages/hxb-img-2.png?v=1'"></image>
-        <image v-else :src="imgPrefix + '/static/operateSteps/portalH5/pages/hxb-img-1.png?v=1'"></image>
+        <image v-if="huiXiaUserData.useTimes > 0" :src="fileUrl + '/static/operateSteps/portalH5/pages/hxb-img-2.png?v=1'"></image>
+        <image v-else :src="fileUrl + '/static/operateSteps/portalH5/pages/hxb-img-1.png?v=1'"></image>
       </view>
       <!---->
       <!--begin 客服弹窗-->
       <view class="kf-box" v-if="isShowKfBox">
         <view :class="['box-content', isPad ? '' : 'box-content-mobile', isShowContent ? 'box-content-pad' : '']">
-          <image class="title" :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-title.png'"></image>
-          <view class="close" @click="closeKfBox"><image :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-close.png'"></image></view>
+          <image class="title" :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-title.png'"></image>
+          <view class="close" @click="closeKfBox"><image :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-close.png'"></image></view>
           <view class="detail">
-            <image class="ewm" show-menu-by-longpress :src="imgPrefix + '/static/operateSteps/portalH5/pages/hxb-ewm.jpeg'"></image>
+            <image class="ewm" show-menu-by-longpress :src="fileUrl + '/static/operateSteps/portalH5/pages/hxb-ewm.jpeg'"></image>
             <view class="detail-right">
               <view class="_view1">
-                <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-num-1.png'"></image>
+                <image :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-num-1.png'"></image>
                 <view>
                   <text>获取兑换码</text>
                 </view>
                 <view class="tip">
-                  <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-guestor.png'"></image>
+                  <image :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-guestor.png'"></image>
                   <text>长按{{isPad ? '左方' : '上方'}}二维码，添加微信</text>
                 </view>
               </view>
               <view class="_view2">
-                <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-arrow.png'"></image>
+                <image :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-arrow.png'"></image>
               </view>
               <view class="_view3">
-                <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-num-2.png'"></image>
+                <image :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-num-2.png'"></image>
                 <view>
                   <text>已有兑换码</text>
                 </view>
                 <view class="tip">
-                  <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-guestor.png'"></image>
+                  <image :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-guestor.png'"></image>
                   <view class="btn-dh" @click="goDuiHuan">立即兑换</view>
                 </view>
               </view>
@@ -81,7 +81,7 @@
     },
     data() {
       return {
-        imgPrefix: this.$imgPrefix,
+        fileUrl: this.$fileUrl,
         isPad: this.$pad,
         currentIndex: 0,
         userInfo: {},
@@ -106,7 +106,7 @@
       this.checkFastSieveLock()
       // 是否惠夏宝用户
       this.queryHuiXiaScreening()
-      
+
     },
     methods: {
       checkFastSieveLock() {
@@ -166,7 +166,7 @@
         setTimeout(() => {
           this.isShowKfBox = false
         }, 200)
-        
+
       },
       goDuiHuan() {
         navigateTo('/pages/pre-pay/index?payOrderId='+this.payOrderId+'&huiXiaUser='+this.huiXiaUserData.isHuiXiaUser)
@@ -260,7 +260,7 @@
             // 未解锁，跳转至支付选择页进行支付解锁
             navigateTo('/pages/pre-pay/index?payOrderId='+this.payOrderId)
           }
-        } 
+        }
       }
     }
   }
@@ -301,7 +301,7 @@
         color: #0D72FF;
         .p1 {
           font-weight: bold;
-          
+
           font-size: 25rpx;
         }
         .p2 {
@@ -414,7 +414,7 @@
         background: #fff;
         width: 750rpx;
         overflow: hidden;
-        border-radius: 25rpx 25rpx 0rpx 0rpx; 
+        border-radius: 25rpx 25rpx 0rpx 0rpx;
         padding: 0 0 0 55rpx;
         box-sizing: border-box;
         animation: height 0.2s;
@@ -600,7 +600,7 @@
       .kf-box {
         .box-content {
           width: 686rpx;
-          border-radius: 25rpx; 
+          border-radius: 25rpx;
           padding: 0 0 0 0rpx;
           .title {
             width: 402rpx;

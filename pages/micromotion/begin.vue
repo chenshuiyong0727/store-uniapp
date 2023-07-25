@@ -2,18 +2,18 @@
   <begin title='健脑运动' :pageType="2">
     <view class="img-box" slot="imgs">
       <block v-if="isPad">
-        <image class="img-1" :src="imgPrefix + '/static/operateSteps/micromotion-new-img-1.png?t=1'"></image>
-        <image class="img-2" :src="imgPrefix + '/static/operateSteps/micromotion-new-img-2.png?t=1'"></image>
-        <image class="img-3" :src="imgPrefix + '/static/operateSteps/micromotion-new-img-3.png?t=1'"></image>
-        <image class="img-4" :src="imgPrefix + '/static/operateSteps/micromotion-new-img-4.png?t=1'"></image>
-        <image class="img-5" :src="imgPrefix + '/static/operateSteps/micromotion-new-img-5.png?t=1'"></image>
+        <image class="img-1" :src="fileUrl + '/static/operateSteps/micromotion-new-img-1.png?t=1'"></image>
+        <image class="img-2" :src="fileUrl + '/static/operateSteps/micromotion-new-img-2.png?t=1'"></image>
+        <image class="img-3" :src="fileUrl + '/static/operateSteps/micromotion-new-img-3.png?t=1'"></image>
+        <image class="img-4" :src="fileUrl + '/static/operateSteps/micromotion-new-img-4.png?t=1'"></image>
+        <image class="img-5" :src="fileUrl + '/static/operateSteps/micromotion-new-img-5.png?t=1'"></image>
       </block>
       <block v-else>
-        <image class="img-1" :src="imgPrefix + '/static/operateSteps/mobile-micromotion-new-img-1.png?t=1'"></image>
-        <image class="img-2" :src="imgPrefix + '/static/operateSteps/mobile-micromotion-new-img-2.png?t=1'"></image>
-        <image class="img-3" :src="imgPrefix + '/static/operateSteps/mobile-micromotion-new-img-3.png?t=1'"></image>
-        <image class="img-4" :src="imgPrefix + '/static/operateSteps/mobile-micromotion-new-img-4.png?t=1'"></image>
-        <image class="img-5" :src="imgPrefix + '/static/operateSteps/mobile-micromotion-new-img-5.png?t=1'"></image>
+        <image class="img-1" :src="fileUrl + '/static/operateSteps/mobile-micromotion-new-img-1.png?t=1'"></image>
+        <image class="img-2" :src="fileUrl + '/static/operateSteps/mobile-micromotion-new-img-2.png?t=1'"></image>
+        <image class="img-3" :src="fileUrl + '/static/operateSteps/mobile-micromotion-new-img-3.png?t=1'"></image>
+        <image class="img-4" :src="fileUrl + '/static/operateSteps/mobile-micromotion-new-img-4.png?t=1'"></image>
+        <image class="img-5" :src="fileUrl + '/static/operateSteps/mobile-micromotion-new-img-5.png?t=1'"></image>
       </block>
     </view>
     <!--侧边栏-->
@@ -35,7 +35,7 @@
     data() {
       return {
         userInfo: {},
-        imgPrefix: this.$imgPrefix,
+        fileUrl: this.$fileUrl,
         isPad: this.$pad
       }
     },

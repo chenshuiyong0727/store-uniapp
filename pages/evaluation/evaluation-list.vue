@@ -2,7 +2,7 @@
   <view>
     <nav-bar title='筛查报告列表'></nav-bar>
     <view class="container">
-      
+
       <block v-if="requestDone && evaluationData.length">
         <view class="card-list">
           <view class="item" v-for="item in evaluationData" :key="item.id">
@@ -14,7 +14,7 @@
             </view>
             <view class="item-bottom">
               <view class="item-detail brToHalf">
-                <image :src="imgPrefix + item.iconUrl"></image>
+                <image :src="fileUrl + item.iconUrl"></image>
                 <view class="item-text">
                   <view>{{item.subject}}</view>
                   <view>{{item.body}}</view>
@@ -51,14 +51,14 @@
     data() {
       return {
         evaluationData: [],
-        imgPrefix: this.$imgPrefix,
+        fileUrl: this.$fileUrl,
         isPad: this.$pad,
         orderList: [],
         queryParam: {
           pageSize: 10,
           pageNum: 1
         },
-        
+
         openType: this.$openType,
         orderTotalCount: 0,
         timer: null,
@@ -88,9 +88,9 @@
       }
     },
     mounted() {
-      
+
       this.userInfo = uni.getStorageSync('userInfo') ? JSON.parse(uni.getStorageSync('userInfo')) : {}
-      
+
       this.getEvaluationList()
     },
     methods: {
@@ -132,10 +132,10 @@
           }
         })
       },
-      
-      
-      
-      
+
+
+
+
       goDetail(item) {
         // navigateTo('/pages/order/detail?payOrderId='+item.payOrderId)
         if (item.orderStatus == 15) {
@@ -188,7 +188,7 @@
           })
         }
       },
-      
+
     }
   }
 </script>
@@ -202,7 +202,7 @@
     color: #333;
     padding: 20rpx 0rpx 90rpx 0;
     margin: 0 auto;
-    
+
     .card-list {
       padding: 0 16.25rpx;
       .item {
@@ -224,7 +224,7 @@
           padding: 17.5rpx 17.5rpx 0 17.5rpx;
           .item-detail {
             display: flex;
-            
+
             padding-bottom: 17.5rpx;
             image {
               width: 81.25rpx;
@@ -322,7 +322,7 @@
     .container {
       font-size: 32rpx;
       padding: 22rpx 0rpx 126rpx 0rpx;
-      
+
       .card-list {
         padding: 0 14rpx;
         .item {
@@ -374,7 +374,7 @@
         height: 116rpx;
         padding-top: 0px;
         bottom: 14rpx;
-        
+
         .btn-return {
           width: 724rpx;
           height: 88rpx;

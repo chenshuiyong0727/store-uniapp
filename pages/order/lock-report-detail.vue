@@ -7,7 +7,7 @@
       </view>
       <view class="top">
         <view class="top-left">
-          <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/report-img-4-v3.png'"></image>
+          <image :src="fileUrl + '/static/operateSteps/portalH5/pages/report-img-4-v3.png'"></image>
         </view>
         <view class="top-right">
           <view class="tip">
@@ -16,7 +16,7 @@
           </view>
           <view class="button">
             <view class="p3">{{lockStatus == 1 ? '解锁报告' : '完成支付，解锁报告'}}</view>
-            <view class="p4" @click="unlockReportHandle"><image :src="imgPrefix + '/static/operateSteps/portalH5/pages/report-img-3-v3.png'"></image></view>
+            <view class="p4" @click="unlockReportHandle"><image :src="fileUrl + '/static/operateSteps/portalH5/pages/report-img-3-v3.png'"></image></view>
           </view>
         </view>
       </view>
@@ -40,13 +40,13 @@
         </view>
       </view>
       <view class="img-box">
-        <!-- <image class="img-1" :src="isPad ? imgPrefix + '/static/operateSteps/portalH5/pages/report-pad-img-2-v3.png' : imgPrefix + '/static/operateSteps/portalH5/pages/report-mobile-img-2-v3.png'"></image> -->
-        <image class="img-2" :src="isPad ? imgPrefix + '/static/operateSteps/portalH5/pages/report-pad-img-5-v3.png' : imgPrefix + '/static/operateSteps/portalH5/pages/report-mobile-img-5-v3.png'"></image>
-        <image class="img-3" :src="isPad ? imgPrefix + '/static/operateSteps/portalH5/pages/report-pad-img-6-v3.png' : imgPrefix + '/static/operateSteps/portalH5/pages/report-mobile-img-6-v3.png'"></image>
-        <image class="img-4" :src="isPad ? imgPrefix + '/static/operateSteps/portalH5/pages/report-pad-img-7-v3.png' : imgPrefix + '/static/operateSteps/portalH5/pages/report-mobile-img-7-v3.png'"></image>
-        <!-- <image class="img-5" :src="isPad ? imgPrefix + '/static/operateSteps/portalH5/pages/detail-pad-img-8-v3.png' : imgPrefix + '/static/operateSteps/portalH5/pages/detail-mobile-img-8-v3.png'"></image> -->
+        <!-- <image class="img-1" :src="isPad ? fileUrl + '/static/operateSteps/portalH5/pages/report-pad-img-2-v3.png' : fileUrl + '/static/operateSteps/portalH5/pages/report-mobile-img-2-v3.png'"></image> -->
+        <image class="img-2" :src="isPad ? fileUrl + '/static/operateSteps/portalH5/pages/report-pad-img-5-v3.png' : fileUrl + '/static/operateSteps/portalH5/pages/report-mobile-img-5-v3.png'"></image>
+        <image class="img-3" :src="isPad ? fileUrl + '/static/operateSteps/portalH5/pages/report-pad-img-6-v3.png' : fileUrl + '/static/operateSteps/portalH5/pages/report-mobile-img-6-v3.png'"></image>
+        <image class="img-4" :src="isPad ? fileUrl + '/static/operateSteps/portalH5/pages/report-pad-img-7-v3.png' : fileUrl + '/static/operateSteps/portalH5/pages/report-mobile-img-7-v3.png'"></image>
+        <!-- <image class="img-5" :src="isPad ? fileUrl + '/static/operateSteps/portalH5/pages/detail-pad-img-8-v3.png' : fileUrl + '/static/operateSteps/portalH5/pages/detail-mobile-img-8-v3.png'"></image> -->
       </view>
-      
+
       <view class="btn-unlock" @click="unlockReportHandle">
         <view>立即解锁</view>
       </view>
@@ -63,7 +63,7 @@
     },
     data() {
       return {
-        imgPrefix: this.$imgPrefix,
+        fileUrl: this.$fileUrl,
         isPad: this.$pad,
         currentIndex: 0,
         userInfo: {},
@@ -258,7 +258,7 @@
         color: #0D72FF;
         .p1 {
           font-weight: bold;
-          
+
           font-size: 25rpx;
         }
         .p2 {
@@ -344,7 +344,7 @@
         font-weight: bold;
         margin: 15rpx auto 16.25rpx auto;
       }
-      
+
     }
   }
   @media screen and (max-width: 500px) {
@@ -389,14 +389,14 @@
               margin-left: 10rpx;
               flex: 0 0 70rpx;
             }
-            
+
             .txt {
               max-width: 410rpx;
               // max-width: auto;
             }
           }
         }
-        
+
       }
       .top {
         width: 722rpx;

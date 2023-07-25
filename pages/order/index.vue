@@ -4,10 +4,10 @@
     <view class="container">
       <view :class="['tab', isShowPaddingRight && !isPad ? 'tab-padding-right' : '']">
         <scroll-view class="scroll-view_H" scroll-x="true" :scroll-with-animation="true" @scroll="scroll" :scroll-left="scrollLeft">
-          <view 
-            v-for="(item, index) in tabArr" 
-            :key="item.id" 
-            :id="item.id" 
+          <view
+            v-for="(item, index) in tabArr"
+            :key="item.id"
+            :id="item.id"
             :class="[tabCurrentIndex == index ? 'on' : '', 'scroll-view-item_H']"
             @click="switchTab(index, item)"
           >
@@ -34,7 +34,7 @@
             </view>
             <view class="item-bottom">
               <view class="item-detail brToHalf">
-                <image :src="imgPrefix + item.iconUrl"></image>
+                <image :src="fileUrl + item.iconUrl"></image>
                 <view class="item-text">
                   <view>{{item.subject}}</view>
                   <view>{{item.body}}</view>
@@ -102,7 +102,7 @@
           {id: 'cancel', text: '已取消', orderTap: 50}
         ],
         tabCurrentIndex: 0,
-        imgPrefix: this.$imgPrefix,
+        fileUrl: this.$fileUrl,
         isPad: this.$pad,
         contentScrollW: 0, // 导航区宽度
         scrollLeft: 0, // 横向滚动条位置
@@ -159,7 +159,7 @@
     onShow() {
       this.resetPage()
       this.getOrderList()
-      
+
     },
     onHide() {
       this.clearTimerId()
@@ -333,7 +333,7 @@
         // this.curBusinessType = item.businessType
         // this.timer = item.timerId
         // switch(item.businessType) {
-        //   case '2209231329175690029': 
+        //   case '2209231329175690029':
         //     this.payResultText = '咨询'
         //     break
         //   case '2210081722147310027':
@@ -607,7 +607,7 @@
           padding: 17.5rpx 17.5rpx 0 17.5rpx;
           .item-detail {
             display: flex;
-            
+
             padding-bottom: 17.5rpx;
             image {
               width: 81.25rpx;
@@ -794,7 +794,7 @@
         height: 116rpx;
         padding-top: 0px;
         bottom: 14rpx;
-        
+
         .btn-return {
           width: 724rpx;
           height: 88rpx;

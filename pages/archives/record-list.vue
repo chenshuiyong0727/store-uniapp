@@ -6,7 +6,7 @@
     <view class="container">
       <view class="list" @click="goToPage(1)">
         <view class="list-left">
-          <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-sc-record.png'"></image>
+          <image :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-sc-record.png'"></image>
         </view>
         <view class="list-middle">
           <view class="title">认知障碍筛查记录</view>
@@ -16,7 +16,7 @@
       </view>
       <view class="list" @click="goToPage(2)">
         <view class="list-left">
-          <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-pg-record.png'"></image>
+          <image :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-pg-record.png'"></image>
         </view>
         <view class="list-middle">
           <view class="title">认知评估记录</view>
@@ -26,7 +26,7 @@
       </view>
       <view class="list" @click="goToTrain">
         <view class="list-left">
-          <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-xl-record.png'"></image>
+          <image :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-xl-record.png'"></image>
         </view>
         <view class="list-middle">
           <view class="title">认知症数字疗法记录</view>
@@ -55,7 +55,7 @@
     data() {
       return {
         isPad: this.$pad,
-        imgPrefix: this.$imgPrefix,
+        fileUrl: this.$fileUrl,
         userInfo: {},
         fastSieveRecord: {},
         trainPlanRecord: {},
@@ -239,35 +239,35 @@
       width: 750rpx;
       max-width: 750rpx;
       padding: 30rpx;
-    
+
       .list {
         padding-right: 20rpx;
         border-radius: 28rpx;
         margin-bottom: 24rpx;
-    
+
         .list-left {
           width: 204rpx;
           height: 204rpx;
           border-radius: 28rpx;
           justify-content: center;
           margin-right: 28rpx;
-    
+
           image {
             width: 130rpx;
             height: 130rpx;
           }
         }
-    
+
         .list-middle {
           .title {
             font-size: 34rpx;
             padding-bottom: 18rpx;
           }
-    
+
           .content {
             font-size: 30rpx;
             padding-bottom: 6rpx;
-    
+
             text {
               width: 170rpx;
               margin-right: 50rpx;
@@ -276,7 +276,7 @@
               width: 130rpx;
             }
           }
-    
+
           ._h6 {
             font-size: 26rpx;
             text {
@@ -288,7 +288,7 @@
             }
           }
         }
-    
+
         &::after {
           width: 15rpx;
           height: 15rpx;

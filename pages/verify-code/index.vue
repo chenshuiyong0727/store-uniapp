@@ -29,11 +29,11 @@
       </view>
     </view>
     <view class="verify-container" v-else>
-      <image class="renzheng" :src="imgPrefix + '/static/operateSteps/portalH5/pages/renzheng.png'"></image>
+      <image class="renzheng" :src="fileUrl + '/static/operateSteps/portalH5/pages/renzheng.png'"></image>
       <span class="user-name">
         {{ userName }}
       </span>
-      <image class="user" :src="imgPrefix + '/static/operateSteps/portalH5/pages/user.png'"></image>
+      <image class="user" :src="fileUrl + '/static/operateSteps/portalH5/pages/user.png'"></image>
       <view @click="confirm" class="verify-bottom-button">
         <text>确认</text>
       </view>
@@ -63,7 +63,7 @@ export default {
       showVerify: false,
       userName: '',
       isPad: this.$pad,
-      imgPrefix: this.$imgPrefix
+      fileUrl: this.$fileUrl
     }
   },
   mounted() {

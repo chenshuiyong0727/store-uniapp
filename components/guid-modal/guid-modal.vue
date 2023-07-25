@@ -15,12 +15,12 @@
         :class="['gesture-ani-' + gestureType, 'gesture']"
         :animation="animationData"
         :style="{ left: gestureLeftPos + 'rpx', top: gestureTopPos + 'rpx' }"
-        :src="imgPrefix + '/static/operateSteps/portalH5/pages/gesture' + gestureType + '.png'"
+        :src="fileUrl + '/static/operateSteps/portalH5/pages/gesture' + gestureType + '.png'"
       ></image>
       <div class="flex-box">
         <image
           class="left-img"
-          :src="imgPrefix + '/static/operateSteps/portalH5/pages/renwu.png'"
+          :src="fileUrl + '/static/operateSteps/portalH5/pages/renwu.png'"
         ></image>
         <view
           class="title"
@@ -107,7 +107,7 @@ export default {
   data() {
     return {
       animationData: {},
-      imgPrefix: this.$imgPrefix,
+      fileUrl: this.$fileUrl,
     }
   },
   mounted() {

@@ -1,9 +1,9 @@
 <template>
   <view>
-  
+
     <nav-bar :title='title'></nav-bar>
-  
-    
+
+
     <view class="container">
       <slot name="imgs"></slot>
       <view class="fixed-bottom" v-if="serviceMsg.status !=1 && showBtm=='true'">
@@ -13,7 +13,7 @@
           <view>¥{{servicePackDetail.originalCost / 100}}/年</view>
         </view> -->
         <!-- <view class="button-group">
-          
+
           <view @click="goToPage(pageType == 1 ? '/pages/exercise/list' : '/pages/micromotion/list')">立即锻炼</view>
         </view> -->
         <view class="btn">
@@ -38,21 +38,21 @@
         <view class="title">恭喜获得{{popVo.dateNum}}天服务包</view>
         <view class="sub-title">有效期至{{popVo.expireDate}}</view>
         <view class="list">
-          <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-pop-2.png'"></image>
+          <image :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-pop-2.png'"></image>
           <text>专属客服服务</text>
         </view>
         <view class="list">
-          <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-pop-3.png'"></image>
+          <image :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-pop-3.png'"></image>
           <text>每日个性推荐</text>
         </view>
         <view class="list">
-          <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-pop-1.png'"></image>
+          <image :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-pop-1.png'"></image>
           <text>解锁全部服务</text>
         </view>
         <view class="btn-close" @click="closePopHandle">确定</view>
       </view>
     </view>
-    
+
   </view>
 </template>
 
@@ -81,7 +81,7 @@
     },
     data() {
       return {
-        imgPrefix: this.$imgPrefix,
+        fileUrl: this.$fileUrl,
         userInfo: {},
         isShowPop: false,
         serviceMsg: {},
@@ -152,7 +152,7 @@
           })
           // navigateTo(url)
         })
-        
+
       },
     }
   }
@@ -258,7 +258,7 @@
       //   padding-left: 19.04rpx;
       // }
     }
-    
+
   }
   .pop-box {
     width: 100%;
@@ -331,9 +331,9 @@
           height: 92rpx;
           border-radius: 12rpx;
           line-height: 92rpx;
-          
+
           font-size: 34rpx;
-         
+
         }
         // .button-group {
         //   &>view {
@@ -376,10 +376,10 @@
         //   padding-left: 0rpx;
         // }
       }
-      
+
     }
     .pop-box {
-     
+
       .pop-content {
         width: 520rpx;
         height: 620rpx;

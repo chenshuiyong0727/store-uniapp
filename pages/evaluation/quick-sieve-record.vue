@@ -1,8 +1,8 @@
 <template>
   <view>
-   
+
     <nav-bar title='认知筛查记录' :backdelta="backdelta"></nav-bar>
-   
+
     <view class="container">
       <block v-if="recordData.length">
         <view :class="[item.status != 1 ? 'not-finished' : 'finished', 'list']" v-for="item in recordData"
@@ -10,17 +10,17 @@
           <view>
             <view class="status">
               <block v-if="item.status === 0 || item.status === -1">
-                <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-unnormal.png'"></image>
+                <image :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-unnormal.png'"></image>
                 <text class="not-finished-2">未完成筛查</text>
               </block>
               <block v-else>
                 <block v-if="item.lockStatus == 1">
-                  <image v-if="item.type == 'N'" :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-normal.png'"></image>
-                  <image v-else :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-danger.png'"></image>
+                  <image v-if="item.type == 'N'" :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-normal.png'"></image>
+                  <image v-else :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-danger.png'"></image>
                   <text :class="[item.type == 'N' ? '' : '_color']">{{item.type | dictToDesc('EVALUATIONTYPE')}}</text>
                 </block>
                 <block v-else>
-                  <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-lock-2.png'"></image>
+                  <image :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-lock-2.png'"></image>
                   <text class="_color3">待解锁报告</text>
                 </block>
               </block>
@@ -65,7 +65,7 @@
         recordData: [],
         isDoneRequest: false,
         isPad: this.$pad,
-        imgPrefix: this.$imgPrefix
+        fileUrl: this.$fileUrl
       }
     },
     onLoad(options) {
@@ -156,7 +156,7 @@
         } else {
           navigateTo('/pages/evaluation/sort?payOrderId='+orderid)
         }
-        
+
       }
     }
   }
@@ -180,7 +180,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      
+
       .btn {
         height: 46.88rpx;
         line-height: 46.88rpx;
@@ -201,7 +201,7 @@
         border: 1px solid #0D72FF;
         color: #fff;
       }
-      
+
       &>view:nth-child(1) {
         flex: 1;
       }
@@ -268,7 +268,7 @@
         line-height: 52rpx;
         align-self: flex-end;
       }
-      
+
       .text-cancel {
         color: #999;
         font-size: 21.97rpx;
@@ -281,12 +281,12 @@
       width: 750rpx;
       max-width: 750rpx;
       padding: 30rpx;
-    
+
       .list {
         border-radius: 28rpx;
         padding: 36rpx 26rpx;
         margin-bottom: 22rpx;
-        
+
         .btn {
           height: 74rpx;
           line-height: 74rpx;
@@ -294,26 +294,26 @@
           padding: 0 26rpx;
           font-size: 32rpx;
         }
-        
+
         .status {
           padding-bottom: 16rpx;
-    
+
           image {
             width: 52rpx;
             height: 52rpx;
             margin-right: 14rpx;
           }
-    
+
           text {
             font-size: 34rpx;
           }
         }
-    
+
         .time {
           font-size: 30rpx;
         }
       }
-    
+
       .finished {
         // &::after {
         //   width: 15rpx;
@@ -321,7 +321,7 @@
         //   right: 20rpx;
         // }
       }
-    
+
       .not-finished {
         .do-continue {
           width: 244rpx;

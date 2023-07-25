@@ -1,14 +1,14 @@
 <template>
   <view>
-   
+
     <nav-bar title='咨询专家' :backUrl="'/pages/index/index'"></nav-bar>
-   
+
     <view class="container">
       <view class="title">健康咨询</view>
       <view class="doctor" v-for="item in doctorList" :key="item.goodsId">
         <view class="doctor-top" v-if="isPad">
           <view class="tx-msg">
-            <image :src="isPad ? imgPrefix + item.imgUrl : imgPrefix + item.appImgUrl"></image>
+            <image :src="isPad ? fileUrl + item.imgUrl : fileUrl + item.appImgUrl"></image>
             <!-- <view>{{item.title}}</view> -->
           </view>
           <view class="middle">
@@ -29,7 +29,7 @@
         </view>
         <view class="doctor-top" v-else>
           <view class="mobile-tx-msg">
-            <image :src="isPad ? imgPrefix + item.imgUrl : imgPrefix + item.appImgUrl"></image>
+            <image :src="isPad ? fileUrl + item.imgUrl : fileUrl + item.appImgUrl"></image>
             <view class="mobile-tx-msg-right">
               <view><!-- <text>{{item.title}}</text> --><text>健康咨询师</text></view>
               <view class="_label" v-if="item.labelList && item.labelList.length">
@@ -60,7 +60,7 @@
         <view @click="showKfCode('fwzx-sycz')">使用操作咨询</view>
         <view @click="showKfCode('fwzx-szlf')">认知症数字疗法咨询</view>
         <view @click="showKfCode('fwzx-sh')">售后咨询</view>
-        
+
       </view>
     </view>
     <kf-code v-if="isShowKfCode" @closeKfHandle="closeKfHandle"></kf-code>
@@ -94,7 +94,7 @@
       return {
         isWechat: this.$isWechat,
         doctorList: [],
-        imgPrefix: this.$imgPrefix,
+        fileUrl: this.$fileUrl,
         isPad: this.$pad,
         isShowKfCode: false,
       }
@@ -216,7 +216,7 @@
         display: flex;
         justify-content: space-between;
         flex-direction: column;
-        
+
         .price {
           color: #DF5C1D;
           font-size: 14.65rpx;
@@ -284,7 +284,7 @@
       background-color: #DF5C1D;
       font-size: 11.72rpx;
       color: #fff;
-      
+
     }
     .tip {
       left: -21.97rpx;
@@ -416,9 +416,9 @@
         height: 56rpx;
         line-height: 56rpx;
         top: -28rpx;
-        
+
         font-size: 26rpx;
-        
+
       }
       .tip {
         left: -20rpx;

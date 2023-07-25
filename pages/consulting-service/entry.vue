@@ -6,32 +6,32 @@
         <view class="box" @click="goEvalution">
           <view class="title">
             <text>认知评估</text>
-            <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-go.png'"></image>
+            <image :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-go.png'"></image>
           </view>
           <view class="sub-title">评估师1对1辅助，评估大脑认知风险</view>
-          <image class="img-1" :src="isPad ? imgPrefix + '/static/operateSteps/img-rz.png' : imgPrefix + '/static/operateSteps/img-rz-2.png'"></image>
+          <image class="img-1" :src="isPad ? fileUrl + '/static/operateSteps/img-rz.png' : fileUrl + '/static/operateSteps/img-rz-2.png'"></image>
           <view v-if="guidType == 1" class="click-masker" @click="goEvalution"></view>
         </view>
         <view class="box" @click="goToPage">
           <view class="title">
             <text>健康咨询</text>
-            <image :src="imgPrefix + '/static/operateSteps/portalH5/pages/icon-go.png'"></image>
+            <image :src="fileUrl + '/static/operateSteps/portalH5/pages/icon-go.png'"></image>
           </view>
           <view class="sub-title">专业医生提供咨询服务</view>
           <view class="desc">
             <view class="item">评估报告解读</view>
             <view class="item">认知疾病问题咨询</view>
           </view>
-          <image class="img-2" :src="imgPrefix + '/static/operateSteps/doctor-2.png'"></image>
+          <image class="img-2" :src="fileUrl + '/static/operateSteps/doctor-2.png'"></image>
         </view>
       </view>
       <tip
-        :gestureLeftPos="isPad ? guidMsg.gestureLeftPos.pad : guidMsg.gestureLeftPos.mobile" 
-        :gestureTopPos="isPad ? guidMsg.gestureTopPos.pad : guidMsg.gestureTopPos.mobile" 
-        :leftPos="isPad ? guidMsg.leftPos.pad : guidMsg.leftPos.mobile" 
+        :gestureLeftPos="isPad ? guidMsg.gestureLeftPos.pad : guidMsg.gestureLeftPos.mobile"
+        :gestureTopPos="isPad ? guidMsg.gestureTopPos.pad : guidMsg.gestureTopPos.mobile"
+        :leftPos="isPad ? guidMsg.leftPos.pad : guidMsg.leftPos.mobile"
         :bottomPos="isPad ? guidMsg.bottomPos.pad : guidMsg.bottomPos.mobile"
         :gestureType="guidMsg.gestureType"
-        v-if="isShowGuidTip1" 
+        v-if="isShowGuidTip1"
         :guidContent="guidMsg.content"
         :styles="guidMsg.styles"
         @closeGuidHandle="closeGuidHandle">
@@ -58,7 +58,7 @@
       return {
         userInfo: {},
         isPad: this.$pad,
-        imgPrefix: this.$imgPrefix,
+        fileUrl: this.$fileUrl,
         isShowGuidTip1: false,
         guidMsg: {
           content: {
@@ -118,7 +118,7 @@
       if (options.hasBackUrl == 'false') {
         this.backUrl = ''
       }
-      
+
     },
     methods: {
       useGuidHandle() {
@@ -196,7 +196,7 @@
         } else {
           navigateTo('/pages/consulting-service/index')
         }
-        
+
       },
       goEvalution() {
         // 走认知评估
@@ -356,7 +356,7 @@
       max-width: 750rpx;
       font-size: 34rpx;
       padding: 28rpx 40rpx;
-     
+
       .entry-list {
         flex-direction: column;
         .box {
@@ -395,7 +395,7 @@
           .img-2 {
             width: 380rpx;
             height: 380rpx;
-            
+
           }
           .desc {
             margin-top: 50rpx;
