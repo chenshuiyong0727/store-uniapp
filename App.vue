@@ -19,7 +19,7 @@
         plus.screen.lockOrientation("portrait-primary");
       }
       // #endif
-      
+
       // #ifdef APP-PLUS || H5
       // 预加载页面
       uni.preloadPage({url: '/pages/cognitive-training/guid'})
@@ -28,7 +28,7 @@
       uni.preloadPage({url: '/pages/micromotion/begin'})
       uni.preloadPage({url: '/pages/micromotion/open-service-package'})
       // #endif
-      
+
       this.setGuidStorageCondition()
       // 加载字典
       this.initSysDict()
@@ -39,15 +39,15 @@
       uni.setStorageSync('hasEvaGuid', true)
       uni.setStorageSync('hasTrainGuid', true)
       uni.setStorageSync('hasTrainGuid2', true)
-      
+
       // #ifdef MP || H5
       uni.onWindowResize((res) => {
-        
+
         this.globalData.isChangeScreen = !this.globalData.isChangeScreen
         this.globalData.screenWidth = res.size.windowWidth
       })
       // #endif
-      
+
     },
     mounted() {
       // #ifdef H5
@@ -58,7 +58,7 @@
         this.$networkTip.closeTip()
       })
       // #endif
-      
+
     },
     methods: {
       initSysDict() {
@@ -131,7 +131,7 @@
                     urlParam.backType = params.backType
                   }
                   if (params.isNeedLandscape) {
-                    urlParam.isNeedLandscape = params.isNeedLandscape ? params.isNeedLandscape : 'yes' 
+                    urlParam.isNeedLandscape = params.isNeedLandscape ? params.isNeedLandscape : 'yes'
                   }
                   navigateTo('/pages/web-view/web-view', urlParam)
                 } else {
@@ -147,7 +147,7 @@
                   icon: 'none',
                   duration: 2000
                 })
-              } 
+              }
             })
           } else {
             navigateTo('/pages/cognitive-training/can-not-train')
@@ -181,7 +181,7 @@
           }
         })
         // #endif
-        
+
         this.loginStatus().then(() => {
           this.$request({
             url: '/gw/h5/v1/fastsieve/web',
@@ -211,7 +211,7 @@
                   duration: 2000
                 })
               }
-              
+
             } else {
               uni.showToast({
                 title: res.msg,
@@ -246,7 +246,7 @@
                   duration: 2000
                 })
               }
-              
+
             } else {
               uni.showToast({
                 title: res.msg,
@@ -281,7 +281,7 @@
                 duration: 2000
               })
             }
-            
+
           } else {
             uni.showToast({
               title: res.msg,
@@ -308,7 +308,7 @@
       },
       // 第三方token登录
       thirdLoginByToken(token, path) {
-        
+
         let params = {
           thirdToken: token,
           path
@@ -359,7 +359,7 @@
             }
           })
         })
-        
+
       }
     }
   }
@@ -367,88 +367,88 @@
 
 <style lang="scss">
   /*每个页面公共css */
-  page {
-    background-color: #F3F4F5;
-    height: 100%;
-  }
-  
+  /*page {*/
+  /*  background-color: #F3F4F5;*/
+  /*  height: 100%;*/
+  /*}*/
+
   /* #ifdef H5 */
-  uni-page-head {
-    display: none;
-  }
-  /* #endif */
-  uni-checkbox:not([disabled]) .uni-checkbox-input:hover {
-    border-color: #d1d1d1;
-  }
-  uni-checkbox .uni-checkbox-input {
-    width: 20rpx !important;
-    height: 20rpx;
-  }
-  uni-checkbox .uni-checkbox-input.uni-checkbox-input-checked {
-    color: #fff !important;
-    background-color: #43C9A7;
-    border-color: #43C9A7 !important;
-  }
-  ::v-deep uni-toast {
-    z-index: 9999 !important;
-  }
-  
-  /* tabbar 样式覆盖 */
-  .uni-tabbar {
-    .uni-tabbar__bd {
-      flex-direction: row;
-      height: 51.27rpx !important;
-      .uni-tabbar__icon {
-        width: 35.16rpx !important;
-        height: 35.16rpx !important;
-        margin-right: 10rpx;
-        margin-top: 0rpx;
-      }
-      .uni-tabbar__label {
-        font-size: 11.72rpx !important;
-      }
-    }
-  }
-  .uni-app--showtabbar uni-page-wrapper::after {
-    height: 51.27rpx !important;
-  }
-  @media screen and (max-width: 500px) {
-    uni-checkbox .uni-checkbox-input {
-      color: #43C9A7 !important;
-      width: 30rpx !important;
-      height: 30rpx;
-    }
-    .uni-tabbar {
-      .uni-tabbar__bd {
-        flex-direction: column;
-        height: 100rpx !important;
-        .uni-tabbar__icon {
-          width: 50rpx !important;
-          height: 50rpx !important;
-          margin-right: 0rpx;
-          margin-top: 5px;
-        }
-        .uni-tabbar__label {
-          font-size: 20rpx !important;
-          margin-top: 0 !important;
-        }
-      }
-    }
-    .uni-app--showtabbar uni-page-wrapper::after {
-      height: 100rpx !important;
-    }
-  }
-  
-  @media screen and (min-width: 768px) {
-    /* #ifdef MP */
-    // .container {
-    //   transform: scale(0.65);
-    //   transform-origin: top center;
-     
-    // }
-    // page>view:nth-child(1) {
-    //   height: 100vh;
-    // }
-    /* #endif */
-  }
+  /*uni-page-head {*/
+  /*  display: none;*/
+  /*}*/
+  /*!* #endif *!*/
+  /*uni-checkbox:not([disabled]) .uni-checkbox-input:hover {*/
+  /*  border-color: #d1d1d1;*/
+  /*}*/
+  /*uni-checkbox .uni-checkbox-input {*/
+  /*  width: 20rpx !important;*/
+  /*  height: 20rpx;*/
+  /*}*/
+  /*uni-checkbox .uni-checkbox-input.uni-checkbox-input-checked {*/
+  /*  color: #fff !important;*/
+  /*  background-color: #43C9A7;*/
+  /*  border-color: #43C9A7 !important;*/
+  /*}*/
+  /*::v-deep uni-toast {*/
+  /*  z-index: 9999 !important;*/
+  /*}*/
+
+  /*!* tabbar 样式覆盖 *!*/
+  /*.uni-tabbar {*/
+  /*  .uni-tabbar__bd {*/
+  /*    flex-direction: row;*/
+  /*    height: 51.27rpx !important;*/
+  /*    .uni-tabbar__icon {*/
+  /*      width: 35.16rpx !important;*/
+  /*      height: 35.16rpx !important;*/
+  /*      margin-right: 10rpx;*/
+  /*      margin-top: 0rpx;*/
+  /*    }*/
+  /*    .uni-tabbar__label {*/
+  /*      font-size: 11.72rpx !important;*/
+  /*    }*/
+  /*  }*/
+  /*}*/
+  /*.uni-app--showtabbar uni-page-wrapper::after {*/
+  /*  height: 51.27rpx !important;*/
+  /*}*/
+  /*@media screen and (max-width: 500px) {*/
+  /*  uni-checkbox .uni-checkbox-input {*/
+  /*    color: #43C9A7 !important;*/
+  /*    width: 30rpx !important;*/
+  /*    height: 30rpx;*/
+  /*  }*/
+  /*  .uni-tabbar {*/
+  /*    .uni-tabbar__bd {*/
+  /*      flex-direction: column;*/
+  /*      height: 100rpx !important;*/
+  /*      .uni-tabbar__icon {*/
+  /*        width: 50rpx !important;*/
+  /*        height: 50rpx !important;*/
+  /*        margin-right: 0rpx;*/
+  /*        margin-top: 5px;*/
+  /*      }*/
+  /*      .uni-tabbar__label {*/
+  /*        font-size: 20rpx !important;*/
+  /*        margin-top: 0 !important;*/
+  /*      }*/
+  /*    }*/
+  /*  }*/
+  /*  .uni-app--showtabbar uni-page-wrapper::after {*/
+  /*    height: 100rpx !important;*/
+  /*  }*/
+  /*}*/
+
+  /*@media screen and (min-width: 768px) {*/
+  /*  !* #ifdef MP *!*/
+  /*  // .container {*/
+  /*  //   transform: scale(0.65);*/
+  /*  //   transform-origin: top center;*/
+  /*   */
+  /*  // }*/
+  /*  // page>view:nth-child(1) {*/
+  /*  //   height: 100vh;*/
+  /*  // }*/
+  /*  !* #endif *!*/
+  /*}*/
 </style>
