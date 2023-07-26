@@ -217,13 +217,6 @@
       return {
         flag: false,
         imgUrl: '',
-        customStyle: {
-          // marginTop: '20px', // 注意驼峰命名，并且值必须用引号包括，因为这是对象
-          // color: 'red'
-          width: '86px',
-          fontSize: '12px',
-          height: '32px'
-        },
         fileUrl: this.$fileUrl,
         orderIofo: {},
         // userName: localStorage.getItem('user_name'),
