@@ -72,7 +72,7 @@
         @cancel="cancelTo"
     ></u-datetime-picker>
 <!--    列表开始-->
-    <view style="    padding-top: 50px;">
+    <view style="    padding-top: 44px;">
       <view class="dingdans_item_rt" v-for="(item,index) in tableData" :key="index">
         <view class="dingdans_top_rt">
             <strong style="margin-left: 12px;">月份：</strong>
@@ -272,34 +272,43 @@
   @import '@/assets/index/rt_style.less';
   @import '@/assets/index/style.css';
 
-  strong {
-    font-weight: 600;
-  }
-
-  /*.dingdans_con_rt_right_down_1 {*/
-  /*  !*margin-left: 55vw;*!*/
-  /*  margin-bottom: -7vw;*/
-  /*  font-size: 3.5vw;*/
-  /*  margin-top: -1vw;*/
-  /*}*/
-  /*
-   -----分割线---
-  */
   * {
-    margin: 0;
-    padding: 0;
+    /*margin: 0;*/
+    /*padding: 0;*/
     box-sizing: border-box;
   }
 
   /* 这里直接设置 1rem = 50px begin */
   html {
-    font-size: 50px;
+    font-size: 10px;
   }
 
   /* 这里直接设置 1rem = 50px end */
   html,
   body {
+    /*font-family: "微软雅黑";*/
+    /*color: #333;*/
+    /*background: #fff;*/
   }
 
-
+  /*.login {*/
+  /*  >section {*/
+  /*    .tip {*/
+  /*      padding: 6vw 3vw;*/
+  /*      color:rgb(224, 145, 71);*/
+  /*      letter-spacing: 2px;*/
+  /*      font-size: 16px;*/
+  /*    }*/
+  /*  }*/
+  /*}*/
+  /*.clearfix {*/
+  /*  &:after {*/
+  /*    visibility: hidden;*/
+  /*    display: block;*/
+  /*    font-size: 0;*/
+  /*    content: " ";*/
+  /*    clear: both;*/
+  /*    height: 0;*/
+  /*  }*/
+  /*}*/
 </style>

@@ -10,8 +10,9 @@
     </u-navbar>
 
     <view style="
-        margin-top: 12vw;
-        padding-bottom: 40vw;
+        margin-top: 44px;
+        padding-bottom: 35vw;
+        padding-top: 5vw;
     background-image: linear-gradient(#e5f4ff, #f3f2f8);">
 <!--      <view class="zuoyouduiqi" style="    padding: 2.81vw 4.8vw !important;">-->
 <!--        <view @click="scanCode(1)" >-->
