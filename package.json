@@ -3,7 +3,6 @@
     "async-validator": "^1.11.5",
     "core-js": "^3.31.1",
     "crypto-js": "^4.1.1",
-    "mint-ui": "^2.2.13",
     "pinyin-pro": "^3.13.0",
     "uview-ui": "^2.0.36",
     "vconsole": "^3.14.7",

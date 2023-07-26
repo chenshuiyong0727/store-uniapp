@@ -217,6 +217,28 @@
       this.getUcUser()
       this.getData()
     },
+    onLoad() {
+      console.log('页面加载')
+    },
+    onShow() {
+      console.log('页面显示')
+      this.getUcUser()
+      this.getData()
+    },
+    onReady(){
+      console.log('页面初次显示')
+    },
+    onHide() {
+      console.log('页面隐藏')
+    },
+    onUnload() {
+      // this.getUcUser()
+      // this.getData()
+      console.log('页面卸载')
+    },
+    onBackPress(){
+      console.log('页面返回...')
+    },
     onPullDownRefresh() {
       uni.stopPullDownRefresh()
       this.getUcUser()
