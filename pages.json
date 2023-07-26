@@ -3,15 +3,25 @@
     {
       "path": "pages/index/index",
       "style": {
-        "navigationBarTitleText": "柒月贰柒"
-        ,
+        "navigationBarTitleText": "柒月贰柒",
         "enablePullDownRefresh": true
       }
     },
     {
       "path": "pages/my/index",
       "style": {
-        "navigationBarTitleText": "我的",
+        "navigationBarTitleText": "个人中心",
+        "pullToRefresh":{
+          "color":"#409eff",
+          "offset":"56px"
+        },
+        "enablePullDownRefresh": true
+      }
+    },
+    {
+      "path": "pages/my/userInfo",
+      "style": {
+        "navigationBarTitleText": "用户信息",
         "enablePullDownRefresh": false
       }
     },
@@ -61,7 +71,6 @@
     "rpxCalcMaxDeviceWidth": 600,
     "rpxCalcBaseDeviceWidth": 600,
     "rpxCalcIncludeWidth": 600,
-
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "柒月贰柒门户网站",
     "navigationBarBackgroundColor": "#F8F8F8",

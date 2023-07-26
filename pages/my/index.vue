@@ -1,6 +1,6 @@
 <template lang="html">
   <view class="car2" ref="content" style="height: 100%;font-size: 15px; border-top:0;    overflow: auto;">
-    <u-navbar title="个人中心" :safeAreaInsetTop="false">
+    <u-navbar title="个人中心" >
       <view @click="goBack" class="u-nav-slot" slot="left">
         <image style="width: 23px; height: 23px;"  src="../../static/img/saoyisao4.png"></image>
       </view>
@@ -29,7 +29,7 @@
       <view class="header zuoyouduiqi">
         <view @click="userInfo" class="header-icon xianglian" style="margin-left: 6vw;">
           <image v-if="imgUrl" style="width: 50px;height: 50px;border-radius: 100%;" :src="imgUrl"></image>
-          <text @click="userInfo" style="margin-left: 12px;">{{
+          <text style="margin-left: 12px;">{{
             form.userRealName ? form.userRealName : form.userAccount ? form.userAccount : '系统用户'
             }}</text>
         </view>
@@ -156,7 +156,6 @@
           <!--                  <text class="icon2-thecar"></text>-->
           <image
               style="    margin-top: 4px;
-    margin-bottom: -7px;
     width: 27px;height: 27px;" src="../../static/img/new/xiaci.png"></image>
           <p style="color: #333">瑕疵商品</p>
         </view>
@@ -217,7 +216,12 @@
       this.getUcUser()
       this.getData()
     },
-    methods: {
+    onPullDownRefresh() {
+      uni.stopPullDownRefresh()
+      this.getUcUser()
+      this.getData()
+    },
+      methods: {
       handleScroll () {
         let scrollTop = this.$refs.content.scrollTop;
         console.info(scrollTop)
@@ -241,7 +245,7 @@
         // }
       },
       userInfo() {
-        this.$router.push({path: '/userInfo'})
+        this.$navigateTo('/pages/my/userInfo')
       },
       putin() {
         this.$navigateTo('/pages/report/putin')

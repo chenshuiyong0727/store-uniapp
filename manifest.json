@@ -10,9 +10,9 @@
         "usingComponents" : true,
         "nvueStyleCompiler" : "uni-app",
         "compilerVersion" : 3,
-        // "statusbar": {  
-        //   "immersed": false  
-        // },
+		"statusbar": {  
+            "immersed": false  
+        },
         "orientation" : [
             //竖屏正方向
             "portrait-primary",

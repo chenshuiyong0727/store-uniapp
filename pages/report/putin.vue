@@ -4,10 +4,7 @@
 <!--        :show="show"-->
 <!--        @confirm="handleConfirm"></u-calendar>-->
     <u-navbar
-        height="90px"
-        leftText="返回"
         title="入库报表"
-        :safeAreaInsetTop="false"
     >
       <view
           @click="goBack"

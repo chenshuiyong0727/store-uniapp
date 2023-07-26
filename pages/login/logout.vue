@@ -13,7 +13,7 @@
     flex-direction: column;
     align-items: center;
 " >
-      <u-navbar  :title="title" :safeAreaInsetTop="false">
+      <u-navbar  :title="title" >
         <view @click="goBack" class="u-nav-slot" slot="left">
           <u-icon name="arrow-left" size="20"></u-icon>
         </view>
