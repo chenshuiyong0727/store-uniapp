@@ -121,7 +121,7 @@
 .color-success {
   color: #0fbe8f;
 }
-.mint-header {
+/deep/ .mint-header {
   /*background-image: linear-gradient(rgb(64, 158, 255), rgb(255, 255, 255));*/
   padding: 5.81vw 4.8vw !important;
   background-color: #ffffff;
@@ -133,7 +133,7 @@
   right: 0;
   left: 0;
 }
-.mint-field{
+/deep/ .mint-field{
   padding-left: 3vw;
   margin-right: 3vw;
 }
@@ -211,7 +211,7 @@ select{
   margin-left: -14px;
   width: 60vw !important;
 }
-.mint-cell-wrapper {
+/deep/ .mint-cell-wrapper {
   background-image: -webkit-linear-gradient(top, #d9d9d9, #d9d9d9 50%, transparent 50%);
   background-image: linear-gradient(180deg, #d9d9d9, #d9d9d9 50%, transparent 50%);
   background-size: 120% 1px;
@@ -232,7 +232,7 @@ select{
   padding: 0 10px;
   width: 100%;
 }
-.mint-cell {
+/deep/ .mint-cell {
   background-color: #fff;
   box-sizing: border-box;
   color: inherit;
@@ -242,7 +242,7 @@ select{
   position: relative;
   text-decoration: none;
 }
-.el-message-box {
+/deep/ .el-message-box {
   margin-bottom: 170px;
   display: inline-block;
   width: 300px;
@@ -257,7 +257,7 @@ select{
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
-.mint-toast {
+/deep/ .mint-toast {
   position: fixed;
   max-width: 80%;
   border-radius: 5px;
@@ -316,7 +316,7 @@ select{
   font-size: 12px;
   border-radius: 3px;
 }
-.el-dropdown-menu__item {
+/deep/ .el-dropdown-menu__item {
   font-weight: 400;
   list-style: none;
   line-height: 36px;
@@ -335,7 +335,7 @@ select{
   top: 0;
   left: 0;
   z-index: 99;
-  margin-top: 11.6vw !important;
+  margin-top: 65px !important;
 }
 .fenlei_top_left{
   width: 100vw !important;
@@ -356,7 +356,7 @@ select{
   width: 100vw !important;
 }
 
-.el-input__inner {
+/deep/ .el-input__inner {
   -webkit-appearance: none;
   background-color: #f4f3f8;
   background-image: none;
@@ -372,17 +372,17 @@ select{
   -webkit-transition: border-color .2s cubic-bezier(.645,.045,.355,1);
   transition: border-color .2s cubic-bezier(.645,.045,.355,1);
   width: 100%;
-&::placeholder{
-   color:#b0aebb;
- }
+  /*&::placeholder{*/
+  /*   color: #b0aebb;*/
+  /* }*/
 }
-.el-input__icon {
+/deep/ .el-input__icon {
   height: 100%;
   width: 25px;
   text-align: center;
   -webkit-transition: all .3s;
   transition: all .3s;
-  line-height: 35px;
+  line-height: 25px;
 }
 .fenlei_top_right {
   width: 50px;
@@ -404,7 +404,7 @@ select{
   margin-top: 11.6vw;
 }
 
-.el-checkbox__inner {
+/deep/ .el-checkbox__inner {
   /* border-radius: 2px; */
   display: inline-block;
   position: relative;
@@ -419,7 +419,7 @@ select{
   -webkit-transition: border-color .25s cubic-bezier(.71,-.46,.29,1.46),background-color .25s cubic-bezier(.71,-.46,.29,1.46);
   transition: border-color .25s cubic-bezier(.71,-.46,.29,1.46),background-color .25s cubic-bezier(.71,-.46,.29,1.46);
 }
-.el-checkbox__inner::after {
+/deep/ .el-checkbox__inner::after {
   -webkit-box-sizing: content-box;
   box-sizing: content-box;
   content: "";
@@ -440,7 +440,7 @@ select{
   transform-origin: center;
 }
 
-.mint-field-other .el-date-editor .el-input__inner {
+/deep/ .mint-field-other .el-date-editor .el-input__inner {
   -webkit-appearance: none;
   background-color: #ffffff;
   background-image: none;
@@ -457,12 +457,12 @@ select{
   -webkit-transition: border-color .2s cubic-bezier(.645,.045,.355,1);
   transition: border-color .2s cubic-bezier(.645,.045,.355,1);
   width: 100%;
-  &::placeholder{
-     color:#8a7c80;
-    font-size: 14px;
-   }
+  /*&::placeholder{*/
+  /*   color:#8a7c80;*/
+  /*  font-size: 14px;*/
+  /* }*/
 }
-.mint-field-other .el-select .el-input .el-input__inner {
+/deep/ .mint-field-other .el-select .el-input .el-input__inner {
   font-size: 15px;
   -webkit-appearance: none;
   background-color: #fff;
@@ -479,12 +479,12 @@ select{
   -webkit-transition: border-color .2s cubic-bezier(.645,.045,.355,1);
   transition: border-color .2s cubic-bezier(.645,.045,.355,1);
   width: 100%;
-  &::placeholder{
-     color:#8a7c80;
-     font-size: 14px;
-   }
+  /*&::placeholder{*/
+  /*   color:#8a7c80;*/
+  /*   font-size: 14px;*/
+  /* }*/
 }
-.login_form .el-input__inner {
+/deep/ .login_form .el-input__inner {
   -webkit-appearance: none;
   background-color: #FFF;
   background-image: none;
@@ -501,7 +501,7 @@ select{
   width: 100%;
 }
 
-.login_form .el-input__icon {
+/deep/ .login_form .el-input__icon {
   height: 100%;
   width: 25px;
   text-align: center;
@@ -515,13 +515,46 @@ select{
 .login_new {
   background-color: #F8FCFF;
   height: 100vh;
-  >section {
-  .tip {
-    color:rgb(224, 145, 71);
-    letter-spacing: 2px;
-    font-size: 16px;
-  }
-  }
+}
+.login_new_welcome{
+  font-size: 10px;
+  padding-top: 15vw;
+  padding-left: 0vw;
+  max-width: 264px!important;
+  max-height: 494px!important;
+  margin-right: auto !important;
+  margin-bottom: 42px !important;
+  margin-left: auto !important;
+  width: 100%!important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/*// 图片居中
+```css
+div{
+    position:relative;
+}
+img{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+}
+```
+*/
+.login_new_welcome_image{
+  margin-top: 25vw;
+  width: 14.2vw;
+  height:14.2vw;
+  top: 33px;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+.login_new_welcome_text{
+  font-size: 25px;
+  font-weight: 600;
+  margin-top: 17px;
 }
 
 /*导航栏*/
@@ -548,11 +581,11 @@ select{
   white-space: nowrap;
   overflow-x: scroll;
   overflow-y: hidden;
-> span {
-  white-space: nowrap;
-  display: inline-block;
-  margin-right: 6vw;
-}
+/*> span {*/
+/*  white-space: nowrap;*/
+/*  display: inline-block;*/
+/*  margin-right: 6vw;*/
+/*}*/
 }
 .searchList::-webkit-scrollbar {
   display: none;
@@ -655,7 +688,7 @@ select{
   border-radius: 5px;
 }
 
-.dingdans_con_left_dw img {
+.dingdans_con_left_dw image {
   width: 80%;
   margin-top: 30px;
   margin-left: 10%;
@@ -789,7 +822,7 @@ select{
   flex-direction:row;
   align-items:center;
 }
-.my-indent-right .el-button--small.is-round  {
+/deep/ .my-indent-right .el-button--small.is-round  {
   padding: 9px 15px;
   line-height: 0.8;
 }
@@ -797,7 +830,7 @@ select{
   width: 92vw;
   margin-left: 4vw;
 }
-.my-indent-right-1 .el-input__inner {
+/deep/ .my-indent-right-1 .el-input__inner {
   -webkit-appearance: none;
   background-color: #FFF;
   background-image: none;
@@ -843,7 +876,7 @@ select{
   border-top-style: solid;
   height: 34px;
 }
-.mint-header-title {
+/deep/ .mint-header-title {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -908,13 +941,13 @@ select{
 select {
   outline: none;
 }
-.el-select-dropdown__item.selected {
+/deep/ .el-select-dropdown__item.selected {
   color: #409EFF;
   font-weight: 700;
   padding: 0 20px;
 }
 
-.mint-field-core {
+/deep/ .mint-field-core {
   background-color: #ffffff !important;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -984,17 +1017,17 @@ select {
 /*  right: 0;*/
 /*  left: 0;*/
 /*}*/
-.el-icon-warning:before{
+/deep/ .el-icon-warning:before{
   content:''
 }
-.el-message-box__title{
+/deep/ .el-message-box__title{
   padding-left: 0;
   margin-bottom: 0;
   font-size: 16px;
   line-height: 1;
   color: #fff;
 }
-.el-message-box__wrapper {
+/deep/ .el-message-box__wrapper {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -1002,20 +1035,20 @@ select {
   right: 0;
   text-align: center;
 }
-.el-message-box__btns .el-button {
+/deep/ .el-message-box__btns .el-button {
   border: 0px;
   padding: 9px 9px;
   font-size: 14px;
   border-radius: 3px;
   color: #409EFF;
 }
-.el-message-box__btns .el-button--primary {
+/deep/ .el-message-box__btns .el-button--primary {
   font-size: 14px;
   color: #409EFF;
   background-color: #FFF;
   border-color: #FFF;
 }
-.el-icon-close:before{
+/deep/ .el-icon-close:before{
   content:''
 }
 /*.el-message-box__content {*/
@@ -1025,24 +1058,43 @@ select {
 /*  margin-bottom: 10px;*/
 /*  margin-top: -20px;*/
 /*}*/
-.el-message-box__content {
+/deep/ .el-message-box__content {
   padding: 10px 15px;
   color: #333333;
   font-size: 15px;
   margin-bottom: 10px;
   margin-top: -20px;
 }
-.mintui-back:before{
+/deep/ .mintui-back:before{
   content: "\E600";
   font-size: 22px;
   margin-left: -3px;
 }
-.mint-popup .mint-header{
+/deep/ .mint-popup .mint-header{
   padding:0px;
 }
-.login_new .mint-header{
+/deep/ .login_new .mint-header{
   background-color :#F8FCFF
 }
 a{
   text-decoration:none;
+}
+/deep/ .el-input--prefix .el-input__inner {
+  padding-left: 30px;
+}
+/deep/ .el-input--suffix .el-input__inner {
+   padding-right: 30px;
+}
+.common-input{
+	background-color: #fff;
+	border: 1px solid #dcdfe6;
+}
+
+/* 给要上拉的容器设置 begin */
+.hello {
+  background-color: #f3f2f8;
+  padding-top: 12vw;
+  font-size: 13px;
+  height: 100vh;
+  overflow-y: auto;
 }

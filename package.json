@@ -3,10 +3,14 @@
     "async-validator": "^1.11.5",
     "core-js": "^3.31.1",
     "crypto-js": "^4.1.1",
-    "element-ui": "^2.15.13",
     "mint-ui": "^2.2.13",
     "pinyin-pro": "^3.13.0",
+    "uview-ui": "^2.0.36",
     "vconsole": "^3.14.7",
     "weixin-js-sdk": "^1.6.0"
+  },
+  "devDependencies": {
+    "sass": "^1.64.1",
+    "sass-loader": "^13.3.2"
   }
 }

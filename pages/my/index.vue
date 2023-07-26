@@ -1,75 +1,61 @@
 <template lang="html">
 
   <view class="car2" ref="content" style="height: 100%;font-size: 15px; border-top:0;    overflow: auto;">
-    <view v-if="flag">
-      <mt-header  title="个人中心">
-        <view slot="left">
-          <img  @click="scanCode(1)" style="width: 23px; "  src="../../static/img/saoyisao4.png">
-        </view>
-        <view slot="right">
-          <img  @click="comfirm(1)" style="width: 26px; "  src="../../static/img/setting0.png">
-        </view>
-      </mt-header>
-      <header class="header"
-              style="
-                height: 80px;
-      margin-top: 42px;
-      background-color: #fff;
-      border-bottom-color: rgba(185, 185, 185, 0.14);
-      border-bottom-style: solid;
-      border-bottom-width: 1px;"
-      >
-        <view @click="userInfo" class="header-icon" style="margin-left: 6vw;">
-          <img v-if="imgUrl" style="width: 50px;height: 50px;border-radius: 100%;" :src="imgUrl">
-          <!--          <img v-if="form && !form.imgUrl" style="width: 50px;height: 50px;border-radius: 100%;" src="../../static/img/userimg5.jpg">-->
-        </view>
-        <text  @click="userInfo">{{
-         form.userRealName ? form.userRealName : form.userAccount ? form.userAccount : '系统用户'
-          }}</text>
-        <view class="my-indent-right">
-          <!--            <text style="-->
-          <!--            margin-left: -10px;-->
-          <!--      display: inline-block;-->
-          <!--      font-size: 14px;-->
-          <!--      color: rgba(0, 0, 0, 0.4);-->
-          <!--      position: relative;">-->
-          <!--              <el-button @click="comfirm(2)" style="    border: 1px solid #333; color: #333"-->
-          <!--                         size="small" round>账户管理</el-button>-->
-          <!--            </text>-->
-          <el-button type="primary" @click="comfirm(2)" size="small" round>账户管理</el-button>
-        </view>
-      </header>
-    </view>
+<!--    <view v-if="flag">-->
+<!--      <mt-header  title="个人中心">-->
+<!--        <view slot="left">-->
+<!--          <image  @click="scanCode(1)" style="width: 23px; height: 23px; "  src="../../static/img/saoyisao4.png"></image>-->
+<!--        </view>-->
+<!--        <view slot="right">-->
+<!--          <image  @click="comfirm(1)" style="width: 26px; height: 26px; "  src="../../static/img/setting0.png"></image>-->
+<!--        </view>-->
+<!--      </mt-header>-->
+<!--      <header class="header"-->
+<!--              style="-->
+<!--                height: 80px;-->
+<!--      margin-top: 42px;-->
+<!--      background-color: #fff;-->
+<!--      border-bottom-color: rgba(185, 185, 185, 0.14);-->
+<!--      border-bottom-style: solid;-->
+<!--      border-bottom-width: 1px;"-->
+<!--      >-->
+<!--        <view @click="userInfo" class="header-icon" style="margin-left: 6vw;">-->
+<!--          <image v-if="imgUrl" style="width: 50px;height: 50px;border-radius: 100%;" :src="imgUrl"></image>-->
+<!--        </view>-->
+<!--        <text  @click="userInfo">{{-->
+<!--         form.userRealName ? form.userRealName : form.userAccount ? form.userAccount : '系统用户'-->
+<!--          }}</text>-->
+<!--        <view class="my-indent-right">-->
+<!--          <u-button type="primary" @click="comfirm(2)" size="small" round>账户管理</u-button>-->
+<!--        </view>-->
+<!--      </header>-->
+<!--    </view>-->
 
-    <view v-else style="
+    <view style="
         padding-bottom: 40vw;
     background-image: linear-gradient(#e5f4ff, #f3f2f8);">
       <view class="zuoyouduiqi" style="    padding: 2.81vw 4.8vw !important;">
-        <view @click="scanCode(1)" class="mint-header-button is-left">
-          <img style="width: 23px; "  src="../../static/img/saoyisao4.png">
+        <view @click="scanCode(1)" >
+          <image style="width: 23px; height: 23px;"  src="../../static/img/saoyisao4.png"></image>
         </view>
         <view>
           <text style="font-size: 16px; color: black;" class="mint-header-title">
             个人中心
           </text>
         </view>
-        <view @click="comfirm(1)" class="mint-header-button is-right">
-          <img style="width: 26px; "  src="../../static/img/setting0.png">
+        <view @click="comfirm(1)">
+          <image style=" width: 26px;height: 26px;"  src="../../static/img/setting0.png"></image>
         </view>
       </view>
-      <view class="header"
-           style="
-                height:100px;"
-      >
-        <view @click="userInfo" class="header-icon" style="margin-left: 6vw;">
-          <img v-if="imgUrl" style="width: 50px;height: 50px;border-radius: 100%;" :src="imgUrl">
-          <!--          <img v-if="form && !form.imgUrl" style="width: 50px;height: 50px;border-radius: 100%;" src="../../static/img/userimg5.jpg">-->
+      <view class="header zuoyouduiqi">
+        <view @click="userInfo" class="header-icon xianglian" style="margin-left: 6vw;">
+          <image v-if="imgUrl" style="width: 50px;height: 50px;border-radius: 100%;" :src="imgUrl"></image>
+          <text @click="userInfo" style="margin-left: 12px;">{{
+            form.userRealName ? form.userRealName : form.userAccount ? form.userAccount : '系统用户'
+            }}</text>
         </view>
-        <text @click="userInfo">{{
-         form.userRealName ? form.userRealName : form.userAccount ? form.userAccount : '系统用户'
-          }}</text>
-        <view class="my-indent-right">
-          <el-button type="primary" @click="comfirm(2)" size="small" round>账户管理</el-button>
+        <view class="my-indent-right" style="margin-right: 6vw;">
+          <u-button type="primary" @click="comfirm(2)"  class="custom-style"  shape="circle"  round>账户管理</u-button>
         </view>
       </view>
     </view>
@@ -80,90 +66,88 @@
         <text class="my-indent-left">订单</text>
         <view class="my-indent-right">
           <text style="font-weight: 500">全部</text>
-<!--          <i class="icon-go"></i>-->
-          <img class="my-indent-img" src="../../static/img/more.png">
+          <image class="my-indent-img" src="../../static/img/more.png"></image>
         </view>
       </view>
 
       <view class="my-pay">
         <view :to="{ path: '/order?status=3'}">
-          <!--                  <text class="icon2-money"></text>-->
-          <img
+          <image
               :class="orderIofo.count3 > 0 ? 'count3' : ''"
-              src="../../static/img/new/daifahuo.png"></img>
+              src="../../static/img/new/daifahuo.png"></image>
           <i v-if="orderIofo.count3" class="danger-num">{{orderIofo.count3}}</i>
           <p style="color: #333">待发货</p>
         </view>
         <view :to="{ path: '/order?status=4'}">
           <!--                  <text class="icon2-thecar"></text>-->
-          <img
+          <image
               :class="orderIofo.count4 > 0 ? 'count3' : ''"
-              src="../../static/img/new/fahuo.png"></img>
+              src="../../static/img/new/fahuo.png"></image>
           <i v-if="orderIofo.count4" style="margin-left: -14px" class="danger-num">{{orderIofo.count4}}</i>
           <p style="color: #333">已发货</p>
         </view>
 
           <view :to="{ path: '/order?status=5'}">
             <!--                  <span class="icon2-thecar"></span>-->
-            <img
+            <image
                 :class="orderIofo.count5 > 0 ? 'count3' : ''"
-                src="../../static/img/new/yilanjian.png"></img>
+                src="../../static/img/new/yilanjian.png"></image>
             <i v-if="orderIofo.count5"  class="danger-num">{{orderIofo.count5}}</i>
             <p style="color: #333">运输中</p>
           </view>
 
         <view :to="{ path: '/order?status=6'}">
-          <img
+          <image
               :class="orderIofo.count6 > 0 ? 'count3' : ''"
-              src="../../static/img/new/yishouhuo.png"></img>
+              src="../../static/img/new/yishouhuo.png"></image>
           <i v-if="orderIofo.count6"  class="danger-num">{{orderIofo.count6}}</i>
           <p style="color: #333">已收货</p>
         </view>
 
       </view>
 
-      <view class="my-indent" style="    margin-bottom: -10px;">
+      <view class="my-indent" style="    margin-bottom: -10px;"  @click="putin">
         <text class="my-indent-left">报表</text>
       </view>
       <view class="my-settle1" style="margin-top: 0;border-top-style:none">
-        <view :to="{ name: '入库报表'}" class="my-settle1-top">
+        <view  @click="putin" class="my-settle1-top">
           <view>
-            <img style="width: 27px;" src="../../static/img/new/ruku.png"></img>
+            <image style="width: 27px;height: 27px;" src="../../static/img/new/ruku.png"></image>
           </view>
 
           <p>
             <text style="color: #333">入库报表</text>
-            <img class="my-indent-img-1" src="../../static/img/more.png">
+            <image class="my-indent-img-1" src="../../static/img/more.png"></image>
           </p>
         </view>
         <view :to="{ name: '入库渠道报表'}" class="my-settle1-top">
           <view>
-            <img style="width: 27px;"
-                 src="../../static/img/new/qudao.png"></img>
+            <image style="width: 27px;height: 27px;"
+                 src="../../static/img/new/qudao.png"></image>
           </view>
 
           <p>
             <text style="color: #333">入库渠道报表</text>
-            <img class="my-indent-img-1" src="../../static/img/more.png">
+            <image class="my-indent-img-1" src="../../static/img/more.png"></image>
           </p>
         </view>
         <view :to="{ name: '销售报表'}" class="my-settle1-bottom">
           <view>
-            <img style="width: 27px;"
-                 src="../../static/img/new/xiaoshou.png"></img>
+            <image style="width: 27px;height: 27px;"
+                 src="../../static/img/new/xiaoshou.png"></image>
           </view>
           <p>
             <text style="color: #333">销售报表</text>
-            <img class="my-indent-img-1" src="../../static/img/more.png">
+            <image class="my-indent-img-1" src="../../static/img/more.png"></image>
           </p>
         </view>
         <view :to="{ name: '区域销售报表'}" class="my-settle1-bottom">
           <view>
-            <img style="width: 27px;" src="../../static/img/new/quyu.png"></img>
+            <image style="width: 27px;height: 27px;" src="../../static/img/new/quyu.png"></image>
           </view>
           <p>
             <text style="color: #333">区域销售报表</text>
-            <img class="my-indent-img-1" src="../../static/img/more.png">
+            <image class="my-indent-img-1" src="../../static/img/more.png"></image>
           </p>
         </view>
       </view>
@@ -177,38 +161,38 @@
       <view class="my-pay-1" style="border-bottom-style:none;">
         <view :to="{ name: '活动'}">
           <!--                  <text class="icon2-money"></text>-->
-          <img
-              style="margin-top: 7px;margin-bottom: -4px;width: 27px;"
-              src="../../static/img/new/huodong.png"></img>
+          <image
+              style="margin-top: 7px;margin-bottom: -4px;width: 27px;height: 27px;"
+              src="../../static/img/new/huodong.png"></image>
           <p style="color: #333">活动</p>
         </view>
         <view :to="{ name: '其他收支'}">
           <!--                  <text class="icon2-thecar"></text>-->
-          <img
-              style="margin-top: 7px;margin-bottom: -4px;width: 27px;"
-              src="../../static/img/new/qita.png"></img>
+          <image
+              style="margin-top: 7px;margin-bottom: -4px;width: 27px;height: 27px;"
+              src="../../static/img/new/qita.png"></image>
           <p style="color: #333">其他收支</p>
         </view>
         <view :to="{ name: '瑕疵商品'}">
           <!--                  <text class="icon2-thecar"></text>-->
-          <img
+          <image
               style="    margin-top: 4px;
     margin-bottom: -7px;
-    width: 35px;" src="../../static/img/new/xiaci.png"></img>
+    width: 27px;height: 27px;" src="../../static/img/new/xiaci.png"></image>
           <p style="color: #333">瑕疵商品</p>
         </view>
         <view :to="{ name: '红包'}">
-          <img
-              style="margin-top: 7px;margin-bottom: -4px;width: 27px;"
-              src="../../static/img/new/hongbao.png"></img>
+          <image
+              style="margin-top: 7px;margin-bottom: -4px;width: 27px;height: 27px;"
+              src="../../static/img/new/hongbao.png"></image>
           <p style="color: #333">红包</p>
         </view>
       </view>
       <view class="my-pay-1" style="padding-bottom: 5vw">
         <view :to="{ path: '/memo'}" style="width: 25%">
-          <img
-              style="margin-top: 7px;margin-bottom: -4px;width: 27px;"
-              src="../../static/img/new/memo.png"></img>
+          <image
+              style="margin-top: 7px;margin-bottom: -4px;width: 27px;height: 27px;"
+              src="../../static/img/new/memo.png"></image>
           <p style="color: #333">备忘录</p>
         </view>
       </view>
@@ -279,6 +263,9 @@
       },
       userInfo() {
         this.$router.push({path: '/userInfo'})
+      },
+      putin() {
+        this.$navigateTo('/pages/report/putin')
       },
       scanCode(photo) {
         this.$router.push({ path: '/scanCode', query: { photo } })
@@ -361,7 +348,7 @@
 
     .header {
       width: 100%;
-      height: 16vw;
+      height:100px;
       /*background: url(../../static/carbg.png) center 0 #f37d0f;*/
       /*background: url(../../static/img/bg1.png) center 0 #f37d0f;*/
       background-size: auto 100%;
@@ -374,22 +361,11 @@
       align-items: center;
 
       .header-icon {
-        /*border: .4vw solid #ffffff;*/
         -webkit-box-sizing: border-box;
         box-sizing: border-box;
-        /*width: 14vw;*/
-        /*height: 14vw;*/
-        /*line-height: 16vw;*/
         text-align: center;
         border-radius: 50%;
-
-        text {
-          .fz(font-size, 54);
-
-          &::before {
-            color: #ffffff;
-          }
-        }
+        font-size: 15px;
       }
 
       > text {
@@ -470,14 +446,15 @@
           }
 
           p {
-            padding-top: 16px;
+            padding-top: 22px;
             text-align: center;
             padding-bottom: 10px;
           }
-          img {
+          image {
             margin-top: 10px;
-            margin-bottom: -16px;
+            margin-bottom: -20px;
             width: 30px;
+            height: 30px;
           }
         }
       }
@@ -576,7 +553,8 @@
     top: 0;
     right: 0;
     border-radius: 8px;
-    margin-left: -10px;
+    margin-left: -8px;
+    position: sticky;
   }
 
   .count3 {
@@ -624,44 +602,22 @@
   }
   .my-indent-img{
     width: 13px;
+    height: 13px;
     margin-left: 4px;
     margin-bottom: -1px;
   }
   .my-indent-img-1{
     width: 13px;
+    height: 13px;
     margin-left: 4px;
     margin-bottom: -1px;
     position: absolute;
     right: 0;
     top: 0.4vw;
   }
-
-  .msg {
-        position: relative;
-        width: 60px;
-        height: 60px;
-        margin: 60px;
-        float:left;
-      }
-  .msg img {
-    margin-top: 10px;
-    margin-bottom: -5px;
-    width: 28px;
-  }
-  .alarm {
-    position: absolute;
-    color: white;
-    font-size: 17px;
-    background-color: red;
-    /*height: 24px;改前*/
-    min-height: 24px;/*改后新增的代码*/
-    min-width:24px;/*改后新增的代码*/
-    line-height: 24px;
-    right:-12%;
-    top: -12px;
-    text-align: center;
-    -webkit-border-radius: 24px;
-    border-radius: 24px;
-    padding:2px;
+  .custom-style {
+    width: 86px;
+    font-size: 12px;
+    height: 32px;
   }
 </style>

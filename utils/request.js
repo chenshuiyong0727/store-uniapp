@@ -32,18 +32,14 @@ const doRequst = (options, isShowLoading) => {
           const body = {
             status: res.data.sub_code,
             msg: res.data.sub_msg,
-			subCode: res.data.sub_code,
-			subMsg: res.data.sub_msg,
+            subCode: res.data.sub_code,
+            subMsg: res.data.sub_msg,
             data: res.data ? res.data.data : null
           }
           resolve(body);
         } else if (res.data.code == 102 || res.data.code == 103 || res.data.code === 800 || res.data.code === 801 || res.data.code === 802) {
           // 登录过期，跳转登录页面
-          uni.removeStorageSync('userInfo')
-          uni.removeStorageSync('hasGuidIndex')
-          uni.removeStorageSync('hasGuidEntry')
-          uni.removeStorageSync('sysDictList')
-          uni.removeStorageSync('reAppointmentTime')
+          uni.clearStorageSync();
           uni.showToast({
             title: '登录过期，即将重新登录',
             icon: 'none'

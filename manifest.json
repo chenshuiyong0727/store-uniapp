@@ -2,8 +2,8 @@
     "name" : "最硬球鞋",
     "appid" : "__UNI__802B2EC",
     "description" : "",
-    "versionName" : "1.9.1",
-    "versionCode" : 191,
+    "versionName" : "1.0",
+    "versionCode" : 100,
     "transformPx" : false,
     /* 5+App特有相关 */
     "app-plus" : {
@@ -33,11 +33,7 @@
         },
         /* 模块配置 */
         "modules" : {
-            "VideoPlayer" : {},
-            "Webview-x5" : {},
-            "Camera" : {},
-            "Record" : {},
-            "OAuth" : {}
+            "Camera" : {}
         },
         /* 应用发布信息 */
         "distribute" : {
@@ -46,9 +42,6 @@
                 "permissions" : [
                     "<uses-feature android:name=\"android.hardware.camera\"/>",
                     "<uses-feature android:name=\"android.hardware.camera.autofocus\"/>",
-                    "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>",
-                    "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
-                    "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
                     "<uses-permission android:name=\"android.permission.CAMERA\"/>",
                     "<uses-permission android:name=\"android.permission.CAPTURE_AUDIO_OUTPUT\"/>",
                     "<uses-permission android:name=\"android.permission.CAPTURE_SECURE_VIDEO_OUTPUT\"/>",
@@ -57,15 +50,11 @@
                     "<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>",
                     "<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>",
                     "<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>",
-                    "<uses-permission android:name=\"android.permission.INTERNET\"/>",
-                    "<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>",
                     "<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>",
                     "<uses-permission android:name=\"android.permission.READ_LOGS\"/>",
-                    "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>",
                     "<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>",
                     "<uses-permission android:name=\"android.permission.VIBRATE\"/>",
                     "<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>",
-                    "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\"/>",
                     "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"
                 ],
                 "autoSdkPermissions" : true,
@@ -140,33 +129,18 @@
                 }
             }
         },
-        "nativePlugins" : {
-            "LuanQing-Permission" : {
-                "__plugin_info__" : {
-                    "name" : "IOSAndroid两端权限管理检查权限申请权限跳转手动设置权限页面",
-                    "description" : "可以检测查询是否拥有权限，可以主动申请权限，可以跳转手动设置权限页面，android权限管理，ios权限管理",
-                    "platforms" : "Android,iOS",
-                    "url" : "https://ext.dcloud.net.cn/plugin?id=8795",
-                    "android_package_name" : "hjjn_mh.app",
-                    "ios_bundle_id" : "com.yimed.portal",
-                    "isCloud" : true,
-                    "bought" : 1,
-                    "pid" : "8795",
-                    "parameters" : {}
-                }
-            }
-        }
+        "nativePlugins" : {}
     },
     /* 快应用特有相关 */
     "quickapp" : {},
     /* 小程序特有相关 */
     "mp-weixin" : {
-        "appid" : "",
+        "appid" : "wxe2bb00ecc9005cc9",
         "setting" : {
             "urlCheck" : false,
-            "es6" : false,
-            "postcss" : false,
-            "minified" : false
+            "es6" : true,
+            "postcss" : true,
+            "minified" : true
         },
         "resizable" : true,
         "usingComponents" : true
@@ -202,7 +176,8 @@
             }
         },
         "devServer" : {
-            "https" : false
+            "https" : false,
+            "port" : ""
         }
     }
 }

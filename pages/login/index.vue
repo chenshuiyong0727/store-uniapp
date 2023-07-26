@@ -1,61 +1,42 @@
 <template>
   <view class="login_new">
-    <mt-header title=""></mt-header>
-    <view style="
-    font-size: 10px;
-    padding-top: 15vw;
-    padding-left: 0vw;
-    max-width: 264px!important;
-    max-height: 494px!important;
-    margin: 42px auto!important;
-    width: 100%!important;
-    display: flex;
-    flex-direction: column;
-    align-items: center;">
-      <view>
-        <img style="
-        margin-left: 72px;
-        margin-top: 20px;
-    margin-bottom: -3px;
-    width: 14.2vw;
-    display: block;
-    top: 0px;
-    left: 0px;
-" src="../../static/img/logo/logo.png"></img>
-        <h5 style="font-size: 25px; font-weight: 600; margin-top: 17px;">欢迎来到移动仓库</h5>
+    <view class="login_new_welcome">
+      <view style="position:relative;">
+        <image class="login_new_welcome_image" src="../../static/img/logo/logo.png"></image>
+        <h5 class="login_new_welcome_text">欢迎来到移动仓库</h5>
       </view>
 
-      <section class="login_form" style="margin-top: 30px">
-        <el-input
-            placeholder="请输入账号"
-            prefix-icon="el-icon-s-custom"
-            v-model="loginForm.loginAccount"
-            clearable>
-        </el-input>
-        <el-input
-            show-password
-            style="margin-top: 10px"
-            placeholder="请输入密码"
-            prefix-icon="el-icon-warning"
-            type="password"
-            clearable
-            v-model="loginForm.loginPassword">
-        </el-input>
-      </section>
-      <view class="clearfix btm-distance">
-        <el-button style="margin-top: 25px;    width: 50vw;" type="primary" @click="login">登录
-        </el-button>
+      <view class="login_form" style="margin-top: 30px">
+		     <u--input
+					class="common-input"
+					style="width: 70vw;"
+					prefixIcon="account"
+		            placeholder="请输入账号"
+		            v-model = "loginForm.loginAccount"
+					prefixIconStyle="font-size: 22px;color:#c0c4cc"
+		            clearable
+		            >
+		          </u--input>
+		          <u--input
+				  class="common-input"
+				  style="width: 70vw;margin-top: 10px"
+		            placeholder="请输入密码"
+		            prefixIcon="lock"
+		            type="password"
+					prefixIconStyle="font-size: 22px;color:#c0c4cc"
+		            clearable
+		            v-model="loginForm.loginPassword">
+		          </u--input>
       </view>
-      <!-- <view class="clearfix btm-distance">
-        <el-button style="margin-top: 15px;    width: 50vw;" type="text" @click="loginByCode">验证码登录</el-button>
-      </view> -->
+      <view class=" btm-distance">
+				<u-button style="margin-top: 25px;    width: 50vw;" type="primary" @click="login" text="登录"></u-button>
+      </view>
     </view>
 
   </view>
 </template>
 
 <script>
-  import navBar from '@/components/nav-bar'
   import {navigateTo} from '@/utils/util.js'
   import {deepCopy, encrypt} from '@/utils'
   // import { initSysDict } from '@/utils/initRequest'
@@ -78,7 +59,6 @@
       }
     },
     components: {
-      navBar,
     },
     mounted() {
       let org_token_auth = uni.getStorageSync('org_token_auth');
@@ -103,7 +83,6 @@
           if (res.subCode === 1000) {
             uni.showToast({title: '登录成功', icon: 'none',})
             if (res.data) {
-              debugger
               const {data} = res
               uni.setStorageSync('functionList', JSON.stringify(data.functionList))
               uni.setStorageSync('org_token_auth', data.token)
@@ -148,7 +127,7 @@
 </script>
 
 <style lang="less" scoped>
-  @import '@/assets/fz.less';
+  /*@import '@/assets/fz.less';*/
   @import '@/assets/index/style.css';
 
   * {
@@ -180,14 +159,14 @@
   /*    }*/
   /*  }*/
   /*}*/
-  .clearfix {
-    &:after {
-      visibility: hidden;
-      display: block;
-      font-size: 0;
-      content: " ";
-      clear: both;
-      height: 0;
-    }
-  }
+  /*.clearfix {*/
+  /*  &:after {*/
+  /*    visibility: hidden;*/
+  /*    display: block;*/
+  /*    font-size: 0;*/
+  /*    content: " ";*/
+  /*    clear: both;*/
+  /*    height: 0;*/
+  /*  }*/
+  /*}*/
 </style>
