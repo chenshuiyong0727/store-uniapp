@@ -1,52 +1,32 @@
 <template lang="html">
-
   <view class="car2" ref="content" style="height: 100%;font-size: 15px; border-top:0;    overflow: auto;">
-<!--    <view v-if="flag">-->
-<!--      <mt-header  title="个人中心">-->
-<!--        <view slot="left">-->
-<!--          <image  @click="scanCode(1)" style="width: 23px; height: 23px; "  src="../../static/img/saoyisao4.png"></image>-->
-<!--        </view>-->
-<!--        <view slot="right">-->
-<!--          <image  @click="comfirm(1)" style="width: 26px; height: 26px; "  src="../../static/img/setting0.png"></image>-->
-<!--        </view>-->
-<!--      </mt-header>-->
-<!--      <header class="header"-->
-<!--              style="-->
-<!--                height: 80px;-->
-<!--      margin-top: 42px;-->
-<!--      background-color: #fff;-->
-<!--      border-bottom-color: rgba(185, 185, 185, 0.14);-->
-<!--      border-bottom-style: solid;-->
-<!--      border-bottom-width: 1px;"-->
-<!--      >-->
-<!--        <view @click="userInfo" class="header-icon" style="margin-left: 6vw;">-->
-<!--          <image v-if="imgUrl" style="width: 50px;height: 50px;border-radius: 100%;" :src="imgUrl"></image>-->
-<!--        </view>-->
-<!--        <text  @click="userInfo">{{-->
-<!--         form.userRealName ? form.userRealName : form.userAccount ? form.userAccount : '系统用户'-->
-<!--          }}</text>-->
-<!--        <view class="my-indent-right">-->
-<!--          <u-button type="primary" @click="comfirm(2)" size="small" round>账户管理</u-button>-->
-<!--        </view>-->
-<!--      </header>-->
-<!--    </view>-->
+    <u-navbar
+              leftText="返回" title="个人中心" :safeAreaInsetTop="false">
+      <view @click="goBack" class="u-nav-slot" slot="left">
+        <image style="width: 23px; height: 23px;"  src="../../static/img/saoyisao4.png"></image>
+      </view>
+      <view @click="comfirm(1)" class="u-nav-slot" slot="right">
+        <image style=" width: 26px;height: 26px;"  src="../../static/img/setting0.png"></image>
+      </view>
+    </u-navbar>
 
     <view style="
+        margin-top: 12vw;
         padding-bottom: 40vw;
     background-image: linear-gradient(#e5f4ff, #f3f2f8);">
-      <view class="zuoyouduiqi" style="    padding: 2.81vw 4.8vw !important;">
-        <view @click="scanCode(1)" >
-          <image style="width: 23px; height: 23px;"  src="../../static/img/saoyisao4.png"></image>
-        </view>
-        <view>
-          <text style="font-size: 16px; color: black;" class="mint-header-title">
-            个人中心
-          </text>
-        </view>
-        <view @click="comfirm(1)">
-          <image style=" width: 26px;height: 26px;"  src="../../static/img/setting0.png"></image>
-        </view>
-      </view>
+<!--      <view class="zuoyouduiqi" style="    padding: 2.81vw 4.8vw !important;">-->
+<!--        <view @click="scanCode(1)" >-->
+<!--          <image style="width: 23px; height: 23px;"  src="../../static/img/saoyisao4.png"></image>-->
+<!--        </view>-->
+<!--        <view>-->
+<!--          <text style="font-size: 16px; color: black;" class="mint-header-title">-->
+<!--            个人中心-->
+<!--          </text>-->
+<!--        </view>-->
+<!--        <view @click="comfirm(1)">-->
+<!--          <image style=" width: 26px;height: 26px;"  src="../../static/img/setting0.png"></image>-->
+<!--        </view>-->
+<!--      </view>-->
       <view class="header zuoyouduiqi">
         <view @click="userInfo" class="header-icon xianglian" style="margin-left: 6vw;">
           <image v-if="imgUrl" style="width: 50px;height: 50px;border-radius: 100%;" :src="imgUrl"></image>
@@ -266,6 +246,9 @@
       },
       putin() {
         this.$navigateTo('/pages/report/putin')
+      },
+      goBack(){
+        uni.navigateBack()
       },
       scanCode(photo) {
         this.$router.push({ path: '/scanCode', query: { photo } })
