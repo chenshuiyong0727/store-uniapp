@@ -28,6 +28,13 @@
         "navigationBarTitleText": "登录",
         "enablePullDownRefresh": false
       }
+    },
+    {
+      "path": "pages/login/logout",
+      "style": {
+        "navigationBarTitleText": "账号设置",
+        "enablePullDownRefresh": false
+      }
     }
   ],
   "tabBar": {

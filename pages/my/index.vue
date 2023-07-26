@@ -1,7 +1,6 @@
 <template lang="html">
   <view class="car2" ref="content" style="height: 100%;font-size: 15px; border-top:0;    overflow: auto;">
-    <u-navbar
-              leftText="返回" title="个人中心" :safeAreaInsetTop="false">
+    <u-navbar title="个人中心" :safeAreaInsetTop="false">
       <view @click="goBack" class="u-nav-slot" slot="left">
         <image style="width: 23px; height: 23px;"  src="../../static/img/saoyisao4.png"></image>
       </view>
@@ -254,7 +253,8 @@
         this.$router.push({ path: '/scanCode', query: { photo } })
       },
       comfirm(type) {
-        this.$router.push({path: '/logout', query: {type}})
+        this.$navigateTo('/pages/login/logout?type='+type)
+        // this.$router.push({path: '/logout', query: {type}})
       },
       // syncOldPriceToNew1() {
       //   this.$request({
