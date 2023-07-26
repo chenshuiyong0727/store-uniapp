@@ -28,6 +28,7 @@
 				style="width: 44vw;background-color: #f4f3f8;" readonly="readonly"
 				prefixIcon="calendar"
 				placeholder="开始时间"
+        placeholderStyle="font-size: 15px;color:#c0c4cc"
 				v-model = "queryParam.createTimeFrom"
 				prefixIconStyle="font-size: 20px;color:#c0c4cc"
 				clearable
@@ -41,6 +42,7 @@
       <view class="fenlei_top_left">
         <view   @click="showTo= true">
 			<u--input
+          placeholderStyle="font-size: 15px;color:#c0c4cc"
 				style="width: 44vw;background-color: #f4f3f8;" readonly="readonly"
 				prefixIcon="calendar"
 				placeholder="结束时间"
@@ -70,7 +72,7 @@
         @cancel="cancelTo"
     ></u-datetime-picker>
 <!--    列表开始-->
-    <view style="    padding-top: 70px;">
+    <view style="    padding-top: 50px;">
       <view class="dingdans_item_rt" v-for="(item,index) in tableData" :key="index">
         <view class="dingdans_top_rt">
             <strong style="margin-left: 12px;">月份：</strong>
@@ -233,7 +235,7 @@
        confirmTo(e) {
         this.showTo = false;
         let timeValue =  uni.$u.timeFormat(e.value, 'yyyy-mm');
-        this.queryParam.createTimeFrom = timeValue
+        this.queryParam.createTimeTo = timeValue
         this.getPage()
       },
       jumpDetail(months) {

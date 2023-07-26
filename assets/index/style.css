@@ -325,9 +325,6 @@ select{
   outline: 0;
 }
 .fenlei_top {
-  display: flex;
-  align-items: center;
-  height: 44px;
   padding: 5px 10px !important;
   width: 100vw;
   background: #fff;
@@ -335,7 +332,7 @@ select{
   top: 0;
   left: 0;
   z-index: 99;
-  margin-top: 65px !important;
+  margin-top: 42px !important;
 }
 .fenlei_top_left{
   width: 100vw !important;
