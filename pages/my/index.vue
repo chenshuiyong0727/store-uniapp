@@ -555,6 +555,7 @@
     border-radius: 8px;
     margin-left: -8px;
     position: sticky;
+    font-style: normal;
   }
 
   .count3 {
