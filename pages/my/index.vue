@@ -11,9 +11,9 @@
 
     <view style="
         margin-top: 44px;
-        padding-bottom: 35vw;
-        padding-top: 5vw;
-    background-image: linear-gradient(#e5f4ff, #f3f2f8);">
+        padding-bottom: 40vw;
+        padding-top: 7vw;
+         background-image: linear-gradient(#e5f4ff, #f3f2f8);">
 <!--      <view class="zuoyouduiqi" style="    padding: 2.81vw 4.8vw !important;">-->
 <!--        <view @click="scanCode(1)" >-->
 <!--          <image style="width: 23px; height: 23px;"  src="../../static/img/saoyisao4.png"></image>-->
@@ -208,65 +208,65 @@
         }
       }
     },
-    mounted(){
-      this.$refs.content.onscroll = ()=>{
-        this.handleScroll();
-      }
-    },
+    // mounted(){
+    //   this.$refs.content.onscroll = ()=>{
+    //     this.handleScroll();
+    //   }
+    // },
     created() {
       this.getUcUser()
       this.getData()
     },
-    onLoad() {
-      console.log('页面加载')
-    },
-    onShow() {
-      console.log('页面显示')
-      this.getUcUser()
-      this.getData()
-    },
-    onReady(){
-      console.log('页面初次显示')
-    },
-    onHide() {
-      console.log('页面隐藏')
-    },
-    onUnload() {
-      // this.getUcUser()
-      // this.getData()
-      console.log('页面卸载')
-    },
-    onBackPress(){
-      console.log('页面返回...')
-    },
+    // onLoad() {
+    //   console.log('页面加载')
+    // },
+    // onShow() {
+    //   console.log('页面显示')
+    //   this.getUcUser()
+    //   this.getData()
+    // },
+    // onReady(){
+    //   console.log('页面初次显示')
+    // },
+    // onHide() {
+    //   console.log('页面隐藏')
+    // },
+    // onUnload() {
+    //   // this.getUcUser()
+    //   // this.getData()
+    //   console.log('页面卸载')
+    // },
+    // onBackPress(){
+    //   console.log('页面返回...')
+    // },
     onPullDownRefresh() {
       uni.stopPullDownRefresh()
       this.getUcUser()
       this.getData()
     },
       methods: {
-      handleScroll () {
-        let scrollTop = this.$refs.content.scrollTop;
-        console.info(scrollTop)
-        if (scrollTop < 10){
-          this.flag = false
-        } else{
-          this.flag = true
-        }
-        // let blocks = document.querySelectorAll('.conBlock');
-        // let tabblocks = document.querySelectorAll('.tab-title');
-        // blocks.forEach((item, index) => {
-        //   if (scrollTop >= item.offsetTop - 160) {
-        //     this.activeId = index;
-        //   }
-        // })
-        // if(tabblocks[this.activeId].offsetLeft > window.innerWidth-50){
-        //   this.$refs['tab-content'].scrollLeft = tabblocks[this.activeId].offsetLeft;
-        // }
-        // if(this.$refs['tab-content'].scrollLeft>tabblocks[this.activeId].offsetLeft){
-        //   this.$refs['tab-content'].scrollLeft = 0;
-        // }
-      },
+      // handleScroll () {
+      //   let scrollTop = this.$refs.content.scrollTop;
+      //   console.info(scrollTop)
+      //   if (scrollTop < 10){
+      //     this.flag = false
+      //   } else{
+      //     this.flag = true
+      //   }
+      //   // let blocks = document.querySelectorAll('.conBlock');
+      //   // let tabblocks = document.querySelectorAll('.tab-title');
+      //   // blocks.forEach((item, index) => {
+      //   //   if (scrollTop >= item.offsetTop - 160) {
+      //   //     this.activeId = index;
+      //   //   }
+      //   // })
+      //   // if(tabblocks[this.activeId].offsetLeft > window.innerWidth-50){
+      //   //   this.$refs['tab-content'].scrollLeft = tabblocks[this.activeId].offsetLeft;
+      //   // }
+      //   // if(this.$refs['tab-content'].scrollLeft>tabblocks[this.activeId].offsetLeft){
+      //   //   this.$refs['tab-content'].scrollLeft = 0;
+      //   // }
+      // },
       userInfo() {
         this.$navigateTo('/pages/my/userInfo')
       },

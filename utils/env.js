@@ -23,6 +23,7 @@ const imgHost = {
 
 // const env = process.env.NODE_ENV === 'production' ? 'prod' : 'test'
 const env = 'test'
+// const env = 'test'
 
 export const envSetting = {
   baseURL: baseUrl[env],

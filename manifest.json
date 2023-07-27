@@ -10,8 +10,8 @@
         "usingComponents" : true,
         "nvueStyleCompiler" : "uni-app",
         "compilerVersion" : 3,
-		"statusbar": {  
-            "immersed": false  
+        "statusbar" : {
+            "immersed" : false
         },
         "orientation" : [
             //竖屏正方向
@@ -135,7 +135,7 @@
     "quickapp" : {},
     /* 小程序特有相关 */
     "mp-weixin" : {
-        "appid" : "wxe2bb00ecc9005cc9",
+        "appid" : "wx608fa9c0b1adb94e",
         "setting" : {
             "urlCheck" : false,
             "es6" : true,
