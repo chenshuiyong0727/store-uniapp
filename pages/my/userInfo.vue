@@ -19,6 +19,29 @@
     >
       <view style="width: 90vw;margin-left: 5vw;">
         <u-form-item
+            label="头像"
+            borderBottom
+            label-width="64vw"
+            ref="item1"
+        >
+            <u-upload
+                :fileList="fileList1"
+                @afterRead="afterRead"
+                @delete="deletePic"
+                name="1"
+                multiple
+                :maxCount="1"
+                :width="70"
+                :height="70"
+            >
+            </u-upload>
+          <u-icon
+              class="biaodan-gengduo"
+              slot="right"
+              name="arrow-right"
+          ></u-icon>
+        </u-form-item>
+        <u-form-item
             label="账号"
             borderBottom
             ref="item1"
@@ -94,15 +117,15 @@
 <!--        </u-form-item>-->
       </view>
     </u--form>
-    <u-action-sheet
-        :show="showSex"
-        :actions="actions"
-        title="请选择性别"
-        description="如果选择保密会报错"
-        @close="showSex = false"
-        @select="sexSelect"
-    >
-    </u-action-sheet>
+<!--    <u-action-sheet-->
+<!--        :show="showSex"-->
+<!--        :actions="actions"-->
+<!--        title="请选择性别"-->
+<!--        description="如果选择保密会报错"-->
+<!--        @close="showSex = false"-->
+<!--        @select="sexSelect"-->
+<!--    >-->
+<!--    </u-action-sheet>-->
     <!--    <section style="padding-top:46px">-->
     <!--      <mt-field-->
     <!--        label="头像"-->
@@ -170,6 +193,8 @@
     },
     data() {
       return {
+        fileList1: [],
+        // sizeType: ['compressed'],
         form: {
           userMobile: '',
           userAccount: '',
@@ -178,6 +203,7 @@
         },
         actionUrl: envSetting.baseURL + '/gw/op/v1/file/uploadFileMinio',
         fileUrl: envSetting.fileUrl,
+        imgevent: '',
         type: '',
         showSex: false,
         rules: {
@@ -223,6 +249,66 @@
       this.getUcUser()
     },
     methods: {
+      // uploadMaterial() {
+      //   this.$refs.uploadImg.dispatchEvent(new MouseEvent("click"));
+      // },
+      deletePic(event) {
+        console.info(event)
+        this[`fileList${event.name}`].splice(event.index, 1)
+      },
+      async afterRead(event) {
+        console.info(event)
+        this.imgevent = event
+        // 当设置 multiple 为 true 时, file 为数组格式，否则为对象格式
+        let lists = [].concat(event.file)
+        let fileListLen = this[`fileList${event.name}`].length
+        lists.map((item) => {
+          this[`fileList${event.name}`].push({
+            ...item,
+            status: 'uploading',
+            message: '上传中'
+          })
+        })
+        for (let i = 0; i < lists.length; i++) {
+          const result = await this.uploadFilePromise(lists[i].url)
+          let item = this[`fileList${event.name}`][fileListLen]
+          this[`fileList${event.name}`].splice(fileListLen, 1, Object.assign(item, {
+            status: 'success',
+            message: '',
+            url: result
+          }))
+          fileListLen++
+        }
+      },
+      uploadFilePromise(url) {
+        var _this = this
+        return new Promise((resolve, reject) => {
+          let a = uni.uploadFile({
+            url: this.actionUrl, // 仅为示例，非真实的接口地址
+            filePath: url,
+            name: 'file',
+            formData: {
+              user: 'test'
+            },
+            success: (res) => {
+              setTimeout(() => {
+                // console.info(res)
+                // console.info(res.data)
+                let resDta = JSON.parse(res.data);
+                // console.info(resDta)
+                if (resDta.sub_code != 1000){
+                  this.$toast('上传失败，请上传1mb 以内的图片')
+                  _this.deletePic(_this.imgevent)
+                } else{
+                  this.$toast('上传成功')
+                  this.form.imgUrl = resDta.data
+                  resolve(res.data.data)
+                }
+              }, 1000)
+            }
+          });
+        })
+      },
       goBack() {
         uni.navigateBack()
       },
@@ -236,6 +322,12 @@
         }).then(res => {
           if (res.subCode === 1000) {
             this.form = res.data ? res.data : {}
+            if (this.form.imgUrl ){
+              let url=  this.fileUrl + this.form.imgUrl
+              let data1 ={}
+              data1.url= url
+              this.fileList1.push(data1)
+            }
           } else {
             this.$toast(res.subMsg)
           }
