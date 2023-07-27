@@ -80,7 +80,6 @@
         </u-form-item>
         <u-form-item
             label="姓名"
-            borderBottom
             ref="item1"
         >
           <u--input
