@@ -332,7 +332,7 @@ select{
   top: 0;
   left: 0;
   z-index: 99;
-  margin-top: 42px !important;
+  margin-top: 43px !important;
 }
 .fenlei_top_left{
   width: 100vw !important;
@@ -578,7 +578,7 @@ img{
   white-space: nowrap;
   overflow-x: scroll;
   overflow-y: hidden;
-/*> span {*/
+/*> text {*/
 /*  white-space: nowrap;*/
 /*  display: inline-block;*/
 /*  margin-right: 6vw;*/
@@ -1098,6 +1098,9 @@ a{
 
 .julibiaoti{
   margin-top: 44px;
+}
+.julibiaoti2{
+  margin-top: 48px;
 }
 .biaodan-gengduo{
   margin-bottom: -2px;

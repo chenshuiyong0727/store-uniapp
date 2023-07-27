@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import { request } from '@/utils/request.js' // 引入api文件
 import { envSetting } from '@/utils/env.js'
-import { formatTime ,navigateTo,toast} from '@/utils/util.js'
+import { formatTime ,navigateTo,toast,goBack} from '@/utils/util.js'
 
 // #ifdef H5
 import "@/utils/iosNoScale.js"
@@ -26,6 +26,8 @@ Vue.prototype.$navigateTo = navigateTo // 挂载到原型上
 Vue.prototype.$request = request // 挂载到原型上
 Vue.prototype.$fileUrl = envSetting.fileUrl
 Vue.prototype.$toast = toast // 挂载到原型上
+Vue.prototype.$goBack = goBack // 挂载到原型上
+
 
 // 判断是否是平板
 uni.getSystemInfo({

@@ -63,6 +63,9 @@ const toast = (title) => {
     icon: 'none'
   })
 }
+const goBack = () => {
+  uni.navigateBack()
+}
 /**
  * @descripting 轮询管理器功能
  * @param {Function} callback 轮询方法
@@ -240,5 +243,6 @@ module.exports = {
   isTimeExpire,
   throttle,
   toast,
+  goBack,
   debounce
 }

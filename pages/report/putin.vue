@@ -7,7 +7,7 @@
         title="入库报表"
     >
       <view
-          @click="goBack"
+          @click="$goBack"
           class="u-nav-slot"
           slot="left"
       >
@@ -213,9 +213,7 @@
 
     },
     methods: {
-      goBack(){
-        uni.navigateBack()
-      },
+
       cancelFrom() {
          this.showFrom=false
          this.queryParam.createTimeFrom = ''

@@ -14,7 +14,7 @@
     align-items: center;
 " >
       <u-navbar  :title="title" >
-        <view @click="goBack" class="u-nav-slot" slot="left">
+        <view @click="$goBack" class="u-nav-slot" slot="left">
           <u-icon name="arrow-left" size="20"></u-icon>
         </view>
       </u-navbar>
@@ -83,9 +83,7 @@ export default {
         }
       })
     },
-    goBack(){
-      uni.navigateBack()
-    },
+
     comfirm(){
       // this.$confirm('确认退出登录',"提示",{
       //   confirmButtonText: '确定',

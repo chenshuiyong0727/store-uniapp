@@ -1,11 +1,10 @@
 <template lang="html">
   <view class="login">
-    <!--    <mt-header title="用户详情">-->
     <u-navbar title="用户信息" bgColor="#F3F4F5">
-      <view @click="goBack" class="u-nav-slot" slot="left">
+      <view @click="$goBack" class="u-nav-slot" slot="left">
         <u-icon name="arrow-left" size="20"></u-icon>
       </view>
-      <view @click="submit" class="u-nav-slot" slot="right">
+      <view @click="submit" class="u-nav-slot" slot="right"  style="font-size: 15px;">
         保存
       </view>
     </u-navbar>
@@ -25,6 +24,7 @@
             ref="item1"
         >
             <u-upload
+                style="border-radius: 100%;"
                 :fileList="fileList1"
                 @afterRead="afterRead"
                 @delete="deletePic"
@@ -307,9 +307,6 @@
             }
           });
         })
-      },
-      goBack() {
-        uni.navigateBack()
       },
       hideKeyboard() {
         uni.hideKeyboard()

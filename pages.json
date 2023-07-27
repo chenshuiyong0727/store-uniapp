@@ -40,6 +40,12 @@
       }
     },
     {
+      "path": "pages/other/index",
+      "style": {
+        "navigationBarTitleText": "其他收支"
+      }
+    },
+    {
       "path": "pages/login/logout",
       "style": {
         "navigationBarTitleText": "账号设置",

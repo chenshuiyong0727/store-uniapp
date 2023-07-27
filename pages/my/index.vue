@@ -1,7 +1,7 @@
 <template lang="html">
   <view class="car2" ref="content" style="height: 100%;font-size: 15px; border-top:0;    overflow: auto;">
     <u-navbar title="个人中心" >
-      <view @click="goBack" class="u-nav-slot" slot="left">
+      <view @click="$goBack" class="u-nav-slot" slot="left">
         <image style="width: 23px; height: 23px;"  src="../../static/img/saoyisao4.png"></image>
       </view>
       <view @click="comfirm(1)" class="u-nav-slot" slot="right">
@@ -146,7 +146,7 @@
               src="../../static/img/new/huodong.png"></image>
           <p style="color: #333">活动</p>
         </view>
-        <view :to="{ name: '其他收支'}">
+        <view @click="$navigateTo('/pages/other/index')">
           <!--                  <text class="icon2-thecar"></text>-->
           <image
               style="margin-top: 7px;margin-bottom: -4px;width: 27px;height: 27px;"
@@ -284,9 +284,7 @@
       putin() {
         this.$navigateTo('/pages/report/putin')
       },
-      goBack(){
-        uni.navigateBack()
-      },
+
       scanCode(photo) {
         this.$router.push({ path: '/scanCode', query: { photo } })
       },
