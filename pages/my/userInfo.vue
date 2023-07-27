@@ -250,6 +250,7 @@
       // gotoIndex() {
       //   this.$router.push({ path: '/'})
       // },
+
       submit() {
         if (!this.form.imgUrl) {
           this.$toast('请上传头像')
@@ -271,7 +272,7 @@
           if (res.subCode === 1000) {
             this.$toast('修改成功')
             setTimeout(() => {
-                this.$navigateTo('/pages/my/index')
+                this.$navigateTo('/pages/my/index?userRealName='+this.form.userRealName)
             }, 1000)
           } else {
             this.$toast(res.subMsg)

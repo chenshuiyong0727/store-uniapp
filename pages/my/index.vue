@@ -11,8 +11,8 @@
 
     <view style="
         margin-top: 44px;
-        padding-bottom: 40vw;
-        padding-top: 7vw;
+        padding-bottom: 35vw;
+        padding-top: 5vw;
          background-image: linear-gradient(#e5f4ff, #f3f2f8);">
 <!--      <view class="zuoyouduiqi" style="    padding: 2.81vw 4.8vw !important;">-->
 <!--        <view @click="scanCode(1)" >-->
@@ -153,11 +153,17 @@
               src="../../static/img/new/qita.png"></image>
           <p style="color: #333">其他收支</p>
         </view>
+<!--        <view :to="{ name: '瑕疵商品'}">-->
+<!--          &lt;!&ndash;                  <text class="icon2-thecar"></text>&ndash;&gt;-->
+<!--          <image-->
+<!--              style="    margin-top: 4px;-->
+<!--    width: 27px;height: 27px;" src="../../static/img/new/xiaci.png"></image>-->
+<!--          <p style="color: #333">瑕疵商品</p>-->
+<!--        </view>-->
         <view :to="{ name: '瑕疵商品'}">
-          <!--                  <text class="icon2-thecar"></text>-->
           <image
-              style="    margin-top: 4px;
-    width: 27px;height: 27px;" src="../../static/img/new/xiaci.png"></image>
+              style="margin-top: 7px;margin-bottom: -4px;width: 27px;height: 27px;"
+              src="../../static/img/new/xiaci.png"></image>
           <p style="color: #333">瑕疵商品</p>
         </view>
         <view :to="{ name: '红包'}">
@@ -213,6 +219,11 @@
     //     this.handleScroll();
     //   }
     // },
+    onLoad(options) {
+      if (options && options.userRealName) {
+        this.form.userRealName = options.userRealName
+      }
+    },
     created() {
       this.getUcUser()
       this.getData()
