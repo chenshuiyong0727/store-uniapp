@@ -20,7 +20,7 @@
         <u-form-item
             label="头像"
             borderBottom
-            label-width="64vw"
+            label-width="66vw"
             ref="item1"
         >
             <u-upload
