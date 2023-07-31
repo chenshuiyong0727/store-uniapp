@@ -69,15 +69,15 @@
                 <u--input inputAlign="right" placeholder="请输入品牌" placeholderStyle="font-size: 14px;color:#c0c4cc" v-model="queryParam.brand" border="none"></u--input>
                 <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
               </u-form-item>
+              <u-form-item  label="开始时间" label-width="50vw" borderBottom @click="showFrom = true; hideKeyboard()">
+                <u--input inputAlign="right" prefixIcon="calendar" prefixIconStyle="font-size: 20px;color:#c0c4cc" placeholder="请选择开始时间" disabledColor="#fff" placeholderStyle="font-size: 14px;color:#c0c4cc" v-model="queryParam.createTimeFrom" border="none" disabled></u--input>
+                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
+              </u-form-item>
+              <u-form-item  label="结束时间" label-width="50vw" borderBottom @click="showTo = true; hideKeyboard()">
+                <u--input  inputAlign="right" prefixIcon="calendar" prefixIconStyle="font-size: 20px;color:#c0c4cc" placeholder="请选择结束时间" disabledColor="#fff" placeholderStyle="font-size: 14px;color:#c0c4cc" v-model="queryParam.createTimeTo" border="none" disabled></u--input>
+                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
+              </u-form-item>
             </u--form>
-            <u-form-item  label="开始时间" label-width="50vw" borderBottom @click="showFrom = true; hideKeyboard()">
-              <u--input inputAlign="right" prefixIcon="calendar" prefixIconStyle="font-size: 20px;color:#c0c4cc" placeholder="请选择开始时间" disabledColor="#fff" placeholderStyle="font-size: 14px;color:#c0c4cc" v-model="queryParam.createTimeFrom" border="none" disabled></u--input>
-              <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
-            </u-form-item>
-            <u-form-item  label="结束时间" label-width="50vw" borderBottom @click="showTo = true; hideKeyboard()">
-              <u--input inputAlign="right" prefixIcon="calendar" prefixIconStyle="font-size: 20px;color:#c0c4cc" placeholder="请选择结束时间" disabledColor="#fff" placeholderStyle="font-size: 14px;color:#c0c4cc" v-model="queryParam.createTimeTo" border="none" disabled></u--input>
-              <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
-            </u-form-item>
             <!--          <mt-field label="开始时间" type="date" placeholder="开始时间"  v-model="queryParam.createTimeFrom" ></mt-field>-->
             <!--          <mt-field label="结束时间" type="date" placeholder="结束时间"  v-model="queryParam.createTimeTo" ></mt-field>-->
           </view>
