@@ -41,25 +41,6 @@
             </view>
           </u-navbar>
           <view>
-            <!--          <mt-field label="类型">-->
-            <!--            <select class=" select100_select select" v-model="queryParam.type" >-->
-            <!--              <option label="请选择类型"  value=""></option>-->
-            <!--              <option-->
-            <!--                  v-for="item in typeList"-->
-            <!--                  :key="item.fieldValue"-->
-            <!--                  :label="item.fieldName"-->
-            <!--                  :value="+item.fieldValue">-->
-            <!--              </option>-->
-            <!--            </select>-->
-            <!--          </mt-field>-->
-            <!--            <uni-section title="配置左侧标题" type="line">-->
-            <!--              <uni-data-select-->
-            <!--                  v-model="queryParam.type"-->
-            <!--                  :localdata="range"-->
-            <!--                  @change="change"-->
-            <!--                  label="应用选择"-->
-            <!--              ></uni-data-select>-->
-            <!--            </uni-section>-->
             <u--form>
               <u-form-item  label="类型" borderBottom @click="show_sx_type = true; hideKeyboard()">
                 <u--input inputAlign="right" placeholder="请选择类型" disabledColor="#fff" placeholderStyle="font-size: 14px;color:#c0c4cc" v-model="queryParam.typeStr" border="none" disabled></u--input>
@@ -78,8 +59,6 @@
                 <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
               </u-form-item>
             </u--form>
-            <!--          <mt-field label="开始时间" type="date" placeholder="开始时间"  v-model="queryParam.createTimeFrom" ></mt-field>-->
-            <!--          <mt-field label="结束时间" type="date" placeholder="结束时间"  v-model="queryParam.createTimeTo" ></mt-field>-->
           </view>
         </view>
       </u-popup>
@@ -110,15 +89,6 @@
             <rudon-rowMenuDotDotDot :localdata="optionsOp" @change="menuAction1($event,item.id)">
               <text class="dw-button-common">操作</text>
             </rudon-rowMenuDotDotDot>
-            <!--              <el-dropdown trigger="click" style="margin-left: 1px;">-->
-            <!--                <button-->
-            <!--                  class="dw-button-common">操作-->
-            <!--                </button>-->
-            <!--                <el-dropdown-menu slot="dropdown" >-->
-            <!--                  <el-dropdown-item type="text" @click.native="goDetail(item.id , 1)">查看</el-dropdown-item>-->
-            <!--                  <el-dropdown-item type="text" @click.native="goDetail(item.id ,2)">修改</el-dropdown-item>-->
-            <!--                </el-dropdown-menu>-->
-            <!--              </el-dropdown>-->
           </view>
         </view>
         <view class="dingdans_con_other bt1">
@@ -158,68 +128,11 @@
       >松手释放↑</text>
       <text v-if="bottomStatus === 'loading'">加载中</text>
     </view>
-    <!--    </mt-loadmore>-->
-    <!--    <mt-popup-->
-    <!--      position="bottom"-->
-    <!--      v-model="isShowDialog2">-->
-    <!--      <mt-header title="筛选" >-->
-    <!--        <view slot="right">-->
-    <!--          <mt-button size="normal"  @click="resetHandle" style="font-size: 15px">关闭</mt-button>-->
-    <!--        </view>-->
-    <!--        <view slot="left">-->
-    <!--          <mt-button size="normal" @click="search1" style="font-size: 15px">确定</mt-button>-->
-    <!--        </view>-->
-    <!--      </mt-header>-->
-    <!--      <section style="height: 80vw;width: 100vw">-->
-    <!--        <mt-field label="类型" style="margin-top: 11vw;">-->
-    <!--&lt;!&ndash;          ??<select class="select100" v-model="queryParam.type" @change="changeSystem" >&ndash;&gt;-->
-    <!--&lt;!&ndash;               <option :disabled="true" value="" selected>请选择类型</option>&ndash;&gt;-->
-    <!--&lt;!&ndash;          ????<option v-for="x in typeList" :value="x.fieldValue">{{x.fieldName}}</option>&ndash;&gt;-->
-    <!--&lt;!&ndash;          ??</select>&ndash;&gt;-->
-    <!--&lt;!&ndash;          ??<el-select size="small" class="select100" v-model="queryParam.type" >&ndash;&gt;-->
-    <!--&lt;!&ndash;          <el-option :disabled="true" value="" selected>请选择类型</el-option>&ndash;&gt;-->
-    <!--&lt;!&ndash;          <el-option&ndash;&gt;-->
-    <!--&lt;!&ndash;            v-for="item in typeList"&ndash;&gt;-->
-    <!--&lt;!&ndash;            :key="item.fieldValue"&ndash;&gt;-->
-    <!--&lt;!&ndash;            :label="item.fieldName"&ndash;&gt;-->
-    <!--&lt;!&ndash;            :value="item.fieldValue">&ndash;&gt;-->
-    <!--&lt;!&ndash;          </el-option>&ndash;&gt;-->
-    <!--&lt;!&ndash;          ??</el-select>&ndash;&gt;-->
-    <!--          <select class=" select100_select select" v-model="queryParam.type" >-->
-    <!--            <option label="请选择类型"  value=""></option>-->
-    <!--            <option-->
-    <!--              v-for="item in typeList"-->
-    <!--              :key="item.fieldValue"-->
-    <!--              :label="item.fieldName"-->
-    <!--              :value="+item.fieldValue">-->
-    <!--            </option>-->
-    <!--          </select>-->
-
-    <!--        </mt-field>-->
-    <!--        <mt-field label="品牌" placeholder="请输入品牌"  v-model="queryParam.brand"></mt-field>-->
-    <!--        <mt-field label="开始时间" type="date" placeholder="开始时间"  v-model="queryParam.createTimeFrom" ></mt-field>-->
-    <!--        <mt-field label="结束时间" type="date" placeholder="结束时间"  v-model="queryParam.createTimeTo" ></mt-field>-->
-    <!--      </section>-->
-    <!--    </mt-popup>-->
     <view class="popContainer" v-if="pictureZoomShow" @click="pictureZoomShow = false">
       <view class="imageShow">
         <img :src="$fileUrl + imageZoom" alt="" width="100%" height="100%">
       </view>
     </view>
-    <!--    <view style="-->
-    <!--    right: 15px;-->
-    <!--    bottom: 10vw;-->
-    <!--    position: absolute;-->
-    <!--    text-align: center;-->
-    <!--    ">-->
-    <!--      <mt-button  @click="goDetail(null,3)"  style="margin-left: 5px;-->
-    <!--    border-radius: 100%;-->
-    <!--    margin-top: 0px;-->
-    <!--    height: 55px;-->
-    <!--    width: 55px;" type="primary">-->
-    <!--        <img src="../../static/img/add.png" height="30" width="30" slot="icon">-->
-    <!--      </mt-button>-->
-    <!--    </view>-->
     <view v-if="!tableData.length" class="to-the-bottom-1" >
       <p v-if="emtityMsg">
         <img src="../../static/img/new/empity_7.png" style="width: 60vw;">
@@ -228,7 +141,6 @@
         <text>{{emtityMsg}}</text>
       </p>
     </view>
-    <!--    <v-footer></v-footer>-->
   </view>
 </template>
 <script>
