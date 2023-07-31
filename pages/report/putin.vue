@@ -1,8 +1,8 @@
 <template>
   <view class="hello">
-<!--    <u-calendar-->
-<!--        :show="show"-->
-<!--        @confirm="handleConfirm"></u-calendar>-->
+    <!--    <u-calendar-->
+    <!--        :show="show"-->
+    <!--        @confirm="handleConfirm"></u-calendar>-->
     <u-navbar
         title="入库报表"
     >
@@ -12,48 +12,52 @@
           slot="left"
       >
         <u-icon
-          name="arrow-left"
-          size="20"
-      ></u-icon>
+            name="arrow-left"
+            size="20"
+        ></u-icon>
       </view>
     </u-navbar>
 
     <view class="fenlei_top zuoyouduiqi">
-     <view class="fenlei_top_left">
-           <view  @click="showFrom= true">
-             <!-- <el-date-picker style="width: 44vw" readonly="readonly"
-                             v-model="queryParam.createTimeFrom" value-format="yyyy-MM"  type="month"
-                             placeholder="开始时间"></el-date-picker> -->
-			<u--input
-				style="width: 44vw;background-color: #f4f3f8;" readonly="readonly"
-				prefixIcon="calendar"
-				placeholder="开始时间"
-        placeholderStyle="font-size: 15px;color:#c0c4cc"
-				v-model = "queryParam.createTimeFrom"
-				prefixIconStyle="font-size: 20px;color:#c0c4cc"
-				clearable
-			>
-			</u--input>
-           </view>
+      <view class="fenlei_top_left">
+        <view  @click="showFrom= true">
+          <!-- <el-date-picker style="width: 44vw" readonly="readonly"
+                          v-model="queryParam.createTimeFrom" value-format="yyyy-MM"  type="month"
+                          placeholder="开始时间"></el-date-picker> -->
+          <u--input
+              style="width: 44vw;"
+              class="searchInput"
+              readonly="readonly"
+              prefixIcon="calendar"
+              placeholder="开始时间"
+              placeholderStyle="font-size: 15px;color:#c0c4cc"
+              v-model = "queryParam.createTimeFrom"
+              prefixIconStyle="font-size: 20px;color:#c0c4cc"
+              clearable
+          >
+          </u--input>
+        </view>
       </view>
       <view style="margin-right: 6px;margin-left: 6px;">
         <text>至</text>
       </view>
       <view class="fenlei_top_left">
         <view   @click="showTo= true">
-			<u--input
-          placeholderStyle="font-size: 15px;color:#c0c4cc"
-				style="width: 44vw;background-color: #f4f3f8;" readonly="readonly"
-				prefixIcon="calendar"
-				placeholder="结束时间"
-				v-model = "queryParam.createTimeTo"
-				prefixIconStyle="font-size: 20px;color:#c0c4cc"
-				clearable
-			>
-			</u--input>
-   <!--       <el-date-picker style="width: 44vw" readonly="readonly"
-                          v-model="queryParam.createTimeTo" value-format="yyyy-MM"  type="month"
-                          placeholder="结束时间"></el-date-picker> -->
+          <u--input
+              placeholderStyle="font-size: 15px;color:#c0c4cc"
+              style="width: 44vw;"
+              class="searchInput"
+              readonly="readonly"
+              prefixIcon="calendar"
+              placeholder="结束时间"
+              v-model = "queryParam.createTimeTo"
+              prefixIconStyle="font-size: 20px;color:#c0c4cc"
+              clearable
+          >
+          </u--input>
+          <!--       <el-date-picker style="width: 44vw" readonly="readonly"
+                                 v-model="queryParam.createTimeTo" value-format="yyyy-MM"  type="month"
+                                 placeholder="结束时间"></el-date-picker> -->
         </view>
       </view>
     </view>
@@ -71,13 +75,13 @@
         @confirm="confirmTo"
         @cancel="cancelTo"
     ></u-datetime-picker>
-<!--    列表开始-->
+    <!--    列表开始-->
     <view style="    padding-top: 44px;">
       <view class="dingdans_item_rt" v-for="(item,index) in tableData" :key="index">
         <view class="dingdans_top_rt">
-            <strong style="margin-left: 12px;">月份：</strong>
-              <strong style="color: #409eff"
-                @click="jumpDetail(item.months )"> {{item.months}} </strong>
+          <strong style="margin-left: 12px;">月份：</strong>
+          <strong style="color: #409eff"
+                  @click="jumpDetail(item.months )"> {{item.months}} </strong>
         </view>
         <view class="dingdans_con_rt">
           <view  style="">
@@ -172,7 +176,7 @@
       <p>
         <image style="width: 60vw; height: 60vw;"  src="../../static/img/new/empity_7.png"></image>
 
-<!--        <u&#45;&#45;image src="../../static/img/new/empity_7.png" style="width: 60vw;"></u&#45;&#45;image>-->
+        <!--        <u&#45;&#45;image src="../../static/img/new/empity_7.png" style="width: 60vw;"></u&#45;&#45;image>-->
       </p>
       <p>
         <text>暂无相关数据</text>
@@ -215,22 +219,22 @@
     methods: {
 
       cancelFrom() {
-         this.showFrom=false
-         this.queryParam.createTimeFrom = ''
-         this.getPage()
-       },
+        this.showFrom=false
+        this.queryParam.createTimeFrom = ''
+        this.getPage()
+      },
       cancelTo() {
-         this.showTo=false
-         this.queryParam.createTimeTo = ''
-         this.getPage()
-       },
-       confirmFrom(e) {
+        this.showTo=false
+        this.queryParam.createTimeTo = ''
+        this.getPage()
+      },
+      confirmFrom(e) {
         this.showFrom = false;
         let timeValue =  uni.$u.timeFormat(e.value, 'yyyy-mm');
         this.queryParam.createTimeFrom = timeValue
         this.getPage()
       },
-       confirmTo(e) {
+      confirmTo(e) {
         this.showTo = false;
         let timeValue =  uni.$u.timeFormat(e.value, 'yyyy-mm');
         this.queryParam.createTimeTo = timeValue

@@ -1,210 +1,202 @@
 <template>
   <view class="hello" ref="hello">
-<!--    <mt-header title="其他收支">-->
-<!--      <view slot="left">-->
-<!--        <mt-button  icon="back" @click="$router.go(-1)"></mt-button>-->
-<!--      </view>-->
-<!--      <view slot="right">-->
-<!--        <el-dropdown trigger="click" style="margin-left: 1px;">-->
-<!--           <mt-button size="normal">-->
-<!--            <img  style="width: 25px" src="../../static/img/slh.png">-->
-<!--          </mt-button>-->
-<!--          <el-dropdown-menu slot="dropdown" >-->
-<!--            <el-dropdown-item type="text" @click.native="goDetail(null,3)">添加</el-dropdown-item>-->
-<!--            <el-dropdown-item type="text" @click.native="resetHandle">重置</el-dropdown-item>-->
-<!--          </el-dropdown-menu>-->
-<!--        </el-dropdown>-->
-<!--      </view>-->
-<!--    </mt-header>-->
     <u-navbar title="其他收支">
       <view @click="$goBack" class="u-nav-slot" slot="left">
         <u-icon name="arrow-left" size="20"></u-icon>
       </view>
       <view  class="u-nav-slot" style="font-size: 15px;" slot="right">
-<!--        保存-->
         <rudon-rowMenuDotDotDot :localdata="options" @change="menuAction($event, '10086')">
           <image style="height: 25px;width: 25px" src="../../static/img/slh.png"></image>
         </rudon-rowMenuDotDotDot>
       </view>
     </u-navbar>
-      <view class="fenlei_top">
-        <view>
-<!--          <el-input-->
-<!--            clearable-->
-<!--            placeholder="搜索商品名称"-->
-<!--            prefix-icon="el-icon-search"-->
-<!--            v-model.trim="queryParam.name">-->
-<!--          </el-input>-->
-<!--          <view class="u-demo-block">-->
-<!--            <view class="u-demo-block__content">-->
-<!--              <view class="u-page__tag-item">-->
-<!--                <u-search shape="square" placeholder="搜索商品名称" v-model="queryParam.name"></u-search>-->
-<!--              </view>-->
-<!--            </view>-->
-<!--          </view>-->
-          <view class="u-demo-block">
-            <view class="u-demo-block__content m-t-10">
-              <view class="u-page__tag-item">
-<!--                <u-search-->
-<!--                    placeholderStyle="font-size: 15px;color:#c0c4cc"-->
-<!--                    placeholder="搜索商品名称"-->
-<!--                    v-model="queryParam.name"-->
-<!--                    :show-action="false"-->
-<!--                    @change="search1"-->
-<!--                    shape="square"-->
-<!--                ></u-search>-->
-                <u--input
-                    style="background-color: #f4f3f8;"
-                    prefixIcon="search"
-                    placeholder="搜索商品名称"
-                    placeholderStyle="font-size: 15px;color:#c0c4cc"
-                    v-model = "queryParam.name"
-                    prefixIconStyle="font-size: 24px;color:#c0c4cc"
-                    :show-action="false"
-                    @change="search1"
-                    clearable
-                >
-                </u--input>
-              </view>
+    <view class="fenlei_top zuoyouduiqi">
+      <view style="width: 83vw">
+        <u--input
+            class="searchInput"
+            prefixIcon="search"
+            placeholder="搜索商品名称"
+            placeholderStyle="font-size: 14px;color:#c0c4cc"
+            v-model = "queryParam.name"
+            prefixIconStyle="font-size: 24px;color:#c0c4cc"
+            :show-action="false"
+            @change="search1"
+            clearable
+        >
+        </u--input>
+      </view>
+      <view class="fenlei_top_right" @click="isShowDialog2 = true">
+        <image src="../../static/img/search.png" style="height:30px; width:30px;" ></image>
+      </view>
+    </view>
+    <view>
+      <u-popup :show="isShowDialog2" @close="close" mode="bottom">
+        <view style="width: 90vw;margin-left: 5vw;">
+          <u-navbar title="筛选" :fixed="false" :border="true">
+            <view  @click="resetHandle" style="font-size: 15px;" class="u-nav-slot" slot="left">
+              <text>关闭</text>
             </view>
+            <view  @click="search1" class="u-nav-slot" style="font-size: 15px;" slot="right">
+              <text>确定</text>
+            </view>
+          </u-navbar>
+          <view>
+            <!--          <mt-field label="类型">-->
+            <!--            <select class=" select100_select select" v-model="queryParam.type" >-->
+            <!--              <option label="请选择类型"  value=""></option>-->
+            <!--              <option-->
+            <!--                  v-for="item in typeList"-->
+            <!--                  :key="item.fieldValue"-->
+            <!--                  :label="item.fieldName"-->
+            <!--                  :value="+item.fieldValue">-->
+            <!--              </option>-->
+            <!--            </select>-->
+            <!--          </mt-field>-->
+            <!--            <uni-section title="配置左侧标题" type="line">-->
+            <!--              <uni-data-select-->
+            <!--                  v-model="queryParam.type"-->
+            <!--                  :localdata="range"-->
+            <!--                  @change="change"-->
+            <!--                  label="应用选择"-->
+            <!--              ></uni-data-select>-->
+            <!--            </uni-section>-->
+            <u--form>
+              <u-form-item  label="类型" borderBottom @click="show_sx_type = true; hideKeyboard()">
+                <u--input inputAlign="right" placeholder="请选择类型" disabledColor="#fff" v-model="queryParam.typeStr" border="none" disabled></u--input>
+                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
+              </u-form-item>
+              <u-form-item label="品牌" borderBottom>
+                <u--input inputAlign="right" placeholder="请输入品牌" v-model="queryParam.brand" border="none"></u--input>
+                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
+              </u-form-item>
+            </u--form>
+            <!--          <mt-field label="开始时间" type="date" placeholder="开始时间"  v-model="queryParam.createTimeFrom" ></mt-field>-->
+            <!--          <mt-field label="结束时间" type="date" placeholder="结束时间"  v-model="queryParam.createTimeTo" ></mt-field>-->
           </view>
         </view>
-<!--        <view class="fenlei_top_right" @click="isShowDialog2 = true">-->
-<!--          <image src="../../static/img/search.png" style="height:30px; width:30px;" ></image>-->
-<!--        </view>-->
-      </view>
-<!--    <mt-loadmore-->
-<!--      style="padding-top: 0.86rem"-->
-<!--      :top-method="loadTop"-->
-<!--      :bottom-method="loadBottom"-->
-<!--      :bottom-all-loaded="allLoaded"-->
-<!--      @top-status-change="handleTopChange"-->
-<!--      @bottom-status-change="handleBottomChange"-->
-<!--      :autoFill="false"-->
-<!--      ref="loadmore"-->
-<!--    >-->
-
-      <view class="julibiaoti">
-        <view class="dingdans_item_other" v-for="(item,index) in tableData" :key="index">
-          <view class="dingdans_top_other zuoyouduiqi">
-            <view @click="goDetail(item.id , 1)" >
-              <strong class="dingdans_con_other_strong"> {{item.name}} </strong>
-            </view>
-            <view>
-              <rudon-rowMenuDotDotDot :localdata="optionsOp" @change="menuAction1($event,item.id)">
-<!--                <image style="height: 25px;width: 25px" src="../../static/img/slh.png"></image>-->
-                <u-button class="dw-button-common">操作</u-button>
-              </rudon-rowMenuDotDotDot>
-<!--              <el-dropdown trigger="click" style="margin-left: 1px;">-->
-<!--                <button-->
-<!--                  class="dw-button-common">操作-->
-<!--                </button>-->
-<!--                <el-dropdown-menu slot="dropdown" >-->
-<!--                  <el-dropdown-item type="text" @click.native="goDetail(item.id , 1)">查看</el-dropdown-item>-->
-<!--                  <el-dropdown-item type="text" @click.native="goDetail(item.id ,2)">修改</el-dropdown-item>-->
-<!--                </el-dropdown-menu>-->
-<!--              </el-dropdown>-->
-            </view>
+      </u-popup>
+    </view>
+    <u-picker :show="show_sx_type" :columns="columns" @cancel="show_sx_type= false" @confirm="confirm_sx_type" keyName="fieldName"></u-picker>
+    <view class="julibiaoti2">
+      <view class="dingdans_item_other" v-for="(item,index) in tableData" :key="index">
+        <view class="dingdans_top_other zuoyouduiqi">
+          <view @click="goDetail(item.id , 1)" >
+            <strong class="dingdans_con_other_strong"> {{item.name}} </strong>
           </view>
-          <view class="dingdans_con_other bt1">
-            <view  class="dingdans_top_common_other_left">
-              <text>类型：</text>
-            </view>
-            <view   class="dingdans_top_common_other">
-              <text >{{ item.type | dictToDescTypeValue(39) }}</text>
-            </view>
+          <view>
+            <rudon-rowMenuDotDotDot :localdata="optionsOp" @change="menuAction1($event,item.id)">
+              <text class="dw-button-common">操作</text>
+            </rudon-rowMenuDotDotDot>
+            <!--              <el-dropdown trigger="click" style="margin-left: 1px;">-->
+            <!--                <button-->
+            <!--                  class="dw-button-common">操作-->
+            <!--                </button>-->
+            <!--                <el-dropdown-menu slot="dropdown" >-->
+            <!--                  <el-dropdown-item type="text" @click.native="goDetail(item.id , 1)">查看</el-dropdown-item>-->
+            <!--                  <el-dropdown-item type="text" @click.native="goDetail(item.id ,2)">修改</el-dropdown-item>-->
+            <!--                </el-dropdown-menu>-->
+            <!--              </el-dropdown>-->
           </view>
-          <view style="margin-top: 10px;" class="dingdans_con_other bt1">
-            <view class="dingdans_top_common_other_left">
-              <text>金额：</text>
-            </view>
-            <view class="dingdans_top_common_other">
-              <text >{{ item.price }}</text>
-            </view>
+        </view>
+        <view class="dingdans_con_other bt1">
+          <view  class="dingdans_top_common_other_left">
+            <text>类型：</text>
           </view>
-          <view style="margin-top: 10px;" class="dingdans_con_other bt1">
-            <view class="dingdans_top_common_other_left">
-              <text>时间：</text>
-            </view>
-            <view class="dingdans_top_common_other">
-              <text >{{item.createTime |formateTime }}</text>
-            </view>
+          <view   class="dingdans_top_common_other">
+            <text >{{ item.type | dictToDescTypeValue(39) }}</text>
+          </view>
+        </view>
+        <view style="margin-top: 10px;" class="dingdans_con_other bt1">
+          <view class="dingdans_top_common_other_left">
+            <text>金额：</text>
+          </view>
+          <view class="dingdans_top_common_other">
+            <text >{{ item.price }}</text>
+          </view>
+        </view>
+        <view style="margin-top: 10px;" class="dingdans_con_other bt1">
+          <view class="dingdans_top_common_other_left">
+            <text>时间：</text>
+          </view>
+          <view class="dingdans_top_common_other">
+            <text >{{item.createTime |formateTime }}</text>
           </view>
         </view>
       </view>
-      <view slot="top" class="mint-loadmore-top">
-        <text v-show="topStatus !== 'loading'" :class="{ 'rotate': topStatus === 'drop' }">松手释放↓</text>
-        <text v-show="topStatus === 'loading'">加载中</text>
-      </view>
-      <view slot="bottom" class="mint-loadmore-bottom">
-        <text
+    </view>
+    <view slot="top" class="mint-loadmore-top">
+      <text v-show="topStatus !== 'loading'" :class="{ 'rotate': topStatus === 'drop' }">松手释放↓</text>
+      <text v-show="topStatus === 'loading'">加载中</text>
+    </view>
+    <view slot="bottom" class="mint-loadmore-bottom">
+      <text
           v-if="bottomStatus !== 'loading'"
           :class="{ 'rotate': bottomStatus === 'drop' }"
-        >松手释放↑</text>
-        <text v-if="bottomStatus === 'loading'">加载中</text>
-      </view>
-<!--    </mt-loadmore>-->
-<!--    <mt-popup-->
-<!--      position="bottom"-->
-<!--      v-model="isShowDialog2">-->
-<!--      <mt-header title="筛选" >-->
-<!--        <view slot="right">-->
-<!--          <mt-button size="normal"  @click="resetHandle" style="font-size: 15px">关闭</mt-button>-->
-<!--        </view>-->
-<!--        <view slot="left">-->
-<!--          <mt-button size="normal" @click="search1" style="font-size: 15px">确定</mt-button>-->
-<!--        </view>-->
-<!--      </mt-header>-->
-<!--      <section style="height: 80vw;width: 100vw">-->
-<!--        <mt-field label="类型" style="margin-top: 11vw;">-->
-<!--&lt;!&ndash;            <select class="select100" v-model="queryParam.type" @change="changeSystem" >&ndash;&gt;-->
-<!--&lt;!&ndash;               <option :disabled="true" value="" selected>请选择类型</option>&ndash;&gt;-->
-<!--&lt;!&ndash;              <option v-for="x in typeList" :value="x.fieldValue">{{x.fieldName}}</option>&ndash;&gt;-->
-<!--&lt;!&ndash;            </select>&ndash;&gt;-->
-<!--&lt;!&ndash;            <el-select size="small" class="select100" v-model="queryParam.type" >&ndash;&gt;-->
-<!--&lt;!&ndash;          <el-option :disabled="true" value="" selected>请选择类型</el-option>&ndash;&gt;-->
-<!--&lt;!&ndash;          <el-option&ndash;&gt;-->
-<!--&lt;!&ndash;            v-for="item in typeList"&ndash;&gt;-->
-<!--&lt;!&ndash;            :key="item.fieldValue"&ndash;&gt;-->
-<!--&lt;!&ndash;            :label="item.fieldName"&ndash;&gt;-->
-<!--&lt;!&ndash;            :value="item.fieldValue">&ndash;&gt;-->
-<!--&lt;!&ndash;          </el-option>&ndash;&gt;-->
-<!--&lt;!&ndash;            </el-select>&ndash;&gt;-->
-<!--          <select class=" select100_select select" v-model="queryParam.type" >-->
-<!--            <option label="请选择类型"  value=""></option>-->
-<!--            <option-->
-<!--              v-for="item in typeList"-->
-<!--              :key="item.fieldValue"-->
-<!--              :label="item.fieldName"-->
-<!--              :value="+item.fieldValue">-->
-<!--            </option>-->
-<!--          </select>-->
+      >松手释放↑</text>
+      <text v-if="bottomStatus === 'loading'">加载中</text>
+    </view>
+    <!--    </mt-loadmore>-->
+    <!--    <mt-popup-->
+    <!--      position="bottom"-->
+    <!--      v-model="isShowDialog2">-->
+    <!--      <mt-header title="筛选" >-->
+    <!--        <view slot="right">-->
+    <!--          <mt-button size="normal"  @click="resetHandle" style="font-size: 15px">关闭</mt-button>-->
+    <!--        </view>-->
+    <!--        <view slot="left">-->
+    <!--          <mt-button size="normal" @click="search1" style="font-size: 15px">确定</mt-button>-->
+    <!--        </view>-->
+    <!--      </mt-header>-->
+    <!--      <section style="height: 80vw;width: 100vw">-->
+    <!--        <mt-field label="类型" style="margin-top: 11vw;">-->
+    <!--&lt;!&ndash;          ??<select class="select100" v-model="queryParam.type" @change="changeSystem" >&ndash;&gt;-->
+    <!--&lt;!&ndash;               <option :disabled="true" value="" selected>请选择类型</option>&ndash;&gt;-->
+    <!--&lt;!&ndash;          ????<option v-for="x in typeList" :value="x.fieldValue">{{x.fieldName}}</option>&ndash;&gt;-->
+    <!--&lt;!&ndash;          ??</select>&ndash;&gt;-->
+    <!--&lt;!&ndash;          ??<el-select size="small" class="select100" v-model="queryParam.type" >&ndash;&gt;-->
+    <!--&lt;!&ndash;          <el-option :disabled="true" value="" selected>请选择类型</el-option>&ndash;&gt;-->
+    <!--&lt;!&ndash;          <el-option&ndash;&gt;-->
+    <!--&lt;!&ndash;            v-for="item in typeList"&ndash;&gt;-->
+    <!--&lt;!&ndash;            :key="item.fieldValue"&ndash;&gt;-->
+    <!--&lt;!&ndash;            :label="item.fieldName"&ndash;&gt;-->
+    <!--&lt;!&ndash;            :value="item.fieldValue">&ndash;&gt;-->
+    <!--&lt;!&ndash;          </el-option>&ndash;&gt;-->
+    <!--&lt;!&ndash;          ??</el-select>&ndash;&gt;-->
+    <!--          <select class=" select100_select select" v-model="queryParam.type" >-->
+    <!--            <option label="请选择类型"  value=""></option>-->
+    <!--            <option-->
+    <!--              v-for="item in typeList"-->
+    <!--              :key="item.fieldValue"-->
+    <!--              :label="item.fieldName"-->
+    <!--              :value="+item.fieldValue">-->
+    <!--            </option>-->
+    <!--          </select>-->
 
-<!--        </mt-field>-->
-<!--        <mt-field label="品牌" placeholder="请输入品牌"  v-model="queryParam.brand"></mt-field>-->
-<!--        <mt-field label="开始时间" type="date" placeholder="开始时间"  v-model="queryParam.createTimeFrom" ></mt-field>-->
-<!--        <mt-field label="结束时间" type="date" placeholder="结束时间"  v-model="queryParam.createTimeTo" ></mt-field>-->
-<!--      </section>-->
-<!--    </mt-popup>-->
+    <!--        </mt-field>-->
+    <!--        <mt-field label="品牌" placeholder="请输入品牌"  v-model="queryParam.brand"></mt-field>-->
+    <!--        <mt-field label="开始时间" type="date" placeholder="开始时间"  v-model="queryParam.createTimeFrom" ></mt-field>-->
+    <!--        <mt-field label="结束时间" type="date" placeholder="结束时间"  v-model="queryParam.createTimeTo" ></mt-field>-->
+    <!--      </section>-->
+    <!--    </mt-popup>-->
     <view class="popContainer" v-if="pictureZoomShow" @click="pictureZoomShow = false">
       <view class="imageShow">
         <img :src="$fileUrl + imageZoom" alt="" width="100%" height="100%">
       </view>
     </view>
-<!--    <view style="-->
-<!--    right: 15px;-->
-<!--    bottom: 10vw;-->
-<!--    position: absolute;-->
-<!--    text-align: center;-->
-<!--    ">-->
-<!--      <mt-button  @click="goDetail(null,3)"  style="margin-left: 5px;-->
-<!--    border-radius: 100%;-->
-<!--    margin-top: 0px;-->
-<!--    height: 55px;-->
-<!--    width: 55px;" type="primary">-->
-<!--        <img src="../../static/img/add.png" height="30" width="30" slot="icon">-->
-<!--      </mt-button>-->
-<!--    </view>-->
+    <!--    <view style="-->
+    <!--    right: 15px;-->
+    <!--    bottom: 10vw;-->
+    <!--    position: absolute;-->
+    <!--    text-align: center;-->
+    <!--    ">-->
+    <!--      <mt-button  @click="goDetail(null,3)"  style="margin-left: 5px;-->
+    <!--    border-radius: 100%;-->
+    <!--    margin-top: 0px;-->
+    <!--    height: 55px;-->
+    <!--    width: 55px;" type="primary">-->
+    <!--        <img src="../../static/img/add.png" height="30" width="30" slot="icon">-->
+    <!--      </mt-button>-->
+    <!--    </view>-->
     <view v-if="!tableData.length" class="to-the-bottom-1" >
       <p v-if="emtityMsg">
         <img src="../../static/img/new/empity_7.png" style="width: 60vw;">
@@ -213,7 +205,7 @@
         <text>{{emtityMsg}}</text>
       </p>
     </view>
-<!--    <v-footer></v-footer>-->
+    <!--    <v-footer></v-footer>-->
   </view>
 </template>
 <script>
@@ -230,6 +222,7 @@
     data() {
       return {
         orderData2: '',
+        show_sx_type: false,
         isShowDialog2: false,
         emtityMsg: '',
         pictureZoomShow: false,
@@ -257,6 +250,7 @@
         ],
         queryParam: {
           type: '',
+          typeStr: '',
           actNo: '',
           name: '',
           brand: '',
@@ -271,6 +265,17 @@
           pageNum: 1
         },
         typeList: [],
+        columns: [
+          // [{
+          //   label: '雪月夜',
+          //   // 其他属性值
+          //   id: 2021
+          //   // ...
+          // }, {
+          //   label: '冷夜雨',
+          //   id: 804
+          // }]
+        ],
         topStatus: "",
         bottomStatus: "",
         allLoaded: false,
@@ -303,8 +308,8 @@
           this.resetHandle()
         }
       },
-        // <el-dropdown-item type="text" @click.native="goDetail(item.id , 1)">查看</el-dropdown-item>-->
-        // <!--                  <el-dropdown-item type="text" @click.native="goDetail(item.id ,2)">修改</el-dropdown-item>-->
+      // <el-dropdown-item type="text" @click.native="goDetail(item.id , 1)">查看</el-dropdown-item>-->
+      // <!--                  <el-dropdown-item type="text" @click.native="goDetail(item.id ,2)">修改</el-dropdown-item>-->
       menuAction1 (action, rowId) {
         // 忽略初始化时的传入的空操作
 
@@ -317,6 +322,18 @@
         if ('update' == action){
           this.goDetail(rowId,2)
         }
+      },
+      confirm_sx_type(e) {
+        this.show_sx_type= false
+        console.info(e)
+        let fieldValue = e.value[0].fieldValue
+        let fieldName = e.value[0].fieldName
+        this.queryParam.type = fieldValue
+        this.queryParam.typeStr = fieldName
+        this.search1()
+      },
+      hideKeyboard() {
+        uni.hideKeyboard()
       },
       goDetail(id, type) {
         this.$router.push({ path: '/otherAdd', query: { id, type } })
@@ -345,8 +362,10 @@
       },
       listSysDict() {
         let sysDictList = uni.getStorageSync('sysDictList') ? JSON.parse(
-          uni.getStorageSync('sysDictList')) : []
+            uni.getStorageSync('sysDictList')) : []
         this.typeList = sysDictList.filter(item => item.typeValue == 39)
+        console.info(this.typeList)
+        this.columns.push(this.typeList)
       },
       loadData(p_status) {
         // 第一次加载或者下拉刷新最新数据
@@ -384,8 +403,12 @@
         this.getPage()
       },
       // 日期
-      open(picker) {
-        this.$refs[picker].open();
+      open() {
+        console.log('open');
+      },
+      close() {
+        this.isShowDialog2 = false
+        console.log('close');
       },
       search1() {
         this.queryParam.pageNum = 1
@@ -503,9 +526,9 @@
   /*  font-size: 3.5vw;*/
   /*  margin-top: -1vw;*/
   /*}*/
-/*
- -----分割线---
-*/
+  /*
+   -----分割线---
+  */
   * {
     margin: 0;
     padding: 0;

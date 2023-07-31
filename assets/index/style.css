@@ -383,8 +383,7 @@ select{
   line-height: 25px;
 }
 .fenlei_top_right {
-  width: 50px;
-  text-align: center;
+  margin-right: 5px;
 }
 
 .fenlei_top_report {
@@ -804,6 +803,12 @@ img{
 }
 
 /*左右对齐*/
+.searchInput{
+  background-color: #f4f3f8;
+  height: 35px;
+  border-radius: 0px;
+  border: 0px;
+}
 .zuoyouduiqi{
   display: flex;
   justify-content: space-between;
