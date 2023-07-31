@@ -29,10 +29,10 @@
               class="searchInput"
               readonly="readonly"
               prefixIcon="calendar"
+              prefixIconStyle="font-size: 20px;color:#c0c4cc"
               placeholder="开始时间"
               placeholderStyle="font-size: 15px;color:#c0c4cc"
               v-model = "queryParam.createTimeFrom"
-              prefixIconStyle="font-size: 20px;color:#c0c4cc"
               clearable
           >
           </u--input>
@@ -199,8 +199,6 @@
     name: "HelloWorld",
     data() {
       return {
-        pickerValue:new Date(),
-        pickerValueType: '',
         showFrom: false,
         showTo: false,
         allLoaded: false,

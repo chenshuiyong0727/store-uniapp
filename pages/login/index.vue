@@ -11,6 +11,7 @@
 					class="common-input"
 					style="width: 70vw;"
 					prefixIcon="account"
+					placeholderStyle="font-size: 14px;color:#c0c4cc"
 		            placeholder="请输入账号"
 		            v-model = "loginForm.loginAccount"
 					prefixIconStyle="font-size: 22px;color:#c0c4cc"
@@ -23,6 +24,7 @@
 		            placeholder="请输入密码"
 		            prefixIcon="lock"
 		            type="password"
+					placeholderStyle="font-size: 14px;color:#c0c4cc"
 					prefixIconStyle="font-size: 22px;color:#c0c4cc"
 		            clearable
 		            v-model="loginForm.loginPassword">

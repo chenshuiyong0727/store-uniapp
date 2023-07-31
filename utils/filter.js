@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import DICT_KEYS from '@/utils/staticEnum'
 import { parseTime } from './index'
+import { request } from '@/utils/request.js' // 引入api文件
 
 let sysDictList = uni.getStorageSync('sysDictList') ? JSON.parse(uni.getStorageSync('sysDictList')) : []
 if (!sysDictList.length) {

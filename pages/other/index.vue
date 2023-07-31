@@ -62,14 +62,22 @@
             <!--            </uni-section>-->
             <u--form>
               <u-form-item  label="类型" borderBottom @click="show_sx_type = true; hideKeyboard()">
-                <u--input inputAlign="right" placeholder="请选择类型" disabledColor="#fff" v-model="queryParam.typeStr" border="none" disabled></u--input>
+                <u--input inputAlign="right" placeholder="请选择类型" disabledColor="#fff" placeholderStyle="font-size: 14px;color:#c0c4cc" v-model="queryParam.typeStr" border="none" disabled></u--input>
                 <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
               </u-form-item>
               <u-form-item label="品牌" borderBottom>
-                <u--input inputAlign="right" placeholder="请输入品牌" v-model="queryParam.brand" border="none"></u--input>
+                <u--input inputAlign="right" placeholder="请输入品牌" placeholderStyle="font-size: 14px;color:#c0c4cc" v-model="queryParam.brand" border="none"></u--input>
                 <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
               </u-form-item>
             </u--form>
+            <u-form-item  label="开始时间" label-width="50vw" borderBottom @click="showFrom = true; hideKeyboard()">
+              <u--input inputAlign="right" prefixIcon="calendar" prefixIconStyle="font-size: 20px;color:#c0c4cc" placeholder="请选择开始时间" disabledColor="#fff" placeholderStyle="font-size: 14px;color:#c0c4cc" v-model="queryParam.createTimeFrom" border="none" disabled></u--input>
+              <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
+            </u-form-item>
+            <u-form-item  label="结束时间" label-width="50vw" borderBottom @click="showTo = true; hideKeyboard()">
+              <u--input inputAlign="right" prefixIcon="calendar" prefixIconStyle="font-size: 20px;color:#c0c4cc" placeholder="请选择结束时间" disabledColor="#fff" placeholderStyle="font-size: 14px;color:#c0c4cc" v-model="queryParam.createTimeTo" border="none" disabled></u--input>
+              <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
+            </u-form-item>
             <!--          <mt-field label="开始时间" type="date" placeholder="开始时间"  v-model="queryParam.createTimeFrom" ></mt-field>-->
             <!--          <mt-field label="结束时间" type="date" placeholder="结束时间"  v-model="queryParam.createTimeTo" ></mt-field>-->
           </view>
@@ -77,6 +85,21 @@
       </u-popup>
     </view>
     <u-picker :show="show_sx_type" :columns="columns" @cancel="show_sx_type= false" @confirm="confirm_sx_type" keyName="fieldName"></u-picker>
+    <u-datetime-picker
+        :show="showFrom"
+        mode="date"
+        :minDate="1646064000000"
+        @confirm="confirmFrom"
+        @cancel="cancelFrom"
+    ></u-datetime-picker>
+    <u-datetime-picker
+        :show="showTo"
+        mode="year-month"
+        :minDate="1646064000000"
+        @confirm="confirmTo"
+        @cancel="cancelTo"
+    ></u-datetime-picker>
+
     <view class="julibiaoti2">
       <view class="dingdans_item_other" v-for="(item,index) in tableData" :key="index">
         <view class="dingdans_top_other zuoyouduiqi">
@@ -222,6 +245,8 @@
     data() {
       return {
         orderData2: '',
+        showFrom: false,
+        showTo: false,
         show_sx_type: false,
         isShowDialog2: false,
         emtityMsg: '',
@@ -322,6 +347,29 @@
         if ('update' == action){
           this.goDetail(rowId,2)
         }
+      },
+
+      cancelFrom() {
+        this.showFrom=false
+        this.queryParam.createTimeFrom = ''
+        this.search1()
+      },
+      cancelTo() {
+        this.showTo=false
+        this.queryParam.createTimeTo = ''
+        this.search1()
+      },
+      confirmFrom(e) {
+        this.showFrom = false;
+        let timeValue =  uni.$u.timeFormat(e.value, 'yyyy-mm-dd');
+        this.queryParam.createTimeFrom = timeValue
+        this.search1()
+      },
+      confirmTo(e) {
+        this.showTo = false;
+        let timeValue =  uni.$u.timeFormat(e.value, 'yyyy-mm-dd');
+        this.queryParam.createTimeTo = timeValue
+        this.search1()
       },
       confirm_sx_type(e) {
         this.show_sx_type= false

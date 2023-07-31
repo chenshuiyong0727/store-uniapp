@@ -1,7 +1,7 @@
 import { envSetting } from './env.js'
 // import { isTokenExpire } from './util.js'
 
-export const request = (options = {}, isShowLoading = true) => {
+export const request = (options = {}, isShowLoading = false) => {
   // let timeOut = 50
   if (uni.getStorageSync('org_token_auth')) {
     // 如果请求带token参数，则说明该接口需要登录，则往header中添加portalTokenAuth字段

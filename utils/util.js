@@ -1,5 +1,5 @@
 import {
-  myRequest
+  request
 } from '@/utils/request.js' // 引入api文件
 let payOrderId = null
 /**
@@ -150,7 +150,7 @@ const getUserInfoGlobal = () => {
 	if (JSON.stringify(userInfo) === '{}') {
 		return
 	}
-	return myRequest({
+	return request({
 		url: '/gw/h5/v1/front/user/getUcUser',
 		method: 'post',
 		data: {
