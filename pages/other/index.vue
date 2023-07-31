@@ -20,8 +20,11 @@
       <view @click="$goBack" class="u-nav-slot" slot="left">
         <u-icon name="arrow-left" size="20"></u-icon>
       </view>
-      <view @click="submit" class="u-nav-slot" style="font-size: 15px;" slot="right">
-        保存
+      <view  class="u-nav-slot" style="font-size: 15px;" slot="right">
+<!--        保存-->
+        <rudon-rowMenuDotDotDot :localdata="options" @change="menuAction($event, '10086')">
+          <image style="height: 25px;width: 25px" src="../../static/img/slh.png"></image>
+        </rudon-rowMenuDotDotDot>
       </view>
     </u-navbar>
       <view class="fenlei_top">
@@ -42,13 +45,26 @@
           <view class="u-demo-block">
             <view class="u-demo-block__content m-t-10">
               <view class="u-page__tag-item">
-                <u-search
-                    placeholderStyle="font-size: 20px;color:#c0c4cc"
+<!--                <u-search-->
+<!--                    placeholderStyle="font-size: 15px;color:#c0c4cc"-->
+<!--                    placeholder="搜索商品名称"-->
+<!--                    v-model="queryParam.name"-->
+<!--                    :show-action="false"-->
+<!--                    @change="search1"-->
+<!--                    shape="square"-->
+<!--                ></u-search>-->
+                <u--input
+                    style="background-color: #f4f3f8;"
+                    prefixIcon="search"
                     placeholder="搜索商品名称"
-                    v-model="queryParam.name"
+                    placeholderStyle="font-size: 15px;color:#c0c4cc"
+                    v-model = "queryParam.name"
+                    prefixIconStyle="font-size: 24px;color:#c0c4cc"
                     :show-action="false"
-                    shape="square"
-                ></u-search>
+                    @change="search1"
+                    clearable
+                >
+                </u--input>
               </view>
             </view>
           </view>
@@ -68,22 +84,26 @@
 <!--      ref="loadmore"-->
 <!--    >-->
 
-      <view class="julibiaoti2">
+      <view class="julibiaoti">
         <view class="dingdans_item_other" v-for="(item,index) in tableData" :key="index">
           <view class="dingdans_top_other zuoyouduiqi">
             <view @click="goDetail(item.id , 1)" >
               <strong class="dingdans_con_other_strong"> {{item.name}} </strong>
             </view>
             <view>
-              <el-dropdown trigger="click" style="margin-left: 1px;">
-                <button
-                  class="dw-button-common">操作
-                </button>
-                <el-dropdown-menu slot="dropdown" >
-                  <el-dropdown-item type="text" @click.native="goDetail(item.id , 1)">查看</el-dropdown-item>
-                  <el-dropdown-item type="text" @click.native="goDetail(item.id ,2)">修改</el-dropdown-item>
-                </el-dropdown-menu>
-              </el-dropdown>
+              <rudon-rowMenuDotDotDot :localdata="optionsOp" @change="menuAction1($event,item.id)">
+<!--                <image style="height: 25px;width: 25px" src="../../static/img/slh.png"></image>-->
+                <u-button class="dw-button-common">操作</u-button>
+              </rudon-rowMenuDotDotDot>
+<!--              <el-dropdown trigger="click" style="margin-left: 1px;">-->
+<!--                <button-->
+<!--                  class="dw-button-common">操作-->
+<!--                </button>-->
+<!--                <el-dropdown-menu slot="dropdown" >-->
+<!--                  <el-dropdown-item type="text" @click.native="goDetail(item.id , 1)">查看</el-dropdown-item>-->
+<!--                  <el-dropdown-item type="text" @click.native="goDetail(item.id ,2)">修改</el-dropdown-item>-->
+<!--                </el-dropdown-menu>-->
+<!--              </el-dropdown>-->
             </view>
           </view>
           <view class="dingdans_con_other bt1">
@@ -215,6 +235,26 @@
         pictureZoomShow: false,
         imageZoom: '',
         // fileUrl: fileUrl,
+        options: [
+          {
+            value: 'add',
+            text: '新增'
+          },
+          {
+            value: 'resetHandle',
+            text: '重置'
+          }
+        ],
+        optionsOp: [
+          {
+            value: 'view',
+            text: '查看'
+          },
+          {
+            value: 'update',
+            text: '修改'
+          }
+        ],
         queryParam: {
           type: '',
           actNo: '',
@@ -241,16 +281,41 @@
     mounted() {
       this.getPage()
       this.listSysDict()
-      this.keyupSubmit()
+      // this.keyupSubmit()
 
     },
     methods: {
-      keyupSubmit() {
-        document.onkeydown = (e) => {
-          let _key = window.event.keyCode
-          if (_key === 13) {
-            this.search1()
-          }
+      /**
+       * 不同行的不同菜单点击事件
+       *
+       * @param {Object} action 第一个参数必须传入“$event” | 点击了哪个按钮 | 传入options的value
+       * @param {Number} rowId 第二个参数随意，可以是行ID等
+       */
+      menuAction (action, rowId) {
+        // 忽略初始化时的传入的空操作
+        if (action === '') {
+          return
+        }
+        if ('add' == action){
+          this.goDetail(null,3)
+        }
+        if ('resetHandle' == action){
+          this.resetHandle()
+        }
+      },
+        // <el-dropdown-item type="text" @click.native="goDetail(item.id , 1)">查看</el-dropdown-item>-->
+        // <!--                  <el-dropdown-item type="text" @click.native="goDetail(item.id ,2)">修改</el-dropdown-item>-->
+      menuAction1 (action, rowId) {
+        // 忽略初始化时的传入的空操作
+
+        if (action === '') {
+          return
+        }
+        if ('view' == action){
+          this.goDetail(rowId,1)
+        }
+        if ('update' == action){
+          this.goDetail(rowId,2)
         }
       },
       goDetail(id, type) {

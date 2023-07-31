@@ -315,6 +315,7 @@ select{
   padding: 6px 16px;
   font-size: 12px;
   border-radius: 3px;
+  height: 26px;
 }
 /deep/ .el-dropdown-menu__item {
   font-weight: 400;
@@ -331,7 +332,7 @@ select{
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 99;
+  z-index: 1;
   margin-top: 43px !important;
 }
 .fenlei_top_left{
@@ -1105,4 +1106,98 @@ a{
 .biaodan-gengduo{
   margin-bottom: -2px;
   margin-left: 4px;
+}
+.dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius:25px;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  min-width: 96px;
+  background-color: #fff;
+  border: 1px solid #ebeef5;
+  border-radius: 4px;
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+  z-index: 100;
+  right: 1px;
+  transform-origin: center top;
+  text-align: center;
+}
+
+
+.dropdown-content text {
+  color: #333333;
+  padding: 8px 19px;
+  text-decoration: none;
+  display: block;
+  font-size: 14px;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+
+.fui-filter__icon {
+  transition: all .15s linear;
+}
+
+.fui-icon__ani {
+  transform: rotate(180deg);
+}
+
+.fui-list__cell {
+  width: 100%;
+}
+
+.fui-select {
+  flex: 1;
+  height: 80rpx;
+  padding: 32rpx;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.fui-select::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 200%;
+  height: 200%;
+  border: 1px solid #eee;
+  transform: scale(.5);
+  transform-origin: 0 0;
+  pointer-events: none;
+}
+.fui-flex__center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fui-flex__between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }

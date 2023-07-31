@@ -1,6 +1,7 @@
 {
   "easycom": {
-    "^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
+    "^u-(.*)": "uview-ui/components/u-$1/u-$1.vue",
+    "fui-(.*)": "firstui-uni/firstui/fui-$1/fui-$1.vue"
   },
   "pages": [
     {
