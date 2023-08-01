@@ -1,5 +1,5 @@
 <template>
-  <view class="hello" ref="hello">
+  <view>
     <u-navbar title="其他收支">
       <view @click="$goBack" class="u-nav-slot" slot="left">
         <u-icon name="arrow-left" size="20"></u-icon>
@@ -10,7 +10,7 @@
         </rudon-rowMenuDotDotDot>
       </view>
     </u-navbar>
-    <view class="fenlei_top zuoyouduiqi">
+    <view class="fenlei_top" style="display: flex;">
       <view style="width: 83vw">
         <u--input
             class="searchInput"
@@ -26,11 +26,11 @@
         </u--input>
       </view>
       <view class="fenlei_top_right" @click="isShowDialog2 = true">
-        <image src="../../static/img/search.png" style="height:30px; width:30px;" ></image>
+                <image src="../../static/img/search.png" ></image>
       </view>
     </view>
     <view>
-      <u-popup :show="isShowDialog2" @close="close" mode="bottom">
+      <u-popup :show="isShowDialog2" @close="close" :duration="100" mode="bottom">
         <view style="width: 90vw;margin-left: 5vw;">
           <u-navbar title="筛选" :fixed="false" :border="true">
             <view  @click="resetHandle" style="font-size: 15px;" class="u-nav-slot" slot="left">
@@ -85,7 +85,7 @@
           <view @click="goDetail(item.id , 1)" >
             <strong class="dingdans_con_other_strong"> {{item.name}} </strong>
           </view>
-          <view>
+          <view style="margin-bottom: 3px;">
             <rudon-rowMenuDotDotDot :localdata="optionsOp" @change="menuAction1($event,item.id)">
               <text class="dw-button-common">操作</text>
             </rudon-rowMenuDotDotDot>
@@ -117,22 +117,25 @@
         </view>
       </view>
     </view>
-    <view slot="top" class="mint-loadmore-top">
-      <text v-show="topStatus !== 'loading'" :class="{ 'rotate': topStatus === 'drop' }">松手释放↓</text>
-      <text v-show="topStatus === 'loading'">加载中</text>
+    <view  v-show="tableData.length" style="padding: 10px;">
+      <u-loadmore :status="status" />
     </view>
-    <view slot="bottom" class="mint-loadmore-bottom">
-      <text
-          v-if="bottomStatus !== 'loading'"
-          :class="{ 'rotate': bottomStatus === 'drop' }"
-      >松手释放↑</text>
-      <text v-if="bottomStatus === 'loading'">加载中</text>
-    </view>
-    <view class="popContainer" v-if="pictureZoomShow" @click="pictureZoomShow = false">
-      <view class="imageShow">
-        <img :src="$fileUrl + imageZoom" alt="" width="100%" height="100%">
-      </view>
-    </view>
+    <!--    <view slot="top" class="mint-loadmore-top">-->
+<!--      <text v-show="topStatus !== 'loading'" :class="{ 'rotate': topStatus === 'drop' }">松手释放↓</text>-->
+<!--      <text v-show="topStatus === 'loading'">加载中</text>-->
+<!--    </view>-->
+<!--    <view slot="bottom" class="mint-loadmore-bottom">-->
+<!--      <text-->
+<!--          v-if="bottomStatus !== 'loading'"-->
+<!--          :class="{ 'rotate': bottomStatus === 'drop' }"-->
+<!--      >松手释放↑</text>-->
+<!--      <text v-if="bottomStatus === 'loading'">加载中</text>-->
+<!--    </view>-->
+<!--    <view class="popContainer" v-if="pictureZoomShow" @click="pictureZoomShow = false">-->
+<!--      <view class="imageShow">-->
+<!--        <img :src="$fileUrl + imageZoom" alt="" width="100%" height="100%">-->
+<!--      </view>-->
+<!--    </view>-->
     <view v-if="!tableData.length" class="to-the-bottom-1" >
       <p v-if="emtityMsg">
         <img src="../../static/img/new/empity_7.png" style="width: 60vw;">
@@ -213,9 +216,8 @@
           //   id: 804
           // }]
         ],
-        topStatus: "",
-        bottomStatus: "",
-        allLoaded: false,
+        isLoadMore: false,
+        status: 'loadmore',
         tableData: [],
         totalCount: 1
       }
@@ -225,6 +227,25 @@
       this.listSysDict()
       // this.keyupSubmit()
 
+    },
+    onPullDownRefresh () {
+      this.resetHandle()
+      uni.stopPullDownRefresh()
+
+      //停止下拉刷新效果的api，如果发现进入刷新状态无法停止，可以用这个
+    },
+    onReachBottom() {
+      // console.info(1)
+      // alert(1)
+      // if(this.totalCount <= this.queryParam.pageSize) {
+      //   return ;
+      // }
+      if(!this.isLoadMore){  //此处判断，上锁，防止重复请求
+        this.isLoadMore= true
+        this.status = 'loading';
+        this.queryParam.pageNum++;
+        this.getPage()
+      }
     },
     methods: {
       /**
@@ -307,77 +328,85 @@
           data: this.queryParam
         }).then(res => {
           if (res.subCode === 1000) {
-            this.tableData = res.data ? res.data.list : []
+            // this.tableData = res.data ? res.data.list : []
+            // this.totalCount = res.data ? res.data.list.length : 0
             this.totalCount = res.data ? res.data.pageInfo.totalCount : 0
             if (this.totalCount == 0) {
-              this.allLoaded = true;
               this.emtityMsg = '暂无相关数据'
-            } else if (this.totalCount <= this.queryParam.pageSize) {
-              this.allLoaded = true;
+              this.status = 'nomore';
+              this.isLoadMore = true
+            } else {
+              res.data.list.forEach(e=> {
+                this.tableData.push(e)
+              })
+              console.info(this.totalCount)
+              console.info(this.queryParam.pageSize)
+              if (this.totalCount <= this.tableData.length) {
+                this.status = 'nomore';
+                this.isLoadMore = true
+              }
             }
           } else {
             this.$toast(res.subMsg)
           }
+          console.info(this.isLoadMore)
         })
       },
       listSysDict() {
         let sysDictList = uni.getStorageSync('sysDictList') ? JSON.parse(
             uni.getStorageSync('sysDictList')) : []
         this.typeList = sysDictList.filter(item => item.typeValue == 39)
-        console.info(this.typeList)
         this.columns.push(this.typeList)
       },
-      loadData(p_status) {
-        // 第一次加载或者下拉刷新最新数据
-        if (p_status === "refresh") {
-          this.tableData = [];
-        }
-        goodsOtherApi.page(this.queryParam).then(res => {
-          if (res.subCode === 1000) {
-            let list =  res.data ? res.data.list : []
-            if (list && list.length) {
-              for (let i = 0; i < list.length; i++) {
-                this.tableData.push(list[i])
-              }
-              setTimeout(()=>{
-                let ht2 = (this.$refs.hello.scrollTop)*1 +475
-                this.$refs.hello.scrollTop = ht2
-              },100)
-            } else {
-              this.allLoaded = true;
-              this.$toast('没有更多了')
-            }
-          } else {
-            this.$toast(res.subMsg)
-            return false
-          }
-        })
-      },
+      // loadData(p_status) {
+      //   // 第一次加载或者下拉刷新最新数据
+      //   if (p_status === "refresh") {
+      //     this.tableData = [];
+      //   }
+      //   goodsOtherApi.page(this.queryParam).then(res => {
+      //     if (res.subCode === 1000) {
+      //       let list =  res.data ? res.data.list : []
+      //       if (list && list.length) {
+      //         for (let i = 0; i < list.length; i++) {
+      //           this.tableData.push(list[i])
+      //         }
+      //         // setTimeout(()=>{
+      //         //   let ht2 = (this.$refs.hello.scrollTop)*1 +475
+      //         //   this.$refs.hello.scrollTop = ht2
+      //         // },100)
+      //       } else {
+      //         // this.allLoaded = true;
+      //         this.$toast('没有更多了')
+      //       }
+      //     } else {
+      //       this.$toast(res.subMsg)
+      //       return false
+      //     }
+      //   })
+      // },
       search() {
         if (!this.queryParam.name ) {
           this.$toast('请输入名称')
           return
         }
         this.queryParam.pageNum = 1
-        this.allLoaded = false;
+        // this.allLoaded = false;
         this.getPage()
-      },
-      // 日期
-      open() {
-        console.log('open');
       },
       close() {
         this.isShowDialog2 = false
         console.log('close');
       },
       search1() {
+        this.tableData=[]
         this.queryParam.pageNum = 1
-        this.allLoaded = false;
+        this.isLoadMore = false
         this.isShowDialog2 = false
-        this.$refs.hello.scrollTop = 0
+        // this.$refs.hello.scrollTop = 0
         this.getPage()
       },
       resetHandle() {
+        this.isLoadMore = false
         this.queryParam = {
           type: '',
           actNo: '',
@@ -395,25 +424,26 @@
         }
         this.search1()
       },
-      handleTopChange(p_status) {
-        this.topStatus = p_status;
-      },
-      handleBottomChange(p_status) {
-        this.bottomStatus = p_status;
-      },
-      loadBottom() {
-        // 一次下拉加载5条更多数据，使用定时器默认ajax加载
-        this.loadData()
-        this.queryParam.pageNum++;
-        this.$refs.loadmore.onBottomLoaded();
-      },
-      loadTop() {
-        // 默认下拉刷新最新数据
-        this.loadData("refresh");
-        this.queryParam.pageNum = 0
-        this.allLoaded = false;
-        this.$refs.loadmore.onTopLoaded();
-      },
+      // handleTopChange(p_status) {
+      //   this.topStatus = p_status;
+      // },
+      // handleBottomChange(p_status) {
+      //   this.bottomStatus = p_status;
+      // },
+      // loadBottom() {
+      //   // 一次下拉加载5条更多数据，使用定时器默认ajax加载
+      //   this.loadData()
+      //   this.queryParam.pageNum++;
+      //   this.$refs.loadmore.onBottomLoaded();
+      // },
+      // loadTop() {
+      //   // 默认下拉刷新最新数据
+      //   // this.loadData("refresh");
+      //   this.queryParam.pageNum = 0
+      //   // this.allLoaded = false;
+      //   // this.$refs.loadmore.onTopLoaded();
+      // },
+
       avatarShow(e) {
         this.imageZoom = e
         this.pictureZoomShow = true

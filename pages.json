@@ -46,7 +46,13 @@
     {
       "path": "pages/other/index",
       "style": {
-        "navigationBarTitleText": "其他收支"
+        "navigationBarTitleText": "其他收支",
+        "pullToRefresh":{
+          "color":"#409eff",
+          "offset":"56px"
+        },
+        "enablePullDownRefresh": true,
+        "onReachBottomDistance": 150
       }
     },
     {

@@ -146,18 +146,24 @@
               src="../../static/img/new/huodong.png"></image>
           <p style="color: #333">活动</p>
         </view>
-        <view :to="{ name: '其他收支'}">
+        <view @click="$navigateTo('/pages/other/index')">
           <!--                  <text class="icon2-thecar"></text>-->
           <image
               style="margin-top: 7px;margin-bottom: -4px;width: 27px;height: 27px;"
               src="../../static/img/new/qita.png"></image>
           <p style="color: #333">其他收支</p>
         </view>
+        <!--        <view :to="{ name: '瑕疵商品'}">-->
+        <!--          &lt;!&ndash;                  <text class="icon2-thecar"></text>&ndash;&gt;-->
+        <!--          <image-->
+        <!--              style="    margin-top: 4px;-->
+        <!--    width: 27px;height: 27px;" src="../../static/img/new/xiaci.png"></image>-->
+        <!--          <p style="color: #333">瑕疵商品</p>-->
+        <!--        </view>-->
         <view :to="{ name: '瑕疵商品'}">
-          <!--                  <text class="icon2-thecar"></text>-->
           <image
-              style="    margin-top: 4px;
-    width: 27px;height: 27px;" src="../../static/img/new/xiaci.png"></image>
+              style="margin-top: 7px;margin-bottom: -4px;width: 27px;height: 27px;"
+              src="../../static/img/new/xiaci.png"></image>
           <p style="color: #333">瑕疵商品</p>
         </view>
         <view :to="{ name: '红包'}">

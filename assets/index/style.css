@@ -383,9 +383,17 @@ select{
   line-height: 25px;
 }
 .fenlei_top_right {
+  position: relative;
   margin-right: 5px;
 }
-
+.fenlei_top_right image {
+  position: absolute;
+  top: 50%;
+  left: 8px;
+  transform: translateY(-50%);
+  height:30px;
+  width:30px;
+}
 .fenlei_top_report {
   display: flex;
   align-items: center;
@@ -1106,7 +1114,8 @@ a{
   margin-top: 44px;
 }
 .julibiaoti2{
-  margin-top: 48px;
+  padding-top: 92px;
+  /*margin-top: 92px;*/
 }
 .biaodan-gengduo{
   margin-bottom: -2px;
