@@ -1215,3 +1215,6 @@ a{
   align-items: center;
   justify-content: space-between;
 }
+.u-textarea--disabled {
+  background-color: #ffffff;
+}

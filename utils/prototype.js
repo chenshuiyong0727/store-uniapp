@@ -25,6 +25,7 @@ Vue.filter('formatTime', formatTime)
 Vue.prototype.$navigateTo = navigateTo // 挂载到原型上
 Vue.prototype.$request = request // 挂载到原型上
 Vue.prototype.$fileUrl = envSetting.fileUrl
+Vue.prototype.$actionUrl = envSetting.baseURL + '/gw/op/v1/file/uploadFileMinio'
 Vue.prototype.$toast = toast // 挂载到原型上
 Vue.prototype.$goBack = goBack // 挂载到原型上
 

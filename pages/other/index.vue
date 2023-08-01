@@ -317,7 +317,13 @@
         uni.hideKeyboard()
       },
       goDetail(id, type) {
-        this.$router.push({ path: '/otherAdd', query: { id, type } })
+        let url = '/pages/other/otherAdd?type='+type
+        if (id){
+          url = url + '&id='+id
+          // this.$navigateTo('/pages/other/otherAdd?type='+type+'&id='+id)
+        }
+        this.$navigateTo(url)
+        // this.$router.push({ path: '/otherAdd', query: { id, type } })
       },
       getPage() {
         this.emtityMsg = ''

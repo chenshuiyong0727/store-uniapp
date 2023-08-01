@@ -89,7 +89,8 @@
                 "ad" : {},
                 "oauth" : {
                     "univerify" : {}
-                }
+                },
+                "push" : {}
             },
             "splashscreen" : {
                 "androidStyle" : "common",
