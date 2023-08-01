@@ -9,27 +9,6 @@
           <image style=" width: 26px;height: 26px;"  src="../../static/img/photo2.png"></image>
         </view>
       </u-navbar>
-<!--      <view v-if="flag">-->
-<!--        <mt-header   title="移动仓库">-->
-<!--          <view slot="left">-->
-<!--            <img  style="width: 21px; "  src="../../static/img/logo/logo-333-1.png">-->
-<!--          </view>-->
-<!--          <view slot="right">-->
-<!--            <img  @click="scanCode(1)"  style="width: 26px; "  src="../../static/img/photo2.png">-->
-<!--          </view>-->
-<!--        </mt-header>-->
-<!--        <view class="header" style="    margin-top: 11vw;margin-bottom: -3px;">-->
-<!--          <view class="my-indent-right-1" style="margin-left: 4vw;">-->
-<!--            <el-input-->
-<!--                clearable-->
-<!--                placeholder="请输入货号/商品名"-->
-<!--                prefix-icon="el-icon-search"-->
-<!--                v-model.trim="queryParamTop.actNo">-->
-<!--            </el-input>-->
-<!--          </view>-->
-<!--        </view>-->
-<!--      </view>-->
-
       <view class="julibiaoti" style="
         padding-bottom: 40vw;
     background-image: linear-gradient(#e5f4ff, #f3f2f8);">
@@ -47,12 +26,6 @@
                 clearable
             >
             </u--input>
-<!--            <el-input-->
-<!--                clearable-->
-<!--                placeholder="请输入货号/商品名"-->
-<!--                prefix-icon="el-icon-search"-->
-<!--                v-model.trim="queryParamTop.actNo">-->
-<!--            </el-input>-->
           </view>
         </view>
       </view>
@@ -144,12 +117,7 @@
     <!--    销售走势-->
     <view style="
     background-color: rgb(255, 255, 255);
-    padding-bottom: 10px;
-    margin-bottom: 40px;
 ">
-      <!--      <h1 class="index-title"  style="border-top-style:none">-->
-      <!--        销售走势-->
-      <!--      </h1>-->
       <h1 class="index-title" style="border-top-style:none">
       <text >
         销售走势
@@ -224,8 +192,6 @@
     padding-right: 60px;
     padding-bottom: 14px;
     padding-left: 60px;">
-<!--        <el-button :type="mouthLl" @click="profitData(1)" size="small" round>月利润</el-button>-->
-<!--        <el-button :type="dayLl" @click="profitData(0)" size="small" round>日利润</el-button>-->
         <u-button type="primary"  size="small" shape="circle" @click="profitData(1)" style="margin-right: 10px"  text="月利润" :plain="dataType == 0"></u-button>
         <u-button type="primary"  size="small" shape="circle" @click="profitData(0)" style="margin-left: 10px"   text="日利润" :plain="dataType == 1"></u-button>
       </view>
@@ -236,12 +202,6 @@
     align-items: center;
     justify-content: space-between;
     width: 92vw;">
-<!--        <view  @click="chosseTime(1)">-->
-<!--&lt;!&ndash;          <el-date-picker style="width: 37vw;" readonly="readonly"&ndash;&gt;-->
-<!--&lt;!&ndash;                          v-model="queryParam.createTimeFrom" :value-format="valueFormat"&ndash;&gt;-->
-<!--&lt;!&ndash;                          :type="dateType"  placeholder="时间开始">&ndash;&gt;-->
-<!--&lt;!&ndash;          </el-date-picker>&ndash;&gt;-->
-<!--        </view>-->
         <view  @click="showFrom= true">
           <u--input
               style="width: 44vw;"
@@ -257,11 +217,6 @@
           </u--input>
         </view>
         <text style="    font-size: 15px;margin: 2vw;">至</text>
-<!--        <view  @click="chosseTime(2)">-->
-<!--          <el-date-picker style="width: 37vw;    margin-right: 8vw;" readonly="readonly"-->
-<!--                          v-model="queryParam.createTimeTo" :value-format="valueFormat"-->
-<!--                          :type="dateType" placeholder="时间结束">-->
-<!--          </el-date-picker>-->
           <view   @click="showTo= true">
             <u--input
                 placeholderStyle="font-size: 15px;color:#c0c4cc"
@@ -275,42 +230,14 @@
                 clearable
             >
             </u--input>
-            <!--       <el-date-picker style="width: 44vw" readonly="readonly"
-                                   v-model="queryParam.createTimeTo" value-format="yyyy-MM"  type="month"
-                                   placeholder="结束时间"></el-date-picker> -->
           </view>
-<!--        </view>-->
       </view>
       <view style="margin-top: 20px;">
         <view class="charts-box">
           <qiun-data-charts :type="dataType==1 ? 'line': 'column'" :opts="dataType==1 ? opts: opts1" :chartData="chartData" :ontouch="true"/>
         </view>
-<!--        <ve-line-->
-<!--            v-if="dataType == 1"-->
-<!--            height="250px"-->
-<!--            :data="chartData2"-->
-<!--            :legend-visible="true"-->
-<!--            :loading="loading"-->
-<!--            :data-empty="dataEmpty"-->
-<!--            :settings="chartSettings"></ve-line>-->
-<!--        <ve-histogram height="250px" v-else :data="chartData2" :extend="extend" :settings="chartSettings" :legend-visible="true"></ve-histogram>-->
       </view>
     </view>
-    <!--    仓库值-->
-<!--    <v-section1 :form="form" :countDay="countDay" :count="count":chartData1="chartData1" :orderIofo ="orderIofo" :chartSettings1="chartSettings1" />-->
-<!--    <mt-datetime-picker-->
-<!--        v-model="pickerValue"-->
-<!--        type="date"-->
-<!--        ref="picker"-->
-<!--        :startDate="new Date(2022, 3, 1 )"-->
-<!--        :endDate="new Date()"-->
-<!--        year-format="{value} 年"-->
-<!--        month-format="{value} 月"-->
-<!--        date-format="{value} 日"-->
-<!--        @confirm="handleConfirm">-->
-<!--    </mt-datetime-picker>-->
-<!--    <v-baseline/>-->
-<!--    <v-footer/>-->
     <u-datetime-picker
         :show="showFrom"
         mode="year-month"
@@ -325,38 +252,162 @@
         @confirm="confirmTo"
         @cancel="cancelTo"
     ></u-datetime-picker>
+
+    <view class="section2">
+      <!--    <h1 class="section1-title"  style="border-top-style:none">-->
+      <!--      <span style="    margin-left: 20px;">仓库值-->
+      <!--      </span>-->
+      <!--    </h1>-->
+      <h1 class="section1-title2" style="border-top-style:none">
+      <span style="    margin-left: 20px;">
+        仓库值
+      </span>
+        <view class="link-top"></view>
+      </h1>
+      <view style="background-color: #fff ; padding-top: 4vw">
+<!--        <ve-pie height="320px"-->
+<!--                :data="chartData1" :settings="chartSettings1" ></ve-pie>-->
+        <view class="charts-box">
+          <qiun-data-charts
+              type="pie"
+              :opts="opts2"
+              :chartData="chartData1"
+          />
+        </view>
+      </view>
+      <view class="section1-list">
+        <view style="width: 47.6%">
+            <p><strong class="color-url"> {{countDay}}</strong>{{count}}</p>
+            <p class="section1name">春节倒计时</p>
+        </view>
+        <view>
+            <p class="color-url">{{form.inventoryNum}}</p>
+            <p class="section1name" >库存总数</p>
+        </view>
+        <view>
+            <p class="color-url">{{form.profitsAmount | numFilterTo0}}</p>
+            <p class="section1name">利润总额</p>
+        </view>
+      </view>
+      <view class="section1-list">
+          <view :to="{name:'销售报表'}">
+            <p class="color-url">{{form.profitsAverage}}</p>
+            <p class="section1name">平均利润</p>
+          </view>
+          <view :to="{name:'仓库'}">
+            <p class="color-url">{{form.inventoryCost | numFilterTo0}}</p>
+            <p  class="section1name">库存成本</p>
+          </view>
+          <view :to="{name:'仓库'}">
+            <p class="color-url" v-if="form.inventoryNum  && form.goodsPutInNum">{{form.inventoryRatio}}%</p>
+            <p v-else> 0%</p>
+            <p  class="section1name">库存比例</p>
+          </view>
+          <view :to="{name:'商品'}">
+            <p class="color-url">{{form.goodsNum}}</p>
+            <p class="section1name">商品款式</p>
+          </view>
+      </view>
+      <view class="section1-list" >
+          <view :to="{ path: '/store?warehouseId=2'}">
+            <p class="color-url">{{form.ytInventory | numFilterTo0}}</p>
+            <p class="section1name">云头库存</p>
+          </view>
+          <view :to="{ path: '/store?warehouseId=2'}">
+            <p class="color-url">{{form.ytAmount}}</p>
+            <p class="section1name">云头货值</p>
+          </view>
+          <view :to="{ path: '/store?warehouseId=1'}">
+            <p class="color-url">{{form.qpInventory }}</p>
+            <p class="section1name">前埔库存</p>
+          </view>
+          <view :to="{ path: '/store?warehouseId=1'}">
+            <p class="color-url">{{form.qpAmount | numFilterTo0}}</p>
+            <p class="section1name">前埔货值</p>
+        </view>
+      </view>
+      <view class="section1-list" >
+          <view :to="{name:'入库报表'}">
+            <p>{{form.goodsPutInNum}}</p>
+            <p class="section1name">入库商品</p>
+          </view>
+          <view :to="{name:'入库报表'}">
+            <p>{{form.inventoryAmount | numFilterTo0}}</p>
+            <p class="section1name">入库总额</p>
+          </view>
+          <view :to="{name:'销售报表'}">
+            <p>{{form.successNum}}</p>
+            <p class="section1name">交易成功</p>
+          </view>
+          <view :to="{name:'销售报表'}">
+            <p>{{form.orderAmount | numFilterTo0}}</p>
+            <p class="section1name">成功总额</p>
+          </view>
+      </view>
+      <view class="section1-list" >
+          <view :to="{ path: '/order?status=7'}">
+            <p>{{form.freight |numFilterTo0}}</p>
+            <p class="section1name">总运费</p>
+          </view>
+          <view :to="{ path: '/order?status=7'}">
+            <p>{{form.poundage | numFilterTo0}}</p>
+            <p class="section1name">手续费</p>
+          </view>
+          <view :to="{name:'其他收支'}">
+            <p>{{form.otherRevenue| numFilterTo0}}</p>
+            <p class="section1name">其他收支</p>
+          </view>
+          <view :to="{name:'入库报表'}">
+            <p>{{form.inboundAverage}}</p>
+            <p class="section1name">库存均价</p>
+          </view>
+      </view>
+      <view class="section1-list" >
+          <view :to="{name:'销售报表'}">
+            <p>{{form.orderAmountAverage}}</p>
+            <p class="section1name">成功均价</p>
+          </view>
+          <view :to="{ path: '/order?status=7'}">
+            <p>{{form.freightAverage}}</p>
+            <p class="section1name">运费均价</p>
+          </view>
+          <view :to="{ path: '/order?status=7'}">
+            <p>{{form.costAverage}}</p>
+            <p class="section1name">成本均价</p>
+          </view>
+          <view :to="{ path: '/order?status=7'}">
+            <p>{{form.profitsProportion}}%</p>
+            <p class="section1name">利润比例</p>
+          </view>
+      </view>
+      <view class="section1-list" style="padding-bottom: 5vw;">
+          <view :to="{name:'瑕疵商品'}">
+            <p>{{form.defectsNum}}</p>
+            <p class="section1name">瑕疵数</p>
+          </view>
+          <view :to="{ name:'销售报表'}">
+            <p>{{form.passRatio}} % </p>
+            <p class="section1name">通过比例</p>
+          </view>
+          <view :to="{  path: '/order?saleType=2'}">
+            <p>{{orderIofo.countSd}}</p>
+            <p class="section1name">闪电直发</p>
+          </view>
+          <view :to="{  path: '/order?status=11'}">
+            <p>{{orderIofo.count11}}</p>
+            <p class="section1name">寄售入库</p>
+          </view>
+      </view>
+    </view>
   </view>
 </template>
 
 <script>
-  // import orderNum from '@/components/index/orderNum.vue'
-  // import Section1 from '@/components/index/section1.vue'
-  // import Baseline from '@/common/_baseline.vue'
-  // import Footer from '@/common/_footer.vue'
-  // import index from '@/http/mock.js' //模拟数据
-  import { goodsOrderApi } from '@/api/goodsOrder'
-  // import { goodsOtherApi } from '@/api/goodsOther'
   export default {
     components: {
-      // 'v-header': Header,
-      // 'v-orderNum': orderNum,
-      // 'v-service': Service,
-      // 'v-section1': Section1,
-      // 'v-section2': Section2,
-      // 'v-section3': Section3,
-      // 'v-section4': Section4,
-      // 'v-baseline': Baseline,
-      // 'v-footer': Footer
     },
     data() {
       return {
-        // datas: {
-        //   section1:{},
-        //   // section2:{},
-        //   // section3:{},
-        //   // section4:{},
-        //   // swiper:[]
-        // },
         showFrom: false,
         showTo: false,
         flag: false,
@@ -411,10 +462,10 @@
             },
           ],
         },
-        chartData2: {
-          columns: ['months', '订单数', '订单金额(千)', '利润(百)'],
-          rows: []
-        },
+        // chartData2: {
+        //   columns: ['months', '订单数', '订单金额(千)', '利润(百)'],
+        //   rows: []
+        // },
         createTime: '',
         chartSettings: {
           // xAxisType: 'time',
@@ -426,13 +477,10 @@
             'profitsAmount': '利润(百)'
           }
         },
-        // chartData: {
-        //   columns: ['months', 'successNum', 'orderAmount', 'profitsAmount'],
-        //   rows: []
-        // },
         chartData: {},
+        chartData1: {},
         opts: {
-          color: ["#1890FF","#91CB74","#FAC858","#EE6666","#73C0DE","#3CA272","#FC8452","#9A60B4","#ea7ccc"],
+          color: ["#409eff","#00c2c2","#F56C6C","#FAC858","#73C0DE","#3CA272","#FC8452","#9A60B4","#ea7ccc"],
           padding: [15,10,0,15],
           enableScroll: true,
           dataLabel: false,
@@ -455,7 +503,7 @@
           }
         },
         opts1: {
-          color: ["#1890FF","#91CB74","#FAC858","#EE6666","#73C0DE","#3CA272","#FC8452","#9A60B4","#ea7ccc"],
+          color: ["#409eff","#00c2c2","#F56C6C","#FAC858","#73C0DE","#3CA272","#FC8452","#9A60B4","#ea7ccc"],
           padding: [15,15,0,5],
           enableScroll: true,
           legend: {},
@@ -480,12 +528,28 @@
             }
           }
         },
-        chartSettings1: { type: 'pie' },
-        chartData1: {
-          columns: ['key', 'value'],
-          rows: [
-          ]
+        opts2: {
+          color: ["#409eff","#00c2c2","#F56C6C","#FAC858","#73C0DE","#3CA272","#FC8452","#9A60B4","#ea7ccc"],
+          padding: [5,5,5,5],
+          enableScroll: false,
+          extra: {
+            pie: {
+              activeOpacity: 0.5,
+              activeRadius: 10,
+              offsetAngle: 0,
+              labelWidth: 15,
+              border: false,
+              borderWidth: 3,
+              borderColor: "#FFFFFF"
+            }
+          }
         },
+        // chartSettings1: { type: 'pie' },
+        // chartData1: {
+        //   columns: ['key', 'value'],
+        //   rows: [
+        //   ]
+        // },
         countDay: 0, // 倒计时
         count: '', // 倒计时
         seconds: 0, // 10天的秒数
@@ -554,14 +618,6 @@
           this.flag = true
         }
       },
-      // keyupSubmit() {
-      //   document.onkeydown = (e) => {
-      //     let _key = window.event.keyCode
-      //     if (_key === 13) {
-      //       this.jumpGoods(this.queryParamTop.actNo)
-      //     }
-      //   }
-      // },
       jumpGoods(actNo) {
         this.$router.push({ path: '/GoodsBase', query: { actNo } })
       },
@@ -619,11 +675,29 @@
                 this.form.profitsAverage / this.form.costAverage * 100).toFixed(2)
             // let  inventoryNum = {key: "22", value: 1393  }
             // let  successNum = {key: "23", value: 1393  }
-            let  successNum = {key: "成功数量", value: this.form.successNum }
-            let  inventoryNum = {key: "库存总数", value: this.form.inventoryNum }
+            // let  successNum = {name: "成功数量", value: this.form.successNum }
+            // let  inventoryNum = {name: "库存总数", value: this.form.inventoryNum }
             // let  successNum = {key: "successNum", value: this.form.successNum }
-            this.chartData1.rows.push(inventoryNum)
-            this.chartData1.rows.push(successNum)
+            // this.chartData1.rows.push(inventoryNum)
+            // this.chartData1.rows.push(successNum)
+            let res1 = {
+              series: [
+                {
+                  data: [
+                      {"name":"成功数量","value": this.form.successNum },
+                      {"name":"库存总数","value": this.form.inventoryNum}
+                    ]
+                }
+              ]
+            }
+            // let listdata = []
+            // listdata.push(successNum)
+            // listdata.push(inventoryNum)
+            // let res ={}
+            // let series =[]
+            // let series
+
+            this.chartData1 = JSON.parse(JSON.stringify(res1));
           } else {
             this.$toast(res.subMsg)
           }
@@ -1138,4 +1212,88 @@
     width: 95%;
     height: 200px;
   }
+
+
+  .section2 {
+    margin-bottom: 30px;
+    margin-top: 4vw;
+    background-color: #fff;
+    .section1-title2 {
+      .bt();
+      background-color: #ffffff;
+      text-align: left;
+      padding: 3vw 0;
+      font-size: 16px;
+      color: #333;
+      position: relative;
+      /*margin-left: 20px;*/
+      font-weight: 600;
+
+      i {
+        position: absolute;
+        right: 6vw;
+        top: 50%;
+        .fz(font-size, 36);
+        .fz(margin-top,-16);
+
+        &::before {
+          color: rgb(159, 159, 159);
+        }
+      }
+    }
+
+    .section1-list {
+      display: -ms-flex;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      flex-wrap: wrap;
+      -ms-flex-pack: distribute;
+      justify-content: space-around;
+      padding: 2vw 2vw 4vw 2vw;
+      view {
+        border-radius: 10px;
+        background-color: #EEF2F7;
+        width: 22.7%;
+        padding: 1.6vw;
+        color: #333;
+        margin: 1vw;
+        font-size: 15px;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        p{
+          padding-top: 1vw;
+        }
+      }
+      display: -webkit-box;
+      flex-wrap: wrap;
+      /* padding: 0vw 1vw; */
+      padding-top: 0vw;
+      padding-right: 1vw;
+      padding-bottom: 0vw;
+      padding-left: 2vw;
+    }
+
+    .section1-banner {
+      display: block;
+      width: 100vw;
+      img {
+        width: 100%;
+        height: 24vw;
+      }
+    }
+  }
+  .section1name{
+    color: black;
+    /*font-weight: 600;*/
+  }
+  .link-top {
+    width: 92%;
+    margin-left: 4%;
+    height: 1px;
+    border-top: solid #E2DDDD 1.5px;
+    margin-bottom: -15px;
+    margin-top: 13px;
+  }
+
 </style>
+
