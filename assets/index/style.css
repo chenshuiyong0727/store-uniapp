@@ -96,7 +96,7 @@
   color: #F56C6C;
 }
 .color-dw {
-  color: #1ba5ad;
+  color: #00c2c2;
 }
 .color-danger-strong {
   color: #409eff;
@@ -119,7 +119,7 @@
 }
 
 .color-success {
-  color: #0fbe8f;
+  color: #00c2c2;
 }
 /deep/ .mint-header {
   /*background-image: linear-gradient(rgb(64, 158, 255), rgb(255, 255, 255));*/
