@@ -817,6 +817,13 @@ img{
   border-radius: 0px;
   border: 0px;
 }
+/*左右对齐*/
+.searchInputW{
+  background-color: #fff;
+  height: 35px;
+  border-radius: 0px;
+  border: 0px;
+}
 .zuoyouduiqi{
   display: flex;
   justify-content: space-between;

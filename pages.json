@@ -8,6 +8,10 @@
       "path": "pages/index/index",
       "style": {
         "navigationBarTitleText": "柒月贰柒",
+        "pullToRefresh":{
+          "color":"#409eff",
+          "offset":"56px"
+        },
         "enablePullDownRefresh": true
       }
     },

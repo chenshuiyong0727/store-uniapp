@@ -1,331 +1,708 @@
 <template lang="html">
-  <view class="car2" ref="content" style="height: 100%;font-size: 15px; border-top:0;    overflow: auto;">
-    <u-navbar title="个人中心" >
-      <view @click="$goBack" class="u-nav-slot" slot="left">
-        <image style="width: 23px; height: 23px;"  src="../../static/img/saoyisao4.png"></image>
-      </view>
-      <view @click="comfirm(1)" class="u-nav-slot" slot="right">
-        <image style=" width: 26px;height: 26px;"  src="../../static/img/setting0.png"></image>
-      </view>
-    </u-navbar>
+  <view class="hello" ref="hello" style="height: 100%;padding-top: 0px;    overflow: auto;">
+    <view class="car1">
+      <u-navbar title="移动仓库" >
+        <view class="u-nav-slot" slot="left">
+          <image style="width: 23px; height: 23px;"  src="../../static/img/logo/logo-333-1.png"></image>
+        </view>
+        <view @click="scanCode(1)"  class="u-nav-slot" slot="right">
+          <image style=" width: 26px;height: 26px;"  src="../../static/img/photo2.png"></image>
+        </view>
+      </u-navbar>
+<!--      <view v-if="flag">-->
+<!--        <mt-header   title="移动仓库">-->
+<!--          <view slot="left">-->
+<!--            <img  style="width: 21px; "  src="../../static/img/logo/logo-333-1.png">-->
+<!--          </view>-->
+<!--          <view slot="right">-->
+<!--            <img  @click="scanCode(1)"  style="width: 26px; "  src="../../static/img/photo2.png">-->
+<!--          </view>-->
+<!--        </mt-header>-->
+<!--        <view class="header" style="    margin-top: 11vw;margin-bottom: -3px;">-->
+<!--          <view class="my-indent-right-1" style="margin-left: 4vw;">-->
+<!--            <el-input-->
+<!--                clearable-->
+<!--                placeholder="请输入货号/商品名"-->
+<!--                prefix-icon="el-icon-search"-->
+<!--                v-model.trim="queryParamTop.actNo">-->
+<!--            </el-input>-->
+<!--          </view>-->
+<!--        </view>-->
+<!--      </view>-->
 
+      <view class="julibiaoti" style="
+        padding-bottom: 40vw;
+    background-image: linear-gradient(#e5f4ff, #f3f2f8);">
+        <view class="header">
+          <view class="my-indent-right-1" style="margin-left: 4vw;">
+            <u--input
+                class="searchInputW"
+                prefixIcon="search"
+                placeholder="请输入货号/商品名"
+                placeholderStyle="font-size: 14px;color:#c0c4cc"
+                v-model = "queryParamTop.actNo"
+                prefixIconStyle="font-size: 24px;color:#c0c4cc"
+                :show-action="false"
+                @change="jumpGoods(queryParamTop.actNo)"
+                clearable
+            >
+            </u--input>
+<!--            <el-input-->
+<!--                clearable-->
+<!--                placeholder="请输入货号/商品名"-->
+<!--                prefix-icon="el-icon-search"-->
+<!--                v-model.trim="queryParamTop.actNo">-->
+<!--            </el-input>-->
+          </view>
+        </view>
+      </view>
+
+      <view class="my-pay-2"
+               :style="!flag? 'border-bottom-style:none;margin-top: -141px;padding-top: 4vw; '
+               : 'border-bottom-style:none;padding-top: 4vw; '">
+        <view :to="{ path: '/store'}">
+          <text style="    margin-top: -3px;">
+             <image
+                 style="margin-top: 11px;
+    margin-bottom: -3px;
+    width: 28px;height: 28px;" src="../../static/img/goods-1.png"></image>
+          </text>
+          <text style="color: #333;font-size: 14px;    margin-top: 1px;">库存管理</text>
+        </view>
+        <image style="    margin-left: 10px;
+    height: 55px;width:7px;
+    margin-top: 10px;" src="../../static/img/more-1.png"></image>
+        <view :to="{ path: '/store?today=7'}">
+          <text :class="storeData.upCout > 0 ? 'color-danger-strong' : 'color-font'">{{storeData.upCout}}</text>
+          <text style="color: #8c8a8a;font-size: 14px;">变更</text>
+        </view>
+        <view :to="{ path: '/store?today=2'}">
+          <text :class="storeData.successNumLast > 0 ? 'color-danger-strong' : 'color-font'">{{storeData.successNumLast}}</text>
+          <text style="color: #8c8a8a;font-size: 14px;">待上架</text>
+        </view>
+        <view :to="{ path: '/store?today=3'}">
+          <text :class="storeData.waitMoveCout > 0 ? 'color-danger-strong' : 'color-font'">{{storeData.waitMoveCout}}</text>
+          <text style="color: #8c8a8a;font-size: 14px;">待移库</text>
+        </view>
+      </view>
+
+      <view class="main" style="">
+        <h1 class="section1-title" style="border-top-style:none">
+      <text style="    margin-left: 20px;">
+        订单管理
+      </text>
+          <view class="link-top"></view>
+        </h1>
+        <view class="my-pay-2" style="border-bottom-style:none;">
+          <view :to="{ path: '/order?status=3'}">
+            <text :class="orderIofo.count3 > 0 ? 'color-danger-strong' : 'color-font'">{{orderIofo.count3}}</text>
+            <text style="color: #8c8a8a;font-size: 14px;">待发货</text>
+          </view>
+          <view :to="{ path: '/order?status=4'}">
+            <text :class="orderIofo.count4 > 0 ? 'color-danger-strong' : 'color-font'">{{orderIofo.count4}}</text>
+            <text style="color: #8c8a8a;font-size: 14px;">已发货</text>
+          </view>
+          <view :to="{ path: '/order?status=5'}">
+            <text :class="orderIofo.count5 > 0 ? 'color-danger-strong' : 'color-font'">{{orderIofo.count5}}</text>
+            <text style="color: #8c8a8a;font-size: 14px;">运输中</text>
+          </view>
+          <view :to="{ path: '/order?status=6'}">
+            <text :class="orderIofo.count6 > 0 ? 'color-danger-strong' : 'color-font'">{{orderIofo.count6}}</text>
+            <text style="color: #8c8a8a;font-size: 14px;">已收货</text>
+          </view>
+        </view>
+        <view class="my-pay-2" style="border-bottom-style:none;">
+          <view :to="{ path: '/order?status=11&scrollNum=4'}">
+            <text class="color-font">{{orderIofo.count11}}</text>
+            <text style="color: #8c8a8a;font-size: 14px;">已入库</text>
+          </view>
+          <view :to="{ path: '/order?status=2&scrollNum=7'}">
+            <text class="color-font">{{orderIofo.count2}}</text>
+            <text style="color: #8c8a8a;font-size: 14px;">已上架</text>
+          </view>
+          <view :to="{ path: '/order?status=7&scrollNum=7'}">
+            <text class="color-font">{{orderIofo.count7}}</text>
+            <text style="color: #8c8a8a;font-size: 14px;">交易成功</text>
+          </view>
+          <view :to="{ path: '/order?status=8&scrollNum=7'}">
+            <text class="color-font">{{orderIofo.count8}}</text>
+            <text style="color: #8c8a8a;font-size: 14px;">瑕疵</text>
+          </view>
+        </view >
+        <view  @click="order(1,6)" class="zuoyouduiqi my-pay-21" v-if="orderIofo.countTheExpire">
+          <view class="wenzitupduiqi" style="margin-left: 4vw;">
+            <image style="width: 30px; height: 30px"  src="../../static/img/timeout_2.png"></image>
+            <text style="color: #333;font-size: 15px;margin-left: 10px">即将到期订单</text>
+          </view>
+          <view class="wenzitupduiqi" style="margin-right: 4vw;">
+            <text class="color-font-strong" style="font-size: 25px;">{{orderIofo.countTheExpire}}</text>
+            <image style="width: 20px;height: 20px" src="../../static/img/more.png"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!--    销售走势-->
     <view style="
-        margin-top: 44px;
-        padding-bottom: 35vw;
-        padding-top: 5vw;
-         background-image: linear-gradient(#e5f4ff, #f3f2f8);">
-      <!--      <view class="zuoyouduiqi" style="    padding: 2.81vw 4.8vw !important;">-->
-      <!--        <view @click="scanCode(1)" >-->
-      <!--          <image style="width: 23px; height: 23px;"  src="../../static/img/saoyisao4.png"></image>-->
-      <!--        </view>-->
-      <!--        <view>-->
-      <!--          <text style="font-size: 16px; color: black;" class="mint-header-title">-->
-      <!--            个人中心-->
-      <!--          </text>-->
-      <!--        </view>-->
-      <!--        <view @click="comfirm(1)">-->
-      <!--          <image style=" width: 26px;height: 26px;"  src="../../static/img/setting0.png"></image>-->
-      <!--        </view>-->
-      <!--      </view>-->
-      <view class="header zuoyouduiqi">
-        <view @click="userInfo" class="header-icon xianglian" style="margin-left: 6vw;">
-          <image v-if="imgUrl" style="width: 50px;height: 50px;border-radius: 100%;" :src="imgUrl"></image>
-          <text style="margin-left: 12px;">{{
-            form.userRealName ? form.userRealName : form.userAccount ? form.userAccount : '系统用户'
-            }}</text>
+    background-color: rgb(255, 255, 255);
+    padding-bottom: 10px;
+    margin-bottom: 40px;
+">
+      <!--      <h1 class="index-title"  style="border-top-style:none">-->
+      <!--        销售走势-->
+      <!--      </h1>-->
+      <h1 class="index-title" style="border-top-style:none">
+      <text >
+        销售走势
+      </text>
+        <view class="link-top-1"></view>
+      </h1>
+
+      <view class="index-list" style=" padding-top: 4vw" >
+          <view class="li">
+            <view>
+              <text class="color-font"><strong>{{orderData.successNum}}</strong> </text>
+            </view>
+            <view>
+            <text class="section1name" >月订单数</text>
+            </view>
+            <view>
+            <text class="color-font"><strong>{{orderData.expectSuccessNum}}</strong> </text>
+            </view>
+            <view>
+            <text class="section1name" >预计总数</text>
+            </view>
+            <view>
+            <text :class="orderData.successNumRate<0 ? 'color-success' : 'color-danger'" >{{orderData.successNumRate}} %</text>
+            </view>
+            <view>
+            <text class="section1name" >同比上月</text>
+            </view>
+          </view>
+
+          <view class="li">
+            <view>
+            <text class="color-font"><strong>{{orderData.profitsAmount}}</strong> </text>
+            </view>
+            <view>
+            <text class="section1name" >本月利润</text>
+            </view>
+            <view>
+            <text class="color-font"><strong>{{orderData.expectProfitsAmount}}</strong> </text>
+            </view>
+            <view>
+            <text class="section1name" >预计利润</text>
+            </view>
+            <view>
+            <text :class="orderData.profitsAmountRate<0 ? 'color-success' : 'color-danger'" >{{orderData.profitsAmountRate}} %</text>
+            </view>
+            <view>
+            <text class="section1name" >同比上月</text>
+            </view>
+          </view>
+          <view  class="li">
+            <view>
+            <text class="color-font"><strong>{{orderData.orderAmount}}</strong> </text>
+            </view>
+            <view>
+            <text class="section1name" >本月总额</text>
+            </view>
+            <view>
+            <text class="color-font"><strong>{{orderData.expectOrderAmount}}</strong> </text>
+            </view>
+            <view>
+            <text class="section1name" >预计总额</text>
+            </view>
+            <view>
+            <text :class="orderData.orderAmountRate<0 ? 'color-success' : 'color-danger'" >{{orderData.orderAmountRate}} %</text>
+            </view>
+            <view>
+            <text class="section1name" >同比上月</text>
+            </view>
+          </view>
+      </view>
+      <view class="zuoyouduiqi" style="
+    padding-right: 60px;
+    padding-bottom: 14px;
+    padding-left: 60px;">
+<!--        <el-button :type="mouthLl" @click="profitData(1)" size="small" round>月利润</el-button>-->
+<!--        <el-button :type="dayLl" @click="profitData(0)" size="small" round>日利润</el-button>-->
+        <u-button type="primary"  size="small" shape="circle" @click="profitData(1)" style="margin-right: 10px"  text="月利润" :plain="dataType == 0"></u-button>
+        <u-button type="primary"  size="small" shape="circle" @click="profitData(0)" style="margin-left: 10px"   text="日利润" :plain="dataType == 1"></u-button>
+      </view>
+
+      <view style="
+      margin-left: 2vw;
+      display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 92vw;">
+<!--        <view  @click="chosseTime(1)">-->
+<!--&lt;!&ndash;          <el-date-picker style="width: 37vw;" readonly="readonly"&ndash;&gt;-->
+<!--&lt;!&ndash;                          v-model="queryParam.createTimeFrom" :value-format="valueFormat"&ndash;&gt;-->
+<!--&lt;!&ndash;                          :type="dateType"  placeholder="时间开始">&ndash;&gt;-->
+<!--&lt;!&ndash;          </el-date-picker>&ndash;&gt;-->
+<!--        </view>-->
+        <view  @click="showFrom= true">
+          <u--input
+              style="width: 44vw;"
+              class="searchInput"
+              readonly="readonly"
+              prefixIcon="calendar"
+              prefixIconStyle="font-size: 20px;color:#c0c4cc"
+              placeholder="开始时间"
+              placeholderStyle="font-size: 15px;color:#c0c4cc"
+              v-model = "queryParam.createTimeFrom"
+              clearable
+          >
+          </u--input>
         </view>
-        <view class="my-indent-right" style="margin-right: 6vw;">
-          <u-button type="primary" @click="comfirm(2)"  class="custom-style"  shape="circle"  round>账户管理</u-button>
+        <text style="    font-size: 15px;margin: 2vw;">至</text>
+<!--        <view  @click="chosseTime(2)">-->
+<!--          <el-date-picker style="width: 37vw;    margin-right: 8vw;" readonly="readonly"-->
+<!--                          v-model="queryParam.createTimeTo" :value-format="valueFormat"-->
+<!--                          :type="dateType" placeholder="时间结束">-->
+<!--          </el-date-picker>-->
+          <view   @click="showTo= true">
+            <u--input
+                placeholderStyle="font-size: 15px;color:#c0c4cc"
+                style="width: 44vw;"
+                class="searchInput"
+                readonly="readonly"
+                prefixIcon="calendar"
+                placeholder="结束时间"
+                v-model = "queryParam.createTimeTo"
+                prefixIconStyle="font-size: 20px;color:#c0c4cc"
+                clearable
+            >
+            </u--input>
+            <!--       <el-date-picker style="width: 44vw" readonly="readonly"
+                                   v-model="queryParam.createTimeTo" value-format="yyyy-MM"  type="month"
+                                   placeholder="结束时间"></el-date-picker> -->
+          </view>
+<!--        </view>-->
+      </view>
+      <view style="margin-top: 20px;">
+        <view class="charts-box">
+          <qiun-data-charts type="line" :opts="opts" :chartData="chartData" />
         </view>
+<!--        <ve-line-->
+<!--            v-if="dataType == 1"-->
+<!--            height="250px"-->
+<!--            :data="chartData2"-->
+<!--            :legend-visible="true"-->
+<!--            :loading="loading"-->
+<!--            :data-empty="dataEmpty"-->
+<!--            :settings="chartSettings"></ve-line>-->
+<!--        <ve-histogram height="250px" v-else :data="chartData2" :extend="extend" :settings="chartSettings" :legend-visible="true"></ve-histogram>-->
       </view>
     </view>
-
-
-    <view class="main" :style="!flag? 'margin-top: -138px;': ''">
-      <view class="my-indent" style="    margin-bottom: -10px;" :to="{ name: '订单'}">
-        <text class="my-indent-left">订单</text>
-        <view class="my-indent-right">
-          <text style="font-weight: 500">全部</text>
-          <image class="my-indent-img" src="../../static/img/more.png"></image>
-        </view>
-      </view>
-
-      <view class="my-pay">
-        <view :to="{ path: '/order?status=3'}">
-          <image
-              :class="orderIofo.count3 > 0 ? 'count3' : ''"
-              src="../../static/img/new/daifahuo.png"></image>
-          <i v-if="orderIofo.count3" class="danger-num">{{orderIofo.count3}}</i>
-          <p style="color: #333">待发货</p>
-        </view>
-        <view :to="{ path: '/order?status=4'}">
-          <!--                  <text class="icon2-thecar"></text>-->
-          <image
-              :class="orderIofo.count4 > 0 ? 'count3' : ''"
-              src="../../static/img/new/fahuo.png"></image>
-          <i v-if="orderIofo.count4" style="margin-left: -14px" class="danger-num">{{orderIofo.count4}}</i>
-          <p style="color: #333">已发货</p>
-        </view>
-
-        <view :to="{ path: '/order?status=5'}">
-          <!--                  <span class="icon2-thecar"></span>-->
-          <image
-              :class="orderIofo.count5 > 0 ? 'count3' : ''"
-              src="../../static/img/new/yilanjian.png"></image>
-          <i v-if="orderIofo.count5"  class="danger-num">{{orderIofo.count5}}</i>
-          <p style="color: #333">运输中</p>
-        </view>
-
-        <view :to="{ path: '/order?status=6'}">
-          <image
-              :class="orderIofo.count6 > 0 ? 'count3' : ''"
-              src="../../static/img/new/yishouhuo.png"></image>
-          <i v-if="orderIofo.count6"  class="danger-num">{{orderIofo.count6}}</i>
-          <p style="color: #333">已收货</p>
-        </view>
-
-      </view>
-
-      <view class="my-indent" style="    margin-bottom: -10px;"  @click="putin">
-        <text class="my-indent-left">报表</text>
-      </view>
-      <view class="my-settle1" style="margin-top: 0;border-top-style:none">
-        <view  @click="putin" class="my-settle1-top">
-          <view>
-            <image style="width: 27px;height: 27px;" src="../../static/img/new/ruku.png"></image>
-          </view>
-
-          <p>
-            <text style="color: #333">入库报表</text>
-            <image class="my-indent-img-1" src="../../static/img/more.png"></image>
-          </p>
-        </view>
-        <view :to="{ name: '入库渠道报表'}" class="my-settle1-top">
-          <view>
-            <image style="width: 27px;height: 27px;"
-                   src="../../static/img/new/qudao.png"></image>
-          </view>
-
-          <p>
-            <text style="color: #333">入库渠道报表</text>
-            <image class="my-indent-img-1" src="../../static/img/more.png"></image>
-          </p>
-        </view>
-        <view :to="{ name: '销售报表'}" class="my-settle1-bottom">
-          <view>
-            <image style="width: 27px;height: 27px;"
-                   src="../../static/img/new/xiaoshou.png"></image>
-          </view>
-          <p>
-            <text style="color: #333">销售报表</text>
-            <image class="my-indent-img-1" src="../../static/img/more.png"></image>
-          </p>
-        </view>
-        <view :to="{ name: '区域销售报表'}" class="my-settle1-bottom">
-          <view>
-            <image style="width: 27px;height: 27px;" src="../../static/img/new/quyu.png"></image>
-          </view>
-          <p>
-            <text style="color: #333">区域销售报表</text>
-            <image class="my-indent-img-1" src="../../static/img/more.png"></image>
-          </p>
-        </view>
-      </view>
-      <view class="my-indent" style="    margin-bottom: -10px;">
-        <text class="my-indent-left">服务</text>
-        <!--        <view class="my-indent-right">-->
-        <!--          <text>全部订单</text>-->
-        <!--          <i class="icon-go"></i>-->
-        <!--        </view>-->
-      </view>
-      <view class="my-pay-1" style="border-bottom-style:none;">
-        <view :to="{ name: '活动'}">
-          <!--                  <text class="icon2-money"></text>-->
-          <image
-              style="margin-top: 7px;margin-bottom: -4px;width: 27px;height: 27px;"
-              src="../../static/img/new/huodong.png"></image>
-          <p style="color: #333">活动</p>
-        </view>
-        <view @click="$navigateTo('/pages/other/index')">
-          <!--                  <text class="icon2-thecar"></text>-->
-          <image
-              style="margin-top: 7px;margin-bottom: -4px;width: 27px;height: 27px;"
-              src="../../static/img/new/qita.png"></image>
-          <p style="color: #333">其他收支</p>
-        </view>
-        <!--        <view :to="{ name: '瑕疵商品'}">-->
-        <!--          &lt;!&ndash;                  <text class="icon2-thecar"></text>&ndash;&gt;-->
-        <!--          <image-->
-        <!--              style="    margin-top: 4px;-->
-        <!--    width: 27px;height: 27px;" src="../../static/img/new/xiaci.png"></image>-->
-        <!--          <p style="color: #333">瑕疵商品</p>-->
-        <!--        </view>-->
-        <view :to="{ name: '瑕疵商品'}">
-          <image
-              style="margin-top: 7px;margin-bottom: -4px;width: 27px;height: 27px;"
-              src="../../static/img/new/xiaci.png"></image>
-          <p style="color: #333">瑕疵商品</p>
-        </view>
-        <view :to="{ name: '红包'}">
-          <image
-              style="margin-top: 7px;margin-bottom: -4px;width: 27px;height: 27px;"
-              src="../../static/img/new/hongbao.png"></image>
-          <p style="color: #333">红包</p>
-        </view>
-      </view>
-      <view class="my-pay-1" style="padding-bottom: 5vw">
-        <view :to="{ path: '/memo'}" style="width: 25%">
-          <image
-              style="margin-top: 7px;margin-bottom: -4px;width: 27px;height: 27px;"
-              src="../../static/img/new/memo.png"></image>
-          <p style="color: #333">备忘录</p>
-        </view>
-      </view>
-    </view>
-    <!--    <view style=" padding-top: 1px;"></view>-->
-    <!-- <v-footer></v-footer> -->
+    <!--    仓库值-->
+<!--    <v-section1 :form="form" :countDay="countDay" :count="count":chartData1="chartData1" :orderIofo ="orderIofo" :chartSettings1="chartSettings1" />-->
+<!--    <mt-datetime-picker-->
+<!--        v-model="pickerValue"-->
+<!--        type="date"-->
+<!--        ref="picker"-->
+<!--        :startDate="new Date(2022, 3, 1 )"-->
+<!--        :endDate="new Date()"-->
+<!--        year-format="{value} 年"-->
+<!--        month-format="{value} 月"-->
+<!--        date-format="{value} 日"-->
+<!--        @confirm="handleConfirm">-->
+<!--    </mt-datetime-picker>-->
+<!--    <v-baseline/>-->
+<!--    <v-footer/>-->
+    <u-datetime-picker
+        :show="showFrom"
+        mode="year-month"
+        :minDate="1646064000000"
+        @confirm="confirmFrom"
+        @cancel="cancelFrom"
+    ></u-datetime-picker>
+    <u-datetime-picker
+        :show="showTo"
+        mode="year-month"
+        :minDate="1646064000000"
+        @confirm="confirmTo"
+        @cancel="cancelTo"
+    ></u-datetime-picker>
   </view>
 </template>
 
 <script>
-  // import * as mockData from '@/http/mock.js' //模拟数据
-  // import {goodsBaseApi} from '@/api/goodsBase'
-  // import {goodsOrderApi} from '@/api/goodsOrder'
+  // import orderNum from '@/components/index/orderNum.vue'
+  // import Section1 from '@/components/index/section1.vue'
+  // import Baseline from '@/common/_baseline.vue'
   // import Footer from '@/common/_footer.vue'
-  // import {userContainerApi} from '@/api/user'
-
+  // import index from '@/http/mock.js' //模拟数据
+  import { goodsOrderApi } from '@/api/goodsOrder'
+  // import { goodsOtherApi } from '@/api/goodsOther'
   export default {
     components: {
+      // 'v-header': Header,
+      // 'v-orderNum': orderNum,
+      // 'v-service': Service,
+      // 'v-section1': Section1,
+      // 'v-section2': Section2,
+      // 'v-section3': Section3,
+      // 'v-section4': Section4,
+      // 'v-baseline': Baseline,
       // 'v-footer': Footer
     },
     data() {
       return {
+        // datas: {
+        //   section1:{},
+        //   // section2:{},
+        //   // section3:{},
+        //   // section4:{},
+        //   // swiper:[]
+        // },
+        showFrom: false,
+        showTo: false,
         flag: false,
-        imgUrl: '',
-        fileUrl: this.$fileUrl,
+        loading: true,
+        form: {},
         orderIofo: {},
-        // userName: localStorage.getItem('user_name'),
-        // userRealName: localStorage.getItem('userRealName')
-        form: {
-          userAccount: '',
-          userMobile: '',
-          userRealName: '',
-          imgUrl: ''
-        }
+        queryParam: {
+          dataType: 1,
+          createTimeFrom: '',
+          createTimeTo: ''
+        },
+        queryParamTop: {
+          actNo: ''
+        },
+        dataType: 1,
+        extend: {
+          // x轴的文字倾斜
+          "xAxis.0.axisLabel.rotate": 45,
+          yAxis: {
+            //是否显示y轴线条
+            axisLine: {
+              show: true,
+            },
+            // 纵坐标网格线设置，同理横坐标
+            splitLine: {
+              show: false,
+            },
+            // 线条位置
+            position: "left",
+          },
+          xAxis: {
+            axisLine: {
+              show: true,
+            },
+          },
+          series: {
+            label: { show: true, position: "top" },
+          },
+          //数据过多时出现横向滚动条
+          dataZoom: [
+            {
+              show: true,
+              realtime: true,
+              start: 0,
+              end: 50,
+            },
+            {
+              type: "inside",
+              realtime: true,
+              start: 0,
+              end: 50,
+            },
+          ],
+        },
+        chartData2: {
+          columns: ['months', '订单数', '订单金额(千)', '利润(百)'],
+          rows: []
+        },
+        createTime: '',
+        chartSettings: {
+          // xAxisType: 'time',
+          area: false,
+          axisSite: { right: ['profitsAmount'] },
+          labelAlias: {
+            'successNum': '订单数',
+            'orderAmount': '订单金额(千)',
+            'profitsAmount': '利润(百)'
+          }
+        },
+        // chartData: {
+        //   columns: ['months', 'successNum', 'orderAmount', 'profitsAmount'],
+        //   rows: []
+        // },
+        chartData: {},
+        opts: {
+          color: ["#1890FF", "#91CB74", "#FAC858", "#EE6666", "#73C0DE", "#3CA272", "#FC8452",
+            "#9A60B4", "#ea7ccc"],
+          padding: [15, 10, 0, 15],
+          enableScroll: false,
+          dataLabel: false,
+          dataPointShape: false,
+          legend: {},
+          xAxis: {
+            labelCount: 4,
+            disableGrid: true
+          },
+          yAxis: {
+            gridType: "dash",
+            dashLength: 2
+          },
+          extra: {
+            line: {
+              type: "straight",
+              width: 2,
+              activeType: "hollow"
+            }
+          }
+        },
+        chartSettings1: { type: 'pie' },
+        chartData1: {
+          columns: ['key', 'value'],
+          rows: [
+          ]
+        },
+        countDay: 0, // 倒计时
+        count: '', // 倒计时
+        seconds: 0, // 10天的秒数
+        nowDate: '',
+        nowTime: '',
+        nowWeek: '',
+        pickerValue:new Date(),
+        pickerValueType: '',
+        orderData: {},
+        storeData: {},
+        dateType: 'month',
+        valueFormat: 'yyyy-MM',
+        dayLl: 'default',
+        mouthLl: 'primary',
+        loading: false,
+        dataEmpty: false,
       }
     },
-    // mounted(){
-    //   this.$refs.content.onscroll = ()=>{
-    //     this.handleScroll();
-    //   }
-    // },
-    onLoad(options) {
-      if (options && options.userRealName) {
-        this.form.userRealName = options.userRealName
-      }
-    },
-    created() {
-      this.getUcUser()
-      this.getData()
-    },
-    // onLoad() {
-    //   console.log('页面加载')
-    // },
-    // onShow() {
-    //   console.log('页面显示')
-    //   this.getUcUser()
-    //   this.getData()
-    // },
-    // onReady(){
-    //   console.log('页面初次显示')
-    // },
-    // onHide() {
-    //   console.log('页面隐藏')
-    // },
-    // onUnload() {
-    //   // this.getUcUser()
-    //   // this.getData()
-    //   console.log('页面卸载')
-    // },
-    // onBackPress(){
-    //   console.log('页面返回...')
-    // },
     onPullDownRefresh() {
       uni.stopPullDownRefresh()
-      this.getUcUser()
+      this.initTime()
+      this.time()
       this.getData()
+      this.getData1()
+      this.getData2()
+    },
+    created(){
+      this.initTime()
+      this.time()
+      this.getData()
+      this.getData1()
+      this.getData2()
     },
     methods: {
-      // handleScroll () {
-      //   let scrollTop = this.$refs.content.scrollTop;
-      //   console.info(scrollTop)
-      //   if (scrollTop < 10){
-      //     this.flag = false
-      //   } else{
-      //     this.flag = true
+      cancelFrom() {
+        this.showFrom=false
+        this.queryParam.createTimeFrom = ''
+        this.getData1()
+      },
+      cancelTo() {
+        this.showTo=false
+        this.queryParam.createTimeTo = ''
+        this.getData1()
+      },
+      confirmFrom(e) {
+        this.showFrom = false;
+        let timeValue =  uni.$u.timeFormat(e.value, 'yyyy-mm');
+        this.queryParam.createTimeFrom = timeValue
+        this.getData1()
+      },
+      confirmTo(e) {
+        this.showTo = false;
+        let timeValue =  uni.$u.timeFormat(e.value, 'yyyy-mm');
+        this.queryParam.createTimeTo = timeValue
+        this.getData1()
+      },
+      order(theExpire,scrollNum) {
+        this.$router.push({ path: '/order', query: { theExpire,scrollNum }})
+      },
+      handleScroll () {
+        let scrollTop = this.$refs.hello.scrollTop
+        console.info(scrollTop)
+        if (scrollTop < 40){
+          this.flag = false
+        } else{
+          this.flag = true
+        }
+      },
+      // keyupSubmit() {
+      //   document.onkeydown = (e) => {
+      //     let _key = window.event.keyCode
+      //     if (_key === 13) {
+      //       this.jumpGoods(this.queryParamTop.actNo)
+      //     }
       //   }
-      //   // let blocks = document.querySelectorAll('.conBlock');
-      //   // let tabblocks = document.querySelectorAll('.tab-title');
-      //   // blocks.forEach((item, index) => {
-      //   //   if (scrollTop >= item.offsetTop - 160) {
-      //   //     this.activeId = index;
-      //   //   }
-      //   // })
-      //   // if(tabblocks[this.activeId].offsetLeft > window.innerWidth-50){
-      //   //   this.$refs['tab-content'].scrollLeft = tabblocks[this.activeId].offsetLeft;
-      //   // }
-      //   // if(this.$refs['tab-content'].scrollLeft>tabblocks[this.activeId].offsetLeft){
-      //   //   this.$refs['tab-content'].scrollLeft = 0;
-      //   // }
       // },
-      userInfo() {
-        this.$navigateTo('/pages/my/userInfo')
+      jumpGoods(actNo) {
+        this.$router.push({ path: '/GoodsBase', query: { actNo } })
       },
-      putin() {
-        this.$navigateTo('/pages/report/putin')
+      initTime() {
+        let myDate = new Date().getTime()
+        let endTime = '2024/02/10 00:00:00'
+        let timestamp2 = Date.parse(new Date(endTime))
+        this.seconds = (timestamp2 - myDate) / 1000
       },
-
-      scanCode(photo) {
-        this.$router.push({ path: '/scanCode', query: { photo } })
+      countDown() {
+        let d = parseInt(this.seconds / (24 * 60 * 60))
+        if (d > 0) {
+          // d = d < 10 ? '0' + d : d
+          let h = parseInt(this.seconds / (60 * 60) % 24);
+          h = h < 10 ? '0' + h : h
+          let m = parseInt(this.seconds / 60 % 60);
+          m = m < 10 ? '0' + m : m
+          let s = parseInt(this.seconds % 60);
+          s = s < 10 ? '0' + s : s
+          this.count = '天' + h + '时' + m + '分' + s + '秒'
+        }
+        this.countDay = d
       },
-      comfirm(type) {
-        this.$navigateTo('/pages/login/logout?type='+type)
-        // this.$router.push({path: '/logout', query: {type}})
+      time() {
+        setInterval(() => {
+          this.seconds -= 1
+          this.countDown()
+        }, 1000)
       },
-      // syncOldPriceToNew1() {
-      //   this.$request({
-      //     url: '/gw/op/v2/goodsBase/syncOldPriceToNew',
-      //     method: 'post',
-      //     data: loginInfo
-      //   })
-      //   goodsBaseApi.syncOldPriceToNew().then(res => {
-      //     this.$toast(res.subMsg)
-      //   })
-      // },
       getData() {
         this.$request({
-          url: '/gw/op/v1/goodsOrder/orderData',
+          url: '/gw/op/v1/goodsOrder/indexData',
           method: 'get'
         }).then(res => {
           if (res.subCode === 1000) {
+            this.form = res.data ? res.data.commonDto : {}
             this.orderIofo = res.data ? res.data.countDto : {}
+            if (this.form.inventoryCost && this.form.inventoryNum) {
+              this.form.inboundAverage = parseFloat(
+                  this.form.inventoryCost / this.form.inventoryNum).toFixed(2)
+            }
+            if (this.form.successNum) {
+              this.form.orderAmountAverage = parseFloat(
+                  this.form.orderAmount / this.form.successNum).toFixed(2)
+              this.form.freightAverage = parseFloat(
+                  this.form.freight / this.form.successNum).toFixed(2)
+              this.form.profitsAverage = parseFloat(
+                  this.form.profitsAmount / this.form.successNum).toFixed(2)
+            }
+            this.form.costAverage = parseFloat(
+                this.form.inboundAverage / 1 + this.form.freightAverage / 1).toFixed(2)
+            this.form.inventoryRatio = parseFloat(
+                this.form.inventoryNum / this.form.goodsPutInNum * 100).toFixed(2)
+            this.form.profitsProportion = parseFloat(
+                this.form.profitsAverage / this.form.costAverage * 100).toFixed(2)
+            // let  inventoryNum = {key: "22", value: 1393  }
+            // let  successNum = {key: "23", value: 1393  }
+            let  successNum = {key: "成功数量", value: this.form.successNum }
+            let  inventoryNum = {key: "库存总数", value: this.form.inventoryNum }
+            // let  successNum = {key: "successNum", value: this.form.successNum }
+            this.chartData1.rows.push(inventoryNum)
+            this.chartData1.rows.push(successNum)
           } else {
             this.$toast(res.subMsg)
           }
         })
       },
-      getUcUser() {
+      scanCode(photo) {
+        this.$router.push({ path: '/scanCode', query: { photo } })
+      },
+      chosseTime(pickerValueType) {
+        this.pickerValueType = pickerValueType
+        this.$refs.picker.open();
+        if (this.dataType == 1){
+          this.$refs.picker.$el.getElementsByClassName('picker-slot')[2].style.display = 'none'
+        } else {
+          this.$refs.picker.$el.getElementsByClassName('picker-slot')[2].style.display = ''
+        }
+      },
+      handleConfirm(val) {
+        let year = new Date(val).getFullYear()
+        let month = new Date(val).getMonth() + 1
+        if (month < 10 ){
+          month = '0' + month
+        }
+        let res = year + '-' +month
+        if (this.dataType == 0){
+          let day = new Date(val).getDate()
+          if (day < 10 ){
+            day = '0' + day
+          }
+          res = res + '-' + day
+        }
+        if(this.pickerValueType == 1) {
+          this.queryParam.createTimeFrom = res
+        }else {
+          this.queryParam.createTimeTo = res
+        }
+        this.getData1()
+      },
+      profitData(dataType) {
+        this.dataType = dataType
+        this.queryParam = {
+          dataType: dataType,
+          createTimeFrom: '',
+          createTimeTo: ''
+        }
+        if (dataType == 1) {
+          this.mouthLl = 'primary'
+          this.dayLl = 'default'
+          this.dateType = 'month'
+          this.valueFormat = 'yyyy-MM'
+        } else {
+          this.mouthLl = 'default'
+          this.dayLl = 'primary'
+          this.dateType = 'date'
+          this.valueFormat = 'yyyy-MM-dd'
+        }
+        this.getData1()
+      },
+      getData1() {
+        // goodsOrderApi.indexOrderData(this.queryParam)
         this.$request({
-          url: '/gw/op/v1/auth/getUcUser',
-          method: 'get'
+          url: '/gw/op/v1/goodsOrder/indexOrderData',
+          method: 'get',
+          data: this.queryParam
         }).then(res => {
           if (res.subCode === 1000) {
-            this.form = res.data ? res.data : {}
-            if (this.form.imgUrl) {
-              this.imgUrl = this.fileUrl + this.form.imgUrl
-            } else {
-              this.imgUrl = '../../static/img/userimg5.jpg'
+            this.dataEmpty = false
+            this.loading = false
+            // this.chartData.rows = res.data.rows
+            // this.chartData2.rows = res.data.rowsDate
+            this.chartData = JSON.parse(JSON.stringify(res.data.lineVo));
+            this.orderData = res.data
+            if (this.orderData) {
+              this.orderData.successNumRate = parseFloat(
+                  (this.orderData.successNum - this.orderData.successNumLast)
+                  / this.orderData.successNumLast * 100).toFixed(2)
+              this.orderData.profitsAmountRate = parseFloat(
+                  (this.orderData.profitsAmount - this.orderData.profitsAmountLast)
+                  / this.orderData.profitsAmountLast * 100).toFixed(2)
+              this.orderData.orderAmountRate = parseFloat(
+                  (this.orderData.orderAmount - this.orderData.orderAmountLast)
+                  / this.orderData.orderAmountLast * 100).toFixed(2)
+              var date = new Date()
+              let todaydate = date.getDate()
+              let expectSuccessNum = this.orderData.successNum / (todaydate/30)
+              this.orderData.expectSuccessNum = parseFloat(expectSuccessNum).toFixed(0)
+              let expectProfitsAmount = this.orderData.profitsAmount / (todaydate/30)
+              this.orderData.expectProfitsAmount = parseFloat(expectProfitsAmount).toFixed(2)
+              let expectOrderAmount = this.orderData.orderAmount / (todaydate/30)
+              this.orderData.expectOrderAmount = parseFloat(expectOrderAmount).toFixed(2)
             }
+          } else {
+            this.$toast(res.subMsg)
+          }
+        })
+      },
+      getData2() {
+        this.$request({
+          url: '/gw/op/v1/goodsOrder/todaySync',
+          method: 'get',
+          data: this.queryParam
+        }).then(res => {
+          if (res.subCode === 1000) {
+            this.storeData = res.data
           } else {
             this.$toast(res.subMsg)
           }
@@ -335,74 +712,210 @@
   }
 </script>
 
+
 <style lang="less" scoped>
   @import '@/assets/fz.less';
   @import '@/assets/index/style.css';
+  .mint-button--small {
+    display: inline-block;
+    font-size: 4vw;
+    height: 6vw;
+  }
 
+  /*
+   -----分割线---
+  */
   * {
-    /*margin: 0;*/
-    /*padding: 0;*/
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
   }
 
   /* 这里直接设置 1rem = 50px begin */
   html {
-    font-size: 10px;
+    font-size: 50px;
   }
 
   /* 这里直接设置 1rem = 50px end */
   html,
   body {
-    /*font-family: "微软雅黑";*/
-    /*color: #333;*/
-    /*background: #fff;*/
-    background-color: #f3f2f8;
   }
 
-  .car2 {
-    width: 100%;
-    /*padding-bottom: 14vw;*/
+  /* 给要上拉的容器设置 begin */
+  .hello {
     background-color: #f3f2f8;
-    border-top: 1vw solid #eee;
+    padding-top: 12vw;
+    font-size: 13px;
+    height: 100vh;
+    /*overflow:hidden;*/
 
+    overflow-y: auto;
+  }
+
+  .index-title {
+    .bt();
+    background-color: #ffffff;
+    text-align: left;
+    padding: 3vw 0;
+    margin-top: 4vw;
+    font-size: 16px;
+    color: #333;
+    position: relative;
+    margin-left: 20px;
+    font-weight: 600;
+
+    i {
+      position: absolute;
+      right: 6vw;
+      top: 50%;
+      .fz(font-size, 36);
+      .fz(margin-top,-16);
+
+      &::before {
+        color: rgb(159, 159, 159);
+      }
+    }
+  }
+  .index-title-2 {
+    .bt();
+    background-color: #ffffff;
+    text-align: center;
+    padding: 3vw 0;
+    margin-top: 4vw;
+    .fz(font-size, 40);
+    color: #333;
+    position: relative;
+
+    i {
+      position: absolute;
+      right: 6vw;
+      top: 50%;
+      .fz(font-size, 36);
+      .fz(margin-top,-16);
+
+      &::before {
+        color: rgb(159, 159, 159);
+      }
+    }
+  }
+  .section1name{
+    color: #8c8a8a;
+  }
+  .index-list {
+    display: flex;
+    justify-content: space-around;
+    padding: 0vw 2vw 4vw 2vw;
+    .li {
+      text-align: center;
+      border-radius: 10px;
+      background-color: #EEF2F7;
+      width: 30%;
+      padding: 1vw;
+      color: #333;
+      margin: 1.1vw;
+      font-size: 4.2vw;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      /*img {*/
+      /*  width: 100%;*/
+      /*  display: block;*/
+      /*}*/
+      view{
+        padding-top: 1vw;
+      }
+    }
+  }
+  .my-indent-right-2 {
+    /*font-size: 16px;*/
+    /*color: #333;*/
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 0 5vw;
+    height: 10vw;
+    line-height: 6vw;
+    background-color: #fff;
+    .bd();
+    &:active {
+      background-color: rgb(224, 227, 230)
+    }
+  }
+  .link-top-1 {
+    width: 98%;
+    margin-left: -2vw;
+    height: 1px;
+    border-top: solid #E2DDDD 1.5px;
+    margin-bottom: -15px;
+    margin-top: 13px;
+  }
+  .section1-title {
+    .bt();
+    background-color: #ffffff;
+    text-align: left;
+    padding: 3vw 0;
+    margin-top: 4vw;
+    font-size: 16px;
+    color: #333;
+    position: relative;
+    font-weight: 600;
+    width: 92%;
+    margin-left: 4%;
+    i {
+      position: absolute;
+      right: 6vw;
+      top: 50%;
+      .fz(font-size, 36);
+      .fz(margin-top,-16);
+
+      &::before {
+        color: rgb(159, 159, 159);
+      }
+    }
+  }
+  .car1 {
+    width: 100%;
+    /*overflow: auto;*/
+    background-color: #f3f2f8;
     .header {
       width: 100%;
-      height:100px;
-      /*background: url(../../static/carbg.png) center 0 #f37d0f;*/
-      /*background: url(../../static/img/bg1.png) center 0 #f37d0f;*/
+      height: 25vw;
       background-size: auto 100%;
-      padding: 3.2vw 0;
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
       -webkit-box-align: center;
       -ms-flex-align: center;
       align-items: center;
-
       .header-icon {
+        border: .4vw solid #ffffff;
+        background-color: @cl;
+        margin-left: 4vw;
         -webkit-box-sizing: border-box;
         box-sizing: border-box;
+        width: 14vw;
+        height: 14vw;
+        line-height: 16vw;
         text-align: center;
         border-radius: 50%;
-        font-size: 15px;
+        text {
+          .fz(font-size, 54);
+          &::before {
+            color: #ffffff;
+          }
+        }
       }
-
-      > text {
+      >text {
         margin-left: 3.2vw;
         .fz(font-size, 30);
-        color: #333;
+        color: #ffffff;
         letter-spacing: .2vw;
-        width: 50vw;
       }
     }
-
     .main {
-      width: 92vw;
-      margin-left: 4vw;
-      /*height: 100%;*/
-      margin-bottom: 50px;
-      background-color: #f3f2f8;
-
+      width: 100%;
       .my-indent {
         width: 100%;
         display: block;
@@ -419,10 +932,7 @@
         height: 15vw;
         line-height: 15vw;
         background-color: #fff;
-        margin-top: 10px;
-        font-weight: 600;
-        //.bd();
-
+        .bd();
         &:active {
           background-color: rgb(224, 227, 230)
         }
@@ -434,7 +944,6 @@
             color: rgba(0, 0, 0, .4);
             position: relative;
           }
-
           i {
             position: relative;
             top: .8vw;
@@ -451,13 +960,13 @@
         background-color: #fff;
         .bd();
 
-        > view {
+        >view {
           display: block;
           width: 33.33%;
           color: #999;
           text-align: center;
 
-          > text {
+          >text {
             .fz(font-size, 50);
             margin-top: 2.3vw;
             display: block;
@@ -465,27 +974,18 @@
           }
 
           p {
-            padding-top: 22px;
+            padding: 2.3vw 0;
             text-align: center;
-            padding-bottom: 10px;
-          }
-          image {
-            margin-top: 10px;
-            margin-bottom: -20px;
-            width: 30px;
-            height: 30px;
           }
         }
       }
 
-      .my-vip, .my-service, .my-settle1 {
+      .my-vip,.my-service,.my-settle {
         width: 100%;
         .mt();
         .bd();
         .bt();
-        color: #333;
-
-        > view {
+        >view {
           background-color: #fff;
           display: block;
           width: 100%;
@@ -503,28 +1003,27 @@
           padding: 0 6vw;
           -webkit-box-sizing: border-box;
           box-sizing: border-box;
-
+          color: #333;
           &:active {
             background-color: rgb(224, 227, 230);
           }
-
-          > view {
+          >view {
             -ms-flex: 2;
             -webkit-box-flex: 2;
-            flex: 2;
+            flex: 1.2;
             padding-top: 1.3vw;
           }
 
           .my-vip-top-view {
             padding-top: 0;
           }
-
-          > p {
+          >p {
             -ms-flex: 10;
             -webkit-box-flex: 10;
             flex: 10;
             position: relative;
-
+            font-size: 4.1vw;
+            top: 0.7VW;
             &:active {
               background-color: rgb(224, 227, 230);
             }
@@ -532,7 +1031,12 @@
             i {
               position: absolute;
               right: 0;
-              top: .4vw;
+              top: 1.2vw;
+            }
+            samp {
+              font-weight: 600;
+              /*margin-left: 42vw;*/
+              font-size: 4.5vw;
             }
           }
         }
@@ -540,12 +1044,10 @@
       }
     }
   }
-
   /*图标大小不一，重新定义*/
 
   .icon-go {
     .fz(font-size, 36);
-
     &::before {
       color: #aba8a8;
     }
@@ -555,48 +1057,24 @@
   [class*=" icon2-"] {
     .fz(font-size, 50);
   }
+  .link-top {
+    width: 92%;
+    margin-left: 4%;
+    height: 1px;
+    border-top: solid #E2DDDD 1.5px;
+    margin-bottom: -15px;
+    margin-top: 13px;
+  }
 
   .icon2-service {
     .fz(font-size, 34);
   }
-
-  .danger-num {
-    padding: 0px 6px;
-    min-width: 11px;
-    text-align: center;
-    height: 12px;
-    line-height: 12px;
-    color: #fff;
-    background-color: #409eff;
-    font-size: 12px;
-    top: 0;
-    right: 0;
-    border-radius: 8px;
-    margin-left: -8px;
-    position: sticky;
-    font-style: normal;
-  }
-
-  .count3 {
-    margin-left: 12px;
-  }
-
-  /*.count4 {*/
-  /*  margin-left: 12px;*/
-  /*}*/
-
-  /*.count5 {*/
-  /*  margin-left: 10px;*/
-  /*}*/
-
-  /*.count6 {*/
-  /*  margin-left: 10px;*/
-  /*}*/
-  .my-pay-1 {
+  .my-pay-2 {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    width: 100%;
+    width: 92%;
+    margin-left: 4%;
     padding: 2vw 0;
     background-color: #fff;
     .bd();
@@ -608,36 +1086,31 @@
       text-align: center;
 
       > text {
-        .fz(font-size, 50);
+        font-size: 22px;
         margin-top: 2.3vw;
         display: block;
         text-align: center;
       }
 
       p {
-        padding-top: 1.3vw;
+        padding: 2.3vw 0;
         text-align: center;
       }
     }
   }
-  .my-indent-img{
-    width: 13px;
-    height: 13px;
-    margin-left: 4px;
-    margin-bottom: -1px;
+  .my-pay-21 {
+    background-color: #fff;
+    border-bottom-color: rgba(185, 185, 185, 0.14);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    margin-top: 4vw;
+    padding-top: 4vw;
+    padding-bottom: 4vw;
+    margin-left: 4vw;
+    width: 92vw;
   }
-  .my-indent-img-1{
-    width: 13px;
-    height: 13px;
-    margin-left: 4px;
-    margin-bottom: -1px;
-    position: absolute;
-    right: 0;
-    top: 0.4vw;
-  }
-  .custom-style {
-    width: 86px;
-    font-size: 12px;
-    height: 32px;
+  .charts-box {
+    width: 95%;
+    height: 200px;
   }
 </style>
