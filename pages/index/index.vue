@@ -254,10 +254,6 @@
     ></u-datetime-picker>
 
     <view class="section2">
-      <!--    <h1 class="section1-title"  style="border-top-style:none">-->
-      <!--      <span style="    margin-left: 20px;">仓库值-->
-      <!--      </span>-->
-      <!--    </h1>-->
       <h1 class="section1-title2" style="border-top-style:none">
       <span style="    margin-left: 20px;">
         仓库值
@@ -265,8 +261,6 @@
         <view class="link-top"></view>
       </h1>
       <view style="background-color: #fff ; padding-top: 4vw">
-<!--        <ve-pie height="320px"-->
-<!--                :data="chartData1" :settings="chartSettings1" ></ve-pie>-->
         <view class="charts-box">
           <qiun-data-charts
               type="pie"
@@ -404,14 +398,11 @@
 
 <script>
   export default {
-    components: {
-    },
     data() {
       return {
         showFrom: false,
         showTo: false,
         flag: false,
-        loading: true,
         form: {},
         orderIofo: {},
         queryParam: {
@@ -423,60 +414,7 @@
           actNo: ''
         },
         dataType: 1,
-        extend: {
-          // x轴的文字倾斜
-          "xAxis.0.axisLabel.rotate": 45,
-          yAxis: {
-            //是否显示y轴线条
-            axisLine: {
-              show: true,
-            },
-            // 纵坐标网格线设置，同理横坐标
-            splitLine: {
-              show: false,
-            },
-            // 线条位置
-            position: "left",
-          },
-          xAxis: {
-            axisLine: {
-              show: true,
-            },
-          },
-          series: {
-            label: { show: true, position: "top" },
-          },
-          //数据过多时出现横向滚动条
-          dataZoom: [
-            {
-              show: true,
-              realtime: true,
-              start: 0,
-              end: 50,
-            },
-            {
-              type: "inside",
-              realtime: true,
-              start: 0,
-              end: 50,
-            },
-          ],
-        },
-        // chartData2: {
-        //   columns: ['months', '订单数', '订单金额(千)', '利润(百)'],
-        //   rows: []
-        // },
         createTime: '',
-        chartSettings: {
-          // xAxisType: 'time',
-          area: false,
-          axisSite: { right: ['profitsAmount'] },
-          labelAlias: {
-            'successNum': '订单数',
-            'orderAmount': '订单金额(千)',
-            'profitsAmount': '利润(百)'
-          }
-        },
         chartData: {},
         chartData1: {},
         opts: {
@@ -544,28 +482,14 @@
             }
           }
         },
-        // chartSettings1: { type: 'pie' },
-        // chartData1: {
-        //   columns: ['key', 'value'],
-        //   rows: [
-        //   ]
-        // },
         countDay: 0, // 倒计时
         count: '', // 倒计时
         seconds: 0, // 10天的秒数
         nowDate: '',
         nowTime: '',
         nowWeek: '',
-        pickerValue:new Date(),
-        pickerValueType: '',
         orderData: {},
-        storeData: {},
-        dateType: 'month',
-        valueFormat: 'yyyy-MM',
-        dayLl: 'default',
-        mouthLl: 'primary',
-        loading: false,
-        dataEmpty: false,
+        storeData: {}
       }
     },
     onPullDownRefresh() {
@@ -706,36 +630,6 @@
       scanCode(photo) {
         this.$router.push({ path: '/scanCode', query: { photo } })
       },
-      chosseTime(pickerValueType) {
-        this.pickerValueType = pickerValueType
-        this.$refs.picker.open();
-        if (this.dataType == 1){
-          this.$refs.picker.$el.getElementsByClassName('picker-slot')[2].style.display = 'none'
-        } else {
-          this.$refs.picker.$el.getElementsByClassName('picker-slot')[2].style.display = ''
-        }
-      },
-      handleConfirm(val) {
-        let year = new Date(val).getFullYear()
-        let month = new Date(val).getMonth() + 1
-        if (month < 10 ){
-          month = '0' + month
-        }
-        let res = year + '-' +month
-        if (this.dataType == 0){
-          let day = new Date(val).getDate()
-          if (day < 10 ){
-            day = '0' + day
-          }
-          res = res + '-' + day
-        }
-        if(this.pickerValueType == 1) {
-          this.queryParam.createTimeFrom = res
-        }else {
-          this.queryParam.createTimeTo = res
-        }
-        this.getData1()
-      },
       profitData(dataType) {
         this.dataType = dataType
         this.queryParam = {
@@ -743,17 +637,17 @@
           createTimeFrom: '',
           createTimeTo: ''
         }
-        if (dataType == 1) {
-          this.mouthLl = 'primary'
-          this.dayLl = 'default'
-          this.dateType = 'month'
-          this.valueFormat = 'yyyy-MM'
-        } else {
-          this.mouthLl = 'default'
-          this.dayLl = 'primary'
-          this.dateType = 'date'
-          this.valueFormat = 'yyyy-MM-dd'
-        }
+        // if (dataType == 1) {
+        //   this.mouthLl = 'primary'
+        //   this.dayLl = 'default'
+        //   this.dateType = 'month'
+        //   this.valueFormat = 'yyyy-MM'
+        // } else {
+        //   this.mouthLl = 'default'
+        //   this.dayLl = 'primary'
+        //   this.dateType = 'date'
+        //   this.valueFormat = 'yyyy-MM-dd'
+        // }
         this.getData1()
       },
       getData1() {
@@ -764,10 +658,6 @@
           data: this.queryParam
         }).then(res => {
           if (res.subCode === 1000) {
-            this.dataEmpty = false
-            this.loading = false
-            // this.chartData.rows = res.data.rows
-            // this.chartData2.rows = res.data.rowsDate
             this.chartData = JSON.parse(JSON.stringify(res.data.lineVo));
             this.orderData = res.data
             if (this.orderData) {
