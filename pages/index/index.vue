@@ -283,7 +283,7 @@
       </view>
       <view style="margin-top: 20px;">
         <view class="charts-box">
-          <qiun-data-charts type="line" :opts="opts" :chartData="chartData" />
+          <qiun-data-charts :type="dataType==1 ? 'line': 'column'" :opts="dataType==1 ? opts: opts1" :chartData="chartData" :ontouch="true"/>
         </view>
 <!--        <ve-line-->
 <!--            v-if="dataType == 1"-->
@@ -432,16 +432,15 @@
         // },
         chartData: {},
         opts: {
-          color: ["#1890FF", "#91CB74", "#FAC858", "#EE6666", "#73C0DE", "#3CA272", "#FC8452",
-            "#9A60B4", "#ea7ccc"],
-          padding: [15, 10, 0, 15],
-          enableScroll: false,
+          color: ["#1890FF","#91CB74","#FAC858","#EE6666","#73C0DE","#3CA272","#FC8452","#9A60B4","#ea7ccc"],
+          padding: [15,10,0,15],
+          enableScroll: true,
           dataLabel: false,
-          dataPointShape: false,
           legend: {},
           xAxis: {
-            labelCount: 4,
-            disableGrid: true
+            disableGrid: true,
+            scrollShow: true,
+            itemCount: 4
           },
           yAxis: {
             gridType: "dash",
@@ -452,6 +451,32 @@
               type: "straight",
               width: 2,
               activeType: "hollow"
+            }
+          }
+        },
+        opts1: {
+          color: ["#1890FF","#91CB74","#FAC858","#EE6666","#73C0DE","#3CA272","#FC8452","#9A60B4","#ea7ccc"],
+          padding: [15,15,0,5],
+          enableScroll: true,
+          legend: {},
+          xAxis: {
+            disableGrid: true,
+            scrollShow: true,
+            itemCount: 4
+          },
+          yAxis: {
+            data: [
+              {
+                min: 0
+              }
+            ]
+          },
+          extra: {
+            column: {
+              type: "group",
+              width: 30,
+              activeBgColor: "#000000",
+              activeBgOpacity: 0.08
             }
           }
         },
