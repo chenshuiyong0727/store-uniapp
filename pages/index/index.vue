@@ -34,13 +34,12 @@
                :style="!flag? 'border-bottom-style:none;margin-top: -141px;padding-top: 4vw; '
                : 'border-bottom-style:none;padding-top: 4vw; '">
         <view :to="{ path: '/store'}">
-          <text style="    margin-top: -3px;">
+          <view>
              <image
-                 style="margin-top: 11px;
-    margin-bottom: -3px;
+                 style="margin-top: 8px;
     width: 28px;height: 28px;" src="../../static/img/goods-1.png"></image>
-          </text>
-          <text style="color: #333;font-size: 14px;    margin-top: 1px;">库存管理</text>
+          </view>
+          <text style="color: #333;font-size: 14px;    margin-top: 4px;">库存管理</text>
         </view>
         <image style="    margin-left: 10px;
     height: 55px;width:7px;

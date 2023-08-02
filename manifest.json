@@ -87,9 +87,6 @@
                 },
                 "share" : {},
                 "ad" : {},
-                "oauth" : {
-                    "univerify" : {}
-                },
                 "push" : {}
             },
             "splashscreen" : {
