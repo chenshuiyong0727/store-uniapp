@@ -563,6 +563,17 @@ img{
 }
 
 /*导航栏*/
+.searchListnew {
+  border-bottom: 1vw solid #eee;
+  width: 100vw;
+  margin-top: 80px;
+  background: #fff;
+  padding: 2vw;
+  position: fixed;
+  z-index: 2;
+}
+
+/*导航栏*/
 .searchList {
   border-bottom: 1vw solid #eee;
   height: 5vw;
@@ -592,9 +603,9 @@ img{
 /*  margin-right: 6vw;*/
 /*}*/
 }
-.searchList::-webkit-scrollbar {
-  display: none;
-}
+/*.searchList::-webkit-scrollbar {*/
+/*  display: none;*/
+/*}*/
 .activity {
   font-weight: 600;
   color: #409eff;
@@ -1129,7 +1140,9 @@ a{
 }
 .julibiaoti2{
   padding-top: 92px;
-  /*margin-top: 92px;*/
+}
+.julibiaoti3{
+  padding-top: 142px;
 }
 .biaodan-gengduo{
   margin-bottom: -2px;
@@ -1234,4 +1247,9 @@ a{
 }
 /deep/ .uni-select__selector-item {
   color: #333;
+}
+
+/deep/ .u-badge--error[data-v-662d25bf] {
+  background-color: #F56C6C;
+  margin-bottom: 14px;
 }

@@ -29,6 +29,27 @@
         <image src="../../static/img/search.png"></image>
       </view>
     </view>
+    <view class="searchListnew">
+      <view class="u-demo-block__content">
+        <u-tabs
+            @change="tabClick"
+            :duration="200"
+            :current="current"
+            lineColor="#409eff"
+            :activeStyle="{
+              color: '#333333',
+              fontSize: '17px',
+              fontWeight: 'bold'
+					  }"
+            :inactiveStyle="{
+              color: '#606266',
+              fontSize: '16px'
+					}"
+            :list="list2">
+        </u-tabs>
+      </view>
+    </view>
+
     <view>
       <u-popup :show="isShowDialog2" @close="close" :duration="100" mode="bottom">
         <view style="width: 90vw;margin-left: 5vw;">
@@ -92,7 +113,7 @@
         @cancel="cancelTo"
     ></u-datetime-picker>
 
-    <view class="julibiaoti2">
+    <view class="julibiaoti3">
       <view class="dingdans_item_dw"
             v-for="(item,index) in tableData"
             :key="index"
@@ -185,6 +206,7 @@
         showTo: false,
         show_sx_type: false,
         emtityMsg: '',
+        current: 0,
         pictureZoomShow: false,
         imageZoom: '',
         options: [
@@ -213,6 +235,43 @@
         isShowDialog1: false,
         orderData2: '',
         isShowDialog2: false,
+        list2: [{
+          type: '',
+          name: '全部'
+        }, {
+          type: '01',
+          name: '男鞋',
+        }, {
+          type: '02',
+          name: '女鞋',
+          badge: {
+            value: 5
+          }
+        }, {
+          type: '03',
+          name: '男女'
+        }, {
+          type: '11',
+          name: '服装'
+        }, {
+          type: '05',
+          name: '大童'
+        }, {
+          type: '07',
+          name: '中童'
+        }, {
+          type: '04',
+          name: '幼童'
+        }, {
+          type: '06',
+          name: '婴童'
+        }, {
+          type: '20',
+          name: '包包'
+        }, {
+          type: '21',
+          name: '帽子'
+        }],
         queryParam: {
           id: '',
           type: '',
@@ -438,6 +497,11 @@
         this.imageZoom = e
         this.pictureZoomShow = true
       },
+      tabClick(item) {
+        console.info(item)
+        this.queryParam.type = item.type
+        this.search1()
+      }
     }
   };
 </script>
