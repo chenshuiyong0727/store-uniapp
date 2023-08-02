@@ -34,6 +34,7 @@
         <u-tabs
             @change="tabClick"
             :duration="200"
+            :lineWidth="30"
             :current="current"
             lineColor="#409eff"
             :activeStyle="{
