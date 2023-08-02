@@ -268,11 +268,7 @@
           this.resetHandle()
         }
       },
-      // <el-dropdown-item type="text" @click.native="goDetail(item.id , 1)">查看</el-dropdown-item>-->
-      // <!--                  <el-dropdown-item type="text" @click.native="goDetail(item.id ,2)">修改</el-dropdown-item>-->
       menuAction1(action, rowId) {
-        // 忽略初始化时的传入的空操作
-
         if (action === '') {
           return
         }
@@ -315,9 +311,6 @@
         this.queryParam.typeStr = fieldName
         this.search1()
       },
-      // hideKeyboard() {
-      //   uni.hideKeyboard()
-      // },
       goDetail(id, type) {
         let url = '/pages/other/otherAdd?type=' + type
         if (id) {
@@ -329,15 +322,12 @@
       },
       getPage() {
         this.emtityMsg = ''
-        // goodsOtherApi.page(this.queryParam)
         this.$request({
           url: '/gw/op/v1/goodsOther',
           method: 'get',
           data: this.queryParam
         }).then(res => {
           if (res.subCode === 1000) {
-            // this.tableData = res.data ? res.data.list : []
-            // this.totalCount = res.data ? res.data.list.length : 0
             this.totalCount = res.data ? res.data.pageInfo.totalCount : 0
             if (this.totalCount == 0) {
               this.emtityMsg = '暂无相关数据'
@@ -369,39 +359,12 @@
         this.typeList = sysDictList.filter(item => item.typeValue == 39)
         this.columns.push(this.typeList)
       },
-      // loadData(p_status) {
-      //   // 第一次加载或者下拉刷新最新数据
-      //   if (p_status === "refresh") {
-      //     this.tableData = [];
-      //   }
-      //   goodsOtherApi.page(this.queryParam).then(res => {
-      //     if (res.subCode === 1000) {
-      //       let list =  res.data ? res.data.list : []
-      //       if (list && list.length) {
-      //         for (let i = 0; i < list.length; i++) {
-      //           this.tableData.push(list[i])
-      //         }
-      //         // setTimeout(()=>{
-      //         //   let ht2 = (this.$refs.hello.scrollTop)*1 +475
-      //         //   this.$refs.hello.scrollTop = ht2
-      //         // },100)
-      //       } else {
-      //         // this.allLoaded = true;
-      //         this.$toast('没有更多了')
-      //       }
-      //     } else {
-      //       this.$toast(res.subMsg)
-      //       return false
-      //     }
-      //   })
-      // },
       search() {
         if (!this.queryParam.name) {
           this.$toast('请输入名称')
           return
         }
         this.queryParam.pageNum = 1
-        // this.allLoaded = false;
         this.getPage()
       },
       close() {
@@ -413,7 +376,6 @@
         this.queryParam.pageNum = 1
         this.isLoadMore = false
         this.isShowDialog2 = false
-        // this.$refs.hello.scrollTop = 0
         this.getPage()
       },
       resetHandle() {
@@ -436,26 +398,6 @@
         }
         this.search1()
       },
-      // handleTopChange(p_status) {
-      //   this.topStatus = p_status;
-      // },
-      // handleBottomChange(p_status) {
-      //   this.bottomStatus = p_status;
-      // },
-      // loadBottom() {
-      //   // 一次下拉加载5条更多数据，使用定时器默认ajax加载
-      //   this.loadData()
-      //   this.queryParam.pageNum++;
-      //   this.$refs.loadmore.onBottomLoaded();
-      // },
-      // loadTop() {
-      //   // 默认下拉刷新最新数据
-      //   // this.loadData("refresh");
-      //   this.queryParam.pageNum = 0
-      //   // this.allLoaded = false;
-      //   // this.$refs.loadmore.onTopLoaded();
-      // },
-
       avatarShow(e) {
         this.imageZoom = e
         this.pictureZoomShow = true
@@ -465,158 +407,5 @@
 </script>
 
 <style>
-
   @import '@/assets/index/style.css';
-
-  strong {
-    font-weight: 600;
-  }
-
-  .mint-button--small {
-    display: inline-block;
-    font-size: 4vw;
-    height: 6vw;
-  }
-
-  .dingdans_item {
-    padding: 2.4vw 1.2vw;
-    background: #ffffff;
-    border-bottom: 1vw solid #eee;
-    padding-right: 3%;
-    padding-left: 3%;
-  }
-
-  .dingdans_top {
-    font-size: 3.68vw;
-    height: 3.88vw;
-    line-height: 3.88vw;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .dingdans_con {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 1.3vw 0;
-  }
-
-  .dingdans_con_left {
-    width: 35vw;
-    height: 20vw;
-    display: flex;
-  }
-
-  .dingdans_con_left img {
-    width: 100%;
-    margin: auto;
-    border-radius: 10px;
-  }
-
-  .diangdans_con_right {
-    width: 130vw;
-    padding-left: 10px;
-  }
-
-  .dingdans_con_right_down {
-    margin-top: 1.4vw;
-    font-size: 13px;
-    margin-bottom: 2vw;
-  }
-
-  /*.dingdans_con_right_down_1 {*/
-  /*  !*margin-left: 55vw;*!*/
-  /*  margin-bottom: -7vw;*/
-  /*  font-size: 3.5vw;*/
-  /*  margin-top: -1vw;*/
-  /*}*/
-  /*
-   -----分割线---
-  */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  /* 这里直接设置 1rem = 50px begin */
-  html {
-    font-size: 50px;
-  }
-
-  /* 这里直接设置 1rem = 50px end */
-  html,
-  body {
-    /*font-family: "微软雅黑";*/
-    /*color: #333;*/
-    /*background: #fff;*/
-  }
-
-  /*ul,*/
-  /*li {*/
-  /*  list-style: none;*/
-  /*}*/
-  /* 给要上拉的容器设置 begin */
-  .hello {
-    background-color: #f3f2f8;
-    padding-top: 12vw;
-    font-size: 13px;
-    height: 100vh;
-    overflow-y: auto;
-  }
-
-  /* 给要上拉的容器设置 end */
-  /*.fl {*/
-  /*  float: left;*/
-  /*}*/
-  /*.fr {*/
-  /*  float: right;*/
-  /*}*/
-  /*.clearfix::before,*/
-  /*.clearfix::after {*/
-  /*  content: "";*/
-  /*  display: block;*/
-  /*  overflow: hidden;*/
-  /*  clear: both;*/
-  /*  visibility: hidden;*/
-  /*}*/
-  /*li {*/
-  /*  background: #fff;*/
-  /*}*/
-  /*.order-intr {*/
-  /*  position: relative;*/
-  /*  padding: 0.3rem 0.4rem;*/
-  /*  width: calc(100% - 0.6rem);*/
-  /*  margin: 0.4rem auto;*/
-  /*  border: 0.02rem solid #666;*/
-  /*  border-radius: 0.16rem;*/
-  /*}*/
-  /*.order-intr img {*/
-  /*  width: 3rem;*/
-  /*  height: 2.4rem;*/
-  /*}*/
-  /*.title {*/
-  /*  margin-left: 0.24rem;*/
-  /*  text-align: left;*/
-  /*}*/
-  /*.title h3 {*/
-  /*  font-size: 0.4rem;*/
-  /*}*/
-  /*.title p {*/
-  /*  font-size: 0.3rem;*/
-  /*}*/
-  /*.price {*/
-  /*  position: absolute;*/
-  /*  right: 0.3rem;*/
-  /*  bottom: 0.3rem;*/
-  /*  font-size: 0.5rem;*/
-  /*  color: #fe696b;*/
-  /*}*/
-  .mint-loadmore-top,
-  .mint-loadmore-bottom {
-    font-size: 0.28rem;
-  }
-
-
 </style>

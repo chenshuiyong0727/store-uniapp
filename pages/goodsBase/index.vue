@@ -191,15 +191,7 @@
   </view>
 </template>
 <script>
-  // import Baseline from '@/common/_baseline.vue'
-  // import Footer from '@/common/_footer.vue'
-  // import { goodsBaseApi } from '@/api/goodsBase'
-
   export default {
-    components: {
-      // 'v-baseline': Baseline,
-      // 'v-footer': Footer
-    },
     name: "HelloWorld",
     data() {
       return {
@@ -301,15 +293,8 @@
     onPullDownRefresh() {
       this.resetHandle()
       uni.stopPullDownRefresh()
-
-      //停止下拉刷新效果的api，如果发现进入刷新状态无法停止，可以用这个
     },
     onReachBottom() {
-      // console.info(1)
-      // alert(1)
-      // if(this.totalCount <= this.queryParam.pageSize) {
-      //   return ;
-      // }
       if (this.isLoadMore) {  //此处判断，上锁，防止重复请求
         this.status = 'loading';
         this.queryParam.pageNum++;
@@ -317,12 +302,6 @@
       }
     },
     methods: {
-      /**
-       * 不同行的不同菜单点击事件
-       *
-       * @param {Object} action 第一个参数必须传入“$event” | 点击了哪个按钮 | 传入options的value
-       * @param {Number} rowId 第二个参数随意，可以是行ID等
-       */
       menuAction(action, rowId) {
         // 忽略初始化时的传入的空操作
         if (action === '') {
@@ -335,11 +314,7 @@
           this.resetHandle()
         }
       },
-      // <el-dropdown-item type="text" @click.native="goDetail(item.id , 1)">查看</el-dropdown-item>-->
-      // <!--                  <el-dropdown-item type="text" @click.native="goDetail(item.id ,2)">修改</el-dropdown-item>-->
       menuAction1(action, rowId) {
-        // 忽略初始化时的传入的空操作
-
         if (action === '') {
           return
         }
@@ -382,9 +357,6 @@
         this.queryParam.typeStr = fieldName
         this.search1()
       },
-      // hideKeyboard() {
-      //   uni.hideKeyboard()
-      // },
       goDetail(id, type) {
         let url = '/pages/other/otherAdd?type=' + type
         if (id) {
@@ -508,158 +480,5 @@
 </script>
 
 <style>
-
   @import '@/assets/index/style.css';
-
-  strong {
-    font-weight: 600;
-  }
-
-  .mint-button--small {
-    display: inline-block;
-    font-size: 4vw;
-    height: 6vw;
-  }
-
-  .dingdans_item {
-    padding: 2.4vw 1.2vw;
-    background: #ffffff;
-    border-bottom: 1vw solid #eee;
-    padding-right: 3%;
-    padding-left: 3%;
-  }
-
-  .dingdans_top {
-    font-size: 3.68vw;
-    height: 3.88vw;
-    line-height: 3.88vw;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .dingdans_con {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 1.3vw 0;
-  }
-
-  .dingdans_con_left {
-    width: 35vw;
-    height: 20vw;
-    display: flex;
-  }
-
-  .dingdans_con_left img {
-    width: 100%;
-    margin: auto;
-    border-radius: 10px;
-  }
-
-  .diangdans_con_right {
-    width: 130vw;
-    padding-left: 10px;
-  }
-
-  .dingdans_con_right_down {
-    margin-top: 1.4vw;
-    font-size: 13px;
-    margin-bottom: 2vw;
-  }
-
-  /*.dingdans_con_right_down_1 {*/
-  /*  !*margin-left: 55vw;*!*/
-  /*  margin-bottom: -7vw;*/
-  /*  font-size: 3.5vw;*/
-  /*  margin-top: -1vw;*/
-  /*}*/
-  /*
-   -----分割线---
-  */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  /* 这里直接设置 1rem = 50px begin */
-  html {
-    font-size: 50px;
-  }
-
-  /* 这里直接设置 1rem = 50px end */
-  html,
-  body {
-    /*font-family: "微软雅黑";*/
-    /*color: #333;*/
-    /*background: #fff;*/
-  }
-
-  /*ul,*/
-  /*li {*/
-  /*  list-style: none;*/
-  /*}*/
-  /* 给要上拉的容器设置 begin */
-  .hello {
-    background-color: #f3f2f8;
-    padding-top: 12vw;
-    font-size: 13px;
-    height: 100vh;
-    overflow-y: auto;
-  }
-
-  /* 给要上拉的容器设置 end */
-  /*.fl {*/
-  /*  float: left;*/
-  /*}*/
-  /*.fr {*/
-  /*  float: right;*/
-  /*}*/
-  /*.clearfix::before,*/
-  /*.clearfix::after {*/
-  /*  content: "";*/
-  /*  display: block;*/
-  /*  overflow: hidden;*/
-  /*  clear: both;*/
-  /*  visibility: hidden;*/
-  /*}*/
-  /*li {*/
-  /*  background: #fff;*/
-  /*}*/
-  /*.order-intr {*/
-  /*  position: relative;*/
-  /*  padding: 0.3rem 0.4rem;*/
-  /*  width: calc(100% - 0.6rem);*/
-  /*  margin: 0.4rem auto;*/
-  /*  border: 0.02rem solid #666;*/
-  /*  border-radius: 0.16rem;*/
-  /*}*/
-  /*.order-intr img {*/
-  /*  width: 3rem;*/
-  /*  height: 2.4rem;*/
-  /*}*/
-  /*.title {*/
-  /*  margin-left: 0.24rem;*/
-  /*  text-align: left;*/
-  /*}*/
-  /*.title h3 {*/
-  /*  font-size: 0.4rem;*/
-  /*}*/
-  /*.title p {*/
-  /*  font-size: 0.3rem;*/
-  /*}*/
-  /*.price {*/
-  /*  position: absolute;*/
-  /*  right: 0.3rem;*/
-  /*  bottom: 0.3rem;*/
-  /*  font-size: 0.5rem;*/
-  /*  color: #fe696b;*/
-  /*}*/
-  .mint-loadmore-top,
-  .mint-loadmore-bottom {
-    font-size: 0.28rem;
-  }
-
-
 </style>
