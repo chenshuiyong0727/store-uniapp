@@ -301,6 +301,16 @@
                 } else {
                   this.$toast('上传成功');
                   this.form.imgUrl = resDta.data;
+                  this.$request({
+                    url: '/gw/op/v1/auth/update',
+                    method: 'put',
+                    data: this.form
+                  }).then(res => {
+                    if (res.subCode === 1000) {
+                    } else {
+                      this.$toast(res.subMsg)
+                    }
+                  })
                   resolve(res.data.data)
                 }
               }, 1000)

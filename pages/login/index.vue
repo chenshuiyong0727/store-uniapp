@@ -19,6 +19,7 @@
         >
         </u--input>
         <u--input
+            :password-icon="passwordIcon"
             class="common-input"
             style="width: 70vw;margin-top: 10px"
             placeholder="请输入密码"
@@ -48,6 +49,7 @@
   export default {
     data() {
       return {
+        passwordIcon: true,
         loginForm: {
           loginAccount: '',
           loginPassword: '',
