@@ -20,7 +20,7 @@
 
     <view class="fenlei_top zuoyouduiqi">
       <view class="fenlei_top_left">
-        <view  @click="showFrom= true">
+        <view @click="showFrom= true">
           <!-- <el-date-picker style="width: 44vw" readonly="readonly"
                           v-model="queryParam.createTimeFrom" value-format="yyyy-MM"  type="month"
                           placeholder="开始时间"></el-date-picker> -->
@@ -32,7 +32,7 @@
               prefixIconStyle="font-size: 20px;color:#c0c4cc"
               placeholder="开始时间"
               placeholderStyle="font-size: 15px;color:#c0c4cc"
-              v-model = "queryParam.createTimeFrom"
+              v-model="queryParam.createTimeFrom"
               clearable
           >
           </u--input>
@@ -42,7 +42,7 @@
         <text>至</text>
       </view>
       <view class="fenlei_top_left">
-        <view   @click="showTo= true">
+        <view @click="showTo= true">
           <u--input
               placeholderStyle="font-size: 15px;color:#c0c4cc"
               style="width: 44vw;"
@@ -50,7 +50,7 @@
               readonly="readonly"
               prefixIcon="calendar"
               placeholder="结束时间"
-              v-model = "queryParam.createTimeTo"
+              v-model="queryParam.createTimeTo"
               prefixIconStyle="font-size: 20px;color:#c0c4cc"
               clearable
           >
@@ -84,19 +84,19 @@
                   @click="jumpDetail(item.months )"> {{item.months}} </strong>
         </view>
         <view class="dingdans_con_rt">
-          <view  style="">
+          <view style="">
             <strong>
               {{item.successNum}}
             </strong>
             <p>入库数</p>
           </view>
-          <view  style="">
+          <view style="">
             <strong>
               {{item.orderAmount}}
             </strong>
             <p>入库总额</p>
           </view>
-          <view  >
+          <view>
             <strong>
               {{item.profits}}
             </strong>
@@ -110,25 +110,25 @@
           </view>
         </view>
         <view class="dingdans_con_rt">
-          <view  >
+          <view>
             <strong v-if="item.successNum">
-              {{item.orderAmount / item.successNum  | numFilter}}
+              {{item.orderAmount / item.successNum | numFilter}}
             </strong>
             <strong v-else>
               0
             </strong>
             <p>入库均价</p>
           </view>
-          <view  >
+          <view>
             <strong v-if="item.successNum">
-              {{item.profitsAmount / item.successNum  | numFilter}}
+              {{item.profitsAmount / item.successNum | numFilter}}
             </strong>
             <strong v-else>
               0
             </strong>
             <p>市价均价</p>
           </view>
-          <view  >
+          <view>
             <strong>
               {{item.inventory}}
             </strong>
@@ -142,21 +142,21 @@
           </view>
         </view>
         <view class="dingdans_con_rt">
-          <view  >
+          <view>
             <strong>
               {{item.saleNum}}
             </strong>
             <p>已售数量</p>
           </view>
-          <view  >
+          <view>
             <strong>
               {{item.theirPrice}}
             </strong>
             <p>出售金额</p>
           </view>
-          <view  >
+          <view>
             <strong v-if="item.saleNum">
-              {{item.profits / item.saleNum  | numFilter}}
+              {{item.profits / item.saleNum | numFilter}}
             </strong>
             <strong v-else>0</strong>
             <p>利润均价</p>
@@ -172,9 +172,9 @@
       </view>
     </view>
     <!--    列表结束-->
-    <view v-if="!tableData.length" class="to-the-bottom-1" >
+    <view v-if="!tableData.length" class="to-the-bottom-1">
       <p>
-        <image style="width: 60vw; height: 60vw;"  src="../../static/img/new/empity_7.png"></image>
+        <image style="width: 60vw; height: 60vw;" src="../../static/img/new/empity_7.png"></image>
 
         <!--        <u&#45;&#45;image src="../../static/img/new/empity_7.png" style="width: 60vw;"></u&#45;&#45;image>-->
       </p>
@@ -189,7 +189,6 @@
   // import Baseline from '@/common/_baseline.vue'
   // import Footer from '@/common/_footer.vue'
   // import {reportApi} from '@/api/report'
-
 
   export default {
     components: {
@@ -217,44 +216,44 @@
     methods: {
 
       cancelFrom() {
-        this.showFrom=false
-        this.queryParam.createTimeFrom = ''
+        this.showFrom = false;
+        this.queryParam.createTimeFrom = '';
         this.getPage()
       },
       cancelTo() {
-        this.showTo=false
-        this.queryParam.createTimeTo = ''
+        this.showTo = false;
+        this.queryParam.createTimeTo = '';
         this.getPage()
       },
       confirmFrom(e) {
         this.showFrom = false;
-        let timeValue =  uni.$u.timeFormat(e.value, 'yyyy-mm');
-        this.queryParam.createTimeFrom = timeValue
+        let timeValue = uni.$u.timeFormat(e.value, 'yyyy-mm');
+        this.queryParam.createTimeFrom = timeValue;
         this.getPage()
       },
       confirmTo(e) {
         this.showTo = false;
-        let timeValue =  uni.$u.timeFormat(e.value, 'yyyy-mm');
-        this.queryParam.createTimeTo = timeValue
+        let timeValue = uni.$u.timeFormat(e.value, 'yyyy-mm');
+        this.queryParam.createTimeTo = timeValue;
         this.getPage()
       },
       jumpDetail(months) {
-        if (months == '合计'){
+        if (months == '合计') {
           return
         }
-        this.$router.push({ path: '/putinDetail', query: { months }})
+        this.$router.push({path: '/putinDetail', query: {months}})
       },
       getPage() {
-        this.allLoaded = false
+        this.allLoaded = false;
         this.$request({
           url: '/gw/op/v1/report/putInStorage',
           method: 'get',
           data: this.queryParam
         }).then(res => {
           if (res.subCode === 1000) {
-            this.tableData = res.data ? res.data : []
+            this.tableData = res.data ? res.data : [];
             if (this.tableData.length == 0) {
-              this.emtityMsg = '暂无相关数据'
+              this.emtityMsg = '暂无相关数据';
               this.allLoaded = true
             } else {
               this.emtityMsg = '没有更多了'

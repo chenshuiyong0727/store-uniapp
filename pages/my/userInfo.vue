@@ -4,7 +4,7 @@
       <view @click="$goBack" class="u-nav-slot" slot="left">
         <u-icon name="arrow-left" size="20"></u-icon>
       </view>
-      <view @click="submit" class="u-nav-slot" slot="right"  style="font-size: 15px;">
+      <view @click="submit" class="u-nav-slot" slot="right" style="font-size: 15px;">
         保存
       </view>
     </u-navbar>
@@ -23,18 +23,18 @@
             label-width="66vw"
             ref="item1"
         >
-            <u-upload
-                style="border-radius: 100%;"
-                :fileList="fileList1"
-                @afterRead="afterRead"
-                @delete="deletePic"
-                name="1"
-                multiple
-                :maxCount="1"
-                :width="70"
-                :height="70"
-            >
-            </u-upload>
+          <u-upload
+              style="border-radius: 100%;"
+              :fileList="fileList1"
+              @afterRead="afterRead"
+              @delete="deletePic"
+              name="1"
+              multiple
+              :maxCount="1"
+              :width="70"
+              :height="70"
+          >
+          </u-upload>
           <u-icon
               class="biaodan-gengduo"
               slot="right"
@@ -94,37 +94,37 @@
               name="arrow-right"
           ></u-icon>
         </u-form-item>
-<!--        <u-form-item-->
-<!--            label="性别"-->
-<!--            prop="sex"-->
-<!--            borderBottom-->
-<!--            @click="showSex = true; hideKeyboard()"-->
-<!--            ref="item1"-->
-<!--        >-->
-<!--          <u&#45;&#45;input-->
-<!--              v-model="form.sex"-->
-<!--              disabled-->
-<!--              disabledColor="#ffffff"-->
-<!--              placeholder="请选择性别"-->
-<!--              border="none"-->
-<!--          ></u&#45;&#45;input>-->
-<!--          <u-icon-->
-<!--              class="biaodan-gengduo"-->
-<!--              slot="right"-->
-<!--              name="arrow-right"-->
-<!--          ></u-icon>-->
-<!--        </u-form-item>-->
+        <!--        <u-form-item-->
+        <!--            label="性别"-->
+        <!--            prop="sex"-->
+        <!--            borderBottom-->
+        <!--            @click="showSex = true; hideKeyboard()"-->
+        <!--            ref="item1"-->
+        <!--        >-->
+        <!--          <u&#45;&#45;input-->
+        <!--              v-model="form.sex"-->
+        <!--              disabled-->
+        <!--              disabledColor="#ffffff"-->
+        <!--              placeholder="请选择性别"-->
+        <!--              border="none"-->
+        <!--          ></u&#45;&#45;input>-->
+        <!--          <u-icon-->
+        <!--              class="biaodan-gengduo"-->
+        <!--              slot="right"-->
+        <!--              name="arrow-right"-->
+        <!--          ></u-icon>-->
+        <!--        </u-form-item>-->
       </view>
     </u--form>
-<!--    <u-action-sheet-->
-<!--        :show="showSex"-->
-<!--        :actions="actions"-->
-<!--        title="请选择性别"-->
-<!--        description="如果选择保密会报错"-->
-<!--        @close="showSex = false"-->
-<!--        @select="sexSelect"-->
-<!--    >-->
-<!--    </u-action-sheet>-->
+    <!--    <u-action-sheet-->
+    <!--        :show="showSex"-->
+    <!--        :actions="actions"-->
+    <!--        title="请选择性别"-->
+    <!--        description="如果选择保密会报错"-->
+    <!--        @close="showSex = false"-->
+    <!--        @select="sexSelect"-->
+    <!--    >-->
+    <!--    </u-action-sheet>-->
     <!--    <section style="padding-top:46px">-->
     <!--      <mt-field-->
     <!--        label="头像"-->
@@ -252,35 +252,35 @@
       //   this.$refs.uploadImg.dispatchEvent(new MouseEvent("click"));
       // },
       deletePic(event) {
-        console.info(event)
+        console.info(event);
         this[`fileList${event.name}`].splice(event.index, 1)
       },
       async afterRead(event) {
-        console.info(event)
-        this.imgevent = event
+        console.info(event);
+        this.imgevent = event;
         // 当设置 multiple 为 true 时, file 为数组格式，否则为对象格式
-        let lists = [].concat(event.file)
-        let fileListLen = this[`fileList${event.name}`].length
+        let lists = [].concat(event.file);
+        let fileListLen = this[`fileList${event.name}`].length;
         lists.map((item) => {
           this[`fileList${event.name}`].push({
             ...item,
             status: 'uploading',
             message: '上传中'
           })
-        })
+        });
         for (let i = 0; i < lists.length; i++) {
-          const result = await this.uploadFilePromise(lists[i].url)
-          let item = this[`fileList${event.name}`][fileListLen]
+          const result = await this.uploadFilePromise(lists[i].url);
+          let item = this[`fileList${event.name}`][fileListLen];
           this[`fileList${event.name}`].splice(fileListLen, 1, Object.assign(item, {
             status: 'success',
             message: '',
             url: result
-          }))
+          }));
           fileListLen++
         }
       },
       uploadFilePromise(url) {
-        var _this = this
+        var _this = this;
         return new Promise((resolve, reject) => {
           let a = uni.uploadFile({
             url: this.actionUrl, // 仅为示例，非真实的接口地址
@@ -295,12 +295,12 @@
                 // console.info(res.data)
                 let resDta = JSON.parse(res.data);
                 // console.info(resDta)
-                if (resDta.sub_code != 1000){
-                  this.$toast('上传失败，请上传1mb 以内的图片')
+                if (resDta.sub_code != 1000) {
+                  this.$toast('上传失败，请上传1mb 以内的图片');
                   _this.deletePic(_this.imgevent)
-                } else{
-                  this.$toast('上传成功')
-                  this.form.imgUrl = resDta.data
+                } else {
+                  this.$toast('上传成功');
+                  this.form.imgUrl = resDta.data;
                   resolve(res.data.data)
                 }
               }, 1000)
@@ -317,11 +317,11 @@
           method: 'get'
         }).then(res => {
           if (res.subCode === 1000) {
-            this.form = res.data ? res.data : {}
-            if (this.form.imgUrl ){
-              let url=  this.fileUrl + this.form.imgUrl
-              let data1 ={}
-              data1.url= url
+            this.form = res.data ? res.data : {};
+            if (this.form.imgUrl) {
+              let url = this.fileUrl + this.form.imgUrl;
+              let data1 = {};
+              data1.url = url;
               this.fileList1.push(data1)
             }
           } else {
@@ -341,15 +341,15 @@
 
       submit() {
         if (!this.form.imgUrl) {
-          this.$toast('请上传头像')
+          this.$toast('请上传头像');
           return false
         }
         if (!this.form.userMobile) {
-          this.$toast('请输入手机')
+          this.$toast('请输入手机');
           return false
         }
         if (!this.form.userRealName) {
-          this.$toast('请输入姓名')
+          this.$toast('请输入姓名');
           return false
         }
         this.$request({
@@ -358,9 +358,9 @@
           data: this.form
         }).then(res => {
           if (res.subCode === 1000) {
-            this.$toast('修改成功')
+            this.$toast('修改成功');
             setTimeout(() => {
-                this.$navigateTo('/pages/my/index?userRealName='+this.form.userRealName)
+              this.$navigateTo('/pages/my/index?userRealName=' + this.form.userRealName)
             }, 1000)
           } else {
             this.$toast(res.subMsg)
@@ -388,17 +388,17 @@
       //   this.$router.push({ path: '/otherList'})
       // },
       async handleImageSuccess(res, file) {
-        hideLoading()
-        this.$toast('上传成功')
+        hideLoading();
+        this.$toast('上传成功');
         this.form.imgUrl = res.data
       },
       async handleImageError(res, file) {
-        hideLoading()
+        hideLoading();
         this.$toast('上传失败')
       },
       async beforeImageUpload(file) {
-        const fileName = file.name
-        const fileType = fileName.substring(fileName.lastIndexOf('.'))
+        const fileName = file.name;
+        const fileType = fileName.substring(fileName.lastIndexOf('.'));
         if (
             fileType === '.jpg' ||
             fileType === '.png' ||
@@ -407,17 +407,17 @@
             fileType === '.gif'
         ) {
         } else {
-          this.$toast('不是,jpeg,.png,.jpg,.bmp,.gif文件,请上传正确的图片类型')
+          this.$toast('不是,jpeg,.png,.jpg,.bmp,.gif文件,请上传正确的图片类型');
           return false
         }
-        showLoading()
-        let overSize = file.size / 1024 / 1024
-        console.info("size1", overSize)
+        showLoading();
+        let overSize = file.size / 1024 / 1024;
+        console.info("size1", overSize);
         if (overSize > 1) {
           file = await imageConversion.compressAccurately(file, 200)
         }
-        overSize = file.size / 1024 / 1024
-        console.info("size2", overSize)
+        overSize = file.size / 1024 / 1024;
+        console.info("size2", overSize);
         return file
       },
       // beforeImageUpload(file) {

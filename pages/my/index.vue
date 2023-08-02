@@ -1,11 +1,12 @@
 <template lang="html">
-  <view class="car2" ref="content" style="height: 100%;font-size: 15px; border-top:0;    overflow: auto;">
-    <u-navbar title="个人中心" >
+  <view class="car2" ref="content"
+        style="height: 100%;font-size: 15px; border-top:0;    overflow: auto;">
+    <u-navbar title="个人中心">
       <view @click="$goBack" class="u-nav-slot" slot="left">
-        <image style="width: 23px; height: 23px;"  src="../../static/img/saoyisao4.png"></image>
+        <image style="width: 23px; height: 23px;" src="../../static/img/saoyisao4.png"></image>
       </view>
       <view @click="comfirm(1)" class="u-nav-slot" slot="right">
-        <image style=" width: 26px;height: 26px;"  src="../../static/img/setting0.png"></image>
+        <image style=" width: 26px;height: 26px;" src="../../static/img/setting0.png"></image>
       </view>
     </u-navbar>
 
@@ -14,28 +15,32 @@
         padding-bottom: 35vw;
         padding-top: 5vw;
          background-image: linear-gradient(#e5f4ff, #f3f2f8);">
-<!--      <view class="zuoyouduiqi" style="    padding: 2.81vw 4.8vw !important;">-->
-<!--        <view @click="scanCode(1)" >-->
-<!--          <image style="width: 23px; height: 23px;"  src="../../static/img/saoyisao4.png"></image>-->
-<!--        </view>-->
-<!--        <view>-->
-<!--          <text style="font-size: 16px; color: black;" class="mint-header-title">-->
-<!--            个人中心-->
-<!--          </text>-->
-<!--        </view>-->
-<!--        <view @click="comfirm(1)">-->
-<!--          <image style=" width: 26px;height: 26px;"  src="../../static/img/setting0.png"></image>-->
-<!--        </view>-->
-<!--      </view>-->
+      <!--      <view class="zuoyouduiqi" style="    padding: 2.81vw 4.8vw !important;">-->
+      <!--        <view @click="scanCode(1)" >-->
+      <!--          <image style="width: 23px; height: 23px;"  src="../../static/img/saoyisao4.png"></image>-->
+      <!--        </view>-->
+      <!--        <view>-->
+      <!--          <text style="font-size: 16px; color: black;" class="mint-header-title">-->
+      <!--            个人中心-->
+      <!--          </text>-->
+      <!--        </view>-->
+      <!--        <view @click="comfirm(1)">-->
+      <!--          <image style=" width: 26px;height: 26px;"  src="../../static/img/setting0.png"></image>-->
+      <!--        </view>-->
+      <!--      </view>-->
       <view class="header zuoyouduiqi">
         <view @click="userInfo" class="header-icon xianglian" style="margin-left: 6vw;">
-          <image v-if="imgUrl" style="width: 50px;height: 50px;border-radius: 100%;" :src="imgUrl"></image>
+          <image v-if="imgUrl" style="width: 50px;height: 50px;border-radius: 100%;"
+                 :src="imgUrl"></image>
           <text style="margin-left: 12px;">{{
             form.userRealName ? form.userRealName : form.userAccount ? form.userAccount : '系统用户'
-            }}</text>
+            }}
+          </text>
         </view>
         <view class="my-indent-right" style="margin-right: 6vw;">
-          <u-button type="primary" @click="comfirm(2)"  class="custom-style"  shape="circle"  round>账户管理</u-button>
+          <u-button type="primary" @click="comfirm(2)" class="custom-style" shape="circle" round>
+            账户管理
+          </u-button>
         </view>
       </view>
     </view>
@@ -67,30 +72,30 @@
           <p style="color: #333">已发货</p>
         </view>
 
-          <view :to="{ path: '/order?status=5'}">
-            <!--                  <span class="icon2-thecar"></span>-->
-            <image
-                :class="orderIofo.count5 > 0 ? 'count3' : ''"
-                src="../../static/img/new/yilanjian.png"></image>
-            <i v-if="orderIofo.count5"  class="danger-num">{{orderIofo.count5}}</i>
-            <p style="color: #333">运输中</p>
-          </view>
+        <view :to="{ path: '/order?status=5'}">
+          <!--                  <span class="icon2-thecar"></span>-->
+          <image
+              :class="orderIofo.count5 > 0 ? 'count3' : ''"
+              src="../../static/img/new/yilanjian.png"></image>
+          <i v-if="orderIofo.count5" class="danger-num">{{orderIofo.count5}}</i>
+          <p style="color: #333">运输中</p>
+        </view>
 
         <view :to="{ path: '/order?status=6'}">
           <image
               :class="orderIofo.count6 > 0 ? 'count3' : ''"
               src="../../static/img/new/yishouhuo.png"></image>
-          <i v-if="orderIofo.count6"  class="danger-num">{{orderIofo.count6}}</i>
+          <i v-if="orderIofo.count6" class="danger-num">{{orderIofo.count6}}</i>
           <p style="color: #333">已收货</p>
         </view>
 
       </view>
 
-      <view class="my-indent" style="    margin-bottom: -10px;"  @click="putin">
+      <view class="my-indent" style="    margin-bottom: -10px;" @click="putin">
         <text class="my-indent-left">报表</text>
       </view>
       <view class="my-settle1" style="margin-top: 0;border-top-style:none">
-        <view  @click="putin" class="my-settle1-top">
+        <view @click="putin" class="my-settle1-top">
           <view>
             <image style="width: 27px;height: 27px;" src="../../static/img/new/ruku.png"></image>
           </view>
@@ -103,7 +108,7 @@
         <view :to="{ name: '入库渠道报表'}" class="my-settle1-top">
           <view>
             <image style="width: 27px;height: 27px;"
-                 src="../../static/img/new/qudao.png"></image>
+                   src="../../static/img/new/qudao.png"></image>
           </view>
 
           <p>
@@ -114,7 +119,7 @@
         <view :to="{ name: '销售报表'}" class="my-settle1-bottom">
           <view>
             <image style="width: 27px;height: 27px;"
-                 src="../../static/img/new/xiaoshou.png"></image>
+                   src="../../static/img/new/xiaoshou.png"></image>
           </view>
           <p>
             <text style="color: #333">销售报表</text>
@@ -153,13 +158,13 @@
               src="../../static/img/new/qita.png"></image>
           <p style="color: #333">其他收支</p>
         </view>
-<!--        <view :to="{ name: '瑕疵商品'}">-->
-<!--          &lt;!&ndash;                  <text class="icon2-thecar"></text>&ndash;&gt;-->
-<!--          <image-->
-<!--              style="    margin-top: 4px;-->
-<!--    width: 27px;height: 27px;" src="../../static/img/new/xiaci.png"></image>-->
-<!--          <p style="color: #333">瑕疵商品</p>-->
-<!--        </view>-->
+        <!--        <view :to="{ name: '瑕疵商品'}">-->
+        <!--          &lt;!&ndash;                  <text class="icon2-thecar"></text>&ndash;&gt;-->
+        <!--          <image-->
+        <!--              style="    margin-top: 4px;-->
+        <!--    width: 27px;height: 27px;" src="../../static/img/new/xiaci.png"></image>-->
+        <!--          <p style="color: #333">瑕疵商品</p>-->
+        <!--        </view>-->
         <view :to="{ name: '瑕疵商品'}">
           <image
               style="margin-top: 7px;margin-bottom: -4px;width: 27px;height: 27px;"
@@ -225,7 +230,7 @@
       }
     },
     created() {
-      this.getUcUser()
+      this.getUcUser();
       this.getData()
     },
     // onLoad() {
@@ -251,11 +256,11 @@
     //   console.log('页面返回...')
     // },
     onPullDownRefresh() {
-      uni.stopPullDownRefresh()
-      this.getUcUser()
+      uni.stopPullDownRefresh();
+      this.getUcUser();
       this.getData()
     },
-      methods: {
+    methods: {
       // handleScroll () {
       //   let scrollTop = this.$refs.content.scrollTop;
       //   console.info(scrollTop)
@@ -286,10 +291,10 @@
       },
 
       scanCode(photo) {
-        this.$router.push({ path: '/scanCode', query: { photo } })
+        this.$router.push({path: '/scanCode', query: {photo}})
       },
       comfirm(type) {
-        this.$navigateTo('/pages/login/logout?type='+type)
+        this.$navigateTo('/pages/login/logout?type=' + type)
         // this.$router.push({path: '/logout', query: {type}})
       },
       // syncOldPriceToNew1() {
@@ -303,10 +308,10 @@
       //   })
       // },
       getData() {
-          this.$request({
-            url: '/gw/op/v1/goodsOrder/orderData',
-            method: 'get'
-          }).then(res => {
+        this.$request({
+          url: '/gw/op/v1/goodsOrder/orderData',
+          method: 'get'
+        }).then(res => {
           if (res.subCode === 1000) {
             this.orderIofo = res.data ? res.data.countDto : {}
           } else {
@@ -320,7 +325,7 @@
           method: 'get'
         }).then(res => {
           if (res.subCode === 1000) {
-            this.form = res.data ? res.data : {}
+            this.form = res.data ? res.data : {};
             if (this.form.imgUrl) {
               this.imgUrl = this.fileUrl + this.form.imgUrl
             } else {
@@ -367,7 +372,7 @@
 
     .header {
       width: 100%;
-      height:100px;
+      height: 100px;
       /*background: url(../../static/carbg.png) center 0 #f37d0f;*/
       /*background: url(../../static/img/bg1.png) center 0 #f37d0f;*/
       background-size: auto 100%;
@@ -469,6 +474,7 @@
             text-align: center;
             padding-bottom: 10px;
           }
+
           image {
             margin-top: 10px;
             margin-bottom: -20px;
@@ -620,13 +626,15 @@
       }
     }
   }
-  .my-indent-img{
+
+  .my-indent-img {
     width: 13px;
     height: 13px;
     margin-left: 4px;
     margin-bottom: -1px;
   }
-  .my-indent-img-1{
+
+  .my-indent-img-1 {
     width: 13px;
     height: 13px;
     margin-left: 4px;
@@ -635,6 +643,7 @@
     right: 0;
     top: 0.4vw;
   }
+
   .custom-style {
     width: 86px;
     font-size: 12px;
