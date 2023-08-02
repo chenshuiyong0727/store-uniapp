@@ -190,6 +190,9 @@
         <image :src="imageZoom" mode="widthFix"  class="showImg"></image>
       </view>
     </view>
+    <view>
+      <uni-fab ref="fab" :pattern="pattern"  :horizontal="horizontal" @fabClick="fabClick" />
+    </view>
   </view>
 </template>
 <script>
@@ -281,8 +284,23 @@
         isLoading: false,
         loadStatus: 'loadmore',
         tableData: [],
-        totalCount: 1
+        totalCount: 1,
+        horizontal: 'right',
+        pattern: {
+          color: '#7A7E83',
+          backgroundColor: '#fff',
+          selectedColor: '#409eff',
+          buttonColor: '#409eff',
+          iconColor: '#fff'
+        },
       }
+    },
+    onBackPress() {
+      if (this.$refs.fab.isShow) {
+        this.$refs.fab.close()
+        return true
+      }
+      return false
     },
     mounted() {
       this.getPage()
@@ -475,7 +493,13 @@
         console.info(item)
         this.queryParam.type = item.type
         this.search1()
-      }
+      },
+      fabClick() {
+        uni.showToast({
+          title: '点击了悬浮按钮',
+          icon: 'none'
+        })
+      },
     }
   };
 </script>
