@@ -106,5 +106,6 @@ Vue.filter('sizeFilterNum', (value , num) => {
 
 Vue.filter('formateTime', parseTime)
 
+Vue.prototype.$parseTime = parseTime // 挂载到原型上
 Vue.prototype.$typeToStr = typeToStr // 挂载到原型上
 Vue.prototype.$getTypeIndex = getTypeIndex // 挂载到原型上

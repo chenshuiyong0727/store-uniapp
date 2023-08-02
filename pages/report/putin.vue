@@ -175,8 +175,11 @@
     <u-empty
         v-if="!tableData.length"
         mode="list"
-        :icon="$fileUrl +'/static/operateSteps/empity_7.png'"
-    ></u-empty>
+        marginTop="50"
+        textSize="16"
+        textColor="#8a8a8a"
+        :icon="$fileUrl +'/static/operateSteps/empity_7.png'">
+    </u-empty>
     <!--    <p style="padding: 0.5rem 0;" class="to-the-bottom">{{emtityMsg}}</p>-->
   </view>
 </template>

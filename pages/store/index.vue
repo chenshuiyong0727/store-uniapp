@@ -279,13 +279,16 @@
       </view>
     </view>
     <view v-show="tableData.length" style="padding: 10px;">
-      <u-loadmore :status="status"/>
+      <u-loadmore :status="loadStatus"/>
     </view>
     <u-empty
-        v-if="!tableData.length"
+        v-if="!tableData.length && !isLoading"
         mode="list"
-        :icon="$fileUrl +'/static/operateSteps/empity_7.png'"
-    ></u-empty>
+        marginTop="50"
+        textSize="16"
+        textColor="#8a8a8a"
+        :icon="$fileUrl +'/static/operateSteps/empity_7.png'">
+    </u-empty>
     <view class="popContainer" v-if="pictureZoomShow" @click="pictureZoomShow = false">
       <view class="imageShow">
         <image :src="imageZoom" mode="widthFix"  class="showImg"></image>
@@ -359,7 +362,8 @@
         typeList: [],
         columns: [],
         isLoadMore: false,
-        status: 'loadmore',
+        isLoading: false,
+        loadStatus: 'loadmore',
         requestParam1: {
           poundage: '',
           theirPrice: '',
@@ -461,7 +465,7 @@
     },
     onReachBottom() {
       if (this.isLoadMore) {  //此处判断，上锁，防止重复请求
-        this.status = 'loading';
+        this.loadStatus = 'loading';
         this.queryParam.pageNum++;
         this.getPage()
       }
@@ -599,6 +603,7 @@
         this.$router.push({ path: '/store', query: { actNo } })
       },
       getPage() {
+        this.isLoading = true
         if (this.queryParam.inventory == 1) {
           this.queryParam.inventoryFrom = 1
           this.queryParam.inventoryTo = ''
@@ -617,21 +622,22 @@
           method: 'get',
           data: this.queryParam
         }).then(res => {
+          this.isLoading = false
           if (res.subCode === 1000) {
             this.totalCount = res.data ? res.data.pageInfo.totalCount : 0
             if (this.totalCount == 0) {
               this.emtityMsg = '暂无相关数据'
-              this.status = 'nomore';
+              this.loadStatus = 'nomore';
               this.isLoadMore = false
             } else {
               res.data.list.forEach(e => {
                 this.tableData.push(e)
               })
               if (this.totalCount <= this.tableData.length) {
-                this.status = 'nomore';
+                this.loadStatus = 'nomore';
                 this.isLoadMore = false
               } else {
-                this.status = 'nomore';
+                this.loadStatus = 'nomore';
                 this.isLoadMore = true
               }
             }
@@ -673,7 +679,6 @@
         this.getPage()
       },
       resetHandle() {
-        this.isLoadMore = false
         this.queryParam = {
           warehouseId: '',
           channelId: '',

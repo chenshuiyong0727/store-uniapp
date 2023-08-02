@@ -131,7 +131,7 @@
       </view>
     </view>
     <view v-show="tableData.length" style="padding: 10px;">
-      <u-loadmore :status="status"/>
+      <u-loadmore :status="loadStatus"/>
     </view>
     <!--    <view slot="top" class="mint-loadmore-top">-->
     <!--      <text v-show="topStatus !== 'loading'" :class="{ 'rotate': topStatus === 'drop' }">松手释放↓</text>-->
@@ -150,10 +150,13 @@
     <!--      </view>-->
     <!--    </view>-->
     <u-empty
-        v-if="!tableData.length"
+        v-if="!tableData.length && !isLoading"
         mode="list"
-        :icon="$fileUrl +'/static/operateSteps/empity_7.png'"
-    ></u-empty>
+        marginTop="50"
+        textSize="16"
+        textColor="#8a8a8a"
+        :icon="$fileUrl +'/static/operateSteps/empity_7.png'">
+    </u-empty>
   </view>
 </template>
 <script>
@@ -216,8 +219,9 @@
         },
         typeList: [],
         columns: [],
+        isLoading: false,
         isLoadMore: false,
-        status: 'loadmore',
+        loadStatus: 'loadmore',
         tableData: [],
         totalCount: 1
       }
@@ -241,7 +245,7 @@
       //   return ;
       // }
       if (this.isLoadMore) {  //此处判断，上锁，防止重复请求
-        this.status = 'loading';
+        this.loadStatus = 'loading';
         this.queryParam.pageNum++;
         this.getPage()
       }
@@ -318,17 +322,19 @@
         // this.$router.push({ path: '/otherAdd', query: { id, type } })
       },
       getPage() {
+        this.isLoading = true
         this.emtityMsg = ''
         this.$request({
           url: '/gw/op/v1/goodsOther',
           method: 'get',
           data: this.queryParam
         }).then(res => {
+          this.isLoading = false
           if (res.subCode === 1000) {
             this.totalCount = res.data ? res.data.pageInfo.totalCount : 0
             if (this.totalCount == 0) {
               this.emtityMsg = '暂无相关数据'
-              this.status = 'nomore';
+              this.loadStatus = 'nomore';
               this.isLoadMore = false
             } else {
               res.data.list.forEach(e => {
@@ -337,10 +343,10 @@
               console.info(this.totalCount)
               console.info(this.tableData.length)
               if (this.totalCount <= this.tableData.length) {
-                this.status = 'nomore';
+                this.loadStatus = 'nomore';
                 this.isLoadMore = false
               } else {
-                this.status = 'nomore';
+                this.loadStatus = 'nomore';
                 this.isLoadMore = true
               }
             }
@@ -376,7 +382,6 @@
         this.getPage()
       },
       resetHandle() {
-        this.isLoadMore = false
         this.queryParam = {
           type: '',
           typeStr: '',
