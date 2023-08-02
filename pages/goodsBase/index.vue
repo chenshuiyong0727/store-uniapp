@@ -177,14 +177,12 @@
     <view v-show="tableData.length" style="padding: 10px;">
       <u-loadmore :status="status"/>
     </view>
-    <view v-if="!tableData.length" class="to-the-bottom-1">
-      <p v-if="emtityMsg">
-        <img src="../../static/img/new/empity_7.png" style="width: 60vw;">
-      </p>
-      <p>
-        <text>{{emtityMsg}}</text>
-      </p>
-    </view>
+    <u-empty
+        v-if="!tableData.length"
+        mode="list"
+        :icon="$fileUrl +'/static/operateSteps/empity_7.png'"
+    >
+    </u-empty>
     <view class="popContainer" v-if="pictureZoomShow" @click="pictureZoomShow = false">
       <view class="imageShow">
         <image :src="imageZoom" mode="widthFix"  class="showImg"></image>
@@ -404,7 +402,7 @@
           if (res.subCode === 1000) {
             this.totalCount = res.data ? res.data.pageInfo.totalCount : 0
             if (this.totalCount == 0) {
-              this.emtityMsg = '暂无相关数据'
+              this.emtityMsg = '暂无相关商品'
               this.status = 'nomore';
               this.isLoadMore = false
             } else {

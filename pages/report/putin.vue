@@ -172,16 +172,11 @@
       </view>
     </view>
     <!--    列表结束-->
-    <view v-if="!tableData.length" class="to-the-bottom-1">
-      <p>
-        <image style="width: 60vw; height: 60vw;" src="../../static/img/new/empity_7.png"></image>
-
-        <!--        <u&#45;&#45;image src="../../static/img/new/empity_7.png" style="width: 60vw;"></u&#45;&#45;image>-->
-      </p>
-      <p>
-        <text>暂无相关数据</text>
-      </p>
-    </view>
+    <u-empty
+        v-if="!tableData.length"
+        mode="list"
+        :icon="$fileUrl +'/static/operateSteps/empity_7.png'"
+    ></u-empty>
     <!--    <p style="padding: 0.5rem 0;" class="to-the-bottom">{{emtityMsg}}</p>-->
   </view>
 </template>

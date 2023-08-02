@@ -149,14 +149,11 @@
     <!--        <img :src="$fileUrl + imageZoom" alt="" width="100%" height="100%">-->
     <!--      </view>-->
     <!--    </view>-->
-    <view v-if="!tableData.length" class="to-the-bottom-1">
-      <p v-if="emtityMsg">
-        <img src="../../static/img/new/empity_7.png" style="width: 60vw;">
-      </p>
-      <p>
-        <text>{{emtityMsg}}</text>
-      </p>
-    </view>
+    <u-empty
+        v-if="!tableData.length"
+        mode="list"
+        :icon="$fileUrl +'/static/operateSteps/empity_7.png'"
+    ></u-empty>
   </view>
 </template>
 <script>
