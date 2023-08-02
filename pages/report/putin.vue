@@ -270,44 +270,4 @@
 <style lang="less" scoped>
   @import '@/assets/index/rt_style.less';
   @import '@/assets/index/style.css';
-
-  * {
-    /*margin: 0;*/
-    /*padding: 0;*/
-    box-sizing: border-box;
-  }
-
-  /* 这里直接设置 1rem = 50px begin */
-  html {
-    font-size: 10px;
-  }
-
-  /* 这里直接设置 1rem = 50px end */
-  html,
-  body {
-    /*font-family: "微软雅黑";*/
-    /*color: #333;*/
-    /*background: #fff;*/
-  }
-
-  /*.login {*/
-  /*  >section {*/
-  /*    .tip {*/
-  /*      padding: 6vw 3vw;*/
-  /*      color:rgb(224, 145, 71);*/
-  /*      letter-spacing: 2px;*/
-  /*      font-size: 16px;*/
-  /*    }*/
-  /*  }*/
-  /*}*/
-  /*.clearfix {*/
-  /*  &:after {*/
-  /*    visibility: hidden;*/
-  /*    display: block;*/
-  /*    font-size: 0;*/
-  /*    content: " ";*/
-  /*    clear: both;*/
-  /*    height: 0;*/
-  /*  }*/
-  /*}*/
 </style>
