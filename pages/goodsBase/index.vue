@@ -126,29 +126,29 @@
                @click="avatarShow(item.img)">
             <image mode="widthFix" :src="item.img" ></image>
             <p class="mark_dw">
-              <span class="text_dw">
+              <text class="text_dw">
                 {{ item.type | dictToDescTypeValue(20221108) }}
-              </span>
+              </text>
             </p>
           </view>
           <view class="diangdans_con_right_dw">
             <view class="dingdans_con_right_top_dw" @click="goodsDetail(item.id, 1) ">
-              <span>
+              <text>
                 {{item.name | sizeFilterNum(38) }}
-              </span>
+              </text>
             </view>
             <view class="dingdans_con_right_top_dw_1 xianglian">
-              <span @click="jumpactNo(item.actNo)">
+              <text @click="jumpactNo(item.actNo)">
               {{item.actNo}}
-              </span>
+              </text>
               <image @click="$copyUrl(item.actNo)" class="fuzhitupian"
                      src="../../static/img/copy.png"></image>
             </view>
             <view class="dingdans_con_right_top_dw_2" style="margin-bottom: -10px;">
               <view  v-if="item.brand">
-                   <span  class="dingdans_con_dw_address">
+                   <text  class="dingdans_con_dw_address">
                     {{item.brand}}
-                  </span>
+                  </text>
               </view>
               <view class="dingdans_top_right_dw">
                 <view class="dingdans_con_right_down_2_1">

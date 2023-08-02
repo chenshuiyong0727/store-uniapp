@@ -126,29 +126,29 @@
 <!--               @click="avatarShow(item.img)">-->
 <!--            <image mode="widthFix" :src="item.img" ></image>-->
 <!--            <p class="mark_dw">-->
-<!--              <span class="text_dw">-->
+<!--              <text class="text_dw">-->
 <!--                {{ item.type | dictToDescTypeValue(20221108) }}-->
-<!--              </span>-->
+<!--              </text>-->
 <!--            </p>-->
 <!--          </view>-->
 <!--          <view class="diangdans_con_right_dw">-->
 <!--            <view class="dingdans_con_right_top_dw" @click="goodsDetail(item.id, 1) ">-->
-<!--              <span>-->
+<!--              <text>-->
 <!--                {{item.name | sizeFilterNum(38) }}-->
-<!--              </span>-->
+<!--              </text>-->
 <!--            </view>-->
 <!--            <view class="dingdans_con_right_top_dw_1 xianglian">-->
-<!--              <span @click="jumpactNo(item.actNo)">-->
+<!--              <text @click="jumpactNo(item.actNo)">-->
 <!--              {{item.actNo}}-->
-<!--              </span>-->
+<!--              </text>-->
 <!--              <image @click="$copyUrl(item.actNo)" class="fuzhitupian"-->
 <!--                     src="../../static/img/copy.png"></image>-->
 <!--            </view>-->
 <!--            <view class="dingdans_con_right_top_dw_2" style="margin-bottom: -10px;">-->
 <!--              <view  v-if="item.brand">-->
-<!--                   <span  class="dingdans_con_dw_address">-->
+<!--                   <text  class="dingdans_con_dw_address">-->
 <!--                    {{item.brand}}-->
-<!--                  </span>-->
+<!--                  </text>-->
 <!--              </view>-->
 <!--              <view class="dingdans_top_right_dw">-->
 <!--                <view class="dingdans_con_right_down_2_1">-->
@@ -174,59 +174,58 @@
 <!--        &lt;!&ndash;底部&ndash;&gt;-->
 <!--      </view1>-->
 
-      <div class="dingdans_item_dw"
+      <view class="dingdans_item_dw"
             v-for="(item,index) in tableData"
             :key="index"
-            :style="tableData.length==(index+1) ? 'margin-bottom: 56px;' : ''"
       >
         <!--        头部-->
-        <div class="dingdans_top_dw">
-          <div class="dingdans_top_left_dw">
-            <span>入库时间:</span>
-            <span>{{item.createTime |formateTime}}</span>
-          </div>
-          <div class="dingdans_top_right_dw" v-if="item.difference && item.thisTimePrice">
+        <view class="dingdans_top_dw">
+          <view class="dingdans_top_left_dw">
+            <text>入库时间:</text>
+            <text>{{item.createTime |formateTime}}</text>
+          </view>
+          <view class="dingdans_top_right_dw" v-if="item.difference && item.thisTimePrice">
             变更
             <strong style="font-size: 13px" v-if="item.difference > 0" class="color-danger"> +{{item.difference }}</strong>
             <strong style="font-size: 13px" v-else class="color-success">{{item.difference }}</strong>
-          </div>
-        </div>
+          </view>
+        </view>
         <!--        中间-->
-        <div class="dingdans_con_dw">
-          <div :src="item.img" class="dingdans_con_left_dw"
+        <view class="dingdans_con_dw">
+          <view :src="item.img" class="dingdans_con_left_dw"
                @click="avatarShow(item.img)">
             <image mode="widthFix" :src="item.img" ></image>
             <p class="mark_dw">
-              <span class="text_dw">
+              <text class="text_dw">
                 {{ item.channelId | dictToDescTypeValue(47) }}
-              </span>
+              </text>
             </p>
-          </div>
-          <div class="diangdans_con_right_dw">
-            <div class="dingdans_con_right_top_dw" @click="goDetail(item.id) ">
-              <span>
+          </view>
+          <view class="diangdans_con_right_dw">
+            <view class="dingdans_con_right_top_dw" @click="goDetail(item.id) ">
+              <text>
                 {{item.goodsName | sizeFilterNum(40) }}
-              </span>
-            </div>
-            <div class="dingdans_con_right_top_dw_1">
-              <span @click="jumpactNo(item.actNo)">
+              </text>
+            </view>
+            <view class="dingdans_con_right_top_dw_1">
+              <text @click="jumpactNo(item.actNo)">
               {{item.actNo}}
-              </span>
+              </text>
               <image @click="$copyUrl(item.actNo)" class="fuzhitupian"
                      src="../../static/img/copy.png"></image>
-            </div>
-            <div v-if="item.warehouseId" style="    margin-bottom: 10px;">
-              <span  class="dingdans_con_dw_address">
+            </view>
+            <view v-if="item.warehouseId" style="    margin-bottom: 10px;">
+              <text  class="dingdans_con_dw_address">
                 {{item.warehouseId | dictToDescTypeValue(40)}}
-              </span>
-            </div>
-            <div class="dingdans_con_right_top_dw_2">
-              <div>
-                 <span>
+              </text>
+            </view>
+            <view class="dingdans_con_right_top_dw_2">
+              <view>
+                 <text>
                 {{item.size}} × {{item.inventory}}
-              </span>
-              </div>
-              <div>
+              </text>
+              </view>
+              <view>
                 <strong style="color: #333333">
                   ¥
                 </strong>
@@ -236,30 +235,30 @@
                 <strong v-if="!item.thisTimeThePrice && item.theirPrice" style="font-size: 17px ;margin-left: -2px;color: #333333">
                   {{item.theirPrice}}
                 </strong>
-                <span v-if="item.thisTimePrice" style="margin-left: 3px;text-decoration:line-through;">
+                <text v-if="item.thisTimePrice" style="margin-left: 3px;text-decoration:line-through;">
                   {{item.thisTimePrice}}
-                </span>
-                <span v-else style="margin-left: 3px;text-decoration:line-through;">
+                </text>
+                <text v-else style="margin-left: 3px;text-decoration:line-through;">
                   {{item.dwPrice}}
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
+                </text>
+              </view>
+            </view>
+          </view>
+        </view>
         <!--底部-->
-        <div class="dingdans_bottom_dw">
-          <div class="dingdans_top_left_dw">
-            <span >入库价</span>
-            <span class="color-danger">{{item.price}}</span>
-            <span >, 预估利润</span>
-            <span :class="item.thisTimeProfits>= 0 ? 'color-danger': 'color-success'"  v-if="item.thisTimePrice" >{{item.thisTimeProfits }}</span>
-            <span class="color-danger"  v-else  :class="(item.dwPrice - (item.dwPrice * 0.075 + 38 + 8.5) - item.price - 10)>= 0 ? 'color-danger': 'color-success'">
+        <view class="dingdans_bottom_dw">
+          <view class="dingdans_top_left_dw">
+            <text >入库价</text>
+            <text class="color-danger">{{item.price}}</text>
+            <text >, 预估利润</text>
+            <text :class="item.thisTimeProfits>= 0 ? 'color-danger': 'color-success'"  v-if="item.thisTimePrice" >{{item.thisTimeProfits }}</text>
+            <text class="color-danger"  v-else  :class="(item.dwPrice - (item.dwPrice * 0.075 + 38 + 8.5) - item.price - 10)>= 0 ? 'color-danger': 'color-success'">
               {{(item.dwPrice - (item.dwPrice * 0.075 + 38 + 8.5) - item.price - 10) | numFilter}}
-            </span>
-          </div>
+            </text>
+          </view>
           <!--          操作栏-->
-          <div class="dingdans_top_right_dw">
-            <div class="dingdans_con_right_down_2_1">
+          <view class="dingdans_top_right_dw">
+            <view class="dingdans_con_right_down_2_1">
 <!--              <el-dropdown trigger="click" style="margin-left: 1px;">-->
 <!--                <button-->
 <!--                    class="dw-button-common">操作-->
@@ -274,10 +273,10 @@
 <!--                  <el-dropdown-item type="text" @click.native="goDel(item.id)">删除</el-dropdown-item>-->
 <!--                </el-dropdown-menu>-->
 <!--              </el-dropdown>-->
-            </div>
-          </div>
-        </div>
-      </div>
+            </view>
+          </view>
+        </view>
+      </view>
     </view>
     <view v-show="tableData.length" style="padding: 10px;">
       <u-loadmore :status="status"/>
