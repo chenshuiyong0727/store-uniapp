@@ -1,122 +1,5 @@
 <template lang="html">
   <div class="login">
-    <!--    <mt-header title="其他收支详情">-->
-    <!--      <div slot="left">-->
-    <!--        <mt-button  icon="back" @click="$router.go(-1)"></mt-button>-->
-    <!--      </div>-->
-    <!--      <div slot="right">-->
-    <!--        <mt-button size="normal" style="font-size: 16px"  @click="submit">保存</mt-button>-->
-    <!--      </div>-->
-    <!--    </mt-header>-->
-    <!--    <section style="padding-top:46px">-->
-    <!--      <mt-field-->
-    <!--        label="图片"-->
-    <!--      >-->
-    <!--        <el-upload-->
-    <!--          :disabled="type == 1 "-->
-    <!--          class="avatar-uploader"-->
-    <!--          action="/gw/op/v1/file/uploadFileMinio"-->
-    <!--          :show-file-list="false"-->
-    <!--          :on-error="handleImageError"-->
-    <!--          :on-success="handleImageSuccess"-->
-    <!--          :before-upload="beforeImageUpload"-->
-    <!--        >-->
-    <!--          <img-->
-    <!--            :disabled="type == 1 "-->
-    <!--            style="height: 62vw"-->
-    <!--            class="select100"-->
-    <!--            v-if="form.imgUrl"-->
-    <!--            :src="fileUrl + form.imgUrl"-->
-    <!--          />-->
-    <!--          <el-button :disabled="type == 1 " type="text" class="select100" v-show="!form.imgUrl"  style=" margin-left: -108vw;"-->
-    <!--          >上传图片-->
-    <!--          </el-button-->
-    <!--          >-->
-    <!--        </el-upload>-->
-    <!--      </mt-field>-->
-    <!--      <mt-field label="类型">-->
-    <!--&lt;!&ndash;          <select class="select100" v-model="form.type"  :disabled="type == 1 ">&ndash;&gt;-->
-    <!--&lt;!&ndash;            <option :disabled="true" value="" selected>请选择类型</option>&ndash;&gt;-->
-    <!--&lt;!&ndash;            <option v-for="x in typeList" :value="x.fieldValue">{{x.fieldName}}</option>&ndash;&gt;-->
-    <!--&lt;!&ndash;          </select>&ndash;&gt;-->
-    <!--&lt;!&ndash;          <el-select size="small" class="select100" v-model="form.type" :disabled="type == 1 " >&ndash;&gt;-->
-    <!--&lt;!&ndash;        <el-option :disabled="true" value="" selected>请选择类型</el-option>&ndash;&gt;-->
-    <!--&lt;!&ndash;        <el-option&ndash;&gt;-->
-    <!--&lt;!&ndash;          v-for="item in typeList"&ndash;&gt;-->
-    <!--&lt;!&ndash;          :key="item.fieldValue"&ndash;&gt;-->
-    <!--&lt;!&ndash;          :label="item.fieldName"&ndash;&gt;-->
-    <!--&lt;!&ndash;          :value="+item.fieldValue">&ndash;&gt;-->
-    <!--&lt;!&ndash;        </el-option>&ndash;&gt;-->
-    <!--&lt;!&ndash;          </el-select>&ndash;&gt;-->
-    <!--        <select class=" select100_select select" v-model="form.type" :disabled="type == 1 " >-->
-    <!--          <option label="请选择类型"  value=""></option>-->
-    <!--          <option-->
-    <!--            v-for="item in typeList"-->
-    <!--            :key="item.fieldValue"-->
-    <!--            :label="item.fieldName"-->
-    <!--            :value="+item.fieldValue">-->
-    <!--          </option>-->
-    <!--        </select>-->
-    <!--      </mt-field>-->
-    <!--      <mt-field-->
-    <!--        :disabled="type == 1 "-->
-    <!--       label="货号"-->
-    <!--        placeholder="请输入货号"-->
-    <!--        type = "text"-->
-    <!--        v-model = "form.actNo"-->
-    <!--        >-->
-    <!--      </mt-field>-->
-    <!--      <mt-field-->
-    <!--        :disabled="type == 1 "-->
-    <!--       label="品牌"-->
-    <!--        placeholder="请输入品牌"-->
-    <!--        type = "text"-->
-    <!--        v-model = "form.brand"-->
-    <!--        >-->
-    <!--      </mt-field>-->
-    <!--      <mt-field-->
-    <!--        :disabled="type == 1 "-->
-    <!--       label="名称"-->
-    <!--        placeholder="请输入名称"-->
-    <!--        type = "text"-->
-    <!--        v-model = "form.name"-->
-    <!--        >-->
-    <!--      </mt-field>-->
-    <!--      <mt-field-->
-    <!--        :disabled="type == 1 "-->
-    <!--       label="金额"-->
-    <!--        placeholder="请输入金额"-->
-    <!--        type = "number"-->
-    <!--        v-model = "form.price"-->
-    <!--        >-->
-    <!--      </mt-field>-->
-    <!--      <mt-field-->
-    <!--        :disabled="type == 1 "-->
-    <!--       label="备注"-->
-    <!--        placeholder="请输入备注"-->
-    <!--        type = "textarea"-->
-    <!--        v-model = "form.remark"-->
-    <!--         rows="4"-->
-    <!--        >-->
-    <!--      </mt-field>-->
-    <!--    </section>-->
-    <!--    <div style="    margin-left: 20vw;-->
-    <!--    margin-top: 20px;">-->
-    <!--      <mt-button v-if="type != 1" style="bottom: 10px"-->
-    <!--        type="primary"-->
-    <!--        @click="submit">提交</mt-button>-->
-    <!--      <mt-button v-else style="bottom: 10px"-->
-    <!--        type="primary"-->
-    <!--        @click="goEdit">编辑</mt-button>-->
-    <!--      <mt-button style="bottom: 10px"-->
-    <!--        @click="$router.go(-1)">取消</mt-button>-->
-    <!--      <mt-button style="bottom: 10px"-->
-    <!--        type="primary"-->
-    <!--        @click="gotoIndex">回到首页</mt-button>-->
-    <!--    </div>-->
-
-
-    <!--  </div>-->
     <u-navbar :title="type==1 ? '查看' : type==2 ? '编辑' : '新增'" bgColor="#F3F4F5">
       <view @click="$goBack" class="u-nav-slot" slot="left">
         <u-icon name="arrow-left" size="20"></u-icon>
@@ -157,7 +40,12 @@
           </u-upload>
           <u-icon v-if="type != 1" class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
         </u-form-item>
-
+        <u-form-item label="类型" borderBottom @click="showSxType(); $hideKeyboard()">
+          <u--input inputAlign="right" disabledColor="#fff"
+                    placeholderStyle="font-size: 14px;color:#c0c4cc"
+                    v-model="form.typeStr" border="none" disabled></u--input>
+          <u-icon v-if="type != 1"  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
+        </u-form-item>
         <u-form-item label="货号" borderBottom>
           <u--input :disabled="type == 1" disabledColor="#fff" inputAlign="right"
                     v-model="form.actNo" border="none"></u--input>
@@ -185,58 +73,29 @@
               v-model="form.remark"
               count
           ></u--textarea>
-          <!--        <u&#45;&#45;input :disabled="type == 1" disabledColor="#fff" inputAlign="right" v-model="form.remark" border="none"></u&#45;&#45;input>-->
           <u-icon v-if="type != 1" class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
         </u-form-item>
-
-        <!--      <u-form-item-->
-        <!--          label-width="150"-->
-        <!--          label="手机号"-->
-        <!--          borderBottom-->
-        <!--          ref="item1"-->
-        <!--      >-->
-        <!--        <u&#45;&#45;input-->
-        <!--            color="#717171"-->
-        <!--            inputAlign="right"-->
-        <!--            v-model="form.userMobile"-->
-        <!--            border="none"-->
-        <!--        ></u&#45;&#45;input>-->
-        <!--        <u-icon v-if="type != 1"-->
-        <!--            class="biaodan-gengduo"-->
-        <!--            slot="right"-->
-        <!--            name="arrow-right"-->
-        <!--        ></u-icon>-->
-        <!--      </u-form-item>-->
-        <!--      <u-form-item-->
-        <!--          label="姓名"-->
-        <!--          ref="item1"-->
-        <!--      >-->
-        <!--        <u&#45;&#45;input-->
-        <!--            color="#717171"-->
-        <!--            inputAlign="right"-->
-        <!--            v-model="form.userRealName"-->
-        <!--            border="none"-->
-        <!--        ></u&#45;&#45;input>-->
-        <!--        <u-icon v-if="type != 1" class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-        <!--      </u-form-item>-->
       </view>
     </u--form>
+    <u-picker :show="show_sx_type" :columns="columns" @cancel="show_sx_type= false" :defaultIndex="defaultIndex"
+              @confirm="confirm_sx_type" keyName="fieldName"></u-picker>
   </div>
 </template>
 
 <script>
-  // import Header from '@/common/_header.vue'
   import {goodsOtherApi} from '@/api/goodsOther'
 
   export default {
     components: {
-      // 'v-header':Header
     },
     data() {
       return {
         fileList1: [],
+        show_sx_type: false,
+        defaultIndex: [1],
         form: {
           type: 2,
+          typeStr: '支出',
           actNo: '',
           name: '',
           imgUrl: '',
@@ -245,7 +104,7 @@
           price: ''
         },
         typeList: [],
-        dataStatusList: [],
+        columns: [],
         type: '',
         id: '',
       }
@@ -263,6 +122,19 @@
       this.listSysDict()
     },
     methods: {
+      showSxType() {
+        if (this.type ==1){
+          return
+        }
+        this.show_sx_type = true
+      },
+      confirm_sx_type(e) {
+        this.show_sx_type = false
+        let fieldValue = e.value[0].fieldValue
+        let fieldName = e.value[0].fieldName
+        this.form.type = fieldValue
+        this.form.typeStr = fieldName
+      },
       deletePic(event) {
         console.info(event);
         this[`fileList${event.name}`].splice(event.index, 1)
@@ -303,10 +175,7 @@
             },
             success: (res) => {
               setTimeout(() => {
-                // console.info(res)
-                // console.info(res.data)
                 let resDta = JSON.parse(res.data);
-                // console.info(resDta)
                 if (resDta.sub_code != 1000) {
                   this.$toast('上传失败，请上传1mb 以内的图片');
                   _this.deletePic(_this.imgevent)
@@ -330,6 +199,10 @@
                 let data1 = {};
                 data1.url = url;
                 this.fileList1.push(data1)
+              }
+              if (this.form.type){
+                this.form.typeStr = this.$typeToStr(39,this.form.type)
+                this.defaultIndex = [this.$getTypeIndex(39,this.form.type)]
               }
             } else {
               this.$toast(res.subMsg)
@@ -382,8 +255,9 @@
         let sysDictList = uni.getStorageSync('sysDictList') ? JSON.parse(
             uni.getStorageSync('sysDictList')) : [];
         this.typeList = sysDictList.filter(item => item.typeValue == 39);
-        this.dataStatusList = sysDictList.filter(item => item.typeValue == 36)
+        this.columns.push(this.typeList)
       },
+
     }
   }
 

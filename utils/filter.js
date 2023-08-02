@@ -3,6 +3,23 @@ import DICT_KEYS from '@/utils/staticEnum'
 import { parseTime } from './index'
 import { request } from '@/utils/request.js' // 引入api文件
 
+const typeToStr = (type,value) => {
+  let res = sysDictList.filter(
+      item => item.typeValue == type && item.fieldValue == value)
+  return res.length ? res[0].fieldName : '--'
+}
+const getTypeIndex = (type,value) => {
+  let list = sysDictList.filter(
+      item => item.typeValue == type)
+  for (let i = 0; i < list.length; i++) {
+    if (list[i].fieldValue == value) {
+      return i
+    }
+  }
+  return 0;
+  // return res.length ? res[0].fieldName : '--'
+}
+
 let sysDictList = uni.getStorageSync('sysDictList') ? JSON.parse(uni.getStorageSync('sysDictList')) : []
 if (!sysDictList.length) {
   request({
@@ -88,3 +105,6 @@ Vue.filter('sizeFilterNum', (value , num) => {
 })
 
 Vue.filter('formateTime', parseTime)
+
+Vue.prototype.$typeToStr = typeToStr // 挂载到原型上
+Vue.prototype.$getTypeIndex = getTypeIndex // 挂载到原型上

@@ -308,9 +308,9 @@
           });
         })
       },
-      hideKeyboard() {
-        uni.hideKeyboard()
-      },
+      // hideKeyboard() {
+      //   uni.hideKeyboard()
+      // },
       getUcUser() {
         this.$request({
           url: '/gw/op/v1/auth/getUcUser',

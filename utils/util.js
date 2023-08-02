@@ -66,6 +66,10 @@ const toast = (title) => {
 const goBack = () => {
   uni.navigateBack()
 }
+const hideKeyboard = () => {
+  uni.hideKeyboard()
+}
+
 /**
  * @descripting 轮询管理器功能
  * @param {Function} callback 轮询方法
@@ -243,6 +247,7 @@ module.exports = {
   isTimeExpire,
   throttle,
   toast,
+  hideKeyboard,
   goBack,
   debounce
 }

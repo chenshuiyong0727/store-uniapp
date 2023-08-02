@@ -42,7 +42,7 @@
           </u-navbar>
           <view>
             <u--form>
-              <u-form-item label="类型" borderBottom @click="show_sx_type = true; hideKeyboard()">
+              <u-form-item label="类型" borderBottom @click="show_sx_type = true; $hideKeyboard()">
                 <u--input inputAlign="right" placeholder="请选择类型" disabledColor="#fff"
                           placeholderStyle="font-size: 14px;color:#c0c4cc"
                           v-model="queryParam.typeStr" border="none" disabled></u--input>
@@ -55,7 +55,7 @@
                 <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
               </u-form-item>
               <u-form-item label="开始时间" label-width="50vw" borderBottom
-                           @click="showFrom = true; hideKeyboard()">
+                           @click="showFrom = true; $hideKeyboard()">
                 <u--input inputAlign="right" prefixIcon="calendar"
                           prefixIconStyle="font-size: 20px;color:#c0c4cc" placeholder="请选择开始时间"
                           disabledColor="#fff" placeholderStyle="font-size: 14px;color:#c0c4cc"
@@ -63,7 +63,7 @@
                 <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
               </u-form-item>
               <u-form-item label="结束时间" label-width="50vw" borderBottom
-                           @click="showTo = true; hideKeyboard()">
+                           @click="showTo = true; $hideKeyboard()">
                 <u--input inputAlign="right" prefixIcon="calendar"
                           prefixIconStyle="font-size: 20px;color:#c0c4cc" placeholder="请选择结束时间"
                           disabledColor="#fff" placeholderStyle="font-size: 14px;color:#c0c4cc"
@@ -218,17 +218,7 @@
           pageNum: 1
         },
         typeList: [],
-        columns: [
-          // [{
-          //   label: '雪月夜',
-          //   // 其他属性值
-          //   id: 2021
-          //   // ...
-          // }, {
-          //   label: '冷夜雨',
-          //   id: 804
-          // }]
-        ],
+        columns: [],
         isLoadMore: false,
         status: 'loadmore',
         tableData: [],
@@ -325,9 +315,9 @@
         this.queryParam.typeStr = fieldName
         this.search1()
       },
-      hideKeyboard() {
-        uni.hideKeyboard()
-      },
+      // hideKeyboard() {
+      //   uni.hideKeyboard()
+      // },
       goDetail(id, type) {
         let url = '/pages/other/otherAdd?type=' + type
         if (id) {
