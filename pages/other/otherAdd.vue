@@ -46,6 +46,16 @@
                     v-model="form.typeStr" border="none" disabled></u--input>
           <u-icon v-if="type != 1"  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
         </u-form-item>
+        <u-form-item label="名称" borderBottom>
+          <u--input :disabled="type == 1" disabledColor="#fff" inputAlign="right"
+                    v-model="form.name" border="none"></u--input>
+          <u-icon v-if="type != 1" class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
+        </u-form-item>
+        <u-form-item label="金额" borderBottom>
+          <u--input :disabled="type == 1" disabledColor="#fff" inputAlign="right"
+                    v-model="form.price" type="digit" border="none"></u--input>
+          <u-icon v-if="type != 1" class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
+        </u-form-item>
         <u-form-item label="货号" borderBottom>
           <u--input :disabled="type == 1" disabledColor="#fff" inputAlign="right"
                     v-model="form.actNo" border="none"></u--input>
@@ -54,17 +64,6 @@
         <u-form-item label="品牌" borderBottom>
           <u--input :disabled="type == 1" disabledColor="#fff" inputAlign="right"
                     v-model="form.brand" border="none"></u--input>
-          <u-icon v-if="type != 1" class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
-        </u-form-item>
-        <u-form-item label="名称" borderBottom>
-          <u--input :disabled="type == 1" disabledColor="#fff" inputAlign="right"
-                    v-model="form.name" border="none"></u--input>
-          <u-icon v-if="type != 1" class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
-        </u-form-item>
-
-        <u-form-item label="金额" borderBottom>
-          <u--input :disabled="type == 1" disabledColor="#fff" inputAlign="right"
-                    v-model="form.price" type="digit" border="none"></u--input>
           <u-icon v-if="type != 1" class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
         </u-form-item>
         <u-form-item label="备注" borderBottom>

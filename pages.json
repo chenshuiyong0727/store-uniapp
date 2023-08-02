@@ -60,6 +60,18 @@
       }
     },
     {
+      "path": "pages/goodsBase/index",
+      "style": {
+        "navigationBarTitleText": "商品",
+        "pullToRefresh":{
+          "color":"#409eff",
+          "offset":"56px"
+        },
+        "enablePullDownRefresh": true,
+        "onReachBottomDistance": 150
+      }
+    },
+    {
       "path": "pages/other/otherAdd",
       "style": {
         "navigationBarTitleText": "其他收支详情",
@@ -79,11 +91,18 @@
     "selectedColor": "#409eff",
     "borderStyle": "white",
     "backgroundColor": "#ffffff",
-    "list": [{
+    "list": [
+      {
         "pagePath": "pages/index/index",
         "iconPath": "static/img/new/index_4.png",
         "selectedIconPath": "static/img/new/index_3.png",
         "text": "首页"
+      },
+      {
+        "pagePath": "pages/goodsBase/index",
+        "iconPath": "static/img/new/good_0.png",
+        "selectedIconPath": "static/img/new/good_1.png",
+        "text": "商品"
       },
       {
         "pagePath": "pages/my/index",

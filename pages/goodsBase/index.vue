@@ -1,6 +1,6 @@
 <template>
   <view>
-    <u-navbar title="其他收支">
+    <u-navbar title="商品">
       <view @click="$goBack" class="u-nav-slot" slot="left">
         <u-icon name="arrow-left" size="20"></u-icon>
       </view>
@@ -15,9 +15,9 @@
         <u--input
             class="searchInput"
             prefixIcon="search"
-            placeholder="搜索商品名称"
+            placeholder="请输入货号/商品名"
             placeholderStyle="font-size: 14px;color:#c0c4cc"
-            v-model="queryParam.name"
+            v-model="queryParam.actNo"
             prefixIconStyle="font-size: 24px;color:#c0c4cc"
             :show-action="false"
             @change="search1"
@@ -93,62 +93,66 @@
     ></u-datetime-picker>
 
     <view class="julibiaoti2">
-      <view class="dingdans_item_other" v-for="(item,index) in tableData" :key="index">
-        <view class="dingdans_top_other zuoyouduiqi">
-          <view @click="goDetail(item.id , 1)">
-            <strong class="dingdans_con_other_strong"> {{item.name}} </strong>
+      <view class="dingdans_item_dw"
+            v-for="(item,index) in tableData"
+            :key="index"
+      >
+        <view class="dingdans_con_dw">
+          <view :src="item.img" class="dingdans_con_left_dw"
+               @click="avatarShow(item.img)">
+            <image mode="widthFix" :src="item.img" ></image>
+            <p class="mark_dw">
+              <span class="text_dw">
+                {{ item.type | dictToDescTypeValue(20221108) }}
+              </span>
+            </p>
           </view>
-          <view style="margin-bottom: 3px;">
-            <rudon-rowMenuDotDotDot :localdata="optionsOp" @change="menuAction1($event,item.id)">
-              <text class="dw-button-common">操作</text>
-            </rudon-rowMenuDotDotDot>
+          <view class="diangdans_con_right_dw">
+            <view class="dingdans_con_right_top_dw" @click="goodsDetail(item.id, 1) ">
+              <span>
+                {{item.name | sizeFilterNum(38) }}
+              </span>
+            </view>
+            <view class="dingdans_con_right_top_dw_1 xianglian">
+              <span @click="jumpactNo(item.actNo)">
+              {{item.actNo}}
+              </span>
+              <image @click="$copyUrl(item.actNo)" class="fuzhitupian"
+                     src="../../static/img/copy.png"></image>
+            </view>
+            <view class="dingdans_con_right_top_dw_2" style="margin-bottom: -10px;">
+              <view  v-if="item.brand">
+                   <span  class="dingdans_con_dw_address">
+                    {{item.brand}}
+                  </span>
+              </view>
+              <view class="dingdans_top_right_dw">
+                <view class="dingdans_con_right_down_2_1">
+                  <rudon-rowMenuDotDotDot :localdata="optionsOp" @change="menuAction1($event,item.id)">
+                    <text class="dw-button-common">操作</text>
+                  </rudon-rowMenuDotDotDot>
+
+<!--                  <el-dropdown trigger="click" style="margin-left: 1px;">-->
+<!--                    <button-->
+<!--                        class="dw-button-common">操作-->
+<!--                    </button>-->
+<!--                    <el-dropdown-menu slot="dropdown" >-->
+<!--                      <el-dropdown-item type="text" @click.native="storeAdd(item.id)">选择</el-dropdown-item>-->
+<!--                      <el-dropdown-item type="text" @click.native="gotoDw(item.spuId)">得物</el-dropdown-item>-->
+<!--                      <el-dropdown-item type="text" @click.native="goodsDetail(item.id,1)">详情</el-dropdown-item>-->
+<!--                    </el-dropdown-menu>-->
+<!--                  </el-dropdown>-->
+                </view>
+              </view>
+            </view>
           </view>
         </view>
-        <view class="dingdans_con_other bt1">
-          <view class="dingdans_top_common_other_left">
-            <text>类型：</text>
-          </view>
-          <view class="dingdans_top_common_other">
-            <text>{{ item.type | dictToDescTypeValue(39) }}</text>
-          </view>
-        </view>
-        <view style="margin-top: 10px;" class="dingdans_con_other bt1">
-          <view class="dingdans_top_common_other_left">
-            <text>金额：</text>
-          </view>
-          <view class="dingdans_top_common_other">
-            <text>{{ item.price }}</text>
-          </view>
-        </view>
-        <view style="margin-top: 10px;" class="dingdans_con_other bt1">
-          <view class="dingdans_top_common_other_left">
-            <text>时间：</text>
-          </view>
-          <view class="dingdans_top_common_other">
-            <text>{{item.createTime |formateTime }}</text>
-          </view>
-        </view>
+        <!--底部-->
       </view>
     </view>
     <view v-show="tableData.length" style="padding: 10px;">
       <u-loadmore :status="status"/>
     </view>
-    <!--    <view slot="top" class="mint-loadmore-top">-->
-    <!--      <text v-show="topStatus !== 'loading'" :class="{ 'rotate': topStatus === 'drop' }">松手释放↓</text>-->
-    <!--      <text v-show="topStatus === 'loading'">加载中</text>-->
-    <!--    </view>-->
-    <!--    <view slot="bottom" class="mint-loadmore-bottom">-->
-    <!--      <text-->
-    <!--          v-if="bottomStatus !== 'loading'"-->
-    <!--          :class="{ 'rotate': bottomStatus === 'drop' }"-->
-    <!--      >松手释放↑</text>-->
-    <!--      <text v-if="bottomStatus === 'loading'">加载中</text>-->
-    <!--    </view>-->
-    <!--    <view class="popContainer" v-if="pictureZoomShow" @click="pictureZoomShow = false">-->
-    <!--      <view class="imageShow">-->
-    <!--        <img :src="$fileUrl + imageZoom" alt="" width="100%" height="100%">-->
-    <!--      </view>-->
-    <!--    </view>-->
     <view v-if="!tableData.length" class="to-the-bottom-1">
       <p v-if="emtityMsg">
         <img src="../../static/img/new/empity_7.png" style="width: 60vw;">
@@ -162,7 +166,7 @@
 <script>
   // import Baseline from '@/common/_baseline.vue'
   // import Footer from '@/common/_footer.vue'
-  // import { goodsOtherApi } from '@/api/goodsOther'
+  // import { goodsBaseApi } from '@/api/goodsBase'
 
   export default {
     components: {
@@ -172,15 +176,12 @@
     name: "HelloWorld",
     data() {
       return {
-        orderData2: '',
         showFrom: false,
         showTo: false,
         show_sx_type: false,
-        isShowDialog2: false,
         emtityMsg: '',
         pictureZoomShow: false,
         imageZoom: '',
-        // fileUrl: fileUrl,
         options: [
           {
             value: 'add',
@@ -201,19 +202,20 @@
             text: '修改'
           }
         ],
+        orderData: '',
+        isShowDialog: false,
+        orderData1: '',
+        isShowDialog1: false,
+        orderData2: '',
+        isShowDialog2: false,
         queryParam: {
+          id: '',
           type: '',
           typeStr: '',
           actNo: '',
           name: '',
           brand: '',
           remark: '',
-          priceFrom: '',
-          priceTo: '',
-          createTimeFrom: '',
-          createTimeTo: '',
-          updateTimeFrom: '',
-          updateTimeTo: '',
           pageSize: 10,
           pageNum: 1
         },
@@ -327,11 +329,39 @@
         this.$navigateTo(url)
         // this.$router.push({ path: '/otherAdd', query: { id, type } })
       },
+
+      scanCode(id, type) {
+        this.isBack = true
+        this.curScrollTop = this.$refs.hello.scrollTop
+        this.$router.push({ path: '/scanCode', query: { id, type } })
+      },
+      goodsDetail(id, type) {
+        this.isBack = true
+        this.curScrollTop = this.$refs.hello.scrollTop
+        this.$router.push({ path: '/goodsDetail', query: { id, type } })
+      },
+      gotoDw(spuId) {
+        if (!spuId){
+          return
+        }
+        let url = "https://m.dewu.com/router/product/ProductDetail?spuId=";
+        window.location.href = url + spuId;
+      },
+      storeAdd(goodsId) {
+        this.isBack = true
+        this.curScrollTop = this.$refs.hello.scrollTop
+        this.$router.push({ path: '/storeAdd', query: { goodsId } })
+      },
+      jumpactNo(actNo) {
+        this.isBack = true
+        this.curScrollTop = this.$refs.hello.scrollTop
+        this.$router.push({ path: '/store', query: { actNo } })
+      },
       getPage() {
         this.emtityMsg = ''
         // goodsOtherApi.page(this.queryParam)
         this.$request({
-          url: '/gw/op/v1/goodsOther',
+          url: '/gw/op/v1/goodsBase',
           method: 'get',
           data: this.queryParam
         }).then(res => {
@@ -366,7 +396,7 @@
       listSysDict() {
         let sysDictList = uni.getStorageSync('sysDictList') ? JSON.parse(
             uni.getStorageSync('sysDictList')) : []
-        this.typeList = sysDictList.filter(item => item.typeValue == 39)
+        this.typeList = sysDictList.filter(item => item.typeValue == 20221108)
         this.columns.push(this.typeList)
       },
       // loadData(p_status) {
@@ -419,18 +449,13 @@
       resetHandle() {
         this.isLoadMore = false
         this.queryParam = {
+          id: '',
           type: '',
           typeStr: '',
           actNo: '',
           name: '',
           brand: '',
           remark: '',
-          priceFrom: '',
-          priceTo: '',
-          createTimeFrom: '',
-          createTimeTo: '',
-          updateTimeFrom: '',
-          updateTimeTo: '',
           pageSize: 10,
           pageNum: 1
         }

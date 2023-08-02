@@ -63,6 +63,22 @@ const toast = (title) => {
     icon: 'none'
   })
 }
+const copyUrl = (url) => {
+  uni.setClipboardData({
+    data: url ,
+    success: function () {
+      uni.showToast({
+        title: '复制成功',
+      });
+    },
+    fail:function () {
+      uni.showToast({
+        title: '复制失败',
+      });
+    }
+  });
+}
+
 const goBack = () => {
   uni.navigateBack()
 }
@@ -247,6 +263,7 @@ module.exports = {
   isTimeExpire,
   throttle,
   toast,
+  copyUrl,
   hideKeyboard,
   goBack,
   debounce
