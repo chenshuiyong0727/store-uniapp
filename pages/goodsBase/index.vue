@@ -46,7 +46,9 @@
               color: '#606266',
               fontSize: '16px'
 					}"
-            :list="list2">
+            :list="list2"
+            itemStyle="padding-left: 15px; padding-right: 15px; height:44px;"
+        >
         </u-tabs>
       </view>
     </view>
@@ -236,10 +238,7 @@
           name: '男鞋',
         }, {
           type: '02',
-          name: '女鞋',
-          badge: {
-            value: 5
-          }
+          name: '女鞋'
         }, {
           type: '03',
           name: '男女'

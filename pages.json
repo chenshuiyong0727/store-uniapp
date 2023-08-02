@@ -72,6 +72,18 @@
       }
     },
     {
+      "path": "pages/store/index",
+      "style": {
+        "navigationBarTitleText": "仓库",
+        "pullToRefresh":{
+          "color":"#409eff",
+          "offset":"56px"
+        },
+        "enablePullDownRefresh": true,
+        "onReachBottomDistance": 150
+      }
+    },
+    {
       "path": "pages/other/otherAdd",
       "style": {
         "navigationBarTitleText": "其他收支详情",
@@ -103,6 +115,18 @@
         "iconPath": "static/img/new/good_0.png",
         "selectedIconPath": "static/img/new/good_1.png",
         "text": "商品"
+      },
+      {
+        "pagePath": "pages/goodsBase/index",
+        "iconPath": "static/img/new/order_0.png",
+        "selectedIconPath": "static/img/new/order_1.png",
+        "text": "订单"
+      },
+      {
+        "pagePath": "pages/store/index",
+        "iconPath": "static/img/new/store_0.png",
+        "selectedIconPath": "static/img/new/store_1.png",
+        "text": "仓库"
       },
       {
         "pagePath": "pages/my/index",
