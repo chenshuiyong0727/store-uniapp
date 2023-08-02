@@ -4,19 +4,19 @@ import { envSetting } from '@/utils/env.js'
 import { formatTime ,navigateTo,toast,goBack,hideKeyboard,copyUrl} from '@/utils/util.js'
 
 // #ifdef H5
-import "@/utils/iosNoScale.js"
+// import "@/utils/iosNoScale.js"
 // #endif
 
 import '@/utils/filter'
 
 
 // #ifdef H5
-import VConsole from 'vconsole'
-const vConsole = new VConsole()
-Vue.use(vConsole)
-
-import networkTip from '@/components/network-tip'
-Vue.use(networkTip)
+// import VConsole from 'vconsole'
+// const vConsole = new VConsole()
+// Vue.use(vConsole)
+//
+// import networkTip from '@/components/network-tip'
+// Vue.use(networkTip)
 // #endif
 
 
