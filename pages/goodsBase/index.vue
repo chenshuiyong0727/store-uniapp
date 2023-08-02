@@ -161,6 +161,11 @@
         <text>{{emtityMsg}}</text>
       </p>
     </view>
+    <view class="popContainer" v-if="pictureZoomShow" @click="pictureZoomShow = false">
+      <view class="imageShow">
+        <image :src="imageZoom" mode="widthFix"  class="showImg"></image>
+      </view>
+    </view>
   </view>
 </template>
 <script>
@@ -366,8 +371,6 @@
           data: this.queryParam
         }).then(res => {
           if (res.subCode === 1000) {
-            // this.tableData = res.data ? res.data.list : []
-            // this.totalCount = res.data ? res.data.list.length : 0
             this.totalCount = res.data ? res.data.pageInfo.totalCount : 0
             if (this.totalCount == 0) {
               this.emtityMsg = '暂无相关数据'
@@ -377,8 +380,6 @@
               res.data.list.forEach(e => {
                 this.tableData.push(e)
               })
-              console.info(this.totalCount)
-              console.info(this.tableData.length)
               if (this.totalCount <= this.tableData.length) {
                 this.status = 'nomore';
                 this.isLoadMore = false
@@ -390,7 +391,6 @@
           } else {
             this.$toast(res.subMsg)
           }
-          console.info(this.isLoadMore)
         })
       },
       listSysDict() {
@@ -399,32 +399,6 @@
         this.typeList = sysDictList.filter(item => item.typeValue == 20221108)
         this.columns.push(this.typeList)
       },
-      // loadData(p_status) {
-      //   // 第一次加载或者下拉刷新最新数据
-      //   if (p_status === "refresh") {
-      //     this.tableData = [];
-      //   }
-      //   goodsOtherApi.page(this.queryParam).then(res => {
-      //     if (res.subCode === 1000) {
-      //       let list =  res.data ? res.data.list : []
-      //       if (list && list.length) {
-      //         for (let i = 0; i < list.length; i++) {
-      //           this.tableData.push(list[i])
-      //         }
-      //         // setTimeout(()=>{
-      //         //   let ht2 = (this.$refs.hello.scrollTop)*1 +475
-      //         //   this.$refs.hello.scrollTop = ht2
-      //         // },100)
-      //       } else {
-      //         // this.allLoaded = true;
-      //         this.$toast('没有更多了')
-      //       }
-      //     } else {
-      //       this.$toast(res.subMsg)
-      //       return false
-      //     }
-      //   })
-      // },
       search() {
         if (!this.queryParam.name) {
           this.$toast('请输入名称')
@@ -443,7 +417,6 @@
         this.queryParam.pageNum = 1
         this.isLoadMore = false
         this.isShowDialog2 = false
-        // this.$refs.hello.scrollTop = 0
         this.getPage()
       },
       resetHandle() {
@@ -461,26 +434,6 @@
         }
         this.search1()
       },
-      // handleTopChange(p_status) {
-      //   this.topStatus = p_status;
-      // },
-      // handleBottomChange(p_status) {
-      //   this.bottomStatus = p_status;
-      // },
-      // loadBottom() {
-      //   // 一次下拉加载5条更多数据，使用定时器默认ajax加载
-      //   this.loadData()
-      //   this.queryParam.pageNum++;
-      //   this.$refs.loadmore.onBottomLoaded();
-      // },
-      // loadTop() {
-      //   // 默认下拉刷新最新数据
-      //   // this.loadData("refresh");
-      //   this.queryParam.pageNum = 0
-      //   // this.allLoaded = false;
-      //   // this.$refs.loadmore.onTopLoaded();
-      // },
-
       avatarShow(e) {
         this.imageZoom = e
         this.pictureZoomShow = true
