@@ -114,6 +114,10 @@
     "color": "#333333",
     "selectedColor": "#409eff",
     "borderStyle": "#f3f2f8",
+    "iconWidth": "25px",
+    "fontSize": "12px",
+    "height": "53px",
+    "spacing": "2px",
     "backgroundColor": "#ffffff",
     "list": [
       {
