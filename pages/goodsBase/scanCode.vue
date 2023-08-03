@@ -46,7 +46,7 @@
     </view>
 
 
-    <view class="width92" style="margin-top :131px;">
+    <view v-if="form.id" class="width92" style="margin-top :131px;">
       <u--form
           style="background-color: white"
           class="julibiaoti"
@@ -81,8 +81,8 @@
       </u--form>
     </view>
 
-    <view  style="margin-top:10px;" class="width92">
-      <view v-if="form.id">
+    <view v-if="form.id" style="margin-top:10px;" class="width92">
+      <view >
         <view class="my-pay-6" v-if="tableData.length">
           <view>
             <h5 style="font-size: 17px;margin-left: 15px;font-weight: 600;color: #333333">尺码列表</h5>
@@ -403,8 +403,8 @@
         this.id = options.id ? options.id : '';
         if (this.id) {
           this.getDetailById(this.id)
-        }else{
-          this.getDetailById(45)
+        // }else{
+        //   this.getDetailById(45)
         }
         this.type = options.type ? options.type : ''
       }
@@ -705,7 +705,7 @@
     position: fixed;
     font-size: 14px;
     z-index: 99;
-    margin-top: 11.6vw;
+    margin-top: 43px;
   }
 
 
