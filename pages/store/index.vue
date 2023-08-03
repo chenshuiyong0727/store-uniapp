@@ -576,13 +576,11 @@
       },
 
       scanCode(id, type) {
-        this.isBack = true
-        this.curScrollTop = this.$refs.hello.scrollTop
+
         this.$router.push({ path: '/scanCode', query: { id, type } })
       },
       goodsDetail(id, type) {
-        this.isBack = true
-        this.curScrollTop = this.$refs.hello.scrollTop
+
         this.$router.push({ path: '/goodsDetail', query: { id, type } })
       },
       gotoDw(spuId) {
@@ -593,13 +591,11 @@
         window.location.href = url + spuId;
       },
       storeAdd(goodsId) {
-        this.isBack = true
-        this.curScrollTop = this.$refs.hello.scrollTop
+
         this.$router.push({ path: '/storeAdd', query: { goodsId } })
       },
       jumpactNo(actNo) {
-        this.isBack = true
-        this.curScrollTop = this.$refs.hello.scrollTop
+
         this.$router.push({ path: '/store', query: { actNo } })
       },
       getPage() {
@@ -810,18 +806,15 @@
         })
       },
       jumpactNo(actNo) {
-        this.isBack = true
-        this.curScrollTop = this.$refs.hello.scrollTop
+
         this.$router.push({ path: '/order', query: { actNo } })
       },
       goDetail(id) {
-        this.isBack = true
-        this.curScrollTop = this.$refs.hello.scrollTop
+
         this.$router.push({path: '/storeDetail', query: {id}})
       },
       goodsDetail(id, type) {
-        this.isBack = true
-        this.curScrollTop = this.$refs.hello.scrollTop
+
         this.$router.push({ path: '/goodsDetail', query: { id, type } })
       },
       gotoDw(spuId) {
@@ -845,8 +838,7 @@
         this.$toast('已复制至剪切板')
       },
       WarehouseDetail(goodsId , actNo,img) {
-        this.isBack = true
-        this.curScrollTop = this.$refs.hello.scrollTop
+
         this.$router.push({ path: '/WarehouseDetail', query: {goodsId, actNo ,img} })
       },
       changeStatusDialog1(row) {

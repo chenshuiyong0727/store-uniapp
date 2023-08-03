@@ -386,14 +386,15 @@
       },
 
       scanCode(id, type) {
-        this.isBack = true
-        this.curScrollTop = this.$refs.hello.scrollTop
+
         this.$router.push({ path: '/scanCode', query: { id, type } })
       },
       goodsDetail(id, type) {
-        this.isBack = true
-        this.curScrollTop = this.$refs.hello.scrollTop
-        this.$router.push({ path: '/goodsDetail', query: { id, type } })
+        if (!id) {
+          return
+        }
+        let url = '/pages/goodsBase/detail?id=' + id
+        this.$navigateTo(url)
       },
       gotoDw(spuId) {
         if (!spuId){
@@ -403,13 +404,11 @@
         window.location.href = url + spuId;
       },
       storeAdd(goodsId) {
-        this.isBack = true
-        this.curScrollTop = this.$refs.hello.scrollTop
+
         this.$router.push({ path: '/storeAdd', query: { goodsId } })
       },
       jumpactNo(actNo) {
-        this.isBack = true
-        this.curScrollTop = this.$refs.hello.scrollTop
+
         this.$router.push({ path: '/store', query: { actNo } })
       },
       getPage() {

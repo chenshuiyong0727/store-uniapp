@@ -682,13 +682,11 @@
       },
 
       scanCode(id, type) {
-        this.isBack = true
-        this.curScrollTop = this.$refs.hello.scrollTop
+
         this.$router.push({path: '/scanCode', query: {id, type}})
       },
       goodsDetail(id, type) {
-        this.isBack = true
-        this.curScrollTop = this.$refs.hello.scrollTop
+
         this.$router.push({path: '/goodsDetail', query: {id, type}})
       },
       gotoDw(spuId) {
@@ -699,13 +697,11 @@
         window.location.href = url + spuId;
       },
       storeAdd(goodsId) {
-        this.isBack = true
-        this.curScrollTop = this.$refs.hello.scrollTop
+
         this.$router.push({path: '/storeAdd', query: {goodsId}})
       },
       jumpactNo(actNo) {
-        this.isBack = true
-        this.curScrollTop = this.$refs.hello.scrollTop
+
         this.$router.push({path: '/store', query: {actNo}})
       },
       getPage() {
@@ -981,23 +977,19 @@
         this.isShowDialog1 = true
       },
       goodsDetail(id, type) {
-        this.isBack = true
-        this.curScrollTop = this.$refs.hello.scrollTop
+
         this.$router.push({path: '/goodsDetail', query: {id, type}})
       },
       jumpactNo(actNo) {
-        this.isBack = true
-        this.curScrollTop = this.$refs.hello.scrollTop
+
         this.$router.push({path: '/store', query: {actNo}})
       },
       goDetail(id) {
-        this.isBack = true
-        this.curScrollTop = this.$refs.hello.scrollTop
+
         this.$router.push({path: '/orderDetail', query: {id}})
       },
       orderDetailnew(id) {
-        this.isBack = true
-        this.curScrollTop = this.$refs.hello.scrollTop
+
         this.$router.push({path: '/orderDetailnew', query: {id}})
       },
       gotoDw(spuId) {

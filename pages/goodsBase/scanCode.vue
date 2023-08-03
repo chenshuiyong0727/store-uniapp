@@ -213,44 +213,44 @@
         <view style="    width: 100vw;padding: 60px 4vw 0px 5vw;">
           <view style="" class="store-list-1-1" >
             <view  class="store-list-1-li-1">
-              <div class="overview1">
+              <view class="overview1">
                 <p><strong>当前价格</strong></p>
                 <p class="color-url">{{priceData.price}}</p>
-              </div>
-              <div class="overview2">
+              </view>
+              <view class="overview2">
                 <p><strong>到手价</strong></p>
                 <p class="color-url">{{priceData.theirPrice}} </p>
-              </div>
+              </view>
             </view>
             <view  class="store-list-1-li-1">
-              <div class="overview1">
+              <view class="overview1">
                 <p><strong>年度最高</strong></p>
                 <p class="color-url">{{priceData.price365}}</p>
-              </div>
-              <div class="overview2">
+              </view>
+              <view class="overview2">
                 <p><strong>到手价</strong></p>
                 <p class="color-url">{{priceData.theirPrice365}}</p>
-              </div>
+              </view>
             </view>
             <view  class="store-list-1-li-1">
-              <div class="overview1">
+              <view class="overview1">
                 <p><strong>半年最高</strong></p>
                 <p class="color-url">{{priceData.price180}}</p>
-              </div>
-              <div class="overview2">
+              </view>
+              <view class="overview2">
                 <p><strong>到手价</strong></p>
                 <p class="color-url">{{priceData.theirPrice180}}</p>
-              </div>
+              </view>
             </view>
             <view  class="store-list-1-li-1">
-              <div class="overview1">
+              <view class="overview1">
                 <p><strong>30天最高</strong></p>
                 <p class="color-url">{{priceData.price30}}</p>
-              </div>
-              <div class="overview2">
+              </view>
+              <view class="overview2">
                 <p><strong>到手价</strong></p>
                 <p class="color-url">{{priceData.theirPrice30}}</p>
-              </div>
+              </view>
             </view>
           </view>
 
@@ -669,7 +669,7 @@
           return false
         }
         let data = {actNo: this.form.actNo , sizeId: this.form.sizeId }
-        goodsBaseApi.getGoodsByActNoAndSizetext(data).then(res => {
+        goodsBaseApi.getGoodsByActNoAndSize(data).then(res => {
           if (res.subCode === 1000) {
             this.form = res.data ? res.data : {}
             this.queryParam.goodsId = this.form.id
