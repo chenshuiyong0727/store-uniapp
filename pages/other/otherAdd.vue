@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="login">
+  <view class="login">
     <u-navbar :title="type==1 ? '查看' : type==2 ? '编辑' : '新增'" bgColor="#F3F4F5">
       <view @click="$goBack" class="u-nav-slot" slot="left">
         <u-icon name="arrow-left" size="20"></u-icon>
@@ -78,7 +78,7 @@
     </u--form>
     <u-picker :show="show_sx_type" :columns="columns" @cancel="show_sx_type= false" :defaultIndex="defaultIndex"
               @confirm="confirm_sx_type" keyName="fieldName"></u-picker>
-  </div>
+  </view>
 </template>
 
 <script>
@@ -176,7 +176,7 @@
               setTimeout(() => {
                 let resDta = JSON.parse(res.data);
                 if (resDta.sub_code != 1000) {
-                  this.$toast('上传失败，请上传1mb 以内的图片');
+                  this.$toast('上传失败，请上传10 MB 以内的图片');
                   _this.deletePic(_this.imgevent)
                 } else {
                   this.$toast('上传成功');

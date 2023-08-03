@@ -495,10 +495,11 @@
         this.search1()
       },
       fabClick() {
-        uni.showToast({
-          title: '点击了悬浮按钮',
-          icon: 'none'
-        })
+        // uni.showToast({
+        //   title: '点击了悬浮按钮',
+        //   icon: 'none'
+        // })
+        this.$navigateTo('/pages/goodsBase/scanCode')
       },
     }
   };

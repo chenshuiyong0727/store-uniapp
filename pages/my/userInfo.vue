@@ -302,7 +302,7 @@
                 let resDta = JSON.parse(res.data);
                 // console.info(resDta)
                 if (resDta.sub_code != 1000) {
-                  this.$toast('上传失败，请上传1mb 以内的图片');
+                  this.$toast('上传失败，请上传10 MB 以内的图片');
                   _this.deletePic(_this.imgevent)
                 } else {
                   this.$toast('上传成功');

@@ -72,6 +72,20 @@
       }
     },
     {
+      "path": "pages/goodsBase/detail",
+      "style": {
+        "navigationBarTitleText": "商品详情",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/goodsBase/scanCode",
+      "style": {
+        "navigationBarTitleText": "商品添加",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
       "path": "pages/order/index",
       "style": {
         "navigationBarTitleText": "订单",
@@ -133,16 +147,16 @@
         "text": "商品"
       },
       {
-        "pagePath": "pages/order/index",
-        "iconPath": "static/img/new/order_0.png",
-        "selectedIconPath": "static/img/new/order_1.png",
-        "text": "订单"
-      },
-      {
         "pagePath": "pages/store/index",
         "iconPath": "static/img/new/store_0.png",
         "selectedIconPath": "static/img/new/store_1.png",
         "text": "仓库"
+      },
+      {
+        "pagePath": "pages/order/index",
+        "iconPath": "static/img/new/order_0.png",
+        "selectedIconPath": "static/img/new/order_1.png",
+        "text": "订单"
       },
       {
         "pagePath": "pages/my/index",
