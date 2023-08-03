@@ -152,9 +152,12 @@
               </view>
               <view class="dingdans_top_right_dw">
                 <view class="dingdans_con_right_down_2_1">
-                  <rudon-rowMenuDotDotDot :localdata="optionsOp" @change="menuAction1($event,item.id)">
-                    <text class="dw-button-common">操作</text>
-                  </rudon-rowMenuDotDotDot>
+                  <text class="dw-button-common">选择</text>
+                  <uni-link style="margin-left: 2vw;"  :href="'https://m.dewu.com/router/product/ProductDetail?spuId='+item.spuId" class="dw-button-common" >得物</uni-link>
+<!--                  <text style="margin-left: 2vw;" class="dw-button-common">得物</text>-->
+<!--                  <rudon-rowMenuDotDotDot :localdata="optionsOp" @change="menuAction1($event,item.id)">-->
+<!--                    <text class="dw-button-common">操作</text>-->
+<!--                  </rudon-rowMenuDotDotDot>-->
 
 <!--                  <el-dropdown trigger="click" style="margin-left: 1px;">-->
 <!--                    <button-->
@@ -280,6 +283,7 @@
         },
         typeList: [],
         columns: [],
+        dwhref: false,
         isLoadMore: false,
         isLoading: false,
         loadStatus: 'loadmore',
