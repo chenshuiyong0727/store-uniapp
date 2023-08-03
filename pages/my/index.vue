@@ -230,12 +230,8 @@
       }
     },
     created() {
-      this.getUcUser();
-      this.getData()
+      this.init()
     },
-    // onLoad() {
-    //   console.log('页面加载')
-    // },
     // onShow() {
     //   console.log('页面显示')
     //   this.getUcUser()
@@ -257,8 +253,7 @@
     // },
     onPullDownRefresh() {
       uni.stopPullDownRefresh();
-      this.getUcUser();
-      this.getData()
+      this.init();
     },
     methods: {
       // handleScroll () {
@@ -283,6 +278,10 @@
       //   //   this.$refs['tab-content'].scrollLeft = 0;
       //   // }
       // },
+      init() {
+        this.getUcUser();
+        this.getData()
+      },
       userInfo() {
         this.$navigateTo('/pages/my/userInfo')
       },

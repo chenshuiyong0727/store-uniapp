@@ -239,12 +239,9 @@
           </view>
           <view class="diangdans_con_right_dw">
             <view class="dingdans_con_right_top_dw" @click="goDetail(item.id) ">
-              <text>
-                {{item.goodsName | sizeFilterNum(40) }}
+              <text class="chaochu"  style="width: 65vw">
+                {{item.goodsName }}
               </text>
-              <!--              <el-tooltip :content="item.reason" placement="top">-->
-              <!--                <text >{{item.goodsName | sizeFilterNum(40) }}</text>-->
-              <!--              </el-tooltip>-->
             </view>
             <view class="dingdans_con_right_top_dw_1 xianglian">
               <text @click="jumpactNo(item.actNo)">

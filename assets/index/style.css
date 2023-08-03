@@ -715,6 +715,13 @@ img{
   width: 130vw;
   padding-left: 10px;
 }
+.chaochu {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: block;
+  width: 65vw;
+}
 .dingdans_con_right_top_dw {
   color: #333333;
   font-size: 14.7px;

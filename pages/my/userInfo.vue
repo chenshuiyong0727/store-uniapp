@@ -1,7 +1,7 @@
 <template lang="html">
   <view class="login">
     <u-navbar title="用户信息" bgColor="#F3F4F5">
-      <view @click="$goBack" class="u-nav-slot" slot="left">
+      <view @click="goBackReflash" class="u-nav-slot" slot="left">
         <u-icon name="arrow-left" size="20"></u-icon>
       </view>
       <view @click="submit" class="u-nav-slot" slot="right" style="font-size: 15px;">
@@ -248,9 +248,15 @@
       this.getUcUser()
     },
     methods: {
-      // uploadMaterial() {
-      //   this.$refs.uploadImg.dispatchEvent(new MouseEvent("click"));
-      // },
+      goBackReflash() {
+        let pages = getCurrentPages(); // 当前页面
+        let beforePage = pages[pages.length - 2]; // 上一页
+        uni.navigateBack({
+          success: function() {
+            beforePage.init(); // 执行上一页的onLoad里面的方法方法
+          }
+        });
+      },
       deletePic(event) {
         console.info(event);
         this[`fileList${event.name}`].splice(event.index, 1)
@@ -370,7 +376,7 @@
           if (res.subCode === 1000) {
             this.$toast('修改成功');
             setTimeout(() => {
-              this.$navigateTo('/pages/my/index?userRealName=' + this.form.userRealName)
+              this.goBackReflash()
             }, 1000)
           } else {
             this.$toast(res.subMsg)
@@ -397,39 +403,39 @@
       // goBack() {
       //   this.$router.push({ path: '/otherList'})
       // },
-      async handleImageSuccess(res, file) {
-        hideLoading();
-        this.$toast('上传成功');
-        this.form.imgUrl = res.data
-      },
-      async handleImageError(res, file) {
-        hideLoading();
-        this.$toast('上传失败')
-      },
-      async beforeImageUpload(file) {
-        const fileName = file.name;
-        const fileType = fileName.substring(fileName.lastIndexOf('.'));
-        if (
-            fileType === '.jpg' ||
-            fileType === '.png' ||
-            fileType === '.jpeg' ||
-            fileType === '.bmp' ||
-            fileType === '.gif'
-        ) {
-        } else {
-          this.$toast('不是,jpeg,.png,.jpg,.bmp,.gif文件,请上传正确的图片类型');
-          return false
-        }
-        showLoading();
-        let overSize = file.size / 1024 / 1024;
-        console.info("size1", overSize);
-        if (overSize > 1) {
-          file = await imageConversion.compressAccurately(file, 200)
-        }
-        overSize = file.size / 1024 / 1024;
-        console.info("size2", overSize);
-        return file
-      },
+      // async handleImageSuccess(res, file) {
+      //   hideLoading();
+      //   this.$toast('上传成功');
+      //   this.form.imgUrl = res.data
+      // },
+      // async handleImageError(res, file) {
+      //   hideLoading();
+      //   this.$toast('上传失败')
+      // },
+      // async beforeImageUpload(file) {
+      //   const fileName = file.name;
+      //   const fileType = fileName.substring(fileName.lastIndexOf('.'));
+      //   if (
+      //       fileType === '.jpg' ||
+      //       fileType === '.png' ||
+      //       fileType === '.jpeg' ||
+      //       fileType === '.bmp' ||
+      //       fileType === '.gif'
+      //   ) {
+      //   } else {
+      //     this.$toast('不是,jpeg,.png,.jpg,.bmp,.gif文件,请上传正确的图片类型');
+      //     return false
+      //   }
+      //   showLoading();
+      //   let overSize = file.size / 1024 / 1024;
+      //   console.info("size1", overSize);
+      //   if (overSize > 1) {
+      //     file = await imageConversion.compressAccurately(file, 200)
+      //   }
+      //   overSize = file.size / 1024 / 1024;
+      //   console.info("size2", overSize);
+      //   return file
+      // },
       // beforeImageUpload(file) {
       //   const fileName = file.name
       //   const fileType = fileName.substring(fileName.lastIndexOf('.'))
