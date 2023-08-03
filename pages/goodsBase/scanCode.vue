@@ -80,11 +80,241 @@
         </view>
       </u--form>
     </view>
-    <div class="popContainer" v-if="pictureZoomShow" @click="pictureZoomShow = false">
-      <div class="imageShow">
+
+    <view  style="margin-top:10px;" class="width92">
+      <view v-if="form.id">
+        <view class="my-pay-6" v-if="tableData.length">
+          <view>
+            <h5 style="font-size: 17px;margin-left: 15px;font-weight: 600;color: #333333">尺码列表</h5>
+          </view>
+          <view>
+            <view class="dingdans_item_dw" style=" display: flex;    border-bottom: 2px solid #f4f3f8;
+    justify-content: space-between;
+    align-items: center;"
+            >
+              <view class="dingdans_top_dw" style="
+          width: 20vw;
+          font-weight: 600;
+          padding-bottom: 0px;
+          border-bottom: 0; color: #333333">
+                <view class="dingdans_top_left_dw" style=" ">
+                  <text>尺码</text>
+                </view>
+              </view>
+              <view class="dingdans_top_dw" style="
+          width: 20vw;          padding-bottom: 0px;    margin-left: -8px;
+                    font-weight: 600;
+          border-bottom: 0; color: #333333">
+                <view class="dingdans_top_left_dw" style=" ">
+                  <text>得物价</text>
+                </view>
+              </view>
+              <view class="dingdans_top_dw" style="
+          width: 20vw;    margin-left: 7px;      font-weight: 600;padding-bottom: 0px;
+          border-bottom: 0; color: #333333">
+                <view class="dingdans_top_left_dw" style=" ">
+                  <text>到手价</text>
+                </view>
+              </view>
+              <view class="dingdans_top_dw" style="
+          width: 15vw;       margin-left: 2px;       font-weight: 600;padding-bottom: 0px;
+          border-bottom: 0; color: #333333">
+                <view class="dingdans_top_left_dw" style=" ">
+                  <text>库存</text>
+                </view>
+              </view>
+              <view class="dingdans_top_dw" style="
+          width: 20vw;          font-weight: 600;padding-bottom: 0px;margin-right: 5px;
+          border-bottom: 0; color: #333333">
+                <view class="dingdans_top_left_dw" style=" ">
+                  <text>入库价</text>
+                </view>
+              </view>
+              <view class="dingdans_top_dw" style="
+          width: 15vw;    margin-left: 5px;        margin-right: 2px;  font-weight: 600;padding-bottom: 0px;
+          border-bottom: 0; color: #333333">
+                <view class="dingdans_top_left_dw" style=" ">
+                  <text>利润</text>
+                </view>
+              </view>
+            </view>
+            <view class="dingdans_item_dw" @click="rowClick(item)" style=" display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 8px;
+    border-bottom: 2px solid rgb(244, 243, 248);
+"
+                 v-for="(item,index) in tableData"
+                 :key="index"
+            >
+              <view class="dingdans_top_dw" style="
+          width: 20vw;padding-bottom: 0px;
+          border-bottom: 0; ">
+                <view class="dingdans_top_left_dw" style=" color: #7a7a7a">
+                  <text style="font-weight: bolder;font-size: 14px;" class="color-url">{{item.size }}</text>
+                </view>
+              </view>
+              <view class="dingdans_top_dw" style="
+          width: 20vw;padding-bottom: 0px;
+          border-bottom: 0; ">
+                <view class="dingdans_top_left_dw" style="color: #7a7a7a ">
+                  <text>¥</text>
+                  <text>{{item.price }}</text>
+                </view>
+              </view>
+              <view class="dingdans_top_dw" style="
+          width: 25vw;padding-bottom: 0px;
+          border-bottom: 0; ">
+                <view class="dingdans_top_left_dw" style="color: #7a7a7a ">
+                  <text v-if="item.price ">¥</text>
+                  <text v-if="item.price "> {{(item.price - (item.price * 0.075 + 38 + 8.5)) | numFilter}}</text>
+                </view>
+              </view>
+              <view class="dingdans_top_dw" style="
+          width: 15vw;padding-bottom: 0px;    margin-left: 5px;
+          border-bottom: 0; ">
+                <view class="dingdans_top_left_dw" style=" color: #7a7a7a;margin-left: 7px;">
+                  <text>{{item.inventory }}</text>
+                </view>
+              </view>
+              <view class="dingdans_top_dw" style="
+          width: 20vw;padding-bottom: 0px;
+          border-bottom: 0; ">
+                <view class="dingdans_top_left_dw" style=" color: #7a7a7a">
+                  <text v-if="item.inPrice ">¥</text>
+                  <text v-if="item.inPrice ">{{item.inPrice }}</text>
+                </view>
+              </view>
+              <view class="dingdans_top_dw" style="
+          width: 25vw;padding-bottom: 0px;
+          border-bottom: 0; ">
+                <view class="dingdans_top_left_dw" style="color: #7a7a7a ">
+                  <text v-if="item.inPrice ">¥</text>
+                  <text  v-if="item.inPrice"
+                         :style="(item.price - (item.price * 0.075 + 38 + 8.5) - item.inPrice - 10) > 50 ? 'color: red' : ''"
+                  >
+                {{(item.price - (item.price * 0.075 + 38 + 8.5) - item.inPrice - 10) | numFilter}}
+              </text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="popContainer" v-if="pictureZoomShow" @click="pictureZoomShow = false">
+      <view class="imageShow">
         <img :src="form.img" alt=""  class="showImg">
-      </div>
-    </div>
+      </view>
+    </view>
+
+      <u-popup :show="isShowDialog2" @close="close" :duration="100" :closeable="true" mode="center">
+        <view style="    width: 100vw;padding: 60px 4vw 0px 5vw;">
+          <view style="" class="store-list-1-1" >
+            <view  class="store-list-1-li-1">
+              <div class="overview1">
+                <p><strong>当前价格</strong></p>
+                <p class="color-url">{{priceData.price}}</p>
+              </div>
+              <div class="overview2">
+                <p><strong>到手价</strong></p>
+                <p class="color-url">{{priceData.theirPrice}} </p>
+              </div>
+            </view>
+            <view  class="store-list-1-li-1">
+              <div class="overview1">
+                <p><strong>年度最高</strong></p>
+                <p class="color-url">{{priceData.price365}}</p>
+              </div>
+              <div class="overview2">
+                <p><strong>到手价</strong></p>
+                <p class="color-url">{{priceData.theirPrice365}}</p>
+              </div>
+            </view>
+            <view  class="store-list-1-li-1">
+              <div class="overview1">
+                <p><strong>半年最高</strong></p>
+                <p class="color-url">{{priceData.price180}}</p>
+              </div>
+              <div class="overview2">
+                <p><strong>到手价</strong></p>
+                <p class="color-url">{{priceData.theirPrice180}}</p>
+              </div>
+            </view>
+            <view  class="store-list-1-li-1">
+              <div class="overview1">
+                <p><strong>30天最高</strong></p>
+                <p class="color-url">{{priceData.price30}}</p>
+              </div>
+              <div class="overview2">
+                <p><strong>到手价</strong></p>
+                <p class="color-url">{{priceData.theirPrice30}}</p>
+              </div>
+            </view>
+          </view>
+
+<!--          <view style="text-align: center">-->
+<!--            <el-button :type="type30" @click="profitData(30)" size="small" round>30天走势图</el-button>-->
+<!--            <el-button :type="type180" @click="profitData(180)" size="small" round>半年走势图</el-button>-->
+<!--            <el-button :type="type365" @click="profitData(365)"size="small"  round>年度走势图</el-button>-->
+<!--          </view>-->
+
+          <view class="zuoyouduiqi" style="
+    padding-right: 20px;
+    padding-bottom: 14px;
+    padding-left: 20px;">
+            <u-button type="primary" size="small" shape="circle" @click="profitData(30)"
+                      style="margin-right: 10px" text="30天走势图" :plain="queryParam1.dayNum != 30"></u-button>
+            <u-button type="primary" size="small" shape="circle" @click="profitData(180)"
+                      style="margin-left: 10px" text="半年走势图" :plain="queryParam1.dayNum != 180"></u-button>
+            <u-button type="primary" size="small" shape="circle" @click="profitData(365)"
+                      style="margin-left: 10px" text="年度走势图" :plain="queryParam1.dayNum != 365"></u-button>
+          </view>
+
+          <view class="charts-box">
+            <qiun-data-charts
+                type="line"
+                :opts="opts"
+                :chartData="chartData"
+                :ontouch="true"/>
+          </view>
+
+<!--          <view1>-->
+<!--            <u&#45;&#45;form>-->
+<!--              <u-form-item label="类型" borderBottom @click="show_sx_type = true; $hideKeyboard()">-->
+<!--                <u&#45;&#45;input inputAlign="right" placeholder="请选择类型" disabledColor="#fff"-->
+<!--                          placeholderStyle="font-size: 14px;color:#c0c4cc"-->
+<!--                          v-model="queryParam.typeStr" border="none" disabled></u&#45;&#45;input>-->
+<!--                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
+<!--              </u-form-item>-->
+<!--              <u-form-item label="品牌" borderBottom>-->
+<!--                <u&#45;&#45;input inputAlign="right" placeholder="请输入品牌"-->
+<!--                          placeholderStyle="font-size: 14px;color:#c0c4cc"-->
+<!--                          v-model="queryParam.brand" border="none"></u&#45;&#45;input>-->
+<!--                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
+<!--              </u-form-item>-->
+<!--              <u-form-item label="开始时间" label-width="50vw" borderBottom-->
+<!--                           @click="showFrom = true; $hideKeyboard()">-->
+<!--                <u&#45;&#45;input inputAlign="right" prefixIcon="calendar"-->
+<!--                          prefixIconStyle="font-size: 20px;color:#c0c4cc" placeholder="请选择开始时间"-->
+<!--                          disabledColor="#fff" placeholderStyle="font-size: 14px;color:#c0c4cc"-->
+<!--                          v-model="queryParam.createTimeFrom" border="none" disabled></u&#45;&#45;input>-->
+<!--                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
+<!--              </u-form-item>-->
+<!--              <u-form-item label="结束时间" label-width="50vw" borderBottom-->
+<!--                           @click="showTo = true; $hideKeyboard()">-->
+<!--                <u&#45;&#45;input inputAlign="right" prefixIcon="calendar"-->
+<!--                          prefixIconStyle="font-size: 20px;color:#c0c4cc" placeholder="请选择结束时间"-->
+<!--                          disabledColor="#fff" placeholderStyle="font-size: 14px;color:#c0c4cc"-->
+<!--                          v-model="queryParam.createTimeTo" border="none" disabled></u&#45;&#45;input>-->
+<!--                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
+<!--              </u-form-item>-->
+<!--            </u&#45;&#45;form>-->
+<!--          </view1>-->
+        </view>
+      </u-popup>
+
   </view>
 </template>
 
@@ -109,6 +339,7 @@
         },
         priceData: {
         },
+        isShowDialog2: false,
         queryParam1: {
           goodsId: '',
           sizeId: '',
@@ -117,10 +348,34 @@
         columns: [],
         type: '',
         id: '',
-        chartData: {
-          columns: ['date', 'price'],
-          rows: []
+        opts: {
+          color: ["#409eff", "#00c2c2", "#F56C6C", "#FAC858", "#73C0DE", "#3CA272", "#FC8452",
+            "#9A60B4", "#ea7ccc"],
+          padding: [15,10,0,15],
+          enableScroll: false,
+          dataPointShape: false,
+          dataLabel: false,
+          legend: {},
+          xAxis: {
+            labelCount: 4,
+            rotateLabel: true,
+            fontSize: 12,
+            rotateAngle: 45,
+            disableGrid: true
+          },
+          yAxis: {
+            gridType: "dash",
+            dashLength: 2
+          },
+          extra: {
+            line: {
+              type: "curve",
+              width: 2,
+              activeType: "hollow"
+            }
+          }
         },
+        chartData: {},
         loading: false,
         dataEmpty: false,
         sizeTitle: '',
@@ -149,7 +404,7 @@
         if (this.id) {
           this.getDetailById(this.id)
         }else{
-          this.getDetailById('1249050008221782016')
+          this.getDetailById(45)
         }
         this.type = options.type ? options.type : ''
       }
@@ -225,6 +480,10 @@
           });
         })
       },
+      close() {
+        this.isShowDialog2 = false
+        console.log('close');
+      },
       // getDetailById(id) {
       //   if (id) {
       //     goodsOtherApi.getDetailById(id).then(res => {
@@ -297,19 +556,19 @@
         this.$router.push({ path: '/goodsAdd', query: {id,type } })
       },
       profitData(dayNum) {
-        if (dayNum == 30) {
-          this.type30 = 'primary'
-          this.type180 = 'default'
-          this.type365 = 'default'
-        } else if (dayNum == 180) {
-          this.type180 = 'primary'
-          this.type30 = 'default'
-          this.type365 = 'default'
-        }else {
-          this.type365 = 'primary'
-          this.type180 = 'default'
-          this.type30 = 'default'
-        }
+        // if (dayNum == 30) {
+        //   this.type30 = 'primary'
+        //   this.type180 = 'default'
+        //   this.type365 = 'default'
+        // } else if (dayNum == 180) {
+        //   this.type180 = 'primary'
+        //   this.type30 = 'default'
+        //   this.type365 = 'default'
+        // }else {
+        //   this.type365 = 'primary'
+        //   this.type180 = 'default'
+        //   this.type30 = 'default'
+        // }
         this.queryParam1.dayNum = dayNum
         this.getPriceData()
       },
@@ -336,9 +595,9 @@
             this.priceData = res.data
             this.dataEmpty = false
             this.loading = false
-            let rows = res.data ? res.data.list : []
-            this.chartData.rows = rows
-            console.info(this.chartData.rows)
+            // let rows = res.data ? res.data.list : []
+            // this.chartData.rows = rows
+            this.chartData = JSON.parse(JSON.stringify(res.data.lineVo));
             let theirPrice = res.data.price - (res.data.price * 0.075 + 38 + 8.5)
             this.priceData.theirPrice = parseFloat(theirPrice).toFixed(2)
 
@@ -410,7 +669,7 @@
           return false
         }
         let data = {actNo: this.form.actNo , sizeId: this.form.sizeId }
-        goodsBaseApi.getGoodsByActNoAndSizeH5(data).then(res => {
+        goodsBaseApi.getGoodsByActNoAndSizetext(data).then(res => {
           if (res.subCode === 1000) {
             this.form = res.data ? res.data : {}
             this.queryParam.goodsId = this.form.id
@@ -429,7 +688,7 @@
   @import '@/assets/index/style.css';
 
   .login {
-    > section {
+    > view {
       .tip {
         padding: 6vw 3vw;
         color: rgb(224, 145, 71);
@@ -463,7 +722,7 @@
     background-color: #EEF2F7;
     width: 24%;
     color: #333;
-    font-size: 16px;
+    font-size: 15px;
     box-sizing: border-box;
     margin-top: 0vw;
     margin-right: 2vw;

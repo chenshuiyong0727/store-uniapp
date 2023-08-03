@@ -141,6 +141,11 @@
   width: 80px;
   height: 80px;
 }
+
+.charts-box {
+  width: 95%;
+  height: 200px;
+}
 .popContainer{
   position: fixed;
   top: 0;
@@ -627,7 +632,14 @@ img{
   padding-left: 3%;
   font-size: 12.5px;
 }
-
+.my-pay-6 {
+  margin-top: 15px;
+  padding-top: 4vw;
+  background-color: #fff;
+  border-bottom-color: rgba(185, 185, 185, .14);
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+}
 .dingdans_top_dw {
   height: 26px;
   display: -webkit-box;
