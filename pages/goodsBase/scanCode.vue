@@ -38,6 +38,7 @@
               :maxCount="1"
               :width="70"
               :height="70"
+              ref="uUpload"
           >
             <text style="margin-left: 2vw;" class="color-url">拍摄照片</text>
           </u-upload>
@@ -401,10 +402,16 @@
     onLoad(options) {
       if (options) {
         this.id = options.id ? options.id : '';
+        this.photo = options.photo ? options.photo : '';
         if (this.id) {
           this.getDetailById(this.id)
         // }else{
         //   this.getDetailById(45)
+        }
+        if(this.photo){
+          setTimeout(()=>{
+            this.uploadMaterial()
+          },100)
         }
         this.type = options.type ? options.type : ''
       }
@@ -431,6 +438,7 @@
     methods: {
       async afterRead(event) {
         console.info(event);
+        uni.showLoading({title: '识别中'});
         this.imgevent = event;
         // 当设置 multiple 为 true 时, file 为数组格式，否则为对象格式
         let lists = [].concat(event.file);
@@ -454,6 +462,12 @@
           // fileListLen++
         }
       },
+      uploadMaterial() {
+        this.$refs.uUpload.chooseFile()
+        //
+        // this.$refs.uUpload.dispatchEvent(new MouseEvent("click"))
+        // this.$refs.uUpload.$emit('click')
+      },
       uploadFilePromise(url) {
         var _this = this;
         return new Promise((resolve, reject) => {
@@ -465,14 +479,21 @@
               user: 'test'
             },
             success: (res) => {
+              //隐藏加载框
+              uni.hideLoading();
               setTimeout(() => {
                 let resDta = JSON.parse(res.data);
                 if (resDta.sub_code != 1000) {
-                  this.$toast('上传失败，请上传10 MB 以内的图片');
+                  this.$toast('识别失败，请上传10 MB 以内的图片');
                   _this.deletePic(_this.imgevent)
                 } else {
-                  this.$toast('上传成功');
-                  this.form.imgUrl = resDta.data;
+                  this.$toast('识别成功');
+                  // this.form.imgUrl = resDta.data;
+                  this.form = resDta.data ? resDta.data : {}
+                  if (this.form.id){
+                    this.queryParam.goodsId = this.form.id
+                    this.getPage()
+                  }
                   resolve(res.data.data)
                 }
               }, 1000)

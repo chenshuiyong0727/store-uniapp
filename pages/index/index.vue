@@ -6,7 +6,7 @@
           <image style="width: 23px; height: 23px;"
                  src="../../static/img/logo/logo-333-1.png"></image>
         </view>
-        <view @click="scanCode(1)" class="u-nav-slot" slot="right">
+        <view @click="scanCode()" class="u-nav-slot" slot="right">
           <image style=" width: 26px;height: 26px;" src="../../static/img/photo2.png"></image>
         </view>
       </u-navbar>
@@ -418,6 +418,9 @@
         </view>
       </view>
     </view>
+    <view>
+      <uni-fab ref="fab" :pattern="pattern"  horizontal="right" @fabClick="scanCode" />
+    </view>
   </view>
 </template>
 
@@ -429,6 +432,14 @@
         showTo: false,
         flag: false,
         form: {},
+        pattern: {
+          icon:'scan',
+          color: '#7A7E83',
+          backgroundColor: '#fff',
+          selectedColor: '#409eff',
+          buttonColor: '#409eff',
+          iconColor: '#fff'
+        },
         orderIofo: {},
         queryParam: {
           dataType: 1,
@@ -655,8 +666,10 @@
           }
         })
       },
-      scanCode(photo) {
-        this.$router.push({path: '/scanCode', query: {photo}})
+      scanCode() {
+        this.$navigateTo('/pages/goodsBase/scanCode?photo=1')
+        //
+        // this.$router.push({path: '/scanCode', query: {photo}})
       },
       profitData(dataType) {
         this.dataType = dataType;
