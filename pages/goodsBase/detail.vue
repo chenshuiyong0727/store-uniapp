@@ -1,111 +1,456 @@
 <template lang="html">
-  <view class="login">
-    <u-navbar title="新增商品" bgColor="#F3F4F5">
+  <div class="hello">
+<!--    <mt-header title="商品详情">-->
+<!--      <div slot="left">-->
+<!--        <mt-button  icon="back" @click="$router.go(-1)"></mt-button>-->
+<!--      </div>-->
+<!--      <div slot="right">-->
+<!--        <el-dropdown trigger="click" style="margin-left: 1px;">-->
+<!--          <mt-button size="normal">-->
+<!--            <img  style="width: 25px" src="../../static/img/slh.png">-->
+<!--          </mt-button>-->
+<!--          <el-dropdown-menu slot="dropdown" >-->
+<!--            <el-dropdown-item type="text" @click.native="getImgUrl">更新</el-dropdown-item>-->
+
+<!--            &lt;!&ndash;            <el-dropdown-item type="text" v-if="form.id" @click.native="scanCode(form.id,2)">智能编辑</el-dropdown-item>&ndash;&gt;-->
+<!--            &lt;!&ndash;            <el-dropdown-item type="text" v-else @click.native="scanCode(null,3)">智能添加</el-dropdown-item>&ndash;&gt;-->
+<!--            <el-dropdown-item type="text" v-if="form.id" @click.native="gotoAdd(form.id,2)">手动编辑</el-dropdown-item>-->
+<!--            &lt;!&ndash;            <el-dropdown-item type="text" v-else @click.native="gotoAdd(null,3)">手动添加</el-dropdown-item>&ndash;&gt;-->
+<!--          </el-dropdown-menu>-->
+<!--        </el-dropdown>-->
+<!--      </div>-->
+<!--    </mt-header>-->
+    <u-navbar title="商品详情">
       <view @click="$goBack" class="u-nav-slot" slot="left">
         <u-icon name="arrow-left" size="20"></u-icon>
       </view>
-      <view  @click="gotoAdd(null,3)" class="u-nav-slot" slot="right" style="font-size: 15px;">
-        手动添加
+      <view  @click="getImgUrl" class="u-nav-slot" slot="right" style="font-size: 15px;">
+        更新
       </view>
     </u-navbar>
-    <view class="fenlei_top_2">
-      <view class="shoudongtianjia" >
-        <view  class="zuoyouduiqi width92">
-          <text style="width: 25vw;">根据货号获取</text>
-          <u--input
-              class="searchInput"
-              style="width: 58vw;"
-              prefixIcon="search"
-              placeholder="请输入货号"
-              placeholderStyle="font-size: 14px;color:#c0c4cc"
-              v-model="form.actNo"
-              prefixIconStyle="font-size: 24px;color:#c0c4cc"
-              :show-action="false"
-              clearable
-          >
-          </u--input>
-          <text style="margin-left: 2vw;" class="color-url" @click="getImgUrl()">获取信息</text>
-        </view>
-      </view>
-      <view class="shoudongtianjia"  >
-        <view  class="xianglian width92">
-          <text style="width: 25vw;">根据图片获取</text>
-          <u-upload
-              style="border-radius: 100%;"
-              @afterRead="afterRead"
-              name="1"
-              multiple
-              :maxCount="1"
-              :width="70"
-              :height="70"
-          >
-            <text style="margin-left: 2vw;" class="color-url">拍摄照片</text>
-          </u-upload>
-        </view>
-      </view>
-    </view>
-
-
-    <view class="width92" style="margin-top :131px;">
-      <u--form
-          style="background-color: white"
-          class="julibiaoti"
-          labelPosition="left"
-          :model="form"
-          ref="uForm"
-      >
-        <view style="width: 83vw;margin-left: 5vw;">
-          <u-form-item  v-if="form.img"  label-width="34vw"  label="图片" borderBottom>
-            <image  style="width: 50vw;" :src="form.img"
-                     @click="pictureZoomShow = true"
-                     mode="widthFix"></image>
-          </u-form-item>
-          <u-form-item   label-width="20vw"  label="货号" borderBottom>
-            <u--text align="right" :text="form.actNo"></u--text>
-          </u-form-item>
-          <u-form-item label-width="20vw"  label="名称" borderBottom>
-            <u--text align="right" :text="form.name"></u--text>
-          </u-form-item>
-          <u-form-item  label-width="20vw"  label="品牌" borderBottom>
-            <u--text align="right" :text="form.brand"></u--text>
-          </u-form-item>
-          <u-form-item  label-width="20vw"  label="发售日期" borderBottom>
-            <u--text align="right" :text="form.sellDate"></u--text>
-          </u-form-item>
-          <u-form-item  label-width="20vw"  label="发售价格">
-            <u--text align="right" :text="form.sellPrice"></u--text>
-          </u-form-item>
-
-
-        </view>
-      </u--form>
-    </view>
-    <div class="popContainer" v-if="pictureZoomShow" @click="pictureZoomShow = false">
-      <div class="imageShow">
-        <img :src="form.img" alt=""  class="showImg">
+    <div class="ui-flex justify-center center"
+         style="width: 100vw; height: 220px;background-color: white;margin-top: 10px;">
+      <div class="cell">
+        <img
+            @click="avatarShow(form.img)"
+            :disabled="true "
+            style="width: 80vw;margin: 0 auto;"
+            v-if="form.img"
+            :src="form.img"
+        />
       </div>
     </div>
-  </view>
+    <section class="my-pay-3">
+      <div style="padding-top: 15px;
+    padding-right: 10px;
+    padding-left: 10px;
+    color: #333;
+     display: flex;
+    justify-content: space-between;
+    align-items: center;
+  ">
+        <div>
+          <strong  style="color: #333;font-size: 18px;">¥</strong>
+          <strong v-if="form.sellPrice && form.sellPrice != 0" style="color: #333;font-size: 25px;" >{{form.sellPrice}}</strong>
+          <strong v-else  style="color: #333;font-size: 25px;">899</strong>
+        </div>
+      </div>
+      <div style="padding-top: 0px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+    padding-left: 10px;">
+        <strong style="color: #333;font-size: 15px;line-height: 22px;">
+          {{form.name}}
+        </strong>
+      </div>
+      <div style="padding-top: 0px;
+    padding-right: 10px;
+    padding-bottom: 10px;    margin-left: -2px;
+    padding-left: 10px;
+  ">
+        <span  style="font-size: 14px;
+    background-color: #f3f2f8;
+    padding: 5px;
+    border-radius: 5px;">
+          {{form.type | dictToDescTypeValue(20221108)}}
+        </span>
+        <span  v-if="form.brand" style="font-size: 14px;
+    background-color: #f3f2f8;
+    padding: 5px;     margin-left: 7px;
+    border-radius: 5px;">
+          {{form.brand}}
+        </span>
+        <span v-if="form.sellDate" style="font-size: 14px;
+    background-color: #f3f2f8;
+    margin-left: 7px;
+    padding: 5px;
+    border-radius: 5px;">
+          {{form.sellDate}}
+        </span>
+      </div>
+      <div style="padding-top: 0px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  ">
+        <strong style="color: #333;font-size: 15px;">
+          {{form.actNo}}
+          <image @click="$copyUrl(item.actNo)" class="fuzhitupian"
+                 src="../../static/img/copy.png"></image>
+        </strong>
+        <strong class="color-danger" style="font-size: 15px;">
+          {{form.size}}
+        </strong>
+      </div>
+    </section>
+    <!--    <section class="my-pay-4-1">-->
+    <!--      <div style="    border-right-color: rgba(185, 185, 185, .14);-->
+    <!--    border-right-style: solid;-->
+    <!--    height: 12vw;-->
+    <!--    margin-top: 26px;">-->
+    <!--        <span style="color: #7a7a7a;font-size: 15px;">-->
+    <!--          信息-->
+    <!--        </span>-->
+    <!--      </div>-->
+    <!--      <div style="width: 75vw;">-->
+    <!--        <span style="color: #7a7a7a;font-size: 15px;text-align: left;margin-left: 15px;">品牌-->
+    <!--          <span  style="color: #333;font-size: 15px;text-align: left;margin-left: 5px;">-->
+    <!--                {{form.brand }}-->
+    <!--          </span>-->
+    <!--        </span>-->
+    <!--        <span style="color: #7a7a7a;font-size: 15px;text-align: left;margin-left: 15px;">类型-->
+    <!--          <span  style="color: #333;font-size: 15px;text-align: left;margin-left: 5px;">-->
+    <!--          {{form.type | dictToDescTypeValue(20221108)}}-->
+    <!--          </span>-->
+    <!--        </span>-->
+    <!--        <span style="color: #7a7a7a;font-size: 15px;text-align: left;margin-left: 15px;margin-bottom: 5px;">发售时间-->
+    <!--          <span  style="color: #333;font-size: 15px;text-align: left;margin-left: 5px;">-->
+    <!--                {{form.sellDate }}-->
+    <!--          </span>-->
+    <!--        </span>-->
+    <!--      </div>-->
+    <!--    </section>-->
+
+    <!--    <section class="my-pay-4-1">-->
+    <!--      <div style="border-right-color: rgba(185, 185, 185, .14);-->
+    <!--  border-right-style: solid;">-->
+    <!--        <span style="color: #7a7a7a;font-size: 15px;">-->
+    <!--          信息-->
+    <!--        </span>-->
+    <!--      </div>-->
+    <!--      <div style="border-right-color: rgba(185, 185, 185, .14);-->
+    <!--  border-right-style: solid;">-->
+    <!--        <p>品牌</p>-->
+    <!--        <strong>-->
+    <!--          {{form.brand}}-->
+    <!--        </strong>-->
+    <!--      </div>-->
+    <!--      <div style="border-right-color: rgba(185, 185, 185, .14);-->
+    <!--  border-right-style: solid;">-->
+    <!--        <p>类型</p>-->
+    <!--        <strong>-->
+    <!--          {{form.type | dictToDescTypeValue(20221108)}}-->
+    <!--        </strong>-->
+    <!--      </div>-->
+    <!--      <div style="border-right-color: rgba(185, 185, 185, .14);-->
+    <!--  border-right-style: solid;">-->
+    <!--        <p>发售时间</p>-->
+    <!--        <strong>-->
+    <!--          {{form.sellDate }}-->
+    <!--        </strong>-->
+    <!--      </div>-->
+    <!--    </section>-->
+
+    <div class="my-pay-5" v-if="tableData.length">
+      <div>
+        <h5 style="font-size: 17px;margin-left: 15px;font-weight: 600;color: #333333">尺码列表</h5>
+      </div>
+      <div>
+
+        <div class="dingdans_item_dw" style=" display: flex;    border-bottom: 2px solid #f4f3f8;
+    justify-content: space-between;
+    align-items: center;"
+        >
+          <div class="dingdans_top_dw" style="
+          width: 20vw;
+          font-weight: 600;
+          padding-bottom: 0px;
+          border-bottom: 0; color: #333333">
+            <div class="dingdans_top_left_dw" style=" ">
+              <span>尺码</span>
+            </div>
+          </div>
+          <div class="dingdans_top_dw" style="
+          width: 20vw;          padding-bottom: 0px;    margin-left: -8px;
+                    font-weight: 600;
+          border-bottom: 0; color: #333333">
+            <div class="dingdans_top_left_dw" style=" ">
+              <span>得物价</span>
+            </div>
+          </div>
+          <div class="dingdans_top_dw" style="
+          width: 20vw;    margin-left: 7px;      font-weight: 600;padding-bottom: 0px;
+          border-bottom: 0; color: #333333">
+            <div class="dingdans_top_left_dw" style=" ">
+              <span>到手价</span>
+            </div>
+          </div>
+          <div class="dingdans_top_dw" style="
+          width: 15vw;       margin-left: 2px;       font-weight: 600;padding-bottom: 0px;
+          border-bottom: 0; color: #333333">
+            <div class="dingdans_top_left_dw" style=" ">
+              <span>库存</span>
+            </div>
+          </div>
+          <div class="dingdans_top_dw" style="
+          width: 20vw;          font-weight: 600;padding-bottom: 0px;margin-right: 5px;
+          border-bottom: 0; color: #333333">
+            <div class="dingdans_top_left_dw" style=" ">
+              <span>入库价</span>
+            </div>
+          </div>
+          <div class="dingdans_top_dw" style="
+          width: 15vw;    margin-left: 5px;        margin-right: 2px;  font-weight: 600;padding-bottom: 0px;
+          border-bottom: 0; color: #333333">
+            <div class="dingdans_top_left_dw" style=" ">
+              <span>利润</span>
+            </div>
+          </div>
+        </div>
+        <div class="dingdans_item_dw" @click="rowClick(item)" style=" display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 8px;
+    border-bottom: 2px solid rgb(244, 243, 248);
+"
+             v-for="(item,index) in tableData"
+             :key="index"
+        >
+          <div class="dingdans_top_dw" style="
+          width: 20vw;padding-bottom: 0px;
+          border-bottom: 0; ">
+            <div class="dingdans_top_left_dw" style=" color: #7a7a7a">
+              <span style="font-weight: bolder;font-size: 14px;" class="color-url">{{item.size }}</span>
+            </div>
+          </div>
+          <div class="dingdans_top_dw" style="
+          width: 20vw;padding-bottom: 0px;
+          border-bottom: 0; ">
+            <div class="dingdans_top_left_dw" style="color: #7a7a7a ">
+              <span>¥</span>
+              <span>{{item.price }}</span>
+            </div>
+          </div>
+          <div class="dingdans_top_dw" style="
+          width: 25vw;padding-bottom: 0px;
+          border-bottom: 0; ">
+            <div class="dingdans_top_left_dw" style="color: #7a7a7a ">
+              <span v-if="item.price ">¥</span>
+              <span v-if="item.price "> {{(item.price - (item.price * 0.075 + 38 + 8.5)) | numFilter}}</span>
+            </div>
+          </div>
+          <div class="dingdans_top_dw" style="
+          width: 15vw;padding-bottom: 0px;    margin-left: 5px;
+          border-bottom: 0; ">
+            <div class="dingdans_top_left_dw" style=" color: #7a7a7a;margin-left: 7px;">
+              <span>{{item.inventory }}</span>
+            </div>
+          </div>
+          <div class="dingdans_top_dw" style="
+          width: 20vw;padding-bottom: 0px;
+          border-bottom: 0; ">
+            <div class="dingdans_top_left_dw" style=" color: #7a7a7a">
+              <span v-if="item.inPrice ">¥</span>
+              <span v-if="item.inPrice ">{{item.inPrice }}</span>
+            </div>
+          </div>
+          <div class="dingdans_top_dw" style="
+          width: 25vw;padding-bottom: 0px;
+          border-bottom: 0; ">
+            <div class="dingdans_top_left_dw" style="color: #7a7a7a ">
+              <span v-if="item.inPrice ">¥</span>
+              <span  v-if="item.inPrice"
+                     :style="(item.price - (item.price * 0.075 + 38 + 8.5) - item.inPrice - 10) > 50 ? 'color: red' : ''"
+              >
+                {{(item.price - (item.price * 0.075 + 38 + 8.5) - item.inPrice - 10) | numFilter}}
+              </span>
+            </div>
+          </div>
+        </div>
+
+
+        <!--        <el-table  style="z-index: 1" border :data="tableData" @row-click="rowClick" >-->
+        <!--          <el-table-column align="center" width="51" prop="size" label="尺码">-->
+        <!--            <template scope="scope">-->
+        <!--              <a style="color: #20a0ff" @click="rowClick(scope.row)"> {{ scope.row.size }}</a>-->
+        <!--            </template>-->
+        <!--          </el-table-column>-->
+        <!--          <el-table-column align="center" prop="price"  width="53" label="价格" />-->
+        <!--          <el-table-column align="center" prop=""  label="到手">-->
+        <!--            <template scope="scope">-->
+        <!--                   <span  v-if="scope.row.price">-->
+        <!--                     {{(scope.row.price - (scope.row.price * 0.075 + 38 + 8.5)) | numFilter}}-->
+        <!--                   </span>-->
+        <!--            </template>-->
+        <!--          </el-table-column>-->
+        <!--          <el-table-column align="center" prop="inventory" width="51" label="库存" />-->
+        <!--          <el-table-column align="center" prop="inPrice" width="51" label="入库" />-->
+        <!--          <el-table-column align="center" prop="" width="65"  fixed="right" label="利润">-->
+        <!--            <template scope="scope">-->
+        <!--                  <span  v-if="scope.row.inPrice"-->
+        <!--                         :style="(scope.row.price - (scope.row.price * 0.075 + 38 + 8.5) - scope.row.inPrice - 10) > 50 ? 'color: red' : ''"-->
+        <!--                  >-->
+        <!--                  {{(scope.row.price - (scope.row.price * 0.075 + 38 + 8.5) - scope.row.inPrice - 10) | numFilter}}-->
+        <!--                </span>-->
+        <!--            </template>-->
+        <!--          </el-table-column>-->
+        <!--        </el-table>-->
+      </div>
+    </div>
+    <!--      <div style="border-right-color: rgba(185, 185, 185, .14);-->
+    <!--  border-right-style: solid;">-->
+    <!--        <span style="color: #7a7a7a;font-size: 15px;">-->
+    <!--          库存-->
+    <!--        </span>-->
+    <!--      </div>-->
+    <!--      <div style="border-right-color: rgba(185, 185, 185, .14);-->
+    <!--  border-right-style: solid;">-->
+    <!--        <p>剩余</p>-->
+    <!--        <strong>-->
+    <!--          {{form.inventory}}-->
+    <!--        </strong>-->
+    <!--      </div>-->
+    <!--      <div style="border-right-color: rgba(185, 185, 185, .14);-->
+    <!--  border-right-style: solid;">-->
+    <!--        <p>原库存</p>-->
+    <!--        <strong>-->
+    <!--          {{form.oldInventory}}-->
+    <!--        </strong>-->
+    <!--      </div>-->
+    <!--      <div style="border-right-color: rgba(185, 185, 185, .14);-->
+    <!--  border-right-style: solid;">-->
+    <!--        <p>已上架</p>-->
+    <!--        <strong>-->
+    <!--          {{form.galleryCount}}-->
+    <!--        </strong>-->
+    <!--      </div>-->
+    <!--      <div style="border-right-color: rgba(185, 185, 185, .14);-->
+    <!--  border-right-style: solid;">-->
+    <!--        <p>交易成功</p>-->
+    <!--        <strong>-->
+    <!--          {{form.successCount}}-->
+    <!--        </strong>-->
+    <!--      </div>-->
+<!--    <el-dialog-->
+<!--        center-->
+<!--        style="margin-top:1vh "-->
+<!--        width="100vw"-->
+<!--        :title="sizeTitle"-->
+<!--        :visible.sync="isShowDialog2"-->
+<!--    >-->
+<!--      <ul style="" class="store-list-1-1" >-->
+<!--        <li  class="store-list-1-li-1">-->
+<!--          <div class="overview1">-->
+<!--            <p><strong>当前价格</strong></p>-->
+<!--            <p class="color-url">{{priceData.price}}</p>-->
+<!--          </div>-->
+<!--          <div class="overview2">-->
+<!--            <p><strong>到手价</strong></p>-->
+<!--            <p class="color-url">{{priceData.theirPrice}} </p>-->
+<!--          </div>-->
+<!--        </li>-->
+<!--        <li  class="store-list-1-li-1">-->
+<!--          <div class="overview1">-->
+<!--            <p><strong>年度最高</strong></p>-->
+<!--            <p class="color-url">{{priceData.price365}}</p>-->
+<!--          </div>-->
+<!--          <div class="overview2">-->
+<!--            <p><strong>到手价</strong></p>-->
+<!--            <p class="color-url">{{priceData.theirPrice365}}</p>-->
+<!--          </div>-->
+<!--        </li>-->
+<!--        <li  class="store-list-1-li-1">-->
+<!--          <div class="overview1">-->
+<!--            <p><strong>半年最高</strong></p>-->
+<!--            <p class="color-url">{{priceData.price180}}</p>-->
+<!--          </div>-->
+<!--          <div class="overview2">-->
+<!--            <p><strong>到手价</strong></p>-->
+<!--            <p class="color-url">{{priceData.theirPrice180}}</p>-->
+<!--          </div>-->
+<!--        </li>-->
+<!--        <li  class="store-list-1-li-1">-->
+<!--          <div class="overview1">-->
+<!--            <p><strong>30天最高</strong></p>-->
+<!--            <p class="color-url">{{priceData.price30}}</p>-->
+<!--          </div>-->
+<!--          <div class="overview2">-->
+<!--            <p><strong>到手价</strong></p>-->
+<!--            <p class="color-url">{{priceData.theirPrice30}}</p>-->
+<!--          </div>-->
+<!--        </li>-->
+<!--      </ul>-->
+<!--      <div style="text-align: center">-->
+<!--        <el-button :type="type30" @click="profitData(30)" size="small" round>30天走势图</el-button>-->
+<!--        <el-button :type="type180" @click="profitData(180)" size="small" round>半年走势图</el-button>-->
+<!--        <el-button :type="type365" @click="profitData(365)"size="small"  round>年度走势图</el-button>-->
+<!--      </div>-->
+<!--      <ve-line-->
+<!--          height="200px"-->
+<!--          :data="chartData"-->
+<!--          :legend-visible="false"-->
+<!--          :loading="loading"-->
+<!--          :data-empty="dataEmpty"-->
+<!--          :settings="chartSettings"></ve-line>-->
+<!--      <span slot="footer" class="dialog-footer">-->
+<!--    </span>-->
+<!--    </el-dialog>-->
+    <div class="popContainer" v-if="pictureZoomShow" @click="pictureZoomShow = false">
+      <div class="imageShow">
+        <img :src="imageZoom" alt="" class="showImg">
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-  import { goodsOtherApi} from '@/api/goodsOther'
-  import { envSetting } from '@/utils/env.js'
-  import { goodsBaseApi} from '@/api/goodsBase'
   import { goodsBaseSizeApi } from '@/api/goodsBaseSize'
   import { goodsBaseSizePriceApi } from '@/api/goodsBaseSizePrice'
+  import {goodsBaseApi} from '@/api/goodsBase'
   export default {
-    components: {
+    components:{
     },
-    data() {
+    data(){
       return {
-        imgevent: '',
-        fileList1: [],
+        isShowDialog2: false,
         pictureZoomShow: false,
-        imageZoom: '',
-        defaultIndex: [1],
+        props: {
+          lazy: false,
+          multiple: true
+        },
         queryParam: {
           goodsId: ''
+        },
+        reqCount: 0,
+        type30: 'primary',
+        type180: 'default',
+        type365: 'default',
+        chartSettings: {
+          xAxisType: 'time',
+          area: false,
+          scale: [true],
+          axisSite: { right: ['date'] },
+          labelAlias: {
+            'price': '价格',
+            'date': '日期',
+          }
+        },
+        chartData: {
+          columns: ['date', 'price'],
+          rows: []
         },
         priceData: {
         },
@@ -114,9 +459,6 @@
           sizeId: '',
           dayNum: 30
         },
-        columns: [],
-        type: '',
-        id: '',
         loading: false,
         dataEmpty: false,
         sizeTitle: '',
@@ -129,6 +471,8 @@
         id: '',
         photo: '',
         options: [],
+        uploadData: {},
+        typeList: [],
         requestParam: {
           sizeId: '',
           actNo: ''
@@ -136,161 +480,27 @@
         form: {
           actNo: ''
         },
+        options: [
+          {
+            value: 'add',
+            text: '新增'
+          },
+          {
+            value: 'resetHandle',
+            text: '重置'
+          }
+        ],
       }
     },
-    onLoad(options) {
-      if (options) {
-        this.id = options.id ? options.id : '';
-        if (this.id) {
-          this.getDetailById(this.id)
-        }else{
-          this.getDetailById('1249050008221782016')
-        }
-        this.type = options.type ? options.type : ''
+    created() {
+      const { id } = this.$route.query
+      if (id) {
+        this.getDetailById(id)
       }
     },
-    // created() {
-    //   const {id, type,flag,photo} = this.$route.query
-    //   this.flag = flag
-    //   this.id = id
-    //   this.photo = photo
-    //   this.type = type
-    //   this.form.id = id
-    //   if (this.id) {
-    //     this.getDetailById(this.id)
-    //   }
-    //   if(this.photo){
-    //     setTimeout(()=>{
-    //       this.uploadMaterial()
-    //     },200)
-    //   }
-    // },
     mounted() {
-      this.listSysDict()
     },
-    methods: {
-      async afterRead(event) {
-        console.info(event);
-        this.imgevent = event;
-        // 当设置 multiple 为 true 时, file 为数组格式，否则为对象格式
-        let lists = [].concat(event.file);
-        let fileListLen = this[`fileList${event.name}`].length;
-        lists.map((item) => {
-          this[`fileList${event.name}`].push({
-            ...item,
-            status: 'uploading',
-            message: '上传中'
-          })
-        });
-        for (let i = 0; i < lists.length; i++) {
-          await this.uploadFilePromise(lists[i].url);
-          // const result = await this.uploadFilePromise(lists[i].url);
-          // let item = this[`fileList${event.name}`][fileListLen];
-          // this[`fileList${event.name}`].splice(fileListLen, 1, Object.assign(item, {
-          //   status: 'success',
-          //   message: '',
-          //   url: result
-          // }));
-          // fileListLen++
-        }
-      },
-      uploadFilePromise(url) {
-        var _this = this;
-        return new Promise((resolve, reject) => {
-          let a = uni.uploadFile({
-            url: envSetting.baseURL + '/gw/op/v1/file/v2/uploadFileStore',
-            filePath: url,
-            name: 'file',
-            formData: {
-              user: 'test'
-            },
-            success: (res) => {
-              setTimeout(() => {
-                let resDta = JSON.parse(res.data);
-                if (resDta.sub_code != 1000) {
-                  this.$toast('上传失败，请上传10 MB 以内的图片');
-                  _this.deletePic(_this.imgevent)
-                } else {
-                  this.$toast('上传成功');
-                  this.form.imgUrl = resDta.data;
-                  resolve(res.data.data)
-                }
-              }, 1000)
-            }
-          });
-        })
-      },
-      // getDetailById(id) {
-      //   if (id) {
-      //     goodsOtherApi.getDetailById(id).then(res => {
-      //       if (res.subCode === 1000) {
-      //         this.form = res.data ? res.data : {};
-      //         if (this.form.imgUrl) {
-      //           let url = this.$fileUrl + this.form.imgUrl;
-      //           let data1 = {};
-      //           data1.url = url;
-      //           this.fileList1.push(data1)
-      //         }
-      //         if (this.form.type){
-      //           this.form.typeStr = this.$typeToStr(39,this.form.type)
-      //           this.defaultIndex = [this.$getTypeIndex(39,this.form.type)]
-      //         }
-      //       } else {
-      //         this.$toast(res.subMsg)
-      //       }
-      //     })
-      //   }
-      // },
-      submit() {
-        if (!this.form.type) {
-          this.$toast('类型非空');
-          return false
-        }
-        if (!this.form.price) {
-          this.$toast('金额非空');
-          return false
-        }
-        if (!this.form.name) {
-          this.$toast('名称非空');
-          return false
-        }
-        if (this.form.price > 0 && this.form.type == 2) {
-          this.form.price = 0 - this.form.price
-        }
-        if (this.type == 2) {
-          goodsOtherApi.update(this.form).then(res => {
-            if (res.subCode === 1000) {
-              this.$toast('操作成功,即将返回列表');
-              setTimeout(() => {
-                this.$navigateTo('/pages/other/index')
-              }, 1000)
-            } else {
-              ``;
-              this.$toast(res.subMsg)
-            }
-          })
-        } else {
-          goodsOtherApi.add(this.form).then(res => {
-            if (res.subCode === 1000) {
-              this.$toast('添加成功，即将返回列表');
-              setTimeout(() => {
-                this.$navigateTo('/pages/other/index')
-              }, 1000)
-            } else {
-              this.$toast(res.subMsg)
-            }
-          })
-        }
-      },
-      listSysDict() {
-        let sysDictList = uni.getStorageSync('sysDictList') ? JSON.parse(
-            uni.getStorageSync('sysDictList')) : [];
-        this.typeList = sysDictList.filter(item => item.typeValue == 39);
-        this.columns.push(this.typeList)
-      },
-      gotoAdd(id, type) {
-        this.$router.push({ path: '/goodsAdd', query: {id,type } })
-      },
+    methods:{
       profitData(dayNum) {
         if (dayNum == 30) {
           this.type30 = 'primary'
@@ -310,19 +520,55 @@
       },
       rowClick(row) {
         this.size = row.size
-        this.getTitle()
         this.queryParam1.goodsId = this.form.id
         this.queryParam1.sizeId = row.sizeId
         this.getPriceData()
         this.isShowDialog2 = true
       },
-      getTitle() {
-        this.sizeTitle = '尺码：' + this.size  + ' 更新日期：' + this.date
-        if (this.size) {
-          this.sizeTitle = '尺码：' + this.size
+      copyUrl(url) {
+        const input = document.createElement('input')
+        document.body.appendChild(input)
+        input.setAttribute('value', url)
+        input.select()
+        if (document.execCommand('copy')) {
+          document.execCommand('copy')
         }
-        if (this.date) {
-          this.sizeTitle = this.sizeTitle  + ' 更新日期：' + this.date
+        document.body.removeChild(input)
+        this.$toast('已复制至剪切板')
+      },
+      avatarShow(e) {
+        this.imageZoom = e
+        this.pictureZoomShow = true
+      },
+      getImgUrl() {
+        let data = {actNo: this.form.actNo , sizeId: this.form.sizeId }
+        goodsBaseApi.getGoodsByActNoAndSizeH5(data).then(res => {
+          if (res.subCode === 1000) {
+            this.form = res.data ? res.data : {}
+            this.queryParam.goodsId = this.form.id
+            this.getPage()
+          }else{
+            this.$toast(res.subMsg)
+          }
+        })
+      },
+      gotoAdd(id, type) {
+        this.$router.push({ path: '/goodsAdd', query: {id,type } })
+      },
+      scanCode(id, type) {
+        this.$router.push({ path: '/scanCode', query: { id, type } })
+      },
+      getDetailById(id) {
+        if (id) {
+          goodsBaseApi.getDetailById(id).then(res => {
+            if (res.subCode === 1000) {
+              this.form = res.data ? res.data : {}
+              this.queryParam.goodsId = this.form.id
+              this.getPage()
+            } else {
+              this.$toast(res.subMsg)
+            }
+          })
         }
       },
       getPriceData() {
@@ -346,7 +592,6 @@
             let theirPrice365 = res.data.price365 - (res.data.price365 * 0.075 + 38 + 8.5)
             this.priceData.theirPrice365 = parseFloat(theirPrice365).toFixed(2)
             this.date = this.priceData.date
-            this.getTitle()
           } else if (res.subCode === 10086) {
           } else {
             this.$toast(res.subMsg)
@@ -364,13 +609,12 @@
                   this.queryParam1.goodsId = this.form.id
                   this.queryParam1.sizeId = this.tableData[i].sizeId
                   this.size = this.tableData[i].size
-                  this.getTitle()
                   this.getPriceData()
                   break
                 }
               }
             }
-            if (totalCount < this.form.sizeList.length && this.reqCount < 5) {
+            if (this.form.sizeList && totalCount < this.form.sizeList.length && this.reqCount < 5) {
               console.info(this.reqCount)
               setTimeout(()=>{
                 this.reqCount ++
@@ -382,69 +626,134 @@
           }
         })
       },
-      getDetailById(id) {
-        if (id) {
-          goodsBaseApi.getDetailById(id).then(res => {
-            if (res.subCode === 1000) {
-              this.form = res.data ? res.data : {}
-              this.queryParam.goodsId = this.form.id
-              this.getPage()
-              // this.getImgUrl()
-            } else {
-              this.$toast(res.subMsg)
-            }
-          })
-        }
-      },
-      gotoAdd(id, type) {
-        this.$router.push({path: '/goodsAdd', query: {id, type}})
-      },
-      getImgUrl() {
-        if (!this.form.actNo) {
-          this.$toast('请输入货号')
-          return false
-        }
-        let data = {actNo: this.form.actNo , sizeId: this.form.sizeId }
-        goodsBaseApi.getGoodsByActNoAndSizeH5(data).then(res => {
-          if (res.subCode === 1000) {
-            this.form = res.data ? res.data : {}
-            this.queryParam.goodsId = this.form.id
-            this.getPage()
-          }else{
-            this.$toast(res.subMsg)
-          }
-        })
-      },
     }
   }
-
 </script>
 
-<style lang="less" scoped>
+<style>
+
   @import '@/assets/index/style.css';
-
-  .login {
-    > section {
-      .tip {
-        padding: 6vw 3vw;
-        color: rgb(224, 145, 71);
-        letter-spacing: 2px;
-        font-size: 16px;
-      }
-    }
+  /*@import '../assets/fz.less';*/
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
-  .fenlei_top_2 {
-    display: -ms-flexbox;
+  /* 这里直接设置 1rem = 50px begin */
+  html {
+    font-size: 50px;
+  }
+  /* 这里直接设置 1rem = 50px end */
+  html,
+  body {
+    /*font-family: "微软雅黑";*/
+    /*color: #333;*/
+    /*background: #fff;*/
+  }
+  /*ul,*/
+  /*li {*/
+  /*  list-style: none;*/
+  /*}*/
+  /* 给要上拉的容器设置 begin */
+  .hello {
+    background-color: #f3f2f8;
+    padding-top: 12vw;
+    font-size: 13px;
+    height: 100vh;
+    overflow-y: auto;
+  }
+  strong{
+    font-weight: 600;
+  }
+  /*.detail {*/
+  /*  width: 100%;*/
+  /*  padding-bottom: 14vw;*/
+  /*}*/
+
+  .ui-flex {
+    display: -webkit-box !important;
+    display: -webkit-flex !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap
+  }
+
+  .ui-flex, .ui-flex *, .ui-flex :after, .ui-flex :before {
+    box-sizing: border-box
+  }
+
+  .ui-flex.justify-center {
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center
+  }
+  .ui-flex.center {
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
     -ms-flex-align: center;
-    -ms-flex-pack: justify;
-    background: #fff;
-    position: fixed;
-    font-size: 14px;
-    z-index: 99;
-    margin-top: 11.6vw;
+    align-items: center
+  }
+  .my-pay-3 {
+    border-radius: 10px;
+    margin-top: 15px;
+    width: 92%;
+    margin-left: 4%;
+    background-color: #fff;
   }
 
+  .my-pay-4-1 {
+    margin-top: 15px;
+    border-radius: 10px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 92%;
+    margin-left: 4%;
+    padding: 2vw 0;
+    background-color: #fff;
+    border-bottom-color: rgba(185, 185, 185, .14);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
 
+  > div {
+    display: block;
+    width: 20%;
+    color: #999;
+    text-align: center;
+
+  > span {
+    font-size: 22px;
+    margin-top: 2.3vw;
+    display: block;
+    text-align: center;
+  }
+
+  p {
+    color: #8c8a8a;font-size: 14px; margin-top: 3px;margin-bottom: 4px;
+  }
+  strong {
+    color: #333;font-size: 15px;
+  }
+  }
+  }
+  .my-pay-5 {
+    margin-top: 15px;
+    border-radius: 10px;
+    width: 92%;
+    margin-left: 4%;
+    padding-top: 4vw;
+    background-color: #fff;
+    border-bottom-color: rgba(185, 185, 185, .14);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+  }
   .store-list-1-1 {
     display: -webkit-box;
     margin-top: -15px;
@@ -458,7 +767,7 @@
     background-color: #EEF2F7;
     width: 24%;
     color: #333;
-    font-size: 16px;
+    font-size: 15px;
     box-sizing: border-box;
     margin-top: 0vw;
     margin-right: 2vw;

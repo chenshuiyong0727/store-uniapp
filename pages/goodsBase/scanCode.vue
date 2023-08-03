@@ -4,9 +4,9 @@
       <view @click="$goBack" class="u-nav-slot" slot="left">
         <u-icon name="arrow-left" size="20"></u-icon>
       </view>
-      <view  @click="gotoAdd(null,3)" class="u-nav-slot" slot="right" style="font-size: 15px;">
-        手动添加
-      </view>
+<!--      <view  @click="gotoAdd(null,3)" class="u-nav-slot" slot="right" style="font-size: 15px;">-->
+<!--        手动添加-->
+<!--      </view>-->
     </u-navbar>
     <view class="fenlei_top_2">
       <view class="shoudongtianjia" >
