@@ -13,7 +13,8 @@
  */
 
 /* 颜色变量 */
-@import 'uview-ui/theme.scss';
+//@import 'uview-ui/theme.scss';
+@import '@/uni_modules/uview-ui/theme.scss';
 // @import 'mint-ui/lib/style.css';
  @import '@/static/style/common.css';
 $u-primary: #409eff;

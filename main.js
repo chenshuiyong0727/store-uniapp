@@ -1,7 +1,9 @@
 import App from './App'
 
 import '@/utils/prototype.js'
-import uView from 'uview-ui'
+// import uView from 'uview-ui'
+// Vue.use(uView)
+import uView from '@/uni_modules/uview-ui'
 Vue.use(uView)
 // import { Confirm } from 'uview-ui';
 // Vue.use(Confirm);
