@@ -249,13 +249,16 @@
     },
     methods: {
       goBackReflash() {
-        let pages = getCurrentPages(); // 当前页面
-        let beforePage = pages[pages.length - 2]; // 上一页
-        uni.navigateBack({
-          success: function() {
-            beforePage.init(); // 执行上一页的onLoad里面的方法方法
-          }
-        });
+        // let pages = getCurrentPages(); // 当前页面
+        // let beforePage = pages[pages.length - 2]; // 上一页
+        // uni.navigateBack({
+        //   success: function() {
+        //     beforePage.init(); // 执行上一页的onLoad里面的方法方法
+        //   }
+        // });
+          uni.reLaunch({
+            url: '/pages/my/index',
+          });
       },
       deletePic(event) {
         console.info(event);

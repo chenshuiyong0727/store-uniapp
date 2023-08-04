@@ -1278,7 +1278,7 @@ a{
   color: #333;
 }
 
-/deep/ .u-badge--error[data-v-662d25bf] {
+/deep/ .u-badge--error{
   background-color: #F56C6C;
   margin-bottom: 14px;
   margin-left: 0px !important;
