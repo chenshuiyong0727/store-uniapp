@@ -134,7 +134,7 @@
           <view class="diangdans_con_right_dw">
             <view class="dingdans_con_right_top_dw" @click="goodsDetail(item.id, 1) ">
               <text>
-                {{item.name | sizeFilterNum(38) }}
+                {{item.name}}
               </text>
             </view>
             <view class="dingdans_con_right_top_dw_1 xianglian">
