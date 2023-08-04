@@ -31,7 +31,7 @@
       <view class="header zuoyouduiqi">
         <view @click="userInfo" class="header-icon xianglian" style="margin-left: 6vw;">
           <image v-if="imgUrl" style="width: 50px;height: 50px;border-radius: 100%;"
-                 :src="imgUrl"></image>
+                 :src="fileUrl + imgUrl"></image>
           <text style="margin-left: 12px;">{{
             form.userRealName ? form.userRealName : form.userAccount ? form.userAccount : '系统用户'
             }}
@@ -206,7 +206,7 @@
     data() {
       return {
         flag: false,
-        imgUrl: '',
+        imgUrl: uni.getStorageSync('userIcon'),
         fileUrl: this.$fileUrl,
         orderIofo: {},
         // userName: localStorage.getItem('user_name'),
@@ -326,7 +326,10 @@
           if (res.subCode === 1000) {
             this.form = res.data ? res.data : {};
             if (this.form.imgUrl) {
-              this.imgUrl = this.fileUrl + this.form.imgUrl
+              if (this.imgUrl != this.form.imgUrl){
+                this.imgUrl = this.form.imgUrl
+                uni.setStorageSync('userIcon', this.form.imgUrl);
+              }
             } else {
               this.imgUrl = '../../static/img/userimg5.jpg'
             }

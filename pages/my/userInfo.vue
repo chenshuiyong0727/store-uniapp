@@ -312,6 +312,7 @@
                 } else {
                   this.$toast('上传成功');
                   this.form.imgUrl = resDta.data;
+                  uni.setStorageSync('userIcon', this.form.imgUrl);
                   this.$request({
                     url: '/gw/op/v1/auth/update',
                     method: 'put',

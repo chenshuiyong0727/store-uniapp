@@ -18,11 +18,13 @@
 // @import 'mint-ui/lib/style.css';
  @import '@/static/style/common.css';
 $u-primary: #409eff;
+$u-error: #F56C6C;
+$u-success: #00c2c2;
 /* 行为相关颜色 */
 $uni-color-primary: #409eff;
-$uni-color-success: #4cd964;
+$uni-color-success: #00c2c2;
 $uni-color-warning: #f0ad4e;
-$uni-color-error: #dd524d;
+$uni-color-error: #F56C6C;
 
 /* 文字基本颜色 */
 $uni-text-color:#333;//基本色

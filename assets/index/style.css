@@ -1278,11 +1278,11 @@ a{
   color: #333;
 }
 
-/deep/ .u-badge--error{
-  background-color: #F56C6C;
-  margin-bottom: 14px;
-  margin-left: 0px !important;
-}
+/*/deep/ .u-badge--error{*/
+/*  background-color: #F56C6C;*/
+/*  margin-bottom: 14px;*/
+/*  margin-left: 0px !important;*/
+/*}*/
 
 * {
   margin: 0;
