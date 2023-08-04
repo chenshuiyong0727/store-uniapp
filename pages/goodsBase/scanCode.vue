@@ -452,6 +452,7 @@
         });
         for (let i = 0; i < lists.length; i++) {
           await this.uploadFilePromise(lists[i].url);
+          uni.hideLoading();
           // const result = await this.uploadFilePromise(lists[i].url);
           // let item = this[`fileList${event.name}`][fileListLen];
           // this[`fileList${event.name}`].splice(fileListLen, 1, Object.assign(item, {
@@ -480,12 +481,12 @@
             },
             success: (res) => {
               //隐藏加载框
-              uni.hideLoading();
               setTimeout(() => {
                 let resDta = JSON.parse(res.data);
                 if (resDta.sub_code != 1000) {
                   this.$toast('识别失败，请上传10 MB 以内的图片');
                   _this.deletePic(_this.imgevent)
+                  resolve(res.data)
                 } else {
                   this.$toast('识别成功');
                   // this.form.imgUrl = resDta.data;
@@ -497,6 +498,10 @@
                   resolve(res.data.data)
                 }
               }, 1000)
+            },
+            fail: (res) => {
+              this.$toast('识别失败，请上传10 MB 以内的图片');
+              resolve(res)
             }
           });
         })

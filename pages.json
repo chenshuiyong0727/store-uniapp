@@ -166,7 +166,6 @@
     ]
   },
   "globalStyle": {
-
     "rpxCalcMaxDeviceWidth": 600,
     "rpxCalcBaseDeviceWidth": 600,
     "rpxCalcIncludeWidth": 600,

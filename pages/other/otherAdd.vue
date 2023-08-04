@@ -140,6 +140,7 @@
       },
       async afterRead(event) {
         console.info(event);
+        uni.showLoading({title: '上传中'});
         this.imgevent = event;
         // 当设置 multiple 为 true 时, file 为数组格式，否则为对象格式
         let lists = [].concat(event.file);
@@ -153,6 +154,7 @@
         });
         for (let i = 0; i < lists.length; i++) {
           const result = await this.uploadFilePromise(lists[i].url);
+          uni.hideLoading();
           let item = this[`fileList${event.name}`][fileListLen];
           this[`fileList${event.name}`].splice(fileListLen, 1, Object.assign(item, {
             status: 'success',
@@ -184,6 +186,10 @@
                   resolve(res.data.data)
                 }
               }, 1000)
+            },
+            fail: (res) => {
+              this.$toast('上传失败，请上传10 MB 以内的图片');
+              resolve(res)
             }
           });
         })

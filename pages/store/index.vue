@@ -294,6 +294,9 @@
         <image :src="imageZoom" mode="widthFix"  class="showImg"></image>
       </view>
     </view>
+    <view v-if="storeData.upCout">
+      <uni-fab ref="fab" :pattern="pattern"  horizontal="right" @fabClick="syncOldPriceToNew1" />
+    </view>
   </view>
 </template>
 <script>
@@ -301,6 +304,14 @@
     name: "HelloWorld",
     data() {
       return {
+        pattern: {
+          icon:'checkmarkempty',
+          color: '#7A7E83',
+          backgroundColor: '#fff',
+          selectedColor: '#409eff',
+          buttonColor: '#409eff',
+          iconColor: '#fff'
+        },
         showFrom: false,
         showTo: false,
         show_sx_type: false,
@@ -331,6 +342,10 @@
         storeData: {},
         list2: [{
           inventory: 1,
+          today: '',
+          name: '现货'
+        },{
+          inventory: 1,
           today: 7,
           name: '变更',
           badge: {
@@ -343,11 +358,7 @@
           badge: {
             value:0
           }
-        }, {
-          inventory: 1,
-          today: '',
-          name: '现货'
-        }, {
+        },  {
           inventory: 1,
           today: 3,
           name: '待移库',
@@ -502,8 +513,8 @@
         }).then(res => {
           if (res.subCode === 1000) {
             this.storeData = res.data
-            this.list2[0].badge.value=this.storeData.upCout
-            this.list2[1].badge.value=this.storeData.successNumLast
+            this.list2[1].badge.value=this.storeData.upCout
+            this.list2[2].badge.value=this.storeData.successNumLast
             this.list2[3].badge.value=this.storeData.waitMoveCout
           } else {
             this.$toast(res.subMsg)
