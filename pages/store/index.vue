@@ -252,14 +252,19 @@
             <text >入库价</text>
             <text style="margin-left: 2px;" class="color-danger">{{item.price}}</text>
             <text >, 预估利润</text>
-            <text style="margin-left: 2px;"  :class="item.thisTimeProfits>= 0 ? 'color-danger': 'color-success'"  v-if="item.thisTimePrice" >{{item.thisTimeProfits }}</text>
-            <text style="margin-left: 2px;"  class="color-danger"  v-else  :class="(item.dwPrice - (item.dwPrice * 0.075 + 38 + 8.5) - item.price - 10)>= 0 ? 'color-danger': 'color-success'">
+            <text style="margin-left: 3px;"  :class="item.thisTimeProfits>= 0 ? 'color-danger': 'color-success'"  v-if="item.thisTimePrice" >{{item.thisTimeProfits }}</text>
+            <text style="margin-left: 3px;"  class="color-danger"  v-else  :class="(item.dwPrice - (item.dwPrice * 0.075 + 38 + 8.5) - item.price - 10)>= 0 ? 'color-danger': 'color-success'">
               {{(item.dwPrice - (item.dwPrice * 0.075 + 38 + 8.5) - item.price - 10) | numFilter}}
             </text>
           </view>
           <!--          操作栏-->
           <view class="dingdans_top_right_dw">
             <view class="dingdans_con_right_down_2_1">
+              <view style="margin-bottom: 3px;">
+                <rudon-rowMenuDotDotDot :localdata="item.optionsOp" @change="menuActionList($event,item)">
+                  <text class="dw-button-common">操作</text>
+                </rudon-rowMenuDotDotDot>
+              </view>
 <!--              <el-dropdown trigger="click" style="margin-left: 1px;">-->
 <!--                <button-->
 <!--                    class="dw-button-common">操作-->
@@ -301,6 +306,9 @@
   </view>
 </template>
 <script>
+  import {goodsInventoryApi} from '@/api/goodsInventory'
+  import { parseTime } from '@/utils/index'
+
   export default {
     name: "HelloWorld",
     data() {
@@ -332,12 +340,28 @@
         ],
         optionsOp: [
           {
-            value: 'view',
-            text: '查看'
+            value: 'goodsDetail',
+            text: '商品详情'
+          },
+          {
+            value: 'warehouseDetail',
+            text: '库存信息'
           },
           {
             value: 'update',
             text: '修改'
+          },
+          {
+            value: 'gotoDw',
+            text: '得物'
+          },
+          {
+            value: 'jumpOrder',
+            text: '订单'
+          },
+          {
+            value: 'goDel',
+            text: '删除'
           }
         ],
         storeData: {},
@@ -534,15 +558,30 @@
           this.resetHandle()
         }
       },
-      menuAction1(action, rowId) {
+      menuActionList(action, item) {
         if (action === '') {
           return
         }
-        if ('view' == action) {
-          this.goDetail(rowId, 1)
+        if ('goodsDetail' == action) {
+          this.goDetail(item.goodsId, 1)
+        }
+        if ('warehouseDetail' == action) {
+          this.warehouseDetail(item.goodsId ,item.actNo ,item.img )
         }
         if ('update' == action) {
-          this.goDetail(rowId, 2)
+          this.update(item )
+        }
+        if ('gotoDw' == action) {
+          this.gotoDw(item.spuId )
+        }
+        if ('jumpOrder' == action) {
+          this.jumpOrder(item.actNo)
+        }
+        if ('gallery' == action) {
+          this.gallery(item)
+        }
+        if ('goDel' == action) {
+          this.goDel(item.id)
         }
       },
 
@@ -606,9 +645,55 @@
 
         this.$router.push({ path: '/storeAdd', query: { goodsId } })
       },
-      jumpactNo(actNo) {
+      jumpOrder(actNo) {
 
         this.$router.push({ path: '/store', query: { actNo } })
+      },
+      converData(item) {
+        console.info(item)
+        // let  optionsOp= [
+        //         {
+        //           value: 'goodsDetail',
+        //           text: '商品详情'
+        //         },
+        //         {
+        //           value: 'warehouseDetail',
+        //           text: '库存信息'
+        //         },
+        //         {
+        //           value: 'update',
+        //           text: '修改'
+        //         },
+        //         {
+        //           value: 'gotoDw',
+        //           text: '得物'
+        //         },
+        //         {
+        //           value: 'jumpOrder',
+        //           text: '订单'
+        //         },
+        //         {
+        //           value: 'goDel',
+        //           text: '删除'
+        //         }
+        // ]
+        let list = []
+        if (item.inventory > item.galleryCount) {
+          list.push({
+            value: 'gallery',
+            text: '上架'
+          })
+        }
+        if (list.length){
+            this.optionsOp.forEach(e => {
+            list.push(e)
+          })
+        } else{
+          list = this.optionsOp
+        }
+        // let newArr = list.map((num, index) => ({...optionsOp[index], value: num}));
+        item.optionsOp=list
+        // console.info(item)
       },
       getPage() {
         this.isLoading = true
@@ -623,13 +708,13 @@
           this.queryParam.inventoryTo = ''
         }
         this.getData2()
+        // this.$request({
+        //   url: '/gw/op/v1/goodsInventory/pageGoods',
+        //   method: 'get',
+        //   data: this.queryParam
+        // })
         this.emtityMsg = ''
-        // goodsOtherApi.page(this.queryParam)
-        this.$request({
-          url: '/gw/op/v1/goodsInventory/pageGoods',
-          method: 'get',
-          data: this.queryParam
-        }).then(res => {
+        goodsInventoryApi.pageGoods(this.queryParam).then(res => {
           this.isLoading = false
           if (res.subCode === 1000) {
             this.totalCount = res.data ? res.data.pageInfo.totalCount : 0
@@ -639,6 +724,7 @@
               this.isLoadMore = false
             } else {
               res.data.list.forEach(e => {
+                this.converData(e)
                 this.tableData.push(e)
               })
               if (this.totalCount <= this.tableData.length) {
@@ -806,17 +892,6 @@
           }
         })
       },
-      updateAddress() {
-        goodsOrderApi.update(this.requestParam1).then(res => {
-          this.$toast(res.subMsg)
-          if (res.subCode === 1000) {
-            this.getPage()
-            this.isShowDialog1 = false
-          }else {
-            this.$toast(res.subMsg);
-          }
-        })
-      },
       jumpactNo(actNo) {
 
         this.$router.push({ path: '/order', query: { actNo } })
@@ -849,11 +924,11 @@
         document.body.removeChild(input)
         this.$toast('已复制至剪切板')
       },
-      WarehouseDetail(goodsId , actNo,img) {
+      warehouseDetail(goodsId , actNo,img) {
 
         this.$router.push({ path: '/WarehouseDetail', query: {goodsId, actNo ,img} })
       },
-      changeStatusDialog1(row) {
+      gallery(row) {
         this.orderData1 = row
         this.requestParam1.inventoryId = this.orderData1.id
         this.requestParam1.num = this.orderData1.inventory - this.orderData1.galleryCount
@@ -871,22 +946,42 @@
         this.requestParam1.profits = parseFloat(profits).toFixed(2)
         this.isShowDialog1 = true
       },
+
       goDel(id) {
-        this.$confirm('是否删除',"提示",{
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type:"warning",
-        }).then(() => {
-          goodsInventoryApi.delById(id).then(res => {
-            this.$toast(res.subMsg)
-            if (res.subCode === 1000) {
-              this.getPage()
+        var _this = this;
+        uni.showModal({
+          title: '',
+          confirmColor: '#409eff',
+          content: '是否删除',
+          success: function (res) {
+            if (res.confirm) {
+              goodsInventoryApi.delById(id).then(res => {
+                _this.$toast(res.subMsg)
+                debugger
+                if (res.subCode === 1000) {
+                  _this.search1()
+                }
+              })
+            } else if (res.cancel) {
             }
-          })
-        }).catch(() => {
-          // alert(" b" + id)
-          // this.goBack()
-        })
+          }
+        });
+
+        // this.$confirm('是否删除',"提示",{
+        //   confirmButtonText: '确定',
+        //   cancelButtonText: '取消',
+        //   type:"warning",
+        // }).then(() => {
+        //   goodsInventoryApi.delById(id).then(res => {
+        //     this.$toast(res.subMsg)
+        //     if (res.subCode === 1000) {
+        //       this.getPage()
+        //     }
+        //   })
+        // }).catch(() => {
+        //   // alert(" b" + id)
+        //   // this.goBack()
+        // })
         // this.$confirm('是否删除', '提示', {
         //   confirmButtonText: '确定',
         //   cancelButtonText: '取消',
@@ -903,7 +998,7 @@
         //   // })
         // })
       },
-      handleClick(orderData) {
+      update(orderData) {
         this.orderData = orderData
         this.requestParam.id = this.orderData.id
         this.requestParam.sizeId = this.orderData.sizeId

@@ -296,6 +296,9 @@
         <image :src="imageZoom" mode="widthFix"  class="showImg"></image>
       </view>
     </view>
+    <view>
+      <uni-fab ref="fab" :pattern="pattern"  horizontal="right" @fabClick="storeAdd" />
+    </view>
   </view>
 </template>
 
@@ -361,6 +364,13 @@
         chartData: {
         },
         priceData: {
+        },
+        pattern: {
+          color: '#7A7E83',
+          backgroundColor: '#fff',
+          selectedColor: '#409eff',
+          buttonColor: '#409eff',
+          iconColor: '#fff'
         },
         queryParam1: {
           goodsId: '',
@@ -431,6 +441,10 @@
         // }
         this.queryParam1.dayNum = dayNum
         this.getPriceData()
+      },
+      storeAdd() {
+        let url = '/pages/store/storeAdd?goodsId=' + this.id
+        this.$navigateTo(url)
       },
       rowClick(row) {
         this.size = row.size

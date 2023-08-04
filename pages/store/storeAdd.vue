@@ -1,26 +1,9 @@
 <template lang="html">
   <view class="login">
-    <!--    <v-header>-->
-    <!--      <h1 slot="title">商品详情</h1>-->
-    <!--    </v-header>-->
-<!--    <mt-header title="库存添加">-->
-<!--      <view slot="left">-->
-<!--        <mt-button  icon="back" @click="$router.go(-1)"></mt-button>-->
-<!--      </view>-->
-<!--      <view slot="right">-->
-<!--        <mt-button size="normal" style="font-size: 16px"  @click="goAdd">保存</mt-button>-->
-<!--      </view>-->
-<!--    </mt-header>-->
-
     <u-navbar title="库存添加">
       <view @click="$goBack" class="u-nav-slot" slot="left">
         <u-icon name="arrow-left" size="20"></u-icon>
       </view>
-<!--      <view class="u-nav-slot" style="font-size: 15px;" slot="right">-->
-<!--        <rudon-rowMenuDotDotDot :localdata="options" @change="menuAction($event)">-->
-<!--          <image style="height: 25px;width: 25px" src="../../static/img/slh.png"></image>-->
-<!--        </rudon-rowMenuDotDotDot>-->
-<!--      </view>-->
       <view  @click="goAdd" class="u-nav-slot" slot="right" style="font-size: 15px;">
         提交
       </view>
@@ -83,53 +66,6 @@
     background: #ffffff;" >
       <text style="font-size: 17px;margin-bottom: 12px; color: #333333">尺码列表</text>
       <view  style="margin-top: 12px; " class="clearfix btm-distance">
-<!--        <el-table1 style="margin-top: 20px" border :data="tableData">-->
-<!--          &lt;!&ndash;          <el-table-column label="序号" type="index" width="50" align="center"></el-table-column>&ndash;&gt;-->
-<!--          <el-table-column align="center" prop="size" width="50" label="尺码"/>-->
-<!--          <el-table-column align="center" prop="inventory" width="70" label="库存">-->
-<!--            <template scope="scope">-->
-<!--              <view class="input-box">-->
-<!--                <input class="elInput1" type="number" v-model="scope.row.inventory"></input>-->
-<!--              </view>-->
-<!--            </template>-->
-<!--          </el-table-column>-->
-<!--          <el-table-column align="center" prop="price"  width="80"  label="进价">-->
-<!--            <template scope="scope">-->
-<!--              <view class="input-box">-->
-<!--                <input class="elInput1"  type="number" v-model="scope.row.price"></input>-->
-<!--              </view>-->
-<!--            </template>-->
-<!--          </el-table-column>-->
-<!--          <el-table-column align="center" prop="dwPrice"    label="售价">-->
-<!--            <template scope="scope">-->
-<!--              <view class="input-box">-->
-<!--                <input class="elInput1" type="number"  v-model="scope.row.dwPrice"></input>-->
-<!--              </view>-->
-<!--            </template>-->
-<!--          </el-table-column>-->
-<!--          <el-table-column align="center" prop="channelId"  width="80"  label="渠道">-->
-<!--            <template scope="scope">-->
-<!--              <view class="input-box">-->
-<!--                <select class="select" v-model="scope.row.channelId">-->
-<!--                  <option label="渠道"  value=""></option>-->
-<!--                  <option-->
-<!--                      v-for="item in channelIdList"-->
-<!--                      :key="item.fieldValue"-->
-<!--                      :label="item.fieldName"-->
-<!--                      :value="item.fieldValue">-->
-<!--                  </option>-->
-<!--                </select>-->
-<!--                &lt;!&ndash;                <input class="elInput1" type="number"  v-model="scope.row.dwPrice"></input>&ndash;&gt;-->
-<!--              </view>-->
-<!--            </template>-->
-<!--          </el-table-column>-->
-<!--          <el-table-column fixed="right" align="center" label="操作" width="55">-->
-<!--            <template scope="scope">-->
-<!--              <el-button type="text" @click="changeStatusDialog1(scope.row.sizeIndex,scope.row)">详情-->
-<!--              </el-button>-->
-<!--            </template>-->
-<!--          </el-table-column>-->
-<!--        </el-table1>-->
         <uni-table
             :style="tableData.length?'padding-bottom: 25vw;':''"
             ref="table"
@@ -166,17 +102,10 @@
             </uni-td>
             <uni-td>
               <view>
-<!--                <picker @change="bindPickerChange" :value="item.channelId" :range="channelIdList" range-key="name">-->
-<!--                  <view class="uni-input">{{channelIdList[index].name}}</view>-->
-<!--                </picker>-->
-<!--                <picker @change="bindPickerChange(item)" :value="item.channelId" :range="channelIdList" range-key="fieldName">-->
-<!--                  <view class="uni-input">{{channelIdList[item.channelId].fieldName}}</view>-->
-<!--                </picker>-->
                 <uni-data-select
                     v-model="item.channelId"
                     :localdata="range"
                     :clear="false"
-                    @change="change"
                 ></uni-data-select>
               </view>
             </uni-td>
@@ -184,51 +113,6 @@
         </uni-table>
       </view>
     </view>
-<!--    <mt-popup-->
-<!--        v-model="isShowDialog1">-->
-<!--      <mt-header title="查看详情">-->
-<!--        <view slot="right">-->
-<!--          <mt-button size="normal"  @click="isShowDialog1 = false" style="font-size: 15px">关闭</mt-button>-->
-<!--        </view>-->
-<!--        <view slot="left">-->
-<!--          <mt-button size="normal" @click="goDel" style="font-size: 16px">移除</mt-button>-->
-<!--        </view>-->
-<!--      </mt-header>-->
-<!--      <section style="height: 90vw;width: 80vw">-->
-<!--        <mt-field label="尺码" style="margin-top: 11vw;"  v-model="orderData1.size" :disabled="true"></mt-field>-->
-<!--        <mt-field label="仓库">-->
-<!--            <select size="small" class="select80_select" :disabled="true" v-model="orderData1.channelId"  >-->
-<!--          <o 80vn :disabled="true" value="" selected>渠道</option>-->
-<!--          <option-->
-<!--              v-for="item in channelIdList"-->
-<!--              :key="item.fieldValue"-->
-<!--              :label="item.fieldName"-->
-<!--              :value="+item.fieldValue">-->
-<!--          </option>-->
-<!--            </select>-->
-<!--        </mt-field>-->
-<!--        <mt-field label="库存" v-model="orderData1.inventory" :disabled="true"></mt-field>-->
-<!--        <mt-field label="进价" v-model="orderData1.price" :disabled="true"></mt-field>-->
-<!--        <mt-field label="售价" v-model="orderData1.dwPrice" :disabled="true"></mt-field>-->
-<!--        <mt-field label="手续费" :disabled="true" v-model="orderData1.poundage"></mt-field>-->
-<!--        <mt-field label="到手价" :disabled="true" v-model="orderData1.theirPrice"></mt-field>-->
-<!--        <mt-field label="利润" :disabled="true" v-model="orderData1.profits"></mt-field>-->
-<!--      </section>-->
-<!--    </mt-popup>-->
-    <!--    <view style="    margin-left: 20vw;-->
-    <!--    margin-top: 20px;">-->
-    <!--      <el-button style="bottom: 10px"-->
-    <!--        type="primary"-->
-    <!--                 size="small"-->
-    <!--        @click="goAdd">提交</el-button>-->
-    <!--      <el-button style="bottom: 10px"-->
-    <!--                 size="small"-->
-    <!--                 @click="$router.go(-1)">取消</el-button>-->
-    <!--      <el-button style="bottom: 10px"-->
-    <!--        type="primary"-->
-    <!--                 size="small"-->
-    <!--                 @click="gotoIndex">回到首页</el-button>-->
-    <!--    </view>-->
     <view class="popContainer" v-if="pictureZoomShow" @click="pictureZoomShow = false">
       <view class="imageShow">
         <image :src="imageZoom" mode="widthFix"  class="showImg"></image>
@@ -270,14 +154,6 @@
         totalCount: 1
       }
     },
-    // created() {
-    //   const { goodsId } = this.$route.query
-    //   this.goodsId = goodsId
-    //   this.form.goodsId = goodsId
-    //   if (this.goodsId) {
-    //     this.getDetailById(this.goodsId)
-    //   }
-    // },
     onLoad(options) {
       if (options) {
         this.goodsId = options.goodsId ? options.goodsId : '';
@@ -291,9 +167,6 @@
       this.listSysDict()
     },
     methods:{
-      change(e) {
-        console.log("e:", e);
-      },
       listSysDict() {
         let sysDictList = uni.getStorageSync('sysDictList') ? JSON.parse(
             uni.getStorageSync('sysDictList')) : []
@@ -385,9 +258,6 @@
         }
         this.tableData = table1
       },
-      // goodsDetail(id, flag) {
-      //   this.$router.push({ path: '/goodsDetail', query: { id, flag } })
-      // },
       goodsDetail(id) {
         debugger
         if (!id) {
@@ -433,12 +303,12 @@
             item.channelId = data1.channelId
           }
           this.tableData.push(item)
-          // this.$forceUpdate()
         } else {
           this.del(index)
           this.delItem(item)
         }
         console.info(this.tableData)
+        console.info(this.activeIndex)
       },
       goDetail(item) {
         console.info(item)

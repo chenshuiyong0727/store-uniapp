@@ -1,18 +1,18 @@
 {
-  "id": "uni-data-select",
-  "displayName": "uni-data-select 下拉框选择器",
-  "version": "1.0.6",
-  "description": "通过数据驱动的下拉框选择器",
+  "id": "uni-fab",
+  "displayName": "uni-fab 悬浮按钮",
+  "version": "1.2.5",
+  "description": "悬浮按钮 fab button ，点击可展开一个图标按钮菜单。",
   "keywords": [
     "uni-ui",
-    "select",
-    "uni-data-select",
-    "下拉框",
-    "下拉选"
+    "uniui",
+    "按钮",
+    "悬浮按钮",
+    "fab"
 ],
   "repository": "https://github.com/dcloudio/uni-ui",
   "engines": {
-    "HBuilderX": "^3.1.1"
+    "HBuilderX": ""
   },
   "directories": {
     "example": "../../temps/example_temps"
@@ -38,7 +38,7 @@
     "type": "component-vue"
   },
   "uni_modules": {
-    "dependencies": ["uni-load-more"],
+    "dependencies": ["uni-scss","uni-icons"],
     "encrypt": [],
     "platforms": {
       "cloud": {
@@ -47,8 +47,8 @@
       },
       "client": {
         "App": {
-          "app-vue": "u",
-          "app-nvue": "n"
+          "app-vue": "y",
+          "app-nvue": "y"
         },
         "H5-mobile": {
           "Safari": "y",
@@ -65,11 +65,10 @@
         },
         "小程序": {
           "微信": "y",
-          "阿里": "u",
-          "百度": "u",
-          "字节跳动": "u",
-        "QQ": "u",
-        "京东": "u"
+          "阿里": "y",
+          "百度": "y",
+          "字节跳动": "y",
+          "QQ": "y"
         },
         "快应用": {
           "华为": "u",

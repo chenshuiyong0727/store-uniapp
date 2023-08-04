@@ -1,18 +1,18 @@
 {
-  "id": "uni-data-select",
-  "displayName": "uni-data-select 下拉框选择器",
-  "version": "1.0.6",
-  "description": "通过数据驱动的下拉框选择器",
+  "id": "uni-datetime-picker",
+  "displayName": "uni-datetime-picker 日期选择器",
+  "version": "2.2.24",
+  "description": "uni-datetime-picker 日期时间选择器，支持日历，支持范围选择",
   "keywords": [
+    "uni-datetime-picker",
     "uni-ui",
-    "select",
-    "uni-data-select",
-    "下拉框",
-    "下拉选"
+    "uniui",
+    "日期时间选择器",
+    "日期时间"
 ],
   "repository": "https://github.com/dcloudio/uni-ui",
   "engines": {
-    "HBuilderX": "^3.1.1"
+    "HBuilderX": ""
   },
   "directories": {
     "example": "../../temps/example_temps"
@@ -38,7 +38,10 @@
     "type": "component-vue"
   },
   "uni_modules": {
-    "dependencies": ["uni-load-more"],
+    "dependencies": [
+			"uni-scss",
+			"uni-icons"
+		],
     "encrypt": [],
     "platforms": {
       "cloud": {
@@ -47,7 +50,7 @@
       },
       "client": {
         "App": {
-          "app-vue": "u",
+          "app-vue": "y",
           "app-nvue": "n"
         },
         "H5-mobile": {
@@ -65,11 +68,10 @@
         },
         "小程序": {
           "微信": "y",
-          "阿里": "u",
-          "百度": "u",
-          "字节跳动": "u",
-        "QQ": "u",
-        "京东": "u"
+          "阿里": "y",
+          "百度": "y",
+          "字节跳动": "y",
+          "QQ": "y"
         },
         "快应用": {
           "华为": "u",

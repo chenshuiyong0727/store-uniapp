@@ -1,21 +1,17 @@
 {
-  "id": "uni-data-select",
-  "displayName": "uni-data-select 下拉框选择器",
-  "version": "1.0.6",
-  "description": "通过数据驱动的下拉框选择器",
+  "id": "qiun-data-charts",
+  "displayName": "秋云 ucharts echarts 高性能跨全端图表组件",
+  "version": "2.5.0-20230101",
+  "description": "uCharts 新增正负柱状图！支持H5及APP用 ucharts echarts 渲染图表，uniapp可视化首选组件",
   "keywords": [
-    "uni-ui",
-    "select",
-    "uni-data-select",
-    "下拉框",
-    "下拉选"
+    "ucharts",
+    "echarts",
+    "f2",
+    "图表",
+    "可视化"
 ],
-  "repository": "https://github.com/dcloudio/uni-ui",
-  "engines": {
-    "HBuilderX": "^3.1.1"
-  },
-  "directories": {
-    "example": "../../temps/example_temps"
+  "repository": "https://gitee.com/uCharts/uCharts",
+"engines": {
   },
 "dcloudext": {
     "sale": {
@@ -27,18 +23,18 @@
       }
     },
     "contact": {
-      "qq": ""
+      "qq": "474119"
     },
     "declaration": {
       "ads": "无",
-      "data": "无",
+      "data": "插件不采集任何数据",
       "permissions": "无"
     },
-    "npmurl": "https://www.npmjs.com/package/@dcloudio/uni-ui",
+    "npmurl": "https://www.npmjs.com/~qiun",
     "type": "component-vue"
   },
   "uni_modules": {
-    "dependencies": ["uni-load-more"],
+    "dependencies": [],
     "encrypt": [],
     "platforms": {
       "cloud": {
@@ -47,8 +43,8 @@
       },
       "client": {
         "App": {
-          "app-vue": "u",
-          "app-nvue": "n"
+          "app-vue": "y",
+          "app-nvue": "y"
         },
         "H5-mobile": {
           "Safari": "y",
@@ -65,15 +61,14 @@
         },
         "小程序": {
           "微信": "y",
-          "阿里": "u",
-          "百度": "u",
-          "字节跳动": "u",
-        "QQ": "u",
-        "京东": "u"
+          "阿里": "y",
+          "百度": "y",
+          "字节跳动": "y",
+          "QQ": "y"
         },
         "快应用": {
-          "华为": "u",
-          "联盟": "u"
+          "华为": "y",
+          "联盟": "y"
         },
         "Vue": {
             "vue2": "y",
