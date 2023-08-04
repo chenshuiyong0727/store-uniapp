@@ -13,7 +13,7 @@
 	 * badge 徽标数
 	 * @description 该组件一般用于图标右上角显示未读的消息数量，提示用户点击，有圆点和圆包含文字两种形式。
 	 * @tutorial https://uviewui.com/components/badge.html
-	 * 
+	 *
 	 * @property {Boolean} 			isDot 		是否显示圆点 （默认 false ）
 	 * @property {String | Number} 	value 		显示的内容
 	 * @property {Boolean} 			show 		是否显示 （默认 true ）
@@ -115,11 +115,11 @@
 			height: $u-badge-dot-size;
 			width: $u-badge-dot-size;
 		}
-		
+
 		&--inverted {
 			font-size: 13px;
 		}
-		
+
 		&--not-dot {
 			padding: $u-badge-text-padding;
 		}
@@ -131,15 +131,17 @@
 		&--primary {
 			background-color: $u-badge-primary;
 		}
-		
+
 		&--primary--inverted {
 			color: $u-badge-primary;
 		}
 
 		&--error {
 			background-color: $u-badge-error;
+			margin-bottom: 14px;
+			margin-left: 0px !important;
 		}
-		
+
 		&--error--inverted {
 			color: $u-badge-error;
 		}
@@ -147,7 +149,7 @@
 		&--success {
 			background-color: $u-badge-success;
 		}
-		
+
 		&--success--inverted {
 			color: $u-badge-success;
 		}
@@ -155,7 +157,7 @@
 		&--info {
 			background-color: $u-badge-info;
 		}
-		
+
 		&--info--inverted {
 			color: $u-badge-info;
 		}
@@ -163,7 +165,7 @@
 		&--warning {
 			background-color: $u-badge-warning;
 		}
-		
+
 		&--warning--inverted {
 			color: $u-badge-warning;
 		}
