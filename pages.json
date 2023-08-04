@@ -6,7 +6,7 @@
     {
       "path": "pages/index/index",
       "style": {
-        "navigationBarTitleText": "柒月贰柒",
+        "navigationBarTitleText": "最硬球鞋",
         "pullToRefresh":{
           "color":"#409eff",
           "offset":"56px"
@@ -106,6 +106,13 @@
         },
         "enablePullDownRefresh": true,
         "onReachBottomDistance": 150
+      }
+    },
+    {
+      "path": "pages/store/storeAdd",
+      "style": {
+        "navigationBarTitleText": "库存添加",
+        "enablePullDownRefresh": false
       }
     },
     {

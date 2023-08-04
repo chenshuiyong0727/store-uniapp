@@ -132,7 +132,7 @@
             </p>
           </view>
           <view class="diangdans_con_right_dw">
-            <view class="dingdans_con_right_top_dw" @click="goodsDetail(item.id, 1) ">
+            <view class="dingdans_con_right_top_dw" @click="goodsDetail(item.id) ">
               <text>
                 {{item.name}}
               </text>
@@ -152,7 +152,7 @@
               </view>
               <view class="dingdans_top_right_dw">
                 <view class="dingdans_con_right_down_2_1">
-                  <text class="dw-button-common" @click="storeAdd(item.id)">>选择</text>
+                  <text class="dw-button-common" @click="storeAdd(item.id)">选择</text>
                   <text class="dw-button-common" style="margin-left: 2vw" @click="gotoDw(item.spuId)">得物</text>
 <!--                  <uni-link-->
 <!--                      style="margin-left: 2vw;"-->
@@ -399,7 +399,7 @@
 
         this.$router.push({ path: '/scanCode', query: { id, type } })
       },
-      goodsDetail(id, type) {
+      goodsDetail(id) {
         if (!id) {
           return
         }
@@ -426,8 +426,8 @@
         // #endif
       },
       storeAdd(goodsId) {
-
-        this.$router.push({ path: '/storeAdd', query: { goodsId } })
+        let url = '/pages/store/storeAdd?goodsId=' + goodsId
+        this.$navigateTo(url)
       },
       jumpactNo(actNo) {
 

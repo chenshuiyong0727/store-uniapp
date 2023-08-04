@@ -186,8 +186,8 @@
           </view>
           <view class="dingdans_top_right_dw" v-if="item.difference && item.thisTimePrice">
             变更
-            <strong style="font-size: 13px" v-if="item.difference > 0" class="color-danger"> +{{item.difference }}</strong>
-            <strong style="font-size: 13px" v-else class="color-success">{{item.difference }}</strong>
+            <strong style="font-size: 13px;margin-left: 1vw;" v-if="item.difference > 0" class="color-danger"> +{{item.difference }}</strong>
+            <strong style="font-size: 13px;margin-left: 1vw;" v-else class="color-success">{{item.difference }}</strong>
           </view>
         </view>
         <!--        中间-->
@@ -207,14 +207,15 @@
                 {{item.goodsName }}
               </text>
             </view>
-            <view class="dingdans_con_right_top_dw_1">
+            <view class="dingdans_con_right_top_dw_1 xianglian">
               <text @click="jumpactNo(item.actNo)">
               {{item.actNo}}
               </text>
               <image @click="$copyUrl(item.actNo)" class="fuzhitupian"
                      src="../../static/img/copy.png"></image>
             </view>
-            <view v-if="item.warehouseId" style="    margin-bottom: 10px;">
+            <view v-if="item.warehouseId" style="margin-bottom: 5px;
+    margin-top: 10px;">
               <text  class="dingdans_con_dw_address">
                 {{item.warehouseId | dictToDescTypeValue(40)}}
               </text>
@@ -229,16 +230,16 @@
                 <strong style="color: #333333">
                   ¥
                 </strong>
-                <strong  v-if="item.thisTimeThePrice" style="font-size: 17px ;margin-left: -2px;color: #333333">
+                <strong  v-if="item.thisTimeThePrice" style="font-size: 17px ;color: #333333">
                   {{item.thisTimeThePrice}}
                 </strong>
-                <strong v-if="!item.thisTimeThePrice && item.theirPrice" style="font-size: 17px ;margin-left: -2px;color: #333333">
+                <strong v-if="!item.thisTimeThePrice && item.theirPrice" style="font-size: 17px ;color: #333333">
                   {{item.theirPrice}}
                 </strong>
-                <text v-if="item.thisTimePrice" style="margin-left: 3px;text-decoration:line-through;">
+                <text v-if="item.thisTimePrice" style="margin-left: 5px;text-decoration:line-through;">
                   {{item.thisTimePrice}}
                 </text>
-                <text v-else style="margin-left: 3px;text-decoration:line-through;">
+                <text v-else style="margin-left: 5px;text-decoration:line-through;">
                   {{item.dwPrice}}
                 </text>
               </view>
@@ -249,10 +250,10 @@
         <view class="dingdans_bottom_dw">
           <view class="dingdans_top_left_dw">
             <text >入库价</text>
-            <text class="color-danger">{{item.price}}</text>
+            <text style="margin-left: 2px;" class="color-danger">{{item.price}}</text>
             <text >, 预估利润</text>
-            <text :class="item.thisTimeProfits>= 0 ? 'color-danger': 'color-success'"  v-if="item.thisTimePrice" >{{item.thisTimeProfits }}</text>
-            <text class="color-danger"  v-else  :class="(item.dwPrice - (item.dwPrice * 0.075 + 38 + 8.5) - item.price - 10)>= 0 ? 'color-danger': 'color-success'">
+            <text style="margin-left: 2px;"  :class="item.thisTimeProfits>= 0 ? 'color-danger': 'color-success'"  v-if="item.thisTimePrice" >{{item.thisTimeProfits }}</text>
+            <text style="margin-left: 2px;"  class="color-danger"  v-else  :class="(item.dwPrice - (item.dwPrice * 0.075 + 38 + 8.5) - item.price - 10)>= 0 ? 'color-danger': 'color-success'">
               {{(item.dwPrice - (item.dwPrice * 0.075 + 38 + 8.5) - item.price - 10) | numFilter}}
             </text>
           </view>

@@ -250,7 +250,8 @@
               <image @click="$copyUrl(item.actNo)" class="fuzhitupian"
                      src="../../static/img/copy.png"></image>
             </view>
-            <view v-if="item.addressId" style="    margin-bottom: 10px;">
+            <view v-if="item.addressId" style="margin-bottom: 5px;
+    margin-top: 10px;">
               <text class="dingdans_con_dw_address">
                 {{item.addressId | dictToDescTypeValue(38)}}
               </text>
@@ -302,18 +303,17 @@
         <view class="dingdans_bottom_dw">
           <view v-if="[2,11].includes(item.status)" class="dingdans_top_left_dw">
             <text v-if="item.thisTimePrice">最低售价</text>
-            <text v-if="item.thisTimePrice">{{item.thisTimePrice }} ,</text>
+            <text style="margin-left: 2px;"  v-if="item.thisTimePrice">{{item.thisTimePrice }} ,</text>
             <text v-if="item.thisTimeProfits" style="margin-left: 3px">预估利润</text>
-            <text v-if="item.thisTimeProfits">{{item.thisTimeProfits }}</text>
+            <text style="margin-left: 2px;"  v-if="item.thisTimeProfits">{{item.thisTimeProfits }}</text>
           </view>
           <view v-else class="dingdans_top_left_dw">
             <text>利润</text>
-            <text class="color-danger">{{item.profits }}</text>
+            <text style="margin-left: 2px;"  class="color-danger">{{item.profits }}</text>
             <text v-if="item.status == 3 && item.deliveryDeadlineTime" style="margin-left: 3px">
-              <text>,</text>
-              发货截止时间
+              <text>，发货截止时间</text>
             </text>
-            <text v-if="item.status == 3 && item.deliveryDeadlineTime" class="dingdans_con_dw_time">
+            <text  v-if="item.status == 3 && item.deliveryDeadlineTime" class="dingdans_con_dw_time">
               {{item.deliveryDeadlineTime | formateTime('{y}-{m}-{d} {h}:{i}') }}
             </text>
           </view>

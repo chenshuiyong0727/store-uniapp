@@ -239,7 +239,6 @@
                 this.$navigateTo('/pages/other/index')
               }, 1000)
             } else {
-              ``;
               this.$toast(res.subMsg)
             }
           })
