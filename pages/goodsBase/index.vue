@@ -152,8 +152,14 @@
               </view>
               <view class="dingdans_top_right_dw">
                 <view class="dingdans_con_right_down_2_1">
-                  <text class="dw-button-common">选择</text>
-                  <uni-link style="margin-left: 2vw;"  :href="'https://m.dewu.com/router/product/ProductDetail?spuId='+item.spuId" class="dw-button-common" >得物</uni-link>
+                  <text class="dw-button-common" @click="storeAdd(item.id)">>选择</text>
+                  <text class="dw-button-common" style="margin-left: 2vw" @click="gotoDw(item.spuId)">得物</text>
+<!--                  <uni-link-->
+<!--                      style="margin-left: 2vw;"-->
+<!--                      :href="'https://m.dewu.com/router/product/ProductDetail?spuId='+item.spuId"-->
+<!--                      class="dw-button-common"-->
+<!--                      :showUnderLine="false"-->
+<!--                  >得物</uni-link>-->
 <!--                  <text style="margin-left: 2vw;" class="dw-button-common">得物</text>-->
 <!--                  <rudon-rowMenuDotDotDot :localdata="optionsOp" @change="menuAction1($event,item.id)">-->
 <!--                    <text class="dw-button-common">操作</text>-->
@@ -404,8 +410,20 @@
         if (!spuId){
           return
         }
-        let url = "https://m.dewu.com/router/product/ProductDetail?spuId=";
-        window.location.href = url + spuId;
+        let url = "https://m.dewu.com/router/product/ProductDetail?spuId="+ spuId;
+        // window.location.href = url + spuId;
+        // uni.redirectTo({
+        //   url:  url + spuId
+        // })
+        // uni.navigateTo({
+        //   url: url
+        // })
+        // #ifdef APP-PLUS
+        plus.runtime.openURL(url) //这里默认使用外部浏览器打开而不是内部web-view组件打开
+        // #endif
+        // #ifdef H5
+        window.open(url)
+        // #endif
       },
       storeAdd(goodsId) {
 
