@@ -641,12 +641,24 @@
 
         this.$router.push({ path: '/goodsDetail', query: { id, type } })
       },
+      // gotoDw(spuId) {
+      //   if (!spuId){
+      //     return
+      //   }
+      //   let url = "https://m.dewu.com/router/product/ProductDetail?spuId=";
+      //   window.location.href = url + spuId;
+      // },
       gotoDw(spuId) {
         if (!spuId){
           return
         }
-        let url = "https://m.dewu.com/router/product/ProductDetail?spuId=";
-        window.location.href = url + spuId;
+        let url = "https://m.dewu.com/router/product/ProductDetail?spuId="+ spuId;
+        // #ifdef APP-PLUS
+        plus.runtime.openURL(url) //这里默认使用外部浏览器打开而不是内部web-view组件打开
+        // #endif
+        // #ifdef H5
+        window.open(url)
+        // #endif
       },
       storeAdd(goodsId) {
 
@@ -966,7 +978,6 @@
             if (res.confirm) {
               goodsInventoryApi.delById(id).then(res => {
                 _this.$toast(res.subMsg)
-                debugger
                 if (res.subCode === 1000) {
                   _this.search1()
                 }
