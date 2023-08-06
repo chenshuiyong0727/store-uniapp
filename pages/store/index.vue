@@ -616,7 +616,6 @@
       },
       confirm_sx_type(e) {
         this.show_sx_type = false
-        console.info(e)
         let fieldValue = e.value[0].fieldValue
         let fieldName = e.value[0].fieldName
         this.queryParam.type = fieldValue
@@ -669,7 +668,6 @@
         this.$router.push({ path: '/store', query: { actNo } })
       },
       converData(item) {
-        console.info(item)
         // let  optionsOp= [
         //         {
         //           value: 'goodsDetail',
@@ -712,7 +710,6 @@
         }
         // let newArr = list.map((num, index) => ({...optionsOp[index], value: num}));
         item.optionsOp=list
-        // console.info(item)
       },
       getPage() {
         this.isLoading = true
@@ -1018,42 +1015,41 @@
         //   // })
         // })
       },
-      update(orderData) {
-        this.orderData = orderData
-        this.requestParam.id = this.orderData.id
-        this.requestParam.sizeId = this.orderData.sizeId
-        console.info(this.orderData.createTime)
-        this.requestParam.createTime = parseTime(this.orderData.createTime)
-        console.info(this.requestParam.createTime)
-        this.requestParam.oldInventory = this.orderData.oldInventory
-        this.requestParam.inventory = this.orderData.inventory
-        this.requestParam.price = this.orderData.price
-        this.requestParam.dwPrice = this.orderData.dwPrice
-        this.requestParam.waybillNo = this.orderData.waybillNo
-        this.requestParam.addressId = this.orderData.addressId
-        // let poundage = this.requestParam.dwPrice * 0.075 + 38 + 8.5
-        // this.requestParam.poundage = parseFloat(poundage).toFixed(2)
-        if (!this.orderData.poundage) {
-          let poundage = this.requestParam.dwPrice * 0.075 + 38 + 8.5
-          this.requestParam.poundage = parseFloat(poundage).toFixed(2)
-        } else {
-          this.requestParam.poundage = this.orderData.poundage
-        }
-        if (!this.orderData.theirPrice) {
-          let theirPrice =  this.requestParam.dwPrice
-              - (this.requestParam.dwPrice * 0.075 + 38 + 8.5)
-          this.requestParam.theirPrice = parseFloat(theirPrice).toFixed(2)
-        } else {
-          this.requestParam.theirPrice = this.orderData.theirPrice
-        }
-        if (!this.orderData.profits) {
-          let profits = this.requestParam.theirPrice - 10
-              - this.requestParam.price
-          this.requestParam.profits = parseFloat(profits).toFixed(2)
-        } else {
-          this.requestParam.profits = this.orderData.profits
-        }
-        this.isShowDialog = true
+      update(row) {
+        this.$navigateTo('/pages/store/update?id=' + row.id)
+        // this.orderData = orderData
+        // this.requestParam.id = this.orderData.id
+        // this.requestParam.sizeId = this.orderData.sizeId
+        // this.requestParam.createTime = parseTime(this.orderData.createTime)
+        // this.requestParam.oldInventory = this.orderData.oldInventory
+        // this.requestParam.inventory = this.orderData.inventory
+        // this.requestParam.price = this.orderData.price
+        // this.requestParam.dwPrice = this.orderData.dwPrice
+        // this.requestParam.waybillNo = this.orderData.waybillNo
+        // this.requestParam.addressId = this.orderData.addressId
+        // // let poundage = this.requestParam.dwPrice * 0.075 + 38 + 8.5
+        // // this.requestParam.poundage = parseFloat(poundage).toFixed(2)
+        // if (!this.orderData.poundage) {
+        //   let poundage = this.requestParam.dwPrice * 0.075 + 38 + 8.5
+        //   this.requestParam.poundage = parseFloat(poundage).toFixed(2)
+        // } else {
+        //   this.requestParam.poundage = this.orderData.poundage
+        // }
+        // if (!this.orderData.theirPrice) {
+        //   let theirPrice =  this.requestParam.dwPrice
+        //       - (this.requestParam.dwPrice * 0.075 + 38 + 8.5)
+        //   this.requestParam.theirPrice = parseFloat(theirPrice).toFixed(2)
+        // } else {
+        //   this.requestParam.theirPrice = this.orderData.theirPrice
+        // }
+        // if (!this.orderData.profits) {
+        //   let profits = this.requestParam.theirPrice - 10
+        //       - this.requestParam.price
+        //   this.requestParam.profits = parseFloat(profits).toFixed(2)
+        // } else {
+        //   this.requestParam.profits = this.orderData.profits
+        // }
+        // this.isShowDialog = true
       }
     }
   };

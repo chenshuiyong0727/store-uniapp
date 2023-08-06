@@ -258,7 +258,6 @@
     methods: {
       // handleScroll () {
       //   let scrollTop = this.$refs.content.scrollTop;
-      //   console.info(scrollTop)
       //   if (scrollTop < 10){
       //     this.flag = false
       //   } else{

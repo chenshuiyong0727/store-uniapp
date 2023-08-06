@@ -123,6 +123,13 @@
       }
     },
     {
+      "path": "pages/store/update",
+      "style": {
+        "navigationBarTitleText": "修改",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
       "path": "pages/other/otherAdd",
       "style": {
         "navigationBarTitleText": "其他收支详情",

@@ -333,8 +333,6 @@
 
         let poundage = jsfwf + zzsxf + shwffwf + xfzyfbt + 38
         // let poundage = shelvesPrice * 0.075 + 38 + 8.5
-        // console.info('1',poundage1)
-        // console.info('0',poundage)
         this.requestParam1.poundage = parseFloat(poundage).toFixed(2)
 
         let theirPrice = shelvesPrice - poundage
@@ -357,8 +355,6 @@
       changeStatusDialog1(index, row) {
         this.inventoryIndex = index
         this.orderData1 = row
-        console.info(row)
-        console.info(index)
         if (this.orderData1.dwPrice) {
           let poundage = this.orderData1.dwPrice * 0.075 + 38 + 8.5
           this.orderData1.poundage = parseFloat(poundage).toFixed(2)
@@ -373,7 +369,6 @@
           this.orderData1.profits = parseFloat(profits).toFixed(2)
         }
         this.isShowDialog1 = true
-        console.info(this.orderData1)
       },
       confirmHandle1() {
         if (!this.requestParam1.num) {
@@ -481,11 +476,8 @@
           this.del(index)
           this.delItem(item)
         }
-        console.info(this.tableData)
-        console.info(this.activeIndex)
       },
       goDetail(item) {
-        console.info(item)
       },
       goDel() {
         this.del(this.inventoryIndex)

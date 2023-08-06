@@ -135,11 +135,9 @@
         this.form.typeStr = fieldName
       },
       deletePic(event) {
-        console.info(event);
         this[`fileList${event.name}`].splice(event.index, 1)
       },
       async afterRead(event) {
-        console.info(event);
         uni.showLoading({title: '上传中'});
         this.imgevent = event;
         // 当设置 multiple 为 true 时, file 为数组格式，否则为对象格式

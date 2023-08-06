@@ -541,7 +541,6 @@
               }
             }
             if (this.form.sizeList && totalCount < this.form.sizeList.length && this.reqCount < 5) {
-              console.info(this.reqCount)
               setTimeout(()=>{
                 this.reqCount ++
                 this.getPage()

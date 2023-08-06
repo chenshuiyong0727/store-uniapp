@@ -108,7 +108,6 @@
               }
             }
           } else {
-            console.info(res);
             uni.showToast({title: res.msg, icon: 'none',})
           }
         })

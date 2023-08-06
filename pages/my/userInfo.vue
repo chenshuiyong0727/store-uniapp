@@ -261,11 +261,9 @@
           });
       },
       deletePic(event) {
-        console.info(event);
         this[`fileList${event.name}`].splice(event.index, 1)
       },
       async afterRead(event) {
-        console.info(event);
         uni.showLoading({title: '上传中'});
         this.imgevent = event;
         // 当设置 multiple 为 true 时, file 为数组格式，否则为对象格式
@@ -302,10 +300,7 @@
             },
             success: (res) => {
               setTimeout(() => {
-                // console.info(res)
-                // console.info(res.data)
                 let resDta = JSON.parse(res.data);
-                // console.info(resDta)
                 if (resDta.sub_code != 1000) {
                   this.$toast('上传失败，请上传10 MB 以内的图片');
                   _this.deletePic(_this.imgevent)
@@ -393,7 +388,6 @@
           }
         })
         // userContainerApi.update(this.form).then(res => {
-        //   console.info(res)
         //   if (res.subCode === 1000) {
         //     this.$toast('操作成功')
         //   } else {
@@ -438,12 +432,10 @@
       //   }
       //   showLoading();
       //   let overSize = file.size / 1024 / 1024;
-      //   console.info("size1", overSize);
       //   if (overSize > 1) {
       //     file = await imageConversion.compressAccurately(file, 200)
       //   }
       //   overSize = file.size / 1024 / 1024;
-      //   console.info("size2", overSize);
       //   return file
       // },
       // beforeImageUpload(file) {

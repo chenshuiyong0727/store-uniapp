@@ -609,7 +609,7 @@
               this.requestParam3.inStoreFreeDay = res.data ? res.data.inStoreFreeDay : ''
               this.requestParam3.freight = res.data ? res.data.freight : ''
               this.requestParam3.waybillNo = res.data ? res.data.waybillNo : ''
-              console.info(this.requestParam3)
+
             } else {
               this.$toast(res.subMsg)
             }
@@ -664,7 +664,6 @@
       },
       confirm_sx_type(e) {
         this.show_sx_type = false
-        console.info(e)
         let fieldValue = e.value[0].fieldValue
         let fieldName = e.value[0].fieldName
         this.queryParam.type = fieldValue
@@ -758,12 +757,12 @@
           this.$toast('闪电直发入仓 ，免仓储费天数不能为空')
           return
         }
-        console.info(this.requestParam3)
+
         this.requestParam3.deliveryDeadlineTime = this.requestParam3.deliveryDeadlineTime
             ? this.$parseTime(this.requestParam3.deliveryDeadlineTime) : ''
         this.requestParam3.inStoreTime = this.requestParam3.inStoreTime ? this.$parseTime(
             this.requestParam3.inStoreTime) : ''
-        console.info(this.requestParam3)
+
         // 闪电直发
         // goodsOrderApi.updateSaleType(this.requestParam3)
         this.$request({
@@ -900,7 +899,6 @@
         this.pictureZoomShow = true
       },
       tabClick(item) {
-        // console.info(item)
         // this.queryParam.type = item.type
         // this.search1()
         this.queryParam.status = item.status

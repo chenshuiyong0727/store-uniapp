@@ -574,7 +574,6 @@
       },
       handleScroll() {
         let scrollTop = this.$refs.hello.scrollTop;
-        console.info(scrollTop);
         if (scrollTop < 40) {
           this.flag = false
         } else {

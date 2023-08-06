@@ -239,7 +239,6 @@
       //停止下拉刷新效果的api，如果发现进入刷新状态无法停止，可以用这个
     },
     onReachBottom() {
-      // console.info(1)
       // alert(1)
       // if(this.totalCount <= this.queryParam.pageSize) {
       //   return ;
@@ -305,7 +304,6 @@
       },
       confirm_sx_type(e) {
         this.show_sx_type = false
-        console.info(e)
         let fieldValue = e.value[0].fieldValue
         let fieldName = e.value[0].fieldName
         this.queryParam.type = fieldValue
@@ -340,8 +338,6 @@
               res.data.list.forEach(e => {
                 this.tableData.push(e)
               })
-              console.info(this.totalCount)
-              console.info(this.tableData.length)
               if (this.totalCount <= this.tableData.length) {
                 this.loadStatus = 'nomore';
                 this.isLoadMore = false
@@ -353,7 +349,6 @@
           } else {
             this.$toast(res.subMsg)
           }
-          console.info(this.isLoadMore)
         })
       },
       listSysDict() {

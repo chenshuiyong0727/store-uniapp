@@ -1,0 +1,412 @@
+<template lang="html">
+  <view class="login">
+    <u-navbar title="修改" bgColor="#F3F4F5">
+      <view @click="$goBack" class="u-nav-slot" slot="left">
+        <u-icon name="arrow-left" size="20"></u-icon>
+      </view>
+<!--      <view v-if="type == 1" @click="type=2" class="u-nav-slot" slot="right"-->
+<!--            style="font-size: 15px;">-->
+<!--        去修改-->
+<!--      </view>-->
+<!--      <view v-else @click="submit" class="u-nav-slot" slot="right" style="font-size: 15px;">-->
+<!--        保存-->
+<!--      </view>-->
+    </u-navbar>
+    <u--form
+        style="background-color: white"
+        class="julibiaoti"
+        labelPosition="left"
+        :model="form"
+        ref="uForm"
+    >
+      <view style="width: 90vw;margin-left: 5vw;">
+<!--        <u-form-item-->
+<!--            label="图片"-->
+<!--            borderBottom-->
+<!--            label-width="66vw"-->
+<!--            ref="item1"-->
+<!--        >-->
+<!--          <u-upload-->
+<!--              style="border-radius: 100%;"-->
+<!--              :fileList="fileList1"-->
+<!--              @afterRead="afterRead"-->
+<!--              @delete="deletePic"-->
+<!--              name="1"-->
+<!--              multiple-->
+<!--              :maxCount="1"-->
+<!--              :width="70"-->
+<!--              :height="70"-->
+<!--          >-->
+<!--          </u-upload>-->
+<!--          <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
+<!--        </u-form-item>-->
+<!--        <u-form-item label="类型" borderBottom @click="showSxType(); $hideKeyboard()">-->
+<!--          <u&#45;&#45;input inputAlign="right" disabledColor="#fff"-->
+<!--                    placeholderStyle="font-size: 14px;color:#c0c4cc"-->
+<!--                    v-model="form.typeStr" border="none" disabled></u&#45;&#45;input>-->
+<!--          <u-icon   class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
+<!--        </u-form-item>-->
+        <u-form-item label="货号" label-width="25vw" borderBottom>
+          <u--input :disabled="true" disabledColor="#fff" inputAlign="right" color="#d1d1d1"
+                    v-model="orderData.actNo" border="none"></u--input>
+<!--          <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
+        </u-form-item>
+        <u-form-item label-width="25vw"  label="尺码" borderBottom>
+          <u--input  disabledColor="#fff" inputAlign="right"
+                    v-model="requestParam.size" type="digit" border="none"></u--input>
+          <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
+        </u-form-item>
+
+        <u-form-item label-width="25vw"  label="原始库存" borderBottom>
+          <u--input  disabledColor="#fff" inputAlign="right"
+                    v-model="requestParam.oldInventory" type="number " border="none"></u--input>
+          <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
+        </u-form-item>
+
+        <u-form-item label-width="25vw"  label="剩余库存" borderBottom>
+          <u--input  disabledColor="#fff" inputAlign="right"
+                    v-model="requestParam.inventory" type="number " border="none"></u--input>
+          <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
+        </u-form-item>
+
+        <u-form-item label-width="25vw" label="入库价" borderBottom>
+          <u--input  disabledColor="#fff" inputAlign="right" @change="keyup1"
+                    v-model="requestParam.price" type="digit" border="none"></u--input>
+          <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
+        </u-form-item>
+
+        <u-form-item label-width="25vw" label="出售价格" borderBottom>
+          <u--input  disabledColor="#fff" inputAlign="right" @change="keyup1"
+                    v-model="requestParam.dwPrice" type="digit" border="none"></u--input>
+          <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
+        </u-form-item>
+
+        <u-form-item label-width="25vw" label="入库时间" borderBottom @click="showFrom = true; $hideKeyboard()">
+          <u--input  disabledColor="#fff" inputAlign="right"  :disabled="true"
+                     v-model="requestParam.createTime" border="none"></u--input>
+          <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
+        </u-form-item>
+
+        <u-form-item label-width="25vw" label="手续费" borderBottom>
+          <u--input  :disabled="true" disabledColor="#fff" inputAlign="right"
+                    v-model="requestParam.poundage" type="digit" border="none" color="#d1d1d1"></u--input>
+        </u-form-item>
+
+        <u-form-item label-width="25vw" label="到手价" borderBottom>
+          <u--input  :disabled="true" disabledColor="#fff" inputAlign="right"
+                    v-model="requestParam.theirPrice" type="digit" border="none" color="#d1d1d1"></u--input>
+        </u-form-item>
+
+        <u-form-item label-width="25vw" label="利润" borderBottom>
+          <u--input  :disabled="true" disabledColor="#fff" inputAlign="right"
+                    v-model="requestParam.profits" type="digit" border="none" color="#d1d1d1"></u--input>
+        </u-form-item>
+      </view>
+    </u--form>
+    <u-picker :show="show_sx_type" :columns="columns" @cancel="show_sx_type= false" :defaultIndex="defaultIndex"
+              @confirm="confirm_sx_type" keyName="fieldName"></u-picker>
+    <u-datetime-picker
+        :show="showFrom"
+        :minDate="1646064000000"
+        @confirm="confirmFrom"
+        @cancel="cancelFrom"
+    ></u-datetime-picker>
+    <view class="baisebeijing shuipingjuzhong" style="width:100%;position:fixed;bottom:0;
+     border-top: solid #E2DDDD 1px;">
+      <u-button style="width: 50vw; margin: 10px 15px;" type="primary" @click="confirmHandle">
+        <text style=" font-size: 17px;font-weight: 600">提交</text>
+      </u-button>
+    </view>
+  </view>
+</template>
+
+<script>
+  // import {goodsOtherApi} from '@/api/goodsOther'
+  import {goodsInventoryApi} from '@/api/goodsInventory'
+
+  export default {
+    components: {
+    },
+    data() {
+      return {
+        showFrom: false,
+        fileList1: [],
+        show_sx_type: false,
+        defaultIndex: [1],
+        form: {
+          type: 2,
+          typeStr: '支出',
+          actNo: '',
+          name: '',
+          imgUrl: '',
+          brand: '',
+          remark: '',
+          price: ''
+        },
+        typeList: [],
+        columns: [],
+        id: '',
+        orderData: '',
+        requestParam: {
+          id: '',
+          createTime: '',
+          sizeId: '',
+          oldInventory: '',
+          inventory: '',
+          price: '',
+          dwPrice: '',
+          poundage: '',
+          theirPrice: '',
+          profits: '',
+          waybillNo: '',
+          addressId: ''
+        },
+      }
+    },
+    onLoad(options) {
+      if (options) {
+        this.id = options.id ? options.id : '';
+        if (this.id) {
+          this.getDetailById(this.id)
+        }
+      }
+    },
+    mounted() {
+      this.listSysDict()
+    },
+    methods: {
+      keyup1() {
+        let poundage =  this.$getPoundage(this.requestParam.dwPrice)
+        this.requestParam.poundage = parseFloat(poundage).toFixed(2)
+
+        let theirPrice =  this.requestParam.dwPrice - poundage
+        this.requestParam.theirPrice = parseFloat(theirPrice).toFixed(2)
+
+        let profits = this.requestParam.theirPrice - 10
+            - this.requestParam.price
+        this.requestParam.profits = parseFloat(profits).toFixed(2)
+      },
+      showSxType() {
+        if (this.type ==1){
+          return
+        }
+        this.show_sx_type = true
+      },
+      cancelFrom() {
+        this.showFrom = false
+        this.requestParam.createTime = ''
+        this.search1()
+      },
+      confirmFrom(e) {
+        this.showFrom = false;
+        let timeValue = uni.$u.timeFormat(e.value, 'yyyy-mm-dd hh:MM');
+        this.requestParam.createTime = timeValue
+        // this.search1()
+      },
+      confirm_sx_type(e) {
+        this.show_sx_type = false
+        let fieldValue = e.value[0].fieldValue
+        let fieldName = e.value[0].fieldName
+        this.form.type = fieldValue
+        this.form.typeStr = fieldName
+      },
+
+      confirmHandle() {
+        if (this.requestParam.oldInventory < this.requestParam.inventory) {
+          // this.$toast('原始库存小于剩余库存')
+          this.$toast('原始库存小于剩余库存')
+          return
+        }
+        this.requestParam.createTime = this.requestParam.createTime ? this.$parseTime(this.requestParam.createTime) : ''
+        goodsInventoryApi.update(this.requestParam).then(res => {
+          this.$toast(res.subMsg);
+          if (res.subCode === 1000) {
+            setTimeout(() => {
+              uni.reLaunch({
+                url: '/pages/store/index',
+              });
+            }, 1000)
+        }
+        })
+      },
+      deletePic(event) {
+        this[`fileList${event.name}`].splice(event.index, 1)
+      },
+      async afterRead(event) {
+        uni.showLoading({title: '上传中'});
+        this.imgevent = event;
+        // 当设置 multiple 为 true 时, file 为数组格式，否则为对象格式
+        let lists = [].concat(event.file);
+        let fileListLen = this[`fileList${event.name}`].length;
+        lists.map((item) => {
+          this[`fileList${event.name}`].push({
+            ...item,
+            status: 'uploading',
+            message: '上传中'
+          })
+        });
+        for (let i = 0; i < lists.length; i++) {
+          const result = await this.uploadFilePromise(lists[i].url);
+          uni.hideLoading();
+          let item = this[`fileList${event.name}`][fileListLen];
+          this[`fileList${event.name}`].splice(fileListLen, 1, Object.assign(item, {
+            status: 'success',
+            message: '',
+            url: result
+          }));
+          fileListLen++
+        }
+      },
+      uploadFilePromise(url) {
+        var _this = this;
+        return new Promise((resolve, reject) => {
+          let a = uni.uploadFile({
+            url: this.$actionUrl, // 仅为示例，非真实的接口地址
+            filePath: url,
+            name: 'file',
+            formData: {
+              user: 'test'
+            },
+            success: (res) => {
+              setTimeout(() => {
+                let resDta = JSON.parse(res.data);
+                if (resDta.sub_code != 1000) {
+                  this.$toast('上传失败，请上传10 MB 以内的图片');
+                  _this.deletePic(_this.imgevent)
+                } else {
+                  this.$toast('上传成功');
+                  this.form.imgUrl = resDta.data;
+                  resolve(res.data.data)
+                }
+              }, 1000)
+            },
+            fail: (res) => {
+              this.$toast('上传失败，请上传10 MB 以内的图片');
+              resolve(res)
+            }
+          });
+        })
+      },
+      handleClick() {
+        this.requestParam.id = this.orderData.id
+        this.requestParam.sizeId = this.orderData.sizeId
+        // this.requestParam.createTime = this.$parseTime(this.orderData.createTime)
+        this.requestParam.createTime  = uni.$u.timeFormat(this.orderData.createTime, 'yyyy-mm-dd hh:MM');
+        this.requestParam.oldInventory = this.orderData.oldInventory
+        this.requestParam.inventory = this.orderData.inventory
+        this.requestParam.price = this.orderData.price
+        this.requestParam.dwPrice = this.orderData.dwPrice
+        this.requestParam.waybillNo = this.orderData.waybillNo
+        this.requestParam.addressId = this.orderData.addressId
+        // let poundage = this.requestParam.dwPrice * 0.075 + 38 + 8.5
+        // this.requestParam.poundage = parseFloat(poundage).toFixed(2)
+        if (!this.orderData.poundage) {
+          let poundage = this.$getPoundage(this.requestParam.dwPrice)
+          this.requestParam.poundage = parseFloat(poundage).toFixed(2)
+        } else {
+          this.requestParam.poundage = this.orderData.poundage
+        }
+        if (!this.orderData.theirPrice) {
+          let theirPrice =  this.requestParam.dwPrice
+              - this.$getPoundage(this.requestParam.dwPrice)
+          this.requestParam.theirPrice = parseFloat(theirPrice).toFixed(2)
+        } else {
+          this.requestParam.theirPrice = this.orderData.theirPrice
+        }
+        if (!this.orderData.profits) {
+          let profits = this.requestParam.theirPrice - 10
+              - this.requestParam.price
+          this.requestParam.profits = parseFloat(profits).toFixed(2)
+        } else {
+          this.requestParam.profits = this.orderData.profits
+        }
+      },
+      getDetailById(id) {
+        if (id) {
+          goodsInventoryApi.getDetailById(id).then(res => {
+            if (res.subCode === 1000) {
+              this.orderData = res.data ? res.data : {};
+              this.handleClick()
+              // if (this.form.imgUrl) {
+              //   let url = this.$fileUrl + this.form.imgUrl;
+              //   let data1 = {};
+              //   data1.url = url;
+              //   this.fileList1.push(data1)
+              // }
+              // if (this.form.type){
+              //   this.form.typeStr = this.$typeToStr(39,this.form.type)
+              //   this.defaultIndex = [this.$getTypeIndex(39,this.form.type)]
+              // }
+            } else {
+              this.$toast(res.subMsg)
+            }
+          })
+        }
+      },
+      submit() {
+        if (!this.form.type) {
+          this.$toast('类型非空');
+          return false
+        }
+        if (!this.form.price) {
+          this.$toast('金额非空');
+          return false
+        }
+        if (!this.form.name) {
+          this.$toast('名称非空');
+          return false
+        }
+        if (this.form.price > 0 && this.form.type == 2) {
+          this.form.price = 0 - this.form.price
+        }
+        if (this.type == 2) {
+          goodsOtherApi.update(this.form).then(res => {
+            if (res.subCode === 1000) {
+              this.$toast('操作成功,即将返回列表');
+              setTimeout(() => {
+                this.$navigateTo('/pages/other/index')
+              }, 1000)
+            } else {
+              this.$toast(res.subMsg)
+            }
+          })
+        } else {
+          goodsOtherApi.add(this.form).then(res => {
+            if (res.subCode === 1000) {
+              this.$toast('添加成功，即将返回列表');
+              setTimeout(() => {
+                this.$navigateTo('/pages/other/index')
+              }, 1000)
+            } else {
+              this.$toast(res.subMsg)
+            }
+          })
+        }
+      },
+      listSysDict() {
+        let sysDictList = uni.getStorageSync('sysDictList') ? JSON.parse(
+            uni.getStorageSync('sysDictList')) : [];
+        this.typeList = sysDictList.filter(item => item.typeValue == 39);
+        this.columns.push(this.typeList)
+      },
+
+    }
+  }
+
+</script>
+
+<style lang="less" scoped>
+  @import '@/assets/index/style.css';
+
+  .login {
+    > section {
+      .tip {
+        padding: 6vw 3vw;
+        color: rgb(224, 145, 71);
+        letter-spacing: 2px;
+        font-size: 16px;
+      }
+    }
+  }
+
+</style>

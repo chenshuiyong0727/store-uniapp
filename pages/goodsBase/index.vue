@@ -378,7 +378,6 @@
       },
       confirm_sx_type(e) {
         this.show_sx_type = false
-        console.info(e)
         let fieldValue = e.value[0].fieldValue
         let fieldName = e.value[0].fieldName
         this.queryParam.type = fieldValue
@@ -511,7 +510,6 @@
         this.pictureZoomShow = true
       },
       tabClick(item) {
-        console.info(item)
         this.queryParam.type = item.type
         this.search1()
       },
