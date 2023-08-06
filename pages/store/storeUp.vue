@@ -1,32 +1,32 @@
 <template lang="html">
   <view class="login">
-    <u-navbar title="上架"  bgColor="#F3F4F5">
+    <u-navbar title="上架" bgColor="#F3F4F5">
       <view @click="$goBack" class="u-nav-slot" slot="left">
         <u-icon name="arrow-left" size="20"></u-icon>
       </view>
-<!--      <view  @click="goAdd" class="u-nav-slot" slot="right" style="font-size: 15px;">-->
-<!--        提交-->
-<!--      </view>-->
+      <!--      <view  @click="goAdd" class="u-nav-slot" slot="right" style="font-size: 15px;">-->
+      <!--        提交-->
+      <!--      </view>-->
     </u-navbar>
-    <view class="width92 baisebeijing" style="margin-top: 60px;" >
-        <view style="width: 85vw;margin-left: 4vw;    padding-top: 10px;">
-          <text>
-            <strong v-if="orderData1.id"
-                    @click="goodsDetail(orderData1.id) "
-                    style="  color: #333333;font-size: 14px;">
-              {{orderData1.goodsName }}
-            </strong>
-          </text>
+    <view class="width92 baisebeijing" style="margin-top: 60px;">
+      <view style="width: 85vw;margin-left: 4vw;    padding-top: 10px;">
+        <text>
+          <strong v-if="orderData1.goodsId"
+                  @click="goodsDetail(orderData1.goodsId) "
+                  style="  color: #333333;font-size: 14px;">
+            {{orderData1.goodsName }}
+          </strong>
+        </text>
       </view>
-      <view class="dingdans_item" style="margin-bottom: 7px; border-bottom:0px ;padding:10px" >
+      <view class="dingdans_item" style="margin-bottom: 7px; border-bottom:0px ;padding:10px">
         <view class="dingdans_con" style="padding:0">
           <view style="  width: 210px;    border: 1px solid #f1f1f1;
     height: 100px;
     position: relative;
-    border-radius: 5px;" >
-            <image mode="widthFix"    @click="avatarShow(orderData1.img)" style="  width: 80%;
+    border-radius: 5px;">
+            <image mode="widthFix" @click="avatarShow(orderData1.img)" style="  width: 80%;
     margin-top: 28px;
-    margin-left: 10%;" :src="orderData1.img"  ></image>
+    margin-left: 10%;" :src="orderData1.img"></image>
           </view>
           <view class="diangdans_con_right" style="font-size: 14px;
       padding-left: 12px;
@@ -34,7 +34,7 @@
             <view class="dingdans_con_right_top xianglian">
               <view class="xianglian">
                 <text @click="jumpactNo(orderData1.actNo)">
-                {{orderData1.actNo}}
+                  {{orderData1.actNo}}
                 </text>
                 <image @click="$copyUrl(orderData1.actNo)" class="fuzhitupian"
                        src="../../static/img/copy.png"></image>
@@ -43,7 +43,8 @@
                 <text>|</text>
               </view>
               <view>
-                尺码： <text>{{orderData1.size}}</text>
+                尺码：
+                <text>{{orderData1.size}}</text>
               </view>
             </view>
 
@@ -51,24 +52,25 @@
               <view class="xianglian">
                 库存：
                 <text>
-                {{orderData1.inventory}}
+                  {{orderData1.inventory}}
                 </text>
                 /
                 <text>
                   {{orderData1.oldInventory}}
                 </text>
               </view>
-              <view  class="shugangfengexian">
+              <view class="shugangfengexian">
                 <text>|</text>
               </view>
               <view>
-                已上架：<text>{{orderData1.galleryCount}}</text>
+                已上架：
+                <text>{{orderData1.galleryCount}}</text>
               </view>
             </view>
 
             <view class="dingdans_con_right_top xianglian">
-                <text>入库价：</text>
-                 <u--text mode="price" :text="orderData1.price"></u--text>
+              <text>入库价：</text>
+              <u--text mode="price" :text="orderData1.price"></u--text>
             </view>
 
           </view>
@@ -77,130 +79,152 @@
     </view>
 
 
-    <view class="width92 baisebeijing" style="margin-top: 10px;" >
+    <view class="width92 baisebeijing" style="margin-top: 10px;">
       <view class="zuoyouduiqi" style="width: 85vw;margin-left: 4vw;    padding: 12px 0;">
-         <text style="font-weight: 600;font-size: 14px">出售数量</text>
+        <text style="font-weight: 600;font-size: 14px">出售数量</text>
         <u-number-box v-model="requestParam1.num" :max="max1"></u-number-box>
       </view>
     </view>
 
-    <view class="width92 baisebeijing" style="margin-top: 10px;" >
+    <view class="width92 baisebeijing" style="margin-top: 10px;">
       <view style="width: 85vw;margin-left: 4vw;    padding: 12px 0;">
-        <text style="font-weight: 600;font-size: 14px;margin-top: 5px;">出售价格</text>
-        <view style="font-weight: 600;caret-color:#409eff;  border-bottom: 2px solid #333333;margin-top: 10px;">
-        <u--input
-            placeholderStyle="font-size: 24px;color:#c0c4cc"
-            @change="keyup2"
-            v-model="requestParam1.shelvesPrice"
-            placeholder="输入价格" color="#333333" clearable border="none" fontSize="30px" type="digit">
-          <u--text
-              size="20"
-              color="#333333"
-              text="￥"
-              slot="prefix"
-              margin="0 3px 0 0"
-          ></u--text>
-          <template slot="suffix">
+        <view style="margin-right: 3px;">
+          <text style="font-weight: 600;font-size: 14px;margin-top: 5px;">出售价格</text>
+        </view>
+        <view class="zuoyouduiqi"
+              style="font-weight: 600;caret-color:#409eff;  border-bottom: 2px solid #333333;margin-top: 10px;">
+          <view>
+            <u-text
+                size="20"
+                color="#333333"
+                text="￥"
+                margin="0 3px 0 0"
+            ></u-text>
+          </view>
+          <view style="width: 60vw">
+            <u--input
+                placeholderStyle="font-size: 24px;color:#c0c4cc"
+                @change="keyup2"
+                v-model="requestParam1.shelvesPrice"
+                placeholder="输入价格" color="#333333" clearable border="none" fontSize="30px"
+                type="digit">
+            </u--input>
+          </view>
+
+          <view style="width: 20vw">
+
             <text style="font-size: 12px;color: #808080">
-            {{tipMsg}}
+              {{tipMsg}}
             </text>
-          </template>
-        </u--input>
+          </view>
         </view>
       </view>
-      <view v-if="requestParam1.shelvesPrice" style="width: 85vw;margin-left: 4vw;color: #808080;font-size: 10px;padding-bottom: 18px;">
-        <view class="zuoyouduiqi "  style="margin-top: 5px;">
+      <view v-if="requestParam1.shelvesPrice"
+            style="width: 85vw;margin-left: 4vw;color: #808080;font-size: 12px;padding-bottom: 18px;">
+        <view class="zuoyouduiqi " style="margin-top: 5px;">
           <view>
             <text>技术服务费</text>
             <text style="margin-left: 3px">5.00%</text>
           </view>
           <view class="xianglian">
-            <text v-if="requestParam1.jsfwf<=15" style="padding: 1px; background-color: #E9EDF2;margin-right: 3px;">已达下限</text>
-            <text v-if="requestParam1.jsfwf>=249" style="padding: 1px; background-color: #E9EDF2;margin-right: 3px;">已达上限</text>
-            <u--text mode="price" color="#808080" :text="requestParam1.jsfwf"></u--text>
+            <text v-if="requestParam1.jsfwf<=15"
+                  style="padding: 1px; background-color: #E9EDF2;margin-right: 3px;">已达下限
+            </text>
+            <text v-if="requestParam1.jsfwf>=249"
+                  style="padding: 1px; background-color: #E9EDF2;margin-right: 3px;">已达上限
+            </text>
+            <u--text mode="price" color="#808080" size="12" :text="requestParam1.jsfwf"></u--text>
           </view>
         </view>
-        <view class="zuoyouduiqi" style="margin-top: 5px;" >
+        <view class="zuoyouduiqi" style="margin-top: 5px;">
           <view>
             <text>转账手续费</text>
             <text style="margin-left: 3px">1.00%</text>
           </view>
           <view>
-            <u--text mode="price" color="#808080" :text="requestParam1.zzsxf"></u--text>
+            <u--text mode="price" color="#808080" size="12" :text="requestParam1.zzsxf"></u--text>
           </view>
         </view>
-        <view class="zuoyouduiqi" style="margin-top: 5px;" >
+        <view class="zuoyouduiqi" style="margin-top: 5px;">
           <view>
             <text>操作服务费</text>
           </view>
           <view>
-            <u--text mode="price" color="#808080" :text="requestParam1.czfwf"></u--text>
+            <u--text mode="price" color="#808080" size="12" :text="requestParam1.czfwf"></u--text>
           </view>
         </view>
-        <view class="zuoyouduiqi" style="margin-top: 5px;" >
+        <view class="zuoyouduiqi" style="margin-top: 5px;">
           <view>
             <text>售后无忧服务费</text>
             <text style="margin-left: 3px">{{requestParam1.shwffwfBl}}0%</text>
           </view>
           <view>
-            <u--text mode="price" color="#808080" :text="requestParam1.shwffwf"></u--text>
+            <u--text mode="price" color="#808080" size="12" :text="requestParam1.shwffwf"></u--text>
           </view>
         </view>
-        <view class="zuoyouduiqi" style="margin-top: 5px;" >
+        <view class="zuoyouduiqi" style="margin-top: 5px;">
           <view>
             <text>消费者邮费补贴</text>
           </view>
           <view>
-            <u--text mode="price" color="#808080" :text="requestParam1.xfzyfbt"></u--text>
+            <u--text mode="price" color="#808080" size="12" :text="requestParam1.xfzyfbt"></u--text>
           </view>
         </view>
-        <view class="zuoyouduiqi" style="font-weight: 600;font-size: 15px;padding-top: 15px;color: #333333" >
+        <view class="zuoyouduiqi"
+              style="font-weight: 600;font-size: 15px;padding-top: 15px;color: #333333">
           <view>
             <text>手续费总额</text>
           </view>
           <view>
-            <u--text style="font-weight: 600;" :bold="true" mode="price" color="#333333" size="17" :text="requestParam1.poundage"></u--text>
+            <u--text style="font-weight: 600;" :bold="true" mode="price" color="#333333" size="17"
+                     :text="requestParam1.poundage"></u--text>
           </view>
         </view>
-        <view class="zuoyouduiqi" style="font-weight: 600;font-size: 15px;padding-top: 10px;color: #333333" >
+        <view class="zuoyouduiqi"
+              style="font-weight: 600;font-size: 15px;padding-top: 10px;color: #333333">
           <view>
             <text>预计最高收入</text>
           </view>
           <view>
-            <u--text style="font-weight: 600;" :bold="true" mode="price" color="#333333" size="17" :text="requestParam1.theirPrice"></u--text>
+            <u--text style="font-weight: 600;" :bold="true" mode="price" color="#333333" size="17"
+                     :text="requestParam1.theirPrice"></u--text>
           </view>
         </view>
-        <view class="zuoyouduiqi" style="font-weight: 600;font-size: 15px;padding-top: 10px;color: #333333" >
+        <view class="zuoyouduiqi"
+              style="font-weight: 600;font-size: 15px;padding-top: 10px;color: #333333">
           <view>
             <text>预计利润</text>
           </view>
           <view>
-            <u--text style="font-weight: 600;" :bold="true" mode="price" color="#333333" size="17" :text="requestParam1.profits"></u--text>
+            <u--text style="font-weight: 600;" :bold="true" mode="price" color="#333333" size="17"
+                     :text="requestParam1.profits"></u--text>
           </view>
         </view>
 
       </view>
     </view>
+    <view style="height: 60px"></view>
 
     <view class="baisebeijing shuipingjuzhong" style="width:100%;position:fixed;bottom:0;
      border-top: solid #E2DDDD 1px;">
-      <u-button style="width: 50vw; margin: 10px 15px;" type="primary" @click="confirmHandle1" >
+      <u-button style="width: 50vw; margin: 10px 15px;" type="primary" @click="confirmHandle1">
         <text style=" font-size: 17px;font-weight: 600">提交</text>
       </u-button>
     </view>
 
     <view class="popContainer" v-if="pictureZoomShow" @click="pictureZoomShow = false">
       <view class="imageShow">
-        <image :src="imageZoom" mode="widthFix"  class="showImg"></image>
+        <image :src="imageZoom" mode="widthFix" class="showImg"></image>
       </view>
     </view>
   </view>
 </template>
 
 <script>
-  import { goodsInventoryApi } from '@/api/goodsInventory'
+  import {goodsInventoryApi} from '@/api/goodsInventory'
+
   export default {
-    data(){
+    data() {
       return {
         form: {
           sizeVoList: '',
@@ -209,17 +233,17 @@
           imgUrl: '',
           img: '',
         },
-        array: [{name:'中国'},{name: '美国'}, {name:'巴西'}, {name:'日本'}],
+        array: [{name: '中国'}, {name: '美国'}, {name: '巴西'}, {name: '日本'}],
         index: 2,
         isShowDialog2: false,
         pictureZoomShow: false,
         imageZoom: false,
         channelIdList: [],
         range: [
-          { value: 1, text: "线下" },
-          { value: 2, text: "线上" }
+          {value: 1, text: "线下"},
+          {value: 2, text: "线上"}
         ],
-        inventoryIndex:'',
+        inventoryIndex: '',
         activeIndex: [],
         tipMsg: '',//请以9结尾
         goodsId: '',
@@ -238,12 +262,12 @@
           type: 1,
           num: '',
           shelvesPrice: '',
-          jsfwf:15,
-          zzsxf:'',
-          czfwf:38,
-          shwffwf:'',
-          shwffwfBl:1.5,
-          xfzyfbt:''
+          jsfwf: 15,
+          zzsxf: '',
+          czfwf: 38,
+          shwffwf: '',
+          shwffwfBl: 1.5,
+          xfzyfbt: ''
         },
       }
     },
@@ -258,30 +282,30 @@
     mounted() {
       this.listSysDict()
     },
-    methods:{
+    methods: {
       keyup2() {
-        let shelvesPrice = this.requestParam1.shelvesPrice+''
-        if (shelvesPrice < 100){
-          this.tipMsg ='请提高价格'
-        } else if (shelvesPrice > 299 ){
-          let price2 = shelvesPrice.substring(shelvesPrice.length - 1,shelvesPrice.length)
-          if (price2 != 9){
+        let shelvesPrice = this.requestParam1.shelvesPrice + ''
+        if (shelvesPrice < 100) {
+          this.tipMsg = '请提高价格'
+        } else if (shelvesPrice > 299) {
+          let price2 = shelvesPrice.substring(shelvesPrice.length - 1, shelvesPrice.length)
+          if (price2 != 9) {
             this.tipMsg = '请以9结尾'
-          }else{
-            this.tipMsg=''
+          } else {
+            this.tipMsg = ''
           }
-        }else {
-          this.tipMsg =''
+        } else {
+          this.tipMsg = ''
         }
-        if (!shelvesPrice){
-          this.tipMsg =''
+        if (!shelvesPrice) {
+          this.tipMsg = ''
         }
 
         let jsfwf = shelvesPrice * 0.05
-        if (jsfwf <15){
+        if (jsfwf < 15) {
           jsfwf = 15
         }
-        if (jsfwf >249){
+        if (jsfwf > 249) {
           jsfwf = 249
         }
         this.requestParam1.jsfwf = parseFloat(jsfwf).toFixed(2)
@@ -290,30 +314,30 @@
         this.requestParam1.zzsxf = parseFloat(zzsxf).toFixed(2)
 
         let shwffwfBl = 1.5
-        if (shelvesPrice>= 600 && shelvesPrice<2000){
-          shwffwfBl=1.6
-        } else if( shelvesPrice>=2000){
-          shwffwfBl=1.8
+        if (shelvesPrice >= 600 && shelvesPrice < 2000) {
+          shwffwfBl = 1.6
+        } else if (shelvesPrice >= 2000) {
+          shwffwfBl = 1.8
         }
-        this.requestParam1.shwffwfBl=shwffwfBl
+        this.requestParam1.shwffwfBl = shwffwfBl
         let shwffwf = shelvesPrice * 0.01 * shwffwfBl
         this.requestParam1.shwffwf = parseFloat(shwffwf).toFixed(2)
 
         let xfzyfbt = 6
-        if (shelvesPrice >=200 && shelvesPrice <300){
+        if (shelvesPrice >= 200 && shelvesPrice < 300) {
           xfzyfbt = 6.5
-        } else if(shelvesPrice >=300){
-          xfzyfbt=8.5
+        } else if (shelvesPrice >= 300) {
+          xfzyfbt = 8.5
         }
         this.requestParam1.xfzyfbt = parseFloat(xfzyfbt).toFixed(2)
 
-        let poundage = jsfwf +zzsxf+shwffwf+xfzyfbt+38
+        let poundage = jsfwf + zzsxf + shwffwf + xfzyfbt + 38
         // let poundage = shelvesPrice * 0.075 + 38 + 8.5
         // console.info('1',poundage1)
         // console.info('0',poundage)
         this.requestParam1.poundage = parseFloat(poundage).toFixed(2)
 
-        let theirPrice =  shelvesPrice - poundage
+        let theirPrice = shelvesPrice - poundage
         this.requestParam1.theirPrice = parseFloat(theirPrice).toFixed(2)
 
         let profits = this.requestParam1.theirPrice - 10
@@ -324,25 +348,26 @@
         //   this.requestParam1.num = this.orderData1.inventory - this.orderData1.galleryCount
         // }
       },
+
       listSysDict() {
         let sysDictList = uni.getStorageSync('sysDictList') ? JSON.parse(
             uni.getStorageSync('sysDictList')) : []
         this.channelIdList = sysDictList.filter(item => item.typeValue == 47)
       },
-      changeStatusDialog1(index,row) {
+      changeStatusDialog1(index, row) {
         this.inventoryIndex = index
         this.orderData1 = row
         console.info(row)
         console.info(index)
-        if (this.orderData1.dwPrice)  {
+        if (this.orderData1.dwPrice) {
           let poundage = this.orderData1.dwPrice * 0.075 + 38 + 8.5
           this.orderData1.poundage = parseFloat(poundage).toFixed(2)
 
-          let theirPrice =  this.orderData1.dwPrice
+          let theirPrice = this.orderData1.dwPrice
               - (this.orderData1.dwPrice * 0.075 + 38 + 8.5)
           this.orderData1.theirPrice = parseFloat(theirPrice).toFixed(2)
         }
-        if (this.orderData1.theirPrice && this.orderData1.price)  {
+        if (this.orderData1.theirPrice && this.orderData1.price) {
           let profits = this.orderData1.theirPrice - 10
               - this.orderData1.price
           this.orderData1.profits = parseFloat(profits).toFixed(2)
@@ -519,15 +544,18 @@
 
 <style lang="less" scoped>
   @import '@/assets/index/style.css';
+
   * {
     /*margin: 0;*/
     /*padding: 0;*/
     box-sizing: border-box;
   }
+
   /* 这里直接设置 1rem = 50px begin */
   html {
     font-size: 10px;
   }
+
   /* 这里直接设置 1rem = 50px end */
   html,
   body {
@@ -535,14 +563,17 @@
     /*color: #333;*/
     /*background: #fff;*/
   }
-  strong{
+
+  strong {
     font-weight: 600;
   }
+
   .mint-button--small {
     display: inline-block;
     font-size: 13px;
     height: 6vw;
   }
+
   .dingdans_item {
     padding: 2.4vw 1.2vw;
     background: #ffffff;
@@ -589,6 +620,7 @@
     font-size: 13px;
     margin-bottom: 2vw;
   }
+
   .clearfix {
     &:after {
       visibility: hidden;
@@ -599,6 +631,7 @@
       height: 0;
     }
   }
+
   .elInput1 {
     font-size: 14px;
     -webkit-appearance: none;
@@ -613,13 +646,15 @@
     line-height: 32px;
     outline: 0;
     padding: 0 15px;
-    -webkit-transition: border-color .2s cubic-bezier(.645,.045,.355,1);
-    transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+    -webkit-transition: border-color .2s cubic-bezier(.645, .045, .355, 1);
+    transition: border-color .2s cubic-bezier(.645, .045, .355, 1);
     width: 100%;
   }
+
   .btm-distance {
     margin-bottom: 15px;
   }
+
   .city {
     height: 33px;
     width: 63px;
@@ -631,9 +666,11 @@
     margin-bottom: 13px;
     display: inline-block;
   }
-.dingdans_con_right_top{
-  padding-bottom: 10px;
-}
+
+  .dingdans_con_right_top {
+    padding-bottom: 10px;
+  }
+
   .cityActive {
     /*height: 36px;*/
     /*width: 63px;*/
