@@ -860,9 +860,29 @@ img{
   justify-content: space-between;
   align-items: center;
 }
+.shuipingjuzhong{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ziti10hao{
+  font-size: 10px;
+  transform: scale(0.83333);
+  transform-origin: 0 0;
+  white-space: nowrap;
+}
+.ziti11hao{
+  font-size: 12px;
+  transform: scale(0.9);
+  transform-origin: 0 0;
+  white-space: nowrap;
+}
 .width92{
   width: 92vw;
   margin-left: 4vw;
+}
+.baisebeijing{
+  background-color: #fff
 }
 .shoudongtianjia{
   margin-top: 10px;
@@ -1301,4 +1321,8 @@ body {
   /*font-family: "微软雅黑";*/
   /*color: #333;*/
   /*background: #fff;*/
+}
+.shugangfengexian{
+  padding:0 10px;
+  color: #d6d6d6
 }

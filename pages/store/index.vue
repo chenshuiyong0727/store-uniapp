@@ -265,20 +265,6 @@
                   <text class="dw-button-common">操作</text>
                 </rudon-rowMenuDotDotDot>
               </view>
-<!--              <el-dropdown trigger="click" style="margin-left: 1px;">-->
-<!--                <button-->
-<!--                    class="dw-button-common">操作-->
-<!--                </button>-->
-<!--                <el-dropdown-menu slot="dropdown" >-->
-<!--                  <el-dropdown-item type="text" @click.native="goodsDetail(item.goodsId, 1) ">商品详情</el-dropdown-item>-->
-<!--                  <el-dropdown-item type="text" @click.native="WarehouseDetail(item.goodsId ,item.actNo ,item.img )">库存信息</el-dropdown-item>-->
-<!--                  <el-dropdown-item type="text" @click.native="handleClick(item)">修改</el-dropdown-item>-->
-<!--                  <el-dropdown-item type="text" @click.native="gotoDw(item.spuId)">得物</el-dropdown-item>-->
-<!--                  <el-dropdown-item type="text" @click.native="jumpactNo(item.actNo)">订单</el-dropdown-item>-->
-<!--                  <el-dropdown-item type="text" v-if="item.inventory > item.galleryCount" @click.native="changeStatusDialog1(item)">上架</el-dropdown-item>-->
-<!--                  <el-dropdown-item type="text" @click.native="goDel(item.id)">删除</el-dropdown-item>-->
-<!--                </el-dropdown-menu>-->
-<!--              </el-dropdown>-->
             </view>
           </view>
         </view>
@@ -303,6 +289,23 @@
     <view v-if="storeData.upCout">
       <uni-fab ref="fab" :pattern="pattern"  horizontal="right" @fabClick="syncOldPriceToNew1" />
     </view>
+
+<!--    <u-popup1 :show="!isShowDialog1" @close="close1" :duration="100" :closeable="true" mode="center">-->
+<!--      <view style="width: 100vw;background-color: #fff">-->
+<!--        <view class="zuoyouduiqi width92" >-->
+<!--          <view>-->
+<!--            <image style="width: 80px;" mode="widthFix" :src="$fileUrl +'/static/operateSteps/empity_7.png'">-->
+<!--            </image>-->
+<!--          </view>-->
+<!--          <view>-->
+<!--            <text>-->
+<!--              货号：DC1000-100-->
+<!--            </text>-->
+
+<!--          </view>-->
+<!--        </view>-->
+<!--      </view>-->
+<!--    </u-popup1>-->
   </view>
 </template>
 <script>
@@ -518,6 +521,10 @@
             this.sizeList = res.data
           }
         })
+      },
+      close1() {
+        this.isShowDialog1 = false
+        console.log('close');
       },
       syncOldPriceToNew1() {
         this.$request({
@@ -929,22 +936,24 @@
         this.$router.push({ path: '/WarehouseDetail', query: {goodsId, actNo ,img} })
       },
       gallery(row) {
-        this.orderData1 = row
-        this.requestParam1.inventoryId = this.orderData1.id
-        this.requestParam1.num = this.orderData1.inventory - this.orderData1.galleryCount
-        this.requestParam1.shelvesPrice = this.orderData1.dwPrice
-
-        let poundage = this.requestParam1.shelvesPrice * 0.075 + 38 + 8.5
-        this.requestParam1.poundage = parseFloat(poundage).toFixed(2)
-
-        let theirPrice =  this.requestParam1.shelvesPrice
-            - (this.requestParam1.shelvesPrice * 0.075 + 38 + 8.5)
-        this.requestParam1.theirPrice = parseFloat(theirPrice).toFixed(2)
-
-        let profits = this.requestParam1.theirPrice - 10
-            - this.orderData1.price
-        this.requestParam1.profits = parseFloat(profits).toFixed(2)
-        this.isShowDialog1 = true
+        // let url = '/pages/store/storeUp?id=' + row.id
+        this.$navigateTo('/pages/store/storeUp?id=' + row.id)
+        // this.orderData1 = row
+        // this.requestParam1.inventoryId = this.orderData1.id
+        // this.requestParam1.num = this.orderData1.inventory - this.orderData1.galleryCount
+        // this.requestParam1.shelvesPrice = this.orderData1.dwPrice
+        //
+        // let poundage = this.requestParam1.shelvesPrice * 0.075 + 38 + 8.5
+        // this.requestParam1.poundage = parseFloat(poundage).toFixed(2)
+        //
+        // let theirPrice =  this.requestParam1.shelvesPrice
+        //     - (this.requestParam1.shelvesPrice * 0.075 + 38 + 8.5)
+        // this.requestParam1.theirPrice = parseFloat(theirPrice).toFixed(2)
+        //
+        // let profits = this.requestParam1.theirPrice - 10
+        //     - this.orderData1.price
+        // this.requestParam1.profits = parseFloat(profits).toFixed(2)
+        // this.isShowDialog1 = true
       },
 
       goDel(id) {

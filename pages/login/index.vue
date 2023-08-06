@@ -32,8 +32,9 @@
         </u--input>
       </view>
       <view class=" btm-distance">
-        <u-button style="margin-top: 25px;    width: 50vw;" type="primary" @click="login"
-                  text="登录"></u-button>
+        <u-button style="margin-top: 25px;    width: 50vw;" type="primary" @click="login">
+          <text style=" font-size: 16px;font-weight: 600">登录</text>
+        </u-button>
       </view>
     </view>
 

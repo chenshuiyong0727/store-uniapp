@@ -23,12 +23,17 @@
         userName ? userName : '系统用户'
         }}</h5>
       <view v-if="type == 1">
-        <u-button style="margin-top: 42px; width: 66vw;" type="primary" @click="comfirm">退出登录
+        <u-button style="margin-top: 42px; width: 66vw;" type="primary" @click="comfirm">
+          <text style=" font-size: 16px;font-weight: 600">退出登录</text>
         </u-button>
+<!--        <u-button style="width: 50vw; margin: 10px 15px;" type="primary" @click="goAdd" >-->
+<!--          <text style=" font-size: 17px;font-weight: 600">提交</text>-->
+<!--        </u-button>-->
         <!--        <u-button style="margin-top: 10px; width: 66vw;" @click="comfirm1">切换账号</u-button>-->
       </view>
       <view class="clearfix btm-distance" v-else>
-        <u-button style="margin-top: 42px; width: 66vw;" type="primary" @click="comfirm2">修改密码
+        <u-button style="margin-top: 42px; width: 66vw;" type="primary" @click="comfirm2">
+          <text style=" font-size: 16px;font-weight: 600">修改密码</text>
         </u-button>
       </view>
     </view>

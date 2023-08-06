@@ -116,6 +116,13 @@
       }
     },
     {
+      "path": "pages/store/storeUp",
+      "style": {
+        "navigationBarTitleText": "上架",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
       "path": "pages/other/otherAdd",
       "style": {
         "navigationBarTitleText": "其他收支详情",
