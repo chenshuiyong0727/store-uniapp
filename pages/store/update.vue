@@ -51,7 +51,7 @@
                     v-model="orderData.actNo" border="none"></u--input>
 <!--          <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
         </u-form-item>
-        <u-form-item label-width="60vw"  label="尺码"  borderBottom>
+        <u-form-item label-width="25vw"  label="尺码"  borderBottom>
 <!--          <u&#45;&#45;input  disabledColor="#fff" inputAlign="right"-->
 <!--                    v-model="requestParam.size" type="digit" border="none"></u&#45;&#45;input>-->
 <!--          <uni-data-select-->
@@ -62,8 +62,7 @@
 <!--              :ifShowSelector="false"-->
 <!--          ></uni-data-select>-->
 <!--          <u-picker :show="show_sx_type" :columns="columns" @cancel="show_sx_type= false"-->
-          <hpy-form-select  :dataList="sizeList" :hideBorder="true" :hideArrow="true" text="size" name="id" v-model="requestParam.sizeId"/>
-
+          <hpy-form-select v-if="sizeList"  :dataList="sizeList" :hideBorder="true" :hideArrow="true" text="size" name="id" v-model="requestParam.sizeId"/>
           <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
         </u-form-item>
 

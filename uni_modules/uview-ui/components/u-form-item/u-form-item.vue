@@ -214,6 +214,7 @@
 						/* #ifndef MP */
 						@include flex;
 						align-items: center;
+						justify-content: flex-end;
 						/* #endif */
 					}
 
