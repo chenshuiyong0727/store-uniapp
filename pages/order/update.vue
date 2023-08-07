@@ -5,7 +5,7 @@
         <u-icon name="arrow-left" size="20"></u-icon>
       </view>
     </u-navbar>
-    <view class=" baisebeijing " style="    position: fixed;
+    <view class=" baisebeijing " style="    border-bottom: 5px solid #F3F4F5;  position: fixed;
     top: 0px;margin-top: 43px;z-index:2">
 
       <view class="dingdans_item" style="border-bottom:0px ;padding:10px">
@@ -46,7 +46,7 @@
             </view>
 
             <view class="dingdans_con_right_top xianglian">
-              <text>状态：</text>
+              <text>当前状态：</text>
               <text v-if="orderData.status == 7" class="color-success">{{ orderData.status |
                 dictToDescTypeValue(37) }}
               </text>
@@ -61,7 +61,7 @@
       </view>
     </view>
     <u--form
-        style="margin-top: 170px;background-color: white"
+        style="margin-top: 168px;background-color: white"
         class="julibiaoti"
         labelPosition="left"
         :model="form"
@@ -137,13 +137,6 @@
                      v-model="requestParam.shelvesPrice" type="digit" border="none"></u--input>
           <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
         </u-form-item>
-
-        <u-form-item label-width="25vw" label="补贴价格" borderBottom>
-          <u--input  disabledColor="#fff" inputAlign="right" @change="keyup1"
-                     v-model="requestParam.subsidiesPrice" type="digit" border="none"></u--input>
-          <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
-        </u-form-item>
-
         <u-form-item label-width="25vw" label="手续费" borderBottom>
           <u--input  disabledColor="#fff" inputAlign="right" @change="keyup1"
                      v-model="requestParam.poundage" type="digit" border="none"></u--input>
@@ -168,62 +161,14 @@
           <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
         </u-form-item>
 
-
-
-<!--        <u-form-item label-width="25vw"  label="尺码"  borderBottom>-->
-<!--          <hpy-form-select v-if="sizeList"  :dataList="sizeList" :hideBorder="true" :hideArrow="true" text="size" name="id" v-model="requestParam.sizeId"/>-->
-<!--          <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-<!--        </u-form-item>-->
-<!--        <u-form-item label-width="25vw"  label="渠道"  borderBottom>-->
-<!--          <hpy-form-select v-if="channelIdList"  :dataList="channelIdList" :hideBorder="true" :hideArrow="true" text="fieldName" name="fieldValue" v-model="requestParam.channelId"/>-->
-<!--          <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-<!--        </u-form-item>-->
-
-<!--        <u-form-item label-width="25vw"  label="原始库存" borderBottom>-->
-<!--          <u&#45;&#45;input  disabledColor="#fff" inputAlign="right"-->
-<!--                    v-model="requestParam.oldInventory" type="number " border="none"></u&#45;&#45;input>-->
-<!--          <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-<!--        </u-form-item>-->
-
-<!--        <u-form-item label-width="25vw"  label="剩余库存" borderBottom>-->
-<!--          <u&#45;&#45;input  disabledColor="#fff" inputAlign="right"-->
-<!--                    v-model="requestParam.inventory" type="number " border="none"></u&#45;&#45;input>-->
-<!--          <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-<!--        </u-form-item>-->
-
-<!--        <u-form-item label-width="25vw" label="入库价" borderBottom>-->
-<!--          <u&#45;&#45;input  disabledColor="#fff" inputAlign="right" @change="keyup1"-->
-<!--                    v-model="requestParam.price" type="digit" border="none"></u&#45;&#45;input>-->
-<!--          <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-<!--        </u-form-item>-->
-
-<!--        <u-form-item label-width="25vw" label="出售价格" borderBottom>-->
-<!--          <u&#45;&#45;input  disabledColor="#fff" inputAlign="right" @change="keyup1"-->
-<!--                    v-model="requestParam.dwPrice" type="digit" border="none"></u&#45;&#45;input>-->
-<!--          <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-<!--        </u-form-item>-->
-<!--        <u-form-item label-width="30vw" label="入库时间" borderBottom >-->
-<!--          <uni-datetime-picker style="color: #303133 !important; text-align: right;font-size: 14px;" type="datetime" v-model="requestParam.createTime" @change="changeLog"  :border="false"/>-->
-<!--          <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-<!--        </u-form-item>-->
-
-<!--        <u-form-item label-width="25vw" label="手续费" borderBottom>-->
-<!--          <u&#45;&#45;input  :disabled="true" disabledColor="#fff" inputAlign="right"-->
-<!--                    v-model="requestParam.poundage" type="digit" border="none" color="#d1d1d1"></u&#45;&#45;input>-->
-<!--        </u-form-item>-->
-
-<!--        <u-form-item label-width="25vw" label="到手价" borderBottom>-->
-<!--          <u&#45;&#45;input  :disabled="true" disabledColor="#fff" inputAlign="right"-->
-<!--                    v-model="requestParam.theirPrice" type="digit" border="none" color="#d1d1d1"></u&#45;&#45;input>-->
-<!--        </u-form-item>-->
-
-<!--        <u-form-item label-width="25vw" label="利润" borderBottom>-->
-<!--          <u&#45;&#45;input  :disabled="true" disabledColor="#fff" inputAlign="right"-->
-<!--                    v-model="requestParam.profits" type="digit" border="none" color="#d1d1d1"></u&#45;&#45;input>-->
-<!--        </u-form-item>-->
+        <u-form-item label-width="25vw" label="补贴价格" >
+          <u--input  disabledColor="#fff" inputAlign="right" @change="keyup1"
+                     v-model="requestParam.subsidiesPrice" type="digit" border="none"></u--input>
+          <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
+        </u-form-item>
       </view>
     </u--form>
-    <view style="height: 60px"></view>
+    <view style="height: 70px"></view>
 
     <u-datetime-picker
         :show="showFrom"
@@ -246,8 +191,6 @@
 </template>
 
 <script>
-  import {goodsInventoryApi} from '@/api/goodsInventory'
-  import { goodsBaseApi } from '@/api/goodsBase'
   import {goodsOrderApi} from '@/api/goodsOrder'
 
   export default {
