@@ -334,7 +334,7 @@
         options: [
           {
             value: 'add',
-            text: '新增'
+            text: '商品入库'
           },
           {
             value: 'resetHandle',
@@ -346,10 +346,10 @@
             value: 'goodsDetail',
             text: '商品详情'
           },
-          {
-            value: 'warehouseDetail',
-            text: '库存信息'
-          },
+          // {
+          //   value: 'warehouseDetail',
+          //   text: '库存信息'
+          // },
           {
             value: 'update',
             text: '修改'
@@ -570,7 +570,7 @@
           return
         }
         if ('goodsDetail' == action) {
-          this.goDetail(item.goodsId, 1)
+          this.goodsDetail(item.goodsId)
         }
         if ('warehouseDetail' == action) {
           this.warehouseDetail(item.goodsId ,item.actNo ,item.img )
@@ -622,23 +622,30 @@
         this.queryParam.typeStr = fieldName
         this.search1()
       },
-      goDetail(id, type) {
-        let url = '/pages/other/otherAdd?type=' + type
-        if (id) {
-          url = url + '&id=' + id
-          // this.$navigateTo('/pages/other/otherAdd?type='+type+'&id='+id)
-        }
-        this.$navigateTo(url)
-        // this.$router.push({ path: '/otherAdd', query: { id, type } })
-      },
+      // goDetail(id, type) {
+      //   let url = '/pages/other/otherAdd?type=' + type
+      //   if (id) {
+      //     url = url + '&id=' + id
+      //     // this.$navigateTo('/pages/other/otherAdd?type='+type+'&id='+id)
+      //   }
+      //   this.$navigateTo(url)
+      //   // this.$router.push({ path: '/otherAdd', query: { id, type } })
+      // },
 
       scanCode(id, type) {
 
         this.$router.push({ path: '/scanCode', query: { id, type } })
       },
-      goodsDetail(id, type) {
-
-        this.$router.push({ path: '/goodsDetail', query: { id, type } })
+      // goodsDetail(id, type) {
+      //
+      //   this.$router.push({ path: '/goodsDetail', query: { id, type } })
+      // },
+      goodsDetail(id) {
+        if (!id) {
+          return
+        }
+        let url = '/pages/goodsBase/detail?id=' + id
+        this.$navigateTo(url)
       },
       // gotoDw(spuId) {
       //   if (!spuId){
@@ -659,13 +666,14 @@
         window.open(url)
         // #endif
       },
-      storeAdd(goodsId) {
-
-        this.$router.push({ path: '/storeAdd', query: { goodsId } })
-      },
+      // storeAdd(goodsId) {
+      //
+      //   this.$router.push({ path: '/storeAdd', query: { goodsId } })
+      // },
       jumpOrder(actNo) {
-
-        this.$router.push({ path: '/store', query: { actNo } })
+        uni.reLaunch({
+          url: '/pages/order/index?actNo=' + actNo
+        });
       },
       converData(item) {
         // let  optionsOp= [
@@ -913,13 +921,14 @@
         this.$router.push({ path: '/order', query: { actNo } })
       },
       goDetail(id) {
-
-        this.$router.push({path: '/storeDetail', query: {id}})
+        uni.reLaunch({
+          url: '/pages/goodsBase/index'
+        });
       },
-      goodsDetail(id, type) {
-
-        this.$router.push({ path: '/goodsDetail', query: { id, type } })
-      },
+      // goodsDetail(id, type) {
+      //
+      //   this.$router.push({ path: '/goodsDetail', query: { id, type } })
+      // },
       gotoDw(spuId) {
         if (!spuId){
           return

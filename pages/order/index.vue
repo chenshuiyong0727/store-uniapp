@@ -573,8 +573,28 @@
       }
     },
     mounted() {
-      this.getPage()
+      // this.getPage()
+      // this.listSysDict()
+    },
+    onLoad(options) {
+      this.initBatch()
       this.listSysDict()
+      this.resetData()
+      if (options) {
+        this.queryParam.keyword = options.actNo ? options.actNo : '';
+        this.saleType = options.saleType ? options.saleType : '';
+        this.queryParam.saleType = options.saleType ? options.saleType : '';
+        this.queryParam.orderNo = options.orderNo ? options.orderNo : '';
+        this.status = options.status ? +options.status : '';
+        this.queryParam.status = options.status ? +options.status : '';
+        this.queryParam.theExpire = options.theExpire ? +options.theExpire : '';
+        this.months = options.months ? options.months : '';
+        if (this.months) {
+          this.queryParam.successTimeFrom = this.months
+          this.queryParam.successTimeTo = this.months
+        }
+      }
+      this.getPage()
     },
     onPullDownRefresh() {
       this.resetHandle()
@@ -588,6 +608,40 @@
       }
     },
     methods: {
+      resetData() {
+        this.queryParam = {
+          id: '',
+          size: '',
+          keyword: '',
+          orderNo: '',
+          inventoryId: '',
+          status: '',
+          theExpire: '',
+          shelvesPriceFrom: '',
+          shelvesPriceTo: '',
+          freightFrom: '',
+          freightTo: '',
+          poundageFrom: '',
+          poundageTo: '',
+          theirPriceFrom: '',
+          goodType: '',
+          theirPriceTo: '',
+          addressId: '',
+          waybillNo: '',
+          createTimeFrom: '',
+          createTimeTo: '',
+          updateTimeFrom: '',
+          updateTimeTo: '',
+          sellTimeFrom: '',
+          sellTimeTo: '',
+          successTimeFrom: '',
+          successTimeTo: '',
+          pageSize: 10,
+          pageNum: 1
+        }
+        this.allLoaded = false;
+        this.isShowDialog2 = false
+      },
       initBatch() {
         this.showSd = false
         this.checkAll = false
