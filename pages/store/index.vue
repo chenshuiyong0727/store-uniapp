@@ -559,7 +559,7 @@
           return
         }
         if ('add' == action) {
-          this.goDetail(null, 3)
+          this.goDetail()
         }
         if ('resetHandle' == action) {
           this.resetHandle()
@@ -920,7 +920,7 @@
 
         this.$router.push({ path: '/order', query: { actNo } })
       },
-      goDetail(id) {
+      goDetail() {
         uni.reLaunch({
           url: '/pages/goodsBase/index'
         });
