@@ -775,7 +775,7 @@
 </script>
 
 <style lang="scss">
-	$uni-primary: #007aff !default;
+	$uni-primary: #409eff !default;
 
 	.uni-datetime-picker {
 		/* #ifndef APP-NVUE */

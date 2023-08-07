@@ -77,7 +77,7 @@
 </script>
 
 <style lang="scss">
-	$uni-primary: #007aff !default;
+	$uni-primary: #409eff !default;
 	$border-color: #DCDFE6;
 	$disable:0.4;
 
@@ -173,7 +173,7 @@
 					opacity: $disable;
 				}
 			}
-			
+
 		}
 	}
 </style>

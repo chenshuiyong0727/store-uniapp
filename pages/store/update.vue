@@ -65,6 +65,20 @@
           <hpy-form-select v-if="sizeList"  :dataList="sizeList" :hideBorder="true" :hideArrow="true" text="size" name="id" v-model="requestParam.sizeId"/>
           <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
         </u-form-item>
+        <u-form-item label-width="25vw"  label="渠道"  borderBottom>
+<!--          <u&#45;&#45;input  disabledColor="#fff" inputAlign="right"-->
+<!--                    v-model="requestParam.size" type="digit" border="none"></u&#45;&#45;input>-->
+<!--          <uni-data-select-->
+<!--              v-model="requestParam.sizeId"-->
+<!--              :localdata="sizeList"-->
+<!--              :border="false"-->
+<!--              :clear="false"-->
+<!--              :ifShowSelector="false"-->
+<!--          ></uni-data-select>-->
+<!--          <u-picker :show="show_sx_type" :columns="columns" @cancel="show_sx_type= false"-->
+          <hpy-form-select v-if="channelIdList"  :dataList="channelIdList" :hideBorder="true" :hideArrow="true" text="fieldName" name="fieldValue" v-model="requestParam.channelId"/>
+          <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
+        </u-form-item>
 
         <u-form-item label-width="25vw"  label="原始库存" borderBottom>
           <u--input  disabledColor="#fff" inputAlign="right"
@@ -96,7 +110,7 @@
 <!--          <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
 <!--        </u-form-item>-->
         <u-form-item label-width="30vw" label="入库时间" borderBottom >
-          <uni-datetime-picker style="color: #303133 !important; text-align: right" type="datetime" v-model="requestParam.createTime" @change="changeLog"  :border="false"/>
+          <uni-datetime-picker style="color: #303133 !important; text-align: right;font-size: 14px;" type="datetime" v-model="requestParam.createTime" @change="changeLog"  :border="false"/>
           <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
         </u-form-item>
 
@@ -163,6 +177,7 @@
         id: '',
         orderData: '',
         sizeList:'',
+        channelIdList:'',
         requestParam: {
           id: '',
           createTime: '',
@@ -309,6 +324,7 @@
       handleClick() {
         this.requestParam.id = this.orderData.id
         this.requestParam.sizeId = this.orderData.sizeId
+        this.requestParam.channelId = this.orderData.channelId
         // this.requestParam.createTime = this.$parseTime(this.orderData.createTime)
         this.requestParam.createTime  = uni.$u.timeFormat(this.orderData.createTime, 'yyyy-mm-dd hh:MM');
         this.requestParam.oldInventory = this.orderData.oldInventory
@@ -403,11 +419,11 @@
         }
       },
       listSysDict() {
-        // let sysDictList = uni.getStorageSync('sysDictList') ? JSON.parse(
-        //     uni.getStorageSync('sysDictList')) : [];
+        let sysDictList = uni.getStorageSync('sysDictList') ? JSON.parse(
+            uni.getStorageSync('sysDictList')) : [];
         // this.typeList = sysDictList.filter(item => item.typeValue == 39);
         // this.columns.push(this.typeList
-
+        this.channelIdList = sysDictList.filter(item => item.typeValue == 47)
         goodsBaseApi.listDropDownSizes({ type: '' }, false).then(res => {
           if (res.subCode === 1000) {
             this.sizeList = res.data
