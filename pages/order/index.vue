@@ -658,21 +658,18 @@
         if ('goodsDetail' == action) {
           this.goodsDetail(item.goodsId)
         }
-        if ('warehouseDetail' == action) {
-          this.warehouseDetail(item.goodsId ,item.actNo ,item.img )
-        }
         if ('update' == action) {
           this.update(item )
         }
         if ('gotoDw' == action) {
           this.gotoDw(item.spuId )
         }
-        if ('jumpOrder' == action) {
-          this.jumpOrder(item.actNo)
-        }
-        if ('gallery' == action) {
-          this.gallery(item)
-        }
+        // if ('jumpOrder' == action) {
+        //   this.jumpOrder(item.actNo)
+        // }
+        // if ('gallery' == action) {
+        //   this.gallery(item)
+        // }
         if ('goDel' == action) {
           this.goDel(item.id)
         }
@@ -711,6 +708,9 @@
       goDetail(id) {
         let url = '/pages/order/detail?id=' + id
         this.$navigateTo(url)
+      },
+      update(row) {
+        this.$navigateTo('/pages/order/update?id=' + row.id)
       },
       goodsDetail(id) {
         if (!id) {

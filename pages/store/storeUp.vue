@@ -565,54 +565,6 @@
     font-size: 13px;
     height: 6vw;
   }
-
-  .dingdans_item {
-    padding: 2.4vw 1.2vw;
-    background: #ffffff;
-    border-bottom: 1vw solid #eee;
-    padding-right: 3%;
-    padding-left: 3%;
-  }
-
-  .dingdans_top {
-    font-size: 13px;
-    height: 3.88vw;
-    line-height: 3.88vw;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .dingdans_con {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 1.3vw 0;
-  }
-
-  .dingdans_con_left {
-    width: 35vw;
-    height: 20vw;
-    display: flex;
-  }
-
-  .dingdans_con_left img {
-    width: 100%;
-    margin: auto;
-    border-radius: 10px;
-  }
-
-  .diangdans_con_right {
-    width: 130vw;
-    padding-left: 10px;
-  }
-
-  .dingdans_con_right_down {
-    margin-top: 1.4vw;
-    font-size: 13px;
-    margin-bottom: 2vw;
-  }
-
   .clearfix {
     &:after {
       visibility: hidden;
@@ -658,11 +610,6 @@
     margin-bottom: 13px;
     display: inline-block;
   }
-
-  .dingdans_con_right_top {
-    padding-bottom: 10px;
-  }
-
   .cityActive {
     /*height: 36px;*/
     /*width: 63px;*/

@@ -263,64 +263,6 @@
         }
         })
       },
-      deletePic(event) {
-        this[`fileList${event.name}`].splice(event.index, 1)
-      },
-      async afterRead(event) {
-        uni.showLoading({title: '上传中'});
-        this.imgevent = event;
-        // 当设置 multiple 为 true 时, file 为数组格式，否则为对象格式
-        let lists = [].concat(event.file);
-        let fileListLen = this[`fileList${event.name}`].length;
-        lists.map((item) => {
-          this[`fileList${event.name}`].push({
-            ...item,
-            status: 'uploading',
-            message: '上传中'
-          })
-        });
-        for (let i = 0; i < lists.length; i++) {
-          const result = await this.uploadFilePromise(lists[i].url);
-          uni.hideLoading();
-          let item = this[`fileList${event.name}`][fileListLen];
-          this[`fileList${event.name}`].splice(fileListLen, 1, Object.assign(item, {
-            status: 'success',
-            message: '',
-            url: result
-          }));
-          fileListLen++
-        }
-      },
-      uploadFilePromise(url) {
-        var _this = this;
-        return new Promise((resolve, reject) => {
-          let a = uni.uploadFile({
-            url: this.$actionUrl, // 仅为示例，非真实的接口地址
-            filePath: url,
-            name: 'file',
-            formData: {
-              user: 'test'
-            },
-            success: (res) => {
-              setTimeout(() => {
-                let resDta = JSON.parse(res.data);
-                if (resDta.sub_code != 1000) {
-                  this.$toast('上传失败，请上传10 MB 以内的图片');
-                  _this.deletePic(_this.imgevent)
-                } else {
-                  this.$toast('上传成功');
-                  this.form.imgUrl = resDta.data;
-                  resolve(res.data.data)
-                }
-              }, 1000)
-            },
-            fail: (res) => {
-              this.$toast('上传失败，请上传10 MB 以内的图片');
-              resolve(res)
-            }
-          });
-        })
-      },
       handleClick() {
         this.requestParam.id = this.orderData.id
         this.requestParam.sizeId = this.orderData.sizeId

@@ -97,6 +97,13 @@
       }
     },
     {
+      "path": "pages/order/update",
+      "style": {
+        "navigationBarTitleText": "修改",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
       "path": "pages/store/index",
       "style": {
         "navigationBarTitleText": "仓库",
