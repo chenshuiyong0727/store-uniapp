@@ -34,7 +34,7 @@
       <view class="my-pay-2"
             :style="!flag? 'border-bottom-style:none;margin-top: -141px;padding-top: 4vw; '
                : 'border-bottom-style:none;padding-top: 4vw; '">
-        <view :to="{ path: '/store'}">
+        <view  @click="$navigateTo('/pages/store/index?backUrl=/pages/index/index')">
           <view>
             <image
                 style="margin-top: 8px;
@@ -45,19 +45,19 @@
         <image style="    margin-left: 10px;
     height: 55px;width:7px;
     margin-top: 10px;" src="../../static/img/more-1.png"></image>
-        <view :to="{ path: '/store?today=7'}">
+        <view  @click="$navigateTo('/pages/store/index?backUrl=/pages/index/index&current=1&today=7')">
           <text :class="storeData.upCout > 0 ? 'color-danger-strong' : 'color-font'">
             {{storeData.upCout}}
           </text>
           <text style="color: #8c8a8a;font-size: 14px;">变更</text>
         </view>
-        <view :to="{ path: '/store?today=2'}">
+        <view  @click="$navigateTo('/pages/store/index?backUrl=/pages/index/index&current=2&today=2')">
           <text :class="storeData.successNumLast > 0 ? 'color-danger-strong' : 'color-font'">
             {{storeData.successNumLast}}
           </text>
           <text style="color: #8c8a8a;font-size: 14px;">待上架</text>
         </view>
-        <view :to="{ path: '/store?today=3'}">
+        <view @click="$navigateTo('/pages/store/index?backUrl=/pages/index/index&current=3&today=3')">
           <text :class="storeData.waitMoveCout > 0 ? 'color-danger-strong' : 'color-font'">
             {{storeData.waitMoveCout}}
           </text>
@@ -66,32 +66,32 @@
       </view>
 
       <view class="main" style="">
-        <h1 class="section1-title" style="border-top-style:none">
+        <h1  @click="$navigateTo('/pages/order/index')" class="section1-title" style="border-top-style:none">
           <text style="    margin-left: 20px;">
             订单管理
           </text>
           <view class="link-top"></view>
         </h1>
         <view class="my-pay-2" style="border-bottom-style:none;">
-          <view :to="{ path: '/order?status=3'}">
+          <view  @click="$navigateTo('/pages/order/index?backUrl=/pages/index/index&current=1&status=3')">
             <text :class="orderIofo.count3 > 0 ? 'color-danger-strong' : 'color-font'">
               {{orderIofo.count3}}
             </text>
             <text style="color: #8c8a8a;font-size: 14px;">待发货</text>
           </view>
-          <view :to="{ path: '/order?status=4'}">
+          <view  @click="$navigateTo('/pages/order/index?backUrl=/pages/index/index&current=2&status=4')">
             <text :class="orderIofo.count4 > 0 ? 'color-danger-strong' : 'color-font'">
               {{orderIofo.count4}}
             </text>
             <text style="color: #8c8a8a;font-size: 14px;">已发货</text>
           </view>
-          <view :to="{ path: '/order?status=5'}">
+          <view  @click="$navigateTo('/pages/order/index?backUrl=/pages/index/index&current=3&status=5')">
             <text :class="orderIofo.count5 > 0 ? 'color-danger-strong' : 'color-font'">
               {{orderIofo.count5}}
             </text>
             <text style="color: #8c8a8a;font-size: 14px;">运输中</text>
           </view>
-          <view :to="{ path: '/order?status=6'}">
+          <view  @click="$navigateTo('/pages/order/index?backUrl=/pages/index/index&current=4&status=6')">
             <text :class="orderIofo.count6 > 0 ? 'color-danger-strong' : 'color-font'">
               {{orderIofo.count6}}
             </text>
@@ -99,24 +99,24 @@
           </view>
         </view>
         <view class="my-pay-2" style="border-bottom-style:none;">
-          <view :to="{ path: '/order?status=11&scrollNum=4'}">
+          <view  @click="$navigateTo('/pages/order/index?backUrl=/pages/index/index&current=5&status=11')">
             <text class="color-font">{{orderIofo.count11}}</text>
             <text style="color: #8c8a8a;font-size: 14px;">已入库</text>
           </view>
-          <view :to="{ path: '/order?status=2&scrollNum=7'}">
+          <view  @click="$navigateTo('/pages/order/index?backUrl=/pages/index/index&current=7&status=2')">
             <text class="color-font">{{orderIofo.count2}}</text>
             <text style="color: #8c8a8a;font-size: 14px;">已上架</text>
           </view>
-          <view :to="{ path: '/order?status=7&scrollNum=7'}">
+          <view @click="$navigateTo('/pages/order/index?backUrl=/pages/index/index&current=8&status=7')">
             <text class="color-font">{{orderIofo.count7}}</text>
             <text style="color: #8c8a8a;font-size: 14px;">交易成功</text>
           </view>
-          <view :to="{ path: '/order?status=8&scrollNum=7'}">
+          <view  @click="$navigateTo('/pages/order/index?backUrl=/pages/index/index&current=9&status=8')">
             <text class="color-font">{{orderIofo.count8}}</text>
             <text style="color: #8c8a8a;font-size: 14px;">瑕疵</text>
           </view>
         </view>
-        <view @click="order(1,6)" class="zuoyouduiqi my-pay-21" v-if="orderIofo.countTheExpire">
+        <view  @click="$navigateTo('/pages/order/index?backUrl=/pages/index/index&current=6&theExpire=1')" class="zuoyouduiqi my-pay-21" v-if="orderIofo.countTheExpire">
           <view class="wenzitupduiqi" style="margin-left: 4vw;">
             <image style="width: 30px; height: 30px" src="../../static/img/timeout_2.png"></image>
             <text style="color: #333;font-size: 15px;margin-left: 10px">即将到期订单</text>

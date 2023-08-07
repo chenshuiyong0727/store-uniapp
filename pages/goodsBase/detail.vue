@@ -398,7 +398,7 @@
         form: {
           actNo: ''
         },
-        options: [
+        localdata: [
           {
             value: 'add',
             text: '新增'

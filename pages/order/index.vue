@@ -1,11 +1,11 @@
 <template>
   <view>
     <u-navbar title="订单">
-      <view @click="$goBack" class="u-nav-slot" slot="left">
+      <view @click="goBack" class="u-nav-slot" slot="left">
         <u-icon name="arrow-left" size="20"></u-icon>
       </view>
       <view class="u-nav-slot" style="font-size: 15px;" slot="right">
-        <rudon-rowMenuDotDotDot :localdata="options" @change="menuAction($event)">
+        <rudon-rowMenuDotDotDot :localdata="localdata" @change="menuAction($event)">
           <image style="height: 25px;width: 25px" src="../../static/img/slh.png"></image>
         </rudon-rowMenuDotDotDot>
       </view>
@@ -361,6 +361,7 @@
     name: "HelloWorld",
     data() {
       return {
+        backUrl: '',
         showFrom: false,
         showTo: false,
         show_sx_type: false,
@@ -368,7 +369,7 @@
         current: 0,
         pictureZoomShow: false,
         imageZoom: '',
-        options: [
+        localdata: [
           {
             value: 'add',
             text: '新增'
@@ -586,9 +587,11 @@
         this.queryParam.saleType = options.saleType ? options.saleType : '';
         this.queryParam.orderNo = options.orderNo ? options.orderNo : '';
         this.status = options.status ? +options.status : '';
+        this.current = options.current ? +options.current : 0 ;
         this.queryParam.status = options.status ? +options.status : '';
         this.queryParam.theExpire = options.theExpire ? +options.theExpire : '';
         this.months = options.months ? options.months : '';
+        this.backUrl = options.backUrl ? options.backUrl : '';
         if (this.months) {
           this.queryParam.successTimeFrom = this.months
           this.queryParam.successTimeTo = this.months
@@ -668,6 +671,13 @@
               this.$toast(res.subMsg)
             }
           })
+        }
+      },
+      goBack() {
+        if (this.backUrl) {
+          this.$navigateTo(this.backUrl)
+        }else{
+          this.$goBack
         }
       },
       menuAction(action, rowId) {

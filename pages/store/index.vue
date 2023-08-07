@@ -1,11 +1,11 @@
 <template>
   <view>
     <u-navbar title="仓库">
-      <view @click="$goBack" class="u-nav-slot" slot="left">
+      <view @click="goBack"  class="u-nav-slot" slot="left">
         <u-icon name="arrow-left" size="20"></u-icon>
       </view>
       <view class="u-nav-slot" style="font-size: 15px;" slot="right">
-        <rudon-rowMenuDotDotDot :localdata="options" @change="menuAction($event)">
+        <rudon-rowMenuDotDotDot :localdata="localdata" @change="menuAction($event)">
           <image style="height: 25px;width: 25px" src="../../static/img/slh.png"></image>
         </rudon-rowMenuDotDotDot>
       </view>
@@ -331,7 +331,7 @@
         current: 0,
         pictureZoomShow: false,
         imageZoom: '',
-        options: [
+        localdata: [
           {
             value: 'add',
             text: '商品入库'
@@ -367,6 +367,7 @@
             text: '删除'
           }
         ],
+        backUrl: '',
         storeData: {},
         list2: [{
           inventory: 1,
@@ -492,12 +493,31 @@
       }
     },
     mounted() {
-      this.getPage()
-      this.listSysDict()
-      this.handleChange()
+      // this.getPage()
+      // this.listSysDict()
+      // this.handleChange()
       // this.keyupSubmit()
 
     },
+    onLoad(options) {
+      this.listSysDict()
+      this.resetData()
+      if (options) {
+        this.queryParam.actNo = options.actNo ? options.actNo : '';
+        if (this.months) {
+          this.queryParam.successTimeFrom = this.months
+          this.queryParam.successTimeTo = this.months
+        }
+        this.current = options.current ? +options.current : 0 ;
+        this.queryParam.size = options.size ? options.size : '';
+        this.queryParam.warehouseId = options.warehouseId ? options.warehouseId : '';
+        this.queryParam.channelId = options.channelId ? options.channelId : '';
+        this.queryParam.today = options.today ? options.today : '';
+        this.backUrl = options.backUrl ? options.backUrl : '';
+      }
+      this.getPage()
+    },
+
     onPullDownRefresh() {
       this.resetHandle()
       uni.stopPullDownRefresh()
@@ -552,6 +572,13 @@
             this.$toast(res.subMsg)
           }
         })
+      },
+      goBack() {
+        if (this.backUrl) {
+          this.$navigateTo(this.backUrl)
+        }else{
+          this.$goBack
+        }
       },
       menuAction(action, rowId) {
         // 忽略初始化时的传入的空操作
@@ -671,9 +698,21 @@
       //   this.$router.push({ path: '/storeAdd', query: { goodsId } })
       // },
       jumpOrder(actNo) {
+        let url= this.getLocalPath()
         uni.reLaunch({
-          url: '/pages/order/index?actNo=' + actNo
+          url: '/pages/order/index?backUrl=/pages/store/index&actNo=' + actNo
         });
+      },
+      getLocalPath(){
+        let curPage = getCurrentPages();
+        let route = curPage[curPage.length - 1].route; //获取当前页面的路由
+        let params = curPage[curPage.length - 1].options; //获取当前页面参数，如果有则返回参数的对象，没有参数返回空对象{}
+        let param = ''
+        for (let key in params) {
+          param += '&' + key + '=' + params[key]
+        }
+        let res =route + param
+        return  res
       },
       converData(item) {
         // let  optionsOp= [
@@ -764,6 +803,28 @@
           }
         })
       },
+      resetData() {
+        this.queryParam = {
+          warehouseId: '',
+          channelId: '',
+          createTimeFrom: '',
+          createTimeTo: '',
+          syncTimeFrom: '',
+          syncTimeTo: '',
+          goodType: '',
+          id: '',
+          sort:'',
+          inventory: 1,
+          inventoryFrom: '',
+          inventoryTo: '',
+          size: '',
+          actNo: '',
+          goodsId: '',
+          pageSize: 10,
+          pageNum: 1
+        }
+        this.isShowDialog2 = false
+      },
       listSysDict() {
         let sysDictList = uni.getStorageSync('sysDictList') ? JSON.parse(
             uni.getStorageSync('sysDictList')) : []
@@ -782,7 +843,6 @@
           return
         }
         this.queryParam.pageNum = 1
-        // this.allLoaded = false;
         this.getPage()
       },
       close() {

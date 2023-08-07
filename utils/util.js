@@ -10,14 +10,17 @@ let payOrderId = null
 const navigateTo = (url, ...args) => {
   const tabPage = [
     '/pages/index/index',
-    '/pages/my/index'
+    '/pages/my/index',
+    '/pages/order/index',
+    '/pages/goodsBase/index',
+    '/pages/store/index'
   ]
 	const has = tabPage.some((item) => {
 		return url.includes(item)
 	})
   if (has) {
     // 解决从二级页面跳转switchTab到指定tab的时候，会先出现上一次打开的一级tab页面，然后再跳到正确的页面，会闪一下
-    uni.switchTab({
+    uni.reLaunch({
       url
     })
   } else {

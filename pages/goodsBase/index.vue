@@ -5,7 +5,7 @@
         <u-icon name="arrow-left" size="20"></u-icon>
       </view>
       <view class="u-nav-slot" style="font-size: 15px;" slot="right">
-        <rudon-rowMenuDotDotDot :localdata="options" @change="menuAction($event)">
+        <rudon-rowMenuDotDotDot :localdata="localdata" @change="menuAction($event)">
           <image style="height: 25px;width: 25px" src="../../static/img/slh.png"></image>
         </rudon-rowMenuDotDotDot>
       </view>
@@ -216,7 +216,7 @@
         current: 0,
         pictureZoomShow: false,
         imageZoom: '',
-        options: [
+        localdata: [
           {
             value: 'add',
             text: '新增'
