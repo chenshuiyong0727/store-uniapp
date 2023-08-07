@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<picker :mode="mode" @change="chagne" :value="selectValue" 
+		<picker :mode="mode" @change="chagne" :value="selectValue"
 			:range="range" :range-key="text" :start="start" :end="end" :fields="fields" :custom-item="customItem" :disabled="disabled">
 			<block v-if="islot">
 				<slot />
@@ -265,7 +265,7 @@
 </script>
 
 <style lang="scss" scoped>
-	.select-picker {/* #ifndef APP-NVUE */display: flex;/* #endif */flex-direction: row;align-items: center;flex-wrap: nowrap;font-size: 1em;line-height: 38px;padding: 0 5px;overflow: hidden;/* #ifdef APP-NVUE */height: 40px;/* #endif */}
+	.select-picker {/* #ifndef APP-NVUE */display: flex;/* #endif */flex-direction: row;align-items: center;flex-wrap: nowrap;font-size: 1em;line-height: 23px;padding: 0 5px;overflow: hidden;/* #ifdef APP-NVUE */height: 40px;/* #endif */}
 	.select-picker-border{border: 1px solid #e5e5e5;border-radius: 5px;}
 	.is-input-error-border .select-picker-border{border-color: $uni-color-error;}
 	.select-picker-arrow-area {position: relative;width: 20px;/* #ifndef APP-NVUE */margin-left: auto;display: flex;/* #endif */justify-content: center;transform: rotate(-45deg);transform-origin: center;}

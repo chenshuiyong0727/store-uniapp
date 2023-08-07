@@ -864,13 +864,13 @@
 
 	.uni-date__x-input {
 		width: auto;
-		height: 35px;
+		height: 26px;
     /* #ifndef MP */
     padding-left: 5px;
     /* #endif */
 		position: relative;
 		flex: 1;
-		line-height: 35px;
+		line-height: 26px;
 		font-size: 14px;
 		overflow: hidden;
 	}
