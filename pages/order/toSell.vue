@@ -177,7 +177,7 @@
         </view>
         <view class="zuoyouduiqi"
               style="font-weight: 600;caret-color:#409eff;  border-bottom: 2px solid #333333;margin-top: 10px;">
-          <view>
+          <view style="width: 10vw">
             <u-text
                 size="20"
                 color="#333333"
@@ -185,7 +185,7 @@
                 margin="0 3px 0 0"
             ></u-text>
           </view>
-          <view style="width: 60vw">
+          <view style="margin-left: -8vw;width: 78vw">
             <u--input
                 placeholderStyle="font-size: 24px;color:#c0c4cc"
                 @change="keyup2"
@@ -195,8 +195,7 @@
             </u--input>
           </view>
 
-          <view style="width: 20vw">
-
+          <view style="width: 20vw; margin-right: 4vw;margin-left: -30vw">
             <text style="font-size: 12px;color: #808080">
               {{tipMsg}}
             </text>
