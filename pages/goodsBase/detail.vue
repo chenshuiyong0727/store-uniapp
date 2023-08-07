@@ -313,6 +313,7 @@
       return {
         isShowDialog2: false,
         pictureZoomShow: false,
+        imageZoom: '',
         props: {
           lazy: false,
           multiple: true

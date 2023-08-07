@@ -130,6 +130,13 @@
       }
     },
     {
+      "path": "pages/store/detail",
+      "style": {
+        "navigationBarTitleText": "库存详情",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
       "path": "pages/other/otherAdd",
       "style": {
         "navigationBarTitleText": "其他收支详情",

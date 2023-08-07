@@ -223,7 +223,6 @@
         })
       },
       goodsDetail(id) {
-        debugger
         if (!id) {
           return
         }
@@ -257,7 +256,6 @@
         this.tableData = table1
       },
       goodsDetail(id) {
-        debugger
         if (!id) {
           return
         }
