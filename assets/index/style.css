@@ -752,6 +752,11 @@ img{
   align-items: center;
   color: #807f85;
 }
+.dingdans_con_right_top_dw_3 {
+  font-size: 13.5px;
+  color: #807f85;
+  margin-top: 5px;
+}
 .dingdans_con_right_down_dw_1 {
   margin-bottom: 1vw;
   font-size: 3.5vw;
@@ -1366,7 +1371,9 @@ body {
 
 .diangdans_con_right {
   width: 130vw;
+  font-size: 14px;
   padding-left: 10px;
+  margin-right: 3px;
 }
 
 .dingdans_con_right_down {

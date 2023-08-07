@@ -10,7 +10,7 @@
     </u-navbar>
     <view class="dingdans_item" style="margin-top: 50px; margin-bottom: 7px; border-bottom:0px ;padding:0" >
       <view class="dingdans_con" style="padding:0">
-        <view style="  width: 210px;
+        <view style="  width: 200px;
   height: 84px;
   position: relative;
   border-radius: 5px;" >
@@ -18,9 +18,7 @@
   margin-top: 16px;
   margin-left: 10%;" :src="form.img"  ></image>
         </view>
-        <view class="diangdans_con_right" style="font-size: 16px;    width: 130vw;
-    padding-left: 5px;
-    margin-right: 10px;">
+        <view class="diangdans_con_right">
           <view class="dingdans_con_right_top">
             <text>
               <strong v-if="form.id"
@@ -369,52 +367,52 @@
     font-size: 13px;
     height: 6vw;
   }
-  .dingdans_item {
-    padding: 2.4vw 1.2vw;
-    background: #ffffff;
-    border-bottom: 1vw solid #eee;
-    padding-right: 3%;
-    padding-left: 3%;
-  }
+  /*.dingdans_item {*/
+  /*  padding: 2.4vw 1.2vw;*/
+  /*  background: #ffffff;*/
+  /*  border-bottom: 1vw solid #eee;*/
+  /*  padding-right: 3%;*/
+  /*  padding-left: 3%;*/
+  /*}*/
 
-  .dingdans_top {
-    font-size: 13px;
-    height: 3.88vw;
-    line-height: 3.88vw;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+  /*.dingdans_top {*/
+  /*  font-size: 13px;*/
+  /*  height: 3.88vw;*/
+  /*  line-height: 3.88vw;*/
+  /*  display: flex;*/
+  /*  align-items: center;*/
+  /*  justify-content: space-between;*/
+  /*}*/
 
-  .dingdans_con {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 1.3vw 0;
-  }
+  /*.dingdans_con {*/
+  /*  display: flex;*/
+  /*  align-items: center;*/
+  /*  justify-content: flex-start;*/
+  /*  padding: 1.3vw 0;*/
+  /*}*/
 
-  .dingdans_con_left {
-    width: 35vw;
-    height: 20vw;
-    display: flex;
-  }
+  /*.dingdans_con_left {*/
+  /*  width: 35vw;*/
+  /*  height: 20vw;*/
+  /*  display: flex;*/
+  /*}*/
 
-  .dingdans_con_left img {
-    width: 100%;
-    margin: auto;
-    border-radius: 10px;
-  }
+  /*.dingdans_con_left img {*/
+  /*  width: 100%;*/
+  /*  margin: auto;*/
+  /*  border-radius: 10px;*/
+  /*}*/
 
-  .diangdans_con_right {
-    width: 130vw;
-    padding-left: 10px;
-  }
+  /*.diangdans_con_right {*/
+  /*  width: 130vw;*/
+  /*  padding-left: 10px;*/
+  /*}*/
 
-  .dingdans_con_right_down {
-    margin-top: 1.4vw;
-    font-size: 13px;
-    margin-bottom: 2vw;
-  }
+  /*.dingdans_con_right_down {*/
+  /*  margin-top: 1.4vw;*/
+  /*  font-size: 13px;*/
+  /*  margin-bottom: 2vw;*/
+  /*}*/
   .clearfix {
     &:after {
       visibility: hidden;

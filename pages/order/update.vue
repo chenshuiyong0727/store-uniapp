@@ -18,9 +18,7 @@
     margin-top: 28px;
     margin-left: 10%;" :src="orderData.img"></image>
           </view>
-          <view class="diangdans_con_right" style="font-size: 14px;
-      padding-left: 12px;
-      margin-right: 10px;">
+          <view class="diangdans_con_right">
             <view class="dingdans_con_right_top xianglian">
               <text v-if="orderData.goodsId"
                     @click="goodsDetail(orderData.goodsId) " class="chaochu"  style="color: #333333;font-size: 14px;width: 60vw;font-weight: 600">
@@ -179,7 +177,7 @@
     <view class="baisebeijing shuipingjuzhong" style="width:100%;position:fixed;bottom:0;
      border-top: solid #E2DDDD 1px;">
       <u-button style="width: 50vw; margin: 10px 15px;" type="primary" @click="confirmHandle">
-        <text style=" font-size: 17px;font-weight: 600">提交</text>
+        <text style=" font-size: 17px;font-weight: 600">确认修改</text>
       </u-button>
     </view>
     <view class="popContainer" v-if="pictureZoomShow" @click="pictureZoomShow = false">

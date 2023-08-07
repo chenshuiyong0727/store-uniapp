@@ -20,7 +20,7 @@
       </view>
       <view class="dingdans_item" style="margin-bottom: 7px; border-bottom:0px ;padding:10px">
         <view class="dingdans_con" style="padding:0">
-          <view style="  width: 210px;    border: 1px solid #f1f1f1;
+          <view style="  width: 200px;    border: 1px solid #f1f1f1;
     height: 100px;
     position: relative;
     border-radius: 5px;">
@@ -28,9 +28,7 @@
     margin-top: 28px;
     margin-left: 10%;" :src="orderData1.img"></image>
           </view>
-          <view class="diangdans_con_right" style="font-size: 14px;
-      padding-left: 12px;
-      margin-right: 10px;">
+          <view class="diangdans_con_right">
             <view class="dingdans_con_right_top xianglian">
               <view class="xianglian">
                 <text @click="jumpactNo(orderData1.actNo)">
@@ -208,7 +206,7 @@
     <view class="baisebeijing shuipingjuzhong" style="width:100%;position:fixed;bottom:0;
      border-top: solid #E2DDDD 1px;">
       <u-button style="width: 50vw; margin: 10px 15px;" type="primary" @click="confirmHandle1">
-        <text style=" font-size: 17px;font-weight: 600">提交</text>
+        <text style=" font-size: 17px;font-weight: 600">确认上架</text>
       </u-button>
     </view>
 

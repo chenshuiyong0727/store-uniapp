@@ -185,6 +185,16 @@
                 {{item.goodsName }}
               </text>
             </view>
+
+            <view class="dingdans_con_right_top_dw_3">
+              <text v-if="item.status == 3 && item.deliveryDeadlineTime" style="margin-left: 2px">
+                <text>发货截止时间</text>
+              </text>
+              <text  v-if="item.status == 3 && item.deliveryDeadlineTime" style="margin-left: 4px" class="dingdans_con_dw_time">
+                {{item.deliveryDeadlineTime | formateTime }}
+              </text>
+            </view>
+
             <view class="dingdans_con_right_top_dw_1 xianglian">
               <text @click="jumpactNo(item.actNo)">
                 {{item.actNo}}
@@ -252,21 +262,24 @@
           <view v-else class="dingdans_top_left_dw">
             <text>利润</text>
             <text style="margin-left: 2px;"  class="color-danger">{{item.profits }}</text>
-            <text v-if="item.status == 3 && item.deliveryDeadlineTime" style="margin-left: 2px">
-              <text>，发货截止时间</text>
-            </text>
-            <text  v-if="item.status == 3 && item.deliveryDeadlineTime" style="margin-left: 2px" class="dingdans_con_dw_time">
-              {{item.deliveryDeadlineTime | formateTime('{y}-{m}-{d} {h}:{i}') }}
-            </text>
           </view>
           <!--          操作栏-->
           <view class="dingdans_top_right_dw">
-            <view class="dingdans_con_right_down_2_1">
-              <view style="margin-bottom: 3px;">
-                <rudon-rowMenuDotDotDot :localdata="optionsOp" @change="menuActionList($event,item)">
-                  <text class="dw-button-common">操作</text>
-                </rudon-rowMenuDotDotDot>
-              </view>
+            <view class="dingdans_con_right_down_2_1 xianglian">
+              <text v-if="item.status==2" class="dw-button-common" @click="toSell(item.id)">出售</text>
+
+<!--              <text v-if="item.status == 7" class="color-success">{{ item.status |-->
+<!--                dictToDescTypeValue(37) }}-->
+<!--              </text>-->
+<!--              <text v-else-if="[3,4,5,6,8].includes(item.status)" class="color-danger">{{-->
+<!--                item.status | dictToDescTypeValue(37) }}-->
+<!--              </text>-->
+<!--              <text v-else>{{ item.status | dictToDescTypeValue(37) }}</text>-->
+<!--            </view>-->
+
+              <rudon-rowMenuDotDotDot :localdata="optionsOp" @change="menuActionList($event,item)">
+                <text class="dw-button-common">更多</text>
+              </rudon-rowMenuDotDotDot>
             </view>
           </view>
         </view>
@@ -708,6 +721,9 @@
       goDetail(id) {
         let url = '/pages/order/detail?id=' + id
         this.$navigateTo(url)
+      },
+      toSell(id) {
+        this.$navigateTo('/pages/order/toSell?id=' +id)
       },
       update(row) {
         this.$navigateTo('/pages/order/update?id=' + row.id)

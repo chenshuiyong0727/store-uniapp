@@ -141,7 +141,7 @@
     <view class="baisebeijing shuipingjuzhong" style="width:100%;position:fixed;bottom:0;
      border-top: solid #E2DDDD 1px;">
       <u-button style="width: 50vw; margin: 10px 15px;" type="primary" @click="confirmHandle">
-        <text style=" font-size: 17px;font-weight: 600">提交</text>
+        <text style=" font-size: 17px;font-weight: 600">确认修改</text>
       </u-button>
     </view>
   </view>

@@ -104,6 +104,13 @@
       }
     },
     {
+      "path": "pages/order/toSell",
+      "style": {
+        "navigationBarTitleText": "出售",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
       "path": "pages/store/index",
       "style": {
         "navigationBarTitleText": "仓库",
