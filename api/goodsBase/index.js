@@ -65,8 +65,7 @@ export const goodsBaseApi = {
   listDropDownSizes: (body, loading = true) => request({
     url: '/gw/op/v1/goodsBase/listDropDownSizes',
     method: 'post',
-    data: body,
-    loading
+    data: body
   }),
   getGoodsByActNoAndSize: (body) => request({
     url: '/gw/op/v1/goodsBase/getGoodsByActNoAndSize',

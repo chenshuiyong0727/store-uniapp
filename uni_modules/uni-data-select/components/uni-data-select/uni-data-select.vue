@@ -2,7 +2,7 @@
 	<view class="uni-stat__select">
 		<span v-if="label" class="uni-label-text hide-on-phone">{{label + '：'}}</span>
 		<view class="uni-stat-box" :class="{'uni-stat__actived': current}">
-			<view class="uni-select" :class="{'uni-select--disabled':disabled}">
+			<view class="uni-select" :style="border?'border: 1px solid #e5e5e5':0" :class="{'uni-select--disabled':disabled}">
 				<view class="uni-select__input-box" @click="toggleSelector">
 					<view v-if="current" class="uni-select__input-text">{{current}}</view>
 					<view v-else class="uni-select__input-text uni-select__input-placeholder">{{typePlaceholder}}</view>
@@ -10,13 +10,13 @@
 						<uni-icons type="clear" color="#c0c4cc" size="24"/>
 					</view>
 					<view v-else>
-						<uni-icons :type="showSelector? 'top' : 'bottom'" size="14" color="#999" />
+						<uni-icons v-if="ifShowSelector" :type="showSelector? 'top' : 'bottom'" size="14" color="#999" />
 					</view>
 				</view>
 				<view class="uni-select--mask" v-if="showSelector" @click="toggleSelector" />
 				<view class="uni-select__selector" v-if="showSelector">
 					<view class="uni-popper__arrow"></view>
-					<scroll-view scroll-y="true" class="uni-select__selector-scroll">
+					<scroll-view  scroll-y="true" class="uni-select__selector-scroll">
 						<view class="uni-select__selector-empty" v-if="mixinDatacomResData.length === 0">
 							<text>{{emptyTips}}</text>
 						</view>
@@ -87,6 +87,14 @@
 			disabled: {
 				type: Boolean,
 				default: false
+			},
+			border: {
+				type: Boolean,
+				default: true
+			},
+			ifShowSelector: {
+				type: Boolean,
+				default: true
 			},
 			// 格式化输出 用法 field="_id as value, version as text, uni_platform as label" format="{label} - {text}"
 			format: {
@@ -348,7 +356,6 @@
 
 	.uni-select {
 		font-size: 14px;
-		border: 1px solid $uni-border-3;
 		box-sizing: border-box;
 		border-radius: 4px;
 		padding: 0 5px;
@@ -360,7 +367,6 @@
 		/* #endif */
 		flex-direction: row;
 		align-items: center;
-		border-bottom: solid 1px $uni-border-3;
 		width: 100%;
 		flex: 1;
 		height: 35px;
@@ -503,7 +509,7 @@
 
 	.uni-select__input-placeholder {
 		color: $uni-base-color;
-		font-size: 12px;
+		font-size: 14px;
 	}
 
 	.uni-select--mask {

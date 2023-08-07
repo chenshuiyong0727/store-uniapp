@@ -825,7 +825,7 @@
 		justify-content: center;
 		border-radius: 4px;
 		background-color: #fff;
-		color: #666;
+		color: #303133;
 		font-size: 14px;
 		flex: 1;
 

@@ -138,6 +138,7 @@
         index: 2,
         isShowDialog2: false,
         pictureZoomShow: false,
+        imageZoom: '',
         channelIdList: [],
         range: [
           { value: 1, text: "线下" },

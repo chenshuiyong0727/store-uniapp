@@ -51,9 +51,19 @@
                     v-model="orderData.actNo" border="none"></u--input>
 <!--          <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
         </u-form-item>
-        <u-form-item label-width="25vw"  label="尺码" borderBottom>
-          <u--input  disabledColor="#fff" inputAlign="right"
-                    v-model="requestParam.size" type="digit" border="none"></u--input>
+        <u-form-item label-width="60vw"  label="尺码"  borderBottom>
+<!--          <u&#45;&#45;input  disabledColor="#fff" inputAlign="right"-->
+<!--                    v-model="requestParam.size" type="digit" border="none"></u&#45;&#45;input>-->
+<!--          <uni-data-select-->
+<!--              v-model="requestParam.sizeId"-->
+<!--              :localdata="sizeList"-->
+<!--              :border="false"-->
+<!--              :clear="false"-->
+<!--              :ifShowSelector="false"-->
+<!--          ></uni-data-select>-->
+<!--          <u-picker :show="show_sx_type" :columns="columns" @cancel="show_sx_type= false"-->
+          <hpy-form-select  :dataList="sizeList" :hideBorder="true" :hideArrow="true" text="size" name="id" v-model="requestParam.sizeId"/>
+
           <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
         </u-form-item>
 
@@ -81,9 +91,13 @@
           <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
         </u-form-item>
 
-        <u-form-item label-width="25vw" label="入库时间" borderBottom @click="showFrom = true; $hideKeyboard()">
-          <u--input  disabledColor="#fff" inputAlign="right"  :disabled="true"
-                     v-model="requestParam.createTime" border="none"></u--input>
+<!--        <u-form-item label-width="25vw" label="入库时间" borderBottom @click="showFrom = true; $hideKeyboard()">-->
+<!--          <u&#45;&#45;input  disabledColor="#fff" inputAlign="right"  :disabled="true"-->
+<!--                     v-model="requestParam.createTime" border="none"></u&#45;&#45;input>-->
+<!--          <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
+<!--        </u-form-item>-->
+        <u-form-item label-width="30vw" label="入库时间" borderBottom >
+          <uni-datetime-picker style="color: #303133 !important; text-align: right" type="datetime" v-model="requestParam.createTime" @change="changeLog"  :border="false"/>
           <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
         </u-form-item>
 
@@ -103,8 +117,8 @@
         </u-form-item>
       </view>
     </u--form>
-    <u-picker :show="show_sx_type" :columns="columns" @cancel="show_sx_type= false" :defaultIndex="defaultIndex"
-              @confirm="confirm_sx_type" keyName="fieldName"></u-picker>
+<!--    <u-picker :show="show_sx_type" :columns="columns" @cancel="show_sx_type= false" :defaultIndex="defaultIndex"-->
+<!--              @confirm="confirm_sx_type" keyName="fieldName"></u-picker>-->
     <u-datetime-picker
         :show="showFrom"
         :minDate="1646064000000"
@@ -123,12 +137,14 @@
 <script>
   // import {goodsOtherApi} from '@/api/goodsOther'
   import {goodsInventoryApi} from '@/api/goodsInventory'
+  import { goodsBaseApi } from '@/api/goodsBase'
 
   export default {
     components: {
     },
     data() {
       return {
+        datetimesingle:  Date.now() - 2*24*3600*1000,
         showFrom: false,
         fileList1: [],
         show_sx_type: false,
@@ -144,9 +160,10 @@
           price: ''
         },
         typeList: [],
-        columns: [],
+        // columns: [],
         id: '',
         orderData: '',
+        sizeList:'',
         requestParam: {
           id: '',
           createTime: '',
@@ -175,6 +192,9 @@
       this.listSysDict()
     },
     methods: {
+      changeLog(e) {
+        console.log('change事件:', e);
+      },
       keyup1() {
         let poundage =  this.$getPoundage(this.requestParam.dwPrice)
         this.requestParam.poundage = parseFloat(poundage).toFixed(2)
@@ -384,10 +404,21 @@
         }
       },
       listSysDict() {
-        let sysDictList = uni.getStorageSync('sysDictList') ? JSON.parse(
-            uni.getStorageSync('sysDictList')) : [];
-        this.typeList = sysDictList.filter(item => item.typeValue == 39);
-        this.columns.push(this.typeList)
+        // let sysDictList = uni.getStorageSync('sysDictList') ? JSON.parse(
+        //     uni.getStorageSync('sysDictList')) : [];
+        // this.typeList = sysDictList.filter(item => item.typeValue == 39);
+        // this.columns.push(this.typeList
+
+        goodsBaseApi.listDropDownSizes({ type: '' }, false).then(res => {
+          if (res.subCode === 1000) {
+            this.sizeList = res.data
+            for (let i = 0; i < this.sizeList.length; i++) {
+              this.sizeList[i].value = this.sizeList[i].id
+              this.sizeList[i].text = this.sizeList[i].size
+            }
+            console.info(this.sizeList)
+          }
+        })
       },
 
     }
