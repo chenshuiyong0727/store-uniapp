@@ -116,63 +116,6 @@
     ></u-datetime-picker>
 
     <view class="julibiaoti3">
-      <!--      <view1 class="dingdans_item_dw"-->
-      <!--            v-for="(item,index) in tableData"-->
-      <!--            :key="index"-->
-      <!--      >-->
-      <!--        <view class="dingdans_con_dw">-->
-      <!--          <view :src="item.img" class="dingdans_con_left_dw"-->
-      <!--               @click="avatarShow(item.img)">-->
-      <!--            <image mode="widthFix" :src="item.img" ></image>-->
-      <!--            <p class="mark_dw">-->
-      <!--              <text class="text_dw">-->
-      <!--                {{ item.type | dictToDescTypeValue(20221108) }}-->
-      <!--              </text>-->
-      <!--            </p>-->
-      <!--          </view>-->
-      <!--          <view class="diangdans_con_right_dw">-->
-      <!--            <view class="dingdans_con_right_top_dw" @click="goodsDetail(item.id, 1) ">-->
-      <!--              <text>-->
-      <!--                {{item.name | sizeFilterNum(38) }}-->
-      <!--              </text>-->
-      <!--            </view>-->
-      <!--            <view class="dingdans_con_right_top_dw_1 xianglian">-->
-      <!--              <text @click="jumpactNo(item.actNo)">-->
-      <!--              {{item.actNo}}-->
-      <!--              </text>-->
-      <!--              <image @click="$copyUrl(item.actNo)" class="fuzhitupian"-->
-      <!--                     src="../../static/img/copy.png"></image>-->
-      <!--            </view>-->
-      <!--            <view class="dingdans_con_right_top_dw_2" style="margin-bottom: -10px;">-->
-      <!--              <view  v-if="item.brand">-->
-      <!--                   <text  class="dingdans_con_dw_address">-->
-      <!--                    {{item.brand}}-->
-      <!--                  </text>-->
-      <!--              </view>-->
-      <!--              <view class="dingdans_top_right_dw">-->
-      <!--                <view class="dingdans_con_right_down_2_1">-->
-      <!--                  <rudon-rowMenuDotDotDot :localdata="optionsOp" @change="menuAction1($event,item.id)">-->
-      <!--                    <text class="dw-button-common">操作</text>-->
-      <!--                  </rudon-rowMenuDotDotDot>-->
-
-      <!--&lt;!&ndash;                  <el-dropdown trigger="click" style="margin-left: 1px;">&ndash;&gt;-->
-      <!--&lt;!&ndash;                    <button&ndash;&gt;-->
-      <!--&lt;!&ndash;                        class="dw-button-common">操作&ndash;&gt;-->
-      <!--&lt;!&ndash;                    </button>&ndash;&gt;-->
-      <!--&lt;!&ndash;                    <el-dropdown-menu slot="dropdown" >&ndash;&gt;-->
-      <!--&lt;!&ndash;                      <el-dropdown-item type="text" @click.native="storeAdd(item.id)">选择</el-dropdown-item>&ndash;&gt;-->
-      <!--&lt;!&ndash;                      <el-dropdown-item type="text" @click.native="gotoDw(item.spuId)">得物</el-dropdown-item>&ndash;&gt;-->
-      <!--&lt;!&ndash;                      <el-dropdown-item type="text" @click.native="goodsDetail(item.id,1)">详情</el-dropdown-item>&ndash;&gt;-->
-      <!--&lt;!&ndash;                    </el-dropdown-menu>&ndash;&gt;-->
-      <!--&lt;!&ndash;                  </el-dropdown>&ndash;&gt;-->
-      <!--                </view>-->
-      <!--              </view>-->
-      <!--            </view>-->
-      <!--          </view>-->
-      <!--        </view>-->
-      <!--        &lt;!&ndash;底部&ndash;&gt;-->
-      <!--      </view1>-->
-
       <view class="dingdans_item_dw"
             v-for="(item,index) in tableData"
             :key="index"
@@ -185,7 +128,6 @@
             <text>{{item.orderNo }}</text>
           </view>
           <view class="dingdans_top_right_dw">
-            <!--            <text>{{ item.status | dictToDescTypeValue(37) }} </text>-->
             <text v-if="item.status == 7" class="color-success">{{ item.status |
               dictToDescTypeValue(37) }}
             </text>
@@ -262,13 +204,13 @@
               <text v-if="item.surplusDay >=0 && item.surplusDay <=12" class="color-danger">剩余天数
               </text>
               <text v-if="item.surplusDay < 0" class="color-danger">到期天数</text>
-              <text v-if="item.surplusDay >12">
+              <text v-if="item.surplusDay >12" style="margin-left: 2px">
                 {{item.surplusDay}}
               </text>
-              <strong v-if="item.surplusDay >=0 && item.surplusDay <=12" class="color-danger">
+              <strong style="margin-left: 2px" v-if="item.surplusDay >=0 && item.surplusDay <=12" class="color-danger">
                 {{item.surplusDay}}
               </strong>
-              <strong v-if="item.surplusDay < 0" class="color-danger">
+              <strong style="margin-left: 2px" v-if="item.surplusDay < 0" class="color-danger">
                 {{ 0 - item.surplusDay}}
               </strong>
             </view>
@@ -283,8 +225,8 @@
                         style="color: #333333">
                   ¥
                 </strong>
-                <strong v-if="item.theirPrice && ![2,11].includes(item.status)"
-                        style="font-size: 17px ;margin-left: -2px;color: #333333">
+                <strong  v-if="item.theirPrice && ![2,11].includes(item.status)"
+                        style="font-size: 17px ;margin-left: 2px;color: #333333">
                   {{item.theirPrice}}
                 </strong>
                 <text v-if="![2,11].includes(item.status)"
@@ -304,35 +246,27 @@
           <view v-if="[2,11].includes(item.status)" class="dingdans_top_left_dw">
             <text v-if="item.thisTimePrice">最低售价</text>
             <text style="margin-left: 2px;"  v-if="item.thisTimePrice">{{item.thisTimePrice }} ,</text>
-            <text v-if="item.thisTimeProfits" style="margin-left: 3px">预估利润</text>
+            <text v-if="item.thisTimeProfits" style="margin-left: 2px">预估利润</text>
             <text style="margin-left: 2px;"  v-if="item.thisTimeProfits">{{item.thisTimeProfits }}</text>
           </view>
           <view v-else class="dingdans_top_left_dw">
             <text>利润</text>
             <text style="margin-left: 2px;"  class="color-danger">{{item.profits }}</text>
-            <text v-if="item.status == 3 && item.deliveryDeadlineTime" style="margin-left: 3px">
+            <text v-if="item.status == 3 && item.deliveryDeadlineTime" style="margin-left: 2px">
               <text>，发货截止时间</text>
             </text>
-            <text  v-if="item.status == 3 && item.deliveryDeadlineTime" class="dingdans_con_dw_time">
+            <text  v-if="item.status == 3 && item.deliveryDeadlineTime" style="margin-left: 2px" class="dingdans_con_dw_time">
               {{item.deliveryDeadlineTime | formateTime('{y}-{m}-{d} {h}:{i}') }}
             </text>
           </view>
           <!--          操作栏-->
           <view class="dingdans_top_right_dw">
             <view class="dingdans_con_right_down_2_1">
-              <!--              <el-dropdown trigger="click" style="margin-left: 1px;">-->
-              <!--                <button-->
-              <!--                    class="dw-button-common">操作-->
-              <!--                </button>-->
-              <!--                <el-dropdown-menu slot="dropdown" >-->
-              <!--                  <el-dropdown-item type="text" @click.native="handleClick(item)">修改</el-dropdown-item>-->
-              <!--                  <el-dropdown-item type="text" @click.native="gotoDw(item.spuId)">得物</el-dropdown-item>-->
-              <!--                  <el-dropdown-item type="text" @click.native="gotoWl(item)">查看物流</el-dropdown-item>-->
-              <!--                  <el-dropdown-item type="text" @click.native="goodsDetail(item.goodsId, 1)">商品详情</el-dropdown-item>-->
-              <!--                  &lt;!&ndash;                  <el-dropdown-item type="text" @click.native="orderDetailnew(item.id, 1)">订单详情</el-dropdown-item>&ndash;&gt;-->
-              <!--                  <el-dropdown-item type="text" class="color-danger" @click.native="goDel(item.id)">删除</el-dropdown-item>-->
-              <!--                </el-dropdown-menu>-->
-              <!--              </el-dropdown>-->
+              <view style="margin-bottom: 3px;">
+                <rudon-rowMenuDotDotDot :localdata="optionsOp" @change="menuActionList($event,item)">
+                  <text class="dw-button-common">操作</text>
+                </rudon-rowMenuDotDotDot>
+              </view>
             </view>
           </view>
         </view>
@@ -357,6 +291,9 @@
   </view>
 </template>
 <script>
+  import {goodsOrderApi} from '@/api/goodsOrder'
+  import { parseTime } from '@/utils/index'
+
   export default {
     name: "HelloWorld",
     data() {
@@ -379,14 +316,36 @@
             text: '重置'
           }
         ],
+        // optionsOp: [
+        //   {
+        //     value: 'view',
+        //     text: '查看'
+        //   },
+        //   {
+        //     value: 'update',
+        //     text: '修改'
+        //   }
+        // ],
         optionsOp: [
-          {
-            value: 'view',
-            text: '查看'
-          },
           {
             value: 'update',
             text: '修改'
+          },
+          {
+            value: 'gotoDw',
+            text: '得物'
+          },
+          {
+            value: 'gotoWl',
+            text: '查看物流'
+          },
+          {
+            value: 'goodsDetail',
+            text: '商品详情'
+          },
+          {
+            value: 'goDel',
+            text: '删除'
           }
         ],
         list2: [
@@ -692,15 +651,30 @@
           this.resetHandle()
         }
       },
-      menuAction1(action, rowId) {
+      menuActionList(action, item) {
         if (action === '') {
           return
         }
-        if ('view' == action) {
-          this.goDetail(rowId, 1)
+        if ('goodsDetail' == action) {
+          this.goodsDetail(item.goodsId)
+        }
+        if ('warehouseDetail' == action) {
+          this.warehouseDetail(item.goodsId ,item.actNo ,item.img )
         }
         if ('update' == action) {
-          this.goDetail(rowId, 2)
+          this.update(item )
+        }
+        if ('gotoDw' == action) {
+          this.gotoDw(item.spuId )
+        }
+        if ('jumpOrder' == action) {
+          this.jumpOrder(item.actNo)
+        }
+        if ('gallery' == action) {
+          this.gallery(item)
+        }
+        if ('goDel' == action) {
+          this.goDel(item.id)
         }
       },
 
@@ -734,38 +708,36 @@
         this.queryParam.typeStr = fieldName
         this.search1()
       },
-      goDetail(id, type) {
-        let url = '/pages/other/otherAdd?type=' + type
-        if (id) {
-          url = url + '&id=' + id
-          // this.$navigateTo('/pages/other/otherAdd?type='+type+'&id='+id)
-        }
+      goDetail(id) {
+        let url = '/pages/order/detail?id=' + id
         this.$navigateTo(url)
-        // this.$router.push({ path: '/otherAdd', query: { id, type } })
       },
-
-      scanCode(id, type) {
-
-        this.$router.push({path: '/scanCode', query: {id, type}})
-      },
-      goodsDetail(id, type) {
-
-        this.$router.push({path: '/goodsDetail', query: {id, type}})
-      },
-      gotoDw(spuId) {
-        if (!spuId) {
+      goodsDetail(id) {
+        if (!id) {
           return
         }
-        let url = "https://m.dewu.com/router/product/ProductDetail?spuId=";
-        window.location.href = url + spuId;
+        let url = '/pages/goodsBase/detail?id=' + id
+        this.$navigateTo(url)
+      },
+      gotoDw(spuId) {
+        if (!spuId){
+          return
+        }
+        let url = "https://m.dewu.com/router/product/ProductDetail?spuId="+ spuId;
+        // #ifdef APP-PLUS
+        plus.runtime.openURL(url) //这里默认使用外部浏览器打开而不是内部web-view组件打开
+        // #endif
+        // #ifdef H5
+        window.open(url)
+        // #endif
       },
       storeAdd(goodsId) {
 
         this.$router.push({path: '/storeAdd', query: {goodsId}})
       },
       jumpactNo(actNo) {
-
-        this.$router.push({path: '/store', query: {actNo}})
+        let url = '/pages/store/index?backUrl=/pages/order/index&actNo=' + actNo
+        this.$navigateTo(url)
       },
       getPage() {
         this.isLoading = true
@@ -1038,44 +1010,52 @@
 
         this.isShowDialog1 = true
       },
-      goodsDetail(id, type) {
-
-        this.$router.push({path: '/goodsDetail', query: {id, type}})
-      },
-      jumpactNo(actNo) {
-
-        this.$router.push({path: '/store', query: {actNo}})
-      },
-      goDetail(id) {
-
-        this.$router.push({path: '/orderDetail', query: {id}})
-      },
-      orderDetailnew(id) {
-
-        this.$router.push({path: '/orderDetailnew', query: {id}})
-      },
-      gotoDw(spuId) {
-        if (!spuId) {
-          return
-        }
-        let url = "https://m.dewu.com/router/product/ProductDetail?spuId=";
-        window.location.href = url + spuId;
-      },
+      // jumpactNo(actNo) {
+      //
+      //   this.$router.push({path: '/store', query: {actNo}})
+      // },
+      // goDetail(id) {
+      //
+      //   this.$router.push({path: '/orderDetail', query: {id}})
+      // },
+      // orderDetailnew(id) {
+      //
+      //   this.$router.push({path: '/orderDetailnew', query: {id}})
+      // },
       goDel(id) {
-        this.$confirm('是否删除', "提示", {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: "warning",
-        }).then(() => {
-          goodsOrderApi.delById(id).then(res => {
-            this.$toast(res.subMsg)
-            if (res.subCode === 1000) {
-              this.getPage()
+        var _this = this;
+        uni.showModal({
+          title: '',
+          confirmColor: '#409eff',
+          content: '是否删除',
+          success: function (res) {
+            if (res.confirm) {
+              goodsOrderApi.delById(id).then(res => {
+                _this.$toast(res.subMsg)
+                if (res.subCode === 1000) {
+                  _this.search1()
+                }
+              })
+            } else if (res.cancel) {
             }
-          })
-        }).catch(() => {
-        })
+          }
+        });
       },
+      // goDel(id) {
+      //   this.$confirm('是否删除', "提示", {
+      //     confirmButtonText: '确定',
+      //     cancelButtonText: '取消',
+      //     type: "warning",
+      //   }).then(() => {
+      //     goodsOrderApi.delById(id).then(res => {
+      //       this.$toast(res.subMsg)
+      //       if (res.subCode === 1000) {
+      //         this.getPage()
+      //       }
+      //     })
+      //   }).catch(() => {
+      //   })
+      // },
       delItem(id) {
         for (let i = 0; i < this.ids.length; i++) {
           if (this.ids[i] === id) {

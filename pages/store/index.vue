@@ -117,63 +117,6 @@
     ></u-datetime-picker>
 
     <view class="julibiaoti3">
-<!--      <view1 class="dingdans_item_dw"-->
-<!--            v-for="(item,index) in tableData"-->
-<!--            :key="index"-->
-<!--      >-->
-<!--        <view class="dingdans_con_dw">-->
-<!--          <view :src="item.img" class="dingdans_con_left_dw"-->
-<!--               @click="avatarShow(item.img)">-->
-<!--            <image mode="widthFix" :src="item.img" ></image>-->
-<!--            <p class="mark_dw">-->
-<!--              <text class="text_dw">-->
-<!--                {{ item.type | dictToDescTypeValue(20221108) }}-->
-<!--              </text>-->
-<!--            </p>-->
-<!--          </view>-->
-<!--          <view class="diangdans_con_right_dw">-->
-<!--            <view class="dingdans_con_right_top_dw" @click="goodsDetail(item.id, 1) ">-->
-<!--              <text>-->
-<!--                {{item.name | sizeFilterNum(38) }}-->
-<!--              </text>-->
-<!--            </view>-->
-<!--            <view class="dingdans_con_right_top_dw_1 xianglian">-->
-<!--              <text @click="jumpactNo(item.actNo)">-->
-<!--              {{item.actNo}}-->
-<!--              </text>-->
-<!--              <image @click="$copyUrl(item.actNo)" class="fuzhitupian"-->
-<!--                     src="../../static/img/copy.png"></image>-->
-<!--            </view>-->
-<!--            <view class="dingdans_con_right_top_dw_2" style="margin-bottom: -10px;">-->
-<!--              <view  v-if="item.brand">-->
-<!--                   <text  class="dingdans_con_dw_address">-->
-<!--                    {{item.brand}}-->
-<!--                  </text>-->
-<!--              </view>-->
-<!--              <view class="dingdans_top_right_dw">-->
-<!--                <view class="dingdans_con_right_down_2_1">-->
-<!--                  <rudon-rowMenuDotDotDot :localdata="optionsOp" @change="menuAction1($event,item.id)">-->
-<!--                    <text class="dw-button-common">操作</text>-->
-<!--                  </rudon-rowMenuDotDotDot>-->
-
-<!--&lt;!&ndash;                  <el-dropdown trigger="click" style="margin-left: 1px;">&ndash;&gt;-->
-<!--&lt;!&ndash;                    <button&ndash;&gt;-->
-<!--&lt;!&ndash;                        class="dw-button-common">操作&ndash;&gt;-->
-<!--&lt;!&ndash;                    </button>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <el-dropdown-menu slot="dropdown" >&ndash;&gt;-->
-<!--&lt;!&ndash;                      <el-dropdown-item type="text" @click.native="storeAdd(item.id)">选择</el-dropdown-item>&ndash;&gt;-->
-<!--&lt;!&ndash;                      <el-dropdown-item type="text" @click.native="gotoDw(item.spuId)">得物</el-dropdown-item>&ndash;&gt;-->
-<!--&lt;!&ndash;                      <el-dropdown-item type="text" @click.native="goodsDetail(item.id,1)">详情</el-dropdown-item>&ndash;&gt;-->
-<!--&lt;!&ndash;                    </el-dropdown-menu>&ndash;&gt;-->
-<!--&lt;!&ndash;                  </el-dropdown>&ndash;&gt;-->
-<!--                </view>-->
-<!--              </view>-->
-<!--            </view>-->
-<!--          </view>-->
-<!--        </view>-->
-<!--        &lt;!&ndash;底部&ndash;&gt;-->
-<!--      </view1>-->
-
       <view class="dingdans_item_dw"
             v-for="(item,index) in tableData"
             :key="index"
@@ -208,7 +151,7 @@
               </text>
             </view>
             <view class="dingdans_con_right_top_dw_1 xianglian">
-              <text @click="jumpactNo(item.actNo)">
+              <text @click="jumpOrder(item.actNo)">
               {{item.actNo}}
               </text>
               <image @click="$copyUrl(item.actNo)" class="fuzhitupian"
@@ -289,23 +232,6 @@
     <view v-if="storeData.upCout">
       <uni-fab ref="fab" :pattern="pattern"  horizontal="right" @fabClick="syncOldPriceToNew1" />
     </view>
-
-<!--    <u-popup1 :show="!isShowDialog1" @close="close1" :duration="100" :closeable="true" mode="center">-->
-<!--      <view style="width: 100vw;background-color: #fff">-->
-<!--        <view class="zuoyouduiqi width92" >-->
-<!--          <view>-->
-<!--            <image style="width: 80px;" mode="widthFix" :src="$fileUrl +'/static/operateSteps/empity_7.png'">-->
-<!--            </image>-->
-<!--          </view>-->
-<!--          <view>-->
-<!--            <text>-->
-<!--              货号：DC1000-100-->
-<!--            </text>-->
-
-<!--          </view>-->
-<!--        </view>-->
-<!--      </view>-->
-<!--    </u-popup1>-->
   </view>
 </template>
 <script>
@@ -674,13 +600,6 @@
         let url = '/pages/goodsBase/detail?id=' + id
         this.$navigateTo(url)
       },
-      // gotoDw(spuId) {
-      //   if (!spuId){
-      //     return
-      //   }
-      //   let url = "https://m.dewu.com/router/product/ProductDetail?spuId=";
-      //   window.location.href = url + spuId;
-      // },
       gotoDw(spuId) {
         if (!spuId){
           return
@@ -992,14 +911,6 @@
       //
       //   this.$router.push({ path: '/goodsDetail', query: { id, type } })
       // },
-      gotoDw(spuId) {
-        if (!spuId){
-          return
-        }
-        // let url = "https://www.dewu.com/router/product/ProductDetail?spuId=";
-        let url = "https://m.dewu.com/router/product/ProductDetail?spuId=";
-        window.location.href = url + spuId;
-      },
       // 复制链接
       // copyUrl(url) {
       //   const input = document.createElement('input')

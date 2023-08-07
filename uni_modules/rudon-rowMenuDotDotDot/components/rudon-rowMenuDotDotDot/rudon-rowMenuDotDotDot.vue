@@ -332,7 +332,7 @@
 
 	.uni-select__selector-scroll {
 		/* #ifndef APP-NVUE */
-		max-height: 200px;
+		max-height: 300px;
 		box-sizing: border-box;
 		/* #endif */
 	}
