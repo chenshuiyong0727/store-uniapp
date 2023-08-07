@@ -253,14 +253,22 @@
         todayList: ''
       }
     },
-    created() {
-      const { id } = this.$route.query
-      if (id) {
-        this.getDetailById(id)
+    // created() {
+    //   const { id } = this.$route.query
+    //   if (id) {
+    //     this.getDetailById(id)
+    //   }
+    // },
+    // mounted() {
+    //   // this.listSysDict()
+    // },
+    onLoad(options) {
+      if (options) {
+        this.id = options.id ? options.id : '';
+        if (this.id) {
+          this.getDetailById(this.id)
+        }
       }
-    },
-    mounted() {
-      // this.listSysDict()
     },
     methods:{
       // goodsDetail(id, type) {
