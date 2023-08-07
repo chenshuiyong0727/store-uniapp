@@ -267,6 +267,7 @@
           <view class="dingdans_top_right_dw">
             <view class="dingdans_con_right_down_2_1 xianglian">
               <text v-if="item.status==2" class="dw-button-common" @click="toSell(item.id)">出售</text>
+              <text v-else-if="item.status==3" class="dw-button-common" @click="toDelivery(item.id)">发货</text>
 
 <!--              <text v-if="item.status == 7" class="color-success">{{ item.status |-->
 <!--                dictToDescTypeValue(37) }}-->
@@ -724,6 +725,9 @@
       },
       toSell(id) {
         this.$navigateTo('/pages/order/toSell?id=' +id)
+      },
+      toDelivery(id) {
+        this.$navigateTo('/pages/order/toDelivery?id=' +id)
       },
       update(row) {
         this.$navigateTo('/pages/order/update?id=' + row.id)
