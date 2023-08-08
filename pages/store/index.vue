@@ -213,8 +213,8 @@
         </view>
       </view>
     </view>
-    <view v-show="tableData.length" style="padding: 10px;">
-      <u-loadmore :status="loadStatus"/>
+    <view v-show="tableData.length" style="padding: 10px;font-weight: 600">
+      <u-loadmore fontSize="18"  color="#a6a6a6" nomoreText="最硬球鞋" :status="loadStatus"/>
     </view>
     <u-empty
         v-if="!tableData.length && !isLoading"
