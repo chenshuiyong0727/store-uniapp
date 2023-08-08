@@ -8,7 +8,7 @@
       <!--        提交-->
       <!--      </view>-->
     </u-navbar>
-    <view class="width92 baisebeijing" style="margin-top: 60px;">
+    <view class="width92 baisebeijing" style="margin-top: 43px;">
       <view style="width: 85vw;margin-left: 4vw;    padding-top: 10px;">
         <text>
           <strong v-if="orderData1.goodsId"
@@ -167,6 +167,13 @@
             <u--text mode="price" color="#808080" size="12" :text="requestParam1.xfzyfbt"></u--text>
           </view>
         </view>
+      </view>
+    </view>
+    <view style="height: 170px"></view>
+
+    <view class="baisebeijing " style="width:100%;position:fixed;bottom:0;
+     border-top: solid #E2DDDD 1px;">
+      <view class="width92">
         <view class="zuoyouduiqi"
               style="font-weight: 600;font-size: 15px;padding-top: 15px;color: #333333">
           <view>
@@ -197,16 +204,13 @@
                      :text="requestParam1.profits"></u--text>
           </view>
         </view>
-
       </view>
-    </view>
-    <view style="height: 60px"></view>
 
-    <view class="baisebeijing shuipingjuzhong" style="width:100%;position:fixed;bottom:0;
-     border-top: solid #E2DDDD 1px;">
-      <u-button style="width: 50vw; margin: 10px 15px;" type="primary" @click="confirmHandle1">
-        <text style=" font-size: 17px;font-weight: 600">确认上架</text>
-      </u-button>
+      <view class="shuipingjuzhong">
+        <u-button style="width: 50vw; margin: 10px 15px;" type="primary" @click="confirmHandle1">
+          <text style=" font-size: 17px;font-weight: 600">确认上架</text>
+        </u-button>
+      </view>
     </view>
 
     <view class="popContainer" v-if="pictureZoomShow" @click="pictureZoomShow = false">
@@ -440,17 +444,17 @@
         this.$router.push({path: '/store', query: {actNo}})
       },
       // 复制链接
-      copyUrl(url) {
-        const input = document.createElement('input')
-        document.body.appendChild(input)
-        input.setAttribute('value', url)
-        input.select()
-        if (document.execCommand('copy')) {
-          document.execCommand('copy')
-        }
-        document.body.removeChild(input)
-        this.$toast('已复制至剪切板')
-      },
+      // copyUrl(url) {
+      //   const input = document.createElement('input')
+      //   document.body.appendChild(input)
+      //   input.setAttribute('value', url)
+      //   input.select()
+      //   if (document.execCommand('copy')) {
+      //     document.execCommand('copy')
+      //   }
+      //   document.body.removeChild(input)
+      //   this.$toast('已复制至剪切板')
+      // },
       addSizeHandle(item, index = 0) {
         if (!this.activeIndex.includes(index)) {
           this.activeIndex.push(index)

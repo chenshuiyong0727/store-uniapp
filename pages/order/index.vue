@@ -268,6 +268,9 @@
             <view class="dingdans_con_right_down_2_1 xianglian">
               <text v-if="item.status==2" class="dw-button-common" @click="toSell(item.id)">出售</text>
               <text v-else-if="item.status==3" class="dw-button-common" @click="toDelivery(item.id)">发货</text>
+              <text v-else-if="item.status==4" class="dw-button-common" @click="changeStatusComfirm(item.id,5,'确认揽件')">揽件</text>
+              <text v-else-if="item.status==5" class="dw-button-common" @click="changeStatusComfirm(item.id,6,'确认收货')">收货</text>
+              <text v-else-if="[6,11].includes(item.status)"  class="dw-button-common" @click="update(item,'交易成功')">成功</text>
 
 <!--              <text v-if="item.status == 7" class="color-success">{{ item.status |-->
 <!--                dictToDescTypeValue(37) }}-->
@@ -279,7 +282,8 @@
 <!--            </view>-->
 
               <rudon-rowMenuDotDotDot :localdata="optionsOp" @change="menuActionList($event,item)">
-                <text class="dw-button-common">更多</text>
+                <text v-if="[2,3,4,5,6,11].includes(item.status)"  class="dw-button-common">更多</text>
+                <text v-else class="dw-button-common">操作</text>
               </rudon-rowMenuDotDotDot>
             </view>
           </view>
@@ -729,8 +733,45 @@
       toDelivery(id) {
         this.$navigateTo('/pages/order/toDelivery?id=' +id)
       },
-      update(row) {
-        this.$navigateTo('/pages/order/update?id=' + row.id)
+      update(row,titleName) {
+        let url = '/pages/order/update?id=' + row.id
+        if (titleName){
+          url = url + '&titleName=' +titleName
+        }
+        this.$navigateTo(url)
+      },
+      changeStatusComfirm(id,status,msg) {
+        var _this = this;
+        uni.showModal({
+          title: '',
+          confirmColor: '#409eff',
+          content: msg,
+          success: function (res) {
+            if (res.confirm) {
+              _this.changeStatus(_this,id,status)
+              // goodsOrderApi.delById(id).then(res => {
+              //   _this.$toast(res.subMsg)
+              //   if (res.subCode === 1000) {
+              //     _this.search1()
+              //   }
+              // })
+            } else if (res.cancel) {
+            }
+          }
+        });
+      },
+
+
+      changeStatus(_this,id,status) {
+        let data={}
+        data.status = status
+        data.id = id
+        goodsOrderApi.update(data).then(res => {
+          this.$toast(res.subMsg)
+          if (res.subCode === 1000) {
+            _this.search1()
+          }
+        })
       },
       goodsDetail(id) {
         if (!id) {

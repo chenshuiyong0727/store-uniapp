@@ -1,6 +1,6 @@
 <template lang="html">
   <view class="login">
-    <u-navbar title="修改" bgColor="#F3F4F5">
+    <u-navbar :title="titleName ? titleName : '修改'" bgColor="#F3F4F5">
       <view @click="$goBack" class="u-nav-slot" slot="left">
         <u-icon name="arrow-left" size="20"></u-icon>
       </view>
@@ -217,6 +217,7 @@
         },
         typeList: [],
         id: '',
+        titleName: '',
         pictureZoomShow: false,
         imageZoom: false,
         orderData: '',
@@ -243,6 +244,7 @@
     onLoad(options) {
       if (options) {
         this.id = options.id ? options.id : '';
+        this.titleName = options.titleName ? options.titleName : '';
         if (this.id) {
           this.getDetailById(this.id)
         }
@@ -366,13 +368,16 @@
         this.requestParam.freight = this.orderData.freight
         this.requestParam.waybillNo = this.orderData.waybillNo
         this.requestParam.addressId = this.orderData.addressId ? this.orderData.addressId :''
-        if (this.orderData.status != 11) {
-          this.requestParam.status = this.orderData.status + 1
-        } else {
-          this.requestParam.status = 6
-        }
-        if (this.orderData.status == 7) {
+        // if (this.orderData.status != 11) {
+        //   this.requestParam.status = this.orderData.status + 1
+        // } else {
+        //   this.requestParam.status = 7
+        // }
+        if (this.orderData.status == 7 || this.orderData.status ==11) {
           this.requestParam.status = 7
+        }else{
+          this.requestParam.status = this.orderData.status + 1
+
         }
         if (!this.orderData.poundage) {
           let poundage = this.$getPoundage(this.requestParam.shelvesPrice)

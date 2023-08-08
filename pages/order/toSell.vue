@@ -253,6 +253,12 @@
             <u--text mode="price" color="#808080" size="12" :text="requestParam.xfzyfbt"></u--text>
           </view>
         </view>
+      </view>
+    </view>
+    <view style="height: 170px"></view>
+    <view class="baisebeijing " style="width:100%;position:fixed;bottom:0;
+     border-top: solid #E2DDDD 1px;">
+      <view class="width92">
         <view class="zuoyouduiqi"
               style="font-weight: 600;font-size: 15px;padding-top: 15px;color: #333333">
           <view>
@@ -283,16 +289,12 @@
                      :text="requestParam.profits"></u--text>
           </view>
         </view>
-
       </view>
-    </view>
-    <view style="height: 70px"></view>
-
-    <view class="baisebeijing shuipingjuzhong" style="width:100%;position:fixed;bottom:0;
-     border-top: solid #E2DDDD 1px;">
-      <u-button style="width: 50vw; margin: 10px 15px;" type="primary" @click="confirmHandle">
-        <text style=" font-size: 17px;font-weight: 600">确认出售</text>
-      </u-button>
+      <view class="shuipingjuzhong">
+        <u-button style="width: 50vw; margin: 10px 15px;" type="primary" @click="confirmHandle">
+          <text style=" font-size: 17px;font-weight: 600">确认出售</text>
+        </u-button>
+      </view>
     </view>
 
     <view class="popContainer" v-if="pictureZoomShow" @click="pictureZoomShow = false">
@@ -499,6 +501,7 @@
               this.requestParam.deliveryDeadlineTime =  parseTime(this.orderData.deliveryDeadlineTime)
               this.requestParam.shelvesPrice = this.orderData.shelvesPrice
               this.requestParam.subsidiesPrice = this.orderData.subsidiesPrice
+              this.keyup2()
               // this.orderData = res.data ? res.data : {}
               // this.max1 = this.orderData.inventory - this.orderData.galleryCount
               //

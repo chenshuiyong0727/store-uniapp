@@ -268,17 +268,17 @@
         this.$router.push({path: '/store', query: {actNo}})
       },
       // 复制链接
-      copyUrl(url) {
-        const input = document.createElement('input')
-        document.body.appendChild(input)
-        input.setAttribute('value', url)
-        input.select()
-        if (document.execCommand('copy')) {
-          document.execCommand('copy')
-        }
-        document.body.removeChild(input)
-        this.$toast('已复制至剪切板')
-      },
+      // copyUrl(url) {
+      //   const input = document.createElement('input')
+      //   document.body.appendChild(input)
+      //   input.setAttribute('value', url)
+      //   input.select()
+      //   if (document.execCommand('copy')) {
+      //     document.execCommand('copy')
+      //   }
+      //   document.body.removeChild(input)
+      //   this.$toast('已复制至剪切板')
+      // },
       addSizeHandle(item, index = 0) {
         if (!this.activeIndex.includes(index)) {
           this.activeIndex.push(index)

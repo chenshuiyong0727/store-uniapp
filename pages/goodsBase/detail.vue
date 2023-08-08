@@ -454,17 +454,17 @@
         this.getPriceData()
         this.isShowDialog2 = true
       },
-      copyUrl(url) {
-        const input = document.createElement('input')
-        document.body.appendChild(input)
-        input.setAttribute('value', url)
-        input.select()
-        if (document.execCommand('copy')) {
-          document.execCommand('copy')
-        }
-        document.body.removeChild(input)
-        this.$toast('已复制至剪切板')
-      },
+      // copyUrl(url) {
+      //   const input = document.createElement('input')
+      //   document.body.appendChild(input)
+      //   input.setAttribute('value', url)
+      //   input.select()
+      //   if (document.execCommand('copy')) {
+      //     document.execCommand('copy')
+      //   }
+      //   document.body.removeChild(input)
+      //   this.$toast('已复制至剪切板')
+      // },
       avatarShow(e) {
         this.imageZoom = e
         this.pictureZoomShow = true
