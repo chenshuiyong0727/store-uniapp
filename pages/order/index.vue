@@ -271,16 +271,6 @@
               <text v-else-if="item.status==4" class="dw-button-common" @click="changeStatusComfirm(item.id,5,'确认揽件')">揽件</text>
               <text v-else-if="item.status==5" class="dw-button-common" @click="changeStatusComfirm(item.id,6,'确认收货')">收货</text>
               <text v-else-if="[6,11].includes(item.status)"  class="dw-button-common" @click="update(item,'交易成功')">成功</text>
-
-<!--              <text v-if="item.status == 7" class="color-success">{{ item.status |-->
-<!--                dictToDescTypeValue(37) }}-->
-<!--              </text>-->
-<!--              <text v-else-if="[3,4,5,6,8].includes(item.status)" class="color-danger">{{-->
-<!--                item.status | dictToDescTypeValue(37) }}-->
-<!--              </text>-->
-<!--              <text v-else>{{ item.status | dictToDescTypeValue(37) }}</text>-->
-<!--            </view>-->
-
               <rudon-rowMenuDotDotDot :localdata="optionsOp" @change="menuActionList($event,item)">
                 <text v-if="[2,3,4,5,6,11].includes(item.status)"  class="dw-button-common">更多</text>
                 <text v-else class="dw-button-common">操作</text>
@@ -1071,18 +1061,6 @@
 
         this.isShowDialog1 = true
       },
-      // jumpactNo(actNo) {
-      //
-      //   this.$router.push({path: '/store', query: {actNo}})
-      // },
-      // goDetail(id) {
-      //
-      //   this.$router.push({path: '/orderDetail', query: {id}})
-      // },
-      // orderDetailnew(id) {
-      //
-      //   this.$router.push({path: '/orderDetailnew', query: {id}})
-      // },
       goDel(id) {
         var _this = this;
         uni.showModal({
@@ -1102,21 +1080,6 @@
           }
         });
       },
-      // goDel(id) {
-      //   this.$confirm('是否删除', "提示", {
-      //     confirmButtonText: '确定',
-      //     cancelButtonText: '取消',
-      //     type: "warning",
-      //   }).then(() => {
-      //     goodsOrderApi.delById(id).then(res => {
-      //       this.$toast(res.subMsg)
-      //       if (res.subCode === 1000) {
-      //         this.getPage()
-      //       }
-      //     })
-      //   }).catch(() => {
-      //   })
-      // },
       delItem(id) {
         for (let i = 0; i < this.ids.length; i++) {
           if (this.ids[i] === id) {
