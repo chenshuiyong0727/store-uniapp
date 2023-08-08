@@ -122,7 +122,7 @@
             :key="index"
       >
         <!--        头部-->
-        <view class="dingdans_top_dw">
+        <view class="dingdans_top_dw" @click="goDetail(item.id) ">
           <view class="dingdans_top_left_dw">
             <text>入库时间:</text>
             <text>{{item.createTime |formateTime}}</text>
@@ -134,9 +134,9 @@
           </view>
         </view>
         <!--        中间-->
-        <view class="dingdans_con_dw">
+        <view class="dingdans_con_dw" @click="goDetail(item.id) ">
           <view :src="item.img" class="dingdans_con_left_dw"
-               @click="avatarShow(item.img)">
+               @click.stop="avatarShow(item.img)">
             <image mode="widthFix" :src="item.img" ></image>
             <p class="mark_dw">
               <text class="text_dw">
@@ -145,16 +145,16 @@
             </p>
           </view>
           <view class="diangdans_con_right_dw">
-            <view class="dingdans_con_right_top_dw" @click="goDetail(item.id) ">
+            <view class="dingdans_con_right_top_dw" >
               <text class="chaochu"  style="width: 65vw">
                 {{item.goodsName }}
               </text>
             </view>
             <view class="dingdans_con_right_top_dw_1 xianglian">
-              <text @click="jumpOrder(item.actNo)">
+              <text @click.stop="jumpOrder(item.actNo)">
               {{item.actNo}}
               </text>
-              <image @click="$copyUrl(item.actNo)" class="fuzhitupian"
+              <image @click.stop="$copyUrl(item.actNo)" class="fuzhitupian"
                      src="../../static/img/copy.png"></image>
             </view>
             <view v-if="item.warehouseId" style="margin-bottom: 5px;
