@@ -172,6 +172,9 @@
       </view>
     </view>
     <!--    列表结束-->
+    <view v-show="tableData.length" class="meiyougengduo">
+      <u-loadmore fontSize="18"  color="#a6a6a6" nomoreText="最硬球鞋"  loadingText="最硬球鞋" status="nomore"/>
+    </view>
     <u-empty
         v-if="!tableData.length"
         mode="list"

@@ -137,6 +137,7 @@
 			}
 
 			&__text {
+				padding: 0 3px !important;
 				font-size: 14px;
 				color: $u-content-color;
 			}
