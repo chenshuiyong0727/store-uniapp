@@ -121,7 +121,7 @@
             :key="index"
       >
         <!--        头部-->
-        <view class="dingdans_top_dw"
+        <view class="dingdans_top_dw"  @click="goDetail(item.id) "
               :style="item.status == 3 && item.deliveryDeadlineTime ? 'border-bottom: 0;' : ''">
           <view class="dingdans_top_left_dw">
             <text>订单号:</text>
@@ -137,7 +137,7 @@
             <text v-else>{{ item.status | dictToDescTypeValue(37) }}</text>
           </view>
         </view>
-        <view v-if="item.status == 3 && item.deliveryDeadlineTime"
+        <view v-if="item.status == 3 && item.deliveryDeadlineTime"  @click="goDetail(item.id) "
               style="background-color: #fbfbfd;color: #333333;font-weight: 600;font-size: 13px;">
           <view class="xianglian" style="padding: 6px;
     margin-left: 5px;">
@@ -163,15 +163,15 @@
           </view>
         </view>
         <!--        中间-->
-        <view class="dingdans_con_dw">
+        <view class="dingdans_con_dw"  @click="goDetail(item.id) ">
           <view v-if="showSd" style="width: 50px;
     margin-left: -2px;
     margin-right: 2px;">
-            <el-checkbox v-model="item.checked" :checked="item.checked"
-                         @change="changeChecked(item.id)"></el-checkbox>
+<!--            <el-checkbox v-model="item.checked" :checked="item.checked"-->
+<!--                         @change="changeChecked(item.id)"></el-checkbox>-->
           </view>
           <view :src="item.img" class="dingdans_con_left_dw"
-                @click="avatarShow(item.img)">
+                @click.stop="avatarShow(item.img)">
             <image mode="widthFix" :src="item.img"></image>
             <p class="mark_dw">
               <text class="text_dw">
@@ -180,7 +180,7 @@
             </p>
           </view>
           <view class="diangdans_con_right_dw">
-            <view class="dingdans_con_right_top_dw" @click="goDetail(item.id) ">
+            <view class="dingdans_con_right_top_dw" @click.stop="goodsDetail(item.goodsId)" >
               <text class="chaochu"  style="width: 65vw">
                 {{item.goodsName }}
               </text>
@@ -196,10 +196,10 @@
             </view>
 
             <view class="dingdans_con_right_top_dw_1 xianglian">
-              <text @click="jumpactNo(item.actNo)">
+              <text @click.stop="jumpactNo(item.actNo)">
                 {{item.actNo}}
               </text>
-              <image @click="$copyUrl(item.actNo)" class="fuzhitupian"
+              <image @click.stop="$copyUrl(item.actNo)" class="fuzhitupian"
                      src="../../static/img/copy.png"></image>
             </view>
             <view v-if="item.addressId" style="margin-bottom: 5px;
@@ -345,12 +345,12 @@
           },
           {
             value: 'gotoWl',
-            text: '查看物流'
+            text: '物流'
           },
-          {
-            value: 'goodsDetail',
-            text: '商品详情'
-          },
+          // {
+          //   value: 'goodsDetail',
+          //   text: '商品详情'
+          // },
           {
             value: 'goDel',
             text: '删除'
