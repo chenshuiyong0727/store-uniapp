@@ -334,7 +334,8 @@ select{
 .fenlei_top {
   padding: 5px 10px !important;
   width: 100vw;
-  background: #fff;
+  background: #f3faff;
+  /*background: #eaf4fd;*/
   position: fixed;
   top: 0;
   left: 0;
@@ -570,13 +571,14 @@ img{
 
 /*导航栏*/
 .searchListnew {
-  border-bottom: 1vw solid #eee;
+  /*border-bottom: 1vw solid #eee;*/
   width: 100vw;
   margin-top: 80px;
-  background: #fff;
+  background: #f3faff;
+  /*background: eaf4fd;*/
   padding: 2vw;
-  position: fixed;
-  z-index: 2;
+  /*position: fixed;*/
+  /*z-index: 2;*/
 }
 
 /*导航栏*/
@@ -1196,7 +1198,8 @@ a{
   padding-top: 92px;
 }
 .julibiaoti3{
-  padding-top: 142px;
+  padding-top: 6px;
+  /*padding-top: 142px;*/
 }
 .biaodan-gengduo{
   margin-bottom: -2px;

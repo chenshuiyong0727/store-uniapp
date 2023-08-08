@@ -1,7 +1,8 @@
 <template lang="html">
   <view class="car2" ref="content"
         style="height: 100%;font-size: 15px; border-top:0;    overflow: auto;">
-    <u-navbar title="个人中心">
+    <u-navbar title="个人中心" bgColor="#f3faff">
+<!--    <u-navbar title="个人中心" bgColor="#e5f4ff">-->
       <view @click="$goBack" class="u-nav-slot" slot="left">
         <image style="width: 23px; height: 23px;" src="../../static/img/saoyisao4.png"></image>
       </view>

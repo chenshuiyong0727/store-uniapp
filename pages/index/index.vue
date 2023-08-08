@@ -1,7 +1,7 @@
 <template lang="html">
   <view class="hello" ref="hello" style="height: 100%;padding-top: 0px;    overflow: auto;">
     <view class="car1">
-      <u-navbar title="最硬球鞋">
+      <u-navbar title="最硬球鞋"  bgColor="#f3faff" >
         <view class="u-nav-slot" slot="left">
           <image style="width: 23px; height: 23px;"
                  src="../../static/img/logo/logo-333-1.png"></image>

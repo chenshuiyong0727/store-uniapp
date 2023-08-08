@@ -1,6 +1,6 @@
 <template>
   <view>
-    <u-navbar title="订单">
+    <u-navbar title="订单" bgColor="#f3faff">
       <view @click="goBack" class="u-nav-slot" slot="left">
         <u-icon name="arrow-left" size="20"></u-icon>
       </view>
@@ -13,7 +13,7 @@
     <view class="fenlei_top" style="display: flex;">
       <view style="width: 83vw">
         <u--input
-            class="searchInput"
+            class="searchInputW"
             prefixIcon="search"
             placeholder="请输入货号/商品名"
             placeholderStyle="font-size: 14px;color:#c0c4cc"
