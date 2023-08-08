@@ -675,9 +675,9 @@
         // if ('jumpOrder' == action) {
         //   this.jumpOrder(item.actNo)
         // }
-        // if ('gallery' == action) {
-        //   this.gallery(item)
-        // }
+        if ('gotoWl' == action) {
+          this.gotoWl(item)
+        }
         if ('goDel' == action) {
           this.goDel(item.id)
         }
@@ -1129,39 +1129,49 @@
         this.getDetailById()
         this.isShowDialog3 = true
       },
+      // goodsDetail(id) {
+      //   if (!id) {
+      //     return
+      //   }
+      //   let url = '/pages/goodsBase/detail?id=' + id
+      //   this.$navigateTo(url)
+      // },
       gotoWl(orderData) {
-        this.requestParamWl.addressId = orderData.addressId
-        this.requestParamWl.waybillNo = orderData.waybillNo
-        if (!this.requestParamWl.waybillNo) {
+        // this.requestParamWl.addressId = orderData.addressId
+        // this.requestParamWl.waybillNo = orderData.waybillNo
+        if (!orderData.waybillNo) {
           this.$toast('没有物流单号')
           return
         }
-        goodsOrderApi.waybillNoList(this.requestParamWl).then(res => {
-          if (res.subCode === 1000) {
-            if (res.data.list.length) {
-              this.wlDataSize = res.data.list.length
-              this.requestParamWl.receiverAddress = res.data.receiverAddress
-              this.requestParamWl.freight = res.data.realAmount
-              this.wlData = []
-              for (let i = 0; i < res.data.list.length; i++) {
-                let dataInfo = res.data.list[i]
-                let status = '运输中'
-                if (dataInfo.message.indexOf("已收取快件") >= 0) {
-                  status = '已揽件'
-                } else if (dataInfo.message.indexOf("可查看签收人信息") >= 0) {
-                  status = '已签收'
-                }
-                dataInfo.status = status
-                this.wlData.push(dataInfo)
-              }
-              this.isShowDialogWl = true
-            } else {
-              this.$toast("暂无物流信息，请核对物流单号")
-            }
-          } else {
-            this.$toast(res.subMsg)
-          }
-        })
+        let url = '/pages/order/wlInfo?addressId=' + orderData.addressId + '&waybillNo=' +orderData.waybillNo+ '&id=' + orderData.id
+        this.$navigateTo(url)
+
+        // goodsOrderApi.waybillNoList(this.requestParamWl).then(res => {
+        //   if (res.subCode === 1000) {
+        //     if (res.data.list.length) {
+        //       this.wlDataSize = res.data.list.length
+        //       this.requestParamWl.receiverAddress = res.data.receiverAddress
+        //       this.requestParamWl.freight = res.data.realAmount
+        //       this.wlData = []
+        //       for (let i = 0; i < res.data.list.length; i++) {
+        //         let dataInfo = res.data.list[i]
+        //         let status = '运输中'
+        //         if (dataInfo.message.indexOf("已收取快件") >= 0) {
+        //           status = '已揽件'
+        //         } else if (dataInfo.message.indexOf("可查看签收人信息") >= 0) {
+        //           status = '已签收'
+        //         }
+        //         dataInfo.status = status
+        //         this.wlData.push(dataInfo)
+        //       }
+        //       this.isShowDialogWl = true
+        //     } else {
+        //       this.$toast("暂无物流信息，请核对物流单号")
+        //     }
+        //   } else {
+        //     this.$toast(res.subMsg)
+        //   }
+        // })
       },
       handleClick(orderData) {
         this.orderData = orderData

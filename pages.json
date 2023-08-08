@@ -111,6 +111,13 @@
       }
     },
     {
+      "path": "pages/order/wlInfo",
+      "style": {
+        "navigationBarTitleText": "物流详情",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
       "path": "pages/order/toDelivery",
       "style": {
         "navigationBarTitleText": "发货",
