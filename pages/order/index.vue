@@ -290,7 +290,7 @@
         </view>
       </view>
     </view>
-    <view v-show="tableData.length" style="padding: 10px;font-weight: 600">
+    <view v-show="tableData.length" class="meiyougengduo">
       <u-loadmore fontSize="18"  color="#a6a6a6" nomoreText="最硬球鞋" :status="loadStatus"/>
     </view>
     <u-empty
