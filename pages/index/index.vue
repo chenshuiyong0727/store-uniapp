@@ -284,7 +284,7 @@
       </span>
         <view class="link-top"></view>
       </h1>
-      <view style="background-color: #fff ; padding-top: 4vw">
+      <view  v-if="chartData1" style="background-color: #fff ; padding-top: 4vw">
         <view class="charts-box">
           <qiun-data-charts
               type="pie"
@@ -527,6 +527,8 @@
         nowDate: '',
         nowTime: '',
         nowWeek: '',
+        startDate: '',
+        endDate: '',
         orderData: {},
         storeData: {}
       }
@@ -588,6 +590,50 @@
         let endTime = '2024/02/10 00:00:00';
         let timestamp2 = Date.parse(new Date(endTime));
         this.seconds = (timestamp2 - myDate) / 1000
+
+        // let date = new Date();
+        // let curMonth = date.getMonth();
+        // // let prevMonth1 = (curMonth - 1 + 12) % 12;
+        // // let prevMonth2 = (curMonth - 2 + 12) % 12;
+        // let prevMonth3 = (curMonth - 3 + 12) % 12;
+        // console.info((prevMonth3 + 1) + '月');
+
+        // let date = new Date();
+        // let year = date.getFullYear();
+        // let month = date.getMonth();
+        //
+        // let result = [];
+        // for (let i = 0; i < 14; i++) {
+        //   let tempMonth = month - i;
+        //   if (tempMonth < 0) {
+        //     let month = 12+tempMonth
+        //     month = month>= 10 ? month : '0'+month
+        //     console.info('month', month)
+        //     result.push(`${year - 1}-${month}`);
+        //   } else {
+        //     tempMonth = tempMonth>= 10 ? tempMonth : '0'+tempMonth
+        //     console.info('tempMonth', tempMonth)
+        //     result.push(`${year}-${tempMonth}`);
+        //   }
+        // }
+        const dates = new Date()
+        let curDate = new Date().getMonth() + 1
+        if (curDate >= 1 && curDate <= 9) {
+          curDate = '0' + curDate
+        }
+        const startDate = dates.getFullYear() + '-' + curDate
+        console.info(startDate)
+        this.queryParam.createTimeTo = startDate
+        this.startDate = startDate
+        dates.setMonth(dates.getMonth() - 3)
+        var pastMonth = dates.getMonth() + 1
+        if (pastMonth >= 1 && pastMonth <= 9) {
+          pastMonth = '0' + pastMonth
+        }
+        const endDate = dates.getFullYear() + '-' + pastMonth
+        console.info(endDate)
+        this.queryParam.createTimeFrom  = endDate
+        this.startDate = endDate
       },
       countDown() {
         let d = parseInt(this.seconds / (24 * 60 * 60));

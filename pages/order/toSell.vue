@@ -265,8 +265,15 @@
             <text>手续费总额</text>
           </view>
           <view>
-            <u--text style="font-weight: 600;" :bold="true" mode="price" color="#333333" size="17"
+            <u--text style="font-weight: 600;" @click="handlePoundage = true" v-if="!handlePoundage" :bold="true" mode="price" color="#333333" size="17"
                      :text="requestParam.poundage"></u--text>
+            <view  v-else style="display: flex">
+              <text style="font-weight: 600;font-size: 17px;color: #808080" >￥</text>
+              <u--input style="font-weight: 600; text-align: right;width: 16vw" @change="keyup1"  inputAlign="right" color="#808080"
+                        v-model="requestParam.poundage" border="none" fontSize="17px"
+                        type="digit">
+              </u--input>
+            </view>
           </view>
         </view>
         <view class="zuoyouduiqi"
@@ -330,6 +337,7 @@
           {value: 1, text: "线下"},
           {value: 2, text: "线上"}
         ],
+        handlePoundage: false,
         inventoryIndex: '',
         activeIndex: [],
         tipMsg: '',//请以9结尾
@@ -381,6 +389,65 @@
       this.listSysDict()
     },
     methods: {
+      keyup1() {
+        // let shelvesPrice = this.requestParam.shelvesPrice + ''
+        // if (shelvesPrice < 100) {
+        //   this.tipMsg = '请提高价格'
+        // } else if (shelvesPrice > 299) {
+        //   let price2 = shelvesPrice.substring(shelvesPrice.length - 1, shelvesPrice.length)
+        //   if (price2 != 9) {
+        //     this.tipMsg = '请以9结尾'
+        //   } else {
+        //     this.tipMsg = ''
+        //   }
+        // } else {
+        //   this.tipMsg = ''
+        // }
+        // if (!shelvesPrice) {
+        //   this.tipMsg = ''
+        // }
+        //
+        // let jsfwf = shelvesPrice * 0.05
+        // if (jsfwf < 15) {
+        //   jsfwf = 15
+        // }
+        // if (jsfwf > 249) {
+        //   jsfwf = 249
+        // }
+        // this.requestParam.jsfwf = parseFloat(jsfwf).toFixed(2)
+        //
+        // let zzsxf = shelvesPrice * 0.01
+        // this.requestParam.zzsxf = parseFloat(zzsxf).toFixed(2)
+        //
+        // let shwffwfBl = 1.5
+        // if (shelvesPrice >= 600 && shelvesPrice < 2000) {
+        //   shwffwfBl = 1.6
+        // } else if (shelvesPrice >= 2000) {
+        //   shwffwfBl = 1.8
+        // }
+        // this.requestParam.shwffwfBl = shwffwfBl
+        // let shwffwf = shelvesPrice * 0.01 * shwffwfBl
+        // this.requestParam.shwffwf = parseFloat(shwffwf).toFixed(2)
+        //
+        // let xfzyfbt = 6
+        // if (shelvesPrice >= 200 && shelvesPrice < 300) {
+        //   xfzyfbt = 6.5
+        // } else if (shelvesPrice >= 300) {
+        //   xfzyfbt = 8.5
+        // }
+        // this.requestParam.xfzyfbt = parseFloat(xfzyfbt).toFixed(2)
+        //
+        // let poundage = jsfwf + zzsxf + shwffwf + xfzyfbt + 38
+        // // let poundage = shelvesPrice * 0.075 + 38 + 8.5
+        // this.requestParam.poundage = parseFloat(poundage).toFixed(2)
+        // let shelvesPrice = this.requestParam.shelvesPrice
+        let theirPrice = this.requestParam.shelvesPrice - this.requestParam.poundage
+        this.requestParam.theirPrice = parseFloat(theirPrice).toFixed(2)
+
+        let profits = this.requestParam.theirPrice - 10
+            - this.orderData.price
+        this.requestParam.profits = parseFloat(profits).toFixed(2)
+      },
       keyup2() {
         let shelvesPrice = this.requestParam.shelvesPrice + ''
         if (shelvesPrice < 100) {

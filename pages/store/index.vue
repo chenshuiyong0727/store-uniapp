@@ -201,13 +201,27 @@
             </text>
           </view>
           <!--          操作栏-->
+<!--          <view class="dingdans_top_right_dw">-->
+<!--            <view class="dingdans_con_right_down_2_1">-->
+<!--              <view style="margin-bottom: 3px;">-->
+<!--                <rudon-rowMenuDotDotDot :localdata="item.optionsOp" @change="menuActionList($event,item)">-->
+<!--                  <text class="dw-button-common">操作</text>-->
+<!--                </rudon-rowMenuDotDotDot>-->
+<!--              </view>-->
+<!--            </view>-->
+<!--          </view>-->
+
           <view class="dingdans_top_right_dw">
-            <view class="dingdans_con_right_down_2_1">
-              <view style="margin-bottom: 3px;">
-                <rudon-rowMenuDotDotDot :localdata="item.optionsOp" @change="menuActionList($event,item)">
-                  <text class="dw-button-common">操作</text>
-                </rudon-rowMenuDotDotDot>
-              </view>
+            <view class="dingdans_con_right_down_2_1 xianglian">
+              <text v-if="item.inventory > item.galleryCount"  class="dw-button-common" @click="gallery(item)">上架</text>
+<!--              <text v-else-if="item.status==3" class="dw-button-common" @click="toDelivery(item.id)">发货</text>-->
+<!--              <text v-else-if="item.status==4" class="dw-button-common" @click="changeStatusComfirm(item.id,5,'确认揽件')">揽件</text>-->
+<!--              <text v-else-if="item.status==5" class="dw-button-common" @click="changeStatusComfirm(item.id,6,'确认收货')">收货</text>-->
+<!--              <text v-else-if="[6,11].includes(item.status)"  class="dw-button-common" @click="update(item,'交易成功')">成功</text>-->
+              <rudon-rowMenuDotDotDot :localdata="optionsOp" @change="menuActionList($event,item)">
+                <text v-if="item.inventory > item.galleryCount"  class="dw-button-common">更多</text>
+                <text v-else class="dw-button-common">操作</text>
+              </rudon-rowMenuDotDotDot>
             </view>
           </view>
         </view>
@@ -268,10 +282,10 @@
           }
         ],
         optionsOp: [
-          {
-            value: 'goodsDetail',
-            text: '商品详情'
-          },
+          // {
+          //   value: 'goodsDetail',
+          //   text: '商品详情'
+          // },
           // {
           //   value: 'warehouseDetail',
           //   text: '库存信息'
