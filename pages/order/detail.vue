@@ -34,8 +34,7 @@
       <view class="zuoyouduiqi" style="color: white; padding-top: 10px;">
         <view style="margin-left: 15px;width: 69vw;">
           <text style="font-size: 13px;color: #edf0f9">
-            买家已付款，请在
-            {{form.deliveryDeadlineTime | formateTime }}
+            买家已付款，请在{{form.deliveryDeadlineTime | formateTime }}
             之前发货并上传正确的物流单号，超时将扣除保证金。
           </text>
         </view>

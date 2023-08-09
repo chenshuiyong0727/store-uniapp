@@ -34,7 +34,7 @@
 <!--    <liu-popup type="center" ref="center">-->
 <!--      中间打开弹窗-->
 <!--    </liu-popup>-->
-    <view class="fenlei_top"  style="display: flex;">
+    <view class="fenlei_top_tab"  style="display: flex;">
       <view style="width: 83vw">
         <u--input
             class="searchInputW"
@@ -68,7 +68,7 @@
               fontWeight: 'bold'
 					  }"
             :inactiveStyle="{
-              color: '#606266',
+              color: '#333333',
               fontSize: '16px'
 					}"
             :list="list2"
@@ -195,11 +195,9 @@
       <uni-fab ref="fab" :pattern="pattern"  :horizontal="horizontal" @fabClick="fabClick" />
     </view>
       <view  @touchmove.stop.prevent="preventHandler">
-<!--    <view >-->
       <u-popup :show="isShowDialog2" @close="isShowDialog2 = false"  :duration="100" mode="right">
         <view  style="height: 90vh;">
         <scroll-view  scroll-y="true"  class="saixuanquyu">
-<!--        <scroll-view  scroll-y="true"  class="saixuanquyu" style="overflow-y:scroll;">-->
           <view class="saixuanquxiang" >
             <view>
               <text class="zitijiachu zihao14">

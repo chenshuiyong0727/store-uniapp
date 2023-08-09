@@ -331,10 +331,21 @@ select{
   color: #333333;
   outline: 0;
 }
-.fenlei_top {
+.fenlei_top_tab {
   padding: 5px 10px !important;
   width: 100vw;
   background: #f3faff;
+  /*background: #eaf4fd;*/
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  margin-top: 43px !important;
+}
+.fenlei_top {
+  padding: 5px 10px !important;
+  width: 100vw;
+  background: #fff;
   /*background: #eaf4fd;*/
   position: fixed;
   top: 0;
@@ -581,7 +592,70 @@ img{
   /*position: fixed;*/
   /*z-index: 2;*/
 }
+/*导航栏*/
+.searchListSort{
+  /*border-bottom: 1vw solid #eee;*/
+  width: 100vw;
+  margin-top: 80px;
+  background: #f3faff;
+  /*background: eaf4fd;*/
+  padding: 2vw;
+  position: fixed;
+  z-index: 2;
+  padding-bottom: 5vw;
+}
 
+/*导航栏*/
+.filterquyu {
+  position: fixed;
+  z-index: 2;
+  width: 100vw;
+  background: #fff;
+  padding: 2vw;
+  color: #656565;
+  font-size: 14px;
+  margin-top: 140px;
+  border-top-left-radius: 5vw;
+  border-top-right-radius: 5vw;
+}
+.paixuliebiao {
+  border-bottom: 0.5px solid #eee;
+  padding-bottom: 10px;
+  padding-top: 5px;
+}
+.paixudiv {
+  position: fixed;
+  z-index: 2;
+  width: 100vw;
+  background: #fff;
+  padding: 2vw;
+  color: #656565;
+  font-size: 14px;
+  margin-top: 170px;
+  border-bottom-left-radius: 5vw;
+  border-bottom-right-radius: 5vw;
+}
+/*.paixudiv {*/
+/*  position: fixed;*/
+/*  width: 100vw;*/
+/*  background: #fff;*/
+/*  padding: 0 2vw;*/
+/*  color: #7a7a7a;*/
+/*  font-size: 14px;*/
+/*  margin-top: 180px;*/
+/*  border-bottom-left-radius: 5vw;*/
+/*  border-bottom-right-radius: 5vw;*/
+/*}*/
+.mask{
+  height: 100vh;
+  position:fixed;
+  top     : 0;
+  left    : 0;
+  bottom  : 0;
+  right   : 0;
+  z-index: 1;
+  background: rgba(212, 212, 212, 0.5);  /*一般遮罩随便设置一个颜色*/
+}
 /*导航栏*/
 .searchList {
   border-bottom: 1vw solid #eee;
@@ -938,6 +1012,19 @@ img{
   border-radius: 0px;
   border: 0px;
 }
+.shaixuantupian{
+  vertical-align: middle;
+  margin-left: 2px;
+  margin-bottom: 2px;
+  width:20px;
+  height: 20px
+}
+.paixutupian{
+  vertical-align: middle;
+  margin-left: 3px;
+  width:12px;
+  height: 12px;
+}
 .zuoyouduiqi{
   display: flex;
   justify-content: space-between;
@@ -963,6 +1050,14 @@ img{
 .width92{
   width: 92vw;
   margin-left: 4vw;
+}
+.width90{
+  width: 90vw;
+  margin-left: 4vw;
+}
+.width80{
+  width: 80vw;
+  margin-left: 8vw;
 }
 .baisebeijing{
   background-color: #fff
@@ -1278,6 +1373,10 @@ a{
 }
 .julibiaoti3{
   padding-top: 6px;
+  /*padding-top: 142px;*/
+}
+.julibiaoti4{
+  padding-top: 184px;
   /*padding-top: 142px;*/
 }
 .biaodan-gengduo{

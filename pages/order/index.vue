@@ -10,7 +10,7 @@
         </rudon-rowMenuDotDotDot>
       </view>
     </u-navbar>
-    <view class="fenlei_top" style="display: flex;">
+    <view class="fenlei_top_tab" style="display: flex;">
       <view style="width: 83vw">
         <u--input
             class="searchInputW"
@@ -43,7 +43,7 @@
               fontWeight: 'bold'
 					  }"
             :inactiveStyle="{
-              color: '#606266',
+              color: '#333333',
               fontSize: '16px'
 					}"
             :list="list2"
