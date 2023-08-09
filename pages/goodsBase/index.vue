@@ -50,7 +50,8 @@
         </u--input>
       </view>
       <view class="fenlei_top_right" @click="isShowDialog2 = true">
-        <image src="../../static/img/search.png"></image>
+        <image v-if="queryParam.brand || queryParam.remark || queryParam.type"  src="../../static/img/search.png"></image>
+        <image v-else  src="../../static/img/search_no.png"></image>
       </view>
     </view>
     <view class="searchListnew">
@@ -254,8 +255,7 @@
             </view>
           </view>
         </scroll-view >
-        <view class="baisebeijing shuipingjuzhong" style="position:fixed;bottom:0;width: 80vw;
-     border-top: solid #E2DDDD 1px;">
+        <view class="baisebeijing shuipingjuzhong" style="position:fixed;bottom:0;width: 80vw;">
           <u-button style="width: 20vw; margin: 5px" @click=" isShowDialog2 = false;resetHandle()">
             <text style=" font-size: 15px;">重置</text>
           </u-button>
@@ -590,6 +590,7 @@
           pageSize: 10,
           pageNum: 1
         }
+        this.current = 0
         this.search1()
       },
       avatarShow(e) {
