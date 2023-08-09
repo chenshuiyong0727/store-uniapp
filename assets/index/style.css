@@ -887,15 +887,20 @@ img{
 /*左右对齐*/
 .julishang_10{
   /*#ifdef APP-PLUS*/
-  margin-top: -10px;
+  margin-top: 0vw;
   /*#endif*/
   /*#ifdef H5*/
   margin-top: 10px;
   /*#endif*/
 }
 
+.saixuanxuanzhefuji{
+  margin-left: -10px;display: flex;flex-wrap: wrap;
+}
+
 .saixuanquyu{
   width: 80vw;
+  height: 100%;
   padding-left: 20px;
   /*#ifdef APP-PLUS*/
   margin-top: 0vw;
@@ -915,20 +920,15 @@ img{
 
 
 .saixuanxuanzhe {
-  width: 20vw;
   margin: 3px 3px;
-  /*margin: 0px 3px;*/
-  /*display: inline-block;*/
-  /*background: #f4f3f8;*/
-  /*font-size: 13px;*/
-  /*padding: 6px 29px;*/
-  /*#ifdef APP-PLUS*/
-  /*margin: 0px 3px;*/
-  /*#endif*/
-  /*#ifdef H5*/
-  /*margin: 3px 3px;*/
-
-  /*#endif*/
+  width: 23.2vw;
+}
+.xuanzhongziti{
+  color: #409eff;
+  font-weight: 600;
+}
+.putongziti{
+  color: #333333
 }
 
 /*左右对齐*/

@@ -90,8 +90,8 @@
 <!--      </view>-->
 <!--    </view>-->
 
-    <u-picker :show="show_sx_type" :columns="columns" @cancel="show_sx_type= false"
-              @confirm="confirm_sx_type" keyName="fieldName"></u-picker>
+<!--    <u-picker :show="show_sx_type" :columns="columns" @cancel="show_sx_type= false"-->
+<!--              @confirm="confirm_sx_type" keyName="fieldName"></u-picker>-->
     <u-datetime-picker
         :show="showFrom"
         mode="date"
@@ -193,9 +193,12 @@
     <view>
       <uni-fab ref="fab" :pattern="pattern"  :horizontal="horizontal" @fabClick="fabClick" />
     </view>
-    <view  @touchmove.stop.prevent="">
-      <u-popup :show="isShowDialog2" @close="close"  :duration="100" mode="right">
-        <view class="saixuanquyu">
+      <view  @touchmove.stop.prevent="preventHandler">
+<!--    <view >-->
+      <u-popup :show="isShowDialog2" @close="isShowDialog2 = false"  :duration="100" mode="right">
+        <view  style="height: 90vh;">
+        <scroll-view  scroll-y="true"  class="saixuanquyu">
+<!--        <scroll-view  scroll-y="true"  class="saixuanquyu" style="overflow-y:scroll;">-->
           <view class="saixuanquxiang" >
             <view>
               <text class="zitijiachu zihao14">
@@ -240,89 +243,31 @@
                 商品类型
               </text>
             </view>
-            <view class="julishang_10" style="margin-left: -10px">
-              <u-button style="display: inline-block;width: 23vw;" @click="storeAdd(item.id)">选择</u-button>
-              <u-button style="display: inline-block;width: 23vw;" @click="storeAdd(item.id)">选择</u-button>
-<!--              <text class="saixuanxuanzhe" @click="storeAdd(item.id)">选择</text>-->
-<!--              <text class="saixuanxuanzhe" @click="storeAdd(item.id)">选择</text>-->
-<!--              <text class="saixuanxuanzhe" @click="storeAdd(item.id)">选择</text>-->
-<!--              <text class="saixuanxuanzhe" @click="storeAdd(item.id)">选择</text>-->
-<!--              <text class="saixuanxuanzhe" @click="storeAdd(item.id)">选择</text>-->
-<!--              <text class="saixuanxuanzhe" @click="storeAdd(item.id)">选择</text>-->
-<!--              <text class="saixuanxuanzhe" @click="storeAdd(item.id)">选择</text>-->
-<!--              <text class="saixuanxuanzhe" @click="storeAdd(item.id)">选择</text>-->
+            <view class="julishang_10 saixuanxuanzhefuji">
+             <view v-for="(item,index) in typeList"
+                :key="index"
+                 class="saixuanxuanzhe julishang_10">
+                <u-button color="#f4f3f8" size="small" @click="chooseType(item.fieldValue)">
+                  <text :class="queryParam.type == item.fieldValue ? 'xuanzhongziti' : 'putongziti'">{{item.fieldName}}</text>
+                </u-button>
+              </view>
             </view>
           </view>
+        </scroll-view >
+        <view class="baisebeijing shuipingjuzhong" style="position:fixed;bottom:0;width: 80vw;
+     border-top: solid #E2DDDD 1px;">
+          <u-button style="width: 20vw; margin: 5px" @click=" isShowDialog2 = false;resetHandle()">
+            <text style=" font-size: 15px;">重置</text>
+          </u-button>
+          <u-button style="width: 50vw; margin: 5px" type="primary" @click="search2">
+            <text style=" font-size: 15px;">
+              确定（{{totalCount}} 件商品）
+            </text>
+          </u-button>
+        </view>
         </view>
       </u-popup>
     </view>
-<!--    <uni-popup ref="popup" type="bottom">底部弹出 Popup</uni-popup>-->
-
-<!--    <view1 @touchmove.stop.prevent="">-->
-<!--      <u-popup :show="!isShowDialog2" @close="close" :duration="100" mode="bottom">-->
-<!--        <view style="width: 90vw;margin-left: 5vw;">-->
-<!--          <u-navbar title="筛选" :fixed="false" :border="true">-->
-<!--            <view @click="resetHandle" style="font-size: 15px;" class="u-nav-slot" slot="left">-->
-<!--              <text>关闭</text>-->
-<!--            </view>-->
-<!--            <view @click="search1" class="u-nav-slot" style="font-size: 15px;" slot="right">-->
-<!--              <text>确定</text>-->
-<!--            </view>-->
-<!--          </u-navbar>-->
-<!--          <view>-->
-<!--            <u&#45;&#45;form>-->
-<!--              <u-form-item label="类型" borderBottom @click="show_sx_type = true; $hideKeyboard()">-->
-<!--                <u&#45;&#45;input inputAlign="right" placeholder="请选择类型" disabledColor="#fff"-->
-<!--                          placeholderStyle="font-size: 14px;color:#c0c4cc"-->
-<!--                          v-model="queryParam.typeStr" border="none" disabled></u&#45;&#45;input>-->
-<!--                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-<!--              </u-form-item>-->
-<!--              <u-form-item label="品牌" borderBottom>-->
-<!--                <u&#45;&#45;input inputAlign="right" placeholder="请输入品牌"-->
-<!--                          placeholderStyle="font-size: 14px;color:#c0c4cc"-->
-<!--                          v-model="queryParam.brand" border="none"></u&#45;&#45;input>-->
-<!--                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-<!--              </u-form-item>-->
-<!--              <u-form-item label="开始时间" label-width="50vw" borderBottom-->
-<!--                           @click="showFrom = true; $hideKeyboard()">-->
-<!--                <u&#45;&#45;input inputAlign="right" prefixIcon="calendar"-->
-<!--                          prefixIconStyle="font-size: 20px;color:#c0c4cc" placeholder="请选择开始时间"-->
-<!--                          disabledColor="#fff" placeholderStyle="font-size: 14px;color:#c0c4cc"-->
-<!--                          v-model="queryParam.createTimeFrom" border="none" disabled></u&#45;&#45;input>-->
-<!--                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-<!--              </u-form-item>-->
-<!--              <u-form-item label="结束时间" label-width="50vw" borderBottom-->
-<!--                           @click="showTo = true; $hideKeyboard()">-->
-<!--                <u&#45;&#45;input inputAlign="right" prefixIcon="calendar"-->
-<!--                          prefixIconStyle="font-size: 20px;color:#c0c4cc" placeholder="请选择结束时间"-->
-<!--                          disabledColor="#fff" placeholderStyle="font-size: 14px;color:#c0c4cc"-->
-<!--                          v-model="queryParam.createTimeTo" border="none" disabled></u&#45;&#45;input>-->
-<!--                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-<!--              </u-form-item>-->
-<!--              <view class="saixuanquxiang" >-->
-<!--                <view>-->
-<!--                  <text class="zitijiachu zihao14">-->
-<!--                    品牌-->
-<!--                  </text>-->
-<!--                </view>-->
-<!--                <view class="julishang10">-->
-<!--                  <u&#45;&#45;input-->
-<!--                      class="saixuanInput"-->
-<!--                      placeholder="请输入品牌"-->
-<!--                      placeholderStyle="font-size: 14px;color:#c0c4cc"-->
-<!--                      v-model="queryParam.brand"-->
-<!--                      @change="search1"-->
-<!--                      clearable-->
-<!--                  >-->
-<!--                  </u&#45;&#45;input>-->
-<!--                </view>-->
-<!--              </view>-->
-<!--            </u&#45;&#45;form>-->
-
-<!--          </view>-->
-<!--        </view>-->
-<!--      </u-popup>-->
-<!--    </view1>-->
   </view>
 </template>
 <script>
@@ -411,7 +356,7 @@
           pageNum: 1
         },
         typeList: [],
-        columns: [],
+        // columns: [],
         dwhref: false,
         isLoadMore: false,
         isLoading: false,
@@ -550,6 +495,15 @@
         window.open(url)
         // #endif
       },
+      chooseType(type) {
+        for (let i = 0; i < this.list2.length; i++) {
+          if (this.list2[i].type == type ){
+            this.current = i
+          }
+        }
+        this.queryParam.type = type
+        this.search1()
+      },
       storeAdd(goodsId) {
         let url = '/pages/store/storeAdd?goodsId=' + goodsId
         this.$navigateTo(url)
@@ -595,7 +549,8 @@
         let sysDictList = uni.getStorageSync('sysDictList') ? JSON.parse(
             uni.getStorageSync('sysDictList')) : []
         this.typeList = sysDictList.filter(item => item.typeValue == 20221108)
-        this.columns.push(this.typeList)
+        console.info(this.typeList)
+        // this.columns.push(this.typeList)
       },
       search() {
         if (!this.queryParam.name) {
@@ -606,15 +561,21 @@
         // this.allLoaded = false;
         this.getPage()
       },
-      close() {
+      // close() {
+      //   this.isShowDialog2 = false
+      //   console.log('close');
+      // },
+      search2() {
+        this.tableData = []
+        this.queryParam.pageNum = 1
+        this.isLoadMore = false
         this.isShowDialog2 = false
-        console.log('close');
+        this.getPage()
       },
       search1() {
         this.tableData = []
         this.queryParam.pageNum = 1
         this.isLoadMore = false
-        this.isShowDialog2 = false
         this.getPage()
       },
       resetHandle() {
@@ -636,8 +597,12 @@
         this.pictureZoomShow = true
       },
       tabClick(item) {
+        this.current = item.index
         this.queryParam.type = item.type
         this.search1()
+      },
+      preventHandler() {
+        return
       },
       fabClick() {
         // uni.showToast({

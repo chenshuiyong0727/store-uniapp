@@ -36,8 +36,6 @@ Vue.prototype.$goBack = goBack // 挂载到原型上
 // 判断是否是平板
 uni.getSystemInfo({
   success: (res) => {
-    console.log(res)
-    console.log("屏幕尺寸：", res.windowWidth, res.windowHeight)
     Vue.prototype.$windowWidth = res.screenWidth
     Vue.prototype.$screenScale = res.windowWidth / res.windowHeight
     Vue.prototype.$platform = res.platform

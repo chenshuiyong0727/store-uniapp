@@ -373,7 +373,6 @@
               this.sizeList[i].value = this.sizeList[i].id
               this.sizeList[i].text = this.sizeList[i].size
             }
-            console.info(this.sizeList)
           }
         })
       },

@@ -622,7 +622,6 @@
           curDate = '0' + curDate
         }
         const startDate = dates.getFullYear() + '-' + curDate
-        console.info(startDate)
         this.queryParam.createTimeTo = startDate
         this.startDate = startDate
         dates.setMonth(dates.getMonth() - 3)
@@ -631,7 +630,6 @@
           pastMonth = '0' + pastMonth
         }
         const endDate = dates.getFullYear() + '-' + pastMonth
-        console.info(endDate)
         this.queryParam.createTimeFrom  = endDate
         this.startDate = endDate
       },
