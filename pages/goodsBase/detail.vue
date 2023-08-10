@@ -633,42 +633,6 @@
     margin-left: 4%;
     background-color: #fff;
   }
-
-  .my-pay-4-1 {
-    margin-top: 15px;
-    border-radius: 10px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    width: 92%;
-    margin-left: 4%;
-    padding: 2vw 0;
-    background-color: #fff;
-    border-bottom-color: rgba(185, 185, 185, .14);
-    border-bottom-style: solid;
-    border-bottom-width: 1px;
-
-  > view {
-    display: block;
-    width: 20%;
-    color: #999;
-    text-align: center;
-
-  > text {
-    font-size: 22px;
-    margin-top: 2.3vw;
-    display: block;
-    text-align: center;
-  }
-
-  p {
-    color: #8c8a8a;font-size: 14px; margin-top: 3px;margin-bottom: 4px;
-  }
-  strong {
-    color: #333;font-size: 15px;
-  }
-  }
-  }
   .my-pay-5 {
     margin-top: 15px;
     border-radius: 10px;

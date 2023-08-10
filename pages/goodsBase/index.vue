@@ -273,10 +273,10 @@
   </view>
 </template>
 <script>
-  import Button from "../../uni_modules/uview-ui/libs/mixin/button";
+  // import Button from "../../uni_modules/uview-ui/libs/mixin/button";
   export default {
     name: "HelloWorld",
-    components: {Button},
+    // components: {Button},
     data() {
       return {
         dateCurrent: parseInt(new Date().getTime()),

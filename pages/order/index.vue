@@ -4,10 +4,13 @@
       <view @click="goBack" class="u-nav-slot" slot="left">
         <u-icon name="arrow-left" size="20"></u-icon>
       </view>
-      <view class="u-nav-slot" style="font-size: 15px;" slot="right">
-        <rudon-rowMenuDotDotDot :localdata="localdata" @change="menuAction($event)">
-          <image style="height: 25px;width: 25px" src="../../static/img/slh.png"></image>
-        </rudon-rowMenuDotDotDot>
+<!--      <view class="u-nav-slot" style="font-size: 15px;" slot="right">-->
+<!--        <rudon-rowMenuDotDotDot :localdata="localdata" @change="menuAction($event)">-->
+<!--          <image style="height: 25px;width: 25px" src="../../static/img/slh.png"></image>-->
+<!--        </rudon-rowMenuDotDotDot>-->
+<!--      </view>-->
+      <view class="u-nav-slot" slot="right" style="font-size: 15px;">
+        批量操作
       </view>
     </u-navbar>
     <view class="fenlei_top_tab" style="display: flex;">
