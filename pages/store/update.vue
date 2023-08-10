@@ -133,7 +133,8 @@
 <!--    <u-picker :show="show_sx_type" :columns="columns" @cancel="show_sx_type= false" :defaultIndex="defaultIndex"-->
 <!--              @confirm="confirm_sx_type" keyName="fieldName"></u-picker>-->
     <u-datetime-picker
-        :show="showFrom"
+                :show="showFrom"
+        v-model="dateCurrent"
         :minDate="1646064000000"
         @confirm="confirmFrom"
         @cancel="cancelFrom"
@@ -158,7 +159,8 @@
     data() {
       return {
         datetimesingle:  Date.now() - 2*24*3600*1000,
-        showFrom: false,
+        dateCurrent: parseInt(new Date().getTime()),
+showFrom: false,
         fileList1: [],
         show_sx_type: false,
         defaultIndex: [1],

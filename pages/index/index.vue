@@ -263,14 +263,18 @@
       </view>
     </view>
     <u-datetime-picker
-        :show="showFrom"
+                title="开始时间"
+                :show="showFrom"
+        v-model="dateCurrent"
         mode="year-month"
         :minDate="1646064000000"
         @confirm="confirmFrom"
         @cancel="cancelFrom"
     ></u-datetime-picker>
     <u-datetime-picker
-        :show="showTo"
+       title="结束时间"
+                :show="showTo"
+        v-model="dateCurrent"
         mode="year-month"
         :minDate="1646064000000"
         @confirm="confirmTo"
@@ -428,7 +432,8 @@
   export default {
     data() {
       return {
-        showFrom: false,
+        dateCurrent: parseInt(new Date().getTime()),
+showFrom: false,
         showTo: false,
         flag: false,
         form: {},

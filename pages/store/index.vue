@@ -25,9 +25,6 @@
         >
         </u--input>
       </view>
-<!--      <view class="fenlei_top_right" @click="isShowDialog2 = true">-->
-<!--        <image src="../../static/img/search.png"></image>-->
-<!--      </view>-->
     </view>
     <view class="searchListSort">
       <view class="u-demo-block__content">
@@ -61,9 +58,23 @@
           <image v-if="isShowSort && sortName != '排序'" class="paixutupian" src="../../static/img/tab_up_url.png"></image>
           <image v-if="isShowSort && sortName == '排序'" class="paixutupian" src="../../static/img/tab_up.png"></image>
         </view>
-        <view @click="isShowDialog2 = true; isShowSort= false;">
+        <view
+            v-if="queryParam.size
+                   || queryParam.createTimeFrom
+                   || queryParam.createTimeTo
+                   || queryParam.inventory != 1
+                   || queryParam.warehouseId
+                   || queryParam.channelId
+                   || queryParam.today
+                   || queryParam.goodType
+                    "
+            @click="isShowDialog2 = !isShowDialog2; isShowSort= false;">
+          <text class="color-url">筛选</text>
+          <image  class="shaixuantupian" src="../../static/img/search.png"></image>
+        </view>
+        <view v-else @click="isShowDialog2 = !isShowDialog2; isShowSort= false;">
           <text>筛选</text>
-          <image class="shaixuantupian" src="../../static/img/search_no.png"></image>
+          <image  class="shaixuantupian"  src="../../static/img/search_no.png"></image>
         </view>
       </view>
     </view>
@@ -84,7 +95,7 @@
     </view>
 
     <view  @touchmove.stop.prevent="preventHandler">
-      <u-popup :show="!isShowDialog2" @close="isShowDialog2 = !isShowDialog2"  :duration="100" mode="right">
+      <u-popup :show="isShowDialog2" @close="isShowDialog2 = !isShowDialog2"  :duration="100" mode="right">
         <view  style="height: 90vh;">
           <scroll-view  scroll-y="true"  class="saixuanquyu">
             <view class="saixuanquxiang" >
@@ -105,6 +116,38 @@
                 </u--input>
               </view>
             </view>
+            <view class="saixuanquxiang" >
+              <view>
+                <text class="zitijiachu zihao14">
+                  入库时间
+                </text>
+              </view>
+              <view class="julishang10 xianglian saixuanshijian">
+                <view  @click="showFrom= true;showTo= false">
+                  <u--input
+                      readonly="readonly"
+                      class="searchInputFilter"
+                      placeholder="开始时间"
+                      placeholderStyle="font-size: 14px;color:#c0c4cc"
+                      v-model="queryParam.createTimeFrom"
+                      clearable
+                  ></u--input>
+                </view>
+                <view>
+                  <image  class="hengtupian" src="../../static/img/heng.png"></image>
+                </view>
+                <view  @click="showTo= true;showFrom= false">
+                  <u--input
+                      readonly="readonly"
+                      class="searchInputFilter"
+                      placeholder="结束时间"
+                      placeholderStyle="font-size: 14px;color:#c0c4cc"
+                      v-model="queryParam.createTimeTo"
+                      clearable
+                  ></u--input>
+                </view>
+              </view>
+            </view>
 
             <view class="saixuanquxiang" >
               <view>
@@ -116,7 +159,7 @@
                 <view v-for="(item,index) in inventoryToList"
                       :key="index"
                       class="saixuanxuanzhe julishang_10">
-                  <u-button color="#f4f3f8" size="small" @click="queryParam.inventory = item.fieldValue;search1();">
+                  <u-button color="#f4f3f8" size="small" @click="queryParam.inventory = item.fieldValue; changeCurrent();">
                     <text :class="queryParam.inventory == item.fieldValue ? 'xuanzhongziti' : 'putongziti'">{{item.fieldName}}</text>
                   </u-button>
                 </view>
@@ -167,7 +210,7 @@
                 <view v-for="(item,index) in todayList"
                       :key="index"
                       class="saixuanxuanzhe julishang_10">
-                  <u-button color="#f4f3f8" size="small" @click="queryParam.today = item.fieldValue;search1();">
+                  <u-button color="#f4f3f8" size="small" @click="queryParam.today = item.fieldValue;changeCurrent();">
                     <text :class="queryParam.today == item.fieldValue ? 'xuanzhongziti' : 'putongziti'">{{item.fieldName}}</text>
                   </u-button>
                 </view>
@@ -184,8 +227,8 @@
                 <view v-for="(item,index) in typeList"
                       :key="index"
                       class="saixuanxuanzhe julishang_10">
-                  <u-button color="#f4f3f8" size="small" @click="queryParam.type = item.fieldValue;search1();">
-                    <text :class="queryParam.type == item.fieldValue ? 'xuanzhongziti' : 'putongziti'">{{item.fieldName}}</text>
+                  <u-button color="#f4f3f8" size="small" @click="queryParam.goodType = item.fieldValue;search1();">
+                    <text :class="queryParam.goodType == item.fieldValue ? 'xuanzhongziti' : 'putongziti'">{{item.fieldName}}</text>
                   </u-button>
                 </view>
               </view>
@@ -198,72 +241,27 @@
             </u-button>
             <u-button style="width: 50vw; margin: 5px" type="primary" @click="search2">
               <text style=" font-size: 15px;">
-                确定（{{totalCount}} 件商品）
+                确定（{{totalCount}} 款商品）
               </text>
             </u-button>
           </view>
         </view>
       </u-popup>
     </view>
-<!--    -->
-<!--    <view1>-->
-<!--      <u-popup :show="isShowDialog2" @close="close" :duration="100" mode="center">-->
-<!--        <view style="width: 90vw;margin-left: 5vw;">-->
-<!--          <u-navbar title="筛选" :fixed="false" :border="true">-->
-<!--            <view @click="resetHandle" style="font-size: 15px;" class="u-nav-slot" slot="left">-->
-<!--              <text>关闭</text>-->
-<!--            </view>-->
-<!--            <view @click="search1" class="u-nav-slot" style="font-size: 15px;" slot="right">-->
-<!--              <text>确定</text>-->
-<!--            </view>-->
-<!--          </u-navbar>-->
-<!--          <view>-->
-<!--            <u&#45;&#45;form>-->
-<!--              <u-form-item label="类型" borderBottom @click="show_sx_type = true; $hideKeyboard()">-->
-<!--                <u&#45;&#45;input inputAlign="right" placeholder="请选择类型" disabledColor="#fff"-->
-<!--                          placeholderStyle="font-size: 14px;color:#c0c4cc"-->
-<!--                          v-model="queryParam.typeStr" border="none" disabled></u&#45;&#45;input>-->
-<!--                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-<!--              </u-form-item>-->
-<!--              <u-form-item label="品牌" borderBottom>-->
-<!--                <u&#45;&#45;input inputAlign="right" placeholder="请输入品牌"-->
-<!--                          placeholderStyle="font-size: 14px;color:#c0c4cc"-->
-<!--                          v-model="queryParam.brand" border="none"></u&#45;&#45;input>-->
-<!--                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-<!--              </u-form-item>-->
-<!--              <u-form-item label="开始时间" label-width="50vw" borderBottom-->
-<!--                           @click="showFrom = true; $hideKeyboard()">-->
-<!--                <u&#45;&#45;input inputAlign="right" prefixIcon="calendar"-->
-<!--                          prefixIconStyle="font-size: 20px;color:#c0c4cc" placeholder="请选择开始时间"-->
-<!--                          disabledColor="#fff" placeholderStyle="font-size: 14px;color:#c0c4cc"-->
-<!--                          v-model="queryParam.createTimeFrom" border="none" disabled></u&#45;&#45;input>-->
-<!--                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-<!--              </u-form-item>-->
-<!--              <u-form-item label="结束时间" label-width="50vw" borderBottom-->
-<!--                           @click="showTo = true; $hideKeyboard()">-->
-<!--                <u&#45;&#45;input inputAlign="right" prefixIcon="calendar"-->
-<!--                          prefixIconStyle="font-size: 20px;color:#c0c4cc" placeholder="请选择结束时间"-->
-<!--                          disabledColor="#fff" placeholderStyle="font-size: 14px;color:#c0c4cc"-->
-<!--                          v-model="queryParam.createTimeTo" border="none" disabled></u&#45;&#45;input>-->
-<!--                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-<!--              </u-form-item>-->
-<!--            </u&#45;&#45;form>-->
-<!--          </view>-->
-<!--        </view>-->
-<!--      </u-popup>-->
-<!--    </view1>-->
-<!--    <u-picker :show="show_sx_type" :columns="columns" @cancel="show_sx_type= false"-->
-<!--              @confirm="confirm_sx_type" keyName="fieldName"></u-picker>-->
     <u-datetime-picker
-        :show="showFrom"
+        title="开始时间"
+                :show="showFrom"
+        v-model="dateCurrent"
         mode="date"
         :minDate="1646064000000"
         @confirm="confirmFrom"
         @cancel="cancelFrom"
     ></u-datetime-picker>
     <u-datetime-picker
-        :show="showTo"
-        mode="year-month"
+        title="结束时间"
+                :show="showTo"
+        v-model="dateCurrent"
+        mode="date"
         :minDate="1646064000000"
         @confirm="confirmTo"
         @cancel="cancelTo"
@@ -417,6 +415,7 @@
           buttonColor: '#409eff',
           iconColor: '#fff'
         },
+        dateCurrent: parseInt(new Date().getTime()),
         showFrom: false,
         showTo: false,
         show_sx_type: false,
@@ -462,36 +461,38 @@
         ],
         backUrl: '',
         storeData: {},
-        list2: [{
-          inventory: 1,
-          today: '',
-          name: '现货'
-        },{
-          inventory: 1,
-          today: 7,
-          name: '变更',
-          badge: {
-            value:0
+        list2: [
+          {
+            inventory: 1,
+            today: '',
+            name: '现货'
+          },{
+            inventory: 1,
+            today: 7,
+            name: '变更',
+            badge: {
+              value:0
+            }
+          }, {
+            inventory: 1,
+            today: 2,
+            name: '待上架',
+            badge: {
+              value:0
+            }
+          },  {
+            inventory: 1,
+            today: 3,
+            name: '待移库',
+            badge: {
+              value:0
+            }
+          }, {
+            inventory: 0,
+            today: '',
+            name: '售空'
           }
-        }, {
-          inventory: 1,
-          today: 2,
-          name: '待上架',
-          badge: {
-            value:0
-          }
-        },  {
-          inventory: 1,
-          today: 3,
-          name: '待移库',
-          badge: {
-            value:0
-          }
-        }, {
-          inventory: 0,
-          today: '',
-          name: '售空'
-        }],
+        ],
         typeList: [],
         columns: [],
         isLoadMore: false,
@@ -530,6 +531,8 @@
         isShowDialog2: false,
         isShowSort: false,
         today: '',
+        showClearIcon: false,
+
         queryParam: {
           today: '',
           syncTimeFrom: '',
@@ -939,6 +942,22 @@
       close() {
         this.isShowDialog2 = false
         console.log('close');
+      },
+      changeCurrent() {
+        this.search1()
+        let paramInventory = this.queryParam.inventory
+        let paramToday = this.queryParam.today
+        if (paramInventory == 1 && paramToday == 7) {
+          this.current = 1
+        } else if (paramInventory == 1 && paramToday == 2) {
+          this.current = 2
+        } else if (paramInventory == 1 && paramToday == 3) {
+          this.current = 3
+        } else if (paramInventory == 0 && !paramToday) {
+          this.current = 4
+        }else {
+          this.current = 0
+        }
       },
       search1() {
         this.tableData = []

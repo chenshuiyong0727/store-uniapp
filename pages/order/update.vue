@@ -169,7 +169,8 @@
     <view style="height: 70px"></view>
 
     <u-datetime-picker
-        :show="showFrom"
+                :show="showFrom"
+        v-model="dateCurrent"
         :minDate="1646064000000"
         @confirm="confirmFrom"
         @cancel="cancelFrom"
@@ -197,7 +198,8 @@
     data() {
       return {
         datetimesingle:  Date.now() - 2*24*3600*1000,
-        showFrom: false,
+        dateCurrent: parseInt(new Date().getTime()),
+showFrom: false,
         fileList1: [],
         addressList: [],
         statusList: [],
