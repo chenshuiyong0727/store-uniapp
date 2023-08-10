@@ -565,15 +565,15 @@
       </view>
     </view>
 
-    <div v-if="showSd" class="zuoyouduiqi sdzf">
-      <div style="margin-left: 20px;">
+    <view v-if="showSd" class="zuoyouduiqi sdzf">
+      <view style="margin-left: 20px;">
         <u-checkbox-group>
           <u-checkbox  size="20" :checked="checkAll"  @change="checkedAll" activeColor="#409eff"  shape="circle" label="全选"></u-checkbox>
         </u-checkbox-group>
-    </div>
-      <div class="xianglian">
-        <span style="font-size: 14px;">已选</span>
-        <span class="color-url" style=" font-size: 17px;margin-left: 8px;font-weight: bolder">{{ids.length}}</span>
+    </view>
+      <view class="xianglian">
+        <text style="font-size: 14px;">已选</text>
+        <text class="color-url" style=" font-size: 17px;margin-left: 8px;font-weight: bolder">{{ids.length}}</text>
         <u-button  type="primary" shape="circle" size="small" style="
         width: 20vw;
         margin-top: 8px;
@@ -581,8 +581,8 @@
     margin-left: 8px;
         margin-right: 20px" @click="sdzf">批量操作
         </u-button>
-      </div>
-    </div>
+      </view>
+    </view>
   </view>
 </template>
 <script>
