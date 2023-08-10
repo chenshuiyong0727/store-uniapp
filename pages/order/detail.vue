@@ -236,9 +236,9 @@
         <view style="
     text-align: right;
     margin-top: -19px;">
-          <button class="dw-button-common-a2" @click="$copyUrl(requestParamWl.waybillNo)"
+          <text class="dw-button-common-a2" @click="$copyUrl(requestParamWl.waybillNo)"
                   style="    padding: 1px 5px;">复制
-          </button>
+          </text>
         </view>
       </view>
     </view>
@@ -428,9 +428,9 @@
         </view>
         <view style="text-align: right; ">
           <text>{{form.orderNo}}</text>
-          <button class="dw-button-common-a2" @click="$copyUrl(form.orderNo )"
+          <text class="dw-button-common-a2" @click="$copyUrl(form.orderNo )"
                   style=" margin-left: 3px;   padding: 1px 5px;">复制
-          </button>
+          </text>
         </view>
       </view>
       <view v-if="form.waybillNo" class="zuoyouduiqi orderInfoleft">
@@ -439,9 +439,9 @@
         </view>
         <view style="text-align: right; ">
           <text>{{form.waybillNo}}</text>
-          <button class="dw-button-common-a2" @click="$copyUrl(form.waybillNo )"
+          <text class="dw-button-common-a2" @click="$copyUrl(form.waybillNo )"
                   style=" margin-left: 3px;   padding: 1px 5px;">复制
-          </button>
+          </text>
         </view>
       </view>
       <view class="zuoyouduiqi orderInfoleft">

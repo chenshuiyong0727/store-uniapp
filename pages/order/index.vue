@@ -25,8 +25,24 @@
         >
         </u--input>
       </view>
+<!--      <view class="fenlei_top_right" @click="isShowDialog2 = true">-->
+<!--        <image src="../../static/img/search.png"></image>-->
+<!--      </view>-->
       <view class="fenlei_top_right" @click="isShowDialog2 = true">
-        <image src="../../static/img/search.png"></image>
+        <image
+            v-if="
+            queryParam.status
+            || queryParam.goodType
+            || queryParam.addressId
+            || queryParam.saleType
+            || queryParam.waybillNo
+            || queryParam.orderNo
+            || queryParam.size
+            || queryParam.successTimeFrom
+            || queryParam.successTimeTo
+            "
+            src="../../static/img/search.png"></image>
+        <image v-else  src="../../static/img/search_no.png"></image>
       </view>
     </view>
     <view class="searchListnew">
@@ -51,55 +67,183 @@
         </u-tabs>
       </view>
     </view>
+    <view  @touchmove.stop.prevent="preventHandler">
+      <u-popup :show="isShowDialog2" @close="isShowDialog2 = !isShowDialog2"  :duration="100" mode="right">
+        <view  style="height: 90vh;">
+          <scroll-view  scroll-y="true"  class="saixuanquyu">
 
-    <view>
-      <u-popup :show="isShowDialog2" @close="close" :duration="100" mode="bottom">
-        <view style="width: 90vw;margin-left: 5vw;">
-          <u-navbar title="筛选" :fixed="false" :border="true">
-            <view @click="resetHandle" style="font-size: 15px;" class="u-nav-slot" slot="left">
-              <text>关闭</text>
+            <view class="saixuanquxiang" >
+              <view>
+                <text class="zitijiachu zihao14">
+                  订单号
+                </text>
+              </view>
+              <view class="julishang10">
+                <u--input
+                    class="saixuanInput"
+                    placeholder="请输入订单号"
+                    placeholderStyle="font-size: 14px;color:#c0c4cc"
+                    v-model="queryParam.orderNo"
+                    @change="search1"
+                    clearable
+                >
+                </u--input>
+              </view>
             </view>
-            <view @click="search1" class="u-nav-slot" style="font-size: 15px;" slot="right">
-              <text>确定</text>
+
+            <view class="saixuanquxiang" >
+              <view>
+                <text class="zitijiachu zihao14">
+                  物流单号
+                </text>
+              </view>
+              <view class="julishang10">
+                <u--input
+                    class="saixuanInput"
+                    placeholder="请输入物流单号"
+                    placeholderStyle="font-size: 14px;color:#c0c4cc"
+                    v-model="queryParam.waybillNo"
+                    @change="search1"
+                    clearable
+                >
+                </u--input>
+              </view>
             </view>
-          </u-navbar>
-          <view>
-            <u--form>
-              <u-form-item label="类型" borderBottom @click="show_sx_type = true; $hideKeyboard()">
-                <u--input inputAlign="right" placeholder="请选择类型" disabledColor="#fff"
-                          placeholderStyle="font-size: 14px;color:#c0c4cc"
-                          v-model="queryParam.typeStr" border="none" disabled></u--input>
-                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
-              </u-form-item>
-              <u-form-item label="品牌" borderBottom>
-                <u--input inputAlign="right" placeholder="请输入品牌"
-                          placeholderStyle="font-size: 14px;color:#c0c4cc"
-                          v-model="queryParam.brand" border="none"></u--input>
-                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
-              </u-form-item>
-              <u-form-item label="开始时间" label-width="50vw" borderBottom
-                           @click="showFrom = true; $hideKeyboard()">
-                <u--input inputAlign="right" prefixIcon="calendar"
-                          prefixIconStyle="font-size: 20px;color:#c0c4cc" placeholder="请选择开始时间"
-                          disabledColor="#fff" placeholderStyle="font-size: 14px;color:#c0c4cc"
-                          v-model="queryParam.createTimeFrom" border="none" disabled></u--input>
-                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
-              </u-form-item>
-              <u-form-item label="结束时间" label-width="50vw" borderBottom
-                           @click="showTo = true; $hideKeyboard()">
-                <u--input inputAlign="right" prefixIcon="calendar"
-                          prefixIconStyle="font-size: 20px;color:#c0c4cc" placeholder="请选择结束时间"
-                          disabledColor="#fff" placeholderStyle="font-size: 14px;color:#c0c4cc"
-                          v-model="queryParam.createTimeTo" border="none" disabled></u--input>
-                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
-              </u-form-item>
-            </u--form>
+
+            <view class="saixuanquxiang" >
+              <view>
+                <text class="zitijiachu zihao14">
+                  尺码
+                </text>
+              </view>
+              <view class="julishang10">
+                <u--input
+                    class="saixuanInput"
+                    placeholder="请输入尺码"
+                    placeholderStyle="font-size: 14px;color:#c0c4cc"
+                    v-model="queryParam.size"
+                    @change="search1"
+                    clearable
+                >
+                </u--input>
+              </view>
+            </view>
+
+            <view class="saixuanquxiang" >
+              <view>
+                <text class="zitijiachu zihao14">
+                  交易成功时间
+                </text>
+              </view>
+              <view class="julishang10 xianglian saixuanshijian">
+                <view  @click="showFrom= true;showTo= false">
+                  <u--input
+                      readonly="readonly"
+                      class="searchInputFilter"
+                      placeholder="开始时间"
+                      placeholderStyle="font-size: 14px;color:#c0c4cc"
+                      v-model="queryParam.successTimeFrom"
+                      clearable
+                  ></u--input>
+                </view>
+                <view>
+                  <image  class="hengtupian" src="../../static/img/heng.png"></image>
+                </view>
+                <view  @click="showTo= true;showFrom= false">
+                  <u--input
+                      readonly="readonly"
+                      class="searchInputFilter"
+                      placeholder="结束时间"
+                      placeholderStyle="font-size: 14px;color:#c0c4cc"
+                      v-model="queryParam.successTimeTo"
+                      clearable
+                  ></u--input>
+                </view>
+              </view>
+            </view>
+
+            <view class="saixuanquxiang" >
+              <view>
+                <text class="zitijiachu zihao14">
+                  销售类型
+                </text>
+              </view>
+              <view class="julishang_10 saixuanxuanzhefuji">
+                <view v-for="(item,index) in saleTypeList"
+                      :key="index"
+                      class="saixuanxuanzhe julishang_10">
+                  <u-button color="#f4f3f8" size="small" @click="queryParam.saleType = item.fieldValue;search1();">
+                    <text :class="queryParam.saleType == item.fieldValue ? 'xuanzhongziti' : 'putongziti'">{{item.fieldName}}</text>
+                  </u-button>
+                </view>
+              </view>
+            </view>
+
+
+            <view class="saixuanquxiang" >
+              <view>
+                <text class="zitijiachu zihao14">
+                  地址
+                </text>
+              </view>
+              <view class="julishang_10 saixuanxuanzhefuji">
+                <view v-for="(item,index) in addressList"
+                      :key="index"
+                      class="saixuanxuanzhechang julishang_10">
+                  <u-button color="#f4f3f8" size="small" @click="queryParam.addressId = item.fieldValue;search1();">
+                    <text :class="queryParam.addressId == item.fieldValue ? 'xuanzhongziti' : 'putongziti'">{{item.fieldName}}</text>
+                  </u-button>
+                </view>
+              </view>
+            </view>
+
+            <view class="saixuanquxiang" >
+              <view>
+                <text class="zitijiachu zihao14">
+                  状态
+                </text>
+              </view>
+              <view class="julishang_10 saixuanxuanzhefuji">
+                <view v-for="(item,index) in statusList"
+                      :key="index"
+                      class="saixuanxuanzhezhong julishang_10">
+                  <u-button color="#f4f3f8" size="small" @click="chooseType(item.fieldValue)">
+                    <text :class="queryParam.status == item.fieldValue ? 'xuanzhongziti' : 'putongziti'">{{item.fieldName}}</text>
+                  </u-button>
+                </view>
+              </view>
+            </view>
+            <view class="saixuanquxiang" >
+              <view>
+                <text class="zitijiachu zihao14">
+                  商品类型
+                </text>
+              </view>
+              <view class="julishang_10 saixuanxuanzhefuji">
+                <view v-for="(item,index) in typeList"
+                      :key="index"
+                      class="saixuanxuanzhe julishang_10">
+                  <u-button color="#f4f3f8" size="small" @click="queryParam.goodType = item.fieldValue;search1();">
+                    <text :class="queryParam.goodType == item.fieldValue ? 'xuanzhongziti' : 'putongziti'">{{item.fieldName}}</text>
+                  </u-button>
+                </view>
+              </view>
+            </view>
+
+          </scroll-view >
+          <view class="baisebeijing shuipingjuzhong" style="position:fixed;bottom:0;width: 80vw;">
+            <u-button style="width: 20vw; margin: 5px" @click=" isShowDialog2 = false;resetHandle()">
+              <text style=" font-size: 15px;">重置</text>
+            </u-button>
+            <u-button style="width: 50vw; margin: 5px" type="primary" @click="search2">
+              <text style=" font-size: 15px;">
+                确定（{{totalCount}} 个订单）
+              </text>
+            </u-button>
           </view>
         </view>
       </u-popup>
     </view>
-    <u-picker :show="show_sx_type" :columns="columns" @cancel="show_sx_type= false"
-              @confirm="confirm_sx_type" keyName="fieldName"></u-picker>
     <u-datetime-picker
                 title="开始时间"
                 :show="showFrom"
@@ -690,24 +834,24 @@ showFrom: false,
 
       cancelFrom() {
         this.showFrom = false
-        this.queryParam.createTimeFrom = ''
+        this.queryParam.successTimeFrom = ''
         this.search1()
       },
       cancelTo() {
         this.showTo = false
-        this.queryParam.createTimeTo = ''
+        this.queryParam.successTimeTo = ''
         this.search1()
       },
       confirmFrom(e) {
         this.showFrom = false;
         let timeValue = uni.$u.timeFormat(e.value, 'yyyy-mm-dd');
-        this.queryParam.createTimeFrom = timeValue
+        this.queryParam.successTimeFrom = timeValue
         this.search1()
       },
       confirmTo(e) {
         this.showTo = false;
         let timeValue = uni.$u.timeFormat(e.value, 'yyyy-mm-dd');
-        this.queryParam.createTimeTo = timeValue
+        this.queryParam.successTimeTo = timeValue
         this.search1()
       },
       confirm_sx_type(e) {
@@ -946,7 +1090,24 @@ showFrom: false,
         this.isShowDialog2 = false
         console.log('close');
       },
+      chooseType(status) {
+        let current = 0
+        for (let i = 0; i < this.list2.length; i++) {
+          if (this.list2[i].status == status ){
+            current = i
+          }
+        }
+        this.current = current
+        this.queryParam.status = status
+        this.search1()
+      },
       search1() {
+        this.tableData = []
+        this.queryParam.pageNum = 1
+        this.isLoadMore = false
+        this.getPage()
+      },
+      search2() {
         this.tableData = []
         this.queryParam.pageNum = 1
         this.isLoadMore = false

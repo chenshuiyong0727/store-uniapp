@@ -43,20 +43,15 @@
               </view>
             </view>
 
-            <view class="dingdans_con_right_top xianglian">
+            <view class="dingdans_con_right_top xianglian" @click="$copyUrl(requestParamWl.waybillNo)">
               <view class="xianglian">
                 顺丰速运：
                 <text>
                   {{requestParamWl.waybillNo}}
                 </text>
+                <image  class="fuzhitupian"
+                       src="../../static/img/copy.png"></image>
               </view>
-<!--              <view class="shugangfengexian">-->
-<!--                <text>|</text>-->
-<!--              </view>-->
-<!--              <view>-->
-<!--                到手：-->
-<!--                <text>{{orderData.theirPrice}}</text>-->
-<!--              </view>-->
             </view>
             <view v-if="requestParamWl.freight" class="dingdans_con_right_top xianglian">
               <view class="xianglian">
