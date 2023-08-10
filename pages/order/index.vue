@@ -9,8 +9,10 @@
 <!--          <image style="height: 25px;width: 25px" src="../../static/img/slh.png"></image>-->
 <!--        </rudon-rowMenuDotDotDot>-->
 <!--      </view>-->
-      <view class="u-nav-slot" slot="right" style="font-size: 15px;">
-        批量操作
+      <view @click="showSd = !showSd"  class="u-nav-slot" slot="right" style="font-size: 15px;">
+        <text>
+          {{!showSd ? '批量操作' : '退出' }}
+        </text>
       </view>
     </u-navbar>
     <view class="fenlei_top_tab" style="display: flex;">
@@ -247,6 +249,111 @@
         </view>
       </u-popup>
     </view>
+
+    <view>
+      <u-popup :show="isShowDialog3" @close="isShowDialog3 = !isShowDialog3" :duration="100" mode="bottom">
+        <view style="width: 90vw;margin-left: 5vw;">
+          <u-navbar title="筛选" :fixed="false" :border="true">
+            <view @click="resetHandle" style="font-size: 15px;" class="u-nav-slot" slot="left">
+              <text>关闭</text>
+            </view>
+            <view @click="search1" class="u-nav-slot" style="font-size: 15px;" slot="right">
+              <text>确定</text>
+            </view>
+          </u-navbar>
+          <view>
+            <u--form>
+              <u-form-item label-width="25vw" label="选中数" borderBottom>
+                <u--input  :disabled="true" disabledColor="#fff" inputAlign="right"
+                           v-model="ids.length" border="none" color="#333333"></u--input>
+              </u-form-item>
+              <u-form-item label-width="25vw"  label="地址"  borderBottom>
+                <hpy-form-select
+                    v-if="addressList"
+                    :dataList="addressList"
+                    :hideBorder="true"
+                    :hideArrow="true"
+                    text="fieldName"
+                    name="fieldValue"
+                    v-model="requestParam.addressId"/>
+                <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
+              </u-form-item>
+              <u-form-item label-width="25vw"  label="状态"  borderBottom>
+                <hpy-form-select
+                    v-if="statusList"
+                    :dataList="statusList"
+                    :hideBorder="true"
+                    :hideArrow="true"
+                    text="fieldName"
+                    name="fieldValue"
+                    v-model="requestParam.status"/>
+                <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
+              </u-form-item>
+              <u-form-item label-width="25vw"  label="销售类型"  borderBottom>
+                <hpy-form-select
+                    v-if="saleTypeList"
+                    :dataList="saleTypeList"
+                    :hideBorder="true"
+                    :hideArrow="true"
+                    text="fieldName"
+                    name="fieldValue"
+                    v-model="requestParam.saleType"/>
+                <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
+              </u-form-item>
+
+              <u-form-item v-if="requestParam.status == 8"  label-width="25vw"  label="瑕疵原因" borderBottom>
+                <u--input  disabledColor="#fff" inputAlign="right"
+                           v-model="requestParam.reason" border="none"></u--input>
+                <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
+              </u-form-item>
+              <u-form-item label-width="30vw" label="发货截止时间" borderBottom >
+                <uni-datetime-picker style="color: #303133 !important; text-align: right;font-size: 14px;" type="datetime" v-model="requestParam.deliveryDeadlineTime"  :border="false"/>
+                <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
+              </u-form-item>
+              <u-form-item label-width="25vw" label="运费" borderBottom>
+                <u--input  disabledColor="#fff" inputAlign="right" @change="keyup1"
+                           v-model="requestParam.freight" type="digit" border="none"></u--input>
+                <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
+              </u-form-item>
+              <u-form-item label-width="25vw"  label="运单号" borderBottom>
+                <u--input  disabledColor="#fff" inputAlign="right"
+                           v-model="requestParam.waybillNo" border="none"></u--input>
+                <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
+              </u-form-item>
+<!--              <u-form-item label="类型" borderBottom @click="show_sx_type = true; $hideKeyboard()">-->
+<!--                <u&#45;&#45;input inputAlign="right" placeholder="请选择类型" disabledColor="#fff"-->
+<!--                          placeholderStyle="font-size: 14px;color:#c0c4cc"-->
+<!--                          v-model="queryParam.typeStr" border="none" disabled></u&#45;&#45;input>-->
+<!--                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
+<!--              </u-form-item>-->
+<!--              <u-form-item label="品牌" borderBottom>-->
+<!--                <u&#45;&#45;input inputAlign="right" placeholder="请输入品牌"-->
+<!--                          placeholderStyle="font-size: 14px;color:#c0c4cc"-->
+<!--                          v-model="queryParam.brand" border="none"></u&#45;&#45;input>-->
+<!--                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
+<!--              </u-form-item>-->
+<!--              <u-form-item label="开始时间" label-width="50vw" borderBottom-->
+<!--                           @click="showFrom = true; $hideKeyboard()">-->
+<!--                <u&#45;&#45;input inputAlign="right" prefixIcon="calendar"-->
+<!--                          prefixIconStyle="font-size: 20px;color:#c0c4cc" placeholder="请选择开始时间"-->
+<!--                          disabledColor="#fff" placeholderStyle="font-size: 14px;color:#c0c4cc"-->
+<!--                          v-model="queryParam.createTimeFrom" border="none" disabled></u&#45;&#45;input>-->
+<!--                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
+<!--              </u-form-item>-->
+<!--              <u-form-item label="结束时间" label-width="50vw" borderBottom-->
+<!--                           @click="showTo = true; $hideKeyboard()">-->
+<!--                <u&#45;&#45;input inputAlign="right" prefixIcon="calendar"-->
+<!--                          prefixIconStyle="font-size: 20px;color:#c0c4cc" placeholder="请选择结束时间"-->
+<!--                          disabledColor="#fff" placeholderStyle="font-size: 14px;color:#c0c4cc"-->
+<!--                          v-model="queryParam.createTimeTo" border="none" disabled></u&#45;&#45;input>-->
+<!--                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
+<!--              </u-form-item>-->
+            </u--form>
+          </view>
+        </view>
+      </u-popup>
+    </view>
+
     <u-datetime-picker
                 title="开始时间"
                 :show="showFrom"
@@ -318,8 +425,15 @@
           <view v-if="showSd" style="width: 50px;
     margin-left: -2px;
     margin-right: 2px;">
-<!--            <el-checkbox v-model="item.checked" :checked="item.checked"-->
-<!--                         @change="changeChecked(item.id)"></el-checkbox>-->
+            <u-checkbox-group>
+              <u-checkbox  size="18"
+                           :checked="item.checked"
+                           @change="changeChecked(item)"
+                           activeColor="#409eff"
+                           shape="circle">
+
+              </u-checkbox>
+            </u-checkbox-group>
           </view>
           <view :src="item.img" class="dingdans_con_left_dw"
                 @click.stop="avatarShow(item.img)">
@@ -447,6 +561,25 @@
         <image :src="imageZoom" mode="widthFix" class="showImg"></image>
       </view>
     </view>
+
+    <div v-if="showSd" class="zuoyouduiqi sdzf">
+      <div style="margin-left: 20px;">
+        <u-checkbox-group>
+          <u-checkbox  size="20" :checked="checkAll"  @change="checkedAll" activeColor="#409eff"  shape="circle" label="全选"></u-checkbox>
+        </u-checkbox-group>
+    </div>
+      <div class="xianglian">
+        <span style="font-size: 14px;">已选</span>
+        <span class="color-url" style=" font-size: 17px;margin-left: 8px;font-weight: bolder">{{ids.length}}</span>
+        <u-button  type="primary" shape="circle" size="small" style="
+        width: 20vw;
+        margin-top: 8px;
+    margin-bottom: 8px;
+    margin-left: 8px;
+        margin-right: 20px" @click="sdzf">批量操作
+        </u-button>
+      </div>
+    </div>
   </view>
 </template>
 <script>
@@ -942,10 +1075,11 @@ showFrom: false,
         let url = '/pages/store/index?backUrl=/pages/order/index&actNo=' + actNo
         this.$navigateTo(url)
       },
+
       getPage() {
         this.isLoading = true
         this.getData()
-        this.initBatch()
+        // this.initBatch()
         this.emtityMsg = ''
         this.$request({
           url: '/gw/op/v1/goodsOrder',
@@ -965,7 +1099,7 @@ showFrom: false,
                 this.tableData.push(e)
                 this.countdown(e)
               })
-              this.initBatch()
+              // this.initBatch()
               if (this.totalCount <= this.tableData.length) {
                 this.loadStatus = 'nomore';
                 this.isLoadMore = false
@@ -1257,6 +1391,7 @@ showFrom: false,
         }
       },
       checkedAll() {
+        this.checkAll = !this.checkAll
         this.ids = []
         this.tableData.map(item => {
           if (this.checkAll) {
@@ -1266,10 +1401,12 @@ showFrom: false,
           }
         })
         this.tableData.forEach((obj) => (obj.checked = this.checkAll));
+        console.info(this.tableData)
       },
-      changeChecked(id) {
+      changeChecked(row) {
+        row.checked = !row.checked
         this.tableData.map(item => {
-          if (item.id === id) {
+          if (item.id === row.id) {
             if (item.checked) {
               this.ids.push(item.id)
             } else {
@@ -1278,8 +1415,7 @@ showFrom: false,
           }
         })
         let idLength = this.ids.length
-        let totalLength = this.queryParam.pageNum * this.queryParam.pageSize
-        if (idLength == totalLength) {
+        if (idLength == this.totalCount) {
           this.checkAll = true
         } else {
           this.checkAll = false
@@ -1289,14 +1425,16 @@ showFrom: false,
         this.showSd = !this.showSd
       },
       sdzf() {
-        this.requestParam3.ids = this.ids
-        this.requestParam3.status = 3
+        // this.requestParam3.ids = this.ids
+        // this.requestParam3.status = 3
         if (!this.ids.length) {
           this.$toast('请选择订单')
           return
         }
-        this.getDetailById()
-        this.isShowDialog3 = true
+        // this.getDetailById()
+        // this.isShowDialog3 = true
+        let url = '/pages/order/batchUpdate?ids=' + this.ids
+        this.$navigateTo(url)
       },
       // goodsDetail(id) {
       //   if (!id) {

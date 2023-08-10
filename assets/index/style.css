@@ -1061,6 +1061,20 @@ img{
   justify-content: space-between;
   align-items: center;
 }
+.sdzf{
+  /*#ifdef APP-PLUS*/
+  bottom: 0px;
+  /*#endif*/
+  /*#ifdef H5*/
+  bottom: 53px;
+  /*#endif*/
+  position: fixed;
+  z-index:2;
+  text-align: center;
+  width: 100vw;
+  background-color: white;
+  border-top: 1px solid rgb(243, 242, 248);
+}
 .shuipingjuzhong{
   display: flex;
   justify-content: center;

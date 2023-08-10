@@ -51,7 +51,7 @@
 	 * @property {String | Number}				labelSize		label的字体大小，px单位
 	 * @property {String | Boolean}				labelDisabled	是否禁止点击提示语选中复选框
 	 * @property {Object}						customStyle		定义需要用到的外部样式
-	 * 
+	 *
 	 * @event {Function}	change	任一个checkbox状态发生变化时触发，回调为一个对象
 	 * @example <u-checkbox v-model="checked" :disabled="false">天涯</u-checkbox>
 	 */
@@ -99,7 +99,7 @@
 			},
 			// 组件选中激活时的颜色
 			elActiveColor() {
-				return this.activeColor ? this.activeColor : (this.parentData.activeColor ? this.parentData.activeColor : '#2979ff');
+				return this.activeColor ? this.activeColor : (this.parentData.activeColor ? this.parentData.activeColor : '#409eff');
 			},
 			// 组件选未中激活时的颜色
 			elInactiveColor() {
@@ -244,13 +244,13 @@
 	$u-checkbox-icon-wrap-margin-right:6px !default;
 	$u-checkbox-icon-wrap-font-size:6px !default;
 	$u-checkbox-icon-wrap-border-width:1px !default;
-	$u-checkbox-icon-wrap-border-color:#c8c9cc !default;
+	$u-checkbox-icon-wrap-border-color:#409eff  !default;
 	$u-checkbox-icon-wrap-icon-line-height:0 !default;
 	$u-checkbox-icon-wrap-circle-border-radius:100% !default;
 	$u-checkbox-icon-wrap-square-border-radius:3px !default;
 	$u-checkbox-icon-wrap-checked-color:#fff !default;
 	$u-checkbox-icon-wrap-checked-background-color:red !default;
-	$u-checkbox-icon-wrap-checked-border-color:#2979ff !default;
+	$u-checkbox-icon-wrap-checked-border-color:#409eff !default;
 	$u-checkbox-icon-wrap-disabled-background-color:#ebedf0 !default;
 	$u-checkbox-icon-wrap-disabled-checked-color:#c8c9cc !default;
 	$u-checkbox-label-margin-left:5px !default;
@@ -293,7 +293,7 @@
 
 			font-size: $u-checkbox-icon-wrap-font-size;
 			border-width: $u-checkbox-icon-wrap-border-width;
-			border-color: $u-checkbox-icon-wrap-border-color;
+			border-color: $u-checkbox-icon-wrap-border-color !important;
 			border-style: solid;
 
 			/* #ifdef MP-TOUTIAO */

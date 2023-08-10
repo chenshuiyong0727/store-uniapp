@@ -104,6 +104,13 @@
       }
     },
     {
+      "path": "pages/order/batchUpdate",
+      "style": {
+        "navigationBarTitleText": "批量操作",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
       "path": "pages/order/toSell",
       "style": {
         "navigationBarTitleText": "出售",
@@ -189,7 +196,8 @@
   "tabBar": {
     "color": "#333333",
     "selectedColor": "#409eff",
-    "borderStyle": "white",
+    "borderStyle": "black",
+//    "borderStyle": "#f3f2f8",
     "iconWidth": "27px",
     "fontSize": "12px",
     "height": "53px",
