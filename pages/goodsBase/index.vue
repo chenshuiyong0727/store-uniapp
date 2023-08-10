@@ -70,7 +70,7 @@
             :inactiveStyle="{
               color: '#333333',
               fontSize: '16px'
-					}"
+					 }"
             :list="list2"
             itemStyle="padding-left: 15px; padding-right: 15px; height:44px;"
         >
@@ -111,8 +111,10 @@
         @confirm="confirmTo"
         @cancel="cancelTo"
     ></u-datetime-picker>
-
-    <view class="julibiaoti3" >
+    <view
+        style="height: 100vh"
+        @touchstart.stop="onTouchStart" @touchend.stop="handleTouchend" >
+      <view class="julibiaoti3" >
       <view class="dingdans_item_dw"
             v-for="(item,index) in tableData"
             :key="index"
@@ -179,17 +181,19 @@
         <!--底部-->
       </view>
     </view>
-    <view v-show="tableData.length" class="meiyougengduo">
-      <u-loadmore fontSize="18"  color="#a6a6a6" nomoreText="最硬球鞋" :status="loadStatus"/>
+
+      <view v-show="tableData.length" class="meiyougengduo">
+        <u-loadmore fontSize="18"  color="#a6a6a6" nomoreText="最硬球鞋" :status="loadStatus"/>
+      </view>
+      <u-empty
+          v-if="!tableData.length && !isLoading"
+          mode="list"
+          marginTop="50"
+          textSize="16"
+          textColor="#8a8a8a"
+          :icon="$fileUrl +'/static/operateSteps/empity_7.png'">
+      </u-empty>
     </view>
-    <u-empty
-        v-if="!tableData.length && !isLoading"
-        mode="list"
-        marginTop="50"
-        textSize="16"
-        textColor="#8a8a8a"
-        :icon="$fileUrl +'/static/operateSteps/empity_7.png'">
-    </u-empty>
     <view class="popContainer" v-if="pictureZoomShow" @click="pictureZoomShow = false">
       <view class="imageShow">
         <image :src="imageZoom" mode="widthFix"  class="showImg"></image>
@@ -280,7 +284,7 @@
     data() {
       return {
         dateCurrent: parseInt(new Date().getTime()),
-showFrom: false,
+        showFrom: false,
         showTo: false,
         show_sx_type: false,
         emtityMsg: '',
@@ -360,6 +364,9 @@ showFrom: false,
         },
         typeList: [],
         // columns: [],
+        startX: 0, // 触摸开始时的x坐标
+        startY: 0, // 触摸开始时的Y坐标
+        startTimeTouch : 0, // 触摸开始时的Y坐标
         dwhref: false,
         isLoadMore: false,
         isLoading: false,
@@ -401,6 +408,35 @@ showFrom: false,
       }
     },
     methods: {
+      onTouchStart(e) {
+        this.startTimeTouch = Date.now();
+        this.startX = e.changedTouches[0].clientX;
+        this.startY = e.changedTouches[0].clientY;
+      },
+      handleTouchend(e) {
+        const endTime = Date.now();
+        const endX = e.changedTouches[0].clientX;
+        const endY = e.changedTouches[0].clientY;
+        const differ = Math.abs(endY - this.startY);
+        const dirvalX = endX - this.startX;
+        // 纵轴偏移量不得超过 30，否则默认页面进行滚动操作
+        if (differ <= 30) {
+          // 按下时长不得超过 2秒，X轴滑动距离必须大于 40
+          if (endTime - this.startTimeTouch > 2000 || Math.abs(dirvalX) <= 40) {
+            return
+          };
+          // 判断滑动方向
+          if (dirvalX > 0) {
+            this.current > 0 ? this.current -- : ''
+            let resdata = this.list2[this.current]
+            this.tabX(resdata)
+          } else if (dirvalX < 0){
+            this.current < this.list2.length -1 ? this.current ++ : ''
+            let resdata = this.list2[this.current]
+            this.tabX(resdata)
+          }
+        }
+      },
       openPopup(e) {
         this.$refs[e].open();
       },
@@ -602,6 +638,10 @@ showFrom: false,
       },
       tabClick(item) {
         this.current = item.index
+        this.queryParam.type = item.type
+        this.search1()
+      },
+      tabX(item) {
         this.queryParam.type = item.type
         this.search1()
       },

@@ -372,8 +372,10 @@
         @confirm="confirmTo"
         @cancel="cancelTo"
     ></u-datetime-picker>
-
-    <view class="julibiaoti3">
+    <view
+        style="height: 100vh"
+        @touchstart.stop="onTouchStart" @touchend.stop="handleTouchend" >
+    <view class="julibiaoti3" >
       <view class="dingdans_item_dw"
             v-for="(item,index) in tableData"
             :key="index"
@@ -556,6 +558,7 @@
         textColor="#8a8a8a"
         :icon="$fileUrl +'/static/operateSteps/empity_7.png'">
     </u-empty>
+    </view>
     <view class="popContainer" v-if="pictureZoomShow" @click="pictureZoomShow = false">
       <view class="imageShow">
         <image :src="imageZoom" mode="widthFix" class="showImg"></image>
@@ -705,6 +708,9 @@ showFrom: false,
             name: '瑕疵'
           }
         ],
+        startX: 0, // 触摸开始时的x坐标
+        startY: 0, // 触摸开始时的Y坐标
+        startTimeTouch : 0, // 触摸开始时的Y坐标
         queryParam: {
           id: '',
           size: '',
@@ -1237,6 +1243,35 @@ showFrom: false,
         this.current = current
         this.queryParam.status = status
         this.search1()
+      },
+      onTouchStart(e) {
+        this.startTimeTouch = Date.now();
+        this.startX = e.changedTouches[0].clientX;
+        this.startY = e.changedTouches[0].clientY;
+      },
+      handleTouchend(e) {
+        const endTime = Date.now();
+        const endX = e.changedTouches[0].clientX;
+        const endY = e.changedTouches[0].clientY;
+        const differ = Math.abs(endY - this.startY);
+        const dirvalX = endX - this.startX;
+        // 纵轴偏移量不得超过 30，否则默认页面进行滚动操作
+        if (differ <= 30) {
+          // 按下时长不得超过 2秒，X轴滑动距离必须大于 40
+          if (endTime - this.startTimeTouch > 2000 || Math.abs(dirvalX) <= 40) {
+            return
+          };
+          // 判断滑动方向
+          if (dirvalX > 0) {
+            this.current > 0 ? this.current -- : ''
+            let resdata = this.list2[this.current]
+            this.tabClick(resdata)
+          } else if (dirvalX < 0){
+            this.current < this.list2.length -1 ? this.current ++ : ''
+            let resdata = this.list2[this.current]
+            this.tabClick(resdata)
+          }
+        }
       },
       search1() {
         this.tableData = []
