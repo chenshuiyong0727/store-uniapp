@@ -250,109 +250,6 @@
       </u-popup>
     </view>
 
-    <view>
-      <u-popup :show="isShowDialog3" @close="isShowDialog3 = !isShowDialog3" :duration="100" mode="bottom">
-        <view style="width: 90vw;margin-left: 5vw;">
-          <u-navbar title="筛选" :fixed="false" :border="true">
-            <view @click="resetHandle" style="font-size: 15px;" class="u-nav-slot" slot="left">
-              <text>关闭</text>
-            </view>
-            <view @click="search1" class="u-nav-slot" style="font-size: 15px;" slot="right">
-              <text>确定</text>
-            </view>
-          </u-navbar>
-          <view>
-            <u--form>
-              <u-form-item label-width="25vw" label="选中数" borderBottom>
-                <u--input  :disabled="true" disabledColor="#fff" inputAlign="right"
-                           v-model="ids.length" border="none" color="#333333"></u--input>
-              </u-form-item>
-              <u-form-item label-width="25vw"  label="地址"  borderBottom>
-                <hpy-form-select
-                    v-if="addressList"
-                    :dataList="addressList"
-                    :hideBorder="true"
-                    :hideArrow="true"
-                    text="fieldName"
-                    name="fieldValue"
-                    v-model="requestParam.addressId"/>
-                <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
-              </u-form-item>
-              <u-form-item label-width="25vw"  label="状态"  borderBottom>
-                <hpy-form-select
-                    v-if="statusList"
-                    :dataList="statusList"
-                    :hideBorder="true"
-                    :hideArrow="true"
-                    text="fieldName"
-                    name="fieldValue"
-                    v-model="requestParam.status"/>
-                <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
-              </u-form-item>
-              <u-form-item label-width="25vw"  label="销售类型"  borderBottom>
-                <hpy-form-select
-                    v-if="saleTypeList"
-                    :dataList="saleTypeList"
-                    :hideBorder="true"
-                    :hideArrow="true"
-                    text="fieldName"
-                    name="fieldValue"
-                    v-model="requestParam.saleType"/>
-                <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
-              </u-form-item>
-
-              <u-form-item v-if="requestParam.status == 8"  label-width="25vw"  label="瑕疵原因" borderBottom>
-                <u--input  disabledColor="#fff" inputAlign="right"
-                           v-model="requestParam.reason" border="none"></u--input>
-                <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
-              </u-form-item>
-              <u-form-item label-width="30vw" label="发货截止时间" borderBottom >
-                <uni-datetime-picker style="color: #303133 !important; text-align: right;font-size: 14px;" type="datetime" v-model="requestParam.deliveryDeadlineTime"  :border="false"/>
-                <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
-              </u-form-item>
-              <u-form-item label-width="25vw" label="运费" borderBottom>
-                <u--input  disabledColor="#fff" inputAlign="right" @change="keyup1"
-                           v-model="requestParam.freight" type="digit" border="none"></u--input>
-                <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
-              </u-form-item>
-              <u-form-item label-width="25vw"  label="运单号" borderBottom>
-                <u--input  disabledColor="#fff" inputAlign="right"
-                           v-model="requestParam.waybillNo" border="none"></u--input>
-                <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
-              </u-form-item>
-<!--              <u-form-item label="类型" borderBottom @click="show_sx_type = true; $hideKeyboard()">-->
-<!--                <u&#45;&#45;input inputAlign="right" placeholder="请选择类型" disabledColor="#fff"-->
-<!--                          placeholderStyle="font-size: 14px;color:#c0c4cc"-->
-<!--                          v-model="queryParam.typeStr" border="none" disabled></u&#45;&#45;input>-->
-<!--                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-<!--              </u-form-item>-->
-<!--              <u-form-item label="品牌" borderBottom>-->
-<!--                <u&#45;&#45;input inputAlign="right" placeholder="请输入品牌"-->
-<!--                          placeholderStyle="font-size: 14px;color:#c0c4cc"-->
-<!--                          v-model="queryParam.brand" border="none"></u&#45;&#45;input>-->
-<!--                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-<!--              </u-form-item>-->
-<!--              <u-form-item label="开始时间" label-width="50vw" borderBottom-->
-<!--                           @click="showFrom = true; $hideKeyboard()">-->
-<!--                <u&#45;&#45;input inputAlign="right" prefixIcon="calendar"-->
-<!--                          prefixIconStyle="font-size: 20px;color:#c0c4cc" placeholder="请选择开始时间"-->
-<!--                          disabledColor="#fff" placeholderStyle="font-size: 14px;color:#c0c4cc"-->
-<!--                          v-model="queryParam.createTimeFrom" border="none" disabled></u&#45;&#45;input>-->
-<!--                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-<!--              </u-form-item>-->
-<!--              <u-form-item label="结束时间" label-width="50vw" borderBottom-->
-<!--                           @click="showTo = true; $hideKeyboard()">-->
-<!--                <u&#45;&#45;input inputAlign="right" prefixIcon="calendar"-->
-<!--                          prefixIconStyle="font-size: 20px;color:#c0c4cc" placeholder="请选择结束时间"-->
-<!--                          disabledColor="#fff" placeholderStyle="font-size: 14px;color:#c0c4cc"-->
-<!--                          v-model="queryParam.createTimeTo" border="none" disabled></u&#45;&#45;input>-->
-<!--                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-<!--              </u-form-item>-->
-            </u--form>
-          </view>
-        </view>
-      </u-popup>
-    </view>
 
     <u-datetime-picker
                 title="开始时间"
@@ -831,10 +728,6 @@ showFrom: false,
         totalCount: 1
       }
     },
-    mounted() {
-      // this.getPage()
-      // this.listSysDict()
-    },
     onLoad(options) {
       this.initBatch()
       this.listSysDict()
@@ -963,9 +856,6 @@ showFrom: false,
         if ('gotoDw' == action) {
           this.gotoDw(item.spuId )
         }
-        // if ('jumpOrder' == action) {
-        //   this.jumpOrder(item.actNo)
-        // }
         if ('gotoWl' == action) {
           this.gotoWl(item)
         }
@@ -1030,19 +920,11 @@ showFrom: false,
           success: function (res) {
             if (res.confirm) {
               _this.changeStatus(_this,id,status)
-              // goodsOrderApi.delById(id).then(res => {
-              //   _this.$toast(res.subMsg)
-              //   if (res.subCode === 1000) {
-              //     _this.search1()
-              //   }
-              // })
             } else if (res.cancel) {
             }
           }
         });
       },
-
-
       changeStatus(_this,id,status) {
         let data={}
         data.status = status
@@ -1073,10 +955,6 @@ showFrom: false,
         window.open(url)
         // #endif
       },
-      storeAdd(goodsId) {
-
-        this.$router.push({path: '/storeAdd', query: {goodsId}})
-      },
       jumpactNo(actNo) {
         let url = '/pages/store/index?backUrl=/pages/order/index&actNo=' + actNo
         this.$navigateTo(url)
@@ -1085,7 +963,6 @@ showFrom: false,
       getPage() {
         this.isLoading = true
         this.getData()
-        // this.initBatch()
         this.emtityMsg = ''
         this.$request({
           url: '/gw/op/v1/goodsOrder',
@@ -1105,7 +982,6 @@ showFrom: false,
                 this.tableData.push(e)
                 this.countdown(e)
               })
-              // this.initBatch()
               if (this.totalCount <= this.tableData.length) {
                 this.loadStatus = 'nomore';
                 this.isLoadMore = false
@@ -1116,43 +992,6 @@ showFrom: false,
             }
           } else {
             this.$toast(res.subMsg)
-          }
-        })
-      },
-      confirmHandle3() {
-        if (!this.requestParam3.deliveryDeadlineTime) {
-          this.$toast('发货截止时间为空')
-          return
-        }
-        if (!this.requestParam3.addressId) {
-          this.$toast('发货地址为空')
-          return
-        }
-        if (this.requestParam3.status == 11 && !this.requestParam3.inStoreTime) {
-          this.$toast('闪电直发入仓 ，入仓时间不能为空')
-          return
-        }
-        if (this.requestParam3.status == 11 && !this.requestParam3.inStoreFreeDay) {
-          this.$toast('闪电直发入仓 ，免仓储费天数不能为空')
-          return
-        }
-
-        this.requestParam3.deliveryDeadlineTime = this.requestParam3.deliveryDeadlineTime
-            ? this.$parseTime(this.requestParam3.deliveryDeadlineTime) : ''
-        this.requestParam3.inStoreTime = this.requestParam3.inStoreTime ? this.$parseTime(
-            this.requestParam3.inStoreTime) : ''
-
-        // 闪电直发
-        // goodsOrderApi.updateSaleType(this.requestParam3)
-        this.$request({
-          url: '/gw/op/v1/goodsOrder/updateSaleType',
-          method: 'put',
-          data: this.requestParam3
-        }).then(res => {
-          this.$toast(res.subMsg)
-          if (res.subCode === 1000) {
-            this.getPage()
-            this.isShowDialog3 = false
           }
         })
       },
@@ -1204,7 +1043,6 @@ showFrom: false,
         this.columns.push(this.typeList)
       },
       getData() {
-        // goodsOrderApi.orderData()
         this.$request({
           url: '/gw/op/v1/goodsOrder/orderData',
           method: 'get'
@@ -1226,12 +1064,10 @@ showFrom: false,
           return
         }
         this.queryParam.pageNum = 1
-        // this.allLoaded = false;
         this.getPage()
       },
       close() {
         this.isShowDialog2 = false
-        console.log('close');
       },
       chooseType(status) {
         let current = 0
@@ -1324,80 +1160,9 @@ showFrom: false,
         this.pictureZoomShow = true
       },
       tabClick(item) {
-        // this.queryParam.type = item.type
-        // this.search1()
         this.queryParam.status = item.status
         this.queryParam.theExpire = item.theExpire
         this.search1()
-      },
-      keyup1() {
-        let poundage = this.requestParam.shelvesPrice * 0.075 + 38 + 8.5
-        this.requestParam.poundage = parseFloat(poundage).toFixed(2)
-
-        let theirPrice = this.requestParam.subsidiesPrice * 1 + this.requestParam.shelvesPrice
-            - (this.requestParam.shelvesPrice * 0.075 + 38 + 8.5)
-        this.requestParam.theirPrice = parseFloat(theirPrice).toFixed(2)
-
-        let profits = this.requestParam.theirPrice - this.requestParam.freight
-            - this.requestParam.price
-        this.requestParam.profits = parseFloat(profits).toFixed(2)
-      },
-      keyup2() {
-        let poundage = this.requestParam.shelvesPrice * 0.075 + 38 + 8.5
-        this.requestParam.poundage = parseFloat(poundage).toFixed(2)
-
-        let profits = this.requestParam.theirPrice - this.requestParam.freight
-            - this.requestParam.price
-        this.requestParam.profits = parseFloat(profits).toFixed(2)
-      },
-      confirmHandle() {
-        if (this.requestParam.status == 7 && !this.requestParam.freight) {
-          this.$toast('请输入运费')
-          return
-        }
-        if (this.requestParam.status == 3 && !this.requestParam.addressId) {
-          this.$toast('请选择地址')
-          return
-        }
-        if (this.requestParam.status == 8 && !this.requestParam.reason) {
-          this.$toast('请输入瑕疵原因')
-          return
-        }
-        if (this.requestParam.status == 3 && !this.requestParam.deliveryDeadlineTime) {
-          this.$toast('发货截止时间为空')
-          return
-        }
-        // 利润= 到手价-运费-原价
-        let profits = this.requestParam.theirPrice - this.requestParam.freight
-            - this.requestParam.price
-        this.requestParam.profits = parseFloat(profits).toFixed(2)
-        this.requestParam.deliveryDeadlineTime = this.requestParam.deliveryDeadlineTime
-            ? this.$parseTime(this.requestParam.deliveryDeadlineTime) : ''
-        goodsOrderApi.sellGoods(this.requestParam).then(res => {
-          this.$toast(res.subMsg)
-          if (res.subCode === 1000) {
-            this.getPage()
-            this.isShowDialog = false
-          }
-        })
-      },
-      updateAddress() {
-        goodsOrderApi.update(this.requestParam1).then(res => {
-          this.$toast(res.subMsg)
-          if (res.subCode === 1000) {
-            this.getPage()
-            this.isShowDialog1 = false
-          }
-        })
-      },
-      changeStatusDialog1(row) {
-        this.orderData1 = row
-        this.requestParam1.id = this.orderData1.id
-        this.requestParam1.freight = this.orderData1.freight
-        this.requestParam1.waybillNo = this.orderData1.waybillNo
-        this.requestParam1.addressId = this.orderData1.addressId
-
-        this.isShowDialog1 = true
       },
       goDel(id) {
         var _this = this;
@@ -1436,7 +1201,6 @@ showFrom: false,
           }
         })
         this.tableData.forEach((obj) => (obj.checked = this.checkAll));
-        console.info(this.tableData)
       },
       changeChecked(row) {
         row.checked = !row.checked
@@ -1460,104 +1224,21 @@ showFrom: false,
         this.showSd = !this.showSd
       },
       sdzf() {
-        // this.requestParam3.ids = this.ids
-        // this.requestParam3.status = 3
         if (!this.ids.length) {
           this.$toast('请选择订单')
           return
         }
-        // this.getDetailById()
-        // this.isShowDialog3 = true
         let url = '/pages/order/batchUpdate?ids=' + this.ids
         this.$navigateTo(url)
       },
-      // goodsDetail(id) {
-      //   if (!id) {
-      //     return
-      //   }
-      //   let url = '/pages/goodsBase/detail?id=' + id
-      //   this.$navigateTo(url)
-      // },
       gotoWl(orderData) {
-        // this.requestParamWl.addressId = orderData.addressId
-        // this.requestParamWl.waybillNo = orderData.waybillNo
         if (!orderData.waybillNo) {
           this.$toast('没有物流单号')
           return
         }
         let url = '/pages/order/wlInfo?addressId=' + orderData.addressId + '&waybillNo=' +orderData.waybillNo+ '&id=' + orderData.id
         this.$navigateTo(url)
-
-        // goodsOrderApi.waybillNoList(this.requestParamWl).then(res => {
-        //   if (res.subCode === 1000) {
-        //     if (res.data.list.length) {
-        //       this.wlDataSize = res.data.list.length
-        //       this.requestParamWl.receiverAddress = res.data.receiverAddress
-        //       this.requestParamWl.freight = res.data.realAmount
-        //       this.wlData = []
-        //       for (let i = 0; i < res.data.list.length; i++) {
-        //         let dataInfo = res.data.list[i]
-        //         let status = '运输中'
-        //         if (dataInfo.message.indexOf("已收取快件") >= 0) {
-        //           status = '已揽件'
-        //         } else if (dataInfo.message.indexOf("可查看签收人信息") >= 0) {
-        //           status = '已签收'
-        //         }
-        //         dataInfo.status = status
-        //         this.wlData.push(dataInfo)
-        //       }
-        //       this.isShowDialogWl = true
-        //     } else {
-        //       this.$toast("暂无物流信息，请核对物流单号")
-        //     }
-        //   } else {
-        //     this.$toast(res.subMsg)
-        //   }
-        // })
       },
-      handleClick(orderData) {
-        this.orderData = orderData
-        this.requestParam.id = this.orderData.id
-        this.requestParam.saleType = this.orderData.saleType
-        this.requestParam.price = this.orderData.price
-        this.requestParam.shelvesPrice = this.orderData.shelvesPrice
-
-        this.requestParam.subsidiesPrice = this.orderData.subsidiesPrice
-        this.requestParam.deliveryDeadlineTime = this.$parseTime(
-            this.orderData.deliveryDeadlineTime)
-        this.requestParam.freight = this.orderData.freight
-        this.requestParam.waybillNo = this.orderData.waybillNo
-        this.requestParam.addressId = this.orderData.addressId ? this.orderData.addressId : ''
-        if (this.orderData.status != 11) {
-          this.requestParam.status = this.orderData.status + 1
-        } else {
-          this.requestParam.status = 6
-        }
-        if (this.orderData.status == 7) {
-          this.requestParam.status = 7
-        }
-        if (!this.orderData.poundage) {
-          let poundage = this.requestParam.shelvesPrice * 0.075 + 38 + 8.5
-          this.requestParam.poundage = parseFloat(poundage).toFixed(2)
-        } else {
-          this.requestParam.poundage = this.orderData.poundage
-        }
-        if (!this.orderData.theirPrice) {
-          let theirPrice = this.requestParam.subsidiesPrice * 1 + this.requestParam.shelvesPrice
-              - (this.requestParam.shelvesPrice * 0.075 + 38 + 8.5)
-          this.requestParam.theirPrice = parseFloat(theirPrice).toFixed(2)
-        } else {
-          this.requestParam.theirPrice = this.orderData.theirPrice
-        }
-        if (!this.orderData.profits) {
-          let profits = this.requestParam.theirPrice - this.requestParam.freight
-              - this.requestParam.price
-          this.requestParam.profits = parseFloat(profits).toFixed(2)
-        } else {
-          this.requestParam.profits = this.orderData.profits
-        }
-        this.isShowDialog = true
-      }
     }
   };
 </script>
