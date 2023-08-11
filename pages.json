@@ -47,6 +47,18 @@
       }
     },
     {
+      "path": "pages/goodsDefects/index",
+      "style": {
+        "navigationBarTitleText": "瑕疵商品",
+        "pullToRefresh":{
+          "color":"#409eff",
+          "offset":"56px"
+        },
+        "enablePullDownRefresh": true,
+        "onReachBottomDistance": 150
+      }
+    },
+    {
       "path": "pages/other/index",
       "style": {
         "navigationBarTitleText": "其他收支",

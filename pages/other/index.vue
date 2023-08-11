@@ -90,7 +90,7 @@
        title="结束时间"
               :show="showTo"
         v-model="dateCurrent"
-        mode="year-month"
+        mode="date"
         :minDate="1646064000000"
         @confirm="confirmTo"
         @cancel="cancelTo"
