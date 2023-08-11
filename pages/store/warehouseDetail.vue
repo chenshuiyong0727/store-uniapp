@@ -5,8 +5,6 @@
         <u-icon name="arrow-left" size="20"></u-icon>
       </view>
     </u-navbar>
-    <view>
-    </view>
     <view style="padding: 10px 5px ;position: fixed" class="zuoyouduiqi baisebeijing">
       <view class="store-list-1" >
         <view  style="display:flex ;align-items:center; background-color: white;border: 2px solid #f1f1f1 ;" class="store-list-1-view">

@@ -172,7 +172,7 @@
               src="../../static/img/new/xiaci.png"></image>
           <p style="color: #333">瑕疵商品</p>
         </view>
-        <view :to="{ name: '红包'}">
+        <view @click="$navigateTo('/pages/gift/index')">
           <image
               style="margin-top: 7px;margin-bottom: -4px;width: 27px;height: 27px;"
               src="../../static/img/new/hongbao.png"></image>
