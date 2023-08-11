@@ -49,7 +49,11 @@
           <strong class="color-danger" style="font-size: 15px;margin-right: 1px;">{{form.thisTimeProfits}}</strong>
           利润</text>
           <text   v-else>
-          <strong class="color-danger" style="font-size: 15px;margin-right: 1px;">{{(form.dwPrice - (form.dwPrice * 0.075 + 38 + 8.5) - form.price - 10) | numFilter}}</strong>利润
+          <strong class="color-danger" style="font-size: 15px;margin-right: 1px;">
+            {{form.dwPrice | getProfits(form.price)}}
+
+<!--            {{(form.dwPrice - (form.dwPrice * 0.075 + 38 + 8.5) - form.price - 10) | numFilter}}-->
+          </strong>利润
         </text>
         </view>
 

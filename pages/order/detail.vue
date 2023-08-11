@@ -375,7 +375,7 @@
       <!--          <text>{{form.shelvesPrice}}</text>-->
       <!--        </view>-->
       <!--      </view>-->
-      <view class="zuoyouduiqi orderInfoleft">
+      <view v-if="form.subsidiesPrice" class="zuoyouduiqi orderInfoleft">
         <view style="width: 30vw;">
           <text>补贴价：</text>
         </view>

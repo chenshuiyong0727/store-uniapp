@@ -588,7 +588,6 @@
         let sysDictList = uni.getStorageSync('sysDictList') ? JSON.parse(
             uni.getStorageSync('sysDictList')) : []
         this.typeList = sysDictList.filter(item => item.typeValue == 20221108)
-        console.info(this.typeList)
         // this.columns.push(this.typeList)
       },
       search() {

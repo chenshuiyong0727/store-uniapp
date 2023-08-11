@@ -528,9 +528,9 @@
           this.$toast('请选择发货截止时间')
           return
         }
-        let realVal = this.requestParam.subsidiesPrice * 1 + this.requestParam.shelvesPrice
-            - (this.requestParam.shelvesPrice * 0.075 + 38 + 8.5)
-        this.requestParam.theirPrice = parseFloat(realVal).toFixed(2)
+        // let realVal = this.requestParam.subsidiesPrice * 1 + this.requestParam.shelvesPrice
+        //     - (this.requestParam.shelvesPrice * 0.075 + 38 + 8.5)
+        // this.requestParam.theirPrice = parseFloat(realVal).toFixed(2)
         // 出售
         goodsOrderApi.sellGoods(this.requestParam).then(res => {
           this.$toast(res.subMsg)

@@ -71,8 +71,8 @@
             stripe
             emptyText="暂无更多数据">
           <uni-tr>
-            <uni-th width="50" align="center">尺码</uni-th>
-            <uni-th width="70" align="center">库存</uni-th>
+            <uni-th width="60" align="center">尺码</uni-th>
+            <uni-th width="80" align="center">库存</uni-th>
             <uni-th width="80" align="center">进价</uni-th>
             <uni-th width="80" align="center">售价</uni-th>
             <uni-th width="70" align="center">渠道</uni-th>
@@ -175,11 +175,11 @@
         this.inventoryIndex = index
         this.orderData1 = row
         if (this.orderData1.dwPrice)  {
-          let poundage = this.orderData1.dwPrice * 0.075 + 38 + 8.5
+          let poundage = this.$getPoundage(this.orderData1.dwPrice)
           this.orderData1.poundage = parseFloat(poundage).toFixed(2)
 
           let theirPrice =  this.orderData1.dwPrice
-              - (this.orderData1.dwPrice * 0.075 + 38 + 8.5)
+              - poundage
           this.orderData1.theirPrice = parseFloat(theirPrice).toFixed(2)
         }
         if (this.orderData1.theirPrice && this.orderData1.price)  {

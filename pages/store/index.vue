@@ -303,7 +303,7 @@
             </p>
           </view>
           <view class="diangdans_con_right_dw">
-            <view class="dingdans_con_right_top_dw" >
+            <view class="dingdans_con_right_top_dw"  @click.stop="goodsDetail(item.goodsId)" >
               <text class="chaochu"  style="width: 65vw">
                 {{item.goodsName }}
               </text>
@@ -354,8 +354,9 @@
             <text style="margin-left: 2px;" class="color-danger">{{item.price}}</text>
             <text >, 预估利润</text>
             <text style="margin-left: 3px;"  :class="item.thisTimeProfits>= 0 ? 'color-danger': 'color-success'"  v-if="item.thisTimePrice" >{{item.thisTimeProfits }}</text>
-            <text style="margin-left: 3px;"  class="color-danger"  v-else  :class="(item.dwPrice - (item.dwPrice * 0.075 + 38 + 8.5) - item.price - 10)>= 0 ? 'color-danger': 'color-success'">
-              {{(item.dwPrice - (item.dwPrice * 0.075 + 38 + 8.5) - item.price - 10) | numFilter}}
+            <text style="margin-left: 3px;"  v-else
+                  :class="$getProfits(item.dwPrice,item.price) > 0 ? 'color-danger' : 'color-success'">
+              {{item.dwPrice | getProfits(item.price)}}
             </text>
           </view>
           <!--          操作栏-->
@@ -1074,98 +1075,6 @@
         this.queryParam.today = item.today
         this.search1()
       },
-      keyup1() {
-        // let theirPrice =
-        //   +  this.requestParam.dwPrice - (this.requestParam.dwPrice * 0.075 + 38 + 8.5)
-        // // let theirPrice = this.requestParam.theirPrice - 10
-        // //   - this.theirPrice.price
-        // this.requestParam.profits = parseFloat(theirPrice).toFixed(2)
-        //
-        // let profits = this.requestParam.theirPrice - 10
-        //   - this.requestParam.price
-        // this.requestParam.profits = parseFloat(profits).toFixed(2)
-
-        let poundage = this.requestParam.dwPrice * 0.075 + 38 + 8.5
-        this.requestParam.poundage = parseFloat(poundage).toFixed(2)
-
-        let theirPrice =  this.requestParam.dwPrice
-            - (this.requestParam.dwPrice * 0.075 + 38 + 8.5)
-        this.requestParam.theirPrice = parseFloat(theirPrice).toFixed(2)
-
-        let profits = this.requestParam.theirPrice - 10
-            - this.requestParam.price
-        this.requestParam.profits = parseFloat(profits).toFixed(2)
-      },
-      keyup2() {
-        // let theirPrice =
-        //   +  this.requestParam.dwPrice - (this.requestParam.dwPrice * 0.075 + 38 + 8.5)
-        // // let theirPrice = this.requestParam.theirPrice - 10
-        // //   - this.theirPrice.price
-        // this.requestParam.profits = parseFloat(theirPrice).toFixed(2)
-        //
-        // let profits = this.requestParam.theirPrice - 10
-        //   - this.requestParam.price
-        // this.requestParam.profits = parseFloat(profits).toFixed(2)
-
-        let poundage = this.requestParam1.shelvesPrice * 0.075 + 38 + 8.5
-        this.requestParam1.poundage = parseFloat(poundage).toFixed(2)
-
-        let theirPrice =  this.requestParam1.shelvesPrice
-            - (this.requestParam1.shelvesPrice * 0.075 + 38 + 8.5)
-        this.requestParam1.theirPrice = parseFloat(theirPrice).toFixed(2)
-
-        let profits = this.requestParam1.theirPrice - 10
-            - this.orderData1.price
-        this.requestParam1.profits = parseFloat(profits).toFixed(2)
-
-        if (this.requestParam1.num > this.orderData1.inventory - this.orderData1.galleryCount) {
-          this.requestParam1.num = this.orderData1.inventory - this.orderData1.galleryCount
-        }
-      },
-      confirmHandle1() {
-        if (!this.requestParam1.num) {
-          this.$toast("上架数量错误");
-          // this.$toast('上架数量错误')
-          return
-        }
-        if (this.requestParam1.num > this.orderData1.inventory) {
-          this.$toast('上架数量大于当前库存')
-          return
-        }
-        let data = {}
-        data.inventoryId = this.requestParam1.inventoryId
-        data.type = this.requestParam1.type
-        data.num = this.requestParam1.num
-        data.shelvesPrice = this.requestParam1.shelvesPrice
-        goodsInventoryApi.shelvesGoods(data).then(res => {
-          this.$toast(res.subMsg)
-          if (res.subCode === 1000) {
-            this.getPage()
-            this.isShowDialog1 = false
-          }
-        })
-      },
-      confirmHandle() {
-        if (this.requestParam.oldInventory < this.requestParam.inventory) {
-          // this.$toast('原始库存小于剩余库存')
-          this.$toast('原始库存小于剩余库存')
-          return
-        }
-        this.requestParam.createTime = this.requestParam.createTime ? parseTime(this.requestParam.createTime) : ''
-        goodsInventoryApi.update(this.requestParam).then(res => {
-          if (res.subCode === 1000) {
-            this.$toast(res.subMsg)
-            this.getPage()
-            this.isShowDialog = false
-          }else {
-            this.$toast(res.subMsg);
-          }
-        })
-      },
-      jumpactNo(actNo) {
-
-        this.$router.push({ path: '/order', query: { actNo } })
-      },
       goDetail(id) {
         this.$navigateTo('/pages/store/detail?id=' + id)
       },
@@ -1174,45 +1083,11 @@
           url: '/pages/goodsBase/index'
         });
       },
-      // goodsDetail(id, type) {
-      //
-      //   this.$router.push({ path: '/goodsDetail', query: { id, type } })
-      // },
-      // 复制链接
-      // copyUrl(url) {
-      //   const input = document.createElement('input')
-      //   document.body.appendChild(input)
-      //   input.setAttribute('value', url)
-      //   input.select()
-      //   if (document.execCommand('copy')) {
-      //     document.execCommand('copy')
-      //   }
-      //   document.body.removeChild(input)
-      //   this.$toast('已复制至剪切板')
-      // },
       warehouseDetail(goodsId , actNo,img) {
         this.$navigateTo('/pages/store/warehouseDetail?goodsId=' + goodsId +'&actNo=' +actNo +'&img=' +img)
-        // this.$router.push({ path: '/WarehouseDetail', query: {goodsId, actNo ,img} })
       },
       gallery(row) {
-        // let url = '/pages/store/storeUp?id=' + row.id
         this.$navigateTo('/pages/store/storeUp?id=' + row.id)
-        // this.orderData1 = row
-        // this.requestParam1.inventoryId = this.orderData1.id
-        // this.requestParam1.num = this.orderData1.inventory - this.orderData1.galleryCount
-        // this.requestParam1.shelvesPrice = this.orderData1.dwPrice
-        //
-        // let poundage = this.requestParam1.shelvesPrice * 0.075 + 38 + 8.5
-        // this.requestParam1.poundage = parseFloat(poundage).toFixed(2)
-        //
-        // let theirPrice =  this.requestParam1.shelvesPrice
-        //     - (this.requestParam1.shelvesPrice * 0.075 + 38 + 8.5)
-        // this.requestParam1.theirPrice = parseFloat(theirPrice).toFixed(2)
-        //
-        // let profits = this.requestParam1.theirPrice - 10
-        //     - this.orderData1.price
-        // this.requestParam1.profits = parseFloat(profits).toFixed(2)
-        // this.isShowDialog1 = true
       },
 
       goDel(id) {
@@ -1233,73 +1108,9 @@
             }
           }
         });
-
-        // this.$confirm('是否删除',"提示",{
-        //   confirmButtonText: '确定',
-        //   cancelButtonText: '取消',
-        //   type:"warning",
-        // }).then(() => {
-        //   goodsInventoryApi.delById(id).then(res => {
-        //     this.$toast(res.subMsg)
-        //     if (res.subCode === 1000) {
-        //       this.getPage()
-        //     }
-        //   })
-        // }).catch(() => {
-        //   // alert(" b" + id)
-        //   // this.goBack()
-        // })
-        // this.$confirm('是否删除', '提示', {
-        //   confirmButtonText: '确定',
-        //   cancelButtonText: '取消',
-        //   type: 'warning'
-        // }).then(() => {
-        //   alert(id)
-        //   // goodsInventoryApi.delById(id).then(res => {
-        //   //   if (res.subCode === 1000) {
-        //   //     this.$message.success(res.subMsg)
-        //   //     this.pageGoods()
-        //   //   } else {
-        //   //     this.$message.error(res.subMsg)
-        //   //   }
-        //   // })
-        // })
       },
       update(row) {
         this.$navigateTo('/pages/store/update?id=' + row.id)
-        // this.orderData = orderData
-        // this.requestParam.id = this.orderData.id
-        // this.requestParam.sizeId = this.orderData.sizeId
-        // this.requestParam.createTime = parseTime(this.orderData.createTime)
-        // this.requestParam.oldInventory = this.orderData.oldInventory
-        // this.requestParam.inventory = this.orderData.inventory
-        // this.requestParam.price = this.orderData.price
-        // this.requestParam.dwPrice = this.orderData.dwPrice
-        // this.requestParam.waybillNo = this.orderData.waybillNo
-        // this.requestParam.addressId = this.orderData.addressId
-        // // let poundage = this.requestParam.dwPrice * 0.075 + 38 + 8.5
-        // // this.requestParam.poundage = parseFloat(poundage).toFixed(2)
-        // if (!this.orderData.poundage) {
-        //   let poundage = this.requestParam.dwPrice * 0.075 + 38 + 8.5
-        //   this.requestParam.poundage = parseFloat(poundage).toFixed(2)
-        // } else {
-        //   this.requestParam.poundage = this.orderData.poundage
-        // }
-        // if (!this.orderData.theirPrice) {
-        //   let theirPrice =  this.requestParam.dwPrice
-        //       - (this.requestParam.dwPrice * 0.075 + 38 + 8.5)
-        //   this.requestParam.theirPrice = parseFloat(theirPrice).toFixed(2)
-        // } else {
-        //   this.requestParam.theirPrice = this.orderData.theirPrice
-        // }
-        // if (!this.orderData.profits) {
-        //   let profits = this.requestParam.theirPrice - 10
-        //       - this.requestParam.price
-        //   this.requestParam.profits = parseFloat(profits).toFixed(2)
-        // } else {
-        //   this.requestParam.profits = this.orderData.profits
-        // }
-        // this.isShowDialog = true
       }
     }
   };

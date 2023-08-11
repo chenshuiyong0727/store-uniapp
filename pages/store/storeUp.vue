@@ -353,24 +353,6 @@
             uni.getStorageSync('sysDictList')) : []
         this.channelIdList = sysDictList.filter(item => item.typeValue == 47)
       },
-      changeStatusDialog1(index, row) {
-        this.inventoryIndex = index
-        this.orderData1 = row
-        if (this.orderData1.dwPrice) {
-          let poundage = this.orderData1.dwPrice * 0.075 + 38 + 8.5
-          this.orderData1.poundage = parseFloat(poundage).toFixed(2)
-
-          let theirPrice = this.orderData1.dwPrice
-              - (this.orderData1.dwPrice * 0.075 + 38 + 8.5)
-          this.orderData1.theirPrice = parseFloat(theirPrice).toFixed(2)
-        }
-        if (this.orderData1.theirPrice && this.orderData1.price) {
-          let profits = this.orderData1.theirPrice - 10
-              - this.orderData1.price
-          this.orderData1.profits = parseFloat(profits).toFixed(2)
-        }
-        this.isShowDialog1 = true
-      },
       confirmHandle1() {
         if (!this.requestParam1.num) {
           this.$toast("上架数量错误");

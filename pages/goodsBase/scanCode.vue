@@ -168,7 +168,7 @@
           border-bottom: 0; ">
                 <view class="dingdans_top_left_dw" style="color: #7a7a7a ">
                   <text v-if="item.price ">¥</text>
-                  <text v-if="item.price "> {{(item.price - (item.price * 0.075 + 38 + 8.5)) | numFilter}}</text>
+                  <text v-if="item.price "> {{item.price | getThePrice}}</text>
                 </view>
               </view>
               <view class="dingdans_top_dw" style="
@@ -192,10 +192,10 @@
                 <view class="dingdans_top_left_dw" style="color: #7a7a7a ">
                   <text v-if="item.inPrice ">¥</text>
                   <text  v-if="item.inPrice"
-                         :style="(item.price - (item.price * 0.075 + 38 + 8.5) - item.inPrice - 10) > 50 ? 'color: red' : ''"
+                         :class="$getProfits(item.price,item.inPrice) > 0 ? 'color-danger' : 'color-success'"
                   >
-                {{(item.price - (item.price * 0.075 + 38 + 8.5) - item.inPrice - 10) | numFilter}}
-              </text>
+                    {{item.price | getProfits(item.inPrice)}}
+                  </text>
                 </view>
               </view>
             </view>
@@ -623,16 +623,27 @@
             // let rows = res.data ? res.data.list : []
             // this.chartData.rows = rows
             this.chartData = JSON.parse(JSON.stringify(res.data.lineVo));
-            let theirPrice = res.data.price - (res.data.price * 0.075 + 38 + 8.5)
+            // let theirPrice = res.data.price - (res.data.price * 0.075 + 38 + 8.5)
+            // this.priceData.theirPrice = parseFloat(theirPrice).toFixed(2)
+            //
+            // let theirPrice30 = res.data.price30 - (res.data.price30 * 0.075 + 38 + 8.5)
+            // this.priceData.theirPrice30 = parseFloat(theirPrice30).toFixed(2)
+            //
+            // let theirPrice180 = res.data.price180 - (res.data.price180 * 0.075 + 38 + 8.5)
+            // this.priceData.theirPrice180 = parseFloat(theirPrice180).toFixed(2)
+            //
+            // let theirPrice365 = res.data.price365 - (res.data.price365 * 0.075 + 38 + 8.5)
+            // this.priceData.theirPrice365 = parseFloat(theirPrice365).toFixed(2)
+            let theirPrice = this.$getThePrice(res.data.price)
             this.priceData.theirPrice = parseFloat(theirPrice).toFixed(2)
 
-            let theirPrice30 = res.data.price30 - (res.data.price30 * 0.075 + 38 + 8.5)
+            let theirPrice30 =  this.$getThePrice(res.data.price30)
             this.priceData.theirPrice30 = parseFloat(theirPrice30).toFixed(2)
 
-            let theirPrice180 = res.data.price180 - (res.data.price180 * 0.075 + 38 + 8.5)
+            let theirPrice180 =  this.$getThePrice(res.data.price180)
             this.priceData.theirPrice180 = parseFloat(theirPrice180).toFixed(2)
 
-            let theirPrice365 = res.data.price365 - (res.data.price365 * 0.075 + 38 + 8.5)
+            let theirPrice365 =  this.$getThePrice(res.data.price365)
             this.priceData.theirPrice365 = parseFloat(theirPrice365).toFixed(2)
             this.date = this.priceData.date
             this.getTitle()
