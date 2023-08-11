@@ -140,8 +140,46 @@ const getPoundage = (shelvesPrice) => {
   return parseFloat(poundage).toFixed(2)
 }
 
+const getProfits = (shelvesPrice,inprice) => {
+  let jsfwf = shelvesPrice * 0.05
+  if (jsfwf < 15) {
+    jsfwf = 15
+  }
+  if (jsfwf > 249) {
+    jsfwf = 249
+  }
+  // jsfwf = parseFloat(jsfwf).toFixed(2)
+
+  let zzsxf = shelvesPrice * 0.01
+  // zzsxf = parseFloat(zzsxf).toFixed(2)
+
+  let shwffwfBl = 1.5
+  if (shelvesPrice >= 600 && shelvesPrice < 2000) {
+    shwffwfBl = 1.6
+  } else if (shelvesPrice >= 2000) {
+    shwffwfBl = 1.8
+  }
+  let shwffwf = shelvesPrice * 0.01 * shwffwfBl
+  // shwffwf = parseFloat(shwffwf).toFixed(2)
+
+  let xfzyfbt = 6
+  if (shelvesPrice >= 200 && shelvesPrice < 300) {
+    xfzyfbt = 6.5
+  } else if (shelvesPrice >= 300) {
+    xfzyfbt = 8.5
+  }
+  // xfzyfbt = parseFloat(xfzyfbt).toFixed(2)
+
+  let poundage = jsfwf + zzsxf + shwffwf + xfzyfbt + 38
+
+  let profits = shelvesPrice - poundage - inprice - 10
+
+  return parseFloat(profits).toFixed(2)
+}
+
 
 Vue.prototype.$parseTime = parseTime // 挂载到原型上
 Vue.prototype.$typeToStr = typeToStr // 挂载到原型上
 Vue.prototype.$getPoundage = getPoundage // 挂载到原型上
+Vue.prototype.$getProfits = getProfits // 挂载到原型上
 Vue.prototype.$getTypeIndex = getTypeIndex // 挂载到原型上

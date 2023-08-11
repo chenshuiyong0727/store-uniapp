@@ -450,10 +450,10 @@
           //   value: 'goodsDetail',
           //   text: '商品详情'
           // },
-          // {
-          //   value: 'warehouseDetail',
-          //   text: '库存信息'
-          // },
+          {
+            value: 'warehouseDetail',
+            text: '库存信息'
+          },
           {
             value: 'update',
             text: '修改'
@@ -1191,8 +1191,8 @@
       //   this.$toast('已复制至剪切板')
       // },
       warehouseDetail(goodsId , actNo,img) {
-
-        this.$router.push({ path: '/WarehouseDetail', query: {goodsId, actNo ,img} })
+        this.$navigateTo('/pages/store/warehouseDetail?goodsId=' + goodsId +'&actNo=' +actNo +'&img=' +img)
+        // this.$router.push({ path: '/WarehouseDetail', query: {goodsId, actNo ,img} })
       },
       gallery(row) {
         // let url = '/pages/store/storeUp?id=' + row.id

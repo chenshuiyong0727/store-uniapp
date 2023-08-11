@@ -178,7 +178,7 @@
       return {
         orderData2: '',
         dateCurrent: parseInt(new Date().getTime()),
-showFrom: false,
+        showFrom: false,
         showTo: false,
         show_sx_type: false,
         isShowDialog2: false,
