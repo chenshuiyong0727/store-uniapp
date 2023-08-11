@@ -338,8 +338,8 @@
       //   this.tableData.forEach((obj) => (obj.checked = false));
       // },
       listSysDict() {
-        let sysDictList = localStorage.getItem('sysDictList') ? JSON.parse(
-            localStorage.getItem('sysDictList')) : []
+        let sysDictList = uni.getStorageSync('sysDictList') ? JSON.parse(
+            uni.getStorageSync('sysDictList')) : []
         this.warehouseList = sysDictList.filter(item => item.typeValue == 40)
         this.columnsWarehouse.push(this.warehouseList)
         this.channelIdList = sysDictList.filter(item => item.typeValue == 47)
