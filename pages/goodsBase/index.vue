@@ -200,7 +200,7 @@
       </view>
     </view>
     <view>
-      <uni-fab ref="fab" :pattern="pattern"  :horizontal="horizontal" @fabClick="fabClick" />
+      <uni-fab ref="fab" :pattern="pattern"  horizontal="right"  @fabClick="fabClick" />
     </view>
       <view  @touchmove.stop.prevent="preventHandler">
       <u-popup :show="isShowDialog2" @close="isShowDialog2 = false"  :duration="100" mode="right">

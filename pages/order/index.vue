@@ -1109,6 +1109,9 @@ showFrom: false,
           }
         }
       },
+      preventHandler: function preventHandler() {
+        return;
+      },
       search1() {
         this.tableData = []
         this.queryParam.pageNum = 1

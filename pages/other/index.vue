@@ -4,11 +4,11 @@
       <view @click="$goBack" class="u-nav-slot" slot="left">
         <u-icon name="arrow-left" size="20"></u-icon>
       </view>
-      <view class="u-nav-slot" style="font-size: 15px;" slot="right">
-        <rudon-rowMenuDotDotDot :localdata="localdata" @change="menuAction($event)">
-          <image style="height: 25px;width: 25px" src="../../static/img/slh.png"></image>
-        </rudon-rowMenuDotDotDot>
-      </view>
+<!--      <view class="u-nav-slot" style="font-size: 15px;" slot="right">-->
+<!--        <rudon-rowMenuDotDotDot :localdata="localdata" @change="menuAction($event)">-->
+<!--          <image style="height: 25px;width: 25px" src="../../static/img/slh.png"></image>-->
+<!--        </rudon-rowMenuDotDotDot>-->
+<!--      </view>-->
     </u-navbar>
     <view class="fenlei_top" style="display: flex;">
       <view style="width: 83vw">
@@ -25,56 +25,167 @@
         >
         </u--input>
       </view>
+<!--      <view class="fenlei_top_right" @click="isShowDialog2 = true">-->
+<!--        <image src="../../static/img/search.png"></image>-->
+<!--      </view>-->
       <view class="fenlei_top_right" @click="isShowDialog2 = true">
-        <image src="../../static/img/search.png"></image>
+        <image v-if="queryParam.brand || queryParam.remark || queryParam.type"  src="../../static/img/search.png"></image>
+        <image v-else  src="../../static/img/search_no.png"></image>
       </view>
     </view>
-    <view>
-      <u-popup :show="isShowDialog2" @close="close" :duration="100" mode="bottom">
-        <view style="width: 90vw;margin-left: 5vw;">
-          <u-navbar title="筛选" :fixed="false" :border="true">
-            <view @click="resetHandle" style="font-size: 15px;" class="u-nav-slot" slot="left">
-              <text>关闭</text>
+
+    <view @touchmove.stop.prevent="preventHandler">
+      <u-popup :show="isShowDialog2" @close="isShowDialog2 = !isShowDialog2"  :duration="100" mode="right">
+        <view  style="height: 90vh;">
+          <scroll-view  scroll-y="true"  class="saixuanquyu">
+
+            <view class="saixuanquxiang" >
+              <view>
+                <text class="zitijiachu zihao14">
+                  品牌
+                </text>
+              </view>
+              <view class="julishang10">
+                <u--input
+                    class="saixuanInput"
+                    placeholder="请输入品牌"
+                    placeholderStyle="font-size: 14px;color:#c0c4cc"
+                    v-model="queryParam.brand"
+                    @change="search1"
+                    clearable
+                >
+                </u--input>
+              </view>
             </view>
-            <view @click="search1" class="u-nav-slot" style="font-size: 15px;" slot="right">
-              <text>确定</text>
+
+<!--            <view class="saixuanquxiang" >-->
+<!--              <view>-->
+<!--                <text class="zitijiachu zihao14">-->
+<!--                  瑕疵原因-->
+<!--                </text>-->
+<!--              </view>-->
+<!--              <view class="julishang10">-->
+<!--                <u&#45;&#45;input-->
+<!--                    class="saixuanInput"-->
+<!--                    placeholder="请输入瑕疵原因"-->
+<!--                    placeholderStyle="font-size: 14px;color:#c0c4cc"-->
+<!--                    v-model="queryParam.reason"-->
+<!--                    @change="search1"-->
+<!--                    clearable-->
+<!--                >-->
+<!--                </u&#45;&#45;input>-->
+<!--              </view>-->
+<!--            </view>-->
+            <view class="saixuanquxiang" >
+              <view>
+                <text class="zitijiachu zihao14">
+                  时间
+                </text>
+              </view>
+              <view class="julishang10 xianglian saixuanshijian">
+                <view  @click="showFrom= true;showTo= false">
+                  <u--input
+                      readonly="readonly"
+                      class="searchInputFilter"
+                      placeholder="开始时间"
+                      placeholderStyle="font-size: 14px;color:#c0c4cc"
+                      v-model="queryParam.createTimeFrom"
+                      clearable
+                  ></u--input>
+                </view>
+                <view>
+                  <image  class="hengtupian" src="../../static/img/heng.png"></image>
+                </view>
+                <view  @click="showTo= true;showFrom= false">
+                  <u--input
+                      readonly="readonly"
+                      class="searchInputFilter"
+                      placeholder="结束时间"
+                      placeholderStyle="font-size: 14px;color:#c0c4cc"
+                      v-model="queryParam.createTimeTo"
+                      clearable
+                  ></u--input>
+                </view>
+              </view>
             </view>
-          </u-navbar>
-          <view>
-            <u--form>
-              <u-form-item label="类型" borderBottom @click="show_sx_type = true; $hideKeyboard()">
-                <u--input inputAlign="right" placeholder="请选择类型" disabledColor="#fff"
-                          placeholderStyle="font-size: 14px;color:#c0c4cc"
-                          v-model="queryParam.typeStr" border="none" disabled></u--input>
-                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
-              </u-form-item>
-              <u-form-item label="品牌" borderBottom>
-                <u--input inputAlign="right" placeholder="请输入品牌"
-                          placeholderStyle="font-size: 14px;color:#c0c4cc"
-                          v-model="queryParam.brand" border="none"></u--input>
-                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
-              </u-form-item>
-              <u-form-item label="开始时间" label-width="50vw" borderBottom
-                           @click="showFrom = true; $hideKeyboard()">
-                <u--input inputAlign="right" prefixIcon="calendar"
-                          prefixIconStyle="font-size: 20px;color:#c0c4cc" placeholder="请选择开始时间"
-                          disabledColor="#fff" placeholderStyle="font-size: 14px;color:#c0c4cc"
-                          v-model="queryParam.createTimeFrom" border="none" disabled></u--input>
-                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
-              </u-form-item>
-              <u-form-item label="结束时间" label-width="50vw" borderBottom
-                           @click="showTo = true; $hideKeyboard()">
-                <u--input inputAlign="right" prefixIcon="calendar"
-                          prefixIconStyle="font-size: 20px;color:#c0c4cc" placeholder="请选择结束时间"
-                          disabledColor="#fff" placeholderStyle="font-size: 14px;color:#c0c4cc"
-                          v-model="queryParam.createTimeTo" border="none" disabled></u--input>
-                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
-              </u-form-item>
-            </u--form>
+
+            <view class="saixuanquxiang" >
+              <view>
+                <text class="zitijiachu zihao14">
+                  类型
+                </text>
+              </view>
+              <view class="julishang_10 saixuanxuanzhefuji">
+                <view v-for="(item,index) in typeList"
+                      :key="index"
+                      class="saixuanxuanzhe julishang_10">
+                  <u-button color="#f4f3f8" size="small" @click="queryParam.type = item.fieldValue;search1();">
+                    <text :class="queryParam.type == item.fieldValue ? 'xuanzhongziti' : 'putongziti'">{{item.fieldName}}</text>
+                  </u-button>
+                </view>
+              </view>
+            </view>
+          </scroll-view >
+          <view class="baisebeijing shuipingjuzhong" style="position:fixed;bottom:0;width: 80vw;">
+            <u-button style="width: 20vw; margin: 5px" @click=" isShowDialog2 = false;resetHandle()">
+              <text style=" font-size: 15px;">重置</text>
+            </u-button>
+            <u-button style="width: 50vw; margin: 5px" type="primary" @click="search2">
+              <text style=" font-size: 15px;">
+                确定（{{totalCount}} 条记录）
+              </text>
+            </u-button>
           </view>
         </view>
       </u-popup>
     </view>
+
+<!--    <view1>-->
+<!--      <u-popup :show="isShowDialog2" @close="close" :duration="100" mode="bottom">-->
+<!--        <view style="width: 90vw;margin-left: 5vw;">-->
+<!--          <u-navbar title="筛选" :fixed="false" :border="true">-->
+<!--            <view @click="resetHandle" style="font-size: 15px;" class="u-nav-slot" slot="left">-->
+<!--              <text>关闭</text>-->
+<!--            </view>-->
+<!--            <view @click="search1" class="u-nav-slot" style="font-size: 15px;" slot="right">-->
+<!--              <text>确定</text>-->
+<!--            </view>-->
+<!--          </u-navbar>-->
+<!--          <view>-->
+<!--            <u&#45;&#45;form>-->
+<!--              <u-form-item label="类型" borderBottom @click="show_sx_type = true; $hideKeyboard()">-->
+<!--                <u&#45;&#45;input inputAlign="right" placeholder="请选择类型" disabledColor="#fff"-->
+<!--                          placeholderStyle="font-size: 14px;color:#c0c4cc"-->
+<!--                          v-model="queryParam.typeStr" border="none" disabled></u&#45;&#45;input>-->
+<!--                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
+<!--              </u-form-item>-->
+<!--              <u-form-item label="品牌" borderBottom>-->
+<!--                <u&#45;&#45;input inputAlign="right" placeholder="请输入品牌"-->
+<!--                          placeholderStyle="font-size: 14px;color:#c0c4cc"-->
+<!--                          v-model="queryParam.brand" border="none"></u&#45;&#45;input>-->
+<!--                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
+<!--              </u-form-item>-->
+<!--              <u-form-item label="开始时间" label-width="50vw" borderBottom-->
+<!--                           @click="showFrom = true; $hideKeyboard()">-->
+<!--                <u&#45;&#45;input inputAlign="right" prefixIcon="calendar"-->
+<!--                          prefixIconStyle="font-size: 20px;color:#c0c4cc" placeholder="请选择开始时间"-->
+<!--                          disabledColor="#fff" placeholderStyle="font-size: 14px;color:#c0c4cc"-->
+<!--                          v-model="queryParam.createTimeFrom" border="none" disabled></u&#45;&#45;input>-->
+<!--                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
+<!--              </u-form-item>-->
+<!--              <u-form-item label="结束时间" label-width="50vw" borderBottom-->
+<!--                           @click="showTo = true; $hideKeyboard()">-->
+<!--                <u&#45;&#45;input inputAlign="right" prefixIcon="calendar"-->
+<!--                          prefixIconStyle="font-size: 20px;color:#c0c4cc" placeholder="请选择结束时间"-->
+<!--                          disabledColor="#fff" placeholderStyle="font-size: 14px;color:#c0c4cc"-->
+<!--                          v-model="queryParam.createTimeTo" border="none" disabled></u&#45;&#45;input>-->
+<!--                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
+<!--              </u-form-item>-->
+<!--            </u&#45;&#45;form>-->
+<!--          </view>-->
+<!--        </view>-->
+<!--      </u-popup>-->
+<!--    </view1>-->
     <u-picker :show="show_sx_type" :columns="columns" @cancel="show_sx_type= false"
               @confirm="confirm_sx_type" keyName="fieldName"></u-picker>
     <u-datetime-picker
@@ -161,6 +272,9 @@
         textColor="#8a8a8a"
         :icon="$fileUrl +'/static/operateSteps/empity_7.png'">
     </u-empty>
+    <view>
+      <uni-fab ref="fab" :pattern="pattern"  horizontal="right" @fabClick="goDetail(null, 3)" />
+    </view>
   </view>
 </template>
 <script>
@@ -176,6 +290,13 @@
     name: "HelloWorld",
     data() {
       return {
+        pattern: {
+          color: '#7A7E83',
+          backgroundColor: '#fff',
+          selectedColor: '#409eff',
+          buttonColor: '#409eff',
+          iconColor: '#fff'
+        },
         orderData2: '',
         dateCurrent: parseInt(new Date().getTime()),
         showFrom: false,
@@ -319,10 +440,8 @@
         let url = '/pages/other/otherAdd?type=' + type
         if (id) {
           url = url + '&id=' + id
-          // this.$navigateTo('/pages/other/otherAdd?type='+type+'&id='+id)
         }
         this.$navigateTo(url)
-        // this.$router.push({ path: '/otherAdd', query: { id, type } })
       },
       getPage() {
         this.isLoading = true
@@ -375,6 +494,12 @@
         console.log('close');
       },
       search1() {
+        this.tableData = []
+        this.queryParam.pageNum = 1
+        this.isLoadMore = false
+        this.getPage()
+      },
+      search2() {
         this.tableData = []
         this.queryParam.pageNum = 1
         this.isLoadMore = false
