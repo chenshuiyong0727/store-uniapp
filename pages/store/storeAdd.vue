@@ -9,7 +9,7 @@
       </view>
     </u-navbar>
     <view class="dingdans_item" style="margin-top: 50px; margin-bottom: 7px; border-bottom:0px ;padding:0" >
-      <view class="dingdans_con" style="padding:0">
+      <view class="dingdans_con" style="padding:5px">
         <view style="  width: 200px;
   height: 84px;
   position: relative;
@@ -18,12 +18,12 @@
   margin-top: 16px;
   margin-left: 10%;" :src="form.img"  ></image>
         </view>
-        <view class="diangdans_con_right">
+        <view class="diangdans_con_right" style=" margin-right: 10px;">
           <view class="dingdans_con_right_top">
             <text>
               <strong v-if="form.id"
                       @click="goodsDetail(form.id) "
-                      style="  color: #333333;font-size: 14px;">
+                      style="margin-right: 10px; color: #333333;font-size: 14px;">
                 {{form.name }}
               </strong>
             </text>
@@ -47,7 +47,7 @@
       <text style="font-size: 17px;color: #333333">入库尺码</text>
       <view style="margin-top: 12px; ">
         <view style="text-align: center" @click="addSizeHandle(item, index)"
-             :class="activeIndex.includes(index) ? 'cityActive' : 'city'"
+             :class="activeIndex.includes(index) ? 'city cityActive' : 'city'"
              v-for="(item, index) in form.sizeVoList" :key="item.id">
               <text>
                 {{item.size}}
@@ -76,12 +76,18 @@
             <uni-th width="80" align="center">进价</uni-th>
             <uni-th width="80" align="center">售价</uni-th>
             <uni-th width="70" align="center">渠道</uni-th>
+            <uni-th width="70" align="center">到手价</uni-th>
+            <uni-th width="70" align="center">手续费</uni-th>
+            <uni-th width="70" align="center">利润</uni-th>
           </uni-tr>
           <uni-tr v-for="(item, index) in tableData" :key="index">
             <uni-td>
-              <text class="color-url" @click="changeStatusDialog1(index,item)">
+              <text>
                 {{ item.size }}
               </text>
+<!--              <text class="color-url" @click="changeStatusDialog1(index,item)">-->
+<!--                {{ item.size }}-->
+<!--              </text>-->
             </uni-td>
             <uni-td>
               <view>
@@ -107,10 +113,117 @@
                 ></uni-data-select>
               </view>
             </uni-td>
+
+            <uni-td>
+              <text>
+                {{item.dwPrice | getThePrice}}
+              </text>
+            </uni-td>
+
+            <uni-td>
+              <text>
+                {{item.dwPrice | getPoundage}}
+              </text>
+            </uni-td>
+
+            <uni-td>
+              <text>
+                {{item.dwPrice | getProfits(item.price)}}
+              </text>
+            </uni-td>
           </uni-tr>
         </uni-table>
       </view>
     </view>
+
+    <view>
+      <u-popup :show="isShowDialog1" @close="isShowDialog1=!isShowDialog1" :duration="100" mode="center">
+        <view style="width: 90vw;margin-left: 5vw;">
+          <u-navbar title="详情" :fixed="false" :border="true">
+            <view @click="isShowDialog1 = false" style="font-size: 15px;" class="u-nav-slot" slot="left">
+              <text>关闭</text>
+            </view>
+<!--            <view @click="goDel" class="u-nav-slot" style="font-size: 15px;" slot="right">-->
+<!--              <text>移除</text>-->
+<!--            </view>-->
+          </u-navbar>
+          <view>
+            <u--form >
+              <u-form-item label-width="25vw" label="尺码" borderBottom>
+                <u--input  :disabled="true" disabledColor="#fff" inputAlign="right"
+                           v-model="orderData1.size" border="none" color="#333333"></u--input>
+                <u-icon class="biaodan-gengduo" style="margin-right: 15px;" slot="right" name="arrow-right"></u-icon>
+              </u-form-item>
+              <u-form-item label-width="25vw" label="尺码" borderBottom>
+                <u--input  :disabled="true" disabledColor="#fff" inputAlign="right"
+                           v-model="orderData1.channelIdStr" border="none" color="#333333"></u--input>
+                <u-icon class="biaodan-gengduo" style="margin-right: 15px;" slot="right" name="arrow-right"></u-icon>
+              </u-form-item>
+              <u-form-item label-width="25vw" label="库存" borderBottom>
+                <u--input  :disabled="true" disabledColor="#fff" inputAlign="right"
+                           v-model="orderData1.inventory" border="none" color="#333333"></u--input>
+                <u-icon class="biaodan-gengduo" style="margin-right: 15px;" slot="right" name="arrow-right"></u-icon>
+              </u-form-item>
+              <u-form-item label-width="25vw" label="进价" borderBottom>
+                <u--input  :disabled="true" disabledColor="#fff" inputAlign="right"
+                           v-model="orderData1.price" border="none" color="#333333"></u--input>
+                <u-icon class="biaodan-gengduo" style="margin-right: 15px;" slot="right" name="arrow-right"></u-icon>
+              </u-form-item>
+              <u-form-item label-width="25vw" label="售价" borderBottom>
+                <u--input  :disabled="true" disabledColor="#fff" inputAlign="right"
+                           v-model="orderData1.dwPrice" border="none" color="#333333"></u--input>
+                <u-icon class="biaodan-gengduo" style="margin-right: 15px;" slot="right" name="arrow-right"></u-icon>
+              </u-form-item>
+              <u-form-item label-width="25vw" label="手续费" borderBottom>
+                <u--input  :disabled="true" disabledColor="#fff" inputAlign="right"
+                           v-model="orderData1.poundage" border="none" color="#333333"></u--input>
+                <u-icon class="biaodan-gengduo" style="margin-right: 15px;" slot="right" name="arrow-right"></u-icon>
+              </u-form-item>
+              <u-form-item label-width="25vw" label="到手价" borderBottom>
+                <u--input  :disabled="true" disabledColor="#fff" inputAlign="right"
+                           v-model="orderData1.theirPrice" border="none" color="#333333"></u--input>
+                <u-icon class="biaodan-gengduo" style="margin-right: 15px;" slot="right" name="arrow-right"></u-icon>
+              </u-form-item>
+              <u-form-item label-width="25vw" label="利润" borderBottom>
+                <u--input  :disabled="true" disabledColor="#fff" inputAlign="right"
+                           v-model="orderData1.profits" border="none" color="#333333"></u--input>
+                <u-icon class="biaodan-gengduo" style="margin-right: 15px;" slot="right" name="arrow-right"></u-icon>
+              </u-form-item>
+
+<!--              <u-form-item label="类型" borderBottom @click="show_sx_type = true; $hideKeyboard()">-->
+<!--                <u&#45;&#45;input inputAlign="right" placeholder="请选择类型" disabledColor="#fff"-->
+<!--                          placeholderStyle="font-size: 14px;color:#c0c4cc"-->
+<!--                          v-model="queryParam.typeStr" border="none" disabled></u&#45;&#45;input>-->
+<!--                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
+<!--              </u-form-item>-->
+<!--              <u-form-item label="品牌" borderBottom>-->
+<!--                <u&#45;&#45;input inputAlign="right" placeholder="请输入品牌"-->
+<!--                          placeholderStyle="font-size: 14px;color:#c0c4cc"-->
+<!--                          v-model="queryParam.brand" border="none"></u&#45;&#45;input>-->
+<!--                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
+<!--              </u-form-item>-->
+<!--              <u-form-item label="开始时间" label-width="50vw" borderBottom-->
+<!--                           @click="showFrom = true; $hideKeyboard()">-->
+<!--                <u&#45;&#45;input inputAlign="right" prefixIcon="calendar"-->
+<!--                          prefixIconStyle="font-size: 20px;color:#c0c4cc" placeholder="请选择开始时间"-->
+<!--                          disabledColor="#fff" placeholderStyle="font-size: 14px;color:#c0c4cc"-->
+<!--                          v-model="queryParam.createTimeFrom" border="none" disabled></u&#45;&#45;input>-->
+<!--                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
+<!--              </u-form-item>-->
+<!--              <u-form-item label="结束时间" label-width="50vw" borderBottom-->
+<!--                           @click="showTo = true; $hideKeyboard()">-->
+<!--                <u&#45;&#45;input inputAlign="right" prefixIcon="calendar"-->
+<!--                          prefixIconStyle="font-size: 20px;color:#c0c4cc" placeholder="请选择结束时间"-->
+<!--                          disabledColor="#fff" placeholderStyle="font-size: 14px;color:#c0c4cc"-->
+<!--                          v-model="queryParam.createTimeTo" border="none" disabled></u&#45;&#45;input>-->
+<!--                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
+<!--              </u-form-item>-->
+            </u--form>
+          </view>
+        </view>
+      </u-popup>
+    </view>
+
     <view class="popContainer" v-if="pictureZoomShow" @click="pictureZoomShow = false">
       <view class="imageShow">
         <image :src="imageZoom" mode="widthFix"  class="showImg"></image>
@@ -187,6 +300,7 @@
               - this.orderData1.price
           this.orderData1.profits = parseFloat(profits).toFixed(2)
         }
+        this.orderData1.channelIdStr = this.orderData1.channelId == 1 ? '线下' : '线上'
         this.isShowDialog1 = true
       },
       goAdd() {
@@ -443,12 +557,11 @@
     margin-bottom: 15px;
   }
   .city {
-    height: 33px;
     width: 63px;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 15px;
     background-color: #F6F6F6;
-    padding: 8px 0px;
+    padding: 7px 0px;
     margin-right: 6px;
     margin-bottom: 13px;
     display: inline-block;
@@ -466,15 +579,15 @@
     /*// 自动换行*/
     /*display: inline-block;*/
 
-    height: 33px;
-    width: 63px;
-    border-radius: 5px;
+    /*height: 33px;*/
+    /*width: 63px;*/
+    /*border-radius: 5px;*/
     font-size: 16px;
     background-color: #BEBEBE;
     padding: 8px 0px;
-    margin-right: 6px;
-    margin-bottom: 13px;
-    display: inline-block;
+    /*margin-right: 6px;*/
+    /*margin-bottom: 13px;*/
+    /*display: inline-block;*/
     /*height: 48px;*/
     /*width: 59px;*/
     /*border-radius: 15px;*/
