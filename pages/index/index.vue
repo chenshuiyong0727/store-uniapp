@@ -283,9 +283,9 @@
 
     <view class="section2">
       <h1 class="section1-title2" style="border-top-style:none">
-      <span style="    margin-left: 20px;">
+      <text style="    margin-left: 20px;">
         仓库值
-      </span>
+      </text>
         <view class="link-top"></view>
       </h1>
       <view  v-if="chartData1" style="background-color: #fff ; padding-top: 4vw">

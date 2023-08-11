@@ -1,23 +1,10 @@
 <template>
-  <div class="hello" ref="hello">
+  <view>
     <u-navbar title="红包" >
       <view @click="$goBack" class="u-nav-slot" slot="left">
         <u-icon name="arrow-left" size="20"></u-icon>
       </view>
     </u-navbar>
-<!--    <div class="fenlei_top">-->
-<!--      <div class="fenlei_top_left">-->
-<!--        <el-input-->
-<!--            clearable-->
-<!--            placeholder="请输入姓名"-->
-<!--            prefix-icon="el-icon-search"-->
-<!--            v-model.trim="queryParam.name">-->
-<!--        </el-input>-->
-<!--      </div>-->
-<!--      <div class="fenlei_top_right" @click="isShowDialog2 = true">-->
-<!--        <img src="../../static/img/search.png" height="30px;" width="30px;">-->
-<!--      </div>-->
-<!--    </div>-->
     <view class="fenlei_top" style="display: flex;">
       <view style="width: 83vw">
         <u--input
@@ -33,26 +20,23 @@
         >
         </u--input>
       </view>
-      <!--      <view class="fenlei_top_right" @click="isShowDialog2 = true">-->
-      <!--        <image src="../../static/img/search.png"></image>-->
-      <!--      </view>-->
       <view class="fenlei_top_right" @click="isShowDialog2 = true">
         <image v-if="queryParam.type || queryParam.label"  src="../../static/img/search.png"></image>
         <image v-else  src="../../static/img/search_no.png"></image>
       </view>
     </view>
-    <div class="fenlei_top_1_1">
+    <view class="fenlei_top_1_1">
       <view class="store-list-1_1" >
 
         <view  class="store-list-1-li_1" v-for="(item,index) in headerData" :key="index">
-          <div class="overview1">
+          <view class="overview1">
             <p><strong> {{item.name}}</strong></p>
             <p>  {{item.num}}/{{item.price}}</p>
-          </div>
+          </view>
         </view>
 
       </view>
-    </div>
+    </view>
 
     <view>
       <u-popup :show="isShowDialog" @close="isShowDialog != isShowDialog" :duration="100" mode="bottom">
@@ -104,6 +88,7 @@
               @confirm="confirm_sx_type" keyName="fieldName"></u-picker>
     <u-picker :show="show_sx_label" :columns="columnsLabel" @cancel="show_sx_label= false"
               @confirm="confirm_sx_label" keyName="fieldName"></u-picker>
+
     <view @touchmove.stop.prevent="preventHandler">
       <u-popup :show="isShowDialog2" @close="isShowDialog2 = !isShowDialog2"  :duration="100" mode="right">
         <view  style="height: 90vh;">
@@ -156,31 +141,31 @@
       </u-popup>
     </view>
 
-    <div style="margin-top: 206px;">
-      <div  class="dingdans_item" v-for="(item,index) in tableData" :key="index">
-        <div class="dingdans_top">
-          <div class="dingdans_top_left" style="     display: flex;
+    <view  class="hongbaoquyu">
+      <view  class="dingdans_item" v-for="(item,index) in tableData" :key="index">
+        <view class="dingdans_top">
+          <view class="dingdans_top_left" style="     display: flex;
     justify-content: space-between;
     align-items: center;">
-            <div style="width: 15vw">
+            <view style="width: 15vw">
               <strong> {{item.name}} </strong>
-            </div>
-            <div  style="width: 15vw">
+            </view>
+            <view  style="width: 15vw">
               <strong style="margin-left: 10px"> {{item.price}} </strong>
-            </div>
-            <div  style="width: 15vw">
+            </view>
+            <view  style="width: 15vw">
               <strong style="margin-left: 10px"> {{item.type | dictToDescTypeValue(41)}} </strong>
-            </div>
-            <div  style="width: 30vw">
+            </view>
+            <view  style="width: 30vw">
               <strong style="margin-left: 10px"> {{item.label | dictToDescTypeValue(42)}} </strong>
-            </div>
-            <div  style="width: 8vw; text-align: center">
+            </view>
+            <view  style="width: 8vw; text-align: center">
               <text class="dw-button-common"@click="tabName='新增';handleClick(item);">修改</text>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
     <view v-show="tableData.length" style="    padding: 30px;" class="meiyougengduo">
       <u-loadmore fontSize="18"  color="#a6a6a6" nomoreText="最硬球鞋"  loadingText="最硬球鞋" status="nomore"/>
     </view>
@@ -195,7 +180,7 @@
     <view>
       <uni-fab ref="fab" :pattern="pattern"  horizontal="right" @fabClick="tabName='新增'; handleClick1();" />
     </view>
-  </div>
+  </view>
 </template>
 <script>
   // import Baseline from '@/common/_baseline.vue'
@@ -288,6 +273,9 @@
         let fieldName = e.value[0].fieldName
         this.requestParam.type = fieldValue
         this.requestParam.typeStr = fieldName
+      },
+      preventHandler() {
+        return
       },
       confirm_sx_label(e) {
         this.show_sx_label = false

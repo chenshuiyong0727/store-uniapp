@@ -1069,6 +1069,14 @@ img{
   margin-bottom: 10px;
   /*#endif*/
 }
+.hongbaoquyu{
+  /*#ifdef APP-PLUS*/
+  margin-top: 233px;
+  /*#endif*/
+  /*#ifdef H5*/
+  margin-top: 245px;
+  /*#endif*/
+}
 .zuoyouduiqi{
   display: flex;
   justify-content: space-between;
