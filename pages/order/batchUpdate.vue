@@ -75,7 +75,7 @@
 <!--        </u-form-item>-->
         <u-form-item label-width="25vw" label="选中数" borderBottom>
           <u--input  :disabled="true" disabledColor="#fff" inputAlign="right"
-                     v-model="ids.length" border="none" color="#333333"></u--input>
+                     v-model="ids.length" border="none" color="#F56C6C"></u--input>
         </u-form-item>
         <u-form-item label-width="25vw" label="运费" borderBottom>
           <u--input  disabledColor="#fff" inputAlign="right" placeholder="请输入"  placeholderStyle="font-size: 14px;color:grey"
@@ -462,11 +462,11 @@
         this.saleTypeList = sysDictList.filter(item => item.typeValue == 46)
       },
       confirmHandle3() {
-        if (!this.requestParam.deliveryDeadlineTime) {
+        if (this.requestParam.status == 3 && !this.requestParam.deliveryDeadlineTime) {
           this.$toast('发货截止时间为空')
           return
         }
-        if (!this.requestParam.addressId) {
+        if (this.requestParam.status == 3 && !this.requestParam.addressId) {
           this.$toast('发货地址为空')
           return
         }

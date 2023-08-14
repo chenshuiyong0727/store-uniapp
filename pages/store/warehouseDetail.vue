@@ -164,7 +164,7 @@
     <view v-show="tableData.length" class="meiyougengduo" style=" padding-bottom: 60px;">
       <u-loadmore fontSize="18"  color="#a6a6a6" nomoreText="最硬球鞋"  loadingText="最硬球鞋" status="nomore"/>
     </view>
-    <view  class="zuoyouduiqi sdzf">
+    <view  class="zuoyouduiqi gengduocaozuo">
       <view style="margin-left: 20px;">
         <u-checkbox-group>
           <u-checkbox  size="20" :checked="checkAll"  @change="checkedAll" activeColor="#409eff"  shape="circle" label="全选"></u-checkbox>
@@ -204,7 +204,7 @@
             <u--form>
               <u-form-item label-width="25vw" label="选中数" borderBottom>
                 <u--input  :disabled="true" disabledColor="#fff" inputAlign="right"
-                           v-model="ids.length" border="none" color="#333333"></u--input>
+                           v-model="ids.length" border="none" color="#F56C6C"></u--input>
               </u-form-item>
 
               <u-form-item label="仓库" borderBottom @click="showWarehouseType = true; $hideKeyboard()">
@@ -235,7 +235,7 @@
             <u--form>
               <u-form-item label-width="25vw" label="选中数" borderBottom>
                 <u--input  :disabled="true" disabledColor="#fff" inputAlign="right"
-                           v-model="ids.length" border="none" color="#333333"></u--input>
+                           v-model="ids.length" border="none" color="#F56C6C"></u--input>
               </u-form-item>
 
               <u-form-item label="渠道" borderBottom @click="showChannelIdType = true; $hideKeyboard()">
