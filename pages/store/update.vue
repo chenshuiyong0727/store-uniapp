@@ -341,7 +341,7 @@ showFrom: false,
         if (this.type == 2) {
           goodsOtherApi.update(this.form).then(res => {
             if (res.subCode === 1000) {
-              this.$toast('操作成功,即将返回列表');
+              this.$toast('操作成功');
               setTimeout(() => {
                 this.$navigateTo('/pages/other/index')
               }, 1000)

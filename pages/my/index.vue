@@ -180,7 +180,7 @@
         </view>
       </view>
       <view class="my-pay-1" style="padding-bottom: 5vw">
-        <view :to="{ path: '/memo'}" style="width: 25%">
+        <view  @click="$navigateTo('/pages/memo/index')"style="width: 25%">
           <image
               style="margin-top: 7px;margin-bottom: -4px;width: 27px;height: 27px;"
               src="../../static/img/new/memo.png"></image>

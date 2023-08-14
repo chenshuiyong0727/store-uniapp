@@ -71,6 +71,25 @@
       }
     },
     {
+      "path": "pages/memo/index",
+      "style": {
+        "navigationBarTitleText": "备忘录",
+        "pullToRefresh":{
+          "color":"#409eff",
+          "offset":"56px"
+        },
+        "enablePullDownRefresh": true,
+        "onReachBottomDistance": 150
+      }
+    },
+    {
+      "path": "pages/memo/memoAdd",
+      "style": {
+        "navigationBarTitleText": "备忘录详情",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
       "path": "pages/other/index",
       "style": {
         "navigationBarTitleText": "其他收支",
@@ -80,6 +99,13 @@
         },
         "enablePullDownRefresh": true,
         "onReachBottomDistance": 150
+      }
+    },
+    {
+      "path": "pages/other/otherAdd",
+      "style": {
+        "navigationBarTitleText": "其他收支详情",
+        "enablePullDownRefresh": false
       }
     },
     {
@@ -206,13 +232,6 @@
       "path": "pages/store/detail",
       "style": {
         "navigationBarTitleText": "库存详情",
-        "enablePullDownRefresh": false
-      }
-    },
-    {
-      "path": "pages/other/otherAdd",
-      "style": {
-        "navigationBarTitleText": "其他收支详情",
         "enablePullDownRefresh": false
       }
     },

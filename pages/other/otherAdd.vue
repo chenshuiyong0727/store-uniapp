@@ -8,9 +8,9 @@
             style="font-size: 15px;">
         去修改
       </view>
-      <view v-else @click="submit" class="u-nav-slot" slot="right" style="font-size: 15px;">
-        保存
-      </view>
+<!--      <view v-else @click="submit" class="u-nav-slot" slot="right" style="font-size: 15px;">-->
+<!--        保存-->
+<!--      </view>-->
     </u-navbar>
     <u--form
         style="background-color: white"
@@ -78,6 +78,14 @@
     </u--form>
     <u-picker :show="show_sx_type" :columns="columns" @cancel="show_sx_type= false" :defaultIndex="defaultIndex"
               @confirm="confirm_sx_type" keyName="fieldName"></u-picker>
+    <view class="baisebeijing " v-if="type != 1" style="width:100%;position:fixed;bottom:0;
+     border-top: solid #E2DDDD 1px;">
+      <view class="shuipingjuzhong">
+        <u-button style="width: 50vw; margin: 10px 15px;" type="primary" @click="submit">
+          <text style=" font-size: 17px;font-weight: 600">确认保存</text>
+        </u-button>
+      </view>
+    </view>
   </view>
 </template>
 
@@ -232,7 +240,7 @@
         if (this.type == 2) {
           goodsOtherApi.update(this.form).then(res => {
             if (res.subCode === 1000) {
-              this.$toast('操作成功,即将返回列表');
+              this.$toast('操作成功');
               setTimeout(() => {
                 this.$navigateTo('/pages/other/index')
               }, 1000)
