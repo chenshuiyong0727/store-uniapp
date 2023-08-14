@@ -260,11 +260,19 @@
         this.queryParam.createTimeTo = timeValue;
         this.getPage()
       },
+      // jumpDetail(months) {
+      //   if (months == '合计') {
+      //     return
+      //   }
+      //   this.$router.push({path: '/putinDetail', query: {months}})
+      // },
       jumpDetail(months) {
         if (months == '合计') {
           return
         }
-        this.$router.push({path: '/putinDetail', query: {months}})
+        let url = '/pages/report/putinDayDetail?months=' + months
+        this.$navigateTo(url)
+        // this.$router.push({path: '/putinDetail', query: {months}})
       },
       getPage() {
         this.allLoaded = false;

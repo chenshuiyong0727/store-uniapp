@@ -544,6 +544,7 @@
         isShowDialog2: false,
         isShowSort: false,
         today: '',
+        months: '',
         showClearIcon: false,
 
         queryParam: {
@@ -615,9 +616,10 @@
       this.resetData()
       if (options) {
         this.queryParam.actNo = options.actNo ? options.actNo : '';
+        this.months = options.months ? options.months : '';
         if (this.months) {
-          this.queryParam.successTimeFrom = this.months
-          this.queryParam.successTimeTo = this.months
+          this.queryParam.createTimeFrom = this.months
+          this.queryParam.createTimeTo = this.months
         }
         this.current = options.current ? +options.current : 0 ;
         this.queryParam.size = options.size ? options.size : '';
