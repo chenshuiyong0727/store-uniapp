@@ -1076,6 +1076,15 @@ img{
   margin-bottom: 10px;
   /*#endif*/
 }
+.hengtupianbaobiao{
+  vertical-align: middle;
+  margin: 0 2px;
+  width:18px;
+  height: 18px;
+  /*#ifdef APP-PLUS*/
+  margin-top: 3px;
+  /*#endif*/
+}
 .hongbaoquyu{
   /*#ifdef APP-PLUS*/
   margin-top: 233px;

@@ -25,7 +25,7 @@
                           v-model="queryParam.createTimeFrom" value-format="yyyy-MM"  type="month"
                           placeholder="开始时间"></el-date-picker> -->
           <u--input
-              style="width: 44vw;"
+              style="width: 43vw;"
               class="searchInput"
               readonly="readonly"
               prefixIcon="calendar"
@@ -38,14 +38,17 @@
           </u--input>
         </view>
       </view>
-      <view style="margin-right: 6px;margin-left: 6px;">
-        <text>至</text>
+<!--      <view style="margin-right: 6px;margin-left: 6px;">-->
+<!--        <text>至</text>-->
+<!--      </view>-->
+      <view>
+        <image  class="hengtupianbaobiao" src="../../static/img/heng.png"></image>
       </view>
       <view class="fenlei_top_left">
         <view @click="showTo= true">
           <u--input
               placeholderStyle="font-size: 15px;color:#c0c4cc"
-              style="width: 44vw;"
+              style="width: 43vw;margin-left: 4px;"
               class="searchInput"
               readonly="readonly"
               prefixIcon="calendar"
