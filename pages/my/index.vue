@@ -117,7 +117,7 @@
             <image class="my-indent-img-1" src="../../static/img/more.png"></image>
           </p>
         </view>
-        <view :to="{ name: '销售报表'}" class="my-settle1-bottom">
+        <view @click="$navigateTo('/pages/report/sellList')" class="my-settle1-bottom">
           <view>
             <image style="width: 27px;height: 27px;"
                    src="../../static/img/new/xiaoshou.png"></image>
