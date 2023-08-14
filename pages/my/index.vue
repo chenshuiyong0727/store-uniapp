@@ -145,7 +145,7 @@
         <!--        </view>-->
       </view>
       <view class="my-pay-1" style="border-bottom-style:none;">
-        <view :to="{ name: '活动'}">
+        <view @click="$navigateTo('/pages/goodsBase/act')">
           <!--                  <text class="icon2-money"></text>-->
           <image
               style="margin-top: 7px;margin-bottom: -4px;width: 27px;height: 27px;"

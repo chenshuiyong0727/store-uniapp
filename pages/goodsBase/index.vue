@@ -547,9 +547,13 @@
         let url = '/pages/store/storeAdd?goodsId=' + goodsId
         this.$navigateTo(url)
       },
+      // jumpactNo(actNo) {
+      //
+      //   this.$router.push({ path: '/store', query: { actNo } })
+      // },
       jumpactNo(actNo) {
-
-        this.$router.push({ path: '/store', query: { actNo } })
+        let url = '/pages/store/index?backUrl=/pages/goodsBase/index&actNo=' + actNo
+        this.$navigateTo(url)
       },
       getPage() {
         this.isLoading = true

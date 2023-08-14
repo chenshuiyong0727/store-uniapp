@@ -163,6 +163,18 @@
       }
     },
     {
+      "path": "pages/goodsBase/act",
+      "style": {
+        "navigationBarTitleText": "Nike",
+        "pullToRefresh":{
+          "color":"#409eff",
+          "offset":"56px"
+        },
+        "enablePullDownRefresh": true,
+        "onReachBottomDistance": 150
+      }
+    },
+    {
       "path": "pages/goodsBase/detail",
       "style": {
         "navigationBarTitleText": "商品详情",

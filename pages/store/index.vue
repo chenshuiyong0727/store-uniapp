@@ -236,7 +236,7 @@
 
           </scroll-view >
           <view class="baisebeijing shuipingjuzhong" style="position:fixed;bottom:0;width: 80vw;">
-            <u-button style="width: 20vw; margin: 5px" @click=" isShowDialog2 = false;resetHandle()">
+            <u-button style="width: 20vw; margin: 5px" @click=" isShowDialog2 = false;resetSort();resetHandle()">
               <text style=" font-size: 15px;">重置</text>
             </u-button>
             <u-button style="width: 50vw; margin: 5px" type="primary" @click="search2">
@@ -1044,6 +1044,11 @@
         this.queryParam.sort = item.fieldValue
         this.sortName = item.fieldName
         this.search1()
+      },
+      resetSort() {
+        this.isShowSort = false
+        this.queryParam.sort = ''
+        this.sortName ='排序'
       },
       resetHandle() {
         this.queryParam = {
