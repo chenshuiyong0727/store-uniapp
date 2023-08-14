@@ -54,6 +54,20 @@
       }
     },
     {
+      "path": "pages/report/channelStorage",
+      "style": {
+        "navigationBarTitleText": "入库渠道报表",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/report/areaSellList",
+      "style": {
+        "navigationBarTitleText": "区域销售报表",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
       "path": "pages/report/sellList",
       "style": {
         "navigationBarTitleText": "销售报表",

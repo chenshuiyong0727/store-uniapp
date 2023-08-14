@@ -106,7 +106,7 @@
             <image class="my-indent-img-1" src="../../static/img/more.png"></image>
           </p>
         </view>
-        <view :to="{ name: '入库渠道报表'}" class="my-settle1-top">
+        <view @click="$navigateTo('/pages/report/channelStorage')" class="my-settle1-top">
           <view>
             <image style="width: 27px;height: 27px;"
                    src="../../static/img/new/qudao.png"></image>
@@ -127,7 +127,7 @@
             <image class="my-indent-img-1" src="../../static/img/more.png"></image>
           </p>
         </view>
-        <view :to="{ name: '区域销售报表'}" class="my-settle1-bottom">
+        <view @click="$navigateTo('/pages/report/areaSellList')" class="my-settle1-bottom">
           <view>
             <image style="width: 27px;height: 27px;" src="../../static/img/new/quyu.png"></image>
           </view>

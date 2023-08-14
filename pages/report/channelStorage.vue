@@ -1,7 +1,10 @@
 <template>
   <view class="hello">
+    <!--    <u-calendar-->
+    <!--        :show="show"-->
+    <!--        @confirm="handleConfirm"></u-calendar>-->
     <u-navbar
-        title="销售报表"
+        title="入库渠道报表"
     >
       <view
           @click="$goBack"
@@ -18,6 +21,9 @@
     <view class="fenlei_top zuoyouduiqi">
       <view class="fenlei_top_left">
         <view @click="showFrom= true">
+          <!-- <el-date-picker style="width: 44vw" readonly="readonly"
+                          v-model="queryParam.createTimeFrom" value-format="yyyy-MM"  type="month"
+                          placeholder="开始时间"></el-date-picker> -->
           <u--input
               style="width: 43vw;"
               class="searchInput"
@@ -32,6 +38,9 @@
           </u--input>
         </view>
       </view>
+<!--      <view style="margin-right: 6px;margin-left: 6px;">-->
+<!--        <text>至</text>-->
+<!--      </view>-->
       <view>
         <image  class="hengtupianbaobiao" src="../../static/img/heng.png"></image>
       </view>
@@ -49,6 +58,9 @@
               clearable
           >
           </u--input>
+          <!--       <el-date-picker style="width: 44vw" readonly="readonly"
+                                 v-model="queryParam.createTimeTo" value-format="yyyy-MM"  type="month"
+                                 placeholder="结束时间"></el-date-picker> -->
         </view>
       </view>
     </view>
@@ -72,30 +84,39 @@
     ></u-datetime-picker>
     <!--    列表开始-->
     <view style="    padding-top: 44px;">
-      <view   @click="jumpDetail(item.months )" class="dingdans_item_rt" v-for="(item,index) in tableData" :key="index">
+      <view  class="dingdans_item_rt" v-for="(item,index) in tableData" :key="index">
         <view class="dingdans_top_rt">
-          <strong style="margin-left: 12px;">月份：</strong>
-          <strong style="color: #409eff"
-                 > {{item.months}} </strong>
+<!--          <strong style="margin-left: 12px;">月份：</strong>-->
+<!--          <strong style="color: #409eff"-->
+<!--                 > {{item.months}} </strong>-->
+          <strong style="margin-left: 12px;"
+                  v-if="item.months == '合计'"> {{item.months}} </strong>
+          <strong v-else style="margin-left: 12px;"> {{item.months | dictToDescTypeValue(47)  }} </strong>
         </view>
         <view class="dingdans_con_rt">
-          <view style="width: 33vw">
+          <view style="">
             <strong>
               {{item.successNum}}
             </strong>
-            <p>销售数</p>
+            <p>入库数</p>
           </view>
-          <view style="width: 33vw">
+          <view style="">
             <strong>
               {{item.orderAmount}}
             </strong>
-            <p>销售金额</p>
+            <p>入库总额</p>
           </view>
-          <view style="width: 33vw;   border-right-width: 0vw;">
+          <view>
+            <strong>
+              {{item.profits}}
+            </strong>
+            <p>已产生利润</p>
+          </view>
+          <view style="   border-right-width: 0vw;">
             <strong>
               {{item.profitsAmount}}
             </strong>
-            <p>利润</p>
+            <p>市价总额</p>
           </view>
         </view>
         <view class="dingdans_con_rt">
@@ -106,7 +127,7 @@
             <strong v-else>
               0
             </strong>
-            <p>销售均价</p>
+            <p>入库均价</p>
           </view>
           <view>
             <strong v-if="item.successNum">
@@ -115,21 +136,49 @@
             <strong v-else>
               0
             </strong>
-            <p>平均利润</p>
+            <p>市价均价</p>
           </view>
+          <view>
+            <strong>
+              {{item.inventory}}
+            </strong>
+            <p>剩余库存</p>
+          </view>
+          <view style="border-right-width: 0vw;">
+            <strong>
+              {{item.inventoryPrice}}
+            </strong>
+            <p>剩余总额</p>
+          </view>
+        </view>
+        <view class="dingdans_con_rt">
           <view>
             <strong>
               {{item.saleNum}}
             </strong>
-            <p>瑕疵数</p>
+            <p>已售数量</p>
           </view>
-          <view style="border-right-width: 0vw;">
+          <view>
             <strong>
-              {{item.theirPrice}} %
+              {{item.theirPrice}}
             </strong>
-            <p>通过比例</p>
+            <p>出售金额</p>
+          </view>
+          <view>
+            <strong v-if="item.saleNum">
+              {{item.profits / item.saleNum | numFilter}}
+            </strong>
+            <strong v-else>0</strong>
+            <p>利润均价</p>
+          </view>
+          <view style=" border-right-width: 0vw;">
+            <strong>
+              {{item.thisTimeProfits}}
+            </strong>
+            <p>预估利润</p>
           </view>
         </view>
+
       </view>
     </view>
     <!--    列表结束-->
@@ -144,15 +193,24 @@
         textColor="#8a8a8a"
         :icon="$fileUrl +'/static/operateSteps/empity_7.png'">
     </u-empty>
+    <!--    <p style="padding: 0.5rem 0;" class="to-the-bottom">{{emtityMsg}}</p>-->
   </view>
 </template>
 <script>
+  // import Baseline from '@/common/_baseline.vue'
+  // import Footer from '@/common/_footer.vue'
+  // import {reportApi} from '@/api/report'
+
   export default {
+    components: {
+      // 'v-baseline': Baseline,
+      // 'v-footer': Footer
+    },
     name: "HelloWorld",
     data() {
       return {
         dateCurrent: parseInt(new Date().getTime()),
-        showFrom: false,
+showFrom: false,
         showTo: false,
         allLoaded: false,
         emtityMsg: '没有更多了',
@@ -181,13 +239,13 @@
       },
       confirmFrom(e) {
         this.showFrom = false;
-        let timeValue = uni.$u.timeFormat(e.value, 'yyyy-mm');
+        let timeValue = uni.$u.timeFormat(e.value, 'yyyy-mm-dd');
         this.queryParam.createTimeFrom = timeValue;
         this.getPage()
       },
       confirmTo(e) {
         this.showTo = false;
-        let timeValue = uni.$u.timeFormat(e.value, 'yyyy-mm');
+        let timeValue = uni.$u.timeFormat(e.value, 'yyyy-mm-dd');
         this.queryParam.createTimeTo = timeValue;
         this.getPage()
       },
@@ -201,14 +259,14 @@
         if (months == '合计') {
           return
         }
-        let url = '/pages/report/sellListDetail?months=' + months
+        let url = '/pages/report/putinDetail?months=' + months
         this.$navigateTo(url)
         // this.$router.push({path: '/putinDetail', query: {months}})
       },
       getPage() {
         this.allLoaded = false;
         this.$request({
-          url: '/gw/op/v1/report/sellList',
+          url: '/gw/op/v1/report/channelStorage',
           method: 'get',
           data: this.queryParam
         }).then(res => {
