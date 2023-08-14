@@ -66,7 +66,7 @@
       </view>
 
       <view class="main" style="">
-        <h1  @click="$navigateTo('/pages/order/index')" class="section1-title" style="border-top-style:none">
+        <h1  @click="$navigateTo('/pages/order/index?backUrl=/pages/index/index')" class="section1-title" style="border-top-style:none">
           <text style="    margin-left: 20px;">
             订单管理
           </text>

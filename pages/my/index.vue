@@ -3,7 +3,7 @@
         style="height: 100%;font-size: 15px; border-top:0;    overflow: auto;">
     <u-navbar title="个人中心" bgColor="#f3faff">
 <!--    <u-navbar title="个人中心" bgColor="#e5f4ff">-->
-      <view @click="$goBack" class="u-nav-slot" slot="left">
+      <view @click="scanCode" class="u-nav-slot" slot="left">
         <image style="width: 23px; height: 23px;" src="../../static/img/saoyisao4.png"></image>
       </view>
       <view @click="comfirm(1)" class="u-nav-slot" slot="right">
@@ -48,7 +48,7 @@
 
 
     <view class="main" :style="!flag? 'margin-top: -138px;': ''">
-      <view class="my-indent" style="    margin-bottom: -10px;" :to="{ name: '订单'}">
+      <view class="my-indent" style="    margin-bottom: -10px;"  @click="$navigateTo('/pages/order/index?backUrl=/pages/my/index')">
         <text class="my-indent-left">订单</text>
         <view class="my-indent-right">
           <text style="font-weight: 500">全部</text>
@@ -57,14 +57,14 @@
       </view>
 
       <view class="my-pay">
-        <view :to="{ path: '/order?status=3'}">
+        <view  @click="$navigateTo('/pages/order/index?backUrl=/pages/my/index&current=1&status=3')">
           <image
               :class="orderIofo.count3 > 0 ? 'count3' : ''"
               src="../../static/img/new/daifahuo.png"></image>
           <i v-if="orderIofo.count3" class="danger-num">{{orderIofo.count3}}</i>
           <p style="color: #333">待发货</p>
         </view>
-        <view :to="{ path: '/order?status=4'}">
+        <view   @click="$navigateTo('/pages/order/index?backUrl=/pages/my/index&current=2&status=4')">
           <!--                  <text class="icon2-thecar"></text>-->
           <image
               :class="orderIofo.count4 > 0 ? 'count3' : ''"
@@ -73,7 +73,7 @@
           <p style="color: #333">已发货</p>
         </view>
 
-        <view :to="{ path: '/order?status=5'}">
+        <view  @click="$navigateTo('/pages/order/index?backUrl=/pages/my/index&current=3&status=5')">
           <!--                  <span class="icon2-thecar"></span>-->
           <image
               :class="orderIofo.count5 > 0 ? 'count3' : ''"
@@ -82,7 +82,7 @@
           <p style="color: #333">运输中</p>
         </view>
 
-        <view :to="{ path: '/order?status=6'}">
+        <view @click="$navigateTo('/pages/order/index?backUrl=/pages/my/index&current=4&status=6')">
           <image
               :class="orderIofo.count6 > 0 ? 'count3' : ''"
               src="../../static/img/new/yishouhuo.png"></image>
@@ -289,8 +289,8 @@
         this.$navigateTo('/pages/report/putin')
       },
 
-      scanCode(photo) {
-        this.$router.push({path: '/scanCode', query: {photo}})
+      scanCode() {
+        this.$navigateTo('/pages/goodsBase/scanCode?photo=1')
       },
       comfirm(type) {
         this.$navigateTo('/pages/login/logout?type=' + type)
