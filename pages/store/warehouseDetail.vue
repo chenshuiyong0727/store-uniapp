@@ -80,7 +80,7 @@
             <view  class="dingdans_other_left">
               <text>剩余库存：</text>
             </view>
-            <view   class="top_other">
+            <view   class="top_other_border">
               <text >{{item.inventory }}</text>
             </view>
           </view>
@@ -99,7 +99,7 @@
             <view  class="dingdans_other_left">
               <text>入库渠道：</text>
             </view>
-            <view   class="top_other">
+            <view   class="top_other_border">
               <text >{{ item.channelId | dictToDescTypeValue(47) }}</text>
             </view>
           </view>
@@ -118,7 +118,7 @@
             <view  class="dingdans_other_left">
               <text>入库价：</text>
             </view>
-            <view   class="top_other">
+            <view   class="top_other_border">
               <text>{{ item.price }}</text>
             </view>
           </view>
@@ -138,7 +138,7 @@
             <view  class="dingdans_other_left">
               <text>预计利润：</text>
             </view>
-            <view   class="top_other " >
+            <view   class="top_other_border " >
               <text class="color-danger" v-if="item.thisTimePrice">{{ item.thisTimeProfits }}</text>
               <text class="color-danger" v-else>{{item.dwPrice | getProfits(item.dwPrice,item.price)}}</text>
             </view>

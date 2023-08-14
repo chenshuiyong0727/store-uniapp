@@ -935,6 +935,13 @@ img{
   color:#333333;
   margin-top: 7px;
 }
+.top_other_border {
+  width: 18vw;
+  text-align: left;
+  color:#333333;
+  margin-top: 7px;
+  border-right:  1px solid #E5E5E5;
+}
 
 /*左右对齐*/
 .searchInput{
