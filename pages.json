@@ -47,6 +47,13 @@
       }
     },
     {
+      "path": "pages/report/sellListDetail",
+      "style": {
+        "navigationBarTitleText": "月度销售报表",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
       "path": "pages/login/index",
       "style": {
         "navigationBarTitleText": "登录",

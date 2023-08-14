@@ -72,40 +72,32 @@
     ></u-datetime-picker>
     <!--    列表开始-->
     <view style="    padding-top: 44px;">
-      <view   @click="jumpDetail(item.months )" class="dingdans_item_rt" v-for="(item,index) in tableData" :key="index">
+      <view @click="jumpDetail(item.months )" class="dingdans_item_rt" v-for="(item,index) in tableData" :key="index">
         <view class="dingdans_top_rt">
           <strong style="margin-left: 12px;">月份：</strong>
           <strong style="color: #409eff"
-                 > {{item.months}} </strong>
+                  > {{item.months}} </strong>
         </view>
         <view class="dingdans_con_rt">
-          <view style="width: 33vw">
+          <view style="width:15vw">
             <strong>
               {{item.successNum}}
             </strong>
             <p>销售数</p>
           </view>
-          <view style="width: 33vw">
+          <view style="width: 25vw">
             <strong>
               {{item.orderAmount}}
             </strong>
             <p>销售金额</p>
           </view>
-          <view style="width: 33vw;   border-right-width: 0vw;">
+          <view style="width: 20vw;">
             <strong>
               {{item.profitsAmount}}
             </strong>
             <p>利润</p>
           </view>
-<!--          <view style="   border-right-width: 0vw;">-->
-<!--            <strong>-->
-<!--              {{item.profitsAmount}}-->
-<!--            </strong>-->
-<!--            <p>市价总额</p>-->
-<!--          </view>-->
-        </view>
-        <view class="dingdans_con_rt">
-          <view>
+          <view style="width: 20vw;">
             <strong v-if="item.successNum">
               {{item.orderAmount / item.successNum | numFilter}}
             </strong>
@@ -114,7 +106,7 @@
             </strong>
             <p>销售均价</p>
           </view>
-          <view>
+          <view   style="width:20vw;    border-right-width: 0vw;">
             <strong v-if="item.successNum">
               {{item.profitsAmount / item.successNum | numFilter}}
             </strong>
@@ -123,19 +115,39 @@
             </strong>
             <p>平均利润</p>
           </view>
-          <view>
-            <strong>
-              {{item.saleNum}}
-            </strong>
-            <p>瑕疵数</p>
-          </view>
-          <view style="border-right-width: 0vw;">
-            <strong>
-              {{item.theirPrice}} %
-            </strong>
-            <p>通过比例</p>
-          </view>
         </view>
+<!--        <view1 class="dingdans_con_rt">-->
+<!--          <view>-->
+<!--            <strong v-if="item.successNum">-->
+<!--              {{item.orderAmount / item.successNum | numFilter}}-->
+<!--            </strong>-->
+<!--            <strong v-else>-->
+<!--              0-->
+<!--            </strong>-->
+<!--            <p>销售均价</p>-->
+<!--          </view>-->
+<!--          <view>-->
+<!--            <strong v-if="item.successNum">-->
+<!--              {{item.profitsAmount / item.successNum | numFilter}}-->
+<!--            </strong>-->
+<!--            <strong v-else>-->
+<!--              0-->
+<!--            </strong>-->
+<!--            <p>平均利润</p>-->
+<!--          </view>-->
+<!--          <view>-->
+<!--            <strong>-->
+<!--              {{item.saleNum}}-->
+<!--            </strong>-->
+<!--            <p>瑕疵数</p>-->
+<!--          </view>-->
+<!--          <view style="border-right-width: 0vw;">-->
+<!--            <strong>-->
+<!--              {{item.theirPrice}} %-->
+<!--            </strong>-->
+<!--            <p>通过比例</p>-->
+<!--          </view>-->
+<!--        </view1>-->
 <!--        <view class="dingdans_con_rt">-->
 <!--          <view>-->
 <!--            <strong>-->
@@ -188,6 +200,7 @@
         dateCurrent: parseInt(new Date().getTime()),
         showFrom: false,
         showTo: false,
+        months: '',
         allLoaded: false,
         emtityMsg: '没有更多了',
         queryParam: {
@@ -197,9 +210,22 @@
         tableData: [],
       }
     },
-    mounted() {
-      this.getPage()
-
+    // mounted() {
+    //   this.getPage()
+    //
+    // },
+    onLoad(options) {
+      if (options) {
+        this.months = options.months ? options.months : '';
+        if (this.months) {
+          this.titleName = this.months + ' ' + this.titleName
+          this.months = this.months + '-01'
+          let to = this.$getNextMonth(this.months)
+          this.queryParam.createTimeFrom = this.months
+          this.queryParam.createTimeTo = to
+          this.getPage()
+        }
+      }
     },
     methods: {
 
@@ -215,34 +241,28 @@
       },
       confirmFrom(e) {
         this.showFrom = false;
-        let timeValue = uni.$u.timeFormat(e.value, 'yyyy-mm');
+        let timeValue = uni.$u.timeFormat(e.value, 'yyyy-mm-dd');
         this.queryParam.createTimeFrom = timeValue;
         this.getPage()
       },
       confirmTo(e) {
         this.showTo = false;
-        let timeValue = uni.$u.timeFormat(e.value, 'yyyy-mm');
+        let timeValue = uni.$u.timeFormat(e.value, 'yyyy-mm-dd');
         this.queryParam.createTimeTo = timeValue;
         this.getPage()
       },
-      // jumpDetail(months) {
-      //   if (months == '合计') {
-      //     return
-      //   }
-      //   this.$router.push({path: '/putinDetail', query: {months}})
-      // },
       jumpDetail(months) {
         if (months == '合计') {
           return
         }
-        let url = '/pages/report/sellListDetail?months=' + months
+        let url = '/pages/order/index?months=' + months
         this.$navigateTo(url)
         // this.$router.push({path: '/putinDetail', query: {months}})
       },
       getPage() {
         this.allLoaded = false;
         this.$request({
-          url: '/gw/op/v1/report/sellList',
+          url: '/gw/op/v1/report/sellListDay',
           method: 'get',
           data: this.queryParam
         }).then(res => {
