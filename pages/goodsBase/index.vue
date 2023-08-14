@@ -1,7 +1,7 @@
 <template>
   <view>
     <u-navbar title="商品"  bgColor="#f3faff">
-      <view @click="$goBack" class="u-nav-slot" slot="left">
+      <view @click="goBack" class="u-nav-slot" slot="left">
         <u-icon name="arrow-left" size="20"></u-icon>
       </view>
       <view class="u-nav-slot" style="font-size: 15px;" slot="right">
@@ -287,6 +287,7 @@
         showFrom: false,
         showTo: false,
         show_sx_type: false,
+        backUrl: '',
         emtityMsg: '',
         current: 0,
         pictureZoomShow: false,
@@ -390,12 +391,14 @@
       }
       return false
     },
-    mounted() {
-      this.getPage()
+    onLoad(options) {
       this.listSysDict()
-      // this.keyupSubmit()
-
+      if (options) {
+        this.backUrl = options.backUrl ? options.backUrl : '';
+      }
+      this.getPage()
     },
+
     onPullDownRefresh() {
       this.resetHandle()
       uni.stopPullDownRefresh()
@@ -439,6 +442,13 @@
       },
       openPopup(e) {
         this.$refs[e].open();
+      },
+      goBack() {
+        if (this.backUrl) {
+          this.$navigateTo(this.backUrl)
+        }else{
+          this.$goBack
+        }
       },
       menuAction(action, rowId) {
         // 忽略初始化时的传入的空操作

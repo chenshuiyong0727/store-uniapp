@@ -140,7 +140,7 @@
         <view class="link-top-1"></view>
       </h1>
 
-      <view class="index-list" style=" padding-top: 4vw">
+      <view @click="$navigateTo('/pages/report/sellList')" class="index-list" style=" padding-top: 4vw">
         <view class="li">
           <view>
             <text class="color-font"><strong>{{orderData.successNum}}</strong></text>
@@ -302,121 +302,121 @@
           <p><strong class="color-url"> {{countDay}}</strong>{{count}}</p>
           <p class="section1name">春节倒计时</p>
         </view>
-        <view>
+        <view   @click="$navigateTo('/pages/store/index?backUrl=/pages/index/index')">
           <p class="color-url">{{form.inventoryNum}}</p>
           <p class="section1name">库存总数</p>
         </view>
-        <view>
+        <view  @click="$navigateTo('/pages/report/sellList')">
           <p class="color-url">{{form.profitsAmount | numFilterTo0}}</p>
           <p class="section1name">利润总额</p>
         </view>
       </view>
       <view class="section1-list">
-        <view :to="{name:'销售报表'}">
+        <view  @click="$navigateTo('/pages/report/sellList')">
           <p class="color-url">{{form.profitsAverage}}</p>
           <p class="section1name">平均利润</p>
         </view>
-        <view :to="{name:'仓库'}">
+        <view  @click="$navigateTo('/pages/store/index?backUrl=/pages/index/index')">
           <p class="color-url">{{form.inventoryCost | numFilterTo0}}</p>
           <p class="section1name">库存成本</p>
         </view>
-        <view :to="{name:'仓库'}">
+        <view  @click="$navigateTo('/pages/store/index?backUrl=/pages/index/index')">
           <p class="color-url" v-if="form.inventoryNum  && form.goodsPutInNum">
             {{form.inventoryRatio}}%</p>
           <p v-else> 0%</p>
           <p class="section1name">库存比例</p>
         </view>
-        <view :to="{name:'商品'}">
+        <view @click="$navigateTo('/pages/goodsBase/index?backUrl=/pages/index/index')">
           <p class="color-url">{{form.goodsNum}}</p>
           <p class="section1name">商品款式</p>
         </view>
       </view>
       <view class="section1-list">
-        <view :to="{ path: '/store?warehouseId=2'}">
+        <view @click="$navigateTo('/pages/store/index?backUrl=/pages/index/index&warehouseId=2')">
           <p class="color-url">{{form.ytInventory | numFilterTo0}}</p>
           <p class="section1name">云头库存</p>
         </view>
-        <view :to="{ path: '/store?warehouseId=2'}">
+        <view @click="$navigateTo('/pages/store/index?backUrl=/pages/index/index&warehouseId=2')">
           <p class="color-url">{{form.ytAmount}}</p>
           <p class="section1name">云头货值</p>
         </view>
-        <view :to="{ path: '/store?warehouseId=1'}">
+        <view @click="$navigateTo('/pages/store/index?backUrl=/pages/index/index&warehouseId=1')">
           <p class="color-url">{{form.qpInventory }}</p>
           <p class="section1name">前埔库存</p>
         </view>
-        <view :to="{ path: '/store?warehouseId=1'}">
+        <view @click="$navigateTo('/pages/store/index?backUrl=/pages/index/index&warehouseId=1')">
           <p class="color-url">{{form.qpAmount | numFilterTo0}}</p>
           <p class="section1name">前埔货值</p>
         </view>
       </view>
       <view class="section1-list">
-        <view :to="{name:'入库报表'}">
+        <view  @click="$navigateTo('/pages/report/putin')">
           <p>{{form.goodsPutInNum}}</p>
           <p class="section1name">入库商品</p>
         </view>
-        <view :to="{name:'入库报表'}">
+        <view @click="$navigateTo('/pages/report/putin')">
           <p>{{form.inventoryAmount | numFilterTo0}}</p>
           <p class="section1name">入库总额</p>
         </view>
-        <view :to="{name:'销售报表'}">
+        <view @click="$navigateTo('/pages/report/sellList')">
           <p>{{form.successNum}}</p>
           <p class="section1name">交易成功</p>
         </view>
-        <view :to="{name:'销售报表'}">
+        <view @click="$navigateTo('/pages/report/sellList')">
           <p>{{form.orderAmount | numFilterTo0}}</p>
           <p class="section1name">成功总额</p>
         </view>
       </view>
       <view class="section1-list">
-        <view :to="{ path: '/order?status=7'}">
+        <view  @click="$navigateTo('/pages/order/index?backUrl=/pages/index/index&current=8&status=7')">
           <p>{{form.freight |numFilterTo0}}</p>
           <p class="section1name">总运费</p>
         </view>
-        <view :to="{ path: '/order?status=7'}">
+        <view  @click="$navigateTo('/pages/order/index?backUrl=/pages/index/index&current=8&status=7')">
           <p>{{form.poundage | numFilterTo0}}</p>
           <p class="section1name">手续费</p>
         </view>
-        <view :to="{name:'其他收支'}">
+        <view  @click="$navigateTo('/pages/other/putin')">
           <p>{{form.otherRevenue| numFilterTo0}}</p>
           <p class="section1name">其他收支</p>
         </view>
-        <view :to="{name:'入库报表'}">
+        <view  @click="$navigateTo('/pages/report/putin')">
           <p>{{form.inboundAverage}}</p>
           <p class="section1name">库存均价</p>
         </view>
       </view>
       <view class="section1-list">
-        <view :to="{name:'销售报表'}">
+        <view @click="$navigateTo('/pages/report/sellList')">
           <p>{{form.orderAmountAverage}}</p>
           <p class="section1name">成功均价</p>
         </view>
-        <view :to="{ path: '/order?status=7'}">
+        <view  @click="$navigateTo('/pages/order/index?backUrl=/pages/index/index&current=8&status=7')">
           <p>{{form.freightAverage}}</p>
           <p class="section1name">运费均价</p>
         </view>
-        <view :to="{ path: '/order?status=7'}">
+        <view  @click="$navigateTo('/pages/order/index?backUrl=/pages/index/index&current=8&status=7')">
           <p>{{form.costAverage}}</p>
           <p class="section1name">成本均价</p>
         </view>
-        <view :to="{ path: '/order?status=7'}">
+        <view  @click="$navigateTo('/pages/order/index?backUrl=/pages/index/index&current=8&status=7')">
           <p>{{form.profitsProportion}}%</p>
           <p class="section1name">利润比例</p>
         </view>
       </view>
       <view class="section1-list" style="padding-bottom: 5vw;">
-        <view :to="{name:'瑕疵商品'}">
+        <view  @click="$navigateTo('/pages/goodsDefects/index')">
           <p>{{form.defectsNum}}</p>
           <p class="section1name">瑕疵数</p>
         </view>
-        <view :to="{ name:'销售报表'}">
+        <view  @click="$navigateTo('/pages/report/sellList')">
           <p>{{form.passRatio}} % </p>
           <p class="section1name">通过比例</p>
         </view>
-        <view :to="{  path: '/order?saleType=2'}">
+        <view @click="$navigateTo('/pages/order/index?backUrl=/pages/index/index&saleType=2')">
           <p>{{orderIofo.countSd}}</p>
           <p class="section1name">闪电直发</p>
         </view>
-        <view :to="{  path: '/order?status=11'}">
+        <view   @click="$navigateTo('/pages/order/index?backUrl=/pages/index/index&current=5&status=11')">
           <p>{{orderIofo.count11}}</p>
           <p class="section1name">寄售入库</p>
         </view>
@@ -424,6 +424,10 @@
     </view>
     <view>
       <uni-fab ref="fab" :pattern="pattern"  horizontal="right" @fabClick="scanCode" />
+    </view>
+
+    <view class="meiyougengduo">
+      <u-loadmore fontSize="18"  color="#a6a6a6" nomoreText="最硬球鞋"  loadingText="最硬球鞋" status="nomore"/>
     </view>
   </view>
 </template>
