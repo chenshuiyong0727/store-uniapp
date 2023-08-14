@@ -40,6 +40,13 @@
       }
     },
     {
+      "path": "pages/report/putinDetail",
+      "style": {
+        "navigationBarTitleText": "月度入库报表",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
       "path": "pages/report/sellList",
       "style": {
         "navigationBarTitleText": "销售报表",

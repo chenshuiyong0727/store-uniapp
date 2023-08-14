@@ -4,7 +4,7 @@
     <!--        :show="show"-->
     <!--        @confirm="handleConfirm"></u-calendar>-->
     <u-navbar
-        title="入库报表"
+        :title="titleName"
     >
       <view
           @click="$goBack"
@@ -84,11 +84,11 @@
     ></u-datetime-picker>
     <!--    列表开始-->
     <view style="    padding-top: 44px;">
-      <view  @click="jumpDetail(item.months )" class="dingdans_item_rt" v-for="(item,index) in tableData" :key="index">
+      <view class="dingdans_item_rt" v-for="(item,index) in tableData" :key="index">
         <view class="dingdans_top_rt">
           <strong style="margin-left: 12px;">月份：</strong>
           <strong style="color: #409eff"
-                 > {{item.months}} </strong>
+                  @click="jumpDetail(item.months )"> {{item.months}} </strong>
         </view>
         <view class="dingdans_con_rt">
           <view style="">
@@ -207,10 +207,11 @@
     data() {
       return {
         dateCurrent: parseInt(new Date().getTime()),
-showFrom: false,
+        showFrom: false,
         showTo: false,
         allLoaded: false,
         emtityMsg: '没有更多了',
+        titleName: '入库报表',
         queryParam: {
           createTimeFrom: '',
           createTimeTo: ''
@@ -218,9 +219,22 @@ showFrom: false,
         tableData: [],
       }
     },
-    mounted() {
-      this.getPage()
-
+    // mounted() {
+    //   this.getPage()
+    //
+    // },
+    onLoad(options) {
+      if (options) {
+        this.months = options.months ? options.months : '';
+        if (this.months) {
+          this.titleName = this.months + ' ' + this.titleName
+          this.months = this.months + '-01'
+          let to = this.$getNextMonth(this.months)
+          this.queryParam.createTimeFrom = this.months
+          this.queryParam.createTimeTo = to
+          this.getPage()
+        }
+      }
     },
     methods: {
 
@@ -236,34 +250,26 @@ showFrom: false,
       },
       confirmFrom(e) {
         this.showFrom = false;
-        let timeValue = uni.$u.timeFormat(e.value, 'yyyy-mm-dd');
+        let timeValue = uni.$u.timeFormat(e.value, 'yyyy-mm');
         this.queryParam.createTimeFrom = timeValue;
         this.getPage()
       },
       confirmTo(e) {
         this.showTo = false;
-        let timeValue = uni.$u.timeFormat(e.value, 'yyyy-mm-dd');
+        let timeValue = uni.$u.timeFormat(e.value, 'yyyy-mm');
         this.queryParam.createTimeTo = timeValue;
         this.getPage()
       },
-      // jumpDetail(months) {
-      //   if (months == '合计') {
-      //     return
-      //   }
-      //   this.$router.push({path: '/putinDetail', query: {months}})
-      // },
       jumpDetail(months) {
         if (months == '合计') {
           return
         }
-        let url = '/pages/report/putinDetail?months=' + months
-        this.$navigateTo(url)
-        // this.$router.push({path: '/putinDetail', query: {months}})
+        this.$router.push({path: '/putinDetail', query: {months}})
       },
       getPage() {
         this.allLoaded = false;
         this.$request({
-          url: '/gw/op/v1/report/putInStorage',
+          url: '/gw/op/v1/report/putInStorageDay',
           method: 'get',
           data: this.queryParam
         }).then(res => {
