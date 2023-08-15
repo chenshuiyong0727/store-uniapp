@@ -38,6 +38,13 @@
             v-if="form.img"
             :src="form.img"
         ></image>
+        <image mode="widthFix"
+               @click="avatarShow(form.img)"
+            :disabled="true "
+            style="width: 80vw;margin: 0 auto;"
+               :src="$fileUrl+form.imgUrl"
+               v-if="!form.img && form.imgUrl"
+        ></image>
       </view>
     </view>
     <view class="my-pay-3">

@@ -151,6 +151,13 @@
       }
     },
     {
+      "path": "pages/goodsBase/goodsAdd",
+      "style": {
+        "navigationBarTitleText": "商品详情",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
       "path": "pages/goodsBase/index",
       "style": {
         "navigationBarTitleText": "商品",

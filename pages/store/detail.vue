@@ -13,13 +13,27 @@
     <view class="ui-flex justify-center center"
          style="width: 100vw; height: 220px;background-color: white;margin-top: 10px;">
       <view class="cell">
-        <image
-            mode="widthFix"
-            @click="avatarShow(form.img)"
-            :disabled="true "
-            style="width: 80vw;margin: 0 auto;"
-            v-if="form.img"
-            :src="form.img"
+<!--        <image-->
+<!--            mode="widthFix"-->
+<!--            @click="avatarShow(form.img)"-->
+<!--            :disabled="true "-->
+<!--            style="width: 80vw;margin: 0 auto;"-->
+<!--            v-if="form.img"-->
+<!--            :src="form.img"-->
+<!--        ></image>-->
+        <image mode="widthFix"
+               @click="avatarShow(form.img)"
+               :disabled="true "
+               style="width: 80vw;margin: 0 auto;"
+               v-if="form.img"
+               :src="form.img"
+        ></image>
+        <image mode="widthFix"
+               @click="avatarShow(form.img)"
+               :disabled="true "
+               style="width: 80vw;margin: 0 auto;"
+               :src="$fileUrl+form.imgUrl"
+               v-if="!form.img && form.imgUrl"
         ></image>
       </view>
     </view>

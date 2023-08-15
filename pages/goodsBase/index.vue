@@ -120,9 +120,10 @@
             :key="index"
       >
         <view class="dingdans_con_dw">
-          <view :src="item.img" class="dingdans_con_left_dw"
+          <view  class="dingdans_con_left_dw"
                @click="avatarShow(item.img)">
-            <image mode="widthFix" :src="item.img" ></image>
+            <image mode="widthFix" :src="item.img" v-if="item.img" ></image>
+            <image mode="widthFix" :src="$fileUrl+item.imgUrl" v-if="!item.img && item.imgUrl" ></image>
             <p class="mark_dw">
               <text class="text_dw">
                 {{ item.type | dictToDescTypeValue(20221108) }}

@@ -62,7 +62,7 @@ export const goodsBaseApi = {
     data: body
   }),
   // 尺寸（下拉）列表
-  listDropDownSizes: (body, loading = true) => request({
+  listDropDownSizes: (body) => request({
     url: '/gw/op/v1/goodsBase/listDropDownSizes',
     method: 'post',
     data: body

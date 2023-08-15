@@ -361,7 +361,7 @@
               :key="index"
         >
           <view class="dingdans_con_dw">
-            <view :src="item.img" class="dingdans_con_left_dw"
+            <view  class="dingdans_con_left_dw"
                  @click="avatarShow(item.img)">
 <!--              <img :src="item.img" >-->
               <image mode="widthFix" :src="item.img" ></image>

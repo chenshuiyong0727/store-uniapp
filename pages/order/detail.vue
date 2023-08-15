@@ -247,9 +247,9 @@
     border-bottom: 0px;
 ">
       <view class="dingdans_con_dw">
-        <view :src="form.img" class="dingdans_con_left_dw"
-              @click="avatarShow(form.img)">
-          <image mode="widthFix" :src="form.img"></image>
+        <view class="dingdans_con_left_dw" @click="avatarShow(form.img)">
+          <image mode="widthFix" :src="form.img" v-if="form.img"></image>
+          <image mode="widthFix" :src="$fileUrl+form.imgUrl" v-if="!form.img && form.imgUrl" ></image>
           <p class="mark_dw">
             <text class="text_dw">
               {{ form.saleType | dictToDescTypeValue(46) }}
@@ -258,7 +258,7 @@
         </view>
         <view class="diangdans_con_right_dw" style="padding-right: 3%;
     padding-left: 3%;">
-          <view class="dingdans_con_right_top_dw" @click="goodsDetail(form.goodsId, 1) ">
+          <view class="dingdans_con_right_top_dw" @click="goodsDetail(form.goodsId) ">
             <!--              <text>-->
             <!--                {{form.goodsName | sizeFilterNum(40) }}-->
             <!--              </text>-->
@@ -645,11 +645,19 @@
       //   document.body.removeChild(input)
       //   this.$toast('已复制至剪切板')
       // },
+      // jumpactNo(actNo) {
+      //   this.$router.push({path: '/store', query: {actNo}})
+      // },
       jumpactNo(actNo) {
-        this.$router.push({path: '/store', query: {actNo}})
+        let url = '/pages/store/index?actNo=' + actNo
+        this.$navigateTo(url)
       },
-      goodsDetail(id, type) {
-        this.$router.push({path: '/goodsDetail', query: {id, type}})
+      goodsDetail(id) {
+        if (!id) {
+          return
+        }
+        let url = '/pages/goodsBase/detail?id=' + id
+        this.$navigateTo(url)
       },
       countdown(deliveryDeadlineTime) {
         let endTime = new Date(deliveryDeadlineTime).getTime();
