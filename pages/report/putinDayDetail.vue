@@ -177,7 +177,9 @@
               <text>
                 预计利润
               </text>
-              <text  class="color-danger" >{{(item.dwPrice - (item.dwPrice * 0.075 + 38 + 8.5) - item.price - 10) | numFilter}}</text>
+              <text  class="color-danger" >
+                {{item.dwPrice | getProfits(item.price)}}
+              </text>
             </div>
             <!--          操作栏-->
             <div class="dingdans_top_right_dw">

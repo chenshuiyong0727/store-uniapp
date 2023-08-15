@@ -140,7 +140,7 @@
             </view>
             <view   class="top_other_border " >
               <text class="color-danger" v-if="item.thisTimePrice">{{ item.thisTimeProfits }}</text>
-              <text class="color-danger" v-else>{{item.dwPrice | getProfits(item.dwPrice,item.price)}}</text>
+              <text class="color-danger" v-else>{{item.dwPrice | getProfits(item.price)}}</text>
             </view>
           </view>
           <view class="xianglian2">
