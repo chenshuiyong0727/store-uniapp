@@ -116,66 +116,6 @@
             <p>平均利润</p>
           </view>
         </view>
-<!--        <view1 class="dingdans_con_rt">-->
-<!--          <view>-->
-<!--            <strong v-if="item.successNum">-->
-<!--              {{item.orderAmount / item.successNum | numFilter}}-->
-<!--            </strong>-->
-<!--            <strong v-else>-->
-<!--              0-->
-<!--            </strong>-->
-<!--            <p>销售均价</p>-->
-<!--          </view>-->
-<!--          <view>-->
-<!--            <strong v-if="item.successNum">-->
-<!--              {{item.profitsAmount / item.successNum | numFilter}}-->
-<!--            </strong>-->
-<!--            <strong v-else>-->
-<!--              0-->
-<!--            </strong>-->
-<!--            <p>平均利润</p>-->
-<!--          </view>-->
-<!--          <view>-->
-<!--            <strong>-->
-<!--              {{item.saleNum}}-->
-<!--            </strong>-->
-<!--            <p>瑕疵数</p>-->
-<!--          </view>-->
-<!--          <view style="border-right-width: 0vw;">-->
-<!--            <strong>-->
-<!--              {{item.theirPrice}} %-->
-<!--            </strong>-->
-<!--            <p>通过比例</p>-->
-<!--          </view>-->
-<!--        </view1>-->
-<!--        <view class="dingdans_con_rt">-->
-<!--          <view>-->
-<!--            <strong>-->
-<!--              {{item.saleNum}}-->
-<!--            </strong>-->
-<!--            <p>已售数量</p>-->
-<!--          </view>-->
-<!--          <view>-->
-<!--            <strong>-->
-<!--              {{item.theirPrice}}-->
-<!--            </strong>-->
-<!--            <p>出售金额</p>-->
-<!--          </view>-->
-<!--          <view>-->
-<!--            <strong v-if="item.saleNum">-->
-<!--              {{item.profits / item.saleNum | numFilter}}-->
-<!--            </strong>-->
-<!--            <strong v-else>0</strong>-->
-<!--            <p>利润均价</p>-->
-<!--          </view>-->
-<!--          <view style=" border-right-width: 0vw;">-->
-<!--            <strong>-->
-<!--              {{item.thisTimeProfits}}-->
-<!--            </strong>-->
-<!--            <p>预估利润</p>-->
-<!--          </view>-->
-<!--        </view>-->
-
       </view>
     </view>
     <!--    列表结束-->
@@ -194,7 +134,7 @@
 </template>
 <script>
   export default {
-    name: "HelloWorld",
+
     data() {
       return {
         dateCurrent: parseInt(new Date().getTime()),
@@ -210,10 +150,6 @@
         tableData: [],
       }
     },
-    // mounted() {
-    //   this.getPage()
-    //
-    // },
     onLoad(options) {
       if (options) {
         this.months = options.months ? options.months : '';
@@ -257,7 +193,6 @@
         }
         let url = '/pages/order/index?months=' + months
         this.$navigateTo(url)
-        // this.$router.push({path: '/putinDetail', query: {months}})
       },
       getPage() {
         this.allLoaded = false;

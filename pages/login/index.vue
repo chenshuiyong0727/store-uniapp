@@ -99,12 +99,8 @@
               uni.setStorageSync('user_name', data.userAccount);
               uni.setStorageSync('isActUser', data.isActUser);
               if (data.isActUser == 1) {
-                // initSysDict().then(() => {
-                //   // this.$router.push({ path: '/goodsAct' })
-                // })
               } else {
                 navigateTo('/pages/index/index')
-                // this.gotopath()
               }
             }
           } else {
@@ -112,13 +108,6 @@
           }
         })
       },
-      // gotopath() {
-      //   navigateTo('/pages/index/index"')
-      //   // initSysDict().then(() => {
-      //   //   this.$router.push({ path: '/' })
-      //   // })
-      // },
-
       loginByCode() {
         this.$router.push({path: '/loginByCode'})
       },

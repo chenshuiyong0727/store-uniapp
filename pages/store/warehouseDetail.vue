@@ -55,8 +55,6 @@
           <view  style="width: 50px;
     margin-left: -2px;
     margin-right: 2px;" >
-<!--            <el-checkbox v-model="item.checked" :checked="item.checked" @change="changeChecked(item.id)"></el-checkbox>-->
-
             <u-checkbox-group>
               <u-checkbox  size="18"
                            :checked="item.checked"
@@ -305,7 +303,6 @@
     },
     onLoad(options) {
       this.listSysDict()
-      // this.initBatch()
       if (options) {
         this.queryParam.goodsId  = options.goodsId ? options.goodsId : '';
         this.actNo = options.actNo ? options.actNo : '';
@@ -330,11 +327,6 @@
         this.requestParamChannelId.channelId = fieldValue
         this.requestParamChannelId.channelIdStr = fieldName
       },
-      // initBatch() {
-      //   this.checkAll = false
-      //   this.ids= []
-      //   this.tableData.forEach((obj) => (obj.checked = false));
-      // },
       listSysDict() {
         let sysDictList = uni.getStorageSync('sysDictList') ? JSON.parse(
             uni.getStorageSync('sysDictList')) : []
@@ -389,9 +381,6 @@
         })
         this.tableData.forEach((obj) => (obj.checked = this.checkAll));
       },
-      jumpactNo(actNo) {
-        this.$router.push({ path: '/order', query: { actNo } })
-      },
       avatarShow(e) {
         this.imageZoom = e
         this.pictureZoomShow = true
@@ -405,7 +394,6 @@
       },
       goDetail(id) {
         this.$navigateTo('/pages/store/detail?id=' + id)
-        // this.$router.push({path: '/storeDetail', query: {id}})
       },
       changeChecked(row) {
         row.checked = !row.checked
@@ -419,7 +407,6 @@
           }
         })
         let idLength = this.ids.length
-        // let totalLength = this.queryParam.pageNum * this.queryParam.pageSize
         if (idLength == this.totalCount){
           this.checkAll = true
         }else{
@@ -427,11 +414,9 @@
         }
       },
       getPage() {
-        // this.initBatch()
         goodsInventoryApi.pageGoods(this.queryParam).then(res => {
           if (res.subCode === 1000) {
             this.tableData = res.data ? res.data.list : []
-            // this.initBatch()
             this.totalCount = res.data ? res.data.pageInfo.totalCount : 0
             this.inventoryData = res.data.goodsInventoryPageVo ? res.data.goodsInventoryPageVo
                 : this.inventoryData

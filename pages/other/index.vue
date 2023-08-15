@@ -4,11 +4,6 @@
       <view @click="$goBack" class="u-nav-slot" slot="left">
         <u-icon name="arrow-left" size="20"></u-icon>
       </view>
-<!--      <view class="u-nav-slot" style="font-size: 15px;" slot="right">-->
-<!--        <rudon-rowMenuDotDotDot :localdata="localdata" @change="menuAction($event)">-->
-<!--          <image style="height: 25px;width: 25px" src="../../static/img/slh.png"></image>-->
-<!--        </rudon-rowMenuDotDotDot>-->
-<!--      </view>-->
     </u-navbar>
     <view class="fenlei_top" style="display: flex;">
       <view style="width: 83vw">
@@ -25,9 +20,6 @@
         >
         </u--input>
       </view>
-<!--      <view class="fenlei_top_right" @click="isShowDialog2 = true">-->
-<!--        <image src="../../static/img/search.png"></image>-->
-<!--      </view>-->
       <view class="fenlei_top_right" @click="isShowDialog2 = true">
         <image v-if="queryParam.brand || queryParam.remark || queryParam.type"  src="../../static/img/search.png"></image>
         <image v-else  src="../../static/img/search_no.png"></image>
@@ -57,25 +49,6 @@
                 </u--input>
               </view>
             </view>
-
-<!--            <view class="saixuanquxiang" >-->
-<!--              <view>-->
-<!--                <text class="zitijiachu zihao14">-->
-<!--                  瑕疵原因-->
-<!--                </text>-->
-<!--              </view>-->
-<!--              <view class="julishang10">-->
-<!--                <u&#45;&#45;input-->
-<!--                    class="saixuanInput"-->
-<!--                    placeholder="请输入瑕疵原因"-->
-<!--                    placeholderStyle="font-size: 14px;color:#c0c4cc"-->
-<!--                    v-model="queryParam.reason"-->
-<!--                    @change="search1"-->
-<!--                    clearable-->
-<!--                >-->
-<!--                </u&#45;&#45;input>-->
-<!--              </view>-->
-<!--            </view>-->
             <view class="saixuanquxiang" >
               <view>
                 <text class="zitijiachu zihao14">
@@ -139,53 +112,6 @@
         </view>
       </u-popup>
     </view>
-
-<!--    <view1>-->
-<!--      <u-popup :show="isShowDialog2" @close="close" :duration="100" mode="bottom">-->
-<!--        <view style="width: 90vw;margin-left: 5vw;">-->
-<!--          <u-navbar title="筛选" :fixed="false" :border="true">-->
-<!--            <view @click="resetHandle" style="font-size: 15px;" class="u-nav-slot" slot="left">-->
-<!--              <text>关闭</text>-->
-<!--            </view>-->
-<!--            <view @click="search1" class="u-nav-slot" style="font-size: 15px;" slot="right">-->
-<!--              <text>确定</text>-->
-<!--            </view>-->
-<!--          </u-navbar>-->
-<!--          <view>-->
-<!--            <u&#45;&#45;form>-->
-<!--              <u-form-item label="类型" borderBottom @click="show_sx_type = true; $hideKeyboard()">-->
-<!--                <u&#45;&#45;input inputAlign="right" placeholder="请选择类型" disabledColor="#fff"-->
-<!--                          placeholderStyle="font-size: 14px;color:#c0c4cc"-->
-<!--                          v-model="queryParam.typeStr" border="none" disabled></u&#45;&#45;input>-->
-<!--                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-<!--              </u-form-item>-->
-<!--              <u-form-item label="品牌" borderBottom>-->
-<!--                <u&#45;&#45;input inputAlign="right" placeholder="请输入品牌"-->
-<!--                          placeholderStyle="font-size: 14px;color:#c0c4cc"-->
-<!--                          v-model="queryParam.brand" border="none"></u&#45;&#45;input>-->
-<!--                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-<!--              </u-form-item>-->
-<!--              <u-form-item label="开始时间" label-width="50vw" borderBottom-->
-<!--                           @click="showFrom = true; $hideKeyboard()">-->
-<!--                <u&#45;&#45;input inputAlign="right" prefixIcon="calendar"-->
-<!--                          prefixIconStyle="font-size: 20px;color:#c0c4cc" placeholder="请选择开始时间"-->
-<!--                          disabledColor="#fff" placeholderStyle="font-size: 14px;color:#c0c4cc"-->
-<!--                          v-model="queryParam.createTimeFrom" border="none" disabled></u&#45;&#45;input>-->
-<!--                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-<!--              </u-form-item>-->
-<!--              <u-form-item label="结束时间" label-width="50vw" borderBottom-->
-<!--                           @click="showTo = true; $hideKeyboard()">-->
-<!--                <u&#45;&#45;input inputAlign="right" prefixIcon="calendar"-->
-<!--                          prefixIconStyle="font-size: 20px;color:#c0c4cc" placeholder="请选择结束时间"-->
-<!--                          disabledColor="#fff" placeholderStyle="font-size: 14px;color:#c0c4cc"-->
-<!--                          v-model="queryParam.createTimeTo" border="none" disabled></u&#45;&#45;input>-->
-<!--                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-<!--              </u-form-item>-->
-<!--            </u&#45;&#45;form>-->
-<!--          </view>-->
-<!--        </view>-->
-<!--      </u-popup>-->
-<!--    </view1>-->
     <u-picker :show="show_sx_type" :columns="columns" @cancel="show_sx_type= false"
               @confirm="confirm_sx_type" keyName="fieldName"></u-picker>
     <u-datetime-picker
@@ -248,22 +174,6 @@
     <view v-show="tableData.length" class="meiyougengduo">
       <u-loadmore fontSize="18"  color="#a6a6a6" nomoreText="最硬球鞋" :status="loadStatus"/>
     </view>
-    <!--    <view slot="top" class="mint-loadmore-top">-->
-    <!--      <text v-show="topStatus !== 'loading'" :class="{ 'rotate': topStatus === 'drop' }">松手释放↓</text>-->
-    <!--      <text v-show="topStatus === 'loading'">加载中</text>-->
-    <!--    </view>-->
-    <!--    <view slot="bottom" class="mint-loadmore-bottom">-->
-    <!--      <text-->
-    <!--          v-if="bottomStatus !== 'loading'"-->
-    <!--          :class="{ 'rotate': bottomStatus === 'drop' }"-->
-    <!--      >松手释放↑</text>-->
-    <!--      <text v-if="bottomStatus === 'loading'">加载中</text>-->
-    <!--    </view>-->
-    <!--    <view class="popContainer" v-if="pictureZoomShow" @click="pictureZoomShow = false">-->
-    <!--      <view class="imageShow">-->
-    <!--        <img :src="$fileUrl + imageZoom" alt="" width="100%" height="100%">-->
-    <!--      </view>-->
-    <!--    </view>-->
     <u-empty
         v-if="!tableData.length && !isLoading"
         mode="list"
@@ -278,16 +188,9 @@
   </view>
 </template>
 <script>
-  // import Baseline from '@/common/_baseline.vue'
-  // import Footer from '@/common/_footer.vue'
-  // import { goodsOtherApi } from '@/api/goodsOther'
 
   export default {
-    components: {
-      // 'v-baseline': Baseline,
-      // 'v-footer': Footer
-    },
-    name: "HelloWorld",
+
     data() {
       return {
         pattern: {
@@ -306,7 +209,6 @@
         emtityMsg: '',
         pictureZoomShow: false,
         imageZoom: '',
-        // fileUrl: fileUrl,
         localdata: [
           {
             value: 'add',
@@ -355,20 +257,13 @@
     mounted() {
       this.getPage()
       this.listSysDict()
-      // this.keyupSubmit()
 
     },
     onPullDownRefresh() {
       this.resetHandle()
       uni.stopPullDownRefresh()
-
-      //停止下拉刷新效果的api，如果发现进入刷新状态无法停止，可以用这个
     },
     onReachBottom() {
-      // alert(1)
-      // if(this.totalCount <= this.queryParam.pageSize) {
-      //   return ;
-      // }
       if (this.isLoadMore) {  //此处判断，上锁，防止重复请求
         this.loadStatus = 'loading';
         this.queryParam.pageNum++;
@@ -376,24 +271,6 @@
       }
     },
     methods: {
-      /**
-       * 不同行的不同菜单点击事件
-       *
-       * @param {Object} action 第一个参数必须传入“$event” | 点击了哪个按钮 | 传入options的value
-       * @param {Number} rowId 第二个参数随意，可以是行ID等
-       */
-      menuAction(action, rowId) {
-        // 忽略初始化时的传入的空操作
-        if (action === '') {
-          return
-        }
-        if ('add' == action) {
-          this.goDetail(null, 3)
-        }
-        if ('resetHandle' == action) {
-          this.resetHandle()
-        }
-      },
       menuAction1(action, rowId) {
         if (action === '') {
           return

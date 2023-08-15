@@ -4,11 +4,6 @@
       <view @click="$goBack" class="u-nav-slot" slot="left">
         <u-icon name="arrow-left" size="20"></u-icon>
       </view>
-<!--      <view class="u-nav-slot" style="font-size: 15px;" slot="right">-->
-<!--        <rudon-rowMenuDotDotDot :localdata="localdata" @change="menuAction($event)">-->
-<!--          <image style="height: 25px;width: 25px" src="../../static/img/slh.png"></image>-->
-<!--        </rudon-rowMenuDotDotDot>-->
-<!--      </view>-->
     </u-navbar>
     <view class="fenlei_top_tab" style="display: flex;">
       <view style="width: 94vw">
@@ -25,11 +20,6 @@
         >
         </u--input>
       </view>
-<!--      <view class="fenlei_top_right" @click="isShowDialog2 = true">-->
-<!--        <image v-if="queryParam.brand || queryParam.remark || queryParam.type"-->
-<!--               src="../../static/img/search.png"></image>-->
-<!--        <image v-else src="../../static/img/search_no.png"></image>-->
-<!--      </view>-->
     </view>
     <view class="searchListSort">
       <view class="u-demo-block__content">
@@ -54,63 +44,6 @@
         </u-tabs>
       </view>
     </view>
-<!--    <u-datetime-picker-->
-<!--        title="开始时间"-->
-<!--        :show="showFrom"-->
-<!--        v-model="dateCurrent"-->
-<!--        mode="date"-->
-<!--        :minDate="1646064000000"-->
-<!--        @confirm="confirmFrom"-->
-<!--        @cancel="cancelFrom"-->
-<!--    ></u-datetime-picker>-->
-<!--    <u-datetime-picker-->
-<!--        title="结束时间"-->
-<!--        :show="showTo"-->
-<!--        v-model="dateCurrent"-->
-<!--        mode="year-month"-->
-<!--        :minDate="1646064000000"-->
-<!--        @confirm="confirmTo"-->
-<!--        @cancel="cancelTo"-->
-<!--    ></u-datetime-picker>-->
-<!--    <view class="fenlei_top_tab" style="display: flex;">-->
-<!--      <view style="width: 94vw">-->
-<!--        <u&#45;&#45;input-->
-<!--            class="searchInputW"-->
-<!--            prefixIcon="search"-->
-<!--            placeholder="请输入货号/商品名"-->
-<!--            placeholderStyle="font-size: 14px;color:#c0c4cc"-->
-<!--            v-model="queryParam.actNo"-->
-<!--            prefixIconStyle="font-size: 24px;color:#c0c4cc"-->
-<!--            :show-action="false"-->
-<!--            @change="search1"-->
-<!--            clearable-->
-<!--        >-->
-<!--        </u&#45;&#45;input>-->
-<!--      </view>-->
-<!--    </view>-->
-<!--    <view class="searchListSort">-->
-<!--      <view class="u-demo-block__content">-->
-<!--        <u-tabs-->
-<!--            @change="tabClick"-->
-<!--            :duration="200"-->
-<!--            :lineWidth="30"-->
-<!--            :current="current"-->
-<!--            lineColor="#409eff"-->
-<!--            :activeStyle="{-->
-<!--              color: '#333333',-->
-<!--              fontSize: '17px',-->
-<!--              fontWeight: 'bold'-->
-<!--					  }"-->
-<!--            :inactiveStyle="{-->
-<!--              color: '#333333',-->
-<!--              fontSize: '16px'-->
-<!--					}"-->
-<!--            :list="list2"-->
-<!--            itemStyle="padding-left: 13px; padding-right: 13px; height:44px;"-->
-<!--        >-->
-<!--        </u-tabs>-->
-<!--      </view>-->
-<!--    </view>-->
     <view class="filterquyu">
       <view class="width80 zuoyouduiqi">
         <view @click="isShowSort = !isShowSort ;isShowDialog2 =false ;">
@@ -298,25 +231,6 @@
                 </view>
               </view>
             </view>
-<!--            <view class="saixuanquxiang">-->
-<!--              <view>-->
-<!--                <text class="zitijiachu zihao14">-->
-<!--                  备注-->
-<!--                </text>-->
-<!--              </view>-->
-<!--              <view class="julishang10">-->
-<!--                <u&#45;&#45;input-->
-<!--                    class="saixuanInput"-->
-<!--                    placeholder="请输入备注"-->
-<!--                    placeholderStyle="font-size: 14px;color:#c0c4cc"-->
-<!--                    v-model="queryParam.remark"-->
-<!--                    @change="search1"-->
-<!--                    clearable-->
-<!--                >-->
-<!--                </u&#45;&#45;input>-->
-<!--              </view>-->
-<!--            </view>-->
-
             <view class="saixuanquxiang">
               <view>
                 <text class="zitijiachu zihao14">
@@ -363,7 +277,6 @@
           <view class="dingdans_con_dw">
             <view  class="dingdans_con_left_dw"
                  @click="avatarShow(item.img)">
-<!--              <img :src="item.img" >-->
               <image mode="widthFix" :src="item.img" ></image>
               <p class="mark_dw">
               <text class="text_dw">
@@ -525,17 +438,6 @@
           name: '帽子'
         }],
         showSd: false,
-        // queryParam: {
-        //   id: '',
-        //   type: '',
-        //   typeStr: '',
-        //   actNo: '',
-        //   name: '',
-        //   brand: '',
-        //   remark: '',
-        //   pageSize: 10,
-        //   pageNum: 1
-        // },
         isShowSort: false,
         sortName:'排序',
         queryParam: {
@@ -554,7 +456,6 @@
           pageNum: 1
         },
         typeList: [],
-        // columns: [],
         startX: 0, // 触摸开始时的x坐标
         startY: 0, // 触摸开始时的Y坐标
         startTimeTouch: 0, // 触摸开始时的Y坐标
@@ -596,7 +497,6 @@
     mounted() {
       this.getPage()
       this.listSysDict()
-      // this.keyupSubmit()
 
     },
     onPullDownRefresh() {
@@ -644,18 +544,6 @@
       openPopup(e) {
         this.$refs[e].open();
       },
-      menuAction(action, rowId) {
-        // 忽略初始化时的传入的空操作
-        if (action === '') {
-          return
-        }
-        if ('add' == action) {
-          this.goDetail(null, 3)
-        }
-        if ('resetHandle' == action) {
-          this.resetHandle()
-        }
-      },
       menuAction1(action, rowId) {
         if (action === '') {
           return
@@ -667,50 +555,12 @@
           this.goDetail(rowId, 2)
         }
       },
-
-      cancelFrom() {
-        this.showFrom = false
-        this.queryParam.createTimeFrom = ''
-        this.search1()
-      },
-      cancelTo() {
-        this.showTo = false
-        this.queryParam.createTimeTo = ''
-        this.search1()
-      },
-      confirmFrom(e) {
-        this.showFrom = false;
-        let timeValue = uni.$u.timeFormat(e.value, 'yyyy-mm-dd');
-        this.queryParam.createTimeFrom = timeValue
-        this.search1()
-      },
-      confirmTo(e) {
-        this.showTo = false;
-        let timeValue = uni.$u.timeFormat(e.value, 'yyyy-mm-dd');
-        this.queryParam.createTimeTo = timeValue
-        this.search1()
-      },
-      confirm_sx_type(e) {
-        this.show_sx_type = false
-        let fieldValue = e.value[0].fieldValue
-        let fieldName = e.value[0].fieldName
-        this.queryParam.type = fieldValue
-        this.queryParam.typeStr = fieldName
-        this.search1()
-      },
       goDetail(id, type) {
         let url = '/pages/other/otherAdd?type=' + type
         if (id) {
           url = url + '&id=' + id
-          // this.$navigateTo('/pages/other/otherAdd?type='+type+'&id='+id)
         }
         this.$navigateTo(url)
-        // this.$router.push({ path: '/otherAdd', query: { id, type } })
-      },
-
-      scanCode(id, type) {
-
-        this.$router.push({path: '/scanCode', query: {id, type}})
       },
       goodsDetail(id) {
         if (!id) {
@@ -744,10 +594,6 @@
         let url = '/pages/store/storeAdd?goodsId=' + goodsId
         this.$navigateTo(url)
       },
-      // jumpactNo(actNo) {
-      //
-      //   this.$router.push({path: '/store', query: {actNo}})
-      // },
       jumpactNo(actNo) {
         let url = '/pages/store/index?backUrl=/pages/goodsBase/act&actNo=' + actNo
         this.$navigateTo(url)
@@ -788,7 +634,6 @@
         let sysDictList = uni.getStorageSync('sysDictList') ? JSON.parse(
             uni.getStorageSync('sysDictList')) : []
         this.typeList = sysDictList.filter(item => item.typeValue == 20221108)
-        // this.columns.push(this.typeList)
       },
       search() {
         if (!this.queryParam.name) {
@@ -796,13 +641,8 @@
           return
         }
         this.queryParam.pageNum = 1
-        // this.allLoaded = false;
         this.getPage()
       },
-      // close() {
-      //   this.isShowDialog2 = false
-      //   console.log('close');
-      // },
       search2() {
         this.tableData = []
         this.queryParam.pageNum = 1
@@ -862,25 +702,6 @@
         this.queryParam.sort = ''
         this.sortName ='排序'
       },
-      // fabClick() {
-      //   this.$navigateTo('/pages/goodsBase/scanCode')
-      // },
-      // pattern: {
-      //   icon:'fire-filled',
-      //   color: '#7A7E83',
-      //   backgroundColor: '#fff',
-      //   selectedColor: '#409eff',
-      //   buttonColor: '#409eff',
-      //   iconColor: '#fff'
-      // },
-      // pattern1: {
-      //   icon:'fire',
-      //   color: '#7A7E83',
-      //   backgroundColor: '#fff',
-      //   selectedColor: '#b8bbbf',
-      //   buttonColor: '#b8bbbf',
-      //   iconColor: '#fff'
-      // },
       fabClick() {
         this.showSd =  !this.showSd
         if (this.showSd){

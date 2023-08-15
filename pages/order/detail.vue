@@ -113,21 +113,6 @@
                 </view>
                 <view class="status-line-dw"></view>
               </li>
-              <!--              <li1 class="latest">-->
-              <!--                <view-->
-              <!--                  class="status-time-latest-dw zuoyouduiqi">-->
-              <!--                  <strong>-->
-              <!--                    已到账-->
-              <!--                  </strong>-->
-              <!--                  <text>-->
-              <!--                    2023-07-17 11:36:41-->
-              <!--                  </text>-->
-              <!--                </view>-->
-              <!--                <view class="status-content-latest-dw">-->
-              <!--                  收入金额已发放至您的钱包余额，请前往结算账单查看明细-->
-              <!--                </view>-->
-              <!--                <view class="status-line"></view>-->
-              <!--              </li1>-->
             </ul>
           </view>
         </view>
@@ -261,13 +246,6 @@
               {{form.deliveryDeadlineTime | formateTime }}
             </text>
           </view>
-          <!--          <view class="dingdans_con_right_top_dw_1">-->
-          <!--              <text @click="jumpactNo(form.actNo)">-->
-          <!--              {{form.actNo}}-->
-          <!--              </text>-->
-          <!--            <image @click="$copyUrl(form.actNo)" class="fuzhitupian"-->
-          <!--                   src="../../static/img/copy.png"></image>-->
-          <!--          </view>-->
           <view class="dingdans_con_right_top_dw_1 xianglian">
             <text @click="jumpactNo(form.actNo)">
               {{form.actNo}}
@@ -352,14 +330,6 @@
           <text>{{form.price}}</text>
         </view>
       </view>
-      <!--      <view class="zuoyouduiqi orderInfoleft">-->
-      <!--        <view style="width: 30vw;">-->
-      <!--          <text>出售价：</text>-->
-      <!--        </view>-->
-      <!--        <view style="text-align: left; ">-->
-      <!--          <text>{{form.shelvesPrice}}</text>-->
-      <!--        </view>-->
-      <!--      </view>-->
       <view v-if="form.subsidiesPrice" class="zuoyouduiqi orderInfoleft">
         <view style="width: 30vw;">
           <text>补贴价：</text>
@@ -495,15 +465,6 @@
         <view style="text-align: left; ">
         </view>
       </view>
-      <!--      <view v-if="form.status == 11" class="zuoyouduiqi orderInfoleft">-->
-      <!--        <view style="width: 30vw;">-->
-      <!--          <text>剩余天数：</text>-->
-      <!--        </view>-->
-      <!--        <view style="text-align: right; ">-->
-      <!--          <text>{{form.surplusDay}}</text>-->
-      <!--        </view>-->
-      <!--      </view>-->
-
     </view>
 
     <view class="popContainer" v-if="pictureZoomShow" @click="pictureZoomShow = false">
@@ -511,66 +472,12 @@
         <image :src="imageZoom" mode="widthFix" class="showImg"></image>
       </view>
     </view>
-
-    <!--    <mt-popup1-->
-    <!--        position="bottom"-->
-    <!--        v-model="isShowDialogWl">-->
-    <!--      <mt-header title="物流详情">-->
-    <!--        <view slot="left">-->
-    <!--          <mt-button size="normal" @click="isShowDialogWl = false" style="font-size: 15px">关闭-->
-    <!--          </mt-button>-->
-    <!--        </view>-->
-    <!--      </mt-header>-->
-    <!--      <view class="wlInfo">-->
-    <!--        <p><text style="color: #979a9e">顺丰速运 :</text>  <text>{{requestParamWl.waybillNo}}</text>-->
-    <!--          &lt;!&ndash;          <el-button&ndash;&gt;-->
-    <!--          &lt;!&ndash;            type="text"&ndash;&gt;-->
-    <!--          &lt;!&ndash;            style="font-weight: 600;padding-left: 5px;padding-top: 0px;padding-bottom: 0px;"&ndash;&gt;-->
-    <!--          &lt;!&ndash;            @click="copyUrl(requestParamWl.waybillNo )">复制&ndash;&gt;-->
-    <!--          &lt;!&ndash;          </el-button>&ndash;&gt;-->
-    <!--          <button class="dw-button-common-a2"  @click="copyUrl(requestParamWl.waybillNo )" style=" margin-left: 10px;   padding: 1px 5px;">复制</button>-->
-    <!--        </p>-->
-    <!--        <p style="margin-top: 2px;"><text style="color: #979a9e">实际金额 :</text> <text>{{requestParamWl.freight}}</text></p>-->
-    <!--        <p style="margin-top: 2px;">-->
-    <!--          <text style="color: #979a9e">收货地址 :</text>-->
-    <!--        <view style="width: 56vw;-->
-    <!--    margin-top: -17px;-->
-    <!--    margin-left: 72px;">{{requestParamWl.receiverAddress }}</view>-->
-    <!--        </p>-->
-    <!--      </view>-->
-    <!--      <view style="height: 120vw;width: 100vw;" class="rigth-content-bottom">-->
-    <!--        <view class="package-status" style="overflow-y:scroll;">-->
-    <!--          <view class="status-box" >-->
-    <!--            <ul class="status-list">-->
-    <!--              <li :class="index==0 || wlDataSize==(index+1) ? 'latest' : ''"-->
-    <!--                  v-for="(form,index) in wlData" :key="index">-->
-    <!--                <view-->
-    <!--                    :class="index==0 || wlDataSize==(index+1) ? 'status-time-latest' : 'status-time-before'">-->
-    <!--                  <strong>-->
-    <!--                    {{form.status}}-->
-    <!--                  </strong>-->
-    <!--                  <text>-->
-    <!--                     {{form.date | formateTime('{m}-{d} {h}:{i}') }}-->
-    <!--                  </text>-->
-    <!--                </view>-->
-    <!--                <view-->
-    <!--                    :class="index==0 || wlDataSize==(index+1) ? 'status-content-latest' : 'status-content-before'">-->
-    <!--                  {{form.message}}-->
-    <!--                </view>-->
-    <!--                <view class="status-line"></view>-->
-    <!--              </li>-->
-    <!--            </ul>-->
-    <!--          </view>-->
-    <!--        </view>-->
-
-    <!--      </view>-->
-    <!--    </mt-popup1>-->
   </view>
 </template>
 
 <script>
   import {goodsOrderApi} from '@/api/goodsOrder'
-  import {parseTime} from '@/utils' // import detail from '@/http/mock.js' //模拟数据
+  import {parseTime} from '@/utils'
   export default {
     components: {},
     data() {
@@ -600,13 +507,6 @@
         id: '',
       }
     },
-    // created() {
-    //   const {id} = this.$route.query
-    //   // this.form = id
-    //   if (id) {
-    //     this.getDetailById(id)
-    //   }
-    // },
     onLoad(options) {
       if (options) {
         this.id = options.id ? options.id : '';
@@ -615,24 +515,7 @@
         }
       }
     },
-    // mounted() {
-    //   this.listSysDict()
-    // },
     methods: {
-      // copyUrl(url) {
-      //   const input = document.createElement('input')
-      //   document.body.appendChild(input)
-      //   input.setAttribute('value', url)
-      //   input.select()
-      //   if (document.execCommand('copy')) {
-      //     document.execCommand('copy')
-      //   }
-      //   document.body.removeChild(input)
-      //   this.$toast('已复制至剪切板')
-      // },
-      // jumpactNo(actNo) {
-      //   this.$router.push({path: '/store', query: {actNo}})
-      // },
       jumpactNo(actNo) {
         let url = '/pages/store/index?actNo=' + actNo
         this.$navigateTo(url)
@@ -743,12 +626,6 @@
                 dataInfo.status = status
                 this.wlData.push(dataInfo)
               }
-              // let wldataLast = res.data.list[0]
-              // if (wldataLast && wldataLast.date) {
-              //   this.wldataLastDate = wldataLast.date
-              // }
-              // } else {
-              //   this.$toast("暂无物流信息，请核对物流单号")
             }
           } else {
             this.$toast(res.subMsg)
@@ -756,55 +633,8 @@
         })
       },
       gotoWl() {
-        // if (!this.form.addressId || !this.form.waybillNo) {
-        //   this.$toast('没有物流单号')
-        //   return
-        // }
         this.isShowDialogWl = true
-        //
-        // this.requestParamWl.addressId = this.form.addressId
-        // this.requestParamWl.waybillNo = this.form.waybillNo
-        // goodsOrderApi.waybillNoList(this.requestParamWl).then(res => {
-        //   if (res.subCode === 1000) {
-        //     if (res.data.list.length) {
-        //       this.wlDataSize = res.data.list.length
-        //       this.requestParamWl.receiverAddress = res.data.receiverAddress
-        //       this.requestParamWl.freight = res.data.realAmount
-        //       this.wlData = []
-        //       for (let i = 0; i < res.data.list.length; i++) {
-        //         let dataInfo = res.data.list[i]
-        //         let status = '运输中'
-        //         if (dataInfo.message.indexOf("已收取快件") >= 0) {
-        //           status = '已揽件'
-        //         } else if (dataInfo.message.indexOf("可查看签收人信息") >= 0) {
-        //           status = '已签收'
-        //         }
-        //         dataInfo.status = status
-        //         this.wlData.push(dataInfo)
-        //       }
-        //       this.isShowDialogWl = true
-        //     } else {
-        //       this.$toast("暂无物流信息，请核对物流单号")
-        //     }
-        //   } else {
-        //     this.$toast(res.subMsg)
-        //   }
-        // })
       },
-      gotoIndex() {
-        this.$router.push({path: '/'})
-      },
-      goBack() {
-        this.$router.push({path: '/otherList'})
-      },
-      // listSysDict() {
-      //   let sysDictList = localStorage.getItem('sysDictList') ? JSON.parse(
-      //       localStorage.getItem('sysDictList')) : []
-      //   this.addressList = sysDictList.filter(item => item.typeValue == 38)
-      //   this.dataStatusList = sysDictList.filter(item => item.typeValue == 36)
-      //   this.statusList = sysDictList.filter(item => item.typeValue == 37)
-      //   this.saleTypeList = sysDictList.filter(item => item.typeValue == 46)
-      // },
     }
   }
 </script>
@@ -814,12 +644,6 @@
 
   strong {
     font-weight: 600;
-  }
-
-  .mint-button--small {
-    display: inline-block;
-    font-size: 4vw;
-    height: 6vw;
   }
 
   /*
@@ -847,180 +671,7 @@
     padding-top: 12vw;
     font-size: 13px;
     height: 100vh;
-    /*overflow:hidden;*/
-
     overflow-y: auto;
-  }
-
-  .ui-flex {
-    display: -webkit-box !important;
-    display: -webkit-flex !important;
-    display: -ms-flexbox !important;
-    display: flex !important;
-    -webkit-flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap
-  }
-
-  .ui-flex, .ui-flex *, .ui-flex :after, .ui-flex :before {
-    box-sizing: border-box
-  }
-
-  .ui-flex.justify-center {
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
-    justify-content: center
-  }
-
-  .ui-flex.center {
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-    align-items: center
-  }
-
-  .my-pay-3 {
-    border-radius: 10px;
-    margin-top: 15px;
-    width: 92%;
-    margin-left: 4%;
-    background-color: #fff;
-  }
-
-  .package-status {
-    color: #b8b8b8;
-    padding: 18px 0 0 0
-  }
-
-  .package-status .status-list {
-    margin: 0;
-    padding: 0;
-    margin-top: -5px;
-    padding-left: 7px;
-    list-style: none;
-  }
-
-  .package-status .status-list li {
-    border-left: 2px solid #d9d9d9;
-    width: 80vw;
-    text-align: left;
-  }
-
-  .package-status .status-list li:before { /* 流程点的样式 */
-    content: '';
-    border: 3px solid #f3f3f3;
-    background-color: #d9d9d9;
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    border-radius: 10px;
-    margin-left: -9px;
-    margin-right: 10px
-  }
-
-  .package-status .status-list .latest:before {
-    background-color: #333;
-    border-color: #333;
-  }
-
-  .package-status .status-box {
-    overflow: hidden
-  }
-
-  .package-status .status-list li {
-    height: auto;
-  }
-
-  .package-status .status-list {
-    margin-top: -8px
-  }
-
-  .package-status .status-box {
-    position: relative
-  }
-
-  .package-status .status-box:before {
-    content: " ";
-    background-color: #f3f3f3;
-    display: block;
-    position: absolute;
-    top: -8px;
-    left: 20px;
-    width: 10px;
-    height: 4px
-  }
-
-  .package-status .status-list {
-    margin-top: 0px;
-  }
-
-  /* .package-status .status-list .latest{border:none} */
-  /* .package-status .status-list li{margin-bottom:-2px} */
-
-
-  .status-list li:not(:first-child) {
-    padding-top: 10px;
-  }
-
-  .status-content-before {
-    text-align: left;
-    margin-right: 20px;
-    margin-left: 25px;
-    /*margin-top: -20px;*/
-  }
-
-  .status-content-latest {
-    text-align: left;
-    margin-right: 20px;
-    margin-left: 25px;
-    color: #333;
-    /*margin-top: -20px;*/
-  }
-
-  .status-time-before {
-    text-align: left;
-    margin-left: 25px;
-    font-size: 15px;
-    margin-top: -20px;
-
-  }
-
-  .status-time-latest {
-    text-align: left;
-    margin-left: 25px;
-    color: #333;
-    font-size: 15px;
-    margin-top: -20px;
-  }
-
-  .status-line {
-    padding-top: 15px;
-  }
-
-  .rigth-content-bottom {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    margin: 2px;
-    /*margin-top: 16px;*/
-    overflow: scroll;
-  }
-
-  .wlInfo {
-    width: 80vw;
-    border-bottom: 1px solid #ccc;
-    margin-top: 10vw !important;
-    text-align: left;
-    margin-left: 40px !important;
-    padding: 3vw !important;
-    color: rgb(51, 51, 51);
-    font-size: 4.2vw;
   }
 
   .orderInfoleft {
@@ -1037,12 +688,6 @@
     width: 86vw;
     margin-left: 4vw;
     border-bottom: 1px solid #f0f0f0;
-  }
-
-  .secInfo1 {
-    padding-top: 14px;
-    padding-bottom: 14px;
-    border-bottom: 1px solid #ccc;
   }
 
   .secInfodata {
@@ -1122,10 +767,6 @@
     margin-top: 0px;
   }
 
-  /* .package-status .status-list .latest{border:none} */
-  /* .package-status .status-list li{margin-bottom:-2px} */
-
-
   .status-list-dw li:not(:first-child) {
     padding-top: 10px;
   }
@@ -1139,13 +780,6 @@
     border-left: 1px solid #f1f1f1;
   }
 
-  .status-content-latest-dw {
-    text-align: left;
-    margin-right: 20px;
-    margin-left: 21px;
-    color: #333;
-    /*margin-top: -20px;*/
-  }
 
   .status-time-before-dw {
     text-align: left;
@@ -1155,14 +789,6 @@
 
   }
 
-  .status-time-latest-dw {
-    text-align: left;
-    margin-left: 25px;
-    color: #333;
-    font-size: 15px;
-    margin-top: -20px;
-  }
-
   .status-line-dw {
     padding-top: 15px;
   }
@@ -1170,7 +796,6 @@
   .color-dw-1 {
     font-weight: 600;
     color: #1ba5ad;
-    /*color: #1fa7af;*/
     margin-right: -3px;
   }
 </style>

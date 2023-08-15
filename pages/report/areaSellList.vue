@@ -15,16 +15,6 @@
         ></u-icon>
       </view>
     </u-navbar>
-
-<!--    <view class="fenlei_top zuoyouduiqi">-->
-<!--      <view>-->
-<!--        <uni-data-select-->
-<!--            v-model="queryParam.addressId"-->
-<!--            :localdata="addressList"-->
-<!--            :clear="false"-->
-<!--        ></uni-data-select>-->
-<!--      </view>-->
-<!--    </view>-->
     <view class="xuanzhequyu">
       <view class="width80 zuoyouduiqi">
         <view style="padding: 10px 0;" @click="isShowSort = !isShowSort ;">
@@ -34,20 +24,6 @@
           <image v-if="isShowSort && sortName != '请选择地址'" class="paixutupianxuanz" src="../../static/img/tab_up_url.png"></image>
           <image v-if="isShowSort && sortName == '请选择地址'" class="paixutupianxuanz" src="../../static/img/tab_up.png"></image>
         </view>
-<!--        <view-->
-<!--            v-if="queryParam.size-->
-<!--                   || queryParam.createTimeFrom-->
-<!--                   || queryParam.createTimeTo-->
-<!--                   || queryParam.inventory != 1-->
-<!--                   || queryParam.warehouseId-->
-<!--                   || queryParam.channelId-->
-<!--                   || queryParam.today-->
-<!--                   || queryParam.goodType-->
-<!--                    "-->
-<!--            @click="isShowDialog2 = !isShowDialog2; isShowSort= false;">-->
-<!--          <text class="color-url">筛选</text>-->
-<!--          <image  class="shaixuantupian" src="../../static/img/search.png"></image>-->
-<!--        </view>-->
         <view v-if="sortName!='请选择地址'" @click="reset">
           <text style="font-size: 16px;">重置</text>
         </view>
@@ -159,7 +135,7 @@
 <script>
 
   export default {
-    name: "HelloWorld",
+
     data() {
       return {
         opts2: {
@@ -217,47 +193,15 @@
             uni.getStorageSync('sysDictList')) : []
         this.addressList = sysDictList.filter(item => item.typeValue == 38)
       },
-      // cancelFrom() {
-      //   this.showFrom = false;
-      //   this.queryParam.createTimeFrom = '';
-      //   this.getPage()
-      // },
-      // cancelTo() {
-      //   this.showTo = false;
-      //   this.queryParam.createTimeTo = '';
-      //   this.getPage()
-      // },
-      // confirmFrom(e) {
-      //   this.showFrom = false;
-      //   let timeValue = uni.$u.timeFormat(e.value, 'yyyy-mm-dd');
-      //   this.queryParam.createTimeFrom = timeValue;
-      //   this.getPage()
-      // },
-      // confirmTo(e) {
-      //   this.showTo = false;
-      //   let timeValue = uni.$u.timeFormat(e.value, 'yyyy-mm-dd');
-      //   this.queryParam.createTimeTo = timeValue;
-      //   this.getPage()
-      // },
-      // jumpDetail(months) {
-      //   if (months == '合计') {
-      //     return
-      //   }
-      //   this.$router.push({path: '/putinDetail', query: {months}})
-      // },
       jumpDetail(months) {
         if (months == '合计') {
           return
         }
         let url = '/pages/report/putinDetail?months=' + months
         this.$navigateTo(url)
-        // this.$router.push({path: '/putinDetail', query: {months}})
       },
       getName(addressId) {
         let typeData = this.addressList.filter(item => item.fieldValue == addressId)
-        // return typeData[0].fieldName
-
-        // let typeData = this.addressList.filter(item => item.fieldValue == this.tableData[i].months)
         if (!typeData || typeData.length == 0) {
           return null
         }
@@ -294,23 +238,6 @@
                 }
               ]
             };
-            // let res1 = {
-            //   series: [
-            //     {
-            //       data: [
-            //         {"name": "成功数量", "value": this.form.successNum},
-            //         {"name": "库存总数", "value": this.form.inventoryNum}
-            //       ]
-            //     }
-            //   ]
-            // };
-            // let listdata = []
-            // listdata.push(successNum)
-            // listdata.push(inventoryNum)
-            // let res ={}
-            // let series =[]
-            // let series
-
             this.chartData1 = JSON.parse(JSON.stringify(res1));
           } else {
             this.$toast(res.subMsg)

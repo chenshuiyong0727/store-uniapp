@@ -86,9 +86,6 @@
     <view style="    padding-top: 44px;">
       <view  class="dingdans_item_rt" v-for="(item,index) in tableData" :key="index">
         <view class="dingdans_top_rt">
-<!--          <strong style="margin-left: 12px;">月份：</strong>-->
-<!--          <strong style="color: #409eff"-->
-<!--                 > {{item.months}} </strong>-->
           <strong style="margin-left: 12px;"
                   v-if="item.months == '合计'"> {{item.months}} </strong>
           <strong v-else style="margin-left: 12px;"> {{item.months | dictToDescTypeValue(47)  }} </strong>
@@ -193,20 +190,10 @@
         textColor="#8a8a8a"
         :icon="$fileUrl +'/static/operateSteps/empity_7.png'">
     </u-empty>
-    <!--    <p style="padding: 0.5rem 0;" class="to-the-bottom">{{emtityMsg}}</p>-->
   </view>
 </template>
 <script>
-  // import Baseline from '@/common/_baseline.vue'
-  // import Footer from '@/common/_footer.vue'
-  // import {reportApi} from '@/api/report'
-
   export default {
-    components: {
-      // 'v-baseline': Baseline,
-      // 'v-footer': Footer
-    },
-    name: "HelloWorld",
     data() {
       return {
         dateCurrent: parseInt(new Date().getTime()),
@@ -249,19 +236,12 @@ showFrom: false,
         this.queryParam.createTimeTo = timeValue;
         this.getPage()
       },
-      // jumpDetail(months) {
-      //   if (months == '合计') {
-      //     return
-      //   }
-      //   this.$router.push({path: '/putinDetail', query: {months}})
-      // },
       jumpDetail(months) {
         if (months == '合计') {
           return
         }
         let url = '/pages/report/putinDetail?months=' + months
         this.$navigateTo(url)
-        // this.$router.push({path: '/putinDetail', query: {months}})
       },
       getPage() {
         this.allLoaded = false;

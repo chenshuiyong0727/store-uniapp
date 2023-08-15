@@ -4,9 +4,6 @@
       <view @click="$goBack" class="u-nav-slot" slot="left">
         <u-icon name="arrow-left" size="20"></u-icon>
       </view>
-      <!--      <view  @click="goAdd" class="u-nav-slot" slot="right" style="font-size: 15px;">-->
-      <!--        提交-->
-      <!--      </view>-->
     </u-navbar>
     <view class="width92 baisebeijing" style="margin-top: 43px;">
       <view style="width: 85vw;margin-left: 4vw;    padding-top: 10px;">
@@ -34,7 +31,7 @@
           <view class="diangdans_con_right">
             <view class="dingdans_con_right_top xianglian">
               <view class="xianglian">
-                <text @click="jumpactNo(orderData1.actNo)">
+                <text>
                   {{orderData1.actNo}}
                 </text>
                 <image @click="$copyUrl(orderData1.actNo)" class="fuzhitupian"
@@ -336,7 +333,6 @@
         this.requestParam1.xfzyfbt = parseFloat(xfzyfbt).toFixed(2)
 
         let poundage = jsfwf + zzsxf + shwffwf + xfzyfbt + 38
-        // let poundage = shelvesPrice * 0.075 + 38 + 8.5
         this.requestParam1.poundage = parseFloat(poundage).toFixed(2)
 
         let theirPrice = shelvesPrice - poundage
@@ -345,10 +341,6 @@
         let profits = this.requestParam1.theirPrice - 10
             - this.orderData1.price
         this.requestParam1.profits = parseFloat(profits).toFixed(2)
-
-        // if (this.requestParam1.num > this.orderData1.inventory - this.orderData1.galleryCount) {
-        //   this.requestParam1.num = this.orderData1.inventory - this.orderData1.galleryCount
-        // }
       },
 
       listSysDict() {
@@ -425,21 +417,6 @@
         this.imageZoom = e
         this.pictureZoomShow = true
       },
-      jumpactNo(actNo) {
-        this.$router.push({path: '/store', query: {actNo}})
-      },
-      // 复制链接
-      // copyUrl(url) {
-      //   const input = document.createElement('input')
-      //   document.body.appendChild(input)
-      //   input.setAttribute('value', url)
-      //   input.select()
-      //   if (document.execCommand('copy')) {
-      //     document.execCommand('copy')
-      //   }
-      //   document.body.removeChild(input)
-      //   this.$toast('已复制至剪切板')
-      // },
       addSizeHandle(item, index = 0) {
         if (!this.activeIndex.includes(index)) {
           this.activeIndex.push(index)
@@ -495,18 +472,6 @@
               this.requestParam1.num = this.orderData1.inventory - this.orderData1.galleryCount
               this.requestParam1.shelvesPrice = this.orderData1.dwPrice
               this.keyup2()
-              // let poundage = this.requestParam1.shelvesPrice * 0.075 + 38 + 8.5
-              // this.requestParam1.poundage = parseFloat(poundage).toFixed(2)
-              //
-              // let theirPrice =  this.requestParam1.shelvesPrice
-              //     - (this.requestParam1.shelvesPrice * 0.075 + 38 + 8.5)
-              // this.requestParam1.theirPrice = parseFloat(theirPrice).toFixed(2)
-              //
-              // let profits = this.requestParam1.theirPrice - 10
-              //     - this.orderData1.price
-              // this.requestParam1.profits = parseFloat(profits).toFixed(2)
-              // this.isShowDialog1 = true
-
             } else {
               this.$toast(res.subMsg)
             }
@@ -522,8 +487,6 @@
   @import '@/assets/index/style.css';
 
   * {
-    /*margin: 0;*/
-    /*padding: 0;*/
     box-sizing: border-box;
   }
 
@@ -535,95 +498,10 @@
   /* 这里直接设置 1rem = 50px end */
   html,
   body {
-    /*font-family: "微软雅黑";*/
-    /*color: #333;*/
-    /*background: #fff;*/
   }
 
   strong {
     font-weight: 600;
-  }
-
-  .mint-button--small {
-    display: inline-block;
-    font-size: 13px;
-    height: 6vw;
-  }
-  .clearfix {
-    &:after {
-      visibility: hidden;
-      display: block;
-      font-size: 0;
-      content: " ";
-      clear: both;
-      height: 0;
-    }
-  }
-
-  .elInput1 {
-    font-size: 14px;
-    -webkit-appearance: none;
-    background-color: #FFF;
-    background-image: none;
-    border-radius: 4px;
-    border: 1px solid #DCDFE6;
-    box-sizing: border-box;
-    color: #606266;
-    display: inline-block;
-    height: 32px;
-    line-height: 32px;
-    outline: 0;
-    padding: 0 15px;
-    -webkit-transition: border-color .2s cubic-bezier(.645, .045, .355, 1);
-    transition: border-color .2s cubic-bezier(.645, .045, .355, 1);
-    width: 100%;
-  }
-
-  .btm-distance {
-    margin-bottom: 15px;
-  }
-
-  .city {
-    height: 33px;
-    width: 63px;
-    border-radius: 5px;
-    font-size: 16px;
-    background-color: #F6F6F6;
-    padding: 8px 0px;
-    margin-right: 6px;
-    margin-bottom: 13px;
-    display: inline-block;
-  }
-  .cityActive {
-    /*height: 36px;*/
-    /*width: 63px;*/
-    /*border-radius: 5px;*/
-    /*font-size: 17px;*/
-    /*background-color: #BEBEBE;*/
-    /*padding: 9px 0px;*/
-    /*margin-right: 6px;*/
-    /*margin-bottom: 13px;*/
-    /*// 自动换行*/
-    /*display: inline-block;*/
-
-    height: 33px;
-    width: 63px;
-    border-radius: 5px;
-    font-size: 16px;
-    background-color: #BEBEBE;
-    padding: 8px 0px;
-    margin-right: 6px;
-    margin-bottom: 13px;
-    display: inline-block;
-    /*height: 48px;*/
-    /*width: 59px;*/
-    /*border-radius: 15px;*/
-    /*font-size: 20px;*/
-    /*background-color: #BEBEBE;*/
-    /*padding: 14px 10px;*/
-    /*margin-right: 10px;*/
-    /*margin-bottom: 10px;*/
-    /*display: inline-block;*/
   }
 
 

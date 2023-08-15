@@ -73,12 +73,6 @@
                           v-model="requestParam.labelStr" border="none" disabled></u--input>
                 <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
               </u-form-item>
-<!--              <u-form-item label="仓库" borderBottom @click="showWarehouseType = true; $hideKeyboard()">-->
-<!--                <u&#45;&#45;input inputAlign="right" placeholder="请选择仓库" disabledColor="#fff"-->
-<!--                          placeholderStyle="font-size: 14px;color:#c0c4cc"-->
-<!--                          v-model="requestParam.warehouseIdStr" border="none" disabled></u&#45;&#45;input>-->
-<!--                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-<!--              </u-form-item>-->
             </u--form>
           </view>
         </view>
@@ -183,26 +177,13 @@
   </view>
 </template>
 <script>
-  // import Baseline from '@/common/_baseline.vue'
-  // import Footer from '@/common/_footer.vue'
   import { giftApi } from '@/api/gift'
   export default {
-    // components: {
-    //   'v-baseline': Baseline,
-    //   'v-footer': Footer
-    // },
-    // name: "HelloWorld",
     data() {
       return {
         tabName: '修改',
         isShowDialog: false,
-        orderData2: '',
         isShowDialog2: false,
-        // titleName: '红包',
-        emtityMsg: '没有更多了',
-        // pictureZoomShow: false,
-        // imageZoom: '',
-        // fileUrl: fileUrl,
         queryParam: {
           name: '',
           type: '',
@@ -231,10 +212,6 @@
         },
         typeList: [],
         labelList: [],
-        dataStatusList: [],
-        topStatus: "",
-        bottomStatus: "",
-        allLoaded: false,
         tableData: [],
         isLoading: false,
         headerData: [],
@@ -248,14 +225,6 @@
         },
       }
     },
-    // created() {
-    //   const { months } = this.$route.query
-    //   if (months) {
-    //     this.queryParam.label = +months
-    //     this.getPage()
-    //   }
-    // },
-
     onPullDownRefresh() {
       this.resetHandle()
       uni.stopPullDownRefresh()
@@ -263,7 +232,6 @@
     mounted() {
       this.getPage()
       this.listSysDict()
-      // this.keyupSubmit()
     },
     methods: {
       confirm_sx_type(e) {
@@ -351,32 +319,12 @@
             }
           })
         }
-        //
-        // // 利润= 到手价-运费-原价
-        // let profits = this.requestParam.theirPrice - this.requestParam.freight
-        //   - this.requestParam.price
-        // this.requestParam.profits = parseFloat(profits).toFixed(2)
-        //
-        // goodsOrderApi.sellGoods(this.requestParam).then(res => {
-        //   this.$toast(res.subMsg)
-        //   if (res.subCode === 1000) {
-        //     this.getPage()
-        //     this.isShowDialog = false
-        //   }
-        // })
       },
       getPage() {
         giftApi.page(this.queryParam).then(res => {
           if (res.subCode === 1000) {
             this.tableData = res.data ? res.data.list : []
             this.totalCount = res.data ? res.data.pageInfo.totalCount : 0
-            if (this.totalCount == 0) {
-              this.allLoaded = true;
-              this.emtityMsg = '暂无相关数据'
-            } else if (this.totalCount <= this.queryParam.pageSize) {
-              this.allLoaded = true;
-              this.emtityMsg = '没有更多了'
-            }
           } else {
             this.$toast(res.subMsg)
           }
@@ -397,62 +345,20 @@
         this.labelList = sysDictList.filter(item => item.typeValue == 42)
         this.columnsLabel.push(this.labelList)
       },
-      loadData(p_status) {
-        // 第一次加载或者下拉刷新最新数据
-        if (p_status === "refresh") {
-          this.tableData = [];
-        }
-        giftApi.page(this.queryParam).then(res => {
-          if (res.subCode === 1000) {
-            let list =  res.data ? res.data.list : []
-            if (list && list.length) {
-              for (let i = 0; i < list.length; i++) {
-                this.tableData.push(list[i])
-              }
-              setTimeout(()=>{
-                let ht2 = (this.$refs.hello.scrollTop)*1 +475
-                this.$refs.hello.scrollTop = ht2
-              },100)
-            } else {
-              this.allLoaded = true;
-              this.emtityMsg = '没有更多了'
-              this.$toast('没有更多了')
-            }
-          } else {
-            this.$toast(res.subMsg)
-            return false
-          }
-        })
-      },
       search() {
         if (!this.queryParam.name ) {
           this.$toast('请输入姓名')
           return
         }
         this.queryParam.pageNum = 1
-        this.allLoaded = false;
         this.getPage()
       },
-      // 日期
-      open(picker) {
-        this.$refs[picker].open();
-      },
-      // changeSystem() {
-      //   let sysDictList = localStorage.getItem('sysDictList') ? JSON.parse(
-      //     localStorage.getItem('sysDictList')) : []
-      //   let res = sysDictList.filter(
-      //     item => item.typeValue == 39 && item.fieldValue == this.queryParam.status)
-      //   this.titleName = res.length ? res[0].fieldName : ''
-      //   this.titleName = this.titleName
-      // },
       search1() {
         this.queryParam.pageNum = 1
-        this.allLoaded = false;
         this.getPage()
       },
       search2() {
         this.queryParam.pageNum = 1
-        this.allLoaded = false;
         this.isShowDialog2 = false
         this.getPage()
       },
@@ -469,32 +375,8 @@
           pageNum: 1
         }
         this.titleName = '红包'
-        // this.changeSystem()
         this.search1()
       },
-      handleTopChange(p_status) {
-        this.topStatus = p_status;
-      },
-      handleBottomChange(p_status) {
-        this.bottomStatus = p_status;
-      },
-      loadBottom() {
-        // 一次下拉加载5条更多数据，使用定时器默认ajax加载
-        this.loadData()
-        this.queryParam.pageNum++;
-        this.$refs.loadmore.onBottomLoaded();
-      },
-      loadTop() {
-        // 默认下拉刷新最新数据
-        this.loadData("refresh");
-        this.queryParam.pageNum = 0
-        this.allLoaded = false;
-        this.$refs.loadmore.onTopLoaded();
-      },
-      // avatarShow(e) {
-      //   this.imageZoom = e
-      //   this.pictureZoomShow = true
-      // },
     }
   };
 </script>

@@ -148,7 +148,7 @@
 </template>
 <script>
   export default {
-    name: "HelloWorld",
+
     data() {
       return {
         dateCurrent: parseInt(new Date().getTime()),
@@ -191,19 +191,12 @@
         this.queryParam.createTimeTo = timeValue;
         this.getPage()
       },
-      // jumpDetail(months) {
-      //   if (months == '合计') {
-      //     return
-      //   }
-      //   this.$router.push({path: '/putinDetail', query: {months}})
-      // },
       jumpDetail(months) {
         if (months == '合计') {
           return
         }
         let url = '/pages/report/sellListDetail?months=' + months
         this.$navigateTo(url)
-        // this.$router.push({path: '/putinDetail', query: {months}})
       },
       getPage() {
         this.allLoaded = false;

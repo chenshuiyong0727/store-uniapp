@@ -4,13 +4,6 @@
       <view @click="$goBack" class="u-nav-slot" slot="left">
         <u-icon name="arrow-left" size="20"></u-icon>
       </view>
-<!--      <view v-if="type == 1" @click="type=2" class="u-nav-slot" slot="right"-->
-<!--            style="font-size: 15px;">-->
-<!--        去修改-->
-<!--      </view>-->
-<!--      <view v-else @click="submit" class="u-nav-slot" slot="right" style="font-size: 15px;">-->
-<!--        保存-->
-<!--      </view>-->
     </u-navbar>
     <u--form
         style="background-color: white"
@@ -20,62 +13,15 @@
         ref="uForm"
     >
       <view style="width: 90vw;margin-left: 5vw;">
-<!--        <u-form-item-->
-<!--            label="图片"-->
-<!--            borderBottom-->
-<!--            label-width="66vw"-->
-<!--            ref="item1"-->
-<!--        >-->
-<!--          <u-upload-->
-<!--              style="border-radius: 100%;"-->
-<!--              :fileList="fileList1"-->
-<!--              @afterRead="afterRead"-->
-<!--              @delete="deletePic"-->
-<!--              name="1"-->
-<!--              multiple-->
-<!--              :maxCount="1"-->
-<!--              :width="70"-->
-<!--              :height="70"-->
-<!--          >-->
-<!--          </u-upload>-->
-<!--          <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-<!--        </u-form-item>-->
-<!--        <u-form-item label="类型" borderBottom @click="showSxType(); $hideKeyboard()">-->
-<!--          <u&#45;&#45;input inputAlign="right" disabledColor="#fff"-->
-<!--                    placeholderStyle="font-size: 14px;color:#c0c4cc"-->
-<!--                    v-model="form.typeStr" border="none" disabled></u&#45;&#45;input>-->
-<!--          <u-icon   class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-<!--        </u-form-item>-->
         <u-form-item label="货号" label-width="25vw" borderBottom>
           <u--input :disabled="true" disabledColor="#fff" inputAlign="right" color="#d1d1d1"
                     v-model="orderData.actNo" border="none"></u--input>
-<!--          <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
         </u-form-item>
         <u-form-item label-width="25vw"  label="尺码"  borderBottom>
-<!--          <u&#45;&#45;input  disabledColor="#fff" inputAlign="right"-->
-<!--                    v-model="requestParam.size" type="digit" border="none"></u&#45;&#45;input>-->
-<!--          <uni-data-select-->
-<!--              v-model="requestParam.sizeId"-->
-<!--              :localdata="sizeList"-->
-<!--              :border="false"-->
-<!--              :clear="false"-->
-<!--              :ifShowSelector="false"-->
-<!--          ></uni-data-select>-->
-<!--          <u-picker :show="show_sx_type" :columns="columns" @cancel="show_sx_type= false"-->
           <hpy-form-select v-if="sizeList"  :dataList="sizeList" :hideBorder="true" :hideArrow="true" text="size" name="id" v-model="requestParam.sizeId"/>
           <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
         </u-form-item>
         <u-form-item label-width="25vw"  label="渠道"  borderBottom>
-<!--          <u&#45;&#45;input  disabledColor="#fff" inputAlign="right"-->
-<!--                    v-model="requestParam.size" type="digit" border="none"></u&#45;&#45;input>-->
-<!--          <uni-data-select-->
-<!--              v-model="requestParam.sizeId"-->
-<!--              :localdata="sizeList"-->
-<!--              :border="false"-->
-<!--              :clear="false"-->
-<!--              :ifShowSelector="false"-->
-<!--          ></uni-data-select>-->
-<!--          <u-picker :show="show_sx_type" :columns="columns" @cancel="show_sx_type= false"-->
           <hpy-form-select v-if="channelIdList"  :dataList="channelIdList" :hideBorder="true" :hideArrow="true" text="fieldName" name="fieldValue" v-model="requestParam.channelId"/>
           <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
         </u-form-item>
@@ -103,12 +49,6 @@
                     v-model="requestParam.dwPrice" type="digit" border="none"></u--input>
           <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
         </u-form-item>
-
-<!--        <u-form-item label-width="25vw" label="入库时间" borderBottom @click="showFrom = true; $hideKeyboard()">-->
-<!--          <u&#45;&#45;input  disabledColor="#fff" inputAlign="right"  :disabled="true"-->
-<!--                     v-model="requestParam.createTime" border="none"></u&#45;&#45;input>-->
-<!--          <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-<!--        </u-form-item>-->
         <u-form-item label-width="30vw" label="入库时间" borderBottom >
           <uni-datetime-picker style="color: #303133 !important; text-align: right;font-size: 14px;" type="datetime" v-model="requestParam.createTime" @change="changeLog"  :border="false"/>
           <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
@@ -130,8 +70,6 @@
         </u-form-item>
       </view>
     </u--form>
-<!--    <u-picker :show="show_sx_type" :columns="columns" @cancel="show_sx_type= false" :defaultIndex="defaultIndex"-->
-<!--              @confirm="confirm_sx_type" keyName="fieldName"></u-picker>-->
     <u-datetime-picker
                 :show="showFrom"
         v-model="dateCurrent"
@@ -149,7 +87,6 @@
 </template>
 
 <script>
-  // import {goodsOtherApi} from '@/api/goodsOther'
   import {goodsInventoryApi} from '@/api/goodsInventory'
   import { goodsBaseApi } from '@/api/goodsBase'
 
@@ -248,7 +185,6 @@ showFrom: false,
 
       confirmHandle() {
         if (this.requestParam.oldInventory < this.requestParam.inventory) {
-          // this.$toast('原始库存小于剩余库存')
           this.$toast('原始库存小于剩余库存')
           return
         }
@@ -268,7 +204,6 @@ showFrom: false,
         this.requestParam.id = this.orderData.id
         this.requestParam.sizeId = this.orderData.sizeId
         this.requestParam.channelId = this.orderData.channelId
-        // this.requestParam.createTime = this.$parseTime(this.orderData.createTime)
         this.requestParam.createTime  = uni.$u.timeFormat(this.orderData.createTime, 'yyyy-mm-dd hh:MM');
         this.requestParam.oldInventory = this.orderData.oldInventory
         this.requestParam.inventory = this.orderData.inventory
@@ -276,8 +211,6 @@ showFrom: false,
         this.requestParam.dwPrice = this.orderData.dwPrice
         this.requestParam.waybillNo = this.orderData.waybillNo
         this.requestParam.addressId = this.orderData.addressId
-        // let poundage = this.requestParam.dwPrice * 0.075 + 38 + 8.5
-        // this.requestParam.poundage = parseFloat(poundage).toFixed(2)
         if (!this.orderData.poundage) {
           let poundage = this.$getPoundage(this.requestParam.dwPrice)
           this.requestParam.poundage = parseFloat(poundage).toFixed(2)
@@ -305,16 +238,6 @@ showFrom: false,
             if (res.subCode === 1000) {
               this.orderData = res.data ? res.data : {};
               this.handleClick()
-              // if (this.form.imgUrl) {
-              //   let url = this.$fileUrl + this.form.imgUrl;
-              //   let data1 = {};
-              //   data1.url = url;
-              //   this.fileList1.push(data1)
-              // }
-              // if (this.form.type){
-              //   this.form.typeStr = this.$typeToStr(39,this.form.type)
-              //   this.defaultIndex = [this.$getTypeIndex(39,this.form.type)]
-              // }
             } else {
               this.$toast(res.subMsg)
             }
@@ -364,8 +287,6 @@ showFrom: false,
       listSysDict() {
         let sysDictList = uni.getStorageSync('sysDictList') ? JSON.parse(
             uni.getStorageSync('sysDictList')) : [];
-        // this.typeList = sysDictList.filter(item => item.typeValue == 39);
-        // this.columns.push(this.typeList
         this.channelIdList = sysDictList.filter(item => item.typeValue == 47)
         goodsBaseApi.listDropDownSizes({ type: '' }, false).then(res => {
           if (res.subCode === 1000) {

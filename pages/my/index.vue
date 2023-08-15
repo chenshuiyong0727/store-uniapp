@@ -2,7 +2,6 @@
   <view class="car2" ref="content"
         style="height: 100%;font-size: 15px; border-top:0;    overflow: auto;">
     <u-navbar title="个人中心" bgColor="#f3faff">
-<!--    <u-navbar title="个人中心" bgColor="#e5f4ff">-->
       <view @click="scanCode" class="u-nav-slot" slot="left">
         <image style="width: 23px; height: 23px;" src="../../static/img/saoyisao4.png"></image>
       </view>
@@ -16,19 +15,6 @@
         padding-bottom: 35vw;
         padding-top: 5vw;
          background-image: linear-gradient(#e5f4ff, #f3f2f8);">
-      <!--      <view class="zuoyouduiqi" style="    padding: 2.81vw 4.8vw !important;">-->
-      <!--        <view @click="scanCode(1)" >-->
-      <!--          <image style="width: 23px; height: 23px;"  src="../../static/img/saoyisao4.png"></image>-->
-      <!--        </view>-->
-      <!--        <view>-->
-      <!--          <text style="font-size: 16px; color: black;" class="mint-header-title">-->
-      <!--            个人中心-->
-      <!--          </text>-->
-      <!--        </view>-->
-      <!--        <view @click="comfirm(1)">-->
-      <!--          <image style=" width: 26px;height: 26px;"  src="../../static/img/setting0.png"></image>-->
-      <!--        </view>-->
-      <!--      </view>-->
       <view class="header zuoyouduiqi">
         <view @click="userInfo" class="header-icon xianglian" style="margin-left: 6vw;">
           <image v-if="imgUrl" style="width: 50px;height: 50px;border-radius: 100%;"
@@ -138,33 +124,20 @@
       </view>
       <view class="my-indent" style="    margin-bottom: -10px;">
         <text class="my-indent-left">服务</text>
-        <!--        <view class="my-indent-right">-->
-        <!--          <text>全部订单</text>-->
-        <!--          <i class="icon-go"></i>-->
-        <!--        </view>-->
       </view>
       <view class="my-pay-1" style="border-bottom-style:none;">
         <view @click="$navigateTo('/pages/goodsBase/act')">
-          <!--                  <text class="icon2-money"></text>-->
           <image
               style="margin-top: 7px;margin-bottom: -4px;width: 27px;height: 27px;"
               src="../../static/img/new/huodong.png"></image>
           <p style="color: #333">活动</p>
         </view>
         <view @click="$navigateTo('/pages/other/index')">
-          <!--                  <text class="icon2-thecar"></text>-->
           <image
               style="margin-top: 7px;margin-bottom: -4px;width: 27px;height: 27px;"
               src="../../static/img/new/qita.png"></image>
           <p style="color: #333">其他收支</p>
         </view>
-        <!--        <view :to="{ name: '瑕疵商品'}">-->
-        <!--          &lt;!&ndash;                  <text class="icon2-thecar"></text>&ndash;&gt;-->
-        <!--          <image-->
-        <!--              style="    margin-top: 4px;-->
-        <!--    width: 27px;height: 27px;" src="../../static/img/new/xiaci.png"></image>-->
-        <!--          <p style="color: #333">瑕疵商品</p>-->
-        <!--        </view>-->
         <view @click="$navigateTo('/pages/goodsDefects/index')">
           <image
               style="margin-top: 7px;margin-bottom: -4px;width: 27px;height: 27px;"
@@ -187,30 +160,17 @@
         </view>
       </view>
     </view>
-    <!--    <view style=" padding-top: 1px;"></view>-->
-    <!-- <v-footer></v-footer> -->
   </view>
 </template>
 
 <script>
-  // import * as mockData from '@/http/mock.js' //模拟数据
-  // import {goodsBaseApi} from '@/api/goodsBase'
-  // import {goodsOrderApi} from '@/api/goodsOrder'
-  // import Footer from '@/common/_footer.vue'
-  // import {userContainerApi} from '@/api/user'
-
   export default {
-    components: {
-      // 'v-footer': Footer
-    },
     data() {
       return {
         flag: false,
         imgUrl: uni.getStorageSync('userIcon'),
         fileUrl: this.$fileUrl,
         orderIofo: {},
-        // userName: localStorage.getItem('user_name'),
-        // userRealName: localStorage.getItem('userRealName')
         form: {
           userAccount: '',
           userMobile: '',
@@ -219,64 +179,17 @@
         }
       }
     },
-    // mounted(){
-    //   this.$refs.content.onscroll = ()=>{
-    //     this.handleScroll();
-    //   }
-    // },
     onLoad(options) {
       if (options && options.userRealName) {
         this.form.userRealName = options.userRealName
       }
-    },
-    created() {
       this.init()
     },
-    // onShow() {
-    //   console.log('页面显示')
-    //   this.getUcUser()
-    //   this.getData()
-    // },
-    // onReady(){
-    //   console.log('页面初次显示')
-    // },
-    // onHide() {
-    //   console.log('页面隐藏')
-    // },
-    // onUnload() {
-    //   // this.getUcUser()
-    //   // this.getData()
-    //   console.log('页面卸载')
-    // },
-    // onBackPress(){
-    //   console.log('页面返回...')
-    // },
     onPullDownRefresh() {
       uni.stopPullDownRefresh();
       this.init();
     },
     methods: {
-      // handleScroll () {
-      //   let scrollTop = this.$refs.content.scrollTop;
-      //   if (scrollTop < 10){
-      //     this.flag = false
-      //   } else{
-      //     this.flag = true
-      //   }
-      //   // let blocks = document.querySelectorAll('.conBlock');
-      //   // let tabblocks = document.querySelectorAll('.tab-title');
-      //   // blocks.forEach((item, index) => {
-      //   //   if (scrollTop >= item.offsetTop - 160) {
-      //   //     this.activeId = index;
-      //   //   }
-      //   // })
-      //   // if(tabblocks[this.activeId].offsetLeft > window.innerWidth-50){
-      //   //   this.$refs['tab-content'].scrollLeft = tabblocks[this.activeId].offsetLeft;
-      //   // }
-      //   // if(this.$refs['tab-content'].scrollLeft>tabblocks[this.activeId].offsetLeft){
-      //   //   this.$refs['tab-content'].scrollLeft = 0;
-      //   // }
-      // },
       init() {
         this.getUcUser();
         this.getData()
@@ -293,18 +206,7 @@
       },
       comfirm(type) {
         this.$navigateTo('/pages/login/logout?type=' + type)
-        // this.$router.push({path: '/logout', query: {type}})
       },
-      // syncOldPriceToNew1() {
-      //   this.$request({
-      //     url: '/gw/op/v2/goodsBase/syncOldPriceToNew',
-      //     method: 'post',
-      //     data: loginInfo
-      //   })
-      //   goodsBaseApi.syncOldPriceToNew().then(res => {
-      //     this.$toast(res.subMsg)
-      //   })
-      // },
       getData() {
         this.$request({
           url: '/gw/op/v1/goodsOrder/orderData',
@@ -346,8 +248,6 @@
   @import '@/assets/index/style.css';
 
   * {
-    /*margin: 0;*/
-    /*padding: 0;*/
     box-sizing: border-box;
   }
 
@@ -374,8 +274,6 @@
     .header {
       width: 100%;
       height: 100px;
-      /*background: url(../../static/carbg.png) center 0 #f37d0f;*/
-      /*background: url(../../static/img/bg1.png) center 0 #f37d0f;*/
       background-size: auto 100%;
       padding: 3.2vw 0;
       display: -webkit-box;
@@ -588,17 +486,6 @@
     margin-left: 12px;
   }
 
-  /*.count4 {*/
-  /*  margin-left: 12px;*/
-  /*}*/
-
-  /*.count5 {*/
-  /*  margin-left: 10px;*/
-  /*}*/
-
-  /*.count6 {*/
-  /*  margin-left: 10px;*/
-  /*}*/
   .my-pay-1 {
     display: -webkit-box;
     display: -ms-flexbox;

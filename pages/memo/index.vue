@@ -77,27 +77,6 @@
         </view>
       </u-popup>
     </view>
-    <u-picker :show="show_sx_type" :columns="columns" @cancel="show_sx_type= false"
-              @confirm="confirm_sx_type" keyName="fieldName"></u-picker>
-    <u-datetime-picker
-                title="开始时间"
-                :show="showFrom"
-        v-model="dateCurrent"
-        mode="date"
-        :minDate="1646064000000"
-        @confirm="confirmFrom"
-        @cancel="cancelFrom"
-    ></u-datetime-picker>
-    <u-datetime-picker
-       title="结束时间"
-              :show="showTo"
-        v-model="dateCurrent"
-        mode="date"
-        :minDate="1646064000000"
-        @confirm="confirmTo"
-        @cancel="cancelTo"
-    ></u-datetime-picker>
-
     <view class="julibiaoti2">
       <view class="dingdans_item_other" v-for="(item,index) in tableData" :key="index">
         <view class="dingdans_top_other zuoyouduiqi">
@@ -156,7 +135,7 @@
 <script>
 
   export default {
-    name: "HelloWorld",
+
     data() {
       return {
         pattern: {
@@ -168,11 +147,7 @@
         },
         orderData2: '',
         dateCurrent: parseInt(new Date().getTime()),
-        showFrom: false,
-        showTo: false,
-        show_sx_type: false,
         isShowDialog2: false,
-        emtityMsg: '',
         pictureZoomShow: false,
         imageZoom: '',
         localdata: [
@@ -215,20 +190,12 @@
     mounted() {
       this.getPage()
       this.listSysDict()
-      // this.keyupSubmit()
-
     },
     onPullDownRefresh() {
       this.resetHandle()
       uni.stopPullDownRefresh()
-
-      //停止下拉刷新效果的api，如果发现进入刷新状态无法停止，可以用这个
     },
     onReachBottom() {
-      // alert(1)
-      // if(this.totalCount <= this.queryParam.pageSize) {
-      //   return ;
-      // }
       if (this.isLoadMore) {  //此处判断，上锁，防止重复请求
         this.loadStatus = 'loading';
         this.queryParam.pageNum++;
@@ -236,24 +203,6 @@
       }
     },
     methods: {
-      /**
-       * 不同行的不同菜单点击事件
-       *
-       * @param {Object} action 第一个参数必须传入“$event” | 点击了哪个按钮 | 传入options的value
-       * @param {Number} rowId 第二个参数随意，可以是行ID等
-       */
-      menuAction(action, rowId) {
-        // 忽略初始化时的传入的空操作
-        if (action === '') {
-          return
-        }
-        if ('add' == action) {
-          this.goDetail(null, 3)
-        }
-        if ('resetHandle' == action) {
-          this.resetHandle()
-        }
-      },
       menuAction1(action, rowId) {
         if (action === '') {
           return
@@ -265,37 +214,6 @@
           this.goDetail(rowId, 2)
         }
       },
-
-      cancelFrom() {
-        this.showFrom = false
-        this.queryParam.createTimeFrom = ''
-        this.search1()
-      },
-      cancelTo() {
-        this.showTo = false
-        this.queryParam.createTimeTo = ''
-        this.search1()
-      },
-      confirmFrom(e) {
-        this.showFrom = false;
-        let timeValue = uni.$u.timeFormat(e.value, 'yyyy-mm-dd');
-        this.queryParam.createTimeFrom = timeValue
-        this.search1()
-      },
-      confirmTo(e) {
-        this.showTo = false;
-        let timeValue = uni.$u.timeFormat(e.value, 'yyyy-mm-dd');
-        this.queryParam.createTimeTo = timeValue
-        this.search1()
-      },
-      confirm_sx_type(e) {
-        this.show_sx_type = false
-        let fieldValue = e.value[0].fieldValue
-        let fieldName = e.value[0].fieldName
-        this.queryParam.type = fieldValue
-        this.queryParam.typeStr = fieldName
-        this.search1()
-      },
       goDetail(id, type) {
         let url = '/pages/memo/memoAdd?type=' + type
         if (id) {
@@ -305,7 +223,6 @@
       },
       getPage() {
         this.isLoading = true
-        this.emtityMsg = ''
         this.$request({
           url: '/gw/op/v1/memo',
           method: 'get',
@@ -315,7 +232,6 @@
           if (res.subCode === 1000) {
             this.totalCount = res.data ? res.data.pageInfo.totalCount : 0
             if (this.totalCount == 0) {
-              this.emtityMsg = '暂无相关数据'
               this.loadStatus = 'nomore';
               this.isLoadMore = false
             } else {

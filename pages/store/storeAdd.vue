@@ -84,9 +84,6 @@
               <text>
                 {{ item.size }}
               </text>
-<!--              <text class="color-url" @click="changeStatusDialog1(index,item)">-->
-<!--                {{ item.size }}-->
-<!--              </text>-->
             </uni-td>
             <uni-td>
               <view>
@@ -142,9 +139,6 @@
             <view @click="isShowDialog1 = false" style="font-size: 15px;" class="u-nav-slot" slot="left">
               <text>关闭</text>
             </view>
-<!--            <view @click="goDel" class="u-nav-slot" style="font-size: 15px;" slot="right">-->
-<!--              <text>移除</text>-->
-<!--            </view>-->
           </u-navbar>
           <view>
             <u--form >
@@ -188,35 +182,6 @@
                            v-model="orderData1.profits" border="none" color="#333333"></u--input>
                 <u-icon class="biaodan-gengduo" style="margin-right: 15px;" slot="right" name="arrow-right"></u-icon>
               </u-form-item>
-
-<!--              <u-form-item label="类型" borderBottom @click="show_sx_type = true; $hideKeyboard()">-->
-<!--                <u&#45;&#45;input inputAlign="right" placeholder="请选择类型" disabledColor="#fff"-->
-<!--                          placeholderStyle="font-size: 14px;color:#c0c4cc"-->
-<!--                          v-model="queryParam.typeStr" border="none" disabled></u&#45;&#45;input>-->
-<!--                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-<!--              </u-form-item>-->
-<!--              <u-form-item label="品牌" borderBottom>-->
-<!--                <u&#45;&#45;input inputAlign="right" placeholder="请输入品牌"-->
-<!--                          placeholderStyle="font-size: 14px;color:#c0c4cc"-->
-<!--                          v-model="queryParam.brand" border="none"></u&#45;&#45;input>-->
-<!--                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-<!--              </u-form-item>-->
-<!--              <u-form-item label="开始时间" label-width="50vw" borderBottom-->
-<!--                           @click="showFrom = true; $hideKeyboard()">-->
-<!--                <u&#45;&#45;input inputAlign="right" prefixIcon="calendar"-->
-<!--                          prefixIconStyle="font-size: 20px;color:#c0c4cc" placeholder="请选择开始时间"-->
-<!--                          disabledColor="#fff" placeholderStyle="font-size: 14px;color:#c0c4cc"-->
-<!--                          v-model="queryParam.createTimeFrom" border="none" disabled></u&#45;&#45;input>-->
-<!--                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-<!--              </u-form-item>-->
-<!--              <u-form-item label="结束时间" label-width="50vw" borderBottom-->
-<!--                           @click="showTo = true; $hideKeyboard()">-->
-<!--                <u&#45;&#45;input inputAlign="right" prefixIcon="calendar"-->
-<!--                          prefixIconStyle="font-size: 20px;color:#c0c4cc" placeholder="请选择结束时间"-->
-<!--                          disabledColor="#fff" placeholderStyle="font-size: 14px;color:#c0c4cc"-->
-<!--                          v-model="queryParam.createTimeTo" border="none" disabled></u&#45;&#45;input>-->
-<!--                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-<!--              </u-form-item>-->
             </u--form>
           </view>
         </view>
@@ -378,20 +343,9 @@
         this.pictureZoomShow = true
       },
       jumpactNo(actNo) {
-        this.$router.push({path: '/store', query: {actNo}})
+        let url = '/pages/store/index?actNo=' + actNo
+        this.$navigateTo(url)
       },
-      // 复制链接
-      // copyUrl(url) {
-      //   const input = document.createElement('input')
-      //   document.body.appendChild(input)
-      //   input.setAttribute('value', url)
-      //   input.select()
-      //   if (document.execCommand('copy')) {
-      //     document.execCommand('copy')
-      //   }
-      //   document.body.removeChild(input)
-      //   this.$toast('已复制至剪切板')
-      // },
       addSizeHandle(item, index = 0) {
         if (!this.activeIndex.includes(index)) {
           this.activeIndex.push(index)
@@ -473,57 +427,6 @@
   strong{
     font-weight: 600;
   }
-  .mint-button--small {
-    display: inline-block;
-    font-size: 13px;
-    height: 6vw;
-  }
-  /*.dingdans_item {*/
-  /*  padding: 2.4vw 1.2vw;*/
-  /*  background: #ffffff;*/
-  /*  border-bottom: 1vw solid #eee;*/
-  /*  padding-right: 3%;*/
-  /*  padding-left: 3%;*/
-  /*}*/
-
-  /*.dingdans_top {*/
-  /*  font-size: 13px;*/
-  /*  height: 3.88vw;*/
-  /*  line-height: 3.88vw;*/
-  /*  display: flex;*/
-  /*  align-items: center;*/
-  /*  justify-content: space-between;*/
-  /*}*/
-
-  /*.dingdans_con {*/
-  /*  display: flex;*/
-  /*  align-items: center;*/
-  /*  justify-content: flex-start;*/
-  /*  padding: 1.3vw 0;*/
-  /*}*/
-
-  /*.dingdans_con_left {*/
-  /*  width: 35vw;*/
-  /*  height: 20vw;*/
-  /*  display: flex;*/
-  /*}*/
-
-  /*.dingdans_con_left img {*/
-  /*  width: 100%;*/
-  /*  margin: auto;*/
-  /*  border-radius: 10px;*/
-  /*}*/
-
-  /*.diangdans_con_right {*/
-  /*  width: 130vw;*/
-  /*  padding-left: 10px;*/
-  /*}*/
-
-  /*.dingdans_con_right_down {*/
-  /*  margin-top: 1.4vw;*/
-  /*  font-size: 13px;*/
-  /*  margin-bottom: 2vw;*/
-  /*}*/
   .clearfix {
     &:after {
       visibility: hidden;
@@ -567,35 +470,9 @@
   }
 
   .cityActive {
-    /*height: 36px;*/
-    /*width: 63px;*/
-    /*border-radius: 5px;*/
-    /*font-size: 17px;*/
-    /*background-color: #BEBEBE;*/
-    /*padding: 9px 0px;*/
-    /*margin-right: 6px;*/
-    /*margin-bottom: 13px;*/
-    /*// 自动换行*/
-    /*display: inline-block;*/
-
-    /*height: 33px;*/
-    /*width: 63px;*/
-    /*border-radius: 5px;*/
     font-size: 16px;
     background-color: #BEBEBE;
     padding: 8px 0px;
-    /*margin-right: 6px;*/
-    /*margin-bottom: 13px;*/
-    /*display: inline-block;*/
-    /*height: 48px;*/
-    /*width: 59px;*/
-    /*border-radius: 15px;*/
-    /*font-size: 20px;*/
-    /*background-color: #BEBEBE;*/
-    /*padding: 14px 10px;*/
-    /*margin-right: 10px;*/
-    /*margin-bottom: 10px;*/
-    /*display: inline-block;*/
   }
 
 

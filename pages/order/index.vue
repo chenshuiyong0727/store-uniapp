@@ -4,11 +4,6 @@
       <view @click="goBack" class="u-nav-slot" slot="left">
         <u-icon name="arrow-left" size="20"></u-icon>
       </view>
-<!--      <view class="u-nav-slot" style="font-size: 15px;" slot="right">-->
-<!--        <rudon-rowMenuDotDotDot :localdata="localdata" @change="menuAction($event)">-->
-<!--          <image style="height: 25px;width: 25px" src="../../static/img/slh.png"></image>-->
-<!--        </rudon-rowMenuDotDotDot>-->
-<!--      </view>-->
       <view @click="showSd = !showSd"  class="u-nav-slot" slot="right" style="font-size: 15px;">
         <text>
           {{!showSd ? '批量操作' : '退出' }}
@@ -30,9 +25,6 @@
         >
         </u--input>
       </view>
-<!--      <view class="fenlei_top_right" @click="isShowDialog2 = true">-->
-<!--        <image src="../../static/img/search.png"></image>-->
-<!--      </view>-->
       <view class="fenlei_top_right" @click="isShowDialog2 = true">
         <image
             v-if="
@@ -488,7 +480,7 @@
   import { parseTime } from '@/utils/index'
 
   export default {
-    name: "HelloWorld",
+
     data() {
       return {
         backUrl: '',
@@ -510,16 +502,6 @@ showFrom: false,
             text: '重置'
           }
         ],
-        // optionsOp: [
-        //   {
-        //     value: 'view',
-        //     text: '查看'
-        //   },
-        //   {
-        //     value: 'update',
-        //     text: '修改'
-        //   }
-        // ],
         optionsOp: [
           {
             value: 'update',
@@ -533,10 +515,6 @@ showFrom: false,
             value: 'gotoWl',
             text: '物流'
           },
-          // {
-          //   value: 'goodsDetail',
-          //   text: '商品详情'
-          // },
           {
             value: 'goDel',
             text: '删除'

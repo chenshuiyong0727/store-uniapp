@@ -8,9 +8,6 @@
             style="font-size: 15px;">
         去修改
       </view>
-<!--      <view v-else @click="submit" class="u-nav-slot" slot="right" style="font-size: 15px;">-->
-<!--        保存-->
-<!--      </view>-->
     </u-navbar>
     <u--form
         style="background-color: white"

@@ -1,32 +1,9 @@
 <template lang="html">
   <view class="hello">
-<!--    <mt-header title="商品详情">-->
-<!--      <view slot="left">-->
-<!--        <mt-button  icon="back" @click="$router.go(-1)"></mt-button>-->
-<!--      </view>-->
-<!--      <view slot="right">-->
-<!--        <el-dropdown trigger="click" style="margin-left: 1px;">-->
-<!--          <mt-button size="normal">-->
-<!--            <img  style="width: 25px" src="../../static/img/slh.png">-->
-<!--          </mt-button>-->
-<!--          <el-dropdown-menu slot="dropdown" >-->
-<!--            <el-dropdown-item type="text" @click.native="getImgUrl">更新</el-dropdown-item>-->
-
-<!--            &lt;!&ndash;            <el-dropdown-item type="text" v-if="form.id" @click.native="scanCode(form.id,2)">智能编辑</el-dropdown-item>&ndash;&gt;-->
-<!--            &lt;!&ndash;            <el-dropdown-item type="text" v-else @click.native="scanCode(null,3)">智能添加</el-dropdown-item>&ndash;&gt;-->
-<!--            <el-dropdown-item type="text" v-if="form.id" @click.native="gotoAdd(form.id,2)">手动编辑</el-dropdown-item>-->
-<!--            &lt;!&ndash;            <el-dropdown-item type="text" v-else @click.native="gotoAdd(null,3)">手动添加</el-dropdown-item>&ndash;&gt;-->
-<!--          </el-dropdown-menu>-->
-<!--        </el-dropdown>-->
-<!--      </view>-->
-<!--    </mt-header>-->
     <u-navbar title="商品详情">
       <view @click="$goBack" class="u-nav-slot" slot="left">
         <u-icon name="arrow-left" size="20"></u-icon>
       </view>
-<!--      <view  @click="getImgUrl" class="u-nav-slot" slot="right" style="font-size: 15px;">-->
-<!--        更新-->
-<!--      </view>-->
       <view class="u-nav-slot" style="font-size: 15px;" slot="right">
         <rudon-rowMenuDotDotDot :localdata="localdata" @change="menuAction($event)">
           <image style="height: 25px;width: 25px" src="../../static/img/slh.png"></image>
@@ -113,9 +90,6 @@
           <image @click="$copyUrl(item.actNo)" style="margin-bottom: -3px;" class="fuzhitupian"
                  src="../../static/img/copy.png"></image>
         </strong>
-<!--        <strong class="color-danger" style="font-size: 15px;">-->
-<!--          {{form.size}}-->
-<!--        </strong>-->
       </view>
     </view>
     <view class="my-pay-5" v-if="tableData.length">
@@ -437,7 +411,6 @@
     },
     methods:{
       menuAction(action, rowId) {
-        // 忽略初始化时的传入的空操作
         if (action === '') {
           return
         }
@@ -452,19 +425,6 @@
         this.isShowDialog2 = false
       },
       profitData(dayNum) {
-        // if (dayNum == 30) {
-        //   this.type30 = 'primary'
-        //   this.type180 = 'default'
-        //   this.type365 = 'default'
-        // } else if (dayNum == 180) {
-        //   this.type180 = 'primary'
-        //   this.type30 = 'default'
-        //   this.type365 = 'default'
-        // }else {
-        //   this.type365 = 'primary'
-        //   this.type180 = 'default'
-        //   this.type30 = 'default'
-        // }
         this.queryParam1.dayNum = dayNum
         this.getPriceData()
       },
@@ -479,17 +439,6 @@
         this.getPriceData()
         this.isShowDialog2 = true
       },
-      // copyUrl(url) {
-      //   const input = document.createElement('input')
-      //   document.body.appendChild(input)
-      //   input.setAttribute('value', url)
-      //   input.select()
-      //   if (document.execCommand('copy')) {
-      //     document.execCommand('copy')
-      //   }
-      //   document.body.removeChild(input)
-      //   this.$toast('已复制至剪切板')
-      // },
       avatarShow(e) {
         this.imageZoom = e
         this.pictureZoomShow = true
@@ -506,16 +455,9 @@
         })
       },
       update() {
-        // if (!id) {
-        //   return
-        // }
         let url = '/pages/goodsBase/goodsAdd?type=2&id=' + this.id
         this.$navigateTo(url)
-        // this.$router.push({ path: '/goodsAdd', query: {id,type } })
       },
-      // scanCode(id, type) {
-      //   this.$router.push({ path: '/scanCode', query: { id, type } })
-      // },
       getDetailById(id) {
         if (id) {
           goodsBaseApi.getDetailById(id).then(res => {
@@ -588,7 +530,6 @@
 <style>
 
   @import '@/assets/index/style.css';
-  /*@import '../assets/fz.less';*/
   * {
     margin: 0;
     padding: 0;
@@ -601,14 +542,7 @@
   /* 这里直接设置 1rem = 50px end */
   html,
   body {
-    /*font-family: "微软雅黑";*/
-    /*color: #333;*/
-    /*background: #fff;*/
   }
-  /*ul,*/
-  /*li {*/
-  /*  list-style: none;*/
-  /*}*/
   /* 给要上拉的容器设置 begin */
   .hello {
     background-color: #f3f2f8;
@@ -620,10 +554,6 @@
   strong{
     font-weight: 600;
   }
-  /*.detail {*/
-  /*  width: 100%;*/
-  /*  padding-bottom: 14vw;*/
-  /*}*/
 
   .ui-flex {
     display: -webkit-box !important;

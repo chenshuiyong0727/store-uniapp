@@ -14,9 +14,6 @@
     height: 100px;
     position: relative;
     border-radius: 5px;">
-<!--            <image mode="widthFix" @click="avatarShow(orderData.img)" style="  width: 80%;-->
-<!--    margin-top: 28px;-->
-<!--    margin-left: 10%;" :src="orderData.img"></image>-->
 
             <image mode="widthFix"  v-if="orderData.img"  @click="avatarShow(orderData.img)" style="  width: 80%;
     margin-top: 28px;
@@ -73,15 +70,6 @@
         ref="uForm"
     >
       <view style="width: 90vw;margin-left: 5vw;">
-<!--        <u-form-item label="货号" label-width="25vw" borderBottom>-->
-<!--          <u&#45;&#45;input :disabled="true" disabledColor="#fff" inputAlign="right" color="#d1d1d1"-->
-<!--                    v-model="orderData.actNo" border="none"></u&#45;&#45;input>-->
-<!--        </u-form-item>-->
-<!--        <u-form-item label="尺码" label-width="25vw" borderBottom>-->
-<!--          <u&#45;&#45;input :disabled="true" disabledColor="#fff" inputAlign="right" color="#d1d1d1"-->
-<!--                    v-model="orderData.size" border="none"></u&#45;&#45;input>-->
-<!--        </u-form-item>-->
-
         <u-form-item label-width="25vw"  label="运单号" borderBottom>
           <u--input  disabledColor="#fff" inputAlign="right"
                      v-model="requestParam.waybillNo" border="none"></u--input>
@@ -127,7 +115,7 @@
           <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
         </u-form-item>
         <u-form-item label-width="30vw" label="发货截止时间" borderBottom >
-          <uni-datetime-picker style="color: #303133 !important; text-align: right;font-size: 14px;" type="datetime" v-model="requestParam.deliveryDeadlineTime" @change="changeLog"  :border="false"/>
+          <uni-datetime-picker style="color: #303133 !important; text-align: right;font-size: 14px;" type="datetime" v-model="requestParam.deliveryDeadlineTime"  :border="false"/>
           <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
         </u-form-item>
 
@@ -267,8 +255,6 @@ showFrom: false,
         this.imageZoom = e
         this.pictureZoomShow = true
       },
-      changeLog(e) {
-      },
       keyup2() {
         let poundage = this.$getPoundage( this.requestParam.shelvesPrice)
         this.requestParam.poundage = parseFloat(poundage).toFixed(2)
@@ -304,7 +290,6 @@ showFrom: false,
         this.showFrom = false;
         let timeValue = uni.$u.timeFormat(e.value, 'yyyy-mm-dd hh:MM');
         this.requestParam.createTime = timeValue
-        // this.search1()
       },
       confirm_sx_type(e) {
         this.show_sx_type = false
@@ -313,25 +298,6 @@ showFrom: false,
         this.form.type = fieldValue
         this.form.typeStr = fieldName
       },
-      //
-      // confirmHandle() {
-      //   if (this.requestParam.oldInventory < this.requestParam.inventory) {
-      //     // this.$toast('原始库存小于剩余库存')
-      //     this.$toast('原始库存小于剩余库存')
-      //     return
-      //   }
-      //   this.requestParam.createTime = this.requestParam.createTime ? this.$parseTime(this.requestParam.createTime) : ''
-      //   goodsInventoryApi.update(this.requestParam).then(res => {
-      //     this.$toast(res.subMsg);
-      //     if (res.subCode === 1000) {
-      //       setTimeout(() => {
-      //         uni.reLaunch({
-      //           url: '/pages/store/index',
-      //         });
-      //       }, 1000)
-      //   }
-      //   })
-      // },
       confirmHandle() {
         if (this.requestParam.status == 7 && !this.requestParam.freight) {
           this.$toast('请输入运费')
@@ -376,11 +342,6 @@ showFrom: false,
         this.requestParam.freight = this.orderData.freight
         this.requestParam.waybillNo = this.orderData.waybillNo
         this.requestParam.addressId = this.orderData.addressId ? this.orderData.addressId :''
-        // if (this.orderData.status != 11) {
-        //   this.requestParam.status = this.orderData.status + 1
-        // } else {
-        //   this.requestParam.status = 7
-        // }
         if (this.orderData.status == 7 || this.orderData.status ==11) {
           this.requestParam.status = 7
         }else{
@@ -421,46 +382,6 @@ showFrom: false,
           })
         }
       },
-      // submit() {
-      //   if (!this.form.type) {
-      //     this.$toast('类型非空');
-      //     return false
-      //   }
-      //   if (!this.form.price) {
-      //     this.$toast('金额非空');
-      //     return false
-      //   }
-      //   if (!this.form.name) {
-      //     this.$toast('名称非空');
-      //     return false
-      //   }
-      //   if (this.form.price > 0 && this.form.type == 2) {
-      //     this.form.price = 0 - this.form.price
-      //   }
-      //   if (this.type == 2) {
-      //     goodsOtherApi.update(this.form).then(res => {
-      //       if (res.subCode === 1000) {
-      //         this.$toast('操作成功');
-      //         setTimeout(() => {
-      //           this.$navigateTo('/pages/other/index')
-      //         }, 1000)
-      //       } else {
-      //         this.$toast(res.subMsg)
-      //       }
-      //     })
-      //   } else {
-      //     goodsOtherApi.add(this.form).then(res => {
-      //       if (res.subCode === 1000) {
-      //         this.$toast('添加成功，即将返回列表');
-      //         setTimeout(() => {
-      //           this.$navigateTo('/pages/other/index')
-      //         }, 1000)
-      //       } else {
-      //         this.$toast(res.subMsg)
-      //       }
-      //     })
-      //   }
-      // },
       listSysDict() {
         let sysDictList = uni.getStorageSync('sysDictList') ? JSON.parse(
             uni.getStorageSync('sysDictList')) : [];

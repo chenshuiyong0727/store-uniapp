@@ -63,9 +63,6 @@
             </view>
             <view class="dingdans_con_right_top xianglian">
               <view class="xianglian">
-<!--                <text style="width: 20vw">-->
-<!--                  收货地址：-->
-<!--                </text>-->
                 <view style="width: 60vw">
                   <text>
                     {{requestParamWl.receiverAddress}}
@@ -106,48 +103,6 @@
       </view>
 
     </view>
-
-    <!--    <view class="width92 baisebeijing" style="margin-top: 10px;">-->
-    <!--      <view class="zuoyouduiqi" style="width: 85vw;margin-left: 4vw;    padding: 12px 0;">-->
-    <!--        <text style="font-weight: 600;font-size: 14px">出售数量</text>-->
-    <!--        <u-number-box v-model="requestParam.num" :max="max1"></u-number-box>-->
-    <!--      </view>-->
-    <!--    </view>-->
-
-<!--    <u&#45;&#45;form-->
-<!--        class=" width92 baisebeijing"-->
-<!--        labelPosition="left"-->
-<!--        :model="form"-->
-<!--        ref="uForm"-->
-<!--    >-->
-<!--      <view style="width: 85vw;margin-left: 5vw;">-->
-<!--        <u-form-item label-width="25vw"  label="地址"  borderBottom>-->
-<!--          <hpy-form-select-->
-<!--              v-if="addressList"-->
-<!--              :dataList="addressList"-->
-<!--              :hideBorder="true"-->
-<!--              :hideArrow="true"-->
-<!--              text="fieldName"-->
-<!--              name="fieldValue"-->
-<!--              v-model="requestParam.addressId"/>-->
-<!--          <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-<!--        </u-form-item>-->
-<!--        <u-form-item label-width="25vw"  label="运单号" borderBottom>-->
-<!--          <u&#45;&#45;input  disabledColor="#fff" inputAlign="right"-->
-<!--                     v-model="requestParam.waybillNo" border="none"></u&#45;&#45;input>-->
-<!--          <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-<!--        </u-form-item>-->
-<!--      </view>-->
-<!--    </u&#45;&#45;form>-->
-
-<!--    &lt;!&ndash;    <view style="height: 70px"></view>&ndash;&gt;-->
-
-<!--    <view class="baisebeijing shuipingjuzhong" style="width:100%;position:fixed;bottom:0;-->
-<!--     border-top: solid #E2DDDD 1px;">-->
-<!--      <u-button style="width: 50vw; margin: 10px 15px;" type="primary" @click="confirmHandle">-->
-<!--        <text style=" font-size: 17px;font-weight: 600">确认发货</text>-->
-<!--      </u-button>-->
-<!--    </view>-->
     <view style="height: 30px"></view>
     <view class="popContainer" v-if="pictureZoomShow" @click="pictureZoomShow = false">
       <view class="imageShow">
@@ -158,50 +113,15 @@
 </template>
 
 <script>
-  // import {goodsInventoryApi} from '@/api/goodsInventory'
   import {goodsOrderApi} from '@/api/goodsOrder'
-  import { parseTime } from '@/utils/index'
 
   export default {
     data() {
       return {
-        // form: {
-        //   sizeVoList: '',
-        //   name: '',
-        //   actNo: '',
-        //   imgUrl: '',
-        //   img: '',
-        // },
-        // array: [{name: '中国'}, {name: '美国'}, {name: '巴西'}, {name: '日本'}],
-        // index: 2,
-        // isShowDialog2: false,
         pictureZoomShow: false,
         imageZoom: false,
-        // channelIdList: [],
-        // range: [
-        //   {value: 1, text: "线下"},
-        //   {value: 2, text: "线上"}
-        // ],
-        // inventoryIndex: '',
-        // activeIndex: [],
-        // tipMsg: '',//请以9结尾
-        // goodsId: '',
-        // id: '',
-        // unifiedPrice: '',
-        // unifiedDwPrice: '',
-        // tableData: [],
-        // totalCount: 1,
         orderData: '',
-        // max1: '',
-        // addressList: [],
-        // statusList: [],
-        // saleTypeList: [],
-        // requestParam: {
           id: '',
-        //   status: 4,
-        //   waybillNo: '',
-        //   addressId: ''
-        // },
         requestParamWl: {
           receiverAddress: '',
           addressId: '',
@@ -226,36 +146,7 @@
         }
       }
     },
-    // mounted() {
-    //   // this.listSysDict()
-    // },
     methods: {
-
-      // listSysDict() {
-      //   let sysDictList = uni.getStorageSync('sysDictList') ? JSON.parse(
-      //       uni.getStorageSync('sysDictList')) : []
-      //   this.addressList = sysDictList.filter(item => item.typeValue == 38)
-      // },
-      // confirmHandle() {
-      //   if (!this.requestParam.addressId) {
-      //     this.$toast('请选择发货地址')
-      //     return
-      //   }
-      //   if (!this.requestParam.waybillNo) {
-      //     this.$toast('请输入物流单号')
-      //     return
-      //   }
-      //   goodsOrderApi.sellGoods(this.requestParam).then(res => {
-      //     this.$toast(res.subMsg)
-      //     if (res.subCode === 1000) {
-      //       setTimeout(() => {
-      //         uni.reLaunch({
-      //           url: '/pages/order/index',
-      //         });
-      //       }, 1000)
-      //     }
-      //   })
-      // },
       goodsDetail(id) {
         if (!id) {
           return
@@ -267,10 +158,6 @@
         this.imageZoom = e
         this.pictureZoomShow = true
       },
-      // jumpactNo(actNo) {
-      //   let url = '/pages/store/index?actNo=' + actNo
-      //   this.$navigateTo(url)
-      // },
       getDetailById(id) {
         if (id) {
           goodsOrderApi.getDetailById(id).then(res => {
@@ -309,18 +196,6 @@
             this.$toast(res.subMsg)
           }
         })
-        // if (id) {
-        //   goodsOrderApi.getDetailById(id).then(res => {
-        //     if (res.subCode === 1000) {
-        //       this.orderData = res.data ? res.data : {}
-        //       this.requestParam.id = this.orderData.id
-        //       this.requestParam.addressId = this.orderData.addressId
-        //       this.requestParam.waybillNo = this.orderData.waybillNo
-        //     } else {
-        //       this.$toast(res.subMsg)
-        //     }
-        //   })
-        // }
       }
     }
   }
@@ -353,87 +228,6 @@
     font-weight: 600;
   }
 
-  .mint-button--small {
-    display: inline-block;
-    font-size: 13px;
-    height: 6vw;
-  }
-  .clearfix {
-    &:after {
-      visibility: hidden;
-      display: block;
-      font-size: 0;
-      content: " ";
-      clear: both;
-      height: 0;
-    }
-  }
-
-  .elInput1 {
-    font-size: 14px;
-    -webkit-appearance: none;
-    background-color: #FFF;
-    background-image: none;
-    border-radius: 4px;
-    border: 1px solid #DCDFE6;
-    box-sizing: border-box;
-    color: #606266;
-    display: inline-block;
-    height: 32px;
-    line-height: 32px;
-    outline: 0;
-    padding: 0 15px;
-    -webkit-transition: border-color .2s cubic-bezier(.645, .045, .355, 1);
-    transition: border-color .2s cubic-bezier(.645, .045, .355, 1);
-    width: 100%;
-  }
-
-  .btm-distance {
-    margin-bottom: 15px;
-  }
-
-  .city {
-    height: 33px;
-    width: 63px;
-    border-radius: 5px;
-    font-size: 16px;
-    background-color: #F6F6F6;
-    padding: 8px 0px;
-    margin-right: 6px;
-    margin-bottom: 13px;
-    display: inline-block;
-  }
-  .cityActive {
-    /*height: 36px;*/
-    /*width: 63px;*/
-    /*border-radius: 5px;*/
-    /*font-size: 17px;*/
-    /*background-color: #BEBEBE;*/
-    /*padding: 9px 0px;*/
-    /*margin-right: 6px;*/
-    /*margin-bottom: 13px;*/
-    /*// 自动换行*/
-    /*display: inline-block;*/
-
-    height: 33px;
-    width: 63px;
-    border-radius: 5px;
-    font-size: 16px;
-    background-color: #BEBEBE;
-    padding: 8px 0px;
-    margin-right: 6px;
-    margin-bottom: 13px;
-    display: inline-block;
-    /*height: 48px;*/
-    /*width: 59px;*/
-    /*border-radius: 15px;*/
-    /*font-size: 20px;*/
-    /*background-color: #BEBEBE;*/
-    /*padding: 14px 10px;*/
-    /*margin-right: 10px;*/
-    /*margin-bottom: 10px;*/
-    /*display: inline-block;*/
-  }
 
   .package-status {
     overflow-y:scroll;

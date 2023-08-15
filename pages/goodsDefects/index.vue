@@ -4,16 +4,6 @@
       <view @click="$goBack" class="u-nav-slot" slot="left">
         <u-icon name="arrow-left" size="20"></u-icon>
       </view>
-      <!--      <view class="u-nav-slot" style="font-size: 15px;" slot="right">-->
-      <!--        <rudon-rowMenuDotDotDot :localdata="localdata" @change="menuAction($event)">-->
-      <!--          <image style="height: 25px;width: 25px" src="../../static/img/slh.png"></image>-->
-      <!--        </rudon-rowMenuDotDotDot>-->
-      <!--      </view>-->
-<!--      <view @click="showSd = !showSd"  class="u-nav-slot" slot="right" style="font-size: 15px;">-->
-<!--        <text>-->
-<!--          {{!showSd ? '批量操作' : '退出' }}-->
-<!--        </text>-->
-<!--      </view>-->
     </u-navbar>
     <view class="fenlei_top_tab" style="display: flex;">
       <view style="width: 83vw">
@@ -30,9 +20,6 @@
         >
         </u--input>
       </view>
-      <!--      <view class="fenlei_top_right" @click="isShowDialog2 = true">-->
-      <!--        <image src="../../static/img/search.png"></image>-->
-      <!--      </view>-->
       <view class="fenlei_top_right" @click="isShowDialog2 = true">
         <image
             v-if="
@@ -76,17 +63,6 @@
                                      type="datetime" v-model="requestParam.createTime"  :border="false"/>
                 <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
               </u-form-item>
-<!--              <u-form-item label-width="25vw"  label="状态"  borderBottom>-->
-<!--                <hpy-form-select-->
-<!--                    v-if="statusList"-->
-<!--                    :dataList="statusList"-->
-<!--                    :hideBorder="true"-->
-<!--                    :hideArrow="true"-->
-<!--                    text="fieldName"-->
-<!--                    name="fieldValue"-->
-<!--                    v-model="requestParam.status"/>-->
-<!--                <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-<!--              </u-form-item>-->
               <u-form-item label="状态" borderBottom @click="show_sx_type = true; isShowDialog=!isShowDialog ;$hideKeyboard()">
                 <u--input inputAlign="right" placeholder="请选择状态" disabledColor="#fff"
                           placeholderStyle="font-size: 14px;color:#c0c4cc"
@@ -98,38 +74,7 @@
                     v-model="requestParam.reason"
                     count
                 ></u--textarea>
-<!--                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
               </u-form-item>
-<!--              <u-form-item label-width="25vw" label="库存" borderBottom>-->
-<!--                <u&#45;&#45;input  :disabled="true" disabledColor="#fff" inputAlign="right"-->
-<!--                           v-model="orderData1.inventory" border="none" color="#333333"></u&#45;&#45;input>-->
-<!--                <u-icon class="biaodan-gengduo" style="margin-right: 15px;" slot="right" name="arrow-right"></u-icon>-->
-<!--              </u-form-item>-->
-<!--              <u-form-item label-width="25vw" label="进价" borderBottom>-->
-<!--                <u&#45;&#45;input  :disabled="true" disabledColor="#fff" inputAlign="right"-->
-<!--                           v-model="orderData1.price" border="none" color="#333333"></u&#45;&#45;input>-->
-<!--                <u-icon class="biaodan-gengduo" style="margin-right: 15px;" slot="right" name="arrow-right"></u-icon>-->
-<!--              </u-form-item>-->
-<!--              <u-form-item label-width="25vw" label="售价" borderBottom>-->
-<!--                <u&#45;&#45;input  :disabled="true" disabledColor="#fff" inputAlign="right"-->
-<!--                           v-model="orderData1.dwPrice" border="none" color="#333333"></u&#45;&#45;input>-->
-<!--                <u-icon class="biaodan-gengduo" style="margin-right: 15px;" slot="right" name="arrow-right"></u-icon>-->
-<!--              </u-form-item>-->
-<!--              <u-form-item label-width="25vw" label="手续费" borderBottom>-->
-<!--                <u&#45;&#45;input  :disabled="true" disabledColor="#fff" inputAlign="right"-->
-<!--                           v-model="orderData1.poundage" border="none" color="#333333"></u&#45;&#45;input>-->
-<!--                <u-icon class="biaodan-gengduo" style="margin-right: 15px;" slot="right" name="arrow-right"></u-icon>-->
-<!--              </u-form-item>-->
-<!--              <u-form-item label-width="25vw" label="到手价" borderBottom>-->
-<!--                <u&#45;&#45;input  :disabled="true" disabledColor="#fff" inputAlign="right"-->
-<!--                           v-model="orderData1.theirPrice" border="none" color="#333333"></u&#45;&#45;input>-->
-<!--                <u-icon class="biaodan-gengduo" style="margin-right: 15px;" slot="right" name="arrow-right"></u-icon>-->
-<!--              </u-form-item>-->
-<!--              <u-form-item label-width="25vw" label="利润" borderBottom>-->
-<!--                <u&#45;&#45;input  :disabled="true" disabledColor="#fff" inputAlign="right"-->
-<!--                           v-model="orderData1.profits" border="none" color="#333333"></u&#45;&#45;input>-->
-<!--                <u-icon class="biaodan-gengduo" style="margin-right: 15px;" slot="right" name="arrow-right"></u-icon>-->
-<!--              </u-form-item>-->
             </u--form>
           </view>
         </view>
@@ -178,26 +123,6 @@
                 </u--input>
               </view>
             </view>
-
-<!--            <view class="saixuanquxiang" >-->
-<!--              <view>-->
-<!--                <text class="zitijiachu zihao14">-->
-<!--                  尺码-->
-<!--                </text>-->
-<!--              </view>-->
-<!--              <view class="julishang10">-->
-<!--                <u&#45;&#45;input-->
-<!--                    class="saixuanInput"-->
-<!--                    placeholder="请输入尺码"-->
-<!--                    placeholderStyle="font-size: 14px;color:#c0c4cc"-->
-<!--                    v-model="queryParam.size"-->
-<!--                    @change="search1"-->
-<!--                    clearable-->
-<!--                >-->
-<!--                </u&#45;&#45;input>-->
-<!--              </view>-->
-<!--            </view>-->
-
             <view class="saixuanquxiang" >
               <view>
                 <text class="zitijiachu zihao14">
@@ -247,58 +172,6 @@
                 </view>
               </view>
             </view>
-
-
-<!--            <view class="saixuanquxiang" >-->
-<!--              <view>-->
-<!--                <text class="zitijiachu zihao14">-->
-<!--                  地址-->
-<!--                </text>-->
-<!--              </view>-->
-<!--              <view class="julishang_10 saixuanxuanzhefuji">-->
-<!--                <view v-for="(item,index) in addressList"-->
-<!--                      :key="index"-->
-<!--                      class="saixuanxuanzhechang julishang_10">-->
-<!--                  <u-button color="#f4f3f8" size="small" @click="queryParam.addressId = item.fieldValue;search1();">-->
-<!--                    <text :class="queryParam.addressId == item.fieldValue ? 'xuanzhongziti' : 'putongziti'">{{item.fieldName}}</text>-->
-<!--                  </u-button>-->
-<!--                </view>-->
-<!--              </view>-->
-<!--            </view>-->
-
-<!--            <view class="saixuanquxiang" >-->
-<!--              <view>-->
-<!--                <text class="zitijiachu zihao14">-->
-<!--                  状态-->
-<!--                </text>-->
-<!--              </view>-->
-<!--              <view class="julishang_10 saixuanxuanzhefuji">-->
-<!--                <view v-for="(item,index) in statusList"-->
-<!--                      :key="index"-->
-<!--                      class="saixuanxuanzhezhong julishang_10">-->
-<!--                  <u-button color="#f4f3f8" size="small" @click="chooseType(item.fieldValue)">-->
-<!--                    <text :class="queryParam.status == item.fieldValue ? 'xuanzhongziti' : 'putongziti'">{{item.fieldName}}</text>-->
-<!--                  </u-button>-->
-<!--                </view>-->
-<!--              </view>-->
-<!--            </view>-->
-<!--            <view class="saixuanquxiang" >-->
-<!--              <view>-->
-<!--                <text class="zitijiachu zihao14">-->
-<!--                  商品类型-->
-<!--                </text>-->
-<!--              </view>-->
-<!--              <view class="julishang_10 saixuanxuanzhefuji">-->
-<!--                <view v-for="(item,index) in typeList"-->
-<!--                      :key="index"-->
-<!--                      class="saixuanxuanzhe julishang_10">-->
-<!--                  <u-button color="#f4f3f8" size="small" @click="queryParam.goodType = item.fieldValue;search1();">-->
-<!--                    <text :class="queryParam.goodType == item.fieldValue ? 'xuanzhongziti' : 'putongziti'">{{item.fieldName}}</text>-->
-<!--                  </u-button>-->
-<!--                </view>-->
-<!--              </view>-->
-<!--            </view>-->
-
           </scroll-view >
           <view class="baisebeijing shuipingjuzhong" style="position:fixed;bottom:0;width: 80vw;">
             <u-button style="width: 20vw; margin: 5px" @click=" isShowDialog2 = false;resetHandle()">
@@ -352,10 +225,6 @@
               <text>{{ item.status |
                 dictToDescTypeValue(45) }}
               </text>
-<!--              <text v-else-if="[3,4,5,6,8].includes(item.status)" class="color-danger">{{-->
-<!--                item.status | dictToDescTypeValue(37) }}-->
-<!--              </text>-->
-<!--              <text v-else>{{ item.status | dictToDescTypeValue(37) }}</text>-->
             </view>
           </view>
           <view @click="goDetail(item.orderId) "
@@ -363,53 +232,13 @@
             <text class="chaochu color-danger"  style="margin-left: 5px;padding: 6px;width: 95vw">
               {{item.reason }}
             </text>
-<!--            <view class="xianglian" style="padding: 6px;-->
-<!--    margin-left: 5px;">-->
-<!--              <image style=" margin-bottom: 1px; width: 18px;height: 18px;"-->
-<!--                     src="../../static/img/djs.png"></image>-->
-<!--              <text style="font-size: 14px;margin-left: 5px;">发货仅剩：</text>-->
-<!--              <strong v-if=" item.days" style="font-size: 15px;">-->
-<!--                {{ item.days}}-->
-<!--              </strong>-->
-<!--              <text v-if=" item.days">天</text>-->
-<!--              <strong v-if=" item.hours" style="font-size: 15px;">-->
-<!--                {{ item.hours}}-->
-<!--              </strong>-->
-<!--              <text v-if=" item.hours">时</text>-->
-<!--              <strong style="font-size: 15px;">-->
-<!--                {{ item.minutes}}-->
-<!--              </strong>-->
-<!--              <text>分</text>-->
-<!--              <strong style="font-size: 15px;">-->
-<!--                {{ item.seconds}}-->
-<!--              </strong>-->
-<!--              <text>秒</text>-->
-<!--            </view>-->
           </view>
           <!--        中间-->
           <view class="dingdans_con_dw"  @click="goDetail(item.orderId) ">
-<!--            <view v-if="showSd" style="width: 50px;-->
-<!--    margin-left: -2px;-->
-<!--    margin-right: 2px;">-->
-<!--              <u-checkbox-group>-->
-<!--                <u-checkbox  size="18"-->
-<!--                             :checked="item.checked"-->
-<!--                             @change="changeChecked(item)"-->
-<!--                             activeColor="#409eff"-->
-<!--                             shape="circle">-->
-
-<!--                </u-checkbox>-->
-<!--              </u-checkbox-group>-->
-<!--            </view>-->
             <view  class="dingdans_con_left_dw"
                   @click.stop="avatarShow(item.img)">
               <image mode="widthFix" :src="item.img" v-if="item.img"></image>
               <image mode="widthFix" :src="$fileUrl+item.imgUrl" v-if="!item.img && item.imgUrl" ></image>
-<!--              <p class="mark_dw">-->
-<!--                <text class="text_dw">-->
-<!--                  {{ item.saleType | dictToDescTypeValue(46) }}-->
-<!--                </text>-->
-<!--              </p>-->
             </view>
             <view class="diangdans_con_right_dw">
               <view class="dingdans_con_right_top_dw" @click.stop="goodsDetail(item.goodsId)" >
@@ -440,22 +269,6 @@
                   {{item.addressId | dictToDescTypeValue(38)}}
                 </text>
               </view>
-<!--              <view1 v-if="item.surplusDay && item.saleType ==2  && item.status !=7"-->
-<!--                    style="    margin-top: 12px;margin-bottom: 5px;">-->
-<!--                <text v-if="item.surplusDay >12">剩余天数</text>-->
-<!--                <text v-if="item.surplusDay >=0 && item.surplusDay <=12" class="color-danger">剩余天数-->
-<!--                </text>-->
-<!--                <text v-if="item.surplusDay < 0" class="color-danger">到期天数</text>-->
-<!--                <text v-if="item.surplusDay >12" style="margin-left: 2px">-->
-<!--                  {{item.surplusDay}}-->
-<!--                </text>-->
-<!--                <strong style="margin-left: 2px" v-if="item.surplusDay >=0 && item.surplusDay <=12" class="color-danger">-->
-<!--                  {{item.surplusDay}}-->
-<!--                </strong>-->
-<!--                <strong style="margin-left: 2px" v-if="item.surplusDay < 0" class="color-danger">-->
-<!--                  {{ 0 - item.surplusDay}}-->
-<!--                </strong>-->
-<!--              </view1>-->
               <view class="dingdans_con_right_top_dw_2">
                 <view>
                   <text>
@@ -485,18 +298,9 @@
           </view>
           <!--底部-->
           <view class="dingdans_bottom_dw">
-<!--            <view v-if="[2,11].includes(item.status)" class="dingdans_top_left_dw">-->
-<!--              <text v-if="item.thisTimePrice">最低售价</text>-->
-<!--              <text style="margin-left: 2px;"  v-if="item.thisTimePrice">{{item.thisTimePrice }} ,</text>-->
-<!--              <text v-if="item.thisTimeProfits" style="margin-left: 2px">预估利润</text>-->
-<!--              <text style="margin-left: 2px;"  v-if="item.thisTimeProfits">{{item.thisTimeProfits }}</text>-->
-<!--            </view>-->
             <view class="dingdans_top_left_dw">
-<!--              <text>利润</text>-->
-<!--              <text style="margin-left: 2px;"  class="color-danger">{{item.profits }}</text>-->
               {{item.createTime | formateTime }}
             </view>
-            <!--          操作栏-->
             <view class="dingdans_top_right_dw">
               <view class="dingdans_con_right_down_2_1 xianglian">
                 <text class="dw-button-common" @click="handleClick(item)">修改</text>
@@ -523,32 +327,12 @@
         <image :src="imageZoom" mode="widthFix" class="showImg"></image>
       </view>
     </view>
-
-<!--    <view v-if="showSd" class="zuoyouduiqi sdzf">-->
-<!--      <view style="margin-left: 20px;">-->
-<!--        <u-checkbox-group>-->
-<!--          <u-checkbox  size="20" :checked="checkAll"  @change="checkedAll" activeColor="#409eff"  shape="circle" label="全选"></u-checkbox>-->
-<!--        </u-checkbox-group>-->
-<!--      </view>-->
-<!--      <view class="xianglian">-->
-<!--        <text style="font-size: 14px;">已选</text>-->
-<!--        <text class="color-url" style=" font-size: 17px;margin-left: 8px;font-weight: bolder">{{ids.length}}</text>-->
-<!--        <u-button  type="primary" shape="circle" size="small" style="-->
-<!--        width: 20vw;-->
-<!--        margin-top: 8px;-->
-<!--    margin-bottom: 8px;-->
-<!--    margin-left: 8px;-->
-<!--        margin-right: 20px" @click="sdzf">批量操作-->
-<!--        </u-button>-->
-<!--      </view>-->
-<!--    </view>-->
   </view>
 </template>
 <script>
   import { goodsDefectsApi } from '@/api/goodsDefects'
 
   export default {
-    name: "HelloWorld",
     data() {
       return {
         backUrl: '',
@@ -570,16 +354,6 @@
             text: '重置'
           }
         ],
-        // optionsOp: [
-        //   {
-        //     value: 'view',
-        //     text: '查看'
-        //   },
-        //   {
-        //     value: 'update',
-        //     text: '修改'
-        //   }
-        // ],
         optionsOp: [
           {
             value: 'update',
@@ -593,10 +367,6 @@
             value: 'gotoWl',
             text: '物流'
           },
-          // {
-          //   value: 'goodsDetail',
-          //   text: '商品详情'
-          // },
           {
             value: 'goDel',
             text: '删除'
@@ -764,25 +534,7 @@
       }
     },
     onLoad() {
-      // this.initBatch()
       this.listSysDict()
-      // this.resetData()
-      // if (options) {
-      //   this.queryParam.keyword = options.actNo ? options.actNo : '';
-      //   this.saleType = options.saleType ? options.saleType : '';
-      //   this.queryParam.saleType = options.saleType ? options.saleType : '';
-      //   this.queryParam.orderNo = options.orderNo ? options.orderNo : '';
-      //   this.status = options.status ? +options.status : '';
-      //   this.current = options.current ? +options.current : 0 ;
-      //   this.queryParam.status = options.status ? +options.status : '';
-      //   this.queryParam.theExpire = options.theExpire ? +options.theExpire : '';
-      //   this.months = options.months ? options.months : '';
-      //   this.backUrl = options.backUrl ? options.backUrl : '';
-      //   if (this.months) {
-      //     this.queryParam.successTimeFrom = this.months
-      //     this.queryParam.successTimeTo = this.months
-      //   }
-      // }
       this.getPage()
     },
     onPullDownRefresh() {
@@ -1037,43 +789,6 @@
           }
         })
       },
-      countdown(orderData) {
-        if (orderData.status != 3) {
-          return
-        }
-        orderData.days = 0
-        orderData.hours = 0
-        orderData.minutes = 0
-        let deliveryDeadlineTime = orderData.deliveryDeadlineTime
-        let endTime = new Date(deliveryDeadlineTime).getTime();
-        let startTime = new Date().getTime();
-        let totalSeconds = endTime - startTime;
-        let interval = setInterval(() => {
-          if (totalSeconds > 0) {
-            orderData.days = Math.floor(totalSeconds / (24 * 60 * 60 * 1000));
-            orderData.hours = Math.floor(
-                (totalSeconds - orderData.days * 24 * 60 * 60 * 1000) / (60 * 60 * 1000)
-            );
-            orderData.minutes = Math.floor(
-                (totalSeconds -
-                    orderData.days * 24 * 60 * 60 * 1000 -
-                    orderData.hours * 60 * 60 * 1000) /
-                (60 * 1000)
-            );
-            orderData.seconds = Math.floor(
-                (totalSeconds -
-                    orderData.days * 24 * 60 * 60 * 1000 -
-                    orderData.hours * 60 * 60 * 1000 -
-                    orderData.minutes * 60 * 1000) /
-                1000
-            );
-            totalSeconds -= 1000;
-            this.$forceUpdate()
-          } else {
-            clearInterval(interval);
-          }
-        }, 1000);
-      },
       listSysDict() {
         let sysDictList = uni.getStorageSync('sysDictList') ? JSON.parse(
             uni.getStorageSync('sysDictList')) : []
@@ -1083,44 +798,6 @@
         this.saleTypeList = sysDictList.filter(item => item.typeValue == 46)
         this.typeList = sysDictList.filter(item => item.typeValue == 20221108)
         this.columns.push(this.statusList)
-      },
-      getData() {
-        this.$request({
-          url: '/gw/op/v1/goodsOrder/orderData',
-          method: 'get'
-        }).then(res => {
-          if (res.subCode === 1000) {
-            this.orderIofo = res.data ? res.data.countDto : {}
-            this.list2[1].badge.value=this.orderIofo.count3
-            this.list2[2].badge.value=this.orderIofo.count4
-            this.list2[3].badge.value=this.orderIofo.count5
-            this.list2[4].badge.value=this.orderIofo.count6
-          } else {
-            this.$toast(res.subMsg)
-          }
-        })
-      },
-      search() {
-        if (!this.queryParam.name) {
-          this.$toast('请输入名称')
-          return
-        }
-        this.queryParam.pageNum = 1
-        this.getPage()
-      },
-      close() {
-        this.isShowDialog2 = false
-      },
-      chooseType(status) {
-        let current = 0
-        for (let i = 0; i < this.list2.length; i++) {
-          if (this.list2[i].status == status ){
-            current = i
-          }
-        }
-        this.current = current
-        this.queryParam.status = status
-        this.search1()
       },
       onTouchStart(e) {
         this.startTimeTouch = Date.now();

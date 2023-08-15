@@ -23,7 +23,7 @@
                 v-model="queryParamTop.actNo"
                 prefixIconStyle="font-size: 24px;color:#c0c4cc"
                 :show-action="false"
-                @change="jumpGoods(queryParamTop.actNo)"
+                @change="jumpGoods"
                 clearable
             >
             </u--input>
@@ -580,9 +580,6 @@ showFrom: false,
         this.queryParam.createTimeTo = timeValue;
         this.getData1()
       },
-      order(theExpire, scrollNum) {
-        this.$router.push({path: '/order', query: {theExpire, scrollNum}})
-      },
       handleScroll() {
         let scrollTop = this.$refs.hello.scrollTop;
         if (scrollTop < 40) {
@@ -591,40 +588,14 @@ showFrom: false,
           this.flag = true
         }
       },
-      jumpGoods(actNo) {
-        this.$router.push({path: '/GoodsBase', query: {actNo}})
+      jumpGoods() {
+        this.$navigateTo('/pages/store/index?backUrl=/pages/index/index&actNo='+ this.queryParamTop.actNo)
       },
       initTime() {
         let myDate = new Date().getTime();
         let endTime = '2024/02/10 00:00:00';
         let timestamp2 = Date.parse(new Date(endTime));
         this.seconds = (timestamp2 - myDate) / 1000
-
-        // let date = new Date();
-        // let curMonth = date.getMonth();
-        // // let prevMonth1 = (curMonth - 1 + 12) % 12;
-        // // let prevMonth2 = (curMonth - 2 + 12) % 12;
-        // let prevMonth3 = (curMonth - 3 + 12) % 12;
-        // console.info((prevMonth3 + 1) + '月');
-
-        // let date = new Date();
-        // let year = date.getFullYear();
-        // let month = date.getMonth();
-        //
-        // let result = [];
-        // for (let i = 0; i < 14; i++) {
-        //   let tempMonth = month - i;
-        //   if (tempMonth < 0) {
-        //     let month = 12+tempMonth
-        //     month = month>= 10 ? month : '0'+month
-        //     console.info('month', month)
-        //     result.push(`${year - 1}-${month}`);
-        //   } else {
-        //     tempMonth = tempMonth>= 10 ? tempMonth : '0'+tempMonth
-        //     console.info('tempMonth', tempMonth)
-        //     result.push(`${year}-${tempMonth}`);
-        //   }
-        // }
         const dates = new Date()
         let curDate = new Date().getMonth() + 1
         if (curDate >= 1 && curDate <= 9) {
@@ -645,7 +616,6 @@ showFrom: false,
       countDown() {
         let d = parseInt(this.seconds / (24 * 60 * 60));
         if (d > 0) {
-          // d = d < 10 ? '0' + d : d
           let h = parseInt(this.seconds / (60 * 60) % 24);
           h = h < 10 ? '0' + h : h;
           let m = parseInt(this.seconds / 60 % 60);
@@ -688,13 +658,6 @@ showFrom: false,
                 this.form.inventoryNum / this.form.goodsPutInNum * 100).toFixed(2);
             this.form.profitsProportion = parseFloat(
                 this.form.profitsAverage / this.form.costAverage * 100).toFixed(2);
-            // let  inventoryNum = {key: "22", value: 1393  }
-            // let  successNum = {key: "23", value: 1393  }
-            // let  successNum = {name: "成功数量", value: this.form.successNum }
-            // let  inventoryNum = {name: "库存总数", value: this.form.inventoryNum }
-            // let  successNum = {key: "successNum", value: this.form.successNum }
-            // this.chartData1.rows.push(inventoryNum)
-            // this.chartData1.rows.push(successNum)
             let res1 = {
               series: [
                 {
@@ -705,13 +668,6 @@ showFrom: false,
                 }
               ]
             };
-            // let listdata = []
-            // listdata.push(successNum)
-            // listdata.push(inventoryNum)
-            // let res ={}
-            // let series =[]
-            // let series
-
             this.chartData1 = JSON.parse(JSON.stringify(res1));
           } else {
             this.$toast(res.subMsg)
@@ -720,8 +676,6 @@ showFrom: false,
       },
       scanCode() {
         this.$navigateTo('/pages/goodsBase/scanCode?photo=1')
-        //
-        // this.$router.push({path: '/scanCode', query: {photo}})
       },
       profitData(dataType) {
         this.dataType = dataType;
@@ -730,21 +684,9 @@ showFrom: false,
           createTimeFrom: '',
           createTimeTo: ''
         };
-        // if (dataType == 1) {
-        //   this.mouthLl = 'primary'
-        //   this.dayLl = 'default'
-        //   this.dateType = 'month'
-        //   this.valueFormat = 'yyyy-MM'
-        // } else {
-        //   this.mouthLl = 'default'
-        //   this.dayLl = 'primary'
-        //   this.dateType = 'date'
-        //   this.valueFormat = 'yyyy-MM-dd'
-        // }
         this.getData1()
       },
       getData1() {
-        // goodsOrderApi.indexOrderData(this.queryParam)
         this.$request({
           url: '/gw/op/v1/goodsOrder/indexOrderData',
           method: 'get',

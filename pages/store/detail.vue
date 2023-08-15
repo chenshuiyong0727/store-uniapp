@@ -13,14 +13,6 @@
     <view class="ui-flex justify-center center"
          style="width: 100vw; height: 220px;background-color: white;margin-top: 10px;">
       <view class="cell">
-<!--        <image-->
-<!--            mode="widthFix"-->
-<!--            @click="avatarShow(form.img)"-->
-<!--            :disabled="true "-->
-<!--            style="width: 80vw;margin: 0 auto;"-->
-<!--            v-if="form.img"-->
-<!--            :src="form.img"-->
-<!--        ></image>-->
         <image mode="widthFix"
                @click="avatarShow(form.img)"
                :disabled="true "
@@ -123,7 +115,6 @@
         <view>
           <strong style="color: #333;font-size: 15px;">
             {{form.actNo}}
-            <!--          <img @click="copyUrl(form.actNo)" style="width: 20px;margin-top: -5px;" src="../../static/img/copy6.png">-->
             <image @click="$copyUrl(form.actNo)" style="margin-bottom: -3px;" class="fuzhitupian"
                    src="../../static/img/copy.png"></image>
           </strong>
@@ -200,54 +191,18 @@
           </text>
         </text>
       </view>
-      <!--      <view style="border-right-color: rgba(185, 185, 185, .14);-->
-      <!--  border-right-style: solid;">-->
-      <!--        <p>原库存</p>-->
-      <!--        <strong>-->
-      <!--          {{form.oldInventory}}-->
-      <!--        </strong>-->
-      <!--      </view>-->
-      <!--      <view style="border-right-color: rgba(185, 185, 185, .14);-->
-      <!--  border-right-style: solid;">-->
-      <!--        <p>已上架</p>-->
-      <!--        <strong>-->
-      <!--          {{form.galleryCount}}-->
-      <!--        </strong>-->
-      <!--      </view>-->
-      <!--      <view style="border-right-color: rgba(185, 185, 185, .14);-->
-      <!--  border-right-style: solid;">-->
-      <!--        <p>交易成功</p>-->
-      <!--        <strong>-->
-      <!--          {{form.successCount}}-->
-      <!--        </strong>-->
-      <!--      </view>-->
     </view>
     <view class="popContainer" v-if="pictureZoomShow" @click="pictureZoomShow = false">
       <view class="imageShow">
         <image :src="imageZoom" mode="widthFix"  class="showImg"></image>
       </view>
     </view>
-    <!--    <v-chose/>-->
-    <!--    <v-content/>-->
-    <!--    <v-baseline/>-->
-    <!--    <v-footer/>>-->
   </view>
 </template>
 
 <script>
-  // import Chose from '@/components/detail/chose.vue'
-  // import Content from '@/components/detail/content.vue'
-  // import Footer from '@/components/detail/footer.vue'
-  // import Baseline from '@/common/_baseline.vue'
   import {goodsInventoryApi} from '@/api/goodsInventory'
-  // import detail from '@/http/mock.js' //模拟数据
   export default {
-    components:{
-      // 'v-chose':Chose,
-      // 'v-content':Content,
-      // 'v-footer':Footer,
-      // 'v-baseline':Baseline
-    },
     data(){
       return {
         form: {
@@ -271,15 +226,6 @@
         todayList: ''
       }
     },
-    // created() {
-    //   const { id } = this.$route.query
-    //   if (id) {
-    //     this.getDetailById(id)
-    //   }
-    // },
-    // mounted() {
-    //   // this.listSysDict()
-    // },
     onLoad(options) {
       if (options) {
         this.id = options.id ? options.id : '';
@@ -289,9 +235,6 @@
       }
     },
     methods:{
-      // goodsDetail(id, type) {
-      //   this.$router.push({ path: '/goodsDetail', query: { id, type } })
-      // },
       goodsDetail(id) {
         if (!id) {
           return
@@ -299,17 +242,6 @@
         let url = '/pages/goodsBase/detail?id=' + id
         this.$navigateTo(url)
       },
-      // copyUrl(url) {
-      //   const input = document.createElement('input')
-      //   document.body.appendChild(input)
-      //   input.setAttribute('value', url)
-      //   input.select()
-      //   if (document.execCommand('copy')) {
-      //     document.execCommand('copy')
-      //   }
-      //   document.body.removeChild(input)
-      //   this.$toast('已复制至剪切板')
-      // },
       avatarShow(e) {
         this.imageZoom = e
         this.pictureZoomShow = true
@@ -337,15 +269,6 @@
           })
         }
       },
-      // listSysDict() {
-      //   let sysDictList = localStorage.getItem('sysDictList') ? JSON.parse(
-      //       localStorage.getItem('sysDictList')) : []
-      //   this.addressList = sysDictList.filter(item => item.typeValue == 38)
-      //   this.statusList = sysDictList.filter(item => item.typeValue == 37)
-      //   this.warehouseList = sysDictList.filter(item => item.typeValue == 40)
-      //   this.channelIdList = sysDictList.filter(item => item.typeValue == 47)
-      //   this.todayList = sysDictList.filter(item => item.typeValue == 44)
-      // },
     }
   }
 </script>
@@ -353,22 +276,6 @@
 <style lang="less" scoped>
   @import '@/assets/index/style.css';
   @import '@/assets/fz.less';
-  /** {*/
-  /*  !*margin: 0;*!*/
-  /*  !*padding: 0;*!*/
-  /*  box-sizing: border-box;*/
-  /*}*/
-  /*!* 这里直接设置 1rem = 50px begin *!*/
-  /*html {*/
-  /*  font-size: 10px;*/
-  /*}*/
-  /*!* 这里直接设置 1rem = 50px end *!*/
-  /*html,*/
-  /*body {*/
-  /*  !*font-family: "微软雅黑";*!*/
-  /*  !*color: #333;*!*/
-  /*  !*background: #fff;*!*/
-  /*}*/
   * {
     margin: 0;
     padding: 0;
@@ -381,14 +288,7 @@
   /* 这里直接设置 1rem = 50px end */
   html,
   body {
-    /*font-family: "微软雅黑";*/
-    /*color: #333;*/
-    /*background: #fff;*/
   }
-  /*ul,*/
-  /*li {*/
-  /*  list-style: none;*/
-  /*}*/
   /* 给要上拉的容器设置 begin */
   .hello {
     background-color: #f3f2f8;
@@ -400,10 +300,6 @@
   strong{
     font-weight: 600;
   }
-  /*.detail {*/
-  /*  width: 100%;*/
-  /*  padding-bottom: 14vw;*/
-  /*}*/
 
   .ui-flex {
     display: -webkit-box !important;

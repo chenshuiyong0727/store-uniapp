@@ -21,10 +21,6 @@
     height: 100px;
     position: relative;
     border-radius: 5px;">
-<!--            <image mode="widthFix" @click="avatarShow(orderData.img)" style="  width: 80%;-->
-<!--    margin-top: 28px;-->
-<!--    margin-left: 10%;" :src="orderData.img"></image>-->
-
             <image mode="widthFix"  v-if="orderData.img"  @click="avatarShow(orderData.img)" style="  width: 80%;
     margin-top: 28px;
     margin-left: 10%;" :src="orderData.img"></image>
@@ -80,25 +76,10 @@
                 <text>{{(orderData.theirPrice - orderData.price - 10 ) | numFilter}}</text>
               </view>
             </view>
-
-<!--            <view class="dingdans_con_right_top xianglian">-->
-<!--              <text>入库价：</text>-->
-<!--              <u&#45;&#45;text mode="price" :text="orderData.price"></u&#45;&#45;text>-->
-<!--            </view>-->
-
           </view>
         </view>
       </view>
     </view>
-
-
-<!--    <view class="width92 baisebeijing" style="margin-top: 10px;">-->
-<!--      <view class="zuoyouduiqi" style="width: 85vw;margin-left: 4vw;    padding: 12px 0;">-->
-<!--        <text style="font-weight: 600;font-size: 14px">出售数量</text>-->
-<!--        <u-number-box v-model="requestParam.num" :max="max1"></u-number-box>-->
-<!--      </view>-->
-<!--    </view>-->
-
     <u--form
         class=" width92 baisebeijing"
         labelPosition="left"
@@ -124,9 +105,6 @@
         </u-form-item>
       </view>
     </u--form>
-
-<!--    <view style="height: 70px"></view>-->
-
     <view class="baisebeijing shuipingjuzhong" style="width:100%;position:fixed;bottom:0;
      border-top: solid #E2DDDD 1px;">
       <u-button style="width: 50vw; margin: 10px 15px;" type="primary" @click="confirmHandle">
@@ -143,9 +121,7 @@
 </template>
 
 <script>
-  // import {goodsInventoryApi} from '@/api/goodsInventory'
   import {goodsOrderApi} from '@/api/goodsOrder'
-  import { parseTime } from '@/utils/index'
 
   export default {
     data() {
@@ -278,96 +254,14 @@
   /* 这里直接设置 1rem = 50px end */
   html,
   body {
-    /*font-family: "微软雅黑";*/
-    /*color: #333;*/
-    /*background: #fff;*/
   }
 
   strong {
     font-weight: 600;
   }
 
-  .mint-button--small {
-    display: inline-block;
-    font-size: 13px;
-    height: 6vw;
-  }
-  .clearfix {
-    &:after {
-      visibility: hidden;
-      display: block;
-      font-size: 0;
-      content: " ";
-      clear: both;
-      height: 0;
-    }
-  }
-
-  .elInput1 {
-    font-size: 14px;
-    -webkit-appearance: none;
-    background-color: #FFF;
-    background-image: none;
-    border-radius: 4px;
-    border: 1px solid #DCDFE6;
-    box-sizing: border-box;
-    color: #606266;
-    display: inline-block;
-    height: 32px;
-    line-height: 32px;
-    outline: 0;
-    padding: 0 15px;
-    -webkit-transition: border-color .2s cubic-bezier(.645, .045, .355, 1);
-    transition: border-color .2s cubic-bezier(.645, .045, .355, 1);
-    width: 100%;
-  }
-
   .btm-distance {
     margin-bottom: 15px;
   }
-
-  .city {
-    height: 33px;
-    width: 63px;
-    border-radius: 5px;
-    font-size: 16px;
-    background-color: #F6F6F6;
-    padding: 8px 0px;
-    margin-right: 6px;
-    margin-bottom: 13px;
-    display: inline-block;
-  }
-  .cityActive {
-    /*height: 36px;*/
-    /*width: 63px;*/
-    /*border-radius: 5px;*/
-    /*font-size: 17px;*/
-    /*background-color: #BEBEBE;*/
-    /*padding: 9px 0px;*/
-    /*margin-right: 6px;*/
-    /*margin-bottom: 13px;*/
-    /*// 自动换行*/
-    /*display: inline-block;*/
-
-    height: 33px;
-    width: 63px;
-    border-radius: 5px;
-    font-size: 16px;
-    background-color: #BEBEBE;
-    padding: 8px 0px;
-    margin-right: 6px;
-    margin-bottom: 13px;
-    display: inline-block;
-    /*height: 48px;*/
-    /*width: 59px;*/
-    /*border-radius: 15px;*/
-    /*font-size: 20px;*/
-    /*background-color: #BEBEBE;*/
-    /*padding: 14px 10px;*/
-    /*margin-right: 10px;*/
-    /*margin-bottom: 10px;*/
-    /*display: inline-block;*/
-  }
-
 
 </style>

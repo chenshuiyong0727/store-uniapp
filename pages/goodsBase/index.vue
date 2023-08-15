@@ -10,30 +10,6 @@
         </rudon-rowMenuDotDotDot>
       </view>
     </u-navbar>
-<!--    <button @click="$refs.popup.open('left')">打开弹窗</button>-->
-<!--    <uni-popup ref="popup" type="bottom">底部弹出 Popup</uni-popup>-->
-<!--    <view class="box">-->
-<!--      <view @click="openPopup('top')" class="btn">上面打开弹窗</view>-->
-<!--      <view @click="openPopup('bottom')" class="btn">下面打开弹窗</view>-->
-<!--      <view @click="openPopup('left')" class="btn">左面打开弹窗</view>-->
-<!--      <view @click="openPopup('right')" class="btn">右面打开弹窗</view>-->
-<!--      <view @click="openPopup('center')" class="btn">中间打开弹窗</view>-->
-<!--    </view>-->
-<!--    <liu-popup type="top" ref="top" radius="12rpx">-->
-<!--      上面打开弹窗-->
-<!--    </liu-popup>-->
-<!--    <liu-popup type="bottom" ref="bottom">-->
-<!--      下面打开弹窗-->
-<!--    </liu-popup>-->
-<!--    <liu-popup type="left" ref="left">-->
-<!--      左面打开弹窗-->
-<!--    </liu-popup>-->
-<!--    <liu-popup type="right" ref="right">-->
-<!--      右面打开弹窗-->
-<!--    </liu-popup>-->
-<!--    <liu-popup type="center" ref="center">-->
-<!--      中间打开弹窗-->
-<!--    </liu-popup>-->
     <view class="fenlei_top_tab"  style="display: flex;">
       <view style="width: 83vw">
         <u--input
@@ -77,22 +53,6 @@
         </u-tabs>
       </view>
     </view>
-<!--&lt;!&ndash;    筛选框&ndash;&gt;-->
-<!--    <view class=" baisebeijing" >-->
-<!--      <view class=" width92 zuoyouduiqi" style="-->
-<!--      font-size: 14px;-->
-<!--      padding-top: 10px;padding-bottom: 10px; border-bottom:  1px solid #ccc;" >-->
-<!--        <view>-->
-<!--          排序-->
-<!--        </view>-->
-<!--        <view>-->
-<!--          筛选-->
-<!--        </view>-->
-<!--      </view>-->
-<!--    </view>-->
-
-<!--    <u-picker :show="show_sx_type" :columns="columns" @cancel="show_sx_type= false"-->
-<!--              @confirm="confirm_sx_type" keyName="fieldName"></u-picker>-->
     <u-datetime-picker
                 title="开始时间"
                 :show="showFrom"
@@ -152,34 +112,12 @@
               <view class="dingdans_top_right_dw">
                 <view class="dingdans_con_right_down_2_1">
                   <text class="dw-button-common" @click.stop="storeAdd(item.id)">选择</text>
-                  <text class="dw-button-common" style="margin-left: 2vw" @click.stop="gotoDw(item.spuId)">得物</text>
-<!--                  <uni-link-->
-<!--                      style="margin-left: 2vw;"-->
-<!--                      :href="'https://m.dewu.com/router/product/ProductDetail?spuId='+item.spuId"-->
-<!--                      class="dw-button-common"-->
-<!--                      :showUnderLine="false"-->
-<!--                  >得物</uni-link>-->
-<!--                  <text style="margin-left: 2vw;" class="dw-button-common">得物</text>-->
-<!--                  <rudon-rowMenuDotDotDot :localdata="optionsOp" @change="menuAction1($event,item.id)">-->
-<!--                    <text class="dw-button-common">操作</text>-->
-<!--                  </rudon-rowMenuDotDotDot>-->
-
-<!--                  <el-dropdown trigger="click" style="margin-left: 1px;">-->
-<!--                    <button-->
-<!--                        class="dw-button-common">操作-->
-<!--                    </button>-->
-<!--                    <el-dropdown-menu slot="dropdown" >-->
-<!--                      <el-dropdown-item type="text" @click.native="storeAdd(item.id)">选择</el-dropdown-item>-->
-<!--                      <el-dropdown-item type="text" @click.native="gotoDw(item.spuId)">得物</el-dropdown-item>-->
-<!--                      <el-dropdown-item type="text" @click.native="goodsDetail(item.id,1)">详情</el-dropdown-item>-->
-<!--                    </el-dropdown-menu>-->
-<!--                  </el-dropdown>-->
+                  <text class="dw-button-common" v-if="item.spuId" style="margin-left: 2vw" @click.stop="gotoDw(item.spuId)">得物</text>
                 </view>
               </view>
             </view>
           </view>
         </view>
-        <!--底部-->
       </view>
     </view>
 
@@ -278,10 +216,7 @@
   </view>
 </template>
 <script>
-  // import Button from "../../uni_modules/uview-ui/libs/mixin/button";
   export default {
-    name: "HelloWorld",
-    // components: {Button},
     data() {
       return {
         dateCurrent: parseInt(new Date().getTime()),
@@ -365,7 +300,6 @@
           pageNum: 1
         },
         typeList: [],
-        // columns: [],
         startX: 0, // 触摸开始时的x坐标
         startY: 0, // 触摸开始时的Y坐标
         startTimeTouch : 0, // 触摸开始时的Y坐标
@@ -509,15 +443,8 @@
         let url = '/pages/other/otherAdd?type=' + type
         if (id) {
           url = url + '&id=' + id
-          // this.$navigateTo('/pages/other/otherAdd?type='+type+'&id='+id)
         }
         this.$navigateTo(url)
-        // this.$router.push({ path: '/otherAdd', query: { id, type } })
-      },
-
-      scanCode(id, type) {
-
-        this.$router.push({ path: '/scanCode', query: { id, type } })
       },
       goodsDetail(id) {
         if (!id) {
@@ -531,13 +458,6 @@
           return
         }
         let url = "https://m.dewu.com/router/product/ProductDetail?spuId="+ spuId;
-        // window.location.href = url + spuId;
-        // uni.redirectTo({
-        //   url:  url + spuId
-        // })
-        // uni.navigateTo({
-        //   url: url
-        // })
         // #ifdef APP-PLUS
         plus.runtime.openURL(url) //这里默认使用外部浏览器打开而不是内部web-view组件打开
         // #endif
@@ -558,10 +478,6 @@
         let url = '/pages/store/storeAdd?goodsId=' + goodsId
         this.$navigateTo(url)
       },
-      // jumpactNo(actNo) {
-      //
-      //   this.$router.push({ path: '/store', query: { actNo } })
-      // },
       jumpactNo(actNo) {
         let url = '/pages/store/index?backUrl=/pages/goodsBase/index&actNo=' + actNo
         this.$navigateTo(url)
@@ -603,7 +519,6 @@
         let sysDictList = uni.getStorageSync('sysDictList') ? JSON.parse(
             uni.getStorageSync('sysDictList')) : []
         this.typeList = sysDictList.filter(item => item.typeValue == 20221108)
-        // this.columns.push(this.typeList)
       },
       search() {
         if (!this.queryParam.name) {
@@ -611,13 +526,8 @@
           return
         }
         this.queryParam.pageNum = 1
-        // this.allLoaded = false;
         this.getPage()
       },
-      // close() {
-      //   this.isShowDialog2 = false
-      //   console.log('close');
-      // },
       search2() {
         this.tableData = []
         this.queryParam.pageNum = 1
@@ -663,10 +573,6 @@
         return
       },
       fabClick() {
-        // uni.showToast({
-        //   title: '点击了悬浮按钮',
-        //   icon: 'none'
-        // })
         this.$navigateTo('/pages/goodsBase/scanCode')
       },
     }

@@ -1,8 +1,5 @@
 <template>
   <view class="hello">
-    <!--    <u-calendar-->
-    <!--        :show="show"-->
-    <!--        @confirm="handleConfirm"></u-calendar>-->
     <u-navbar
         :title="titleName"
     >
@@ -88,11 +85,6 @@
               </p>
               <p style="margin-top: 5px">
                 <text>合计入库金额 ：</text> <strong>{{item.inventoryAmount}}</strong>
-                <!--                <mt-button style="margin-left: 40px;"-->
-                <!--                  type="primary"-->
-                <!--                  size="small"-->
-                <!--                  @click="getPage"> 搜索-->
-                <!--                </mt-button>-->
                 <text
                     class="color-url"
                     style="margin-left: 40px;"
@@ -102,9 +94,6 @@
                 </text>
               </p>
             </view>
-            <!--            <view class="dingdans_top_right">-->
-            <!--              尺码：<strong class="color-danger">{{item.size }}</strong>-->
-            <!--            </view>-->
           </view>
         </view>
         <view v-else>
@@ -113,11 +102,6 @@
             <view  class="dingdans_con_left_dw"
                  @click="avatarShow(item.img)">
               <image :src="item.img" mode="widthFix"></image>
-              <!--              <p class="mark_dw">-->
-              <!--              <text class="text_dw">-->
-              <!--                {{ item.type | dictToDescTypeValue(20221108) }}-->
-              <!--              </text>-->
-              <!--              </p>-->
             </view>
             <view class="diangdans_con_right_dw">
               <view class="dingdans_con_right_top_dw" @click="goodsDetail(item.goodsId)">
@@ -147,8 +131,6 @@
                    <text @click="warehouseDetail(item.goodsId ,item.actNo ,item.img )">
               {{item.actNo}}
               </text>
-<!--                  <img @click="copyUrl(item.actNo)" style="width: 20px;margin-bottom: 8px;"-->
-<!--                       src="../../../static/img/copy6.png">-->
                   <image @click.stop="$copyUrl(item.actNo)" class="fuzhitupian"
                          src="../../static/img/copy.png"></image>
                 </view>
@@ -186,138 +168,9 @@
               <text> {{item.createTime |formateTime }}</text>
             </view>
           </view>
-          <!--          <view1 class="dingdans_top">-->
-          <!--            <view class="dingdans_top_left">-->
-          <!--              货号：<strong @click="WarehouseDetail(item.goodsId ,item.actNo ,item.imgUrl,item.img )" style="color: #409EFF"> {{item.actNo}} </strong>-->
-          <!--            </view>-->
-          <!--            <view class="dingdans_top_right">-->
-          <!--              尺码：<strong class="color-danger">{{item.size }}</strong>-->
-          <!--            </view>-->
-          <!--          </view1>-->
-          <!--          <view1 class="dingdans_con">-->
-          <!--            <view v-if="item.img" :src="item.img" class="dingdans_con_left" @click="avatarShow(item.img)">-->
-          <!--            <img :src="item.img">-->
-          <!--          </view>-->
-          <!--          <view v-if="!item.img && item.imgUrl" :src="item.img" class="dingdans_con_left" @click="avatarShow(fileUrl+ item.imgUrl)">-->
-          <!--            <img :src="fileUrl + item.imgUrl">-->
-          <!--          </view>-->
-          <!--            <view class="diangdans_con_right">-->
-          <!--              <view class="dingdans_con_right_top">-->
-          <!--                原库存：<strong>{{item.oldInventory}} </strong> 库存：<strong>{{item.inventory}}</strong> 交易成功：<strong>{{item.successCount}}</strong> 上架：<strong>{{item.galleryCount}}</strong>-->
-          <!--              </view>-->
-          <!--              <view class="dingdans_con_right_down">-->
-          <!--                入库价：<strong>{{item.price}}</strong>-->
-          <!--                入库总额：<strong>{{item.inventoryAmount}}</strong>-->
-          <!--                入库价：<strong>{{item.dwPrice}}</strong>-->
-          <!--              </view>-->
-          <!--              <view style="-->
-          <!--            margin-bottom: -7vw;-->
-          <!--    font-size: 3.5vw;-->
-          <!--    margin-top: -1vw;">-->
-          <!--                <text >预计利润：<strong class="color-danger">{{(item.dwPrice - (item.dwPrice * 0.075 + 38 + 8.5) - item.price - 10) | numFilter}}</strong></text>-->
-          <!--                <strong> {{item.createTime |formateTime }}</strong>-->
-          <!--              </view>-->
-          <!--            </view>-->
-          <!--          </view1>-->
         </view>
       </view>
     </view>
-
-<!--    <view1 style="    padding-top: 44px;">-->
-<!--      <view class="dingdans_item_rt" v-for="(item,index) in tableData" :key="index">-->
-<!--        <view class="dingdans_top_rt">-->
-<!--          <strong style="margin-left: 12px;">月份：</strong>-->
-<!--          <strong style="color: #409eff"-->
-<!--                  @click="jumpDetail(item.months )"> {{item.months}} </strong>-->
-<!--        </view>-->
-<!--        <view class="dingdans_con_rt">-->
-<!--          <view style="">-->
-<!--            <strong>-->
-<!--              {{item.successNum}}-->
-<!--            </strong>-->
-<!--            <p>入库数</p>-->
-<!--          </view>-->
-<!--          <view style="">-->
-<!--            <strong>-->
-<!--              {{item.orderAmount}}-->
-<!--            </strong>-->
-<!--            <p>入库总额</p>-->
-<!--          </view>-->
-<!--          <view>-->
-<!--            <strong>-->
-<!--              {{item.profits}}-->
-<!--            </strong>-->
-<!--            <p>已产生利润</p>-->
-<!--          </view>-->
-<!--          <view style="   border-right-width: 0vw;">-->
-<!--            <strong>-->
-<!--              {{item.profitsAmount}}-->
-<!--            </strong>-->
-<!--            <p>市价总额</p>-->
-<!--          </view>-->
-<!--        </view>-->
-<!--        <view class="dingdans_con_rt">-->
-<!--          <view>-->
-<!--            <strong v-if="item.successNum">-->
-<!--              {{item.orderAmount / item.successNum | numFilter}}-->
-<!--            </strong>-->
-<!--            <strong v-else>-->
-<!--              0-->
-<!--            </strong>-->
-<!--            <p>入库均价</p>-->
-<!--          </view>-->
-<!--          <view>-->
-<!--            <strong v-if="item.successNum">-->
-<!--              {{item.profitsAmount / item.successNum | numFilter}}-->
-<!--            </strong>-->
-<!--            <strong v-else>-->
-<!--              0-->
-<!--            </strong>-->
-<!--            <p>市价均价</p>-->
-<!--          </view>-->
-<!--          <view>-->
-<!--            <strong>-->
-<!--              {{item.inventory}}-->
-<!--            </strong>-->
-<!--            <p>剩余库存</p>-->
-<!--          </view>-->
-<!--          <view style="border-right-width: 0vw;">-->
-<!--            <strong>-->
-<!--              {{item.inventoryPrice}}-->
-<!--            </strong>-->
-<!--            <p>剩余总额</p>-->
-<!--          </view>-->
-<!--        </view>-->
-<!--        <view class="dingdans_con_rt">-->
-<!--          <view>-->
-<!--            <strong>-->
-<!--              {{item.saleNum}}-->
-<!--            </strong>-->
-<!--            <p>已售数量</p>-->
-<!--          </view>-->
-<!--          <view>-->
-<!--            <strong>-->
-<!--              {{item.theirPrice}}-->
-<!--            </strong>-->
-<!--            <p>出售金额</p>-->
-<!--          </view>-->
-<!--          <view>-->
-<!--            <strong v-if="item.saleNum">-->
-<!--              {{item.profits / item.saleNum | numFilter}}-->
-<!--            </strong>-->
-<!--            <strong v-else>0</strong>-->
-<!--            <p>利润均价</p>-->
-<!--          </view>-->
-<!--          <view style=" border-right-width: 0vw;">-->
-<!--            <strong>-->
-<!--              {{item.thisTimeProfits}}-->
-<!--            </strong>-->
-<!--            <p>预估利润</p>-->
-<!--          </view>-->
-<!--        </view>-->
-
-<!--      </view>-->
-<!--    </view1>-->
     <!--    列表结束-->
     <view v-show="tableData.length" class="meiyougengduo">
       <u-loadmore fontSize="18"  color="#a6a6a6" nomoreText="最硬球鞋"  loadingText="最硬球鞋" status="nomore"/>
@@ -330,7 +183,6 @@
         textColor="#8a8a8a"
         :icon="$fileUrl +'/static/operateSteps/empity_7.png'">
     </u-empty>
-    <!--    <p style="padding: 0.5rem 0;" class="to-the-bottom">{{emtityMsg}}</p>-->
     <view class="popContainer" v-if="pictureZoomShow" @click="pictureZoomShow = false">
       <view class="imageShow">
         <image :src="imageZoom" mode="widthFix" class="showImg"></image>
@@ -339,16 +191,8 @@
   </view>
 </template>
 <script>
-  // import Baseline from '@/common/_baseline.vue'
-  // import Footer from '@/common/_footer.vue'
-  // import {reportApi} from '@/api/report'
 
   export default {
-    components: {
-      // 'v-baseline': Baseline,
-      // 'v-footer': Footer
-    },
-    name: "HelloWorld",
     data() {
       return {
         dateCurrent: parseInt(new Date().getTime()),
@@ -366,10 +210,6 @@
         tableData: [],
       }
     },
-    // mounted() {
-    //   this.getPage()
-    //
-    // },
     onLoad(options) {
       if (options) {
         this.months = options.months ? options.months : '';
@@ -411,12 +251,6 @@
       jumpDetail(months) {
         this.$navigateTo('/pages/store/index?months=' + months)
       },
-      // jumpDetail(months) {
-      //   if (months == '合计') {
-      //     return
-      //   }
-      //   this.$router.push({path: '/putinDetail', query: {months}})
-      // },
       warehouseDetail(goodsId , actNo,img) {
         this.$navigateTo('/pages/store/warehouseDetail?goodsId=' + goodsId +'&actNo=' +actNo +'&img=' +img)
       },

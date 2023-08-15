@@ -266,15 +266,10 @@
         @confirm="confirmTo"
         @cancel="cancelTo"
     ></u-datetime-picker>
-<!--    @touchmove.stop="onTouchMove"-->
     <view
         style="height: 100vh"
         @touchstart.stop="onTouchStart" @touchend.stop="handleTouchend" >
       <view class="julibiaoti4" >
-<!--    <view class="julibiaoti4"-->
-<!--          @touchstart.stop="onTouchStart"-->
-<!--          @touchend.stop="handleTouchend"-->
-<!--        >-->
       <view class="dingdans_item_dw"
             v-for="(item,index) in tableData"
             :key="index"
@@ -360,24 +355,9 @@
               {{item.dwPrice | getProfits(item.price)}}
             </text>
           </view>
-          <!--          操作栏-->
-<!--          <view class="dingdans_top_right_dw">-->
-<!--            <view class="dingdans_con_right_down_2_1">-->
-<!--              <view style="margin-bottom: 3px;">-->
-<!--                <rudon-rowMenuDotDotDot :localdata="item.optionsOp" @change="menuActionList($event,item)">-->
-<!--                  <text class="dw-button-common">操作</text>-->
-<!--                </rudon-rowMenuDotDotDot>-->
-<!--              </view>-->
-<!--            </view>-->
-<!--          </view>-->
-
           <view class="dingdans_top_right_dw">
             <view class="dingdans_con_right_down_2_1 xianglian">
               <text v-if="item.inventory > item.galleryCount"  class="dw-button-common" @click="gallery(item)">上架</text>
-<!--              <text v-else-if="item.status==3" class="dw-button-common" @click="toDelivery(item.id)">发货</text>-->
-<!--              <text v-else-if="item.status==4" class="dw-button-common" @click="changeStatusComfirm(item.id,5,'确认揽件')">揽件</text>-->
-<!--              <text v-else-if="item.status==5" class="dw-button-common" @click="changeStatusComfirm(item.id,6,'确认收货')">收货</text>-->
-<!--              <text v-else-if="[6,11].includes(item.status)"  class="dw-button-common" @click="update(item,'交易成功')">成功</text>-->
               <rudon-rowMenuDotDotDot :localdata="optionsOp" @change="menuActionList($event,item)">
                 <text v-if="item.inventory > item.galleryCount"  class="dw-button-common">更多</text>
                 <text v-else class="dw-button-common">操作</text>
@@ -415,7 +395,7 @@
   import { parseTime } from '@/utils/index'
 
   export default {
-    name: "HelloWorld",
+
     data() {
       return {
         pattern: {
@@ -448,10 +428,6 @@
           }
         ],
         optionsOp: [
-          // {
-          //   value: 'goodsDetail',
-          //   text: '商品详情'
-          // },
           {
             value: 'warehouseDetail',
             text: '库存信息'
@@ -605,13 +581,6 @@
         totalCount: 1
       }
     },
-    mounted() {
-      // this.getPage()
-      // this.listSysDict()
-      // this.handleChange()
-      // this.keyupSubmit()
-
-    },
     onLoad(options) {
       this.listSysDict()
       this.resetData()
@@ -673,31 +642,7 @@
           }
         }
       },
-      // onTouchEnd(e) {
-      //   const moveX = e.changedTouches[0].clientX; // 获取触摸移动时的x坐标
-      //   const diffX = moveX - this.startX; // 计算触摸移动距离
-      //   // console.info('1' , this.current)
-      //   if (diffX > 40) {
-      //     // console.log('向右滑动'); // 向右滑动事件
-      //     this.current > 0 ? this.current -- : ''
-      //     let resdata = this.list2[this.current]
-      //     this.tabClick(resdata)
-      //         // this.current = this.current - 1
-      //   } else if (diffX < -40) {
-      //     // console.log('向左滑动'); // 向左滑动事件
-      //     // this.current  = this.current + 1
-      //     this.current < this.list2.length -1 ? this.current ++ : ''
-      //     let resdata = this.list2[this.current]
-      //     this.tabClick(resdata)
-      //   }
-      //   // console.info('2' , this.current)
-      // },
-      // onTouchEnd(e) {
-      //   // 清除起始坐标
-      //   this.startX = 0;
-      // },
       handleChange() {
-        // goodsBaseApi.listDropDownSizes({ type: '' }, false).
         this.$request({
           url: '/gw/op/v1/goodsBase/listDropDownSizes',
           method: 'post',
@@ -818,24 +763,6 @@
         this.queryParam.typeStr = fieldName
         this.search1()
       },
-      // goDetail(id, type) {
-      //   let url = '/pages/other/otherAdd?type=' + type
-      //   if (id) {
-      //     url = url + '&id=' + id
-      //     // this.$navigateTo('/pages/other/otherAdd?type='+type+'&id='+id)
-      //   }
-      //   this.$navigateTo(url)
-      //   // this.$router.push({ path: '/otherAdd', query: { id, type } })
-      // },
-
-      scanCode(id, type) {
-
-        this.$router.push({ path: '/scanCode', query: { id, type } })
-      },
-      // goodsDetail(id, type) {
-      //
-      //   this.$router.push({ path: '/goodsDetail', query: { id, type } })
-      // },
       goodsDetail(id) {
         if (!id) {
           return
@@ -855,10 +782,6 @@
         window.open(url)
         // #endif
       },
-      // storeAdd(goodsId) {
-      //
-      //   this.$router.push({ path: '/storeAdd', query: { goodsId } })
-      // },
       jumpOrder(actNo) {
         let url= this.getLocalPath()
         uni.reLaunch({
@@ -877,32 +800,6 @@
         return  res
       },
       converData(item) {
-        // let  optionsOp= [
-        //         {
-        //           value: 'goodsDetail',
-        //           text: '商品详情'
-        //         },
-        //         {
-        //           value: 'warehouseDetail',
-        //           text: '库存信息'
-        //         },
-        //         {
-        //           value: 'update',
-        //           text: '修改'
-        //         },
-        //         {
-        //           value: 'gotoDw',
-        //           text: '得物'
-        //         },
-        //         {
-        //           value: 'jumpOrder',
-        //           text: '订单'
-        //         },
-        //         {
-        //           value: 'goDel',
-        //           text: '删除'
-        //         }
-        // ]
         let list = []
         if (item.inventory > item.galleryCount) {
           list.push({
@@ -917,7 +814,6 @@
         } else{
           list = this.optionsOp
         }
-        // let newArr = list.map((num, index) => ({...optionsOp[index], value: num}));
         item.optionsOp=list
       },
       getPage() {
@@ -933,11 +829,6 @@
           this.queryParam.inventoryTo = ''
         }
         this.getData2()
-        // this.$request({
-        //   url: '/gw/op/v1/goodsInventory/pageGoods',
-        //   method: 'get',
-        //   data: this.queryParam
-        // })
         this.emtityMsg = ''
         goodsInventoryApi.pageGoods(this.queryParam).then(res => {
           this.isLoading = false
@@ -1078,7 +969,6 @@
         this.pictureZoomShow = true
       },
       tabClick(item) {
-        // this.queryParam.type = item.type
         this.queryParam.inventory = item.inventory
         this.queryParam.today = item.today
         this.search1()

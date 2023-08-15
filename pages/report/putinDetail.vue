@@ -1,8 +1,5 @@
 <template>
   <view class="hello">
-    <!--    <u-calendar-->
-    <!--        :show="show"-->
-    <!--        @confirm="handleConfirm"></u-calendar>-->
     <u-navbar
         :title="titleName"
     >
@@ -21,9 +18,6 @@
     <view class="fenlei_top zuoyouduiqi">
       <view class="fenlei_top_left">
         <view @click="showFrom= true">
-          <!-- <el-date-picker style="width: 44vw" readonly="readonly"
-                          v-model="queryParam.createTimeFrom" value-format="yyyy-MM"  type="month"
-                          placeholder="开始时间"></el-date-picker> -->
           <u--input
               style="width: 43vw;"
               class="searchInput"
@@ -38,9 +32,6 @@
           </u--input>
         </view>
       </view>
-<!--      <view style="margin-right: 6px;margin-left: 6px;">-->
-<!--        <text>至</text>-->
-<!--      </view>-->
       <view>
         <image  class="hengtupianbaobiao" src="../../static/img/heng.png"></image>
       </view>
@@ -58,9 +49,6 @@
               clearable
           >
           </u--input>
-          <!--       <el-date-picker style="width: 44vw" readonly="readonly"
-                                 v-model="queryParam.createTimeTo" value-format="yyyy-MM"  type="month"
-                                 placeholder="结束时间"></el-date-picker> -->
         </view>
       </view>
     </view>
@@ -189,20 +177,10 @@
         textColor="#8a8a8a"
         :icon="$fileUrl +'/static/operateSteps/empity_7.png'">
     </u-empty>
-    <!--    <p style="padding: 0.5rem 0;" class="to-the-bottom">{{emtityMsg}}</p>-->
   </view>
 </template>
 <script>
-  // import Baseline from '@/common/_baseline.vue'
-  // import Footer from '@/common/_footer.vue'
-  // import {reportApi} from '@/api/report'
-
   export default {
-    components: {
-      // 'v-baseline': Baseline,
-      // 'v-footer': Footer
-    },
-    name: "HelloWorld",
     data() {
       return {
         dateCurrent: parseInt(new Date().getTime()),
@@ -218,10 +196,6 @@
         tableData: [],
       }
     },
-    // mounted() {
-    //   this.getPage()
-    //
-    // },
     onLoad(options) {
       if (options) {
         this.months = options.months ? options.months : '';
@@ -259,19 +233,12 @@
         this.queryParam.createTimeTo = timeValue;
         this.getPage()
       },
-      // jumpDetail(months) {
-      //   if (months == '合计') {
-      //     return
-      //   }
-      //   this.$router.push({path: '/putinDetail', query: {months}})
-      // },
       jumpDetail(months) {
         if (months == '合计') {
           return
         }
         let url = '/pages/report/putinDayDetail?months=' + months
         this.$navigateTo(url)
-        // this.$router.push({path: '/putinDetail', query: {months}})
       },
       getPage() {
         this.allLoaded = false;

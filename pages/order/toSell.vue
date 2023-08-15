@@ -21,9 +21,6 @@
     height: 100px;
     position: relative;
     border-radius: 5px;">
-<!--            <image mode="widthFix" @click="avatarShow(orderData.img)" style="  width: 80%;-->
-<!--    margin-top: 28px;-->
-<!--    margin-left: 10%;" :src="orderData.img"></image>-->
             <image mode="widthFix"  v-if="orderData.img"  @click="avatarShow(orderData.img)" style="  width: 80%;
     margin-top: 28px;
     margin-left: 10%;" :src="orderData.img"></image>
@@ -48,27 +45,6 @@
                 <text>{{orderData.size}}</text>
               </view>
             </view>
-
-<!--            <view class="dingdans_con_right_top xianglian">-->
-<!--              <view class="xianglian">-->
-<!--                库存：-->
-<!--                <text>-->
-<!--                  {{orderData.inventory}}-->
-<!--                </text>-->
-<!--                /-->
-<!--                <text>-->
-<!--                  {{orderData.oldInventory}}-->
-<!--                </text>-->
-<!--              </view>-->
-<!--              <view class="shugangfengexian">-->
-<!--                <text>|</text>-->
-<!--              </view>-->
-<!--              <view>-->
-<!--                已上架：-->
-<!--                <text>{{orderData.galleryCount}}</text>-->
-<!--              </view>-->
-<!--            </view>-->
-
             <view class="dingdans_con_right_top xianglian">
               <text>入库价：</text>
               <u--text mode="price" :text="orderData.price"></u--text>
@@ -78,15 +54,6 @@
         </view>
       </view>
     </view>
-
-
-<!--    <view class="width92 baisebeijing" style="margin-top: 10px;">-->
-<!--      <view class="zuoyouduiqi" style="width: 85vw;margin-left: 4vw;    padding: 12px 0;">-->
-<!--        <text style="font-weight: 600;font-size: 14px">出售数量</text>-->
-<!--        <u-number-box v-model="requestParam.num" :max="max1"></u-number-box>-->
-<!--      </view>-->
-<!--    </view>-->
-
     <u--form
         class=" width92 baisebeijing"
         labelPosition="left"
@@ -131,47 +98,6 @@
           <uni-datetime-picker :clearIcon="false" style="color: #303133 !important; text-align: right;font-size: 14px;" type="datetime" v-model="requestParam.deliveryDeadlineTime"  :border="false"/>
           <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
         </u-form-item>
-
-<!--        <u-form-item label-width="25vw" label="入库价" >-->
-<!--          <u&#45;&#45;input  disabledColor="#fff" inputAlign="right" @change="keyup1"-->
-<!--                     v-model="requestParam.price" type="digit" border="none"></u&#45;&#45;input>-->
-<!--          <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-<!--        </u-form-item>-->
-
-<!--        <u-form-item label-width="25vw" label="出售价格" borderBottom>-->
-<!--          <u&#45;&#45;input  disabledColor="#fff" inputAlign="right" @change="keyup1"-->
-<!--                     v-model="requestParam.shelvesPrice" type="digit" border="none"></u&#45;&#45;input>-->
-<!--          <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-<!--        </u-form-item>-->
-<!--        <u-form-item label-width="25vw" label="手续费" borderBottom>-->
-<!--          <u&#45;&#45;input  disabledColor="#fff" inputAlign="right" @change="keyup1"-->
-<!--                     v-model="requestParam.poundage" type="digit" border="none"></u&#45;&#45;input>-->
-<!--          <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-<!--        </u-form-item>-->
-
-<!--        <u-form-item label-width="25vw" label="运费" borderBottom>-->
-<!--          <u&#45;&#45;input  disabledColor="#fff" inputAlign="right" @change="keyup1"-->
-<!--                     v-model="requestParam.freight" type="digit" border="none"></u&#45;&#45;input>-->
-<!--          <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-<!--        </u-form-item>-->
-
-<!--        <u-form-item label-width="25vw" label="到手价" borderBottom>-->
-<!--          <u&#45;&#45;input  disabledColor="#fff" inputAlign="right" @change="keyup2"-->
-<!--                     v-model="requestParam.theirPrice" type="digit" border="none"></u&#45;&#45;input>-->
-<!--          <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-<!--        </u-form-item>-->
-
-<!--        <u-form-item label-width="25vw" label="利润" borderBottom>-->
-<!--          <u&#45;&#45;input  disabledColor="#fff" inputAlign="right" @change="keyup1"-->
-<!--                     v-model="requestParam.profits" type="digit" border="none"></u&#45;&#45;input>-->
-<!--          <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-<!--        </u-form-item>-->
-
-<!--        <u-form-item label-width="25vw" label="补贴价格" >-->
-<!--          <u&#45;&#45;input  disabledColor="#fff" inputAlign="right" @change="keyup1"-->
-<!--                     v-model="requestParam.subsidiesPrice" type="digit" border="none"></u&#45;&#45;input>-->
-<!--          <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-<!--        </u-form-item>-->
       </view>
     </u--form>
 
@@ -319,7 +245,6 @@
 </template>
 
 <script>
-  // import {goodsInventoryApi} from '@/api/goodsInventory'
   import {goodsOrderApi} from '@/api/goodsOrder'
   import { parseTime } from '@/utils/index'
 
@@ -384,6 +309,7 @@
       }
     },
     onLoad(options) {
+      this.listSysDict()
       if (options) {
         this.id = options.id ? options.id : '';
         if (this.id) {
@@ -391,62 +317,8 @@
         }
       }
     },
-    mounted() {
-      this.listSysDict()
-    },
     methods: {
       keyup1() {
-        // let shelvesPrice = this.requestParam.shelvesPrice + ''
-        // if (shelvesPrice < 100) {
-        //   this.tipMsg = '请提高价格'
-        // } else if (shelvesPrice > 299) {
-        //   let price2 = shelvesPrice.substring(shelvesPrice.length - 1, shelvesPrice.length)
-        //   if (price2 != 9) {
-        //     this.tipMsg = '请以9结尾'
-        //   } else {
-        //     this.tipMsg = ''
-        //   }
-        // } else {
-        //   this.tipMsg = ''
-        // }
-        // if (!shelvesPrice) {
-        //   this.tipMsg = ''
-        // }
-        //
-        // let jsfwf = shelvesPrice * 0.05
-        // if (jsfwf < 15) {
-        //   jsfwf = 15
-        // }
-        // if (jsfwf > 249) {
-        //   jsfwf = 249
-        // }
-        // this.requestParam.jsfwf = parseFloat(jsfwf).toFixed(2)
-        //
-        // let zzsxf = shelvesPrice * 0.01
-        // this.requestParam.zzsxf = parseFloat(zzsxf).toFixed(2)
-        //
-        // let shwffwfBl = 1.5
-        // if (shelvesPrice >= 600 && shelvesPrice < 2000) {
-        //   shwffwfBl = 1.6
-        // } else if (shelvesPrice >= 2000) {
-        //   shwffwfBl = 1.8
-        // }
-        // this.requestParam.shwffwfBl = shwffwfBl
-        // let shwffwf = shelvesPrice * 0.01 * shwffwfBl
-        // this.requestParam.shwffwf = parseFloat(shwffwf).toFixed(2)
-        //
-        // let xfzyfbt = 6
-        // if (shelvesPrice >= 200 && shelvesPrice < 300) {
-        //   xfzyfbt = 6.5
-        // } else if (shelvesPrice >= 300) {
-        //   xfzyfbt = 8.5
-        // }
-        // this.requestParam.xfzyfbt = parseFloat(xfzyfbt).toFixed(2)
-        //
-        // let poundage = jsfwf + zzsxf + shwffwf + xfzyfbt + 38
-        // // let poundage = shelvesPrice * 0.075 + 38 + 8.5
-        // this.requestParam.poundage = parseFloat(poundage).toFixed(2)
-        // let shelvesPrice = this.requestParam.shelvesPrice
         let theirPrice = this.requestParam.shelvesPrice - this.requestParam.poundage
         this.requestParam.theirPrice = parseFloat(theirPrice).toFixed(2)
 
@@ -503,7 +375,6 @@
         this.requestParam.xfzyfbt = parseFloat(xfzyfbt).toFixed(2)
 
         let poundage = jsfwf + zzsxf + shwffwf + xfzyfbt + 38
-        // let poundage = shelvesPrice * 0.075 + 38 + 8.5
         this.requestParam.poundage = parseFloat(poundage).toFixed(2)
 
         let theirPrice = shelvesPrice - poundage
@@ -534,9 +405,6 @@
           this.$toast('请选择发货截止时间')
           return
         }
-        // let realVal = this.requestParam.subsidiesPrice * 1 + this.requestParam.shelvesPrice
-        //     - (this.requestParam.shelvesPrice * 0.075 + 38 + 8.5)
-        // this.requestParam.theirPrice = parseFloat(realVal).toFixed(2)
         // 出售
         goodsOrderApi.sellGoods(this.requestParam).then(res => {
           this.$toast(res.subMsg)
@@ -575,25 +443,6 @@
               this.requestParam.shelvesPrice = this.orderData.shelvesPrice
               this.requestParam.subsidiesPrice = this.orderData.subsidiesPrice
               this.keyup2()
-              // this.orderData = res.data ? res.data : {}
-              // this.max1 = this.orderData.inventory - this.orderData.galleryCount
-              //
-              // this.requestParam.inventoryId = this.orderData.id
-              // this.requestParam.num = this.orderData.inventory - this.orderData.galleryCount
-              // this.requestParam.shelvesPrice = this.orderData.dwPrice
-              // this.keyup2()
-              // let poundage = this.requestParam.shelvesPrice * 0.075 + 38 + 8.5
-              // this.requestParam.poundage = parseFloat(poundage).toFixed(2)
-              //
-              // let theirPrice =  this.requestParam.shelvesPrice
-              //     - (this.requestParam.shelvesPrice * 0.075 + 38 + 8.5)
-              // this.requestParam.theirPrice = parseFloat(theirPrice).toFixed(2)
-              //
-              // let profits = this.requestParam.theirPrice - 10
-              //     - this.orderData.price
-              // this.requestParam.profits = parseFloat(profits).toFixed(2)
-              // this.isShowDialog1 = true
-
             } else {
               this.$toast(res.subMsg)
             }
@@ -631,11 +480,7 @@
     font-weight: 600;
   }
 
-  .mint-button--small {
-    display: inline-block;
-    font-size: 13px;
-    height: 6vw;
-  }
+
   .clearfix {
     &:after {
       visibility: hidden;
@@ -647,70 +492,8 @@
     }
   }
 
-  .elInput1 {
-    font-size: 14px;
-    -webkit-appearance: none;
-    background-color: #FFF;
-    background-image: none;
-    border-radius: 4px;
-    border: 1px solid #DCDFE6;
-    box-sizing: border-box;
-    color: #606266;
-    display: inline-block;
-    height: 32px;
-    line-height: 32px;
-    outline: 0;
-    padding: 0 15px;
-    -webkit-transition: border-color .2s cubic-bezier(.645, .045, .355, 1);
-    transition: border-color .2s cubic-bezier(.645, .045, .355, 1);
-    width: 100%;
-  }
-
   .btm-distance {
     margin-bottom: 15px;
-  }
-
-  .city {
-    height: 33px;
-    width: 63px;
-    border-radius: 5px;
-    font-size: 16px;
-    background-color: #F6F6F6;
-    padding: 8px 0px;
-    margin-right: 6px;
-    margin-bottom: 13px;
-    display: inline-block;
-  }
-  .cityActive {
-    /*height: 36px;*/
-    /*width: 63px;*/
-    /*border-radius: 5px;*/
-    /*font-size: 17px;*/
-    /*background-color: #BEBEBE;*/
-    /*padding: 9px 0px;*/
-    /*margin-right: 6px;*/
-    /*margin-bottom: 13px;*/
-    /*// 自动换行*/
-    /*display: inline-block;*/
-
-    height: 33px;
-    width: 63px;
-    border-radius: 5px;
-    font-size: 16px;
-    background-color: #BEBEBE;
-    padding: 8px 0px;
-    margin-right: 6px;
-    margin-bottom: 13px;
-    display: inline-block;
-    /*height: 48px;*/
-    /*width: 59px;*/
-    /*border-radius: 15px;*/
-    /*font-size: 20px;*/
-    /*background-color: #BEBEBE;*/
-    /*padding: 14px 10px;*/
-    /*margin-right: 10px;*/
-    /*margin-bottom: 10px;*/
-    /*display: inline-block;*/
   }
 
 

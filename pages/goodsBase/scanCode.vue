@@ -254,13 +254,6 @@
               </view>
             </view>
           </view>
-
-<!--          <view style="text-align: center">-->
-<!--            <el-button :type="type30" @click="profitData(30)" size="small" round>30天走势图</el-button>-->
-<!--            <el-button :type="type180" @click="profitData(180)" size="small" round>半年走势图</el-button>-->
-<!--            <el-button :type="type365" @click="profitData(365)"size="small"  round>年度走势图</el-button>-->
-<!--          </view>-->
-
           <view class="zuoyouduiqi" style="
     padding-right: 20px;
     padding-bottom: 14px;
@@ -280,39 +273,6 @@
                 :chartData="chartData"
                 :ontouch="true"/>
           </view>
-
-<!--          <view1>-->
-<!--            <u&#45;&#45;form>-->
-<!--              <u-form-item label="类型" borderBottom @click="show_sx_type = true; $hideKeyboard()">-->
-<!--                <u&#45;&#45;input inputAlign="right" placeholder="请选择类型" disabledColor="#fff"-->
-<!--                          placeholderStyle="font-size: 14px;color:#c0c4cc"-->
-<!--                          v-model="queryParam.typeStr" border="none" disabled></u&#45;&#45;input>-->
-<!--                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-<!--              </u-form-item>-->
-<!--              <u-form-item label="品牌" borderBottom>-->
-<!--                <u&#45;&#45;input inputAlign="right" placeholder="请输入品牌"-->
-<!--                          placeholderStyle="font-size: 14px;color:#c0c4cc"-->
-<!--                          v-model="queryParam.brand" border="none"></u&#45;&#45;input>-->
-<!--                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-<!--              </u-form-item>-->
-<!--              <u-form-item label="开始时间" label-width="50vw" borderBottom-->
-<!--                           @click="showFrom = true; $hideKeyboard()">-->
-<!--                <u&#45;&#45;input inputAlign="right" prefixIcon="calendar"-->
-<!--                          prefixIconStyle="font-size: 20px;color:#c0c4cc" placeholder="请选择开始时间"-->
-<!--                          disabledColor="#fff" placeholderStyle="font-size: 14px;color:#c0c4cc"-->
-<!--                          v-model="queryParam.createTimeFrom" border="none" disabled></u&#45;&#45;input>-->
-<!--                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-<!--              </u-form-item>-->
-<!--              <u-form-item label="结束时间" label-width="50vw" borderBottom-->
-<!--                           @click="showTo = true; $hideKeyboard()">-->
-<!--                <u&#45;&#45;input inputAlign="right" prefixIcon="calendar"-->
-<!--                          prefixIconStyle="font-size: 20px;color:#c0c4cc" placeholder="请选择结束时间"-->
-<!--                          disabledColor="#fff" placeholderStyle="font-size: 14px;color:#c0c4cc"-->
-<!--                          v-model="queryParam.createTimeTo" border="none" disabled></u&#45;&#45;input>-->
-<!--                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-<!--              </u-form-item>-->
-<!--            </u&#45;&#45;form>-->
-<!--          </view1>-->
         </view>
       </u-popup>
 
@@ -400,13 +360,12 @@
       }
     },
     onLoad(options) {
+      this.listSysDict()
       if (options) {
         this.id = options.id ? options.id : '';
         this.photo = options.photo ? options.photo : '';
         if (this.id) {
           this.getDetailById(this.id)
-        // }else{
-        //   this.getDetailById(45)
         }
         if(this.photo){
           setTimeout(()=>{
@@ -416,30 +375,10 @@
         this.type = options.type ? options.type : ''
       }
     },
-    // created() {
-    //   const {id, type,flag,photo} = this.$route.query
-    //   this.flag = flag
-    //   this.id = id
-    //   this.photo = photo
-    //   this.type = type
-    //   this.form.id = id
-    //   if (this.id) {
-    //     this.getDetailById(this.id)
-    //   }
-    //   if(this.photo){
-    //     setTimeout(()=>{
-    //       this.uploadMaterial()
-    //     },200)
-    //   }
-    // },
-    mounted() {
-      this.listSysDict()
-    },
     methods: {
       async afterRead(event) {
         uni.showLoading({title: '识别中'});
         this.imgevent = event;
-        // 当设置 multiple 为 true 时, file 为数组格式，否则为对象格式
         let lists = [].concat(event.file);
         let fileListLen = this[`fileList${event.name}`].length;
         lists.map((item) => {
@@ -452,21 +391,10 @@
         for (let i = 0; i < lists.length; i++) {
           await this.uploadFilePromise(lists[i].url);
           uni.hideLoading();
-          // const result = await this.uploadFilePromise(lists[i].url);
-          // let item = this[`fileList${event.name}`][fileListLen];
-          // this[`fileList${event.name}`].splice(fileListLen, 1, Object.assign(item, {
-          //   status: 'success',
-          //   message: '',
-          //   url: result
-          // }));
-          // fileListLen++
         }
       },
       uploadMaterial() {
         this.$refs.uUpload.chooseFile()
-        //
-        // this.$refs.uUpload.dispatchEvent(new MouseEvent("click"))
-        // this.$refs.uUpload.$emit('click')
       },
       uploadFilePromise(url) {
         var _this = this;
@@ -488,7 +416,6 @@
                   resolve(res.data)
                 } else {
                   this.$toast('识别成功');
-                  // this.form.imgUrl = resDta.data;
                   this.form = resDta.data ? resDta.data : {}
                   if (this.form.id){
                     this.queryParam.goodsId = this.form.id
@@ -508,27 +435,6 @@
       close() {
         this.isShowDialog2 = false
       },
-      // getDetailById(id) {
-      //   if (id) {
-      //     goodsOtherApi.getDetailById(id).then(res => {
-      //       if (res.subCode === 1000) {
-      //         this.form = res.data ? res.data : {};
-      //         if (this.form.imgUrl) {
-      //           let url = this.$fileUrl + this.form.imgUrl;
-      //           let data1 = {};
-      //           data1.url = url;
-      //           this.fileList1.push(data1)
-      //         }
-      //         if (this.form.type){
-      //           this.form.typeStr = this.$typeToStr(39,this.form.type)
-      //           this.defaultIndex = [this.$getTypeIndex(39,this.form.type)]
-      //         }
-      //       } else {
-      //         this.$toast(res.subMsg)
-      //       }
-      //     })
-      //   }
-      // },
       submit() {
         if (!this.form.type) {
           this.$toast('类型非空');
@@ -578,22 +484,8 @@
       },
       gotoAdd() {
         this.$navigateTo('/pages/goodsBase/goodsAdd?type=3')
-        // this.$router.push({ path: '/goodsAdd', query: {id,type } })
       },
       profitData(dayNum) {
-        // if (dayNum == 30) {
-        //   this.type30 = 'primary'
-        //   this.type180 = 'default'
-        //   this.type365 = 'default'
-        // } else if (dayNum == 180) {
-        //   this.type180 = 'primary'
-        //   this.type30 = 'default'
-        //   this.type365 = 'default'
-        // }else {
-        //   this.type365 = 'primary'
-        //   this.type180 = 'default'
-        //   this.type30 = 'default'
-        // }
         this.queryParam1.dayNum = dayNum
         this.getPriceData()
       },
@@ -620,20 +512,7 @@
             this.priceData = res.data
             this.dataEmpty = false
             this.loading = false
-            // let rows = res.data ? res.data.list : []
-            // this.chartData.rows = rows
             this.chartData = JSON.parse(JSON.stringify(res.data.lineVo));
-            // let theirPrice = res.data.price - (res.data.price * 0.075 + 38 + 8.5)
-            // this.priceData.theirPrice = parseFloat(theirPrice).toFixed(2)
-            //
-            // let theirPrice30 = res.data.price30 - (res.data.price30 * 0.075 + 38 + 8.5)
-            // this.priceData.theirPrice30 = parseFloat(theirPrice30).toFixed(2)
-            //
-            // let theirPrice180 = res.data.price180 - (res.data.price180 * 0.075 + 38 + 8.5)
-            // this.priceData.theirPrice180 = parseFloat(theirPrice180).toFixed(2)
-            //
-            // let theirPrice365 = res.data.price365 - (res.data.price365 * 0.075 + 38 + 8.5)
-            // this.priceData.theirPrice365 = parseFloat(theirPrice365).toFixed(2)
             let theirPrice = this.$getThePrice(res.data.price)
             this.priceData.theirPrice = parseFloat(theirPrice).toFixed(2)
 
@@ -688,7 +567,6 @@
               this.form = res.data ? res.data : {}
               this.queryParam.goodsId = this.form.id
               this.getPage()
-              // this.getImgUrl()
             } else {
               this.$toast(res.subMsg)
             }

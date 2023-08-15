@@ -8,9 +8,6 @@
             style="font-size: 15px;">
         去修改
       </view>
-<!--      <view v-else @click="submit" class="u-nav-slot" slot="right" style="font-size: 15px;">-->
-<!--        保存-->
-<!--      </view>-->
     </u-navbar>
     <u--form
         style="background-color: white"
@@ -49,23 +46,6 @@
                     v-model="form.happenTime" border="none"></u--input>
           <u-icon v-if="type != 1" class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
         </u-form-item>
-
-
-<!--        <u-form-item label="金额" borderBottom>-->
-<!--          <u&#45;&#45;input :disabled="type == 1" disabledColor="#fff" inputAlign="right"-->
-<!--                    v-model="form.price" type="digit" border="none"></u&#45;&#45;input>-->
-<!--          <u-icon v-if="type != 1" class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-<!--        </u-form-item>-->
-<!--        <u-form-item label="货号" borderBottom>-->
-<!--          <u&#45;&#45;input :disabled="type == 1" disabledColor="#fff" inputAlign="right"-->
-<!--                    v-model="form.actNo" border="none"></u&#45;&#45;input>-->
-<!--          <u-icon v-if="type != 1" class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-<!--        </u-form-item>-->
-<!--        <u-form-item label="品牌" borderBottom>-->
-<!--          <u&#45;&#45;input :disabled="type == 1" disabledColor="#fff" inputAlign="right"-->
-<!--                    v-model="form.brand" border="none"></u&#45;&#45;input>-->
-<!--          <u-icon v-if="type != 1" class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-<!--        </u-form-item>-->
         <u-form-item label-width="25vw" label="提醒标题" borderBottom>
           <u--textarea
               :disabled="type == 1"
