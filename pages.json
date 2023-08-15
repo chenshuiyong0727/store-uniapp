@@ -96,6 +96,13 @@
       }
     },
     {
+      "path": "pages/login/resetPwd",
+      "style": {
+        "navigationBarTitleText": "修改密码",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
       "path": "pages/goodsDefects/index",
       "style": {
         "navigationBarTitleText": "瑕疵商品",

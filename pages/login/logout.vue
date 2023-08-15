@@ -94,7 +94,8 @@
 
       },
       comfirm2() {
-        this.$router.push({path: '/resetPwd'})
+        this.$navigateTo('/pages/login/resetPwd')
+        // this.$router.push({path: '/resetPwd'})
       },
 
     }
