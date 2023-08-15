@@ -98,13 +98,8 @@
 </template>
 
 <script>
-  // import Header from '@/common/_header.vue'
-  // import { fileApi } from '@/api/file'
   import { goodsBaseApi } from '@/api/goodsBase'
   export default {
-    // components:{
-    //   'v-header':Header
-    // },
     data(){
       return {
         fileList1: [],
@@ -117,21 +112,6 @@
         type: '',
         id: '',
         options: [
-        //     {
-        //   value: 0,
-        //   text: "数学",
-        //   is_selected: false,
-        // },
-        //   {
-        //     value: 1,
-        //     text: "美术",
-        //     is_selected: false,
-        //   },
-        //   {
-        //     value: 2,
-        //     text: "体育",
-        //     is_selected: true
-        //   }
         ],
         uploadData: {},
         typeList: [],
@@ -153,15 +133,6 @@
         },
       }
     },
-    // created() {
-    //   const { id, type } = this.$route.query
-    //   this.id = id
-    //   this.type = type
-    //   this.form.id = id
-    //   if (this.id) {
-    //     this.getDetailById(this.id)
-    //   }
-    // },
     onLoad(options) {
       if (options) {
         this.type = options.type ? options.type : '';
@@ -172,9 +143,6 @@
           this.listSysDict()
         }
       }
-    },
-    mounted() {
-      // this.init()
     },
     methods:{
       whenChanged(e) {
@@ -209,14 +177,15 @@
               this.sizeListStr = sizeListStr.join(",")
 
               this.listSysDict()
-              // for (let i = 0; i < res.data.sizeVoList.length; i++) {
-              //   this.form.sizeList.push(res.data.sizeListList[i][1])
-              // }
               if (this.form.imgUrl) {
                 let url = this.$fileUrl + this.form.imgUrl;
                 let data1 = {};
                 data1.url = url;
                 this.fileList1.push(data1)
+              }
+              if (this.form.type){
+                this.form.typeStr = this.$typeToStr(20221108,this.form.type)
+                this.defaultIndex = [this.$getTypeIndex(20221108,this.form.type)]
               }
             } else {
               this.$toast(res.subMsg)
@@ -224,36 +193,6 @@
           })
         }
       },
-      // getSize() {
-      //   this.form.sizeList = []
-      //   for (let i = 0; i < this.sizeList.length; i++) {
-      //     this.form.sizeList.push(this.sizeList[i][1])
-      //   }
-      // },
-
-      // init() {
-      //   this.listSysDict()
-      //   goodsBaseApi.listDropDownSizes().then(res => {
-      //     if (res.subCode === 1000) {
-      //       this.options.push({
-      //         label: typeList[i].fieldName,
-      //         value: typeList[i].fieldValue,
-      //         children: res.data.map(item => {
-      //           return {
-      //             value: item.id,
-      //             label: item.size
-      //           }
-      //         })
-      //       })
-      //     }
-      //   })
-      // },
-      // gotoAdd(id, type) {
-      //   this.$router.push({ path: '/goodsAdd', query: { id, type } })
-      // },
-      // gotoIndex(row) {
-      //   this.$router.push({ path: '/'})
-      // },
       submit() {
         if (!this.form.type) {
           this.$toast('类型非空')
@@ -292,9 +231,6 @@
           })
         }
       },
-      // goBack() {
-      //   this.$router.push({ path: '/goodsBase'})
-      // },
       listSysDict() {
         let sysDictList = uni.getStorageSync('sysDictList') ? JSON.parse(
             uni.getStorageSync('sysDictList')) : []
@@ -310,17 +246,6 @@
                 text: item.size
               })
             })
-            // if(this.sizeVoList.length){
-            //   for (let i = 0; i < this.options.length; i++) {
-            //     for (let j = 0; j < this.sizeVoList.length; j++) {
-            //       console.info(this.options[i].value)
-            //       console.info(this.sizeVoList[j].id)
-            //       if (this.options[i].value = this.sizeVoList[j].id){
-            //         this.options[i].is_selected = true
-            //       }
-            //     }
-            //   }
-            // }
           }
         })
       },
