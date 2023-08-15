@@ -209,7 +209,6 @@ showFrom: false,
     },
     methods: {
       changeLog(e) {
-        console.log('change事件:', e);
       },
       keyup1() {
         let poundage =  this.$getPoundage(this.requestParam.dwPrice)

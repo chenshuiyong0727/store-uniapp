@@ -166,7 +166,7 @@
         ],
         uploadData: {},
         typeList: [],
-        addressList: [],
+        sizeVoList: [],
         columns: [],
         sizeListStr: '',
         form: {
@@ -194,12 +194,13 @@
     //   }
     // },
     onLoad(options) {
-      this.listSysDict()
       if (options) {
         this.type = options.type ? options.type : '';
         this.id = options.id ? options.id : '';
         if (this.id) {
           this.getDetailById(this.id)
+        }else{
+          this.listSysDict()
         }
       }
     },
@@ -208,8 +209,6 @@
     },
     methods:{
       whenChanged(e) {
-        // console.log(JSON.stringify(e))
-        console.log(e)
         let sizeList = []
         let sizeListStr = []
         for (let i = 0; i < e.length; i++) {
@@ -228,10 +227,22 @@
             if (res.subCode === 1000) {
               this.form = res.data ? res.data : {}
               this.form.sizeList = []
-              this.sizeList = res.data.sizeListList
-              for (let i = 0; i < res.data.sizeListList.length; i++) {
-                this.form.sizeList.push(res.data.sizeListList[i][1])
+              this.sizeVoList = res.data.sizeVoList
+
+              let sizeList = []
+              let sizeListStr = []
+              for (let i = 0; i <  this.sizeVoList.length; i++) {
+                let data =  this.sizeVoList[i]
+                  sizeList.push(data.id)
+                  sizeListStr.push(data.size)
               }
+              this.form.sizeList = sizeList
+              this.sizeListStr = sizeListStr.join(",")
+
+              this.listSysDict()
+              // for (let i = 0; i < res.data.sizeVoList.length; i++) {
+              //   this.form.sizeList.push(res.data.sizeListList[i][1])
+              // }
               if (this.form.imgUrl) {
                 let url = this.$fileUrl + this.form.imgUrl;
                 let data1 = {};
@@ -291,7 +302,9 @@
           goodsBaseApi.update(this.form).then(res => {
             if (res.subCode === 1000) {
               this.$toast('操作成功')
-              this.goBack()
+              setTimeout(() => {
+                this.$navigateTo('/pages/goodsBase/index')
+              }, 1000)
             } else {
               this.$toast(res.subMsg)
             }
@@ -328,16 +341,17 @@
                 text: item.size
               })
             })
-            // this.options.push({
-            //   text: typeList[i].fieldName,
-            //   value: typeList[i].fieldValue,
-            //   children: res.data.map(item => {
-            //     return {
-            //       value: item.id,
-            //       label: item.size
+            // if(this.sizeVoList.length){
+            //   for (let i = 0; i < this.options.length; i++) {
+            //     for (let j = 0; j < this.sizeVoList.length; j++) {
+            //       console.info(this.options[i].value)
+            //       console.info(this.sizeVoList[j].id)
+            //       if (this.options[i].value = this.sizeVoList[j].id){
+            //         this.options[i].is_selected = true
+            //       }
             //     }
-            //   })
-            // })
+            //   }
+            // }
           }
         })
       },

@@ -491,7 +491,6 @@
       },
       close() {
         this.isShowDialog2 = false
-        console.log('close');
       },
       search1() {
         this.tableData = []

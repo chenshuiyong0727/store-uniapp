@@ -507,7 +507,6 @@
       },
       close() {
         this.isShowDialog2 = false
-        console.log('close');
       },
       // getDetailById(id) {
       //   if (id) {

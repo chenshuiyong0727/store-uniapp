@@ -267,7 +267,6 @@
     },
     methods: {
       confirm_sx_type(e) {
-        console.info(e)
         this.show_sx_type = false
         let fieldValue = e.value[0].fieldValue
         let fieldName = e.value[0].fieldName
@@ -394,9 +393,7 @@
         let sysDictList = uni.getStorageSync('sysDictList') ? JSON.parse(
             uni.getStorageSync('sysDictList')) : []
         this.typeList = sysDictList.filter(item => item.typeValue == 41)
-        console.info( this.typeList)
         this.columns.push(this.typeList)
-        console.info( this.columns)
         this.labelList = sysDictList.filter(item => item.typeValue == 42)
         this.columnsLabel.push(this.labelList)
       },

@@ -476,7 +476,6 @@
             this.activeIndex.splice(i, 1)
           }
         }
-        console.log(this.activeIndex)
       },
       delItem(item) {
         for (let i = 0; i < this.tableData.length; i++) {
@@ -484,7 +483,6 @@
             this.tableData.splice(i, 1)
           }
         }
-        console.log(this.tableData)
       },
       getDetailById(id) {
         if (id) {

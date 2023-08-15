@@ -24,8 +24,13 @@
       <view @click="$goBack" class="u-nav-slot" slot="left">
         <u-icon name="arrow-left" size="20"></u-icon>
       </view>
-      <view  @click="getImgUrl" class="u-nav-slot" slot="right" style="font-size: 15px;">
-        更新
+<!--      <view  @click="getImgUrl" class="u-nav-slot" slot="right" style="font-size: 15px;">-->
+<!--        更新-->
+<!--      </view>-->
+      <view class="u-nav-slot" style="font-size: 15px;" slot="right">
+        <rudon-rowMenuDotDotDot :localdata="localdata" @change="menuAction($event)">
+          <image style="height: 25px;width: 25px" src="../../static/img/slh.png"></image>
+        </rudon-rowMenuDotDotDot>
       </view>
     </u-navbar>
     <view class="ui-flex justify-center center"
@@ -410,12 +415,12 @@
         },
         localdata: [
           {
-            value: 'add',
-            text: '新增'
+            value: 'getImgUrl',
+            text: '更新'
           },
           {
-            value: 'resetHandle',
-            text: '重置'
+            value: 'update',
+            text: '手动更新'
           }
         ],
       }
@@ -431,9 +436,20 @@
     mounted() {
     },
     methods:{
+      menuAction(action, rowId) {
+        // 忽略初始化时的传入的空操作
+        if (action === '') {
+          return
+        }
+        if ('getImgUrl' == action) {
+          this.getImgUrl()
+        }
+        if ('update' == action) {
+          this.update()
+        }
+      },
       close() {
         this.isShowDialog2 = false
-        console.log('close');
       },
       profitData(dayNum) {
         // if (dayNum == 30) {
@@ -489,12 +505,17 @@
           }
         })
       },
-      gotoAdd(id, type) {
-        this.$router.push({ path: '/goodsAdd', query: {id,type } })
+      update() {
+        // if (!id) {
+        //   return
+        // }
+        let url = '/pages/goodsBase/goodsAdd?type=2&id=' + this.id
+        this.$navigateTo(url)
+        // this.$router.push({ path: '/goodsAdd', query: {id,type } })
       },
-      scanCode(id, type) {
-        this.$router.push({ path: '/scanCode', query: { id, type } })
-      },
+      // scanCode(id, type) {
+      //   this.$router.push({ path: '/scanCode', query: { id, type } })
+      // },
       getDetailById(id) {
         if (id) {
           goodsBaseApi.getDetailById(id).then(res => {

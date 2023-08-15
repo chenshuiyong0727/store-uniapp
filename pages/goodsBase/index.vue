@@ -117,11 +117,11 @@
       <view class="julibiaoti3" >
       <view class="dingdans_item_dw"
             v-for="(item,index) in tableData"
-            :key="index"
+            :key="index"  @click="goodsDetail(item.id) "
       >
         <view class="dingdans_con_dw">
           <view  class="dingdans_con_left_dw"
-               @click="avatarShow(item.img)">
+               @click.stop="avatarShow(item.img)">
             <image mode="widthFix" :src="item.img" v-if="item.img" ></image>
             <image mode="widthFix" :src="$fileUrl+item.imgUrl" v-if="!item.img && item.imgUrl" ></image>
             <p class="mark_dw">
@@ -131,16 +131,16 @@
             </p>
           </view>
           <view class="diangdans_con_right_dw">
-            <view class="dingdans_con_right_top_dw" @click="goodsDetail(item.id) ">
+            <view class="dingdans_con_right_top_dw">
               <text>
                 {{item.name}}
               </text>
             </view>
             <view class="dingdans_con_right_top_dw_1 xianglian">
-              <text @click="jumpactNo(item.actNo)">
+              <text @click.stop="jumpactNo(item.actNo)">
               {{item.actNo}}
               </text>
-              <image @click="$copyUrl(item.actNo)" class="fuzhitupian"
+              <image @click.stop="$copyUrl(item.actNo)" class="fuzhitupian"
                      src="../../static/img/copy.png"></image>
             </view>
             <view class="dingdans_con_right_top_dw_2" style="margin-bottom: -10px;">
@@ -151,8 +151,8 @@
               </view>
               <view class="dingdans_top_right_dw">
                 <view class="dingdans_con_right_down_2_1">
-                  <text class="dw-button-common" @click="storeAdd(item.id)">选择</text>
-                  <text class="dw-button-common" style="margin-left: 2vw" @click="gotoDw(item.spuId)">得物</text>
+                  <text class="dw-button-common" @click.stop="storeAdd(item.id)">选择</text>
+                  <text class="dw-button-common" style="margin-left: 2vw" @click.stop="gotoDw(item.spuId)">得物</text>
 <!--                  <uni-link-->
 <!--                      style="margin-left: 2vw;"-->
 <!--                      :href="'https://m.dewu.com/router/product/ProductDetail?spuId='+item.spuId"-->

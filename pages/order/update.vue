@@ -268,7 +268,6 @@ showFrom: false,
         this.pictureZoomShow = true
       },
       changeLog(e) {
-        console.log('change事件:', e);
       },
       keyup2() {
         let poundage = this.$getPoundage( this.requestParam.shelvesPrice)
