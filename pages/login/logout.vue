@@ -26,10 +26,6 @@
         <u-button style="margin-top: 42px; width: 66vw;" type="primary" @click="comfirm">
           <text style=" font-size: 16px;font-weight: 600">退出登录</text>
         </u-button>
-<!--        <u-button style="width: 50vw; margin: 10px 15px;" type="primary" @click="goAdd" >-->
-<!--          <text style=" font-size: 17px;font-weight: 600">提交</text>-->
-<!--        </u-button>-->
-        <!--        <u-button style="margin-top: 10px; width: 66vw;" @click="comfirm1">切换账号</u-button>-->
       </view>
       <view class="clearfix btm-distance" v-else>
         <u-button style="margin-top: 42px; width: 66vw;" type="primary" @click="comfirm2">
@@ -43,17 +39,7 @@
 </template>
 
 <script>
-  // import { userContainerApi } from '@/api/user'
-  // import { removeCookieByName } from '@/utils/auth'
   export default {
-    components: {},
-    // created() {
-    //   const { type } = this.$route.query
-    //   this.type = type
-    //   if (this.type == 2) {
-    //     this.title = '账户管理'
-    //   }
-    // },
     onLoad(options) {
       if (options) {
         this.type = options.type ? options.type : '';
@@ -91,16 +77,6 @@
       },
 
       comfirm() {
-        // this.$confirm('确认退出登录',"提示",{
-        //   confirmButtonText: '确定',
-        //   cancelButtonText: '取消',
-        //   type:"warning",
-        // }).then(() => {
-        //   this.logout()
-        //   // this.gotoAdd(null,3)
-        // }).catch(() => {
-        //   // this.goBack()
-        // })
         var _this = this;
         uni.showModal({
           title: '',
@@ -117,31 +93,6 @@
         });
 
       },
-      // comfirm1(){
-      //   // this.$confirm('确认切换账号',"提示",{
-      //   //   confirmButtonText: '确定',
-      //   //   cancelButtonText: '取消',
-      //   //   type:"warning",
-      //   // }).then(() => {
-      //   //   this.logout()
-      //   //   // this.gotoAdd(null,3)
-      //   // }).catch(() => {
-      //   //   // this.goBack()
-      //   // })
-      //   uni.showModal({
-      //     title: '',
-      //     content: '确认切换账号',
-      //     confirmColor:'#409eff',//删除字体的颜色
-      //     success: function (res) {
-      //       if (res.confirm) {
-      //         console.log('用户点击确定');
-      //         this.logout()
-      //       } else if (res.cancel) {
-      //         console.log('用户点击取消');
-      //       }
-      //     }
-      //   });
-      // },
       comfirm2() {
         this.$router.push({path: '/resetPwd'})
       },

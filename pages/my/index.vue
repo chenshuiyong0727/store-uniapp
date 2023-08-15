@@ -17,8 +17,8 @@
          background-image: linear-gradient(#e5f4ff, #f3f2f8);">
       <view class="header zuoyouduiqi">
         <view @click="userInfo" class="header-icon xianglian" style="margin-left: 6vw;">
-          <image v-if="imgUrl" style="width: 50px;height: 50px;border-radius: 100%;"
-                 :src="fileUrl + imgUrl"></image>
+          <image v-if="imgUrl" style="width: 50px;height: 50px;border-radius: 100%;" :src="fileUrl + imgUrl"></image>
+          <image v-else style="width: 50px;height: 50px;border-radius: 100%;" :src="fileUrl + '/static/operateSteps/1692081866811.jpg'"></image>
           <text style="margin-left: 12px;">{{
             form.userRealName ? form.userRealName : form.userAccount ? form.userAccount : '系统用户'
             }}
@@ -231,8 +231,8 @@
                 this.imgUrl = this.form.imgUrl
                 uni.setStorageSync('userIcon', this.form.imgUrl);
               }
-            } else {
-              this.imgUrl = '../../static/img/userimg5.jpg'
+            // } else {
+            //   this.imgUrl = '../../static/img/userimg5.jpg'
             }
           } else {
             this.$toast(res.subMsg)

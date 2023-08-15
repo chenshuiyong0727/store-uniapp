@@ -89,6 +89,13 @@
       }
     },
     {
+      "path": "pages/login/loginByCode",
+      "style": {
+        "navigationBarTitleText": "验证码登录",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
       "path": "pages/goodsDefects/index",
       "style": {
         "navigationBarTitleText": "瑕疵商品",
