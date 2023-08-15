@@ -74,7 +74,6 @@
         </view>
 
         <view  @click="$navigateTo('/pages/order/index?backUrl=/pages/my/index&current=3&status=5')">
-          <!--                  <span class="icon2-thecar"></span>-->
           <image
               :class="orderIofo.count5 > 0 ? 'count3' : ''"
               src="../../static/img/new/yilanjian.png"></image>

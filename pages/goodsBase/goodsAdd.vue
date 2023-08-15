@@ -1,14 +1,5 @@
 <template lang="html">
-  <div class="login">
-<!--    <mt-header title="商品详情">-->
-<!--      <div slot="left">-->
-<!--        <mt-button  icon="back" @click="$router.go(-1)"></mt-button>-->
-<!--      </div>-->
-<!--      <div slot="right">-->
-<!--        <mt-button size="normal" style="font-size: 16px"  @click="submit">保存</mt-button>-->
-<!--      </div>-->
-<!--    </mt-header>-->
-
+  <view class="login">
     <u-navbar :title="type==1 ? '查看' : type==2 ? '编辑' : '新增'" bgColor="#F3F4F5">
       <view @click="$goBack" class="u-nav-slot" slot="left">
         <u-icon name="arrow-left" size="20"></u-icon>
@@ -48,28 +39,6 @@
                     v-model="form.typeStr" border="none" disabled></u--input>
           <u-icon v-if="type != 1"  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
         </u-form-item>
-<!--        <u-form-item label-width="25vw"  label="类型" borderBottom>-->
-<!--&lt;!&ndash;          <u&#45;&#45;input inputAlign="right" disabledColor="#fff"&ndash;&gt;-->
-<!--&lt;!&ndash;                    placeholderStyle="font-size: 14px;color:#c0c4cc"&ndash;&gt;-->
-<!--&lt;!&ndash;                    v-model="form.typeStr" border="none" disabled></u&#45;&#45;input>&ndash;&gt;-->
-<!--&lt;!&ndash;          <hpy-form-select&ndash;&gt;-->
-<!--&lt;!&ndash;              v-if="addressList"&ndash;&gt;-->
-<!--&lt;!&ndash;              :dataList="addressList"&ndash;&gt;-->
-<!--&lt;!&ndash;              :hideBorder="true"&ndash;&gt;-->
-<!--&lt;!&ndash;              :hideArrow="true"&ndash;&gt;-->
-<!--&lt;!&ndash;              text="fieldName"&ndash;&gt;-->
-<!--&lt;!&ndash;              name="fieldValue"&ndash;&gt;-->
-<!--&lt;!&ndash;              v-model="sizeList"/>&ndash;&gt;-->
-<!--          <hpy-form-select-->
-<!--              v-if="addressList"-->
-<!--              :dataList="addressList"-->
-<!--              :hideBorder="true"-->
-<!--              :hideArrow="true"-->
-<!--              text="fieldName"-->
-<!--              name="fieldValue"-->
-<!--              v-model="sizeList"/>-->
-<!--          <u-icon v-if="type != 1"  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
-<!--        </u-form-item>-->
         <u-form-item label-width="25vw" label="名称" borderBottom>
           <u--input :disabled="type == 1" disabledColor="#fff" inputAlign="right"
                     v-model="form.name" border="none"></u--input>
@@ -125,7 +94,7 @@
         </u-button>
       </view>
     </view>
-  </div>
+  </view>
 </template>
 
 <script>

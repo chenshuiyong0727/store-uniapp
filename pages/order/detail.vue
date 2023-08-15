@@ -131,21 +131,6 @@
             </ul>
           </view>
         </view>
-        <!--        <div1 class="zuoyouduiqi secInfo1">-->
-        <!--          <view style="margin-left: 15px;width: 69vw;">-->
-        <!--            <strong style="font-size: 17px;">-->
-        <!--              预计收入-->
-        <!--            </strong>-->
-        <!--          </view>-->
-        <!--          <view style="margin-right: 12px;width: 32vw;    text-align: right;">-->
-        <!--            <strong style="font-size: 14px;">-->
-        <!--              ¥-->
-        <!--            </strong>-->
-        <!--            <strong style="font-size: 20px ;margin-left: -2px;">-->
-        <!--              {{form.theirPrice}}-->
-        <!--            </strong>-->
-        <!--          </view>-->
-        <!--        </div1>-->
       </view>
 
     </view>
