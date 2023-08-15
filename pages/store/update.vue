@@ -244,46 +244,6 @@ showFrom: false,
           })
         }
       },
-      submit() {
-        if (!this.form.type) {
-          this.$toast('类型非空');
-          return false
-        }
-        if (!this.form.price) {
-          this.$toast('金额非空');
-          return false
-        }
-        if (!this.form.name) {
-          this.$toast('名称非空');
-          return false
-        }
-        if (this.form.price > 0 && this.form.type == 2) {
-          this.form.price = 0 - this.form.price
-        }
-        if (this.type == 2) {
-          goodsOtherApi.update(this.form).then(res => {
-            if (res.subCode === 1000) {
-              this.$toast('操作成功');
-              setTimeout(() => {
-                this.$navigateTo('/pages/other/index')
-              }, 1000)
-            } else {
-              this.$toast(res.subMsg)
-            }
-          })
-        } else {
-          goodsOtherApi.add(this.form).then(res => {
-            if (res.subCode === 1000) {
-              this.$toast('添加成功，即将返回列表');
-              setTimeout(() => {
-                this.$navigateTo('/pages/other/index')
-              }, 1000)
-            } else {
-              this.$toast(res.subMsg)
-            }
-          })
-        }
-      },
       listSysDict() {
         let sysDictList = uni.getStorageSync('sysDictList') ? JSON.parse(
             uni.getStorageSync('sysDictList')) : [];
