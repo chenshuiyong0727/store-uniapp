@@ -48,8 +48,9 @@
   import {deepCopy, encrypt} from '@/utils'
 
   export default {
-    data() {
+ data() {
       return {
+        fileUrl: this.$fileUrl,
         passwordIcon: true,
         loginForm: {
           loginAccount: '',

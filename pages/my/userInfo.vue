@@ -102,8 +102,9 @@
 <script>
   import {envSetting} from '@/utils/env.js'
   export default {
-    data() {
+ data() {
       return {
+        fileUrl: this.$fileUrl,
         fileList1: [],
         form: {
           userMobile: '',

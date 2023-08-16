@@ -73,8 +73,9 @@
   import {deepCopy} from '@/utils'
 
   export default {
-    data() {
+ data() {
       return {
+        fileUrl: this.$fileUrl,
         tips: '',
         value: '',
         countDownNum:60,

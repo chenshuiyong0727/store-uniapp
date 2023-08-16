@@ -93,8 +93,9 @@
   export default {
     components: {
     },
-    data() {
+ data() {
       return {
+        fileUrl: this.$fileUrl,
         datetimesingle:  Date.now() - 2*24*3600*1000,
         dateCurrent: parseInt(new Date().getTime()),
 showFrom: false,

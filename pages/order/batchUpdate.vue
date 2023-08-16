@@ -87,8 +87,9 @@
 <script>
   import {goodsOrderApi} from '@/api/goodsOrder'
   export default {
-    data() {
+ data() {
       return {
+        fileUrl: this.$fileUrl,
         dateCurrent: parseInt(new Date().getTime()),
         addressList: [],
         statusList: [],

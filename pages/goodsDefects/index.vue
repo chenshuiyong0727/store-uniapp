@@ -238,7 +238,7 @@
             <view  class="dingdans_con_left_dw"
                   @click.stop="avatarShow(item.img)">
               <image mode="widthFix" :src="item.img" v-if="item.img"></image>
-              <image mode="widthFix" :src="$fileUrl+item.imgUrl" v-if="!item.img && item.imgUrl" ></image>
+              <image mode="widthFix" :src="fileUrl+item.imgUrl" v-if="!item.img && item.imgUrl" ></image>
             </view>
             <view class="diangdans_con_right_dw">
               <view class="dingdans_con_right_top_dw" @click.stop="goodsDetail(item.goodsId)" >
@@ -319,7 +319,7 @@
           marginTop="50"
           textSize="16"
           textColor="#8a8a8a"
-          :icon="$fileUrl +'/static/operateSteps/empity_7.png'">
+          :icon="fileUrl +'/static/operateSteps/empity_7.png'">
       </u-empty>
     </view>
     <view class="popContainer" v-if="pictureZoomShow" @click="pictureZoomShow = false">
@@ -333,8 +333,9 @@
   import { goodsDefectsApi } from '@/api/goodsDefects'
 
   export default {
-    data() {
+ data() {
       return {
+        fileUrl: this.$fileUrl,
         backUrl: '',
         dateCurrent: parseInt(new Date().getTime()),
         showFrom: false,

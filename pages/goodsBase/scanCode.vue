@@ -288,8 +288,9 @@
   export default {
     components: {
     },
-    data() {
+ data() {
       return {
+        fileUrl: this.$fileUrl,
         imgevent: '',
         fileList1: [],
         pictureZoomShow: false,

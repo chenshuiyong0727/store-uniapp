@@ -26,7 +26,7 @@
     margin-left: 10%;" :src="orderData.img"></image>
             <image mode="widthFix" @click="avatarShow(orderData.img)" style="  width: 80%;
     margin-top: 28px;
-    margin-left: 10%;" :src="$fileUrl+orderData.imgUrl" v-if="!orderData.img && orderData.imgUrl"></image>
+    margin-left: 10%;" :src="fileUrl+orderData.imgUrl" v-if="!orderData.img && orderData.imgUrl"></image>
           </view>
           <view class="diangdans_con_right">
             <view class="dingdans_con_right_top xianglian">
@@ -249,8 +249,9 @@
   import { parseTime } from '@/utils/index'
 
   export default {
-    data() {
+ data() {
       return {
+        fileUrl: this.$fileUrl,
         form: {
           sizeVoList: '',
           name: '',

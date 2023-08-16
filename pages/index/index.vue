@@ -434,8 +434,9 @@
 
 <script>
   export default {
-    data() {
+ data() {
       return {
+        fileUrl: this.$fileUrl,
         dateCurrent: parseInt(new Date().getTime()),
 showFrom: false,
         showTo: false,

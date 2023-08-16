@@ -181,7 +181,7 @@
         marginTop="50"
         textSize="16"
         textColor="#8a8a8a"
-        :icon="$fileUrl +'/static/operateSteps/empity_7.png'">
+        :icon="fileUrl +'/static/operateSteps/empity_7.png'">
     </u-empty>
     <view class="popContainer" v-if="pictureZoomShow" @click="pictureZoomShow = false">
       <view class="imageShow">
@@ -193,8 +193,9 @@
 <script>
 
   export default {
-    data() {
+ data() {
       return {
+        fileUrl: this.$fileUrl,
         dateCurrent: parseInt(new Date().getTime()),
         showFrom: false,
         showTo: false,

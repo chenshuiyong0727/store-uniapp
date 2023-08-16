@@ -116,8 +116,9 @@
   import {goodsOrderApi} from '@/api/goodsOrder'
 
   export default {
-    data() {
+ data() {
       return {
+        fileUrl: this.$fileUrl,
         pictureZoomShow: false,
         imageZoom: false,
         orderData: '',

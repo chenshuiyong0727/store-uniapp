@@ -125,7 +125,7 @@
         marginTop="50"
         textSize="16"
         textColor="#8a8a8a"
-        :icon="$fileUrl +'/static/operateSteps/empity_7.png'">
+        :icon="fileUrl +'/static/operateSteps/empity_7.png'">
     </u-empty>
     <view>
       <uni-fab ref="fab" :pattern="pattern"  horizontal="right" @fabClick="goDetail(null, 3)" />
@@ -136,8 +136,9 @@
 
   export default {
 
-    data() {
+ data() {
       return {
+        fileUrl: this.$fileUrl,
         pattern: {
           color: '#7A7E83',
           backgroundColor: '#fff',

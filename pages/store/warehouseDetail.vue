@@ -256,8 +256,9 @@
   import { goodsInventoryApi } from '@/api/goodsInventory'
 
   export default {
-    data() {
+ data() {
       return {
+        fileUrl: this.$fileUrl,
         requestParam: {
           ids: [],
           warehouseId: 2,

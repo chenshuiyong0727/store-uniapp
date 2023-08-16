@@ -51,8 +51,9 @@
     mounted() {
 
     },
-    data() {
+ data() {
       return {
+        fileUrl: this.$fileUrl,
         type: '1',
         title: '账号设置',
         userName: uni.getStorageSync('user_name')

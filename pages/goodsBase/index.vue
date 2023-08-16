@@ -83,7 +83,7 @@
           <view  class="dingdans_con_left_dw"
                @click.stop="avatarShow(item.img)">
             <image mode="widthFix" :src="item.img" v-if="item.img" ></image>
-            <image mode="widthFix" :src="$fileUrl+item.imgUrl" v-if="!item.img && item.imgUrl" ></image>
+            <image mode="widthFix" :src="fileUrl+item.imgUrl" v-if="!item.img && item.imgUrl" ></image>
             <p class="mark_dw">
               <text class="text_dw">
                 {{ item.type | dictToDescTypeValue(20221108) }}
@@ -130,7 +130,7 @@
           marginTop="50"
           textSize="16"
           textColor="#8a8a8a"
-          :icon="$fileUrl +'/static/operateSteps/empity_7.png'">
+          :icon="fileUrl +'/static/operateSteps/empity_7.png'">
       </u-empty>
     </view>
     <view class="popContainer" v-if="pictureZoomShow" @click="pictureZoomShow = false">
@@ -217,8 +217,9 @@
 </template>
 <script>
   export default {
-    data() {
+ data() {
       return {
+        fileUrl: this.$fileUrl,
         dateCurrent: parseInt(new Date().getTime()),
         showFrom: false,
         showTo: false,

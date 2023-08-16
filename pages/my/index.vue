@@ -165,8 +165,9 @@
 
 <script>
   export default {
-    data() {
+ data() {
       return {
+        fileUrl: this.$fileUrl,
         flag: false,
         imgUrl: uni.getStorageSync('userIcon'),
         fileUrl: this.$fileUrl,

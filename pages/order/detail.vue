@@ -219,7 +219,7 @@
       <view class="dingdans_con_dw">
         <view class="dingdans_con_left_dw" @click="avatarShow(form.img)">
           <image mode="widthFix" :src="form.img" v-if="form.img"></image>
-          <image mode="widthFix" :src="$fileUrl+form.imgUrl" v-if="!form.img && form.imgUrl" ></image>
+          <image mode="widthFix" :src="fileUrl+form.imgUrl" v-if="!form.img && form.imgUrl" ></image>
           <p class="mark_dw">
             <text class="text_dw">
               {{ form.saleType | dictToDescTypeValue(46) }}
@@ -480,8 +480,9 @@
   import {parseTime} from '@/utils'
   export default {
     components: {},
-    data() {
+ data() {
       return {
+        fileUrl: this.$fileUrl,
         form: {},
         days: 0,
         hours: 0,

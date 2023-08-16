@@ -87,8 +87,9 @@
   export default {
     components: {
     },
-    data() {
+ data() {
       return {
+        fileUrl: this.$fileUrl,
         show_sx_type: false,
         defaultIndex: [0],
         show_sx_datetype: false,

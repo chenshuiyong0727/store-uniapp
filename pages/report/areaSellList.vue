@@ -128,7 +128,7 @@
         marginTop="50"
         textSize="16"
         textColor="#8a8a8a"
-        :icon="$fileUrl +'/static/operateSteps/empity_7.png'">
+        :icon="fileUrl +'/static/operateSteps/empity_7.png'">
     </u-empty>
   </view>
 </template>
@@ -136,8 +136,9 @@
 
   export default {
 
-    data() {
+ data() {
       return {
+        fileUrl: this.$fileUrl,
         opts2: {
           color: ["#409eff", "#00c2c2", "#F56C6C", "#FAC858", "#73C0DE", "#3CA272", "#FC8452", "#9A60B4", "#ea7ccc","#5F9EA0"],
           padding: [5, 5, 5, 5],

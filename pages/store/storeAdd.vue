@@ -15,7 +15,7 @@
   position: relative;
   border-radius: 5px;" >
           <image v-if="form.img" mode="widthFix"    @click="avatarShow(form.img)" style="  width: 80%;margin-top: 16px;margin-left: 10%;" :src="form.img"  ></image>
-          <image :src="$fileUrl+form.imgUrl" v-if="!form.img && form.imgUrl" mode="widthFix"    @click="avatarShow(form.imgUrl)" style="  width: 100%;"  ></image>
+          <image :src="fileUrl+form.imgUrl" v-if="!form.img && form.imgUrl" mode="widthFix"    @click="avatarShow(form.imgUrl)" style="  width: 100%;"  ></image>
         </view>
         <view class="diangdans_con_right" style=" margin-right: 10px;">
           <view class="dingdans_con_right_top">
