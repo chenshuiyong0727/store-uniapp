@@ -33,7 +33,8 @@
         },
         /* 模块配置 */
         "modules" : {
-            "Camera" : {}
+            "Camera" : {},
+            "Push" : {}
         },
         /* 应用发布信息 */
         "distribute" : {
@@ -42,6 +43,9 @@
                 "permissions" : [
                     "<uses-feature android:name=\"android.hardware.camera\"/>",
                     "<uses-feature android:name=\"android.hardware.camera.autofocus\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
                     "<uses-permission android:name=\"android.permission.CAMERA\"/>",
                     "<uses-permission android:name=\"android.permission.CAPTURE_AUDIO_OUTPUT\"/>",
                     "<uses-permission android:name=\"android.permission.CAPTURE_SECURE_VIDEO_OUTPUT\"/>",
@@ -50,11 +54,15 @@
                     "<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>",
                     "<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>",
                     "<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>",
+                    "<uses-permission android:name=\"android.permission.INTERNET\"/>",
+                    "<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>",
                     "<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>",
                     "<uses-permission android:name=\"android.permission.READ_LOGS\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>",
                     "<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>",
                     "<uses-permission android:name=\"android.permission.VIBRATE\"/>",
                     "<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>",
+                    "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\"/>",
                     "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"
                 ],
                 "autoSdkPermissions" : true,
@@ -87,7 +95,22 @@
                 },
                 "share" : {},
                 "ad" : {},
-                "push" : {}
+                "push" : {
+                    "unipush" : {
+                        "version" : "2",
+                        "offline" : true,
+                        "icons" : {
+                            "small" : {
+                                "ldpi" : "C:/Users/83745/Desktop/20230626/logo/logo-1024.png",
+                                "mdpi" : "C:/Users/83745/Desktop/20230626/logo/logo-1024.png",
+                                "hdpi" : "C:/Users/83745/Desktop/20230626/logo/logo-1024.png",
+                                "xhdpi" : "C:/Users/83745/Desktop/20230626/logo/logo-1024.png",
+                                "xxhdpi" : "C:/Users/83745/Desktop/20230626/logo/logo-1024.png"
+                            }
+                        },
+                        "hms" : {}
+                    }
+                }
             },
             "splashscreen" : {
                 "androidStyle" : "common",
