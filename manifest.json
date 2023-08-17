@@ -165,10 +165,10 @@
         },
         "resizable" : true,
         "usingComponents" : true,
-		"lazyCodeLoading": "requiredComponents",
-		"optimization":{
-		"subPackages":true //是否启用分包优化
-		}
+        "lazyCodeLoading" : "requiredComponents",
+        "optimization" : {
+            "subPackages" : true //是否启用分包优化
+        }
     },
     /* 开启分包优化 */
     "optimization" : {

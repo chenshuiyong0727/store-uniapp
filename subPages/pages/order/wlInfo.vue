@@ -272,7 +272,7 @@
     height: 18px;
     margin-left: -12px;
     background-size: 100% 100%;
-    background-image: url('../../static/img/wuliu.png');
+    background-image: url('../../../static/img/wuliu.png');
   }
 
   .package-status .status-box {

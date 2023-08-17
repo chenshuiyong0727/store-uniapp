@@ -46,7 +46,7 @@ const doRequst = (options, isShowLoading) => {
           })
           setTimeout(() => {
             uni.navigateTo({
-              url: '/pages/login/index'
+              url: '/subPages/pages/login/index'
             })
           }, 1000)
         } else {

@@ -2,6 +2,272 @@
   "easycom": {
     "^u-(.*)": "@/uni_modules/uview-ui/components/u-$1/u-$1.vue"
   },
+  "subPackages": [
+    {
+      "root" : "subPages",
+      "pages": [
+        {
+          "path": "pages/my/userInfo",
+          "style": {
+            "navigationBarTitleText": "用户信息",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "pages/report/putin",
+          "style": {
+            "navigationBarTitleText": "入库报表",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "pages/report/putinDetail",
+          "style": {
+            "navigationBarTitleText": "月度入库报表",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "pages/report/putinDayDetail",
+          "style": {
+            "navigationBarTitleText": "入库报表明细",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "pages/report/channelStorage",
+          "style": {
+            "navigationBarTitleText": "入库渠道报表",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "pages/report/areaSellList",
+          "style": {
+            "navigationBarTitleText": "区域销售报表",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "pages/report/sellList",
+          "style": {
+            "navigationBarTitleText": "销售报表",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "pages/report/sellListDetail",
+          "style": {
+            "navigationBarTitleText": "月度销售报表",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "pages/login/index",
+          "style": {
+            "navigationBarTitleText": "登录",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "pages/login/loginByCode",
+          "style": {
+            "navigationBarTitleText": "验证码登录",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "pages/login/resetPwd",
+          "style": {
+            "navigationBarTitleText": "修改密码",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "pages/goodsDefects/index",
+          "style": {
+            "navigationBarTitleText": "瑕疵商品",
+            "pullToRefresh":{
+              "color":"#409eff",
+              "offset":"56px"
+            },
+            "enablePullDownRefresh": true,
+            "onReachBottomDistance": 150
+          }
+        },
+        {
+          "path": "pages/gift/index",
+          "style": {
+            "navigationBarTitleText": "瑕疵商品",
+            "pullToRefresh":{
+              "color":"#409eff",
+              "offset":"56px"
+            },
+            "enablePullDownRefresh": true,
+            "onReachBottomDistance": 150
+          }
+        },
+        {
+          "path": "pages/memo/index",
+          "style": {
+            "navigationBarTitleText": "备忘录",
+            "pullToRefresh":{
+              "color":"#409eff",
+              "offset":"56px"
+            },
+            "enablePullDownRefresh": true,
+            "onReachBottomDistance": 150
+          }
+        },
+        {
+          "path": "pages/memo/memoAdd",
+          "style": {
+            "navigationBarTitleText": "备忘录详情",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "pages/other/index",
+          "style": {
+            "navigationBarTitleText": "其他收支",
+            "pullToRefresh":{
+              "color":"#409eff",
+              "offset":"56px"
+            },
+            "enablePullDownRefresh": true,
+            "onReachBottomDistance": 150
+          }
+        },
+        {
+          "path": "pages/other/otherAdd",
+          "style": {
+            "navigationBarTitleText": "其他收支详情",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "pages/goodsBase/goodsAdd",
+          "style": {
+            "navigationBarTitleText": "商品详情",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "pages/goodsBase/act",
+          "style": {
+            "navigationBarTitleText": "Nike",
+            "pullToRefresh":{
+              "color":"#409eff",
+              "offset":"56px"
+            },
+            "enablePullDownRefresh": true,
+            "onReachBottomDistance": 150
+          }
+        },
+        {
+          "path": "pages/goodsBase/detail",
+          "style": {
+            "navigationBarTitleText": "商品详情",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "pages/goodsBase/scanCode",
+          "style": {
+            "navigationBarTitleText": "商品添加",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "pages/order/update",
+          "style": {
+            "navigationBarTitleText": "修改",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "pages/order/batchUpdate",
+          "style": {
+            "navigationBarTitleText": "批量操作",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "pages/order/toSell",
+          "style": {
+            "navigationBarTitleText": "出售",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "pages/order/detail",
+          "style": {
+            "navigationBarTitleText": "订单详情",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "pages/order/wlInfo",
+          "style": {
+            "navigationBarTitleText": "物流详情",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "pages/order/toDelivery",
+          "style": {
+            "navigationBarTitleText": "发货",
+            "enablePullDownRefresh": false
+          }
+        },
+
+        {
+          "path": "pages/store/storeAdd",
+          "style": {
+            "navigationBarTitleText": "库存添加",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "pages/store/warehouseDetail",
+          "style": {
+            "navigationBarTitleText": "库存信息",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "pages/store/storeUp",
+          "style": {
+            "navigationBarTitleText": "上架",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "pages/store/update",
+          "style": {
+            "navigationBarTitleText": "修改",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "pages/store/detail",
+          "style": {
+            "navigationBarTitleText": "库存详情",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "pages/login/logout",
+          "style": {
+            "navigationBarTitleText": "账号设置",
+            "enablePullDownRefresh": false
+          }
+        }
+      ]
+    }
+  ],
+
+
   "pages": [
     {
       "path": "pages/index/index",
@@ -12,163 +278,6 @@
           "offset":"56px"
         },
         "enablePullDownRefresh": true
-      }
-    },
-    {
-      "path": "pages/my/index",
-      "style": {
-        "navigationBarTitleText": "个人中心",
-        "pullToRefresh":{
-          "color":"#409eff",
-          "offset":"56px"
-        },
-        "enablePullDownRefresh": true
-      }
-    },
-    {
-      "path": "pages/my/userInfo",
-      "style": {
-        "navigationBarTitleText": "用户信息",
-        "enablePullDownRefresh": false
-      }
-    },
-    {
-      "path": "pages/report/putin",
-      "style": {
-        "navigationBarTitleText": "入库报表",
-        "enablePullDownRefresh": false
-      }
-    },
-    {
-      "path": "pages/report/putinDetail",
-      "style": {
-        "navigationBarTitleText": "月度入库报表",
-        "enablePullDownRefresh": false
-      }
-    },
-    {
-      "path": "pages/report/putinDayDetail",
-      "style": {
-        "navigationBarTitleText": "入库报表明细",
-        "enablePullDownRefresh": false
-      }
-    },
-    {
-      "path": "pages/report/channelStorage",
-      "style": {
-        "navigationBarTitleText": "入库渠道报表",
-        "enablePullDownRefresh": false
-      }
-    },
-    {
-      "path": "pages/report/areaSellList",
-      "style": {
-        "navigationBarTitleText": "区域销售报表",
-        "enablePullDownRefresh": false
-      }
-    },
-    {
-      "path": "pages/report/sellList",
-      "style": {
-        "navigationBarTitleText": "销售报表",
-        "enablePullDownRefresh": false
-      }
-    },
-    {
-      "path": "pages/report/sellListDetail",
-      "style": {
-        "navigationBarTitleText": "月度销售报表",
-        "enablePullDownRefresh": false
-      }
-    },
-    {
-      "path": "pages/login/index",
-      "style": {
-        "navigationBarTitleText": "登录",
-        "enablePullDownRefresh": false
-      }
-    },
-    {
-      "path": "pages/login/loginByCode",
-      "style": {
-        "navigationBarTitleText": "验证码登录",
-        "enablePullDownRefresh": false
-      }
-    },
-    {
-      "path": "pages/login/resetPwd",
-      "style": {
-        "navigationBarTitleText": "修改密码",
-        "enablePullDownRefresh": false
-      }
-    },
-    {
-      "path": "pages/goodsDefects/index",
-      "style": {
-        "navigationBarTitleText": "瑕疵商品",
-        "pullToRefresh":{
-          "color":"#409eff",
-          "offset":"56px"
-        },
-        "enablePullDownRefresh": true,
-        "onReachBottomDistance": 150
-      }
-    },
-    {
-      "path": "pages/gift/index",
-      "style": {
-        "navigationBarTitleText": "瑕疵商品",
-        "pullToRefresh":{
-          "color":"#409eff",
-          "offset":"56px"
-        },
-        "enablePullDownRefresh": true,
-        "onReachBottomDistance": 150
-      }
-    },
-    {
-      "path": "pages/memo/index",
-      "style": {
-        "navigationBarTitleText": "备忘录",
-        "pullToRefresh":{
-          "color":"#409eff",
-          "offset":"56px"
-        },
-        "enablePullDownRefresh": true,
-        "onReachBottomDistance": 150
-      }
-    },
-    {
-      "path": "pages/memo/memoAdd",
-      "style": {
-        "navigationBarTitleText": "备忘录详情",
-        "enablePullDownRefresh": false
-      }
-    },
-    {
-      "path": "pages/other/index",
-      "style": {
-        "navigationBarTitleText": "其他收支",
-        "pullToRefresh":{
-          "color":"#409eff",
-          "offset":"56px"
-        },
-        "enablePullDownRefresh": true,
-        "onReachBottomDistance": 150
-      }
-    },
-    {
-      "path": "pages/other/otherAdd",
-      "style": {
-        "navigationBarTitleText": "其他收支详情",
-        "enablePullDownRefresh": false
-      }
-    },
-    {
-      "path": "pages/goodsBase/goodsAdd",
-      "style": {
-        "navigationBarTitleText": "商品详情",
-        "enablePullDownRefresh": false
       }
     },
     {
@@ -184,29 +293,15 @@
       }
     },
     {
-      "path": "pages/goodsBase/act",
+      "path": "pages/store/index",
       "style": {
-        "navigationBarTitleText": "Nike",
+        "navigationBarTitleText": "仓库",
         "pullToRefresh":{
           "color":"#409eff",
           "offset":"56px"
         },
         "enablePullDownRefresh": true,
         "onReachBottomDistance": 150
-      }
-    },
-    {
-      "path": "pages/goodsBase/detail",
-      "style": {
-        "navigationBarTitleText": "商品详情",
-        "enablePullDownRefresh": false
-      }
-    },
-    {
-      "path": "pages/goodsBase/scanCode",
-      "style": {
-        "navigationBarTitleText": "商品添加",
-        "enablePullDownRefresh": false
       }
     },
     {
@@ -222,99 +317,14 @@
       }
     },
     {
-      "path": "pages/order/update",
+      "path": "pages/my/index",
       "style": {
-        "navigationBarTitleText": "修改",
-        "enablePullDownRefresh": false
-      }
-    },
-    {
-      "path": "pages/order/batchUpdate",
-      "style": {
-        "navigationBarTitleText": "批量操作",
-        "enablePullDownRefresh": false
-      }
-    },
-    {
-      "path": "pages/order/toSell",
-      "style": {
-        "navigationBarTitleText": "出售",
-        "enablePullDownRefresh": false
-      }
-    },
-    {
-      "path": "pages/order/detail",
-      "style": {
-        "navigationBarTitleText": "订单详情",
-        "enablePullDownRefresh": false
-      }
-    },
-    {
-      "path": "pages/order/wlInfo",
-      "style": {
-        "navigationBarTitleText": "物流详情",
-        "enablePullDownRefresh": false
-      }
-    },
-    {
-      "path": "pages/order/toDelivery",
-      "style": {
-        "navigationBarTitleText": "发货",
-        "enablePullDownRefresh": false
-      }
-    },
-    {
-      "path": "pages/store/index",
-      "style": {
-        "navigationBarTitleText": "仓库",
+        "navigationBarTitleText": "个人中心",
         "pullToRefresh":{
           "color":"#409eff",
           "offset":"56px"
         },
-        "enablePullDownRefresh": true,
-        "onReachBottomDistance": 150
-      }
-    },
-    {
-      "path": "pages/store/storeAdd",
-      "style": {
-        "navigationBarTitleText": "库存添加",
-        "enablePullDownRefresh": false
-      }
-    },
-    {
-      "path": "pages/store/warehouseDetail",
-      "style": {
-        "navigationBarTitleText": "库存信息",
-        "enablePullDownRefresh": false
-      }
-    },
-    {
-      "path": "pages/store/storeUp",
-      "style": {
-        "navigationBarTitleText": "上架",
-        "enablePullDownRefresh": false
-      }
-    },
-    {
-      "path": "pages/store/update",
-      "style": {
-        "navigationBarTitleText": "修改",
-        "enablePullDownRefresh": false
-      }
-    },
-    {
-      "path": "pages/store/detail",
-      "style": {
-        "navigationBarTitleText": "库存详情",
-        "enablePullDownRefresh": false
-      }
-    },
-    {
-      "path": "pages/login/logout",
-      "style": {
-        "navigationBarTitleText": "账号设置",
-        "enablePullDownRefresh": false
+        "enablePullDownRefresh": true
       }
     }
   ],
@@ -322,7 +332,6 @@
     "color": "#333333",
     "selectedColor": "#409eff",
     "borderStyle": "black",
-//    "borderStyle": "#f3f2f8",
     "iconWidth": "26px",
     "fontSize": "12px",
     "height": "53px",
