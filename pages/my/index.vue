@@ -34,8 +34,8 @@
             }}
           </text>
         </view>
-        <view class="my-indent-right" style="margin-right: 6vw;">
-          <u-button type="primary" @click="comfirm(2)" class="custom-style" shape="circle" round>
+        <view class="my-indent-right " style="margin-right: 6vw;">
+          <u-button type="primary" @click="comfirm(2)" class="custom-style" shape="circle" size="small" round>
             账户管理
           </u-button>
         </view>
@@ -52,37 +52,37 @@
         </view>
       </view>
 
-      <view class="my-pay">
+      <view class="my-pay-order">
         <view  @click="$navigateTo('/pages/order/index?backUrl=/pages/my/index&current=1&status=3')">
           <image
               :class="orderIofo.count3 > 0 ? 'count3' : ''"
               src="../../static/img/new/daifahuo.png"></image>
-          <i v-if="orderIofo.count3" class="danger-num">{{orderIofo.count3}}</i>
-          <p style="color: #333">待发货</p>
+          <text v-if="orderIofo.count3" class="danger-num">{{orderIofo.count3}}</text>
+          <text  class="order_front">待发货</text>
         </view>
         <view   @click="$navigateTo('/pages/order/index?backUrl=/pages/my/index&current=2&status=4')">
           <!--                  <text class="icon2-thecar"></text>-->
           <image
               :class="orderIofo.count4 > 0 ? 'count3' : ''"
               src="../../static/img/new/fahuo.png"></image>
-          <i v-if="orderIofo.count4" style="margin-left: -14px" class="danger-num">{{orderIofo.count4}}</i>
-          <p style="color: #333">已发货</p>
+          <text v-if="orderIofo.count4" style="margin-left: -14px" class="danger-num">{{orderIofo.count4}}</text>
+          <text  class="order_front">已发货</text>
         </view>
 
         <view  @click="$navigateTo('/pages/order/index?backUrl=/pages/my/index&current=3&status=5')">
           <image
               :class="orderIofo.count5 > 0 ? 'count3' : ''"
               src="../../static/img/new/yilanjian.png"></image>
-          <i v-if="orderIofo.count5" class="danger-num">{{orderIofo.count5}}</i>
-          <p style="color: #333">运输中</p>
+          <text v-if="orderIofo.count5" class="danger-num">{{orderIofo.count5}}</text>
+          <text  class="order_front">运输中</text>
         </view>
 
         <view @click="$navigateTo('/pages/order/index?backUrl=/pages/my/index&current=4&status=6')">
           <image
               :class="orderIofo.count6 > 0 ? 'count3' : ''"
               src="../../static/img/new/yishouhuo.png"></image>
-          <i v-if="orderIofo.count6" class="danger-num">{{orderIofo.count6}}</i>
-          <p style="color: #333">已收货</p>
+          <text v-if="orderIofo.count6" class="danger-num">{{orderIofo.count6}}</text>
+          <text class="order_front">已收货</text>
         </view>
 
       </view>
@@ -195,6 +195,10 @@
         this.form.userRealName = options.userRealName
       }
       this.init()
+      this.customStyle =  {
+        marginTop: '20px', // 注意驼峰命名，并且值必须用引号包括，因为这是对象
+            color: 'red'
+      }
     },
     onPullDownRefresh() {
       uni.stopPullDownRefresh();
@@ -357,7 +361,7 @@
         }
       }
 
-      .my-pay {
+      .my-pay-order {
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
@@ -371,13 +375,6 @@
           width: 33.33%;
           color: #999;
           text-align: center;
-
-          > text {
-            .fz(font-size, 50);
-            margin-top: 2.3vw;
-            display: block;
-            text-align: center;
-          }
 
           p {
             padding-top: 22px;
@@ -476,6 +473,14 @@
     .fz(font-size, 34);
   }
 
+  .order_front {
+    display: block;
+    padding-top: 22px;
+    text-align: center;
+    padding-bottom: 10px;
+    font-size: 15px;
+    color: #333;
+  }
   .danger-num {
     padding: 0px 6px;
     min-width: 11px;
