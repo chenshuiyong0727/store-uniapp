@@ -1,15 +1,23 @@
 <template>
   <view class="login_new">
     <view class="login_new_welcome">
+      <!-- #ifndef MP-WEIXIN-->
       <view style="position:relative;">
         <image class="login_new_welcome_image" src="../../static/img/logo/logo.png"></image>
         <h5 class="login_new_welcome_text">欢迎来到移动仓库</h5>
       </view>
+      <!-- #endif -->
+      <!-- #ifdef MP-WEIXIN-->
+      <view style="text-align: center;">
+        <image class="login_new_welcome_image_mp" src="../../static/img/logo/logo.png"></image>
+        <h5 class="login_new_welcome_text">欢迎来到移动仓库</h5>
+      </view>
+      <!-- #endif -->
 
-      <view class="login_form" style="margin-top: 30px">
+      <view class="login_form " style="width: 70vw;margin-top: 30px">
+        <view class="baisebeijing">
         <u--input
             class="common-input"
-            style="width: 70vw;"
             prefixIcon="account"
             placeholderStyle="font-size: 14px;color:#c0c4cc"
             placeholder="请输入账号"
@@ -18,46 +26,48 @@
             clearable
         >
         </u--input>
-        <u--input
-            class="common-input"
-            style="width: 70vw;margin-top: 10px"
-            prefixIcon="lock-fill"
-            placeholderStyle="font-size: 14px;color:#c0c4cc"
-            placeholder="请输入验证码"
-            v-model="loginForm.verifyCode"
-            prefixIconStyle="font-size: 22px;color:#c0c4cc"
-            clearable
-        >
-<!--          <text>获取验证码</text>-->
-          <template slot="suffix">
-            <u-code
-                ref="uCode"
-                @change="codeChange"
-                seconds="60"
-                changeText="X秒重新获取"
-            ></u-code>
-            <u-button
-                @tap="getCode"
-                :text="tips"
-                type="primary"
-                size="mini"
-            ></u-button>
-          </template>
-        </u--input>
-<!--        <u&#45;&#45;input-->
-<!--            class="common-input"-->
-<!--            style="width: 70vw;margin-top: 10px"-->
-<!--            placeholder="请输入验证码"-->
-<!--            prefixIcon="lock"-->
-<!--            type="password"-->
-<!--            placeholderStyle="font-size: 14px;color:#c0c4cc"-->
-<!--            prefixIconStyle="font-size: 22px;color:#c0c4cc"-->
-<!--            clearable-->
-<!--            v-model="loginForm.verifyCode">-->
-<!--        </u&#45;&#45;input>-->
+        </view>
+        </view>
+        <view class="baisebeijing xianglian"  style="width: 70vw;margin-top: 10px">
+          <view style="width: 70vw">
+            <u--input
+                class="common-input"
+                prefixIcon="lock-fill"
+                placeholderStyle="font-size: 14px;color:#c0c4cc"
+                placeholder="请输入验证码"
+                v-model="loginForm.verifyCode"
+                prefixIconStyle="font-size: 22px;color:#c0c4cc"
+                clearable
+            >
+            </u--input>
+          </view>
+          <view  style="text-align: right;
+    margin-left: -29vw;
+    z-index: 2;
+    width: 29vw;
+    font-size: 13px;
+}">
+            <text style="margin-right: 8px;padding: 4px 10px;  border: 1px solid #409eff;    border-radius: 3px;
+  color: #409eff !important;" v-if="countDownNum == 60 || countDownNum == 0" @click="getCode"  class="color-url" >{{codeText}}</text>
+            <text style="margin-right: 15px;color: #b8bbbf" v-else >{{countDownNum}} 秒</text>
+          </view>
+<!--          <view>-->
+<!--            <u-code-->
+<!--                ref="uCode"-->
+<!--                @change="codeChange"-->
+<!--                seconds="60"-->
+<!--                changeText="X秒重新获取"-->
+<!--            ></u-code>-->
+<!--            <text-->
+<!--                @tap="getCode"-->
+<!--                :text="tips"-->
+<!--                type="primary"-->
+<!--                size="mini"-->
+<!--            ></text>-->
+<!--          </view>-->
       </view>
-      <view class=" btm-distance">
-        <u-button style="margin-top: 25px;    width: 50vw;" type="primary" @click="login">
+      <view style="margin-top: 25px;">
+        <u-button style="  width: 50vw;" type="primary" @click="login">
           <text style=" font-size: 16px;font-weight: 600">登录</text>
         </u-button>
         <view style="margin-top: 25px;    width: 50vw; text-align: center"  @click="loginByCode">
@@ -98,52 +108,80 @@
       }
     },
     methods: {
-      codeChange(text) {
-        this.tips = text;
-      },
-      getCode1(){
-        if(this.loginForm.loginAccount=="") {
-         this.$toast('账号不能为空');
-          return
-        }
-        let loginInfo = deepCopy(this.loginForm)
-        userContainerApi.sendPhoneVal(loginInfo).then(res => {
-          if (res.subCode === 1000) {
-            Toast("发送成功")
-            this.countDown()
-          } else {
-            Toast(res.subMsg)
+      countDown:function(){
+        this.timer=setInterval(() => {
+          this.countDownNum--;
+          if(this.countDownNum<=0){
+            clearInterval(this.timer);
           }
-        })
+        },1000);
       },
-      getCode() {
+      getCode(){
         if(this.loginForm.loginAccount=="") {
           this.$toast('账号不能为空');
           return
         }
-        uni.showLoading({
-          title: '正在获取验证码'
-        })
         let loginInfo = deepCopy(this.loginForm)
-        if (this.$refs.uCode.canGetCode) {
-          // 模拟向后端请求验证码
-          // userContainerApi.sendPhoneVal(loginInfo)
-          this.$request({
-            url: '/gw/op/v1/auth/sendPhoneVal',
-            method: 'post',
-            data: loginInfo
-          }).then(res => {
-            if (res.subCode === 1000) {
-              this.$toast("发送成功")
-              this.$refs.uCode.start();
-            } else {
-              this.$toast(res.subMsg)
-            }
-          })
-        } else {
-          uni.$u.toast('倒计时结束后再发送');
-        }
+        this.$request({
+          url: '/gw/op/v1/auth/sendPhoneVal',
+          method: 'post',
+          data: loginInfo
+        }).then(res => {
+          if (res.subCode === 1000) {
+            this.$toast("发送成功")
+            this.countDown()
+          } else {
+            this.$toast(res.subMsg)
+          }
+        })
       },
+      //
+      // codeChange(text) {
+      //   this.tips = text;
+      // },
+      // getCode1(){
+      //   if(this.loginForm.loginAccount=="") {
+      //    this.$toast('账号不能为空');
+      //     return
+      //   }
+      //   let loginInfo = deepCopy(this.loginForm)
+      //   userContainerApi.sendPhoneVal(loginInfo).then(res => {
+      //     if (res.subCode === 1000) {
+      //       Toast("发送成功")
+      //       this.countDown()
+      //     } else {
+      //       Toast(res.subMsg)
+      //     }
+      //   })
+      // },
+      // getCode() {
+      //   if(this.loginForm.loginAccount=="") {
+      //     this.$toast('账号不能为空');
+      //     return
+      //   }
+      //   uni.showLoading({
+      //     title: '正在获取验证码'
+      //   })
+      //   let loginInfo = deepCopy(this.loginForm)
+      //   if (this.$refs.uCode.canGetCode) {
+      //     // 模拟向后端请求验证码
+      //     // userContainerApi.sendPhoneVal(loginInfo)
+      //     this.$request({
+      //       url: '/gw/op/v1/auth/sendPhoneVal',
+      //       method: 'post',
+      //       data: loginInfo
+      //     }).then(res => {
+      //       if (res.subCode === 1000) {
+      //         this.$toast("发送成功")
+      //         this.$refs.uCode.start();
+      //       } else {
+      //         this.$toast(res.subMsg)
+      //       }
+      //     })
+      //   } else {
+      //     uni.$u.toast('倒计时结束后再发送');
+      //   }
+      // },
       login() {
         if(this.loginForm.loginAccount=="" || this.loginForm.verifyCode=="") {
           this.$toast('账号，验证码不能为空');

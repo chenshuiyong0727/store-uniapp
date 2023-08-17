@@ -1,27 +1,35 @@
 <template>
   <view class="login_new">
     <view class="login_new_welcome">
+      <!-- #ifndef MP-WEIXIN-->
       <view style="position:relative;">
         <image class="login_new_welcome_image" src="../../static/img/logo/logo.png"></image>
         <h5 class="login_new_welcome_text">欢迎来到移动仓库</h5>
       </view>
-
-      <view class="login_form" style="margin-top: 30px">
-        <u--input
-            class="common-input"
-            style="width: 70vw;"
-            prefixIcon="account"
-            placeholderStyle="font-size: 14px;color:#c0c4cc"
-            placeholder="请输入账号"
-            v-model="loginForm.loginAccount"
-            prefixIconStyle="font-size: 22px;color:#c0c4cc"
-            clearable
-        >
-        </u--input>
+      <!-- #endif -->
+      <!-- #ifdef MP-WEIXIN-->
+      <view style="text-align: center;">
+        <image class="login_new_welcome_image_mp" src="../../static/img/logo/logo.png"></image>
+        <h5 class="login_new_welcome_text">欢迎来到移动仓库</h5>
+      </view>
+      <!-- #endif -->
+      <view class="login_form" style="width: 70vw;margin-top: 30px">
+        <view class="baisebeijing">
+          <u--input
+              class="common-input"
+              prefixIcon="account"
+              placeholderStyle="font-size: 14px;color:#c0c4cc"
+              placeholder="请输入账号"
+              v-model="loginForm.loginAccount"
+              prefixIconStyle="font-size: 22px;color:#c0c4cc"
+              clearable
+          >
+          </u--input>
+        </view>
+        <view class="baisebeijing" style="width: 70vw;margin-top: 10px">
         <u--input
             :password-icon="passwordIcon"
             class="common-input"
-            style="width: 70vw;margin-top: 10px"
             placeholder="请输入密码"
             prefixIcon="lock"
             type="password"
@@ -30,12 +38,13 @@
             clearable
             v-model="loginForm.loginPassword">
         </u--input>
+        </view>
       </view>
-      <view class=" btm-distance">
-        <u-button style="margin-top: 25px;    width: 50vw;" type="primary" @click="login">
+      <view  style="margin-top: 25px;">
+        <u-button style="    width: 50vw;" type="primary" @click="login">
           <text style=" font-size: 16px;font-weight: 600">登录</text>
         </u-button>
-        <view style="margin-top: 25px;    width: 50vw; text-align: center"  @click="loginByCode">
+        <view style=" margin-top: 25px; width: 50vw; text-align: center"  @click="loginByCode">
           <text class="color-url" style=" font-size: 16px;">验证码登录</text>
         </view>
       </view>

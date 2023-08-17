@@ -2,16 +2,26 @@
   <view class="car2" ref="content"
         style="height: 100%;font-size: 15px; border-top:0;    overflow: auto;">
     <u-navbar title="个人中心" bgColor="#f3faff">
+      <!-- #ifndef MP-WEIXIN-->
       <view @click="scanCode" class="u-nav-slot" slot="left">
         <image style="width: 23px; height: 23px;" src="../../static/img/saoyisao4.png"></image>
       </view>
       <view @click="comfirm(1)" class="u-nav-slot" slot="right">
         <image style=" width: 26px;height: 26px;" src="../../static/img/setting0.png"></image>
       </view>
+      <!-- #endif -->
+      <!-- #ifdef MP-WEIXIN-->
+      <view @click="comfirm(1)" class="u-nav-slot" slot="left">
+        <image style="width: 26px; height: 26px;" src="../../static/img/setting0.png"></image>
+      </view>
+      <!-- #endif -->
     </u-navbar>
 
     <view style="
         margin-top: 44px;
+        <!-- #ifdef MP-WEIXIN-->
+          margin-top: 88px;
+        <!-- #endif -->
         padding-bottom: 35vw;
         padding-top: 5vw;
          background-image: linear-gradient(#e5f4ff, #f3f2f8);">

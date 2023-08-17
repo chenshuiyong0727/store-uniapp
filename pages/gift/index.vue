@@ -6,7 +6,7 @@
       </view>
     </u-navbar>
     <view class="fenlei_top" style="display: flex;">
-      <view style="width: 83vw">
+      <view style="width: 83vw" class="baisebeijing">
         <u--input
             class="searchInput"
             prefixIcon="search"

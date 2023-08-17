@@ -22,13 +22,15 @@
       <h5 style="font-size: 30px; font-weight: 600; margin-top: 20px;">{{
         userName ? userName : '系统用户'
         }}</h5>
-      <view v-if="type == 1">
-        <u-button style="margin-top: 42px; width: 66vw;" type="primary" @click="comfirm">
+      <view  style="
+        margin-top: 42px;
+         width: 66vw;" v-if="type == 1">
+        <u-button type="primary" @click="comfirm">
           <text style=" font-size: 16px;font-weight: 600">退出登录</text>
         </u-button>
       </view>
-      <view class="clearfix btm-distance" v-else>
-        <u-button style="margin-top: 42px; width: 66vw;" type="primary" @click="comfirm2">
+      <view style="margin-top: 42px; width: 66vw;"  v-else>
+        <u-button type="primary" @click="comfirm2">
           <text style=" font-size: 16px;font-weight: 600">修改密码</text>
         </u-button>
       </view>

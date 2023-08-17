@@ -335,12 +335,13 @@ select{
   padding: 5px 10px !important;
   width: 100vw;
   background: #f3faff;
-  /*background: #eaf4fd;*/
   position: fixed;
-  top: 0;
+  top: 43px;
+  /*#ifdef MP-WEIXIN*/
+  top: 86px;
+  /*#endif*/
   left: 0;
   z-index: 2;
-  margin-top: 43px !important;
 }
 .fenlei_top {
   padding: 5px 10px !important;
@@ -575,10 +576,15 @@ img{
   left: 50%;
   transform: translate(-50%,-50%);
 }
+.login_new_welcome_image_mp{
+  margin-top: 25vw;
+  width: 14.2vw;
+  height:14.2vw;
+}
 .login_new_welcome_text{
   font-size: 25px;
   font-weight: 600;
-  margin-top: 17px;
+  margin-top: 35px;
 }
 
 /*导航栏*/
