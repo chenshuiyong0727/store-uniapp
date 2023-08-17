@@ -37,7 +37,6 @@
                 placeholder="请输入验证码"
                 v-model="loginForm.verifyCode"
                 prefixIconStyle="font-size: 22px;color:#c0c4cc"
-                clearable
             >
             </u--input>
           </view>
