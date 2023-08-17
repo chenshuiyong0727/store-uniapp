@@ -347,7 +347,7 @@
               <text v-if="item.status == 3 && item.deliveryDeadlineTime" style="margin-left: 2px">
                 <text>发货截止时间</text>
               </text>
-              <text  v-if="item.status == 3 && item.deliveryDeadlineTime" style="margin-left: 4px" class="dingdans_con_dw_time">
+              <text  v-if="item.status == 3 && item.deliveryDeadlineTime" style="margin-left: 4px" class="color-danger">
                 {{item.deliveryDeadlineTime | formateTime }}
               </text>
             </view>

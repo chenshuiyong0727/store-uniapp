@@ -19,11 +19,11 @@
 
     <view style="
         margin-top: 44px;
-        <!-- #ifdef MP-WEIXIN-->
-          margin-top: 88px;
-        <!-- #endif -->
         padding-bottom: 35vw;
         padding-top: 5vw;
+        <!-- #ifdef MP-WEIXIN-->
+          padding-top: 30px;
+        <!-- #endif -->
          background-image: linear-gradient(#e5f4ff, #f3f2f8);">
       <view class="header zuoyouduiqi">
         <view @click="userInfo" class="header-icon xianglian" style="margin-left: 6vw;">
@@ -195,10 +195,10 @@
         this.form.userRealName = options.userRealName
       }
       this.init()
-      this.customStyle =  {
-        marginTop: '20px', // 注意驼峰命名，并且值必须用引号包括，因为这是对象
-            color: 'red'
-      }
+      // this.customStyle =  {
+      //   marginTop: '20px', // 注意驼峰命名，并且值必须用引号包括，因为这是对象
+      //       color: 'red'
+      // }
     },
     onPullDownRefresh() {
       uni.stopPullDownRefresh();

@@ -2,6 +2,7 @@
   <view class="hello" ref="hello" style="height: 100%;padding-top: 0px;    overflow: auto;">
     <view class="car1">
       <u-navbar title="最硬球鞋"  bgColor="#f3faff" >
+        <!-- #ifndef MP-WEIXIN-->
         <view class="u-nav-slot" slot="left">
           <image style="width: 23px; height: 23px;"
                  :src="fileUrl +'/static/img/logo/logo-333-1.png'"></image>
@@ -9,12 +10,24 @@
         <view @click="scanCode()" class="u-nav-slot" slot="right">
           <image style=" width: 26px;height: 26px;" :src="fileUrl +'/static/img/photo2.png'"></image>
         </view>
+        <!-- #endif -->
+        <!-- #ifdef MP-WEIXIN-->
+        <view @click="scanCode()" class="u-nav-slot" slot="left">
+          <image style="width: 26px; height: 26px;" :src="fileUrl +'/static/img/photo2.png'"></image>
+        </view>
+        <!-- #endif -->
       </u-navbar>
+
+
       <view class="julibiaoti" style="
         padding-bottom: 40vw;
+         <!-- #ifdef MP-WEIXIN-->
+          padding-top: 30px;
+        <!-- #endif -->
     background-image: linear-gradient(#e5f4ff, #f3f2f8);">
         <view class="header">
-          <view class="my-indent-right-1" style="margin-left: 4vw;">
+          <view class="width92 baisebeijing" style="margin-left: 4vw;
+        ">
             <u--input
                 class="searchInputW"
                 prefixIcon="search"

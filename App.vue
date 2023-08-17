@@ -16,6 +16,13 @@
       currentScreenStatus: 'portrait'
     },
     onLaunch: function() {
+      uni.getSystemInfo({
+        success: function(res) {
+          console.log('DPR：' + res.pixelRatio)
+          console.log('宽度：' + res.screenWidth)
+          console.log('高度：' + res.screenHeight)
+        }
+      })
       // #ifdef APP-PLUS
       // 锁定横屏
       // if (this.$pad) {
