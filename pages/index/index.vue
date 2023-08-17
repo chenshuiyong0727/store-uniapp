@@ -4,10 +4,10 @@
       <u-navbar title="最硬球鞋"  bgColor="#f3faff" >
         <view class="u-nav-slot" slot="left">
           <image style="width: 23px; height: 23px;"
-                 src="../../static/img/logo/logo-333-1.png"></image>
+                 :src="fileUrl +'/static/img/logo/logo-333-1.png'"></image>
         </view>
         <view @click="scanCode()" class="u-nav-slot" slot="right">
-          <image style=" width: 26px;height: 26px;" src="../../static/img/photo2.png"></image>
+          <image style=" width: 26px;height: 26px;" :src="fileUrl +'/static/img/photo2.png'"></image>
         </view>
       </u-navbar>
       <view class="julibiaoti" style="
@@ -38,13 +38,13 @@
           <view>
             <image
                 style="margin-top: 8px;
-    width: 28px;height: 28px;" src="../../static/img/goods-1.png"></image>
+    width: 28px;height: 28px;" :src="fileUrl +'/static/img/goods-1.png'"></image>
           </view>
           <text style="color: #333;font-size: 14px;    margin-top: 4px;">库存管理</text>
         </view>
         <image style="    margin-left: 10px;
     height: 55px;width:7px;
-    margin-top: 10px;" src="../../static/img/more-1.png"></image>
+    margin-top: 10px;" :src="fileUrl +'/static/img/more-1.png'"></image>
         <view  @click="$navigateTo('/pages/store/index?backUrl=/pages/index/index&current=1&today=7')">
           <text :class="storeData.upCout > 0 ? 'color-danger-strong' : 'color-font'">
             {{storeData.upCout}}
@@ -118,13 +118,13 @@
         </view>
         <view  @click="$navigateTo('/pages/order/index?backUrl=/pages/index/index&current=6&theExpire=1')" class="zuoyouduiqi my-pay-21" v-if="orderIofo.countTheExpire">
           <view class="wenzitupduiqi" style="margin-left: 4vw;">
-            <image style="width: 30px; height: 30px" src="../../static/img/timeout_2.png"></image>
+            <image style="width: 30px; height: 30px" :src="fileUrl +'/static/img/timeout_2.png'"></image>
             <text style="color: #333;font-size: 15px;margin-left: 10px">即将到期订单</text>
           </view>
           <view class="wenzitupduiqi" style="margin-right: 4vw;">
             <text class="color-font-strong" style="font-size: 25px;">{{orderIofo.countTheExpire}}
             </text>
-            <image style="width: 20px;height: 20px" src="../../static/img/more.png"></image>
+            <image style="width: 20px;height: 20px" :src="fileUrl +'/static/img/more.png'"></image>
           </view>
         </view>
       </view>

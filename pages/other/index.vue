@@ -21,8 +21,8 @@
         </u--input>
       </view>
       <view class="fenlei_top_right" @click="isShowDialog2 = true">
-        <image v-if="queryParam.brand || queryParam.remark || queryParam.type"  src="../../static/img/search.png"></image>
-        <image v-else  src="../../static/img/search_no.png"></image>
+        <image v-if="queryParam.brand || queryParam.remark || queryParam.type"  :src="fileUrl +'/static/img/search.png'"></image>
+        <image v-else  :src="fileUrl +'/static/img/search_no.png'"></image>
       </view>
     </view>
 
@@ -67,7 +67,7 @@
                   ></u--input>
                 </view>
                 <view>
-                  <image  class="hengtupian" src="../../static/img/heng.png"></image>
+                  <image  class="hengtupian" :src="fileUrl +'/static/img/heng.png'"></image>
                 </view>
                 <view  @click="showTo= true;showFrom= false">
                   <u--input

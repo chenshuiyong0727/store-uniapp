@@ -30,8 +30,8 @@
             || queryParam.createTimeTo
             || queryParam.reason
             "
-            src="../../static/img/search.png"></image>
-        <image v-else  src="../../static/img/search_no.png"></image>
+            :src="fileUrl +'/static/img/search.png'"></image>
+        <image v-else  :src="fileUrl +'/static/img/search_no.png'"></image>
       </view>
     </view>
     <u-picker :show="show_sx_type" :columns="columns" @cancel="show_sx_type= false"
@@ -141,7 +141,7 @@
                   ></u--input>
                 </view>
                 <view>
-                  <image  class="hengtupian" src="../../static/img/heng.png"></image>
+                  <image  class="hengtupian" :src="fileUrl +'/static/img/heng.png'"></image>
                 </view>
                 <view  @click="showTo= true;showFrom= false">
                   <u--input
@@ -261,7 +261,7 @@
                   {{item.actNo}}
                 </text>
                 <image @click.stop="$copyUrl(item.actNo)" class="fuzhitupian"
-                       src="../../static/img/copy.png"></image>
+                       :src="fileUrl +'/static/img/copy.png'"></image>
               </view>
               <view v-if="item.addressId" style="margin-bottom: 5px;
     margin-top: 10px;">

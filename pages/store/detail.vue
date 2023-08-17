@@ -6,7 +6,7 @@
       </view>
       <view class="u-nav-slot" style="font-size: 15px;" slot="right">
         <rudon-rowMenuDotDotDot :localdata="localdata" @change="menuAction($event)">
-          <image style="height: 25px;width: 25px" src="../../static/img/slh.png"></image>
+          <image style="height: 25px;width: 25px" :src="fileUrl +'/static/img/slh.png'"></image>
         </rudon-rowMenuDotDotDot>
       </view>
     </u-navbar>
@@ -116,7 +116,7 @@
           <strong style="color: #333;font-size: 15px;">
             {{form.actNo}}
             <image @click="$copyUrl(form.actNo)" style="margin-bottom: -3px;" class="fuzhitupian"
-                   src="../../static/img/copy.png"></image>
+                   :src="fileUrl +'/static/img/copy.png'"></image>
           </strong>
         </view>
         <view>

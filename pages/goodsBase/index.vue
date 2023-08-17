@@ -6,7 +6,7 @@
       </view>
       <view class="u-nav-slot" style="font-size: 15px;" slot="right">
         <rudon-rowMenuDotDotDot :localdata="localdata" @change="menuAction($event)">
-          <image style="height: 25px;width: 25px" src="../../static/img/slh.png"></image>
+          <image style="height: 25px;width: 25px" :src="fileUrl +'/static/img/slh.png'"></image>
         </rudon-rowMenuDotDotDot>
       </view>
     </u-navbar>
@@ -26,8 +26,8 @@
         </u--input>
       </view>
       <view class="fenlei_top_right" @click="isShowDialog2 = true">
-        <image v-if="queryParam.brand || queryParam.remark || queryParam.type"  src="../../static/img/search.png"></image>
-        <image v-else  src="../../static/img/search_no.png"></image>
+        <image v-if="queryParam.brand || queryParam.remark || queryParam.type"  :src="fileUrl +'/static/img/search.png'"></image>
+        <image v-else  :src="fileUrl +'/static/img/search_no.png'"></image>
       </view>
     </view>
     <view class="searchListnew">
@@ -101,7 +101,7 @@
               {{item.actNo}}
               </text>
               <image @click.stop="$copyUrl(item.actNo)" class="fuzhitupian"
-                     src="../../static/img/copy.png"></image>
+                     :src="fileUrl +'/static/img/copy.png'"></image>
             </view>
             <view class="dingdans_con_right_top_dw_2" style="margin-bottom: -10px;">
               <view  v-if="item.brand">

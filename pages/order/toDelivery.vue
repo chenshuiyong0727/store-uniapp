@@ -35,7 +35,7 @@
                   {{orderData.actNo}}
                 </text>
                 <image @click="$copyUrl(orderData.actNo)" class="fuzhitupian"
-                       src="../../static/img/copy.png"></image>
+                       :src="fileUrl +'/static/img/copy.png'"></image>
               </view>
               <view class="shugangfengexian">
                 <text>|</text>

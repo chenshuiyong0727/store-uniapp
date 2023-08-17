@@ -31,7 +31,7 @@
               {{form.actNo}}
               </text>
               <image @click="$copyUrl(form.actNo)" class="fuzhitupian"
-                     src="../../static/img/copy.png"></image>
+                     :src="fileUrl +'/static/img/copy.png'"></image>
             </view>
           </view>
         </view>

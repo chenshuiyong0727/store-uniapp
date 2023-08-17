@@ -68,7 +68,7 @@
               {{form.theirPrice}}
             </strong>
             <image mode="widthFix" style=" margin-left: -2px;   margin-top: -9px;width: 17px;"
-                   src="../../static/img/more-dw.jpg"></image>
+                   :src="fileUrl +'/static/img/more-dw.jpg'"></image>
           </view>
         </view>
         <view class="package-status-dw" style="overflow-y:scroll;">
@@ -108,7 +108,7 @@
                       展开全部
                     </text>
                     <image mode="widthFix" style="margin-top: -2px;width: 16px;"
-                           src="../../static/img/xiala.png"></image>
+                           :src="fileUrl +'/static/img/xiala.png'"></image>
                   </view>
                 </view>
                 <view class="status-line-dw"></view>
@@ -147,7 +147,7 @@
       <view class="zuoyouduiqi" style="padding-top: 25px;">
         <view style="margin-left: 10px;">
           <image style="width: 28px;margin-top: -5px;" mode="widthFix"
-                 src="../../static/img/ysz.png"></image>
+                 :src="fileUrl +'/static/img/ysz.png'"></image>
           <strong v-if="form.status == 7" style="font-size: 15px;">查验鉴别通过</strong>
           <strong v-else style="font-size: 15px; ">{{ form.status | dictToDescTypeValue(37)
             }}</strong>
@@ -157,7 +157,7 @@
           <text v-if="wldataLastDate" @click="gotoWl" style="font-size: 15px; color: #5f6772">查看物流
           </text>
           <image mode="widthFix" v-if="wldataLastDate" @click="gotoWl" style="    margin-top: -6px;
-    width: 18px;" src="../../static/img/more-dw.jpg"></image>
+    width: 18px;" :src="fileUrl +'/static/img/more-dw.jpg'"></image>
         </view>
       </view>
     </view>
@@ -183,7 +183,7 @@
       <view class="zuoyouduiqi" style="padding-top: 25px;">
         <view style="margin-left: 10px;">
           <image mode="widthFix" style="width: 28px;margin-top: -5px;"
-                 src="../../static/img/shouhuodizhi.png"></image>
+                 :src="fileUrl +'/static/img/shouhuodizhi.png'"></image>
           <strong style="font-size: 15px; margin-left: -1px;">收货人：得物App白冰冰</strong>
         </view>
         <view style="margin-right: 15px;">
@@ -251,7 +251,7 @@
               {{form.actNo}}
             </text>
             <image @click="$copyUrl(form.actNo)" class="fuzhitupian"
-                   src="../../static/img/copy.png"></image>
+                   :src="fileUrl +'/static/img/copy.png'"></image>
           </view>
           <view v-if="form.surplusDay && form.saleType ==2  && form.status != 7 "
                 style="margin-bottom: 5px;">

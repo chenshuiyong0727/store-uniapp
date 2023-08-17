@@ -19,10 +19,10 @@
       <view class="width80 zuoyouduiqi">
         <view style="padding: 10px 0;" @click="isShowSort = !isShowSort ;">
           <text style="font-size: 16px;font-weight: 600" :class="sortName != '请选择地址' ? 'color-url': ''">{{ sortName}}</text>
-          <image v-if="!isShowSort && sortName == '请选择地址'" class="paixutupianxuanz" src="../../static/img/tab_down.png"></image>
-          <image v-if="!isShowSort && sortName != '请选择地址'" class="paixutupianxuanz" src="../../static/img/tab_down_url.png"></image>
-          <image v-if="isShowSort && sortName != '请选择地址'" class="paixutupianxuanz" src="../../static/img/tab_up_url.png"></image>
-          <image v-if="isShowSort && sortName == '请选择地址'" class="paixutupianxuanz" src="../../static/img/tab_up.png"></image>
+          <image v-if="!isShowSort && sortName == '请选择地址'" class="paixutupianxuanz" :src="fileUrl +'/static/img/tab_down.png'"></image>
+          <image v-if="!isShowSort && sortName != '请选择地址'" class="paixutupianxuanz" :src="fileUrl +'/static/img/tab_down_url.png'"></image>
+          <image v-if="isShowSort && sortName != '请选择地址'" class="paixutupianxuanz" :src="fileUrl +'/static/img/tab_up_url.png'"></image>
+          <image v-if="isShowSort && sortName == '请选择地址'" class="paixutupianxuanz" :src="fileUrl +'/static/img/tab_up.png'"></image>
         </view>
         <view v-if="sortName!='请选择地址'" @click="reset">
           <text style="font-size: 16px;">重置</text>

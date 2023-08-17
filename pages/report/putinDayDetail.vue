@@ -33,7 +33,7 @@
         </view>
       </view>
       <view>
-        <image  class="hengtupianbaobiao" src="../../static/img/heng.png"></image>
+        <image  class="hengtupianbaobiao" :src="fileUrl +'/static/img/heng.png'"></image>
       </view>
       <view class="fenlei_top_left">
         <view @click="showTo= true">
@@ -132,7 +132,7 @@
               {{item.actNo}}
               </text>
                   <image @click.stop="$copyUrl(item.actNo)" class="fuzhitupian"
-                         src="../../static/img/copy.png"></image>
+                         :src="fileUrl +'/static/img/copy.png'"></image>
                 </view>
                 <view class="jiagejiage">
                   <text style="font-weight: 400">尺码</text>

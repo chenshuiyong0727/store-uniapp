@@ -48,10 +48,10 @@
       <view class="width80 zuoyouduiqi">
         <view @click="isShowSort = !isShowSort ;isShowDialog2 =false ;">
           <text :class="sortName != '排序' ? 'color-url': ''">{{ sortName}}</text>
-          <image v-if="!isShowSort && sortName == '排序'" class="paixutupian" src="../../static/img/tab_down.png"></image>
-          <image v-if="!isShowSort && sortName != '排序'" class="paixutupian" src="../../static/img/tab_down_url.png"></image>
-          <image v-if="isShowSort && sortName != '排序'" class="paixutupian" src="../../static/img/tab_up_url.png"></image>
-          <image v-if="isShowSort && sortName == '排序'" class="paixutupian" src="../../static/img/tab_up.png"></image>
+          <image v-if="!isShowSort && sortName == '排序'" class="paixutupian" :src="fileUrl +'/static/img/tab_down.png'"></image>
+          <image v-if="!isShowSort && sortName != '排序'" class="paixutupian" :src="fileUrl +'/static/img/tab_down_url.png'"></image>
+          <image v-if="isShowSort && sortName != '排序'" class="paixutupian" :src="fileUrl +'/static/img/tab_up_url.png'"></image>
+          <image v-if="isShowSort && sortName == '排序'" class="paixutupian" :src="fileUrl +'/static/img/tab_up.png'"></image>
         </view>
         <view
             v-if="queryParam.priceFrom
@@ -65,11 +65,11 @@
                     "
             @click="isShowDialog2 = !isShowDialog2; isShowSort= false;">
           <text class="color-url">筛选</text>
-          <image  class="shaixuantupian" src="../../static/img/search.png"></image>
+          <image  class="shaixuantupian" :src="fileUrl +'/static/img/search.png'"></image>
         </view>
         <view v-else @click="isShowDialog2 = !isShowDialog2; isShowSort= false;">
           <text>筛选</text>
-          <image  class="shaixuantupian"  src="../../static/img/search_no.png"></image>
+          <image  class="shaixuantupian"  :src="fileUrl +'/static/img/search_no.png'"></image>
         </view>
       </view>
     </view>
@@ -111,7 +111,7 @@
                   ></u--input>
                 </view>
                 <view>
-                  <image  class="hengtupian" src="../../static/img/heng.png"></image>
+                  <image  class="hengtupian" :src="fileUrl +'/static/img/heng.png'"></image>
                 </view>
                 <view  >
                   <u--input
@@ -146,7 +146,7 @@
                   ></u--input>
                 </view>
                 <view>
-                  <image  class="hengtupian" src="../../static/img/heng.png"></image>
+                  <image  class="hengtupian" :src="fileUrl +'/static/img/heng.png'"></image>
                 </view>
                 <view  >
                   <u--input
@@ -181,7 +181,7 @@
                   ></u--input>
                 </view>
                 <view>
-                  <image  class="hengtupian" src="../../static/img/heng.png"></image>
+                  <image  class="hengtupian" :src="fileUrl +'/static/img/heng.png'"></image>
                 </view>
                 <view  >
                   <u--input
@@ -216,7 +216,7 @@
                   ></u--input>
                 </view>
                 <view>
-                  <image  class="hengtupian" src="../../static/img/heng.png"></image>
+                  <image  class="hengtupian" :src="fileUrl +'/static/img/heng.png'"></image>
                 </view>
                 <view  >
                   <u--input
@@ -296,7 +296,7 @@
               {{item.actNo}}
               </text>
                   <image @click="$copyUrl(item.actNo)" class="fuzhitupian"
-                         src="../../static/img/copy.png"></image>
+                         :src="fileUrl +'/static/img/copy.png'"></image>
                 </view>
                 <view class="jiagejiage">
                   <text style="font-weight: 400;">库存</text>

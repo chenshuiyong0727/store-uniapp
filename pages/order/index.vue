@@ -38,8 +38,8 @@
             || queryParam.successTimeFrom
             || queryParam.successTimeTo
             "
-            src="../../static/img/search.png"></image>
-        <image v-else  src="../../static/img/search_no.png"></image>
+            :src="fileUrl +'/static/img/search.png'"></image>
+        <image v-else  :src="fileUrl +'/static/img/search_no.png'"></image>
       </view>
     </view>
     <view class="searchListnew">
@@ -144,7 +144,7 @@
                   ></u--input>
                 </view>
                 <view>
-                  <image  class="hengtupian" src="../../static/img/heng.png"></image>
+                  <image  class="hengtupian" :src="fileUrl +'/static/img/heng.png'"></image>
                 </view>
                 <view  @click="showTo= true;showFrom= false">
                   <u--input
@@ -291,7 +291,7 @@
           <view class="xianglian" style="padding: 6px;
     margin-left: 5px;">
             <image style=" margin-bottom: 1px; width: 18px;height: 18px;"
-                   src="../../static/img/djs.png"></image>
+                   :src="fileUrl +'/static/img/djs.png'"></image>
             <text style="font-size: 14px;margin-left: 5px;">发货仅剩：</text>
             <strong v-if=" item.days" style="font-size: 15px;">
               {{ item.days}}
@@ -357,7 +357,7 @@
                 {{item.actNo}}
               </text>
               <image @click.stop="$copyUrl(item.actNo)" class="fuzhitupian"
-                     src="../../static/img/copy.png"></image>
+                     :src="fileUrl +'/static/img/copy.png'"></image>
             </view>
             <view v-if="item.addressId" style="margin-bottom: 5px;
     margin-top: 10px;">

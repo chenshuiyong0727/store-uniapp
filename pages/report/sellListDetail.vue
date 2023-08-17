@@ -33,7 +33,7 @@
         </view>
       </view>
       <view>
-        <image  class="hengtupianbaobiao" src="../../static/img/heng.png"></image>
+        <image  class="hengtupianbaobiao" :src="fileUrl +'/static/img/heng.png'"></image>
       </view>
       <view class="fenlei_top_left">
         <view @click="showTo= true">

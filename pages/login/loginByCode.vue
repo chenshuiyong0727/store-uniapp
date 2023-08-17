@@ -3,13 +3,13 @@
     <view class="login_new_welcome">
       <!-- #ifndef MP-WEIXIN-->
       <view style="position:relative;">
-        <image class="login_new_welcome_image" src="../../static/img/logo/logo.png"></image>
+        <image class="login_new_welcome_image" :src="fileUrl +'/static/img/logo/logo.png'"></image>
         <h5 class="login_new_welcome_text">欢迎来到移动仓库</h5>
       </view>
       <!-- #endif -->
       <!-- #ifdef MP-WEIXIN-->
       <view style="text-align: center;">
-        <image class="login_new_welcome_image_mp" src="../../static/img/logo/logo.png"></image>
+        <image class="login_new_welcome_image_mp" :src="fileUrl +'/static/img/logo/logo.png'"></image>
         <h5 class="login_new_welcome_text">欢迎来到移动仓库</h5>
       </view>
       <!-- #endif -->

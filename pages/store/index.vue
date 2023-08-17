@@ -6,7 +6,7 @@
       </view>
       <view class="u-nav-slot" style="font-size: 15px;" slot="right">
         <rudon-rowMenuDotDotDot :localdata="localdata" @change="menuAction($event)">
-          <image style="height: 25px;width: 25px" src="../../static/img/slh.png"></image>
+          <image style="height: 25px;width: 25px" :src="fileUrl +'/static/img/slh.png'"></image>
         </rudon-rowMenuDotDotDot>
       </view>
     </u-navbar>
@@ -53,10 +53,10 @@
       <view class="width80 zuoyouduiqi">
         <view @click="isShowSort = !isShowSort ;isShowDialog2 =false ;">
           <text :class="sortName != '排序' ? 'color-url': ''">{{ sortName}}</text>
-          <image v-if="!isShowSort && sortName == '排序'" class="paixutupian" src="../../static/img/tab_down.png"></image>
-          <image v-if="!isShowSort && sortName != '排序'" class="paixutupian" src="../../static/img/tab_down_url.png"></image>
-          <image v-if="isShowSort && sortName != '排序'" class="paixutupian" src="../../static/img/tab_up_url.png"></image>
-          <image v-if="isShowSort && sortName == '排序'" class="paixutupian" src="../../static/img/tab_up.png"></image>
+          <image v-if="!isShowSort && sortName == '排序'" class="paixutupian" :src="fileUrl +'/static/img/tab_down.png'"></image>
+          <image v-if="!isShowSort && sortName != '排序'" class="paixutupian" :src="fileUrl +'/static/img/tab_down_url.png'"></image>
+          <image v-if="isShowSort && sortName != '排序'" class="paixutupian" :src="fileUrl +'/static/img/tab_up_url.png'"></image>
+          <image v-if="isShowSort && sortName == '排序'" class="paixutupian" :src="fileUrl +'/static/img/tab_up.png'"></image>
         </view>
         <view
             v-if="queryParam.size
@@ -70,11 +70,11 @@
                     "
             @click="isShowDialog2 = !isShowDialog2; isShowSort= false;">
           <text class="color-url">筛选</text>
-          <image  class="shaixuantupian" src="../../static/img/search.png"></image>
+          <image  class="shaixuantupian" :src="fileUrl +'/static/img/search.png'"></image>
         </view>
         <view v-else @click="isShowDialog2 = !isShowDialog2; isShowSort= false;">
           <text>筛选</text>
-          <image  class="shaixuantupian"  src="../../static/img/search_no.png"></image>
+          <image  class="shaixuantupian"  :src="fileUrl +'/static/img/search_no.png'"></image>
         </view>
       </view>
     </view>
@@ -134,7 +134,7 @@
                   ></u--input>
                 </view>
                 <view>
-                  <image  class="hengtupian" src="../../static/img/heng.png"></image>
+                  <image  class="hengtupian" :src="fileUrl +'/static/img/heng.png'"></image>
                 </view>
                 <view  @click="showTo= true;showFrom= false">
                   <u--input
@@ -309,7 +309,7 @@
               {{item.actNo}}
               </text>
               <image @click.stop="$copyUrl(item.actNo)" class="fuzhitupian"
-                     src="../../static/img/copy.png"></image>
+                     :src="fileUrl +'/static/img/copy.png'"></image>
             </view>
             <view v-if="item.warehouseId" style="margin-bottom: 5px;
     margin-top: 10px;">

@@ -21,8 +21,8 @@
         </u--input>
       </view>
       <view class="fenlei_top_right" @click="isShowDialog2 = true">
-        <image v-if="queryParam.type || queryParam.label"  src="../../static/img/search.png"></image>
-        <image v-else  src="../../static/img/search_no.png"></image>
+        <image v-if="queryParam.type || queryParam.label"  :src="fileUrl +'/static/img/search.png'"></image>
+        <image v-else  :src="fileUrl +'/static/img/search_no.png'"></image>
       </view>
     </view>
     <view class="fenlei_top_1_1">

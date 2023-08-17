@@ -4,15 +4,15 @@
     <u-navbar title="个人中心" bgColor="#f3faff">
       <!-- #ifndef MP-WEIXIN-->
       <view @click="scanCode" class="u-nav-slot" slot="left">
-        <image style="width: 23px; height: 23px;" src="../../static/img/saoyisao4.png"></image>
+        <image style="width: 23px; height: 23px;" :src="fileUrl +'/static/img/saoyisao4.png'"></image>
       </view>
       <view @click="comfirm(1)" class="u-nav-slot" slot="right">
-        <image style=" width: 26px;height: 26px;" src="../../static/img/setting0.png"></image>
+        <image style=" width: 26px;height: 26px;" :src="fileUrl +'/static/img/setting0.png'"></image>
       </view>
       <!-- #endif -->
       <!-- #ifdef MP-WEIXIN-->
       <view @click="comfirm(1)" class="u-nav-slot" slot="left">
-        <image style="width: 26px; height: 26px;" src="../../static/img/setting0.png"></image>
+        <image style="width: 26px; height: 26px;" :src="fileUrl +'/static/img/setting0.png'"></image>
       </view>
       <!-- #endif -->
     </u-navbar>
@@ -48,7 +48,7 @@
         <text class="my-indent-left">订单</text>
         <view class="my-indent-right">
           <text style="font-weight: 500">全部</text>
-          <image class="my-indent-img" src="../../static/img/more.png"></image>
+          <image class="my-indent-img" :src="fileUrl +'/static/img/more.png'"></image>
         </view>
       </view>
 
@@ -56,7 +56,7 @@
         <view  @click="$navigateTo('/pages/order/index?backUrl=/pages/my/index&current=1&status=3')">
           <image
               :class="orderIofo.count3 > 0 ? 'count3' : ''"
-              src="../../static/img/new/daifahuo.png"></image>
+              :src="fileUrl +'/static/img/new/daifahuo.png'"></image>
           <text v-if="orderIofo.count3" class="danger-num">{{orderIofo.count3}}</text>
           <text  class="order_front">待发货</text>
         </view>
@@ -64,7 +64,7 @@
           <!--                  <text class="icon2-thecar"></text>-->
           <image
               :class="orderIofo.count4 > 0 ? 'count3' : ''"
-              src="../../static/img/new/fahuo.png"></image>
+              :src="fileUrl +'/static/img/new/fahuo.png'"></image>
           <text v-if="orderIofo.count4" style="margin-left: -14px" class="danger-num">{{orderIofo.count4}}</text>
           <text  class="order_front">已发货</text>
         </view>
@@ -72,7 +72,7 @@
         <view  @click="$navigateTo('/pages/order/index?backUrl=/pages/my/index&current=3&status=5')">
           <image
               :class="orderIofo.count5 > 0 ? 'count3' : ''"
-              src="../../static/img/new/yilanjian.png"></image>
+              :src="fileUrl +'/static/img/new/yilanjian.png'"></image>
           <text v-if="orderIofo.count5" class="danger-num">{{orderIofo.count5}}</text>
           <text  class="order_front">运输中</text>
         </view>
@@ -80,7 +80,7 @@
         <view @click="$navigateTo('/pages/order/index?backUrl=/pages/my/index&current=4&status=6')">
           <image
               :class="orderIofo.count6 > 0 ? 'count3' : ''"
-              src="../../static/img/new/yishouhuo.png"></image>
+              :src="fileUrl +'/static/img/new/yishouhuo.png'"></image>
           <text v-if="orderIofo.count6" class="danger-num">{{orderIofo.count6}}</text>
           <text class="order_front">已收货</text>
         </view>
@@ -93,42 +93,42 @@
       <view class="my-settle1" style="margin-top: 0;border-top-style:none">
         <view @click="putin" class="my-settle1-top">
           <view>
-            <image style="width: 27px;height: 27px;" src="../../static/img/new/ruku.png"></image>
+            <image style="width: 27px;height: 27px;" :src="fileUrl +'/static/img/new/ruku.png'"></image>
           </view>
 
           <p>
             <text style="color: #333">入库报表</text>
-            <image class="my-indent-img-1" src="../../static/img/more.png"></image>
+            <image class="my-indent-img-1" :src="fileUrl +'/static/img/more.png'"></image>
           </p>
         </view>
         <view @click="$navigateTo('/pages/report/channelStorage')" class="my-settle1-top">
           <view>
             <image style="width: 27px;height: 27px;"
-                   src="../../static/img/new/qudao.png"></image>
+                   :src="fileUrl +'/static/img/new/qudao.png'"></image>
           </view>
 
           <p>
             <text style="color: #333">入库渠道报表</text>
-            <image class="my-indent-img-1" src="../../static/img/more.png"></image>
+            <image class="my-indent-img-1" :src="fileUrl +'/static/img/more.png'"></image>
           </p>
         </view>
         <view @click="$navigateTo('/pages/report/sellList')" class="my-settle1-bottom">
           <view>
             <image style="width: 27px;height: 27px;"
-                   src="../../static/img/new/xiaoshou.png"></image>
+                   :src="fileUrl +'/static/img/new/xiaoshou.png'"></image>
           </view>
           <p>
             <text style="color: #333">销售报表</text>
-            <image class="my-indent-img-1" src="../../static/img/more.png"></image>
+            <image class="my-indent-img-1" :src="fileUrl +'/static/img/more.png'"></image>
           </p>
         </view>
         <view @click="$navigateTo('/pages/report/areaSellList')" class="my-settle1-bottom">
           <view>
-            <image style="width: 27px;height: 27px;" src="../../static/img/new/quyu.png"></image>
+            <image style="width: 27px;height: 27px;" :src="fileUrl +'/static/img/new/quyu.png'"></image>
           </view>
           <p>
             <text style="color: #333">区域销售报表</text>
-            <image class="my-indent-img-1" src="../../static/img/more.png"></image>
+            <image class="my-indent-img-1" :src="fileUrl +'/static/img/more.png'"></image>
           </p>
         </view>
       </view>
@@ -139,25 +139,25 @@
         <view @click="$navigateTo('/pages/goodsBase/act')">
           <image
               style="margin-top: 7px;margin-bottom: -4px;width: 27px;height: 27px;"
-              src="../../static/img/new/huodong.png"></image>
+              :src="fileUrl +'/static/img/new/huodong.png'"></image>
           <p style="color: #333">活动</p>
         </view>
         <view @click="$navigateTo('/pages/other/index')">
           <image
               style="margin-top: 7px;margin-bottom: -4px;width: 27px;height: 27px;"
-              src="../../static/img/new/qita.png"></image>
+              :src="fileUrl +'/static/img/new/qita.png'"></image>
           <p style="color: #333">其他收支</p>
         </view>
         <view @click="$navigateTo('/pages/goodsDefects/index')">
           <image
               style="margin-top: 7px;margin-bottom: -4px;width: 27px;height: 27px;"
-              src="../../static/img/new/xiaci.png"></image>
+              :src="fileUrl +'/static/img/new/xiaci.png'"></image>
           <p style="color: #333">瑕疵商品</p>
         </view>
         <view @click="$navigateTo('/pages/gift/index')">
           <image
               style="margin-top: 7px;margin-bottom: -4px;width: 27px;height: 27px;"
-              src="../../static/img/new/hongbao.png"></image>
+              :src="fileUrl +'/static/img/new/hongbao.png'"></image>
           <p style="color: #333">红包</p>
         </view>
       </view>
@@ -165,7 +165,7 @@
         <view  @click="$navigateTo('/pages/memo/index')"style="width: 25%">
           <image
               style="margin-top: 7px;margin-bottom: -4px;width: 27px;height: 27px;"
-              src="../../static/img/new/memo.png"></image>
+              :src="fileUrl +'/static/img/new/memo.png'"></image>
           <p style="color: #333">备忘录</p>
         </view>
       </view>
