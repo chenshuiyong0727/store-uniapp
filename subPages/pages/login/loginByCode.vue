@@ -44,26 +44,11 @@
     margin-left: -29vw;
     z-index: 2;
     width: 29vw;
-    font-size: 13px;
-}">
+    font-size: 13px;">
             <text style="margin-right: 8px;padding: 4px 10px;  border: 1px solid #409eff;    border-radius: 3px;
   color: #409eff !important;" v-if="countDownNum == 60 || countDownNum == 0" @click="getCode"  class="color-url" >{{codeText}}</text>
             <text style="margin-right: 15px;color: #b8bbbf" v-else >{{countDownNum}} 秒</text>
           </view>
-<!--          <view>-->
-<!--            <u-code-->
-<!--                ref="uCode"-->
-<!--                @change="codeChange"-->
-<!--                seconds="60"-->
-<!--                changeText="X秒重新获取"-->
-<!--            ></u-code>-->
-<!--            <text-->
-<!--                @tap="getCode"-->
-<!--                :text="tips"-->
-<!--                type="primary"-->
-<!--                size="mini"-->
-<!--            ></text>-->
-<!--          </view>-->
       </view>
       <view style="margin-top: 25px;">
         <u-button style="  width: 50vw;" type="primary" @click="login">
