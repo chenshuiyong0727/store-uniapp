@@ -195,10 +195,6 @@
         this.form.userRealName = options.userRealName
       }
       this.init()
-      this.customStyle =  {
-        marginTop: '20px', // 注意驼峰命名，并且值必须用引号包括，因为这是对象
-            color: 'red'
-      }
     },
     onPullDownRefresh() {
       uni.stopPullDownRefresh();
