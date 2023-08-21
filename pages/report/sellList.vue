@@ -52,6 +52,23 @@
         </view>
       </view>
     </view>
+
+    <view class="toubuanniu zuoyouduiqi">
+      <view class="xianglian">
+        <view v-for="(item,index) in saleTypeList"
+              :key="index"
+              class="saixuanxuanzhe julishang_10">
+          <u-button color="#f4f3f8" size="small" @click="queryParam.saleType = item.fieldValue;getPage();">
+            <text :class="queryParam.saleType == item.fieldValue ? 'xuanzhongziti' : 'putongziti'">{{item.fieldName}}</text>
+          </u-button>
+        </view>
+      </view>
+      <view @click="reset" v-if="queryParam.saleType || queryParam.createTimeTo || queryParam.createTimeFrom">
+        <text style="font-size: 14px;margin-right: 5px" class="color-url">重置</text>
+      </view>
+    </view>
+
+
     <u-datetime-picker
                 title="开始时间"
                 :show="showFrom"
@@ -71,7 +88,7 @@
         @cancel="cancelTo"
     ></u-datetime-picker>
     <!--    列表开始-->
-    <view style="    padding-top: 44px;">
+    <view style="    padding-top: 98px;">
       <view   @click="jumpDetail(item.months )" class="dingdans_item_rt" v-for="(item,index) in tableData" :key="index">
         <view class="dingdans_top_rt">
           <strong style="margin-left: 12px;">月份：</strong>
@@ -151,6 +168,7 @@
 
  data() {
       return {
+        saleTypeList: [],
         fileUrl: this.$fileUrl,
         dateCurrent: parseInt(new Date().getTime()),
         showFrom: false,
@@ -158,6 +176,7 @@
         allLoaded: false,
         emtityMsg: '没有更多了',
         queryParam: {
+          saleType: '',
           createTimeFrom: '',
           createTimeTo: ''
         },
@@ -165,11 +184,15 @@
       }
     },
     mounted() {
+      this.listSysDict()
       this.getPage()
-
     },
     methods: {
-
+      listSysDict() {
+        let sysDictList = uni.getStorageSync('sysDictList') ? JSON.parse(
+            uni.getStorageSync('sysDictList')) : []
+        this.saleTypeList = sysDictList.filter(item => item.typeValue == 46)
+      },
       cancelFrom() {
         this.showFrom = false;
         this.queryParam.createTimeFrom = '';
@@ -180,6 +203,18 @@
         this.queryParam.createTimeTo = '';
         this.getPage()
       },
+      reset() {
+        // this.isShowSort = false
+        // this.queryParam.addressId = ''
+        // this.sortName = '请选择地址'
+        this.queryParam= {
+          saleType: '',
+          createTimeFrom: '',
+          createTimeTo: ''
+        }
+        this.getPage()
+      },
+
       confirmFrom(e) {
         this.showFrom = false;
         let timeValue = uni.$u.timeFormat(e.value, 'yyyy-mm');

@@ -347,12 +347,24 @@ select{
   padding: 5px 10px !important;
   width: 100vw;
   background: #fff;
-  /*background: #eaf4fd;*/
   position: fixed;
   top: 0;
   left: 0;
   z-index: 2;
   margin-top: 43px !important;
+}
+.toubuanniu {
+  padding: 5px 10px !important;
+  width: 100vw;
+  background: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  margin-top: 88px !important;
+  border-top: 2px solid #f3f2f8;
+  border-bottom: 5px solid #f3f2f8;
+
 }
 
 .fenlei_top_left{
