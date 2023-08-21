@@ -64,16 +64,48 @@
                      v-model="requestParam.inStoreFreeDay" type="number" border="none"></u--input>
           <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
         </u-form-item>
-        <u-form-item label-width="30vw" label="寄售入仓时间" borderBottom >
-          <uni-datetime-picker placeholder="请选择" style="color: #303133 !important; text-align: right;font-size: 14px;" type="datetime" v-model="requestParam.inStoreTime"   :border="false"/>
+<!--        <u-form-item label-width="30vw" label="寄售入仓时间" borderBottom >-->
+<!--          <uni-datetime-picker placeholder="请选择" style="color: #303133 !important; text-align: right;font-size: 14px;" type="datetime" v-model="requestParam.inStoreTime"   :border="false"/>-->
+<!--          <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
+<!--        </u-form-item>-->
+<!--        <u-form-item label-width="30vw" label="发货截止时间" >-->
+<!--          <uni-datetime-picker  placeholder="请选择"  style="color: #303133 !important; text-align: right;font-size: 14px;" type="datetime" v-model="requestParam.deliveryDeadlineTime"   :border="false"/>-->
+<!--          <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
+<!--        </u-form-item>-->
+        <u-form-item label-width="30vw" label="寄售入仓时间" @click="$refs.myPickertime.show();$hideKeyboard" borderBottom>
+          <u--input inputAlign="right" disabledColor="#fff" placeholder="请选择"
+                    placeholderStyle="font-size: 14px;color:#808080"
+                    v-model="requestParam.inStoreTime" border="none" disabled></u--input>
           <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
         </u-form-item>
-        <u-form-item label-width="30vw" label="发货截止时间" >
-          <uni-datetime-picker  placeholder="请选择"  style="color: #303133 !important; text-align: right;font-size: 14px;" type="datetime" v-model="requestParam.deliveryDeadlineTime"   :border="false"/>
+        <u-form-item label-width="30vw" label="发货截止时间" @click="$refs.myPicker.show();$hideKeyboard" borderBottom>
+          <u--input inputAlign="right" disabledColor="#fff" placeholder="请选择"
+                    placeholderStyle="font-size: 14px;color:#808080"
+                    v-model="requestParam.deliveryDeadlineTime" border="none" disabled></u--input>
           <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
         </u-form-item>
       </view>
     </u--form>
+    <buuug7-simple-datetime-picker
+        v-if="dateCurrent1"
+        ref="myPicker"
+        @submit="handleSubmit"
+        :start-year="2022"
+        :end-year="2099"
+        :time-init="dateCurrent1"
+        :time-hide="[true, true, true, true, true, true]"
+        :time-label="['年', '月', '日', '时', '分', '秒']"
+    />
+    <buuug7-simple-datetime-picker
+        v-if="dateCurrent2"
+        ref="myPickertime"
+        @submit="handleSubmit1"
+        :start-year="2022"
+        :end-year="2099"
+        :time-init="dateCurrent2"
+        :time-hide="[true, true, true, true, true, true]"
+        :time-label="['年', '月', '日', '时', '分', '秒']"
+    />
     <view style="height: 70px"></view>
     <view class="baisebeijing shuipingjuzhong" style="width:100%;position:fixed;bottom:0;
      border-top: solid #E2DDDD 1px;">
@@ -96,6 +128,8 @@
         saleTypeList: [],
         typeList: [],
         id: '',
+        dateCurrent1:'',
+        dateCurrent2:'',
         requestParam: {
           ids: '',
           status: 3,
@@ -122,6 +156,12 @@
       }
     },
     methods: {
+      handleSubmit(e) {
+        this.requestParam.deliveryDeadlineTime = `${e.year}-${e.month}-${e.day} ${e.hour}:${e.minute}:${e.second}`;
+      },
+      handleSubmit1(e) {
+        this.requestParam.inStoreTime = `${e.year}-${e.month}-${e.day} ${e.hour}:${e.minute}:${e.second}`;
+      },
       getDetailById() {
         let id = this.ids[0]
         if (id) {
@@ -132,7 +172,23 @@
             if (res.subCode === 1000) {
               this.requestParam.deliveryDeadlineTime = res.data ? this.$parseTime(
                   res.data.deliveryDeadlineTime) : ''
-              this.requestParam.inStoreTime = res.data ? this.$parseTime(res.data.inStoreTime) : ''
+              // this.requestParam.inStoreTime = res.data ? this.$parseTime(res.data.inStoreTime) : ''
+              if (res.data.deliveryDeadlineTime){
+                this.requestParam.deliveryDeadlineTime = uni.$u.timeFormat(res.data.deliveryDeadlineTime, 'yyyy-mm-dd hh:MM:ss');
+                this.dateCurrent1 = parseInt(new Date(this.requestParam.deliveryDeadlineTime).getTime())
+              }else{
+                this.dateCurrent1 = parseInt(new Date().getTime())
+              }
+              if (res.data.inStoreTime){
+                this.requestParam.inStoreTime  = uni.$u.timeFormat(res.data.inStoreTime, 'yyyy-mm-dd hh:MM:ss');
+                this.dateCurrent2 = parseInt(new Date(this.requestParam.inStoreTime).getTime())
+              }else{
+                this.dateCurrent2 = parseInt(new Date().getTime())
+              }
+              // if (this.orderData.deliveryDeadlineTime){
+              //   this.requestParam.deliveryDeadlineTime  = uni.$u.timeFormat(this.orderData.deliveryDeadlineTime, 'yyyy-mm-dd hh:MM:ss');
+              //   this.dateCurrent1 = parseInt(new Date( this.orderData.deliveryDeadlineTime).getTime())
+              // }
               this.requestParam.addressId = res.data ? res.data.addressId : ''
               this.requestParam.inStoreFreeDay = res.data ? res.data.inStoreFreeDay : ''
               this.requestParam.freight = res.data ? res.data.freight : ''
@@ -167,8 +223,8 @@
           this.$toast('闪电直发入仓 ，免仓储费天数不能为空')
           return
         }
-        this.requestParam.deliveryDeadlineTime = this.requestParam.deliveryDeadlineTime ? this.$parseTime(this.requestParam.deliveryDeadlineTime) : ''
-        this.requestParam.inStoreTime = this.requestParam.inStoreTime ? this.$parseTime(this.requestParam.inStoreTime) : ''
+        // this.requestParam.deliveryDeadlineTime = this.requestParam.deliveryDeadlineTime ? this.$parseTime(this.requestParam.deliveryDeadlineTime) : ''
+        // this.requestParam.inStoreTime = this.requestParam.inStoreTime ? this.$parseTime(this.requestParam.inStoreTime) : ''
         // 闪电直发
         goodsOrderApi.updateSaleType(this.requestParam).then(res => {
           this.$toast(res.subMsg)

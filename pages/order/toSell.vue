@@ -94,13 +94,24 @@
               v-model="requestParam.saleType"/>
           <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
         </u-form-item>
-        <u-form-item label-width="32vw" label="发货截止时间"  >
-          <uni-datetime-picker :clearIcon="false" style="color: #303133 !important; text-align: right;font-size: 14px;" type="datetime" v-model="requestParam.deliveryDeadlineTime"  :border="false"/>
+        <u-form-item label-width="32vw" label="发货截止时间" @click="$refs.myPicker.show();$hideKeyboard" >
+          <u--input inputAlign="right" disabledColor="#fff" placeholder="请选择"
+                    placeholderStyle="font-size: 14px;color:#808080"
+                    v-model="requestParam.deliveryDeadlineTime" border="none" disabled></u--input>
+<!--          <uni-datetime-picker :clearIcon="false" style="color: #303133 !important; text-align: right;font-size: 14px;" type="datetime" v-model="requestParam.deliveryDeadlineTime"  :border="false"/>-->
           <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
         </u-form-item>
       </view>
     </u--form>
-
+    <buuug7-simple-datetime-picker
+        ref="myPicker"
+        @submit="handleSubmit"
+        :start-year="2022"
+        :end-year="2099"
+        :time-init="dateCurrent"
+        :time-hide="[true, true, true, true, true, true]"
+        :time-label="['年', '月', '日', '时', '分', '秒']"
+    />
 
     <view class="width92 baisebeijing" style="margin-top: 10px;">
       <view style="width: 85vw;margin-left: 4vw;    padding: 12px 0;">
@@ -281,6 +292,7 @@
         totalCount: 1,
         orderData: '',
         max1: '',
+        dateCurrent: parseInt(new Date().getTime()),
         addressList: [],
         statusList: [],
         saleTypeList: [],
@@ -319,6 +331,9 @@
       }
     },
     methods: {
+      handleSubmit(e) {
+        this.requestParam.deliveryDeadlineTime = `${e.year}-${e.month}-${e.day} ${e.hour}:${e.minute}:${e.second}`;
+      },
       keyup1() {
         let theirPrice = this.requestParam.shelvesPrice - this.requestParam.poundage
         this.requestParam.theirPrice = parseFloat(theirPrice).toFixed(2)

@@ -58,10 +58,11 @@
                 <u--input style="margin-right: 15px;" :disabled="true" disabledColor="#fff" inputAlign="right"
                            v-model="orderData.size" border="none" color="#A1A1A1"></u--input>
               </u-form-item>
-              <u-form-item label-width="30vw" label="创建时间" borderBottom>
-                <uni-datetime-picker :clearIcon="false" style="color: #303133 !important; text-align: right;font-size: 14px;"
-                                     type="datetime" v-model="requestParam.createTime"  :border="false"/>
-                <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
+              <u-form-item label-width="30vw" label="创建时间" @click="createTimeShow" borderBottom>
+                <u--input inputAlign="right" disabledColor="#fff" placeholder="请选择"
+                          placeholderStyle="font-size: 14px;color:#808080"
+                          v-model="requestParam.createTime" border="none" disabled></u--input>
+                <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
               </u-form-item>
               <u-form-item label="状态" borderBottom @click="show_sx_type = true; isShowDialog=!isShowDialog ;$hideKeyboard()">
                 <u--input inputAlign="right" placeholder="请选择状态" disabledColor="#fff"
@@ -313,6 +314,16 @@
       <view v-show="tableData.length" class="meiyougengduo">
         <u-loadmore fontSize="18"  color="#a6a6a6" nomoreText="最硬球鞋" :status="loadStatus"/>
       </view>
+      <buuug7-simple-datetime-picker
+          v-if="dateCurrent1"
+          ref="myPicker"
+          @submit="handleSubmit"
+          :start-year="2022"
+          :end-year="2099"
+          :time-init="dateCurrent1"
+          :time-hide="[true, true, true, true, true, true]"
+          :time-label="['年', '月', '日', '时', '分', '秒']"
+      />
       <u-empty
           v-if="!tableData.length && !isLoading"
           mode="list"
@@ -338,6 +349,7 @@
         fileUrl: this.$fileUrl,
         backUrl: '',
         dateCurrent: parseInt(new Date().getTime()),
+        dateCurrent1:'',
         showFrom: false,
         showTo: false,
         show_sx_type: false,
@@ -555,7 +567,12 @@
         this.requestParam.status = row.status
         this.requestParam.statusStr = row.status == 1 ? '瑕疵' : '已处理'
         this.requestParam.reason = row.reason
-        this.requestParam.createTime = this.$parseTime(row.createTime)
+        if (row.createTime){
+          this.requestParam.createTime = this.$parseTime(row.createTime)
+          this.dateCurrent1 = parseInt(new Date(this.requestParam.createTime).getTime())
+        }else{
+          this.dateCurrent1 = parseInt(new Date().getTime())
+        }
         this.requestParam.id = row.id
         this.isShowDialog = true
       },
@@ -831,6 +848,16 @@
       },
       preventHandler: function preventHandler() {
         return;
+      },
+      handleSubmit(e) {
+        this.isShowDialog=!this.isShowDialog ;
+        this.$refs.myPicker.hide();
+        this.requestParam.createTime = `${e.year}-${e.month}-${e.day} ${e.hour}:${e.minute}:${e.second}`;
+      },
+      createTimeShow() {
+        this.$refs.myPicker.show();
+        this.isShowDialog=!this.isShowDialog ;
+        this.$hideKeyboard
       },
       search1() {
         this.tableData = []

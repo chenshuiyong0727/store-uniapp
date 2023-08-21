@@ -49,11 +49,12 @@
                     v-model="requestParam.dwPrice" type="digit" border="none"></u--input>
           <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
         </u-form-item>
-        <u-form-item label-width="30vw" label="入库时间" borderBottom >
-          <uni-datetime-picker style="color: #303133 !important; text-align: right;font-size: 14px;" type="datetime" v-model="requestParam.createTime" @change="changeLog"  :border="false"/>
+        <u-form-item label-width="30vw" label="入库时间" @click="$refs.myPicker.show();$hideKeyboard" borderBottom>
+          <u--input inputAlign="right" disabledColor="#fff" placeholder="请选择"
+                    placeholderStyle="font-size: 14px;color:#808080"
+                    v-model="requestParam.createTime" border="none" disabled></u--input>
           <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
         </u-form-item>
-
         <u-form-item label-width="25vw" label="手续费" borderBottom>
           <u--input  :disabled="true" disabledColor="#fff" inputAlign="right"
                     v-model="requestParam.poundage" type="digit" border="none" color="#d1d1d1"></u--input>
@@ -70,13 +71,16 @@
         </u-form-item>
       </view>
     </u--form>
-    <u-datetime-picker
-                :show="showFrom"
-        v-model="dateCurrent"
-        :minDate="1646064000000"
-        @confirm="confirmFrom"
-        @cancel="cancelFrom"
-    ></u-datetime-picker>
+    <buuug7-simple-datetime-picker
+        v-if="dateCurrent"
+        ref="myPicker"
+        @submit="handleSubmit"
+        :start-year="2022"
+        :end-year="2099"
+        :time-init="dateCurrent"
+        :time-hide="[true, true, true, true, true, true]"
+        :time-label="['年', '月', '日', '时', '分', '秒']"
+    />
     <view class="baisebeijing shuipingjuzhong" style="width:100%;position:fixed;bottom:0;
      border-top: solid #E2DDDD 1px;">
       <u-button style="width: 50vw; margin: 10px 15px;" type="primary" @click="confirmHandle">
@@ -96,9 +100,9 @@
  data() {
       return {
         fileUrl: this.$fileUrl,
-        datetimesingle:  Date.now() - 2*24*3600*1000,
-        dateCurrent: parseInt(new Date().getTime()),
-showFrom: false,
+        // datetimesingle:  Date.now() - 2*24*3600*1000,
+        dateCurrent:'',
+        // showFrom: false,
         fileList1: [],
         show_sx_type: false,
         defaultIndex: [1],
@@ -165,17 +169,6 @@ showFrom: false,
         }
         this.show_sx_type = true
       },
-      cancelFrom() {
-        this.showFrom = false
-        this.requestParam.createTime = ''
-        this.search1()
-      },
-      confirmFrom(e) {
-        this.showFrom = false;
-        let timeValue = uni.$u.timeFormat(e.value, 'yyyy-mm-dd hh:MM');
-        this.requestParam.createTime = timeValue
-        // this.search1()
-      },
       confirm_sx_type(e) {
         this.show_sx_type = false
         let fieldValue = e.value[0].fieldValue
@@ -183,7 +176,9 @@ showFrom: false,
         this.form.type = fieldValue
         this.form.typeStr = fieldName
       },
-
+      handleSubmit(e) {
+        this.requestParam.createTime = `${e.year}-${e.month}-${e.day} ${e.hour}:${e.minute}:${e.second}`;
+      },
       confirmHandle() {
         if (this.requestParam.oldInventory < this.requestParam.inventory) {
           this.$toast('原始库存小于剩余库存')
@@ -205,7 +200,12 @@ showFrom: false,
         this.requestParam.id = this.orderData.id
         this.requestParam.sizeId = this.orderData.sizeId
         this.requestParam.channelId = this.orderData.channelId
-        this.requestParam.createTime  = uni.$u.timeFormat(this.orderData.createTime, 'yyyy-mm-dd hh:MM');
+        if (this.orderData.createTime){
+          this.requestParam.createTime  = uni.$u.timeFormat(this.orderData.createTime, 'yyyy-mm-dd hh:MM:ss');
+          this.dateCurrent = parseInt(new Date( this.orderData.createTime).getTime())
+        }else{
+          this.dateCurrent = parseInt(new Date().getTime())
+        }
         this.requestParam.oldInventory = this.orderData.oldInventory
         this.requestParam.inventory = this.orderData.inventory
         this.requestParam.price = this.orderData.price
