@@ -114,11 +114,16 @@
                      v-model="requestParam.reason" border="none"></u--input>
           <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
         </u-form-item>
-        <u-form-item label-width="30vw" label="发货截止时间" borderBottom >
-          <uni-datetime-picker style="color: #303133 !important; text-align: right;font-size: 14px;" type="datetime" v-model="requestParam.deliveryDeadlineTime"  :border="false"/>
+<!--        <u-form-item label-width="30vw" label="发货截止时间" borderBottom >-->
+<!--          <uni-datetime-picker style="color: #303133 !important; text-align: right;font-size: 14px;" type="datetime" v-model="requestParam.deliveryDeadlineTime"  :border="false"/>-->
+<!--          <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
+<!--        </u-form-item>-->
+        <u-form-item label-width="30vw" label="发货截止时间" @click="$refs.myPicker.show();$hideKeyboard" borderBottom>
+          <u--input inputAlign="right" disabledColor="#fff" placeholder="请选择"
+                    placeholderStyle="font-size: 14px;color:#808080"
+                    v-model="requestParam.deliveryDeadlineTime" border="none" disabled></u--input>
           <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
         </u-form-item>
-
         <u-form-item label-width="25vw" label="入库价" borderBottom>
           <u--input  disabledColor="#fff" inputAlign="right" @change="keyup1"
                      v-model="requestParam.price" type="digit" border="none"></u--input>
@@ -161,15 +166,25 @@
         </u-form-item>
       </view>
     </u--form>
+    <buuug7-simple-datetime-picker
+        v-if="dateCurrent1"
+        ref="myPicker"
+        @submit="handleSubmit"
+        :start-year="2022"
+        :end-year="2099"
+        :time-init="dateCurrent1"
+        :time-hide="[true, true, true, true, true, true]"
+        :time-label="['年', '月', '日', '时', '分', '秒']"
+    />
     <view style="height: 70px"></view>
 
-    <u-datetime-picker
-                :show="showFrom"
-        v-model="dateCurrent"
-        :minDate="1646064000000"
-        @confirm="confirmFrom"
-        @cancel="cancelFrom"
-    ></u-datetime-picker>
+<!--    <u-datetime-picker-->
+<!--                :show="showFrom"-->
+<!--        v-model="dateCurrent"-->
+<!--        :minDate="1646064000000"-->
+<!--        @confirm="confirmFrom"-->
+<!--        @cancel="cancelFrom"-->
+<!--    ></u-datetime-picker>-->
     <view class="baisebeijing shuipingjuzhong" style="width:100%;position:fixed;bottom:0;
      border-top: solid #E2DDDD 1px;">
       <u-button style="width: 50vw; margin: 10px 15px;" type="primary" @click="confirmHandle">
@@ -194,8 +209,8 @@
       return {
         fileUrl: this.$fileUrl,
         datetimesingle:  Date.now() - 2*24*3600*1000,
-        dateCurrent: parseInt(new Date().getTime()),
-showFrom: false,
+        // dateCurrent: parseInt(new Date().getTime()),
+// showFrom: false,
         fileList1: [],
         addressList: [],
         statusList: [],
@@ -221,6 +236,7 @@ showFrom: false,
         orderData: '',
         sizeList:'',
         channelIdList:'',
+        dateCurrent1:'',
         requestParam: {
           id: '',
           status: '',
@@ -264,6 +280,9 @@ showFrom: false,
             - this.requestParam.price
         this.requestParam.profits = parseFloat(profits).toFixed(2)
       },
+      handleSubmit(e) {
+        this.requestParam.deliveryDeadlineTime = `${e.year}-${e.month}-${e.day} ${e.hour}:${e.minute}:${e.second}`;
+      },
       keyup1() {
         let poundage =  this.$getPoundage( this.requestParam.shelvesPrice)
         this.requestParam.poundage = parseFloat(poundage).toFixed(2)
@@ -282,16 +301,16 @@ showFrom: false,
         }
         this.show_sx_type = true
       },
-      cancelFrom() {
-        this.showFrom = false
-        this.requestParam.createTime = ''
-        this.search1()
-      },
-      confirmFrom(e) {
-        this.showFrom = false;
-        let timeValue = uni.$u.timeFormat(e.value, 'yyyy-mm-dd hh:MM');
-        this.requestParam.createTime = timeValue
-      },
+      // cancelFrom() {
+      //   this.showFrom = false
+      //   this.requestParam.createTime = ''
+      //   this.search1()
+      // },
+      // confirmFrom(e) {
+      //   this.showFrom = false;
+      //   let timeValue = uni.$u.timeFormat(e.value, 'yyyy-mm-dd hh:MM');
+      //   this.requestParam.createTime = timeValue
+      // },
       confirm_sx_type(e) {
         this.show_sx_type = false
         let fieldValue = e.value[0].fieldValue
@@ -320,7 +339,7 @@ showFrom: false,
         let profits = this.requestParam.theirPrice - this.requestParam.freight
             - this.requestParam.price
         this.requestParam.profits = parseFloat(profits).toFixed(2)
-        this.requestParam.deliveryDeadlineTime = this.requestParam.deliveryDeadlineTime ? this.$parseTime(this.requestParam.deliveryDeadlineTime) : ''
+        // this.requestParam.deliveryDeadlineTime = this.requestParam.deliveryDeadlineTime ? this.$parseTime(this.requestParam.deliveryDeadlineTime) : ''
         goodsOrderApi.sellGoods(this.requestParam).then(res => {
           this.$toast(res.subMsg)
           if (res.subCode === 1000) {
@@ -339,7 +358,13 @@ showFrom: false,
         this.requestParam.price = this.orderData.price
         this.requestParam.shelvesPrice = this.orderData.shelvesPrice
         this.requestParam.subsidiesPrice = this.orderData.subsidiesPrice
-        this.requestParam.deliveryDeadlineTime = this.$parseTime(this.orderData.deliveryDeadlineTime)
+        // this.requestParam.deliveryDeadlineTime = this.$parseTime(this.orderData.deliveryDeadlineTime)
+        if (this.orderData.deliveryDeadlineTime){
+          this.requestParam.deliveryDeadlineTime  = uni.$u.timeFormat(this.orderData.deliveryDeadlineTime, 'yyyy-mm-dd hh:MM:ss');
+          this.dateCurrent1 = parseInt(new Date( this.orderData.deliveryDeadlineTime).getTime())
+        }else{
+          this.dateCurrent1 = parseInt(new Date().getTime())
+        }
         this.requestParam.freight = this.orderData.freight
         this.requestParam.waybillNo = this.orderData.waybillNo
         this.requestParam.addressId = this.orderData.addressId ? this.orderData.addressId :''
