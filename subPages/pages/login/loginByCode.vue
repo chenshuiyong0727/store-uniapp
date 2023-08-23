@@ -196,9 +196,41 @@
               }else{
                 this.$navigateTo('/pages/index/index')
               }
+              // #ifdef APP-PLUS
+              this.bindCid(data.userId,data.uniPushCid)
+              // #endif
             }
           } else {
             uni.showToast({title: res.msg, icon: 'none',})
+          }
+        })
+      },
+      bindCid(userId,oldUniPushCid) {
+        uni.getPushClientId({
+          success: (res) => {
+            let push_clientid = res.cid
+            console.log('客户端推送标识cid - 登录:',push_clientid)
+            uni.setStorageSync('push_clientid', push_clientid);
+            if(oldUniPushCid == push_clientid){
+              return;
+            }
+            let data = {}
+            data.userId = userId
+            if (!data.userId){
+              console.info('userid为空')
+              return
+            }
+            data.uniPushCid = push_clientid
+            this.$request({
+              url: '/gw/op/v1/auth/update',
+              method: 'put',
+              data: data
+            }).then(res => {
+              console.info('更新cid ' ,res)
+            })
+          },
+          fail(err) {
+            console.log(err)
           }
         })
       },

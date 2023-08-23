@@ -42,7 +42,7 @@
 <!--        <view class="code-img-wrapper" @click="updateImageCode">-->
 <!--          <canvas style="width:220rpx;height:86rpx;" canvas-id="canvas"></canvas>-->
 <!--        </view>-->
-        <view1 class="baisebeijing xianglian"  style="width: 70vw;margin-top: 10px">
+        <view class="baisebeijing xianglian"  style="width: 70vw;margin-top: 10px">
           <view style="width: 70vw">
             <u--input
                 class="common-input"
@@ -60,7 +60,7 @@
 <!--            <text style="margin-right: 15px;color: #b8bbbf" v-else >{{countDownNum}} 秒</text>-->
             <canvas style="width:100px;height:35px;" canvas-id="canvas"></canvas>
           </view>
-        </view1>
+        </view>
       </view>
       <view  style="margin-top: 25px;">
         <u-button style="    width: 50vw;" type="primary" @click="login">
@@ -151,9 +151,41 @@
               } else {
                 this.$navigateTo('/pages/index/index')
               }
+              // #ifdef APP-PLUS
+              this.bindCid(data.userId,data.uniPushCid)
+              // #endif
             }
           } else {
             uni.showToast({title: res.msg, icon: 'none',})
+          }
+        })
+      },
+      bindCid(userId,oldUniPushCid) {
+        uni.getPushClientId({
+          success: (res) => {
+            let push_clientid = res.cid
+            console.log('客户端推送标识cid - 登录:',push_clientid)
+            uni.setStorageSync('push_clientid', push_clientid);
+            if(oldUniPushCid == push_clientid){
+              return;
+            }
+            let data = {}
+            data.userId = userId
+            if (!data.userId){
+              console.info('userid为空')
+              return
+            }
+            data.uniPushCid = push_clientid
+            this.$request({
+              url: '/gw/op/v1/auth/update',
+              method: 'put',
+              data: data
+            }).then(res => {
+              console.info('更新cid ' ,res)
+            })
+          },
+          fail(err) {
+            console.log(err)
           }
         })
       },

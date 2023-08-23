@@ -94,6 +94,29 @@
               name="arrow-right"
           ></u-icon>
         </u-form-item>
+
+        <u-form-item
+            v-if="form.pushClientid"
+            label="cid"
+            borderBottom
+            ref="item1"
+        >
+          <u--input
+              :disabled="true"
+              color="#d1d1d1"
+              disabledColor="#fff"
+              inputAlign="right"
+              v-model="form.pushClientid"
+              border="none"
+          ></u--input>
+          <image @click.stop="$copyUrl(form.pushClientid)" class="fuzhitupian"
+                 src="../../static/img/copy.png"></image>
+          <u-icon
+              class="biaodan-gengduo"
+              slot="right"
+              name="arrow-right"
+          ></u-icon>
+        </u-form-item>
       </view>
     </u--form>
   </view>
@@ -110,6 +133,7 @@
           userMobile: '',
           userAccount: '',
           userRealName: '',
+          pushClientid: '',
           imgUrl: ''
         },
         actionUrl: envSetting.baseURL + '/gw/op/v1/file/uploadFileMinio',
@@ -249,6 +273,11 @@
               let data1 = {};
               data1.url = url;
               this.fileList1.push(data1)
+            }
+            if (this.form.pushClientid) {
+              uni.setStorageSync('push_clientid', this.form.pushClientid);
+            }else{
+              this.form.pushClientid = uni.getStorageSync('push_clientid')
             }
           } else {
             this.$toast(res.subMsg)

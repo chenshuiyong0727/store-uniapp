@@ -99,16 +99,16 @@
                     "unipush" : {
                         "version" : "2",
                         "offline" : true,
+                        "hms" : {},
                         "icons" : {
                             "small" : {
-                                "ldpi" : "C:/Users/83745/Desktop/20230626/logo/logo-1024.png",
-                                "mdpi" : "C:/Users/83745/Desktop/20230626/logo/logo-1024.png",
-                                "hdpi" : "C:/Users/83745/Desktop/20230626/logo/logo-1024.png",
-                                "xhdpi" : "C:/Users/83745/Desktop/20230626/logo/logo-1024.png",
-                                "xxhdpi" : "C:/Users/83745/Desktop/20230626/logo/logo-1024.png"
+                                "hdpi" : "C:/Users/83745/Desktop/20230626/logo/通知logo/logo-36.png",
+                                "ldpi" : "C:/Users/83745/Desktop/20230626/logo/通知logo/logo-18.png",
+                                "mdpi" : "C:/Users/83745/Desktop/20230626/logo/通知logo/logo-24.png",
+                                "xhdpi" : "C:/Users/83745/Desktop/20230626/logo/通知logo/logo-48.png",
+                                "xxhdpi" : "C:/Users/83745/Desktop/20230626/logo/通知logo/logo-72.png"
                             }
-                        },
-                        "hms" : {}
+                        }
                     }
                 }
             },
