@@ -451,7 +451,7 @@
       return {
         fileUrl: this.$fileUrl,
         dateCurrent: parseInt(new Date().getTime()),
-showFrom: false,
+        showFrom: false,
         showTo: false,
         flag: false,
         form: {},
@@ -564,13 +564,26 @@ showFrom: false,
       this.getData1();
       this.getData2()
     },
-    created() {
+    onShow() {
+      let payload = uni.getStorageSync('appLaunchedByPush')
+      console.info('页面显示' , payload)
+    },
+    onLoad() {
+      let payload = uni.getStorageSync('appLaunchedByPush')
+      console.info('页面加载' ,payload)
       this.initTime();
       this.time();
       this.getData();
       this.getData1();
       this.getData2()
     },
+    // created() {
+    //   this.initTime();
+    //   this.time();
+    //   this.getData();
+    //   this.getData1();
+    //   this.getData2()
+    // },
     methods: {
       cancelFrom() {
         this.showFrom = false;
@@ -741,6 +754,16 @@ showFrom: false,
         }).then(res => {
           if (res.subCode === 1000) {
             this.storeData = res.data
+          } else {
+            this.$toast(res.subMsg)
+          }
+        })
+        this.$request({
+          url: '/gw/op/v1/goodsOrder/getBaseMsgCount',
+          method: 'get'
+        }).then(res => {
+          if (res.subCode === 1000) {
+            this.baseMsgCount = res.data
           } else {
             this.$toast(res.subMsg)
           }
