@@ -180,7 +180,7 @@
         ],
       }
     },
-    created() {
+    onLoad () {
       this.getUcUser()
     },
     methods: {

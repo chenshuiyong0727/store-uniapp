@@ -39,28 +39,22 @@
             v-model="loginForm.loginPassword">
         </u--input>
         </view>
-<!--        <view class="code-img-wrapper" @click="updateImageCode">-->
-<!--          <canvas style="width:220rpx;height:86rpx;" canvas-id="canvas"></canvas>-->
+<!--        <view class="baisebeijing xianglian"  style="width: 70vw;margin-top: 10px">-->
+<!--          <view style="width: 70vw">-->
+<!--            <u&#45;&#45;input-->
+<!--                class="common-input"-->
+<!--                prefixIcon="lock-fill"-->
+<!--                placeholderStyle="font-size: 14px;color:#c0c4cc"-->
+<!--                placeholder="请输入验证码"-->
+<!--                v-model="verifyCode"-->
+<!--                prefixIconStyle="font-size: 22px;color:#c0c4cc"-->
+<!--            >-->
+<!--            </u&#45;&#45;input>-->
+<!--          </view>-->
+<!--          <view  style="text-align: right;margin-left: -28vw;z-index: 2;width: 28vw;font-size: 13px;" @click="updateImageCode">-->
+<!--            <canvas style="width:100px;height:35px;" canvas-id="canvas"></canvas>-->
+<!--          </view>-->
 <!--        </view>-->
-        <view class="baisebeijing xianglian"  style="width: 70vw;margin-top: 10px">
-          <view style="width: 70vw">
-            <u--input
-                class="common-input"
-                prefixIcon="lock-fill"
-                placeholderStyle="font-size: 14px;color:#c0c4cc"
-                placeholder="请输入验证码"
-                v-model="verifyCode"
-                prefixIconStyle="font-size: 22px;color:#c0c4cc"
-            >
-            </u--input>
-          </view>
-          <view  style="text-align: right;margin-left: -28vw;z-index: 2;width: 28vw;font-size: 13px;" @click="updateImageCode">
-<!--            <text style="margin-right: 8px;padding: 4px 10px;  border: 1px solid #409eff;    border-radius: 3px;-->
-<!--  color: #409eff !important;" v-if="countDownNum == 60 || countDownNum == 0" @click="getCode"  class="color-url" >{{codeText}}</text>-->
-<!--            <text style="margin-right: 15px;color: #b8bbbf" v-else >{{countDownNum}} 秒</text>-->
-            <canvas style="width:100px;height:35px;" canvas-id="canvas"></canvas>
-          </view>
-        </view>
       </view>
       <view  style="margin-top: 25px;">
         <u-button style="    width: 50vw;" type="primary" @click="login">
@@ -82,7 +76,7 @@
   export default {
  data() {
       return {
-        verifyCode: '',
+        // verifyCode: '',
         fileUrl: this.$fileUrl,
         passwordIcon: true,
         loginForm: {
@@ -94,14 +88,14 @@
       }
     },
     components: {},
-    onReady() {
-      this.mcaptcha = new Mcaptcha({
-        el: 'canvas',
-        width: 80,
-        height: 35,
-        createCodeImg: ""
-      });
-    },
+    // onReady() {
+    //   this.mcaptcha = new Mcaptcha({
+    //     el: 'canvas',
+    //     width: 80,
+    //     height: 35,
+    //     createCodeImg: ""
+    //   });
+    // },
     mounted() {
       let org_token_auth = uni.getStorageSync('org_token_auth');
       if (org_token_auth) {
@@ -115,13 +109,13 @@
         this.mcaptcha.refresh()
       },
       login() {
-        if(!this.verifyCode) {
-          return uni.showToast({ icon: 'none',title: '请输入图形验证码' })
-        }
-        let validate = this.mcaptcha.validate(this.verifyCode)
-        if(!validate) {
-          return uni.showToast({ icon: 'none',title: '图形验证码错误' })
-        }
+        // if(!this.verifyCode) {
+        //   return uni.showToast({ icon: 'none',title: '请输入图形验证码' })
+        // }
+        // let validate = this.mcaptcha.validate(this.verifyCode)
+        // if(!validate) {
+        //   return uni.showToast({ icon: 'none',title: '图形验证码错误' })
+        // }
         if (!this.loginForm.loginAccount || !this.loginForm.loginPassword) {
           uni.showToast({title: '账号密码不能为空', icon: 'none',});
           return

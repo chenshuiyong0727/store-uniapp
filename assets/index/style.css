@@ -106,6 +106,10 @@
   color: #F56C6C;
   font-weight: 600;
 }
+.color-dw-strong {
+  color: #00c2c2;
+  font-weight: 600;
+}
 .color-font {
   color: #333333;
   font-weight: 600;
@@ -1003,6 +1007,10 @@ img{
 /*左右对齐*/
 .zihao14{
   font-size: 14px;
+}
+/*左右对齐*/
+.zihao15{
+  font-size: 15px;
 }
 
 

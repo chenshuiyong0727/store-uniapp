@@ -6,9 +6,14 @@
           <image style="width: 23px; height: 23px;"
                  src="../../static/img/logo/logo-333-1.png"></image>
         </view>
-        <view @click="scanCode()" class="u-nav-slot" slot="right">
-          <image style=" width: 26px;height: 26px;" src="../../static/img/photo2.png"></image>
+        <view @click="$navigateTo('/pages/index/baseMsg?backUrl=/pages/index/index&baseMsgCount='+baseMsgCount)" :style="baseMsgCount ? 'margin-right: 4vw;':''" class="u-nav-slot" slot="right">
+          <image style=" width: 26px;height: 26px;" src="../../static/img/msg1.png"></image>
+          <u-badge v-if="baseMsgCount" type="error" :absolute="true" :offset="[4,1]" max="99" :value="baseMsgCount"  style="margin-right: 4vw;">
+          </u-badge>
         </view>
+<!--        <view @click="scanCode()" class="u-nav-slot" slot="right">-->
+<!--          <image style=" width: 26px;height: 26px;" src="../../static/img/photo2.png"></image>-->
+<!--        </view>-->
       </u-navbar>
       <view class="julibiaoti" style="
         padding-bottom: 40vw;
@@ -438,7 +443,7 @@
       return {
         fileUrl: this.$fileUrl,
         dateCurrent: parseInt(new Date().getTime()),
-showFrom: false,
+        showFrom: false,
         showTo: false,
         flag: false,
         form: {},
@@ -533,7 +538,7 @@ showFrom: false,
         },
         countDay: 0, // 倒计时
         count: '', // 倒计时
-        seconds: 0, // 10天的秒数
+        baseMsgCount: 0,
         nowDate: '',
         nowTime: '',
         nowWeek: '',
@@ -551,13 +556,26 @@ showFrom: false,
       this.getData1();
       this.getData2()
     },
-    created() {
+    onShow() {
+      let payload = uni.getStorageSync('appLaunchedByPush')
+      console.info('页面显示' , payload)
+    },
+    onLoad() {
+      let payload = uni.getStorageSync('appLaunchedByPush')
+      console.info('页面加载' ,payload)
       this.initTime();
       this.time();
       this.getData();
       this.getData1();
       this.getData2()
     },
+    // created() {
+    //   this.initTime();
+    //   this.time();
+    //   this.getData();
+    //   this.getData1();
+    //   this.getData2()
+    // },
     methods: {
       cancelFrom() {
         this.showFrom = false;
@@ -728,6 +746,16 @@ showFrom: false,
         }).then(res => {
           if (res.subCode === 1000) {
             this.storeData = res.data
+          } else {
+            this.$toast(res.subMsg)
+          }
+        })
+        this.$request({
+          url: '/gw/op/v1/goodsOrder/getBaseMsgCount',
+          method: 'get'
+        }).then(res => {
+          if (res.subCode === 1000) {
+            this.baseMsgCount = res.data
           } else {
             this.$toast(res.subMsg)
           }
