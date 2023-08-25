@@ -219,7 +219,7 @@
       <view class="dingdans_con_dw">
         <view class="dingdans_con_left_dw" @click="avatarShow(form.img)">
           <image mode="widthFix" :src="form.img" v-if="form.img"></image>
-          <image mode="widthFix" :src="fileUrl+form.imgUrl" v-if="!form.img && form.imgUrl" ></image>
+          <image mode="widthFix" :src="fileUrl+form.imgUrl" style="margin-top: 10px;" v-if="!form.img && form.imgUrl" ></image>
           <p class="mark_dw">
             <text class="text_dw">
               {{ form.saleType | dictToDescTypeValue(46) }}

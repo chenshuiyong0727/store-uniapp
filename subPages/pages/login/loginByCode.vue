@@ -14,10 +14,9 @@
       </view>
       <!-- #endif -->
 
-      <view class="login_form " style="width: 70vw;margin-top: 30px">
+      <view class="login_form " style="width: 70vw;margin-top: 40px">
         <view class="baisebeijing">
         <u--input
-            class="common-input"
             prefixIcon="account"
             placeholderStyle="font-size: 14px;color:#c0c4cc"
             placeholder="请输入账号"
@@ -28,10 +27,9 @@
         </u--input>
         </view>
         </view>
-        <view class="baisebeijing xianglian"  style="width: 70vw;margin-top: 10px">
+        <view class="baisebeijing xianglian"  style="width: 70vw;margin-top: 20px">
           <view style="width: 70vw">
             <u--input
-                class="common-input"
                 prefixIcon="lock-fill"
                 placeholderStyle="font-size: 14px;color:#c0c4cc"
                 placeholder="请输入验证码"
@@ -258,6 +256,7 @@
   /* 这里直接设置 1rem = 50px end */
   html,
   body {
+    background-color: #F8FCFF;
   }
 
 </style>

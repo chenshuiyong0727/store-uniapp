@@ -389,10 +389,10 @@
 }
 
 .dingdans_con_left_dw {
-  width: 180px;
-  height: 92px;
-  border: 1px solid #f1f1f1 ;
+  width: 25vw;
+  /*height: 25vw;*/
   position: relative;
+  border: 1px solid #f1f1f1 ;
   border-radius: 5px;
 }
 
@@ -400,10 +400,11 @@
   width: 80%;
   margin-top: 30px;
   margin-left: 10%;
+  margin-bottom: 10px;
 }
 
 .diangdans_con_right_dw {
-  width: 130vw;
+  width: 65vw;
   padding-left: 10px;
 }
 .chaochu {
