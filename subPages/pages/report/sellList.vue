@@ -231,7 +231,7 @@
         if (months == '合计') {
           return
         }
-        let url = '/pages/report/sellListDetail?months=' + months
+        let url = '/subPages/pages/report/sellListDetail?months=' + months
         this.$navigateTo(url)
       },
       getPage() {

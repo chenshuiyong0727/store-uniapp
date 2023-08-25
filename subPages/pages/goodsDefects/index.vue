@@ -709,17 +709,17 @@
         this.requestParam.statusStr = fieldName
       },
       goDetail(id) {
-        let url = '/pages/order/detail?id=' + id
+        let url = '/subPages/pages/order/detail?id=' + id
         this.$navigateTo(url)
       },
       toSell(id) {
-        this.$navigateTo('/pages/order/toSell?id=' +id)
+        this.$navigateTo('/subPages/pages/order/toSell?id=' +id)
       },
       toDelivery(id) {
-        this.$navigateTo('/pages/order/toDelivery?id=' +id)
+        this.$navigateTo('/subPages/pages/order/toDelivery?id=' +id)
       },
       update(row,titleName) {
-        let url = '/pages/order/update?id=' + row.id
+        let url = '/subPages/pages/order/update?id=' + row.id
         if (titleName){
           url = url + '&titleName=' +titleName
         }
@@ -754,7 +754,7 @@
         if (!id) {
           return
         }
-        let url = '/pages/goodsBase/detail?id=' + id
+        let url = '/subPages/pages/goodsBase/detail?id=' + id
         this.$navigateTo(url)
       },
       gotoDw(spuId) {
@@ -770,7 +770,7 @@
         // #endif
       },
       jumpactNo(actNo) {
-        let url = '/pages/store/index?backUrl=/pages/order/index&actNo=' + actNo
+        let url = '/pages/store/index?backUrl=/subPages/pages/goodsDefects/index&actNo=' + actNo
         this.$navigateTo(url)
       },
 
@@ -978,7 +978,7 @@
           this.$toast('请选择订单')
           return
         }
-        let url = '/pages/order/batchUpdate?ids=' + this.ids
+        let url = '/subPages/pages/order/batchUpdate?ids=' + this.ids
         this.$navigateTo(url)
       },
       gotoWl(orderData) {
@@ -986,7 +986,7 @@
           this.$toast('没有物流单号')
           return
         }
-        let url = '/pages/order/wlInfo?addressId=' + orderData.addressId + '&waybillNo=' +orderData.waybillNo+ '&id=' + orderData.id
+        let url = '/subPages/pages/order/wlInfo?addressId=' + orderData.addressId + '&waybillNo=' +orderData.waybillNo+ '&id=' + orderData.id
         this.$navigateTo(url)
       },
     }

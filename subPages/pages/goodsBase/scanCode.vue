@@ -484,7 +484,7 @@
         this.columns.push(this.typeList)
       },
       gotoAdd() {
-        this.$navigateTo('/pages/goodsBase/goodsAdd?type=3')
+        this.$navigateTo('/subPages/pages/goodsBase/goodsAdd?type=3')
       },
       profitData(dayNum) {
         this.queryParam1.dayNum = dayNum

@@ -8,7 +8,7 @@ let payOrderId = null
  * @param {any} [args] (可选)需要给打开的页面传送的数据对象或页面跳转成功的回调, 如果需要转送数据, 又需要回调, 则第二个参数是数据对象，第三个参数为回调
  */
 const navigateTo = (url, ...args) => {
-  console.log('url' , url)
+  console.log('url1' , url)
   const tabPage = [
     '/pages/index/index',
     '/pages/my/index',
@@ -25,8 +25,9 @@ const navigateTo = (url, ...args) => {
       url
     })
   } else {
-    url = '/subPages' + url
-    console.log('url' , url)
+    debugger
+    // url = '/subPages' + url
+    console.log('url2' , url)
     uni.navigateTo({
       url,
       success: (res) => {

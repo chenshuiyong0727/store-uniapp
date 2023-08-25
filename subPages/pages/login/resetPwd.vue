@@ -145,7 +145,7 @@ export default {
             title: '退出登录成功',
             icon: 'none'
           });
-          this.$navigateTo('/pages/login/index')
+          this.$navigateTo('/subPages/pages/login/index')
         }
       })
     },

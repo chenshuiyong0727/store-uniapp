@@ -441,7 +441,7 @@
         this.search1()
       },
       goDetail(id, type) {
-        let url = '/pages/other/otherAdd?type=' + type
+        let url = '/subPages/pages/other/otherAdd?type=' + type
         if (id) {
           url = url + '&id=' + id
         }
@@ -451,7 +451,7 @@
         if (!id) {
           return
         }
-        let url = '/pages/goodsBase/detail?id=' + id
+        let url = '/subPages/pages/goodsBase/detail?id=' + id
         this.$navigateTo(url)
       },
       gotoDw(spuId) {
@@ -476,7 +476,7 @@
         this.search1()
       },
       storeAdd(goodsId) {
-        let url = '/pages/store/storeAdd?goodsId=' + goodsId
+        let url = '/subPages/pages/store/storeAdd?goodsId=' + goodsId
         this.$navigateTo(url)
       },
       jumpactNo(actNo) {
@@ -574,7 +574,7 @@
         return
       },
       fabClick() {
-        this.$navigateTo('/pages/goodsBase/scanCode')
+        this.$navigateTo('/subPages/pages/goodsBase/scanCode')
       },
     }
   };

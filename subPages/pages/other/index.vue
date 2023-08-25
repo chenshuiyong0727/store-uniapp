@@ -315,7 +315,7 @@
         this.search1()
       },
       goDetail(id, type) {
-        let url = '/pages/other/otherAdd?type=' + type
+        let url = '/subPages/pages/other/otherAdd?type=' + type
         if (id) {
           url = url + '&id=' + id
         }

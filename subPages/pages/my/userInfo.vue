@@ -110,7 +110,7 @@
               border="none"
           ></u--input>
           <image @click.stop="$copyUrl(form.pushClientid)" class="fuzhitupian"
-                 src="../../static/img/copy.png"></image>
+                 :src="fileUrl +'/static/img/copy.png'"></image>
           <u-icon
               class="biaodan-gengduo"
               slot="right"

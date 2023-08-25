@@ -184,7 +184,7 @@
         })
       },
       loginByCode() {
-        this.$navigateTo('/pages/login/loginByCode')
+        this.$navigateTo('/subPages/pages/login/loginByCode')
       },
     }
   }

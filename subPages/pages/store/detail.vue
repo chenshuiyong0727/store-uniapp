@@ -239,7 +239,7 @@
         if (!id) {
           return
         }
-        let url = '/pages/goodsBase/detail?id=' + id
+        let url = '/subPages/pages/goodsBase/detail?id=' + id
         this.$navigateTo(url)
       },
       avatarShow(e) {

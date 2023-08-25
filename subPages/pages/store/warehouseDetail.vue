@@ -394,7 +394,7 @@
         }
       },
       goDetail(id) {
-        this.$navigateTo('/pages/store/detail?id=' + id)
+        this.$navigateTo('/subPages/pages/store/detail?id=' + id)
       },
       changeChecked(row) {
         row.checked = !row.checked

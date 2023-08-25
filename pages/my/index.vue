@@ -18,12 +18,8 @@
     </u-navbar>
 
     <view style="
-        margin-top: 44px;
         padding-bottom: 35vw;
-        padding-top: 5vw;
-        <!-- #ifdef MP-WEIXIN-->
-          padding-top: 30px;
-        <!-- #endif -->
+        padding-top: 19vw;
          background-image: linear-gradient(#e5f4ff, #f3f2f8);">
       <view class="header zuoyouduiqi">
         <view @click="userInfo" class="header-icon xianglian" style="margin-left: 6vw;">
@@ -101,7 +97,7 @@
             <image class="my-indent-img-1" :src="fileUrl +'/static/img/more.png'"></image>
           </p>
         </view>
-        <view @click="$navigateTo('/pages/report/channelStorage')" class="my-settle1-top">
+        <view @click="$navigateTo('/subPages/pages/report/channelStorage')" class="my-settle1-top">
           <view>
             <image style="width: 27px;height: 27px;"
                    :src="fileUrl +'/static/img/new/qudao.png'"></image>
@@ -112,7 +108,7 @@
             <image class="my-indent-img-1" :src="fileUrl +'/static/img/more.png'"></image>
           </p>
         </view>
-        <view @click="$navigateTo('/pages/report/sellList')" class="my-settle1-bottom">
+        <view @click="$navigateTo('/subPages/pages/report/sellList')" class="my-settle1-bottom">
           <view>
             <image style="width: 27px;height: 27px;"
                    :src="fileUrl +'/static/img/new/xiaoshou.png'"></image>
@@ -122,7 +118,7 @@
             <image class="my-indent-img-1" :src="fileUrl +'/static/img/more.png'"></image>
           </p>
         </view>
-        <view @click="$navigateTo('/pages/report/areaSellList')" class="my-settle1-bottom">
+        <view @click="$navigateTo('/subPages/pages/report/areaSellList')" class="my-settle1-bottom">
           <view>
             <image style="width: 27px;height: 27px;" :src="fileUrl +'/static/img/new/quyu.png'"></image>
           </view>
@@ -136,25 +132,25 @@
         <text class="my-indent-left">服务</text>
       </view>
       <view class="my-pay-1" style="border-bottom-style:none;">
-        <view @click="$navigateTo('/pages/goodsBase/act')">
+        <view @click="$navigateTo('/subPages/pages/goodsBase/act')">
           <image
               style="margin-top: 7px;margin-bottom: -4px;width: 27px;height: 27px;"
               :src="fileUrl +'/static/img/new/huodong.png'"></image>
           <p style="color: #333">活动</p>
         </view>
-        <view @click="$navigateTo('/pages/other/index')">
+        <view @click="$navigateTo('/subPages/pages/other/index')">
           <image
               style="margin-top: 7px;margin-bottom: -4px;width: 27px;height: 27px;"
               :src="fileUrl +'/static/img/new/qita.png'"></image>
           <p style="color: #333">其他收支</p>
         </view>
-        <view @click="$navigateTo('/pages/goodsDefects/index')">
+        <view @click="$navigateTo('/subPages/pages/goodsDefects/index')">
           <image
               style="margin-top: 7px;margin-bottom: -4px;width: 27px;height: 27px;"
               :src="fileUrl +'/static/img/new/xiaci.png'"></image>
           <p style="color: #333">瑕疵商品</p>
         </view>
-        <view @click="$navigateTo('/pages/gift/index')">
+        <view @click="$navigateTo('/subPages/pages/gift/index')">
           <image
               style="margin-top: 7px;margin-bottom: -4px;width: 27px;height: 27px;"
               :src="fileUrl +'/static/img/new/hongbao.png'"></image>
@@ -162,7 +158,7 @@
         </view>
       </view>
       <view class="my-pay-1" style="padding-bottom: 5vw">
-        <view  @click="$navigateTo('/pages/memo/index')"style="width: 25%">
+        <view  @click="$navigateTo('/subPages/pages/memo/index')"style="width: 25%">
           <image
               style="margin-top: 7px;margin-bottom: -4px;width: 27px;height: 27px;"
               :src="fileUrl +'/static/img/new/memo.png'"></image>
@@ -195,10 +191,6 @@
         this.form.userRealName = options.userRealName
       }
       this.init()
-      // this.customStyle =  {
-      //   marginTop: '20px', // 注意驼峰命名，并且值必须用引号包括，因为这是对象
-      //       color: 'red'
-      // }
     },
     onPullDownRefresh() {
       uni.stopPullDownRefresh();
@@ -210,17 +202,17 @@
         this.getData()
       },
       userInfo() {
-        this.$navigateTo('/pages/my/userInfo')
+        this.$navigateTo('/subPages/pages/my/userInfo')
       },
       putin() {
-        this.$navigateTo('/pages/report/putin')
+        this.$navigateTo('/subPages/pages/report/putin')
       },
 
       scanCode() {
-        this.$navigateTo('/pages/goodsBase/scanCode?photo=1')
+        this.$navigateTo('/subPages/pages/goodsBase/scanCode?photo=1')
       },
       comfirm(type) {
-        this.$navigateTo('/pages/login/logout?type=' + type)
+        this.$navigateTo('/subPages/pages/login/logout?type=' + type)
       },
       getData() {
         this.$request({

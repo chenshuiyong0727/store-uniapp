@@ -2,22 +2,12 @@
   <view class="hello" ref="hello" style="height: 100%;padding-top: 0px;    overflow: auto;">
     <view class="car1">
       <u-navbar title="最硬球鞋"  bgColor="#f3faff" >
-        <!-- #ifndef MP-WEIXIN-->
-        <view class="u-nav-slot" slot="left">
-          <image style="width: 23px; height: 23px;"
-                 :src="fileUrl +'/static/img/logo/logo-333-1.png'"></image>
+        <view @click="$navigateTo('/subPages/pages/index/baseMsg?backUrl=/pages/index/index&baseMsgCount='+baseMsgCount)"  class="u-nav-slot" slot="left">
+          <image style=" width: 26px;height: 26px;" :src="fileUrl +'/static/img/msg1.png'"></image>
+          <u-badge v-if="baseMsgCount" type="error" :absolute="true" :offset="[4,1]" max="99" :value="baseMsgCount">
+          </u-badge>
         </view>
-        <view @click="scanCode()" class="u-nav-slot" slot="right">
-          <image style=" width: 26px;height: 26px;" :src="fileUrl +'/static/img/photo2.png'"></image>
-        </view>
-        <!-- #endif -->
-        <!-- #ifdef MP-WEIXIN-->
-        <view @click="scanCode()" class="u-nav-slot" slot="left">
-          <image style="width: 26px; height: 26px;" :src="fileUrl +'/static/img/photo2.png'"></image>
-        </view>
-        <!-- #endif -->
       </u-navbar>
-
 
       <view class="julibiaoti" style="
         padding-bottom: 40vw;
@@ -153,7 +143,7 @@
         <view class="link-top-1"></view>
       </h1>
 
-      <view @click="$navigateTo('/pages/report/sellList')" class="index-list" style=" padding-top: 4vw">
+      <view @click="$navigateTo('/subPages/pages/report/sellList')" class="index-list" style=" padding-top: 4vw">
         <view class="li">
           <view>
             <text class="color-font"><strong>{{orderData.successNum}}</strong></text>
@@ -319,13 +309,13 @@
           <p class="color-url">{{form.inventoryNum}}</p>
           <p class="section1name">库存总数</p>
         </view>
-        <view  @click="$navigateTo('/pages/report/sellList')">
+        <view  @click="$navigateTo('/subPages/pages/report/sellList')">
           <p class="color-url">{{form.profitsAmount | numFilterTo0}}</p>
           <p class="section1name">利润总额</p>
         </view>
       </view>
       <view class="section1-list">
-        <view  @click="$navigateTo('/pages/report/sellList')">
+        <view  @click="$navigateTo('/subPages/pages/report/sellList')">
           <p class="color-url">{{form.profitsAverage}}</p>
           <p class="section1name">平均利润</p>
         </view>
@@ -363,19 +353,19 @@
         </view>
       </view>
       <view class="section1-list">
-        <view  @click="$navigateTo('/pages/report/putin')">
+        <view  @click="$navigateTo('/subPages/pages/report/putin')">
           <p>{{form.goodsPutInNum}}</p>
           <p class="section1name">入库商品</p>
         </view>
-        <view @click="$navigateTo('/pages/report/putin')">
+        <view @click="$navigateTo('/subPages/pages/report/putin')">
           <p>{{form.inventoryAmount | numFilterTo0}}</p>
           <p class="section1name">入库总额</p>
         </view>
-        <view @click="$navigateTo('/pages/report/sellList')">
+        <view @click="$navigateTo('/subPages/pages/report/sellList')">
           <p>{{form.successNum}}</p>
           <p class="section1name">交易成功</p>
         </view>
-        <view @click="$navigateTo('/pages/report/sellList')">
+        <view @click="$navigateTo('/subPages/pages/report/sellList')">
           <p>{{form.orderAmount | numFilterTo0}}</p>
           <p class="section1name">成功总额</p>
         </view>
@@ -389,17 +379,17 @@
           <p>{{form.poundage | numFilterTo0}}</p>
           <p class="section1name">手续费</p>
         </view>
-        <view  @click="$navigateTo('/pages/other/putin')">
+        <view  @click="$navigateTo('/subPages/pages/other/putin')">
           <p>{{form.otherRevenue| numFilterTo0}}</p>
           <p class="section1name">其他收支</p>
         </view>
-        <view  @click="$navigateTo('/pages/report/putin')">
+        <view  @click="$navigateTo('/subPages/pages/report/putin')">
           <p>{{form.inboundAverage}}</p>
           <p class="section1name">库存均价</p>
         </view>
       </view>
       <view class="section1-list">
-        <view @click="$navigateTo('/pages/report/sellList')">
+        <view @click="$navigateTo('/subPages/pages/report/sellList')">
           <p>{{form.orderAmountAverage}}</p>
           <p class="section1name">成功均价</p>
         </view>
@@ -417,11 +407,11 @@
         </view>
       </view>
       <view class="section1-list" style="padding-bottom: 5vw;">
-        <view  @click="$navigateTo('/pages/goodsDefects/index')">
+        <view  @click="$navigateTo('/subPages/pages/goodsDefects/index')">
           <p>{{form.defectsNum}}</p>
           <p class="section1name">瑕疵数</p>
         </view>
-        <view  @click="$navigateTo('/pages/report/sellList')">
+        <view  @click="$navigateTo('/subPages/pages/report/sellList')">
           <p>{{form.passRatio}} % </p>
           <p class="section1name">通过比例</p>
         </view>
@@ -449,6 +439,7 @@
   export default {
  data() {
       return {
+        baseMsgCount: 0,
         fileUrl: this.$fileUrl,
         dateCurrent: parseInt(new Date().getTime()),
         showFrom: false,
@@ -564,14 +555,6 @@
       this.getData1();
       this.getData2()
     },
-    // onShow() {
-    //   let payload = uni.getStorageSync('appLaunchedByPush')
-    //   console.info('页面显示' , payload)
-    //   if (payload) {
-    //     uni.setStorageSync("appLaunchedByPush", 0)
-    //     this.$navigateTo('/pages/index/baseMsg')
-    //   }
-    // },
     onLoad() {
       // let payload = uni.getStorageSync('appLaunchedByPush')
       // console.info('页面加载' ,payload)
@@ -706,7 +689,7 @@
         })
       },
       scanCode() {
-        this.$navigateTo('/pages/goodsBase/scanCode?photo=1')
+        this.$navigateTo('/subPages/pages/goodsBase/scanCode?photo=1')
       },
       profitData(dataType) {
         this.dataType = dataType;

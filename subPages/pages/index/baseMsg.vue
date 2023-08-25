@@ -1,6 +1,6 @@
 <template>
   <view>
-    <u-navbar title="商品"  bgColor="#f3faff">
+    <u-navbar title="待办消息"  bgColor="#f3faff">
       <view @click="goBack" class="u-nav-slot" slot="left">
         <u-icon name="arrow-left" size="20"></u-icon>
       </view>
@@ -15,9 +15,9 @@
         <u--input
             class="searchInputW"
             prefixIcon="search"
-            placeholder="请输入货号/商品名"
+            placeholder="请输入标题"
             placeholderStyle="font-size: 14px;color:#c0c4cc"
-            v-model="queryParam.actNo"
+            v-model="queryParam.title"
             prefixIconStyle="font-size: 24px;color:#c0c4cc"
             :show-action="false"
             @change="search1"
@@ -26,8 +26,8 @@
         </u--input>
       </view>
       <view class="fenlei_top_right" @click="isShowDialog2 = true">
-        <image v-if="queryParam.brand || queryParam.remark || queryParam.type"  :src="fileUrl +'/static/img/search.png'"></image>
-        <image v-else  :src="fileUrl +'/static/img/search_no.png'"></image>
+        <image v-if="queryParam.type || queryParam.content || ( queryParam.waitType && queryParam.waitType != '1')"  :src="fileUrl +'static/img/search.png'"></image>
+        <image v-else  :src="fileUrl +'static/img/search_no.png'"></image>
       </view>
     </view>
     <view class="searchListnew">
@@ -75,53 +75,83 @@
         style="height: 100vh"
         @touchstart.stop="onTouchStart" @touchend.stop="handleTouchend" >
       <view class="julibiaoti3" >
-      <view class="dingdans_item_dw"
+      <view class="msg_table"
             v-for="(item,index) in tableData"
-            :key="index"  @click="goodsDetail(item.id) "
+            :key="index"  @click="gotoDetail(item) "
       >
-        <view class="dingdans_con_dw">
-          <view  class="dingdans_con_left_dw"
-               @click.stop="avatarShow(item.img)">
-            <image mode="widthFix" :src="item.img" v-if="item.img" ></image>
-            <image mode="widthFix" :src="fileUrl+item.imgUrl" v-if="!item.img && item.imgUrl" ></image>
-            <p class="mark_dw">
-              <text class="text_dw">
-                {{ item.type | dictToDescTypeValue(20221108) }}
-              </text>
-            </p>
+<!--        头部  beg-->
+      <view class="zuoyouduiqi" style="padding: 2px 0 8px 0">
+        <view>
+          <text class="color-font chaochu" style="width: 72vw">{{item.title}}</text>
+        </view>
+        <view>
+          <text class="color-font-strong" v-if="item.waitType == 1">待办</text>
+          <text class="color-dw-strong" v-if="item.waitType == 2">已办</text>
+        </view>
+      </view>
+<!--        头部  end-->
+<!--        内容  beg-->
+      <view v-if="!item.inventoryId && !item.orderId " style="border-top: 1px solid #eee; padding: 10px 0 10px 0">
+        <view>
+          <text>{{item.content}}</text>
+        </view>
+      </view>
+      <view v-if="item.inventoryId" style="border-top: 1px solid #eee; padding: 10px 0 10px 0">
+        <view  class="zuoyouduiqi">
+          <view style="width: 25vw;height: 25vw;border: 1px solid #f1f1f1 ;border-radius: 5px;" @click.stop="avatarShow(item.img)">
+            <image style=" width: 80%;margin-top: 30px;margin-left: 10%;" mode="widthFix" :src="item.img" v-if="item.img"></image>
           </view>
-          <view class="diangdans_con_right_dw">
-            <view class="dingdans_con_right_top_dw">
-              <text>
-                {{item.name}}
-              </text>
+          <view style="width: 65vw">
+            <view>
+              <text>{{item.content}}</text>
             </view>
-            <view class="dingdans_con_right_top_dw_1 xianglian">
-              <text @click.stop="jumpactNo(item.actNo)">
-              {{item.actNo}}
+            <view class="dingdans_con_right_top_dw_1 xianglian" style="padding-top: 3px;">
+              <text class="color-font">
+                {{item.actNo}}
               </text>
               <image @click.stop="$copyUrl(item.actNo)" class="fuzhitupian"
                      :src="fileUrl +'/static/img/copy.png'"></image>
             </view>
-            <view class="dingdans_con_right_top_dw_2" style="margin-bottom: -10px;">
-              <view  v-if="item.brand">
-                   <text  class="dingdans_con_dw_address">
-                    {{item.brand}}
-                  </text>
-              </view>
-              <view class="dingdans_top_right_dw">
-                <view class="dingdans_con_right_down_2_1">
-                  <text class="dw-button-common" @click.stop="storeAdd(item.id)">选择</text>
-                  <text class="dw-button-common" v-if="item.spuId" style="margin-left: 2vw" @click.stop="gotoDw(item.spuId)">得物</text>
-                </view>
-              </view>
+          </view>
+        </view>
+      </view>
+      <view v-if="item.orderId" style="border-top: 1px solid #eee; padding: 10px 0 10px 0">
+        <view  class="zuoyouduiqi">
+          <view style="width: 25vw;height: 25vw;border: 1px solid #f1f1f1 ;border-radius: 5px;" @click.stop="avatarShow(item.img)">
+            <image style=" width: 80%;margin-top: 30px;margin-left: 10%;" mode="widthFix" :src="item.img" v-if="item.img"></image>
+          </view>
+          <view style="width: 65vw">
+            <view>
+              <text>{{item.content}}</text>
+            </view>
+            <view class="dingdans_con_right_top_dw_1 xianglian" style="padding-top: 3px;">
+              <text class="color-font">
+                {{item.orderNo}}
+              </text>
+              <image @click.stop="$copyUrl(item.orderNo)" class="fuzhitupian"
+                     :src="fileUrl +'/static/img/copy.png'"></image>
             </view>
           </view>
         </view>
       </view>
+<!--        内容  end-->
+  <!--        尾部  beg-->
+  <view class="zuoyouduiqi" style="border-top: 1px solid #eee; padding: 10px 0 0 0">
+    <view>
+      <text style="font-size: 12px;">{{item.createTime | formateTime }} </text>
+      <text style="font-size: 12px; margin-left: 3px; color: #333333">{{item.type | dictToDescTypeValue(52)}}</text>
+    </view>
+    <view v-if="item.inventoryId || item.orderId ">
+      <text class="dw-button-common" v-if="item.waitType == 1">详情</text>
+      <text class="dw-button-common" v-if="item.waitType == 1" style="margin-left: 2vw"  @click.stop="updateOneStatus(item.id)">已办</text>
+    </view>
+  </view>
+  <!--        尾部  end-->
+      </view>
+
     </view>
 
-      <view v-show="tableData.length" class="meiyougengduo">
+      <view v-show="tableData.length" style="padding: 18px;" class="meiyougengduo">
         <u-loadmore fontSize="18"  color="#a6a6a6" nomoreText="最硬球鞋" :status="loadStatus"/>
       </view>
       <u-empty
@@ -138,25 +168,44 @@
         <image :src="imageZoom" mode="widthFix"  class="showImg"></image>
       </view>
     </view>
-    <view>
-      <uni-fab ref="fab" :pattern="pattern"  horizontal="right"  @fabClick="fabClick" />
+    <view v-if="this.list2[0].badge.value">
+      <uni-fab ref="fab" :pattern="pattern"  horizontal="right"  @fabClick="updateAllStatus" />
     </view>
       <view  @touchmove.stop.prevent="preventHandler">
       <u-popup :show="isShowDialog2" @close="isShowDialog2 = false"  :duration="100" mode="right">
         <view  style="height: 90vh;">
         <scroll-view  scroll-y="true"  class="saixuanquyu">
+<!--          <view class="saixuanquxiang" >-->
+<!--            <view>-->
+<!--              <text class="zitijiachu zihao14">-->
+<!--                品牌-->
+<!--              </text>-->
+<!--            </view>-->
+<!--            <view class="julishang10">-->
+<!--              <u&#45;&#45;input-->
+<!--                  class="saixuanInput"-->
+<!--                  placeholder="请输入品牌"-->
+<!--                  placeholderStyle="font-size: 14px;color:#c0c4cc"-->
+<!--                  v-model="queryParam.brand"-->
+<!--                  @change="search1"-->
+<!--                  clearable-->
+<!--              >-->
+<!--              </u&#45;&#45;input>-->
+<!--            </view>-->
+<!--          </view>-->
+
           <view class="saixuanquxiang" >
             <view>
               <text class="zitijiachu zihao14">
-                品牌
+                内容
               </text>
             </view>
             <view class="julishang10">
               <u--input
                   class="saixuanInput"
-                  placeholder="请输入品牌"
+                  placeholder="请输入内容"
                   placeholderStyle="font-size: 14px;color:#c0c4cc"
-                  v-model="queryParam.brand"
+                  v-model="queryParam.content"
                   @change="search1"
                   clearable
               >
@@ -167,32 +216,30 @@
           <view class="saixuanquxiang" >
             <view>
               <text class="zitijiachu zihao14">
-                备注
+                事项状态
               </text>
             </view>
-            <view class="julishang10">
-              <u--input
-                  class="saixuanInput"
-                  placeholder="请输入备注"
-                  placeholderStyle="font-size: 14px;color:#c0c4cc"
-                  v-model="queryParam.remark"
-                  @change="search1"
-                  clearable
-              >
-              </u--input>
+            <view class="julishang_10 saixuanxuanzhefuji">
+              <view v-for="(item,index) in waitTypeList"
+                    :key="index"
+                    class="saixuanxuanzhe julishang_10">
+                <u-button color="#f4f3f8" size="small" @click="chooseType(item.fieldValue)">
+                  <text :class="queryParam.waitType == item.fieldValue ? 'xuanzhongziti' : 'putongziti'">{{item.fieldName}}</text>
+                </u-button>
+              </view>
             </view>
           </view>
 
           <view class="saixuanquxiang" >
             <view>
               <text class="zitijiachu zihao14">
-                商品类型
+                消息类型
               </text>
             </view>
             <view class="julishang_10 saixuanxuanzhefuji">
              <view v-for="(item,index) in typeList"
                 :key="index"
-                 class="saixuanxuanzhe julishang_10">
+                 class="saixuanxuanzhezhong julishang_10">
                 <u-button color="#f4f3f8" size="small" @click="chooseType(item.fieldValue)">
                   <text :class="queryParam.type == item.fieldValue ? 'xuanzhongziti' : 'putongziti'">{{item.fieldName}}</text>
                 </u-button>
@@ -206,7 +253,7 @@
           </u-button>
           <u-button style="width: 50vw; margin: 5px" type="primary" @click="search2">
             <text style=" font-size: 15px;">
-              确定（{{totalCount}} 件商品）
+              确定（{{totalCount}} 条消息）
             </text>
           </u-button>
         </view>
@@ -225,7 +272,7 @@
         showTo: false,
         show_sx_type: false,
         backUrl: '',
-        emtityMsg: '',
+        baseMsgCount: 0,
         current: 0,
         pictureZoomShow: false,
         imageZoom: '',
@@ -256,47 +303,23 @@
         orderData2: '',
         isShowDialog2: false,
         list2: [{
-          type: '',
-          name: '全部'
+          waitType: '1',
+          name: '待办',
+          badge: {
+            value:0
+          }
         }, {
-          type: '01',
-          name: '男鞋',
-        }, {
-          type: '02',
-          name: '女鞋'
-        }, {
-          type: '03',
-          name: '男女'
-        }, {
-          type: '11',
-          name: '服装'
-        }, {
-          type: '05',
-          name: '大童'
-        }, {
-          type: '07',
-          name: '中童'
-        }, {
-          type: '04',
-          name: '幼童'
-        }, {
-          type: '06',
-          name: '婴童'
-        }, {
-          type: '20',
-          name: '包包'
-        }, {
-          type: '21',
-          name: '帽子'
+          waitType: '',
+          name: '全部',
         }],
         queryParam: {
-          id: '',
           type: '',
-          typeStr: '',
-          actNo: '',
-          name: '',
-          brand: '',
-          remark: '',
+          waitType: '1',
+          userId: '',
+          title: '',
+          content: '',
+          uniPushCid: '',
+          requestId: '',
           pageSize: 10,
           pageNum: 1
         },
@@ -310,8 +333,10 @@
         loadStatus: 'loadmore',
         tableData: [],
         totalCount: 1,
+        waitTypeList: [],
         horizontal: 'right',
         pattern: {
+          icon:'checkmarkempty',
           color: '#7A7E83',
           backgroundColor: '#fff',
           selectedColor: '#409eff',
@@ -331,6 +356,11 @@
       this.listSysDict()
       if (options) {
         this.backUrl = options.backUrl ? options.backUrl : '';
+        this.baseMsgCount = options.baseMsgCount ? options.baseMsgCount : '';
+        if (this.baseMsgCount == '0'){
+          this.queryParam.waitType =''
+          this.current = 1
+        }
       }
       this.getPage()
     },
@@ -441,18 +471,37 @@
         this.search1()
       },
       goDetail(id, type) {
-        let url = '/pages/other/otherAdd?type=' + type
+        let url = '/subPages/pages/other/otherAdd?type=' + type
         if (id) {
           url = url + '&id=' + id
         }
         this.$navigateTo(url)
       },
-      goodsDetail(id) {
-        if (!id) {
-          return
+      gotoDetail(item) {
+        let url = ''
+        if (item.inventoryId && !item.orderId) {
+           url = '/pages/store/index?backUrl=/subPages/pages/index/baseMsg&current=1&today=7&actNo=' + item.actNo
         }
-        let url = '/pages/goodsBase/detail?id=' + id
-        this.$navigateTo(url)
+        if (item.orderId) {
+           url = '/pages/order/index?backUrl=/subPages/pages/index/baseMsg&current=1&status=3&orderNo=' + item.orderNo
+        }
+        if (url) {
+          this.$navigateTo(url)
+        }
+      },
+      getData2() {
+        this.$request({
+          url: '/gw/op/v1/goodsOrder/getBaseMsgCount',
+          method: 'get'
+        }).then(res => {
+          if (res.subCode === 1000) {
+            // this.baseMsgCount = res.data
+            this.list2[0].badge.value= res.data
+
+          } else {
+            this.$toast(res.subMsg)
+          }
+        })
       },
       gotoDw(spuId) {
         if (!spuId){
@@ -466,37 +515,107 @@
         window.open(url)
         // #endif
       },
-      chooseType(type) {
+      chooseType(waitType) {
+        this.current = 1
         for (let i = 0; i < this.list2.length; i++) {
-          if (this.list2[i].type == type ){
+          if (this.list2[i].waitType == waitType ){
             this.current = i
           }
         }
-        this.queryParam.type = type
+        this.queryParam.waitType = waitType
         this.search1()
       },
-      storeAdd(goodsId) {
-        let url = '/pages/store/storeAdd?goodsId=' + goodsId
-        this.$navigateTo(url)
+      // storeAdd(goodsId) {
+      //   let url = '/subPages/pages/store/storeAdd?goodsId=' + goodsId
+      //   this.$navigateTo(url)
+      // },
+      // jumpactNo(actNo) {
+      //   let url = '/pages/store/index?backUrl=/pages/goodsBase/index&actNo=' + actNo
+      //   this.$navigateTo(url)
+      // },
+      updateAllStatus() {
+        var _this = this;
+        uni.showModal({
+          title: '',
+          confirmColor: '#409eff',
+          content: '是否全部已办',
+          success: function (res) {
+            if (res.confirm) {
+              _this.$request({
+                url: '/gw/op/v1/baseMsg/updateAllStatus',
+                method: 'get'
+              }).then(res => {
+                _this.$toast(res.subMsg)
+                if (res.subCode === 1000) {
+                  _this.search1()
+                }
+              })
+              // let data ={}
+              // data.id = id
+              // _this.$request({
+              //   url: '/gw/op/v1/baseMsg/status',
+              //   method: 'put',
+              //   data: data
+              // }).then(res => {
+              //   _this.$toast(res.subMsg)
+              //   if (res.subCode === 1000) {
+              //     _this.search1()
+              //   }
+              // })
+            }
+          }
+        });
       },
-      jumpactNo(actNo) {
-        let url = '/pages/store/index?backUrl=/pages/goodsBase/index&actNo=' + actNo
-        this.$navigateTo(url)
+       updateOneStatus(id) {
+        var _this = this;
+        uni.showModal({
+          title: '',
+          confirmColor: '#409eff',
+          content: '是否已办',
+          success: function (res) {
+            if (res.confirm) {
+              let data ={}
+              data.id = id
+              _this.$request({
+                url: '/gw/op/v1/baseMsg/status',
+                method: 'put',
+                data: data
+              }).then(res => {
+                _this.$toast(res.subMsg)
+                if (res.subCode === 1000) {
+                  _this.search1()
+                }
+              })
+            }
+          }
+        });
       },
+      // updateStatus(id) {
+      //   let data ={}
+      //   data.id = id
+      //   this.$request({
+      //     url: '/gw/op/v1/baseMsg/status',
+      //     method: 'put',
+      //     data: data
+      //   }).then(res => {
+      //     this.$toast(res.subMsg)
+      //     if (res.subCode === 1000) {
+      //       this.search1()
+      //     }
+      //   })
+      // },
       getPage() {
         this.isLoading = true
-        this.emtityMsg = ''
-        // goodsOtherApi.page(this.queryParam)
         this.$request({
-          url: '/gw/op/v1/goodsBase',
+          url: '/gw/op/v1/baseMsg',
           method: 'get',
           data: this.queryParam
         }).then(res => {
           this.isLoading = false
           if (res.subCode === 1000) {
+            this.getData2()
             this.totalCount = res.data ? res.data.pageInfo.totalCount : 0
             if (this.totalCount == 0) {
-              this.emtityMsg = '暂无相关商品'
               this.loadStatus = 'nomore';
               this.isLoadMore = false
             } else {
@@ -519,7 +638,8 @@
       listSysDict() {
         let sysDictList = uni.getStorageSync('sysDictList') ? JSON.parse(
             uni.getStorageSync('sysDictList')) : []
-        this.typeList = sysDictList.filter(item => item.typeValue == 20221108)
+        this.typeList = sysDictList.filter(item => item.typeValue == 52)
+        this.waitTypeList = sysDictList.filter(item => item.typeValue == 53)
       },
       search() {
         if (!this.queryParam.name) {
@@ -544,13 +664,13 @@
       },
       resetHandle() {
         this.queryParam = {
-          id: '',
           type: '',
-          typeStr: '',
-          actNo: '',
-          name: '',
-          brand: '',
-          remark: '',
+          waitType: '1',
+          userId: '',
+          title: '',
+          content: '',
+          uniPushCid: '',
+          requestId: '',
           pageSize: 10,
           pageNum: 1
         }
@@ -563,23 +683,34 @@
       },
       tabClick(item) {
         this.current = item.index
-        this.queryParam.type = item.type
+        this.queryParam.waitType = item.waitType
         this.search1()
       },
       tabX(item) {
-        this.queryParam.type = item.type
+        this.queryParam.waitType = item.waitType
         this.search1()
       },
       preventHandler() {
         return
       },
-      fabClick() {
-        this.$navigateTo('/pages/goodsBase/scanCode')
-      },
+      // fabClick() {
+      //   this.$navigateTo('/pages/goodsBase/scanCode')
+      // },
     }
   };
 </script>
 
 <style>
   @import '@/assets/index/style.css';
+
+  /*列表*/
+  .msg_table {
+    padding: 2.4vw 1.2vw;
+    background: #ffffff;
+    border-bottom: 7px solid #f4f3f8;
+    padding-right: 3%;
+    padding-left: 3%;
+    font-size: 13px;
+    color: #8a8a8a;
+  }
 </style>

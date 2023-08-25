@@ -240,7 +240,7 @@
             if (res.subCode === 1000) {
               this.$toast('操作成功');
               setTimeout(() => {
-                this.$navigateTo('/pages/other/index')
+                this.$navigateTo('/subPages/pages/other/index')
               }, 1000)
             } else {
               this.$toast(res.subMsg)
@@ -251,7 +251,7 @@
             if (res.subCode === 1000) {
               this.$toast('添加成功，即将返回列表');
               setTimeout(() => {
-                this.$navigateTo('/pages/other/index')
+                this.$navigateTo('/subPages/pages/other/index')
               }, 1000)
             } else {
               this.$toast(res.subMsg)

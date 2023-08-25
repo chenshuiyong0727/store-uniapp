@@ -74,7 +74,7 @@
               title: '退出登录成功',
               icon: 'none'
             });
-            this.$navigateTo('/pages/login/index')
+            this.$navigateTo('/subPages/pages/login/index')
           }
         })
       },
@@ -97,7 +97,7 @@
 
       },
       comfirm2() {
-        this.$navigateTo('/pages/login/resetPwd')
+        this.$navigateTo('/subPages/pages/login/resetPwd')
         // this.$router.push({path: '/resetPwd'})
       },
 

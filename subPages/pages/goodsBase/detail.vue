@@ -429,7 +429,7 @@
         this.getPriceData()
       },
       storeAdd() {
-        let url = '/pages/store/storeAdd?goodsId=' + this.id
+        let url = '/subPages/pages/store/storeAdd?goodsId=' + this.id
         this.$navigateTo(url)
       },
       rowClick(row) {
@@ -455,7 +455,7 @@
         })
       },
       update() {
-        let url = '/pages/goodsBase/goodsAdd?type=2&id=' + this.id
+        let url = '/subPages/pages/goodsBase/goodsAdd?type=2&id=' + this.id
         this.$navigateTo(url)
       },
       getDetailById(id) {

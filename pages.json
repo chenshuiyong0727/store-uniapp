@@ -7,6 +7,18 @@
       "root" : "subPages",
       "pages": [
         {
+          "path": "pages/index/baseMsg",
+          "style": {
+            "navigationBarTitleText": "待办消息",
+            "pullToRefresh":{
+              "color":"#409eff",
+              "offset":"56px"
+            },
+            "enablePullDownRefresh": true,
+            "onReachBottomDistance": 150
+          }
+        },
+        {
           "path": "pages/my/userInfo",
           "style": {
             "navigationBarTitleText": "用户信息",

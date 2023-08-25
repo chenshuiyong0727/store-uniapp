@@ -216,7 +216,7 @@
         }
       },
       goDetail(id, type) {
-        let url = '/pages/memo/memoAdd?type=' + type
+        let url = '/subPages/pages/memo/memoAdd?type=' + type
         if (id) {
           url = url + '&id=' + id
         }

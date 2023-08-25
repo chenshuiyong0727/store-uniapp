@@ -238,7 +238,7 @@
         if (months == '合计') {
           return
         }
-        let url = '/pages/report/putinDayDetail?months=' + months
+        let url = '/subPages/pages/report/putinDayDetail?months=' + months
         this.$navigateTo(url)
       },
       getPage() {

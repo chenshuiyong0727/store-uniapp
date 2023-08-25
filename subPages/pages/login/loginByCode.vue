@@ -192,7 +192,7 @@
               uni.setStorageSync('isActUser', data.isActUser);
               uni.setStorageSync('userRealName', data.userRealName)
               if (data.isActUser == 1) {
-                this.$navigateTo('/pages/goodsBase/act')
+                this.$navigateTo('/subPages/pages/goodsBase/act')
               }else{
                 this.$navigateTo('/pages/index/index')
               }
@@ -235,7 +235,7 @@
         })
       },
       loginByCode() {
-        this.$navigateTo('/pages/login/index')
+        this.$navigateTo('/subPages/pages/login/index')
       },
     }
   }

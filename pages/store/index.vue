@@ -768,7 +768,7 @@
         if (!id) {
           return
         }
-        let url = '/pages/goodsBase/detail?id=' + id
+        let url = '/subPages/pages/goodsBase/detail?id=' + id
         this.$navigateTo(url)
       },
       gotoDw(spuId) {
@@ -784,10 +784,11 @@
         // #endif
       },
       jumpOrder(actNo) {
-        let url= this.getLocalPath()
-        uni.reLaunch({
-          url: '/pages/order/index?backUrl=/pages/store/index&actNo=' + actNo
-        });
+        // let url= this.getLocalPath()
+        // uni.reLaunch({
+        //   url: '/pages/order/index?backUrl=/pages/store/index&actNo=' + actNo
+        // });
+        this.$navigateTo('/pages/order/index?backUrl=/pages/store/index&actNo=' + actNo)
       },
       getLocalPath(){
         let curPage = getCurrentPages();
@@ -975,18 +976,16 @@
         this.search1()
       },
       goDetail(id) {
-        this.$navigateTo('/pages/store/detail?id=' + id)
+        this.$navigateTo('/subPages/pages/store/detail?id=' + id)
       },
       add() {
-        uni.reLaunch({
-          url: '/pages/goodsBase/index'
-        });
+        this.$navigateTo('/pages/goodsBase/index')
       },
       warehouseDetail(goodsId , actNo,img) {
-        this.$navigateTo('/pages/store/warehouseDetail?goodsId=' + goodsId +'&actNo=' +actNo +'&img=' +img)
+        this.$navigateTo('/subPages/pages/store/warehouseDetail?goodsId=' + goodsId +'&actNo=' +actNo +'&img=' +img)
       },
       gallery(row) {
-        this.$navigateTo('/pages/store/storeUp?id=' + row.id)
+        this.$navigateTo('/subPages/pages/store/storeUp?id=' + row.id)
       },
 
       goDel(id) {
@@ -1009,7 +1008,7 @@
         });
       },
       update(row) {
-        this.$navigateTo('/pages/store/update?id=' + row.id)
+        this.$navigateTo('/subPages/pages/store/update?id=' + row.id)
       }
     }
   };
