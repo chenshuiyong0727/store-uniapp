@@ -26,12 +26,12 @@
       //离线推送点击
       plus.push.addEventListener("click", function (msg) {
         // 存储离线推送点击（此处重点处理离线点击业务，但在线也会走此方法，所以进入具体页面时需要清除缓存，否则在线消息点击进入具体页面后返回首页将会重复跳转）
-        uni.setStorageSync("appLaunchedByPush", msg.payload)
-        this.$navigateTo('/pages/index/baseMsg')
+        // uni.setStorageSync("appLaunchedByPush", 1)
+        // this.$navigateTo('/pages/index/baseMsg')
       })
       uni.onPushMessage((res) => {
-        let data = res.data.payload;
-        console.log("收到推送消息：", data) //监听推送消息
+        // let data = res.data.payload;
+        // console.log("收到推送消息：", data) //监听推送消息
         this.$navigateTo('/pages/index/baseMsg')
         // plus.runtime.setBadgeNumber(0)
       });
