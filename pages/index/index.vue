@@ -564,13 +564,17 @@
       this.getData1();
       this.getData2()
     },
-    onShow() {
-      let payload = uni.getStorageSync('appLaunchedByPush')
-      console.info('页面显示' , payload)
-    },
+    // onShow() {
+    //   let payload = uni.getStorageSync('appLaunchedByPush')
+    //   console.info('页面显示' , payload)
+    //   if (payload) {
+    //     uni.setStorageSync("appLaunchedByPush", 0)
+    //     this.$navigateTo('/pages/index/baseMsg')
+    //   }
+    // },
     onLoad() {
-      let payload = uni.getStorageSync('appLaunchedByPush')
-      console.info('页面加载' ,payload)
+      // let payload = uni.getStorageSync('appLaunchedByPush')
+      // console.info('页面加载' ,payload)
       this.initTime();
       this.time();
       this.getData();
