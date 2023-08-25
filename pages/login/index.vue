@@ -13,10 +13,9 @@
         <h5 class="login_new_welcome_text">欢迎来到移动仓库</h5>
       </view>
       <!-- #endif -->
-      <view class="login_form" style="width: 70vw;margin-top: 30px">
+      <view class="login_form" style="width: 70vw;margin-top: 40px">
         <view class="baisebeijing">
           <u--input
-              class="common-input"
               prefixIcon="account"
               placeholderStyle="font-size: 14px;color:#c0c4cc"
               placeholder="请输入账号"
@@ -26,10 +25,9 @@
           >
           </u--input>
         </view>
-        <view class="baisebeijing" style="width: 70vw;margin-top: 10px">
+        <view class="baisebeijing" style="width: 70vw;margin-top: 20px">
         <u--input
             :password-icon="passwordIcon"
-            class="common-input"
             placeholder="请输入密码"
             prefixIcon="lock"
             type="password"
@@ -208,6 +206,7 @@
   /* 这里直接设置 1rem = 50px end */
   html,
   body {
+    background-color: #F8FCFF;
   }
 
 </style>

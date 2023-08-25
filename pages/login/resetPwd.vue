@@ -23,23 +23,22 @@
         userName ? userName : '系统用户'
         }}</h5>
 
-      <section class="login_form" style="margin-top: 30px">
+      <view class="login_form" style="width: 70vw;margin-top: 30px">
+        <view  class="baisebeijing">
+          <u--input
+              :password-icon="true"
+              placeholder="原密码"
+              prefixIcon="lock"
+              type="password"
+              placeholderStyle="font-size: 14px;color:#c0c4cc"
+              prefixIconStyle="font-size: 22px;color:#c0c4cc"
+              clearable
+              v-model="param.oldPwd">
+          </u--input>
+        </view>
+        <view  class="baisebeijing"  style="margin-top: 10px">
         <u--input
             :password-icon="true"
-            class="common-input"
-            style="width: 70vw;margin-top: 10px"
-            placeholder="原密码"
-            prefixIcon="lock"
-            type="password"
-            placeholderStyle="font-size: 14px;color:#c0c4cc"
-            prefixIconStyle="font-size: 22px;color:#c0c4cc"
-            clearable
-            v-model="param.oldPwd">
-        </u--input>
-        <u--input
-            :password-icon="true"
-            class="common-input"
-            style="width: 70vw;margin-top: 10px"
             placeholder="新密码"
             prefixIcon="lock"
             type="password"
@@ -48,10 +47,10 @@
             clearable
             v-model="param.newPwd">
         </u--input>
+        </view>
+        <view  class="baisebeijing"  style="margin-top: 10px">
         <u--input
             :password-icon="true"
-            class="common-input"
-            style="width: 70vw;margin-top: 10px"
             placeholder="确认密码"
             prefixIcon="lock"
             type="password"
@@ -60,44 +59,13 @@
             clearable
             v-model="param.confirmPwd">
         </u--input>
+        </view>
+      </view>
 
-<!--        <el-input-->
-<!--          show-password-->
-<!--          style="margin-top: 10px"-->
-<!--          placeholder="原密码"-->
-<!--          prefix-icon="el-icon-warning"-->
-<!--          type="password"-->
-<!--          v-model="param.oldPwd">-->
-<!--        </el-input>-->
-<!--        <el-input-->
-<!--          show-password-->
-<!--          style="margin-top: 10px"-->
-<!--          placeholder="新密码"-->
-<!--          prefix-icon="el-icon-warning"-->
-<!--          type="password"-->
-<!--          v-model="param.newPwd">-->
-<!--        </el-input>-->
-<!--        <el-input-->
-<!--          show-password-->
-<!--          style="margin-top: 10px"-->
-<!--          placeholder="确认密码"-->
-<!--          prefix-icon="el-icon-warning"-->
-<!--          type="password"-->
-<!--          v-model="param.confirmPwd">-->
-<!--        </el-input>-->
-      </section>
-<!--      <div class="clearfix btm-distance">-->
-<!--        <el-button style="margin-top: 25px;" type="primary" @click="modifyPwd" >确认修改</el-button>-->
-<!--        <el-button  @click="$router.go(-1)" >取消</el-button>-->
-<!--                </div>-->
-
-      <view class=" btm-distance">
-        <u-button style="margin-top: 25px;    width: 50vw;" type="primary" @click="modifyPwd">
+      <view  style="margin-top: 25px;">
+        <u-button style="  width: 50vw;" type="primary" @click="modifyPwd">
           <text style=" font-size: 16px;font-weight: 600">确认修改</text>
         </u-button>
-<!--        <view style="margin-top: 25px;    width: 50vw; text-align: center"  @click="loginByCode">-->
-<!--          <text class="color-url" style=" font-size: 16px;">验证码登录</text>-->
-<!--        </view>-->
       </view>
      </div>
   </div>
@@ -168,12 +136,10 @@ export default {
   /* 这里直接设置 1rem = 50px end */
   html,
   body {
-    /*font-family: "微软雅黑";*/
-    /*color: #333;*/
-    /*background: #fff;*/
+    background-color: #F8FCFF;
   }
   /*.login {*/
-  /*  >section {*/
+  /*  >view {*/
   /*    .tip {*/
   /*      padding: 6vw 3vw;*/
   /*      color:rgb(224, 145, 71);*/
@@ -193,7 +159,7 @@ export default {
     }
   }
 .login {
-  >section {
+  >view {
     .tip {
       padding: 6vw 3vw;
       color:rgb(224, 145, 71);

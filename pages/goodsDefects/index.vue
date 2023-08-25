@@ -239,7 +239,7 @@
             <view  class="dingdans_con_left_dw"
                   @click.stop="avatarShow(item.img)">
               <image mode="widthFix" :src="item.img" v-if="item.img"></image>
-              <image mode="widthFix" :src="fileUrl+item.imgUrl" v-if="!item.img && item.imgUrl" ></image>
+              <image mode="widthFix" :src="fileUrl+item.imgUrl" style="margin-top: 10px;" v-if="!item.img && item.imgUrl" ></image>
             </view>
             <view class="diangdans_con_right_dw">
               <view class="dingdans_con_right_top_dw" @click.stop="goodsDetail(item.goodsId)" >

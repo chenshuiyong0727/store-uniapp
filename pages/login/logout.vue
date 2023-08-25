@@ -123,9 +123,7 @@
   /* 这里直接设置 1rem = 50px end */
   html,
   body {
-    /*font-family: "微软雅黑";*/
-    /*color: #333;*/
-    /*background: #fff;*/
+    background-color: #F8FCFF;
   }
 
   /deep/ .uni-modal .uni-modal__bd, uni-modal .uni-modal__title {
