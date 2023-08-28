@@ -141,10 +141,10 @@
       <text style="font-size: 12px;">{{item.createTime | formateTime }} </text>
       <text style="font-size: 12px; margin-left: 3px; color: #333333">{{item.type | dictToDescTypeValue(52)}}</text>
     </view>
-    <view v-if="item.inventoryId || item.orderId ">
+    <view >
       <text class="dw-button-common" v-if="item.waitType == 1">详情</text>
       <text class="dw-button-common" v-if="item.waitType == 1" style="margin-left: 2vw"  @click.stop="updateOneStatus(item.id)">已办</text>
-    </view>
+    </view >
   </view>
   <!--        尾部  end-->
       </view>
@@ -168,32 +168,13 @@
         <image :src="imageZoom" mode="widthFix"  class="showImg"></image>
       </view>
     </view>
-    <view v-if="this.list2[0].badge.value">
+    <view v-if="showTab">
       <uni-fab ref="fab" :pattern="pattern"  horizontal="right"  @fabClick="updateAllStatus" />
     </view>
       <view  @touchmove.stop.prevent="preventHandler">
       <u-popup :show="isShowDialog2" @close="isShowDialog2 = false"  :duration="100" mode="right">
         <view  style="height: 90vh;">
         <scroll-view  scroll-y="true"  class="saixuanquyu">
-<!--          <view class="saixuanquxiang" >-->
-<!--            <view>-->
-<!--              <text class="zitijiachu zihao14">-->
-<!--                品牌-->
-<!--              </text>-->
-<!--            </view>-->
-<!--            <view class="julishang10">-->
-<!--              <u&#45;&#45;input-->
-<!--                  class="saixuanInput"-->
-<!--                  placeholder="请输入品牌"-->
-<!--                  placeholderStyle="font-size: 14px;color:#c0c4cc"-->
-<!--                  v-model="queryParam.brand"-->
-<!--                  @change="search1"-->
-<!--                  clearable-->
-<!--              >-->
-<!--              </u&#45;&#45;input>-->
-<!--            </view>-->
-<!--          </view>-->
-
           <view class="saixuanquxiang" >
             <view>
               <text class="zitijiachu zihao14">
@@ -302,6 +283,7 @@
         isShowDialog1: false,
         orderData2: '',
         isShowDialog2: false,
+        showTab:false,
         list2: [{
           waitType: '1',
           name: '待办',
@@ -497,7 +479,9 @@
           if (res.subCode === 1000) {
             // this.baseMsgCount = res.data
             this.list2[0].badge.value= res.data
-
+            if (res.data) {
+              this.showTab = true
+            }
           } else {
             this.$toast(res.subMsg)
           }
