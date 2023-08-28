@@ -4,11 +4,6 @@
       <view @click="goBack" class="u-nav-slot" slot="left">
         <u-icon name="arrow-left" size="20"></u-icon>
       </view>
-      <view class="u-nav-slot" style="font-size: 15px;" slot="right">
-        <rudon-rowMenuDotDotDot :localdata="localdata" @change="menuAction($event)">
-          <image style="height: 25px;width: 25px" src="../../static/img/slh.png"></image>
-        </rudon-rowMenuDotDotDot>
-      </view>
     </u-navbar>
     <view class="fenlei_top_tab"  style="display: flex;">
       <view style="width: 83vw" class="baisebeijing">
@@ -141,8 +136,8 @@
       <text style="font-size: 12px;">{{item.createTime | formateTime }} </text>
       <text style="font-size: 12px; margin-left: 3px; color: #333333">{{item.type | dictToDescTypeValue(52)}}</text>
     </view>
-    <view v-if="item.inventoryId || item.orderId ">
-      <text class="dw-button-common" v-if="item.waitType == 1">详情</text>
+    <view>
+      <text class="dw-button-common" v-if="item.inventoryId || item.orderId || item.type == 12">详情</text>
       <text class="dw-button-common" v-if="item.waitType == 1" style="margin-left: 2vw"  @click.stop="updateOneStatus(item.id)">已办</text>
     </view>
   </view>
@@ -175,25 +170,6 @@
       <u-popup :show="isShowDialog2" @close="isShowDialog2 = false"  :duration="100" mode="right">
         <view  style="height: 90vh;">
         <scroll-view  scroll-y="true"  class="saixuanquyu">
-<!--          <view class="saixuanquxiang" >-->
-<!--            <view>-->
-<!--              <text class="zitijiachu zihao14">-->
-<!--                品牌-->
-<!--              </text>-->
-<!--            </view>-->
-<!--            <view class="julishang10">-->
-<!--              <u&#45;&#45;input-->
-<!--                  class="saixuanInput"-->
-<!--                  placeholder="请输入品牌"-->
-<!--                  placeholderStyle="font-size: 14px;color:#c0c4cc"-->
-<!--                  v-model="queryParam.brand"-->
-<!--                  @change="search1"-->
-<!--                  clearable-->
-<!--              >-->
-<!--              </u&#45;&#45;input>-->
-<!--            </view>-->
-<!--          </view>-->
-
           <view class="saixuanquxiang" >
             <view>
               <text class="zitijiachu zihao14">
@@ -220,6 +196,11 @@
               </text>
             </view>
             <view class="julishang_10 saixuanxuanzhefuji">
+              <view class="saixuanxuanzhe julishang_10">
+                <u-button color="#f4f3f8" size="small" @click="chooseType('')">
+                  <text :class="!queryParam.waitType? 'xuanzhongziti' : 'putongziti'">全部</text>
+                </u-button>
+              </view>
               <view v-for="(item,index) in waitTypeList"
                     :key="index"
                     class="saixuanxuanzhe julishang_10">
@@ -240,7 +221,7 @@
              <view v-for="(item,index) in typeList"
                 :key="index"
                  class="saixuanxuanzhezhong julishang_10">
-                <u-button color="#f4f3f8" size="small" @click="chooseType(item.fieldValue)">
+                <u-button color="#f4f3f8" size="small" @click="queryParam.type = item.fieldValue;search1();">
                   <text :class="queryParam.type == item.fieldValue ? 'xuanzhongziti' : 'putongziti'">{{item.fieldName}}</text>
                 </u-button>
               </view>
@@ -484,6 +465,9 @@
         }
         if (item.orderId) {
            url = '/pages/order/index?backUrl=/pages/index/baseMsg&current=1&status=3&orderNo=' + item.orderNo
+        }
+        if (item.type== 12){
+          url = '/pages/order/index?backUrl=/pages/index/baseMsg&current=1&status=3'
         }
         if (url) {
           this.$navigateTo(url)

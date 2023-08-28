@@ -19,7 +19,7 @@
         padding-bottom: 40vw;
     background-image: linear-gradient(#e5f4ff, #f3f2f8);">
         <view class="header">
-          <view class="my-indent-right-1" style="margin-left: 4vw;">
+          <view class="width92" >
             <u--input
                 class="searchInputW"
                 prefixIcon="search"
