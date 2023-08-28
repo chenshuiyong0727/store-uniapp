@@ -25,7 +25,6 @@ const navigateTo = (url, ...args) => {
       url
     })
   } else {
-    debugger
     // url = '/subPages' + url
     console.log('url2' , url)
     uni.navigateTo({

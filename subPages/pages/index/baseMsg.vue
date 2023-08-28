@@ -4,11 +4,11 @@
       <view @click="goBack" class="u-nav-slot" slot="left">
         <u-icon name="arrow-left" size="20"></u-icon>
       </view>
-      <view class="u-nav-slot" style="font-size: 15px;" slot="right">
-        <rudon-rowMenuDotDotDot :localdata="localdata" @change="menuAction($event)">
-          <image style="height: 25px;width: 25px" :src="fileUrl +'/static/img/slh.png'"></image>
-        </rudon-rowMenuDotDotDot>
-      </view>
+<!--      <view class="u-nav-slot" style="font-size: 15px;" slot="right">-->
+<!--        <rudon-rowMenuDotDotDot :localdata="localdata" @change="menuAction($event)">-->
+<!--          <image style="height: 25px;width: 25px" :src="fileUrl +'/static/img/slh.png'"></image>-->
+<!--        </rudon-rowMenuDotDotDot>-->
+<!--      </view>-->
     </u-navbar>
     <view class="fenlei_top_tab"  style="display: flex;">
       <view style="width: 83vw" class="baisebeijing">
@@ -26,8 +26,8 @@
         </u--input>
       </view>
       <view class="fenlei_top_right" @click="isShowDialog2 = true">
-        <image v-if="queryParam.type || queryParam.content || ( queryParam.waitType && queryParam.waitType != '1')"  :src="fileUrl +'static/img/search.png'"></image>
-        <image v-else  :src="fileUrl +'static/img/search_no.png'"></image>
+        <image v-if="queryParam.type || queryParam.content || ( queryParam.waitType && queryParam.waitType != '1')"  :src="fileUrl +'/static/img/search.png'"></image>
+        <image v-else  :src="fileUrl +'/static/img/search_no.png'"></image>
       </view>
     </view>
     <view class="searchListnew">
@@ -71,9 +71,10 @@
         @confirm="confirmTo"
         @cancel="cancelTo"
     ></u-datetime-picker>
+<!--    @touchstart.stop="onTouchStart" @touchend.stop="handleTouchend"-->
     <view
         style="height: 100vh"
-        @touchstart.stop="onTouchStart" @touchend.stop="handleTouchend" >
+         >
       <view class="julibiaoti3" >
       <view class="msg_table"
             v-for="(item,index) in tableData"
@@ -221,7 +222,7 @@
              <view v-for="(item,index) in typeList"
                 :key="index"
                  class="saixuanxuanzhezhong julishang_10">
-                <u-button color="#f4f3f8" size="small" @click="chooseType(item.fieldValue)">
+                <u-button color="#f4f3f8" size="small" @click="queryParam.type = item.fieldValue;search1();">
                   <text :class="queryParam.type == item.fieldValue ? 'xuanzhongziti' : 'putongziti'">{{item.fieldName}}</text>
                 </u-button>
               </view>
