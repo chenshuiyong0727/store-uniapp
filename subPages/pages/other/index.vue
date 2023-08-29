@@ -37,9 +37,8 @@
                   品牌
                 </text>
               </view>
-              <view class="julishang10">
+              <view class="julishang10 saixuanInput">
                 <u--input
-                    class="saixuanInput"
                     placeholder="请输入品牌"
                     placeholderStyle="font-size: 14px;color:#c0c4cc"
                     v-model="queryParam.brand"

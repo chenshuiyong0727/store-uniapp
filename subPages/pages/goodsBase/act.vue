@@ -268,7 +268,7 @@
 
     <view
         style="height: 100vh"
-        @touchstart.stop="onTouchStart" @touchend.stop="handleTouchend">
+        @touchstart="onTouchStart" @touchend="handleTouchend">
       <view class="julibiaoti3">
         <view class="dingdans_item_dw"
               v-for="(item,index) in tableData"

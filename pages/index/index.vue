@@ -49,19 +49,19 @@
     margin-top: 10px;" :src="fileUrl +'/static/img/more-1.png'"></image>
         <view  @click="$navigateTo('/pages/store/index?backUrl=/pages/index/index&current=1&today=7')">
           <text :class="storeData.upCout > 0 ? 'color-danger-strong' : 'color-font'">
-            {{storeData.upCout}}
+            {{storeData.upCout ? storeData.upCout : 0}}
           </text>
           <text style="color: #8c8a8a;font-size: 14px;">变更</text>
         </view>
         <view  @click="$navigateTo('/pages/store/index?backUrl=/pages/index/index&current=2&today=2')">
           <text :class="storeData.successNumLast > 0 ? 'color-danger-strong' : 'color-font'">
-            {{storeData.successNumLast}}
+            {{storeData.successNumLast  ? storeData.successNumLast : 0}}
           </text>
           <text style="color: #8c8a8a;font-size: 14px;">待上架</text>
         </view>
         <view @click="$navigateTo('/pages/store/index?backUrl=/pages/index/index&current=3&today=3')">
           <text :class="storeData.waitMoveCout > 0 ? 'color-danger-strong' : 'color-font'">
-            {{storeData.waitMoveCout}}
+            {{storeData.waitMoveCout ? storeData.waitMoveCout : 0}}
           </text>
           <text style="color: #8c8a8a;font-size: 14px;">待移库</text>
         </view>
@@ -77,44 +77,44 @@
         <view class="my-pay-2" style="border-bottom-style:none;">
           <view  @click="$navigateTo('/pages/order/index?backUrl=/pages/index/index&current=1&status=3')">
             <text :class="orderIofo.count3 > 0 ? 'color-danger-strong' : 'color-font'">
-              {{orderIofo.count3}}
+              {{orderIofo.count3  ? orderIofo.count3 : 0}}
             </text>
             <text style="color: #8c8a8a;font-size: 14px;">待发货</text>
           </view>
           <view  @click="$navigateTo('/pages/order/index?backUrl=/pages/index/index&current=2&status=4')">
             <text :class="orderIofo.count4 > 0 ? 'color-danger-strong' : 'color-font'">
-              {{orderIofo.count4}}
+              {{orderIofo.count4 ? orderIofo.count4 : 0}}
             </text>
             <text style="color: #8c8a8a;font-size: 14px;">已发货</text>
           </view>
           <view  @click="$navigateTo('/pages/order/index?backUrl=/pages/index/index&current=3&status=5')">
             <text :class="orderIofo.count5 > 0 ? 'color-danger-strong' : 'color-font'">
-              {{orderIofo.count5}}
+              {{orderIofo.count5 ? orderIofo.count5 : 0}}
             </text>
             <text style="color: #8c8a8a;font-size: 14px;">运输中</text>
           </view>
           <view  @click="$navigateTo('/pages/order/index?backUrl=/pages/index/index&current=4&status=6')">
             <text :class="orderIofo.count6 > 0 ? 'color-danger-strong' : 'color-font'">
-              {{orderIofo.count6}}
+              {{orderIofo.count6 ? orderIofo.count6 : 0}}
             </text>
             <text style="color: #8c8a8a;font-size: 14px;">已收货</text>
           </view>
         </view>
         <view class="my-pay-2" style="border-bottom-style:none;">
           <view  @click="$navigateTo('/pages/order/index?backUrl=/pages/index/index&current=5&status=11')">
-            <text class="color-font">{{orderIofo.count11}}</text>
+            <text class="color-font">{{orderIofo.count11 ? orderIofo.count11 : 0}}</text>
             <text style="color: #8c8a8a;font-size: 14px;">已入库</text>
           </view>
           <view  @click="$navigateTo('/pages/order/index?backUrl=/pages/index/index&current=7&status=2')">
-            <text class="color-font">{{orderIofo.count2}}</text>
+            <text class="color-font">{{orderIofo.count2 ? orderIofo.count2 : 0}}</text>
             <text style="color: #8c8a8a;font-size: 14px;">已上架</text>
           </view>
           <view @click="$navigateTo('/pages/order/index?backUrl=/pages/index/index&current=8&status=7')">
-            <text class="color-font">{{orderIofo.count7}}</text>
+            <text class="color-font">{{orderIofo.count7 ? orderIofo.count7 : 0}}</text>
             <text style="color: #8c8a8a;font-size: 14px;">交易成功</text>
           </view>
           <view  @click="$navigateTo('/pages/order/index?backUrl=/pages/index/index&current=9&status=8')">
-            <text class="color-font">{{orderIofo.count8}}</text>
+            <text class="color-font">{{orderIofo.count8 ? orderIofo.count8 : 0}}</text>
             <text style="color: #8c8a8a;font-size: 14px;">瑕疵</text>
           </view>
         </view>
@@ -124,7 +124,7 @@
             <text style="color: #333;font-size: 15px;margin-left: 10px">即将到期订单</text>
           </view>
           <view class="wenzitupduiqi" style="margin-right: 4vw;">
-            <text class="color-font-strong" style="font-size: 25px;">{{orderIofo.countTheExpire}}
+            <text class="color-font-strong" style="font-size: 25px;">{{orderIofo.countTheExpire ? orderIofo.countTheExpire : 0}}
             </text>
             <image style="width: 20px;height: 20px" :src="fileUrl +'/static/img/more.png'"></image>
           </view>
@@ -134,6 +134,7 @@
     <!--    销售走势-->
     <view style="
     background-color: rgb(255, 255, 255);
+    padding-bottom: 3vw;
 ">
       <h1 class="index-title" style="border-top-style:none">
         <text>
@@ -145,20 +146,20 @@
       <view @click="$navigateTo('/subPages/pages/report/sellList')" class="index-list" style=" padding-top: 4vw">
         <view class="li">
           <view>
-            <text class="color-font"><strong>{{orderData.successNum}}</strong></text>
+            <text class="color-font">{{orderData.successNum ? orderData.successNum : 0}}</text>
           </view>
           <view>
             <text class="section1name">月订单数</text>
           </view>
           <view>
-            <text class="color-font"><strong>{{orderData.expectSuccessNum}}</strong></text>
+            <text class="color-font">{{orderData.expectSuccessNum ? orderData.expectSuccessNum : 0}}</text>
           </view>
           <view>
             <text class="section1name">预计总数</text>
           </view>
           <view>
             <text :class="orderData.successNumRate<0 ? 'color-success' : 'color-danger'">
-              {{orderData.successNumRate}} %
+              {{orderData.successNumRate ? orderData.successNumRate : 0}} %
             </text>
           </view>
           <view>
@@ -168,42 +169,42 @@
 
         <view class="li">
           <view>
-            <text class="color-font"><strong>{{orderData.profitsAmount}}</strong></text>
+            <text class="color-font">{{orderData.profitsAmount ? orderData.profitsAmount : 0}}</text>
           </view>
           <view>
             <text class="section1name">本月利润</text>
           </view>
           <view>
-            <text class="color-font"><strong>{{orderData.expectProfitsAmount}}</strong></text>
+            <text class="color-font">{{orderData.expectProfitsAmount ? orderData.expectProfitsAmount : 0}}</text>
           </view>
           <view>
             <text class="section1name">预计利润</text>
           </view>
           <view>
             <text :class="orderData.profitsAmountRate<0 ? 'color-success' : 'color-danger'">
-              {{orderData.profitsAmountRate}} %
+              {{orderData.profitsAmountRate ? orderData.profitsAmountRate : 0}} %
             </text>
           </view>
           <view>
-            <text class="section1name">同比上月</text>
+            <text class="section1name" style="padding-bottom: 1vw;">同比上月</text>
           </view>
         </view>
         <view class="li">
           <view>
-            <text class="color-font"><strong>{{orderData.orderAmount}}</strong></text>
+            <text class="color-font">{{orderData.orderAmount ? orderData.orderAmount : 0}}</text>
           </view>
           <view>
             <text class="section1name">本月总额</text>
           </view>
           <view>
-            <text class="color-font"><strong>{{orderData.expectOrderAmount}}</strong></text>
+            <text class="color-font">{{orderData.expectOrderAmount ? orderData.expectOrderAmount : 0}}</text>
           </view>
           <view>
             <text class="section1name">预计总额</text>
           </view>
           <view>
             <text :class="orderData.orderAmountRate<0 ? 'color-success' : 'color-danger'">
-              {{orderData.orderAmountRate}} %
+              {{orderData.orderAmountRate ? orderData.orderAmountRate : 0}} %
             </text>
           </view>
           <view>
@@ -212,25 +213,24 @@
         </view>
       </view>
       <view class="zuoyouduiqi" style="
-    padding-right: 60px;
+    padding-right: 75px;
     padding-bottom: 14px;
-    padding-left: 60px;">
+    padding-left: 75px;">
         <u-button type="primary" size="small" shape="circle" @click="profitData(1)"
-                  style="margin-right: 10px" text="月利润" :plain="dataType == 0"></u-button>
+                  style=" width: 27vw;margin-right: 10px" text="月利润" :plain="dataType == 0"></u-button>
         <u-button type="primary" size="small" shape="circle" @click="profitData(0)"
-                  style="margin-left: 10px" text="日利润" :plain="dataType == 1"></u-button>
+                  style=" width: 27vw;margin-left: 10px" text="日利润" :plain="dataType == 1"></u-button>
       </view>
 
       <view style="
-      margin-left: 2vw;
+      margin-left: 4vw;
       display: flex;
     align-items: center;
     justify-content: space-between;
     width: 92vw;">
-        <view @click="showFrom= true">
+        <view @click="showFrom= true" class="searchInput">
           <u--input
               style="width: 44vw;"
-              class="searchInput"
               readonly="readonly"
               prefixIcon="calendar"
               prefixIconStyle="font-size: 20px;color:#c0c4cc"
@@ -242,11 +242,10 @@
           </u--input>
         </view>
         <text style="    font-size: 15px;margin: 2vw;">至</text>
-        <view @click="showTo= true">
+        <view @click="showTo= true" class="searchInput">
           <u--input
               placeholderStyle="font-size: 15px;color:#c0c4cc"
               style="width: 44vw;"
-              class="searchInput"
               readonly="readonly"
               prefixIcon="calendar"
               placeholder="结束时间"
@@ -258,7 +257,7 @@
         </view>
       </view>
       <view style="margin-top: 20px;">
-        <view class="charts-box">
+        <view class="charts-box" v-show="chartData  && chartData.series && chartData.series.length">
           <qiun-data-charts :type="dataType==1 ? 'line': 'column'" :opts="dataType==1 ? opts: opts1"
                             :chartData="chartData" :ontouch="true"/>
         </view>
@@ -290,7 +289,7 @@
       </text>
         <view class="link-top"></view>
       </h1>
-      <view  v-if="chartData1" style="background-color: #fff ; padding-top: 4vw">
+      <view  v-if="chartData1  && chartData1.series && chartData1.series.length" style="background-color: #fff ; padding-top: 4vw">
         <view class="charts-box">
           <qiun-data-charts
               type="pie"
@@ -301,126 +300,126 @@
       </view>
       <view class="section1-list">
         <view style="width: 47.6%">
-          <p><strong class="color-url"> {{countDay}}</strong>{{count}}</p>
-          <p class="section1name">春节倒计时</p>
+          <text><text style="font-weight: 600;margin-right: 2px" class="color-url">{{countDay}}</text> {{count}}</text>
+          <text class="section1name">春节倒计时</text>
         </view>
         <view   @click="$navigateTo('/pages/store/index?backUrl=/pages/index/index')">
-          <p class="color-url">{{form.inventoryNum}}</p>
-          <p class="section1name">库存总数</p>
+          <text class="color-url">{{ form ? form.inventoryNum : 0}}</text>
+          <text class="section1name">库存总数</text>
         </view>
         <view  @click="$navigateTo('/subPages/pages/report/sellList')">
-          <p class="color-url">{{form.profitsAmount | numFilterTo0}}</p>
-          <p class="section1name">利润总额</p>
+          <text class="color-url">{{ form ? (form.profitsAmount | numFilterTo0)  : 0}}</text>
+          <text class="section1name">利润总额</text>
         </view>
       </view>
       <view class="section1-list">
         <view  @click="$navigateTo('/subPages/pages/report/sellList')">
-          <p class="color-url">{{form.profitsAverage}}</p>
-          <p class="section1name">平均利润</p>
+          <text class="color-url">{{form ? form.profitsAverage : 0}}</text>
+          <text class="section1name">平均利润</text>
         </view>
         <view  @click="$navigateTo('/pages/store/index?backUrl=/pages/index/index')">
-          <p class="color-url">{{form.inventoryCost | numFilterTo0}}</p>
-          <p class="section1name">库存成本</p>
+          <text class="color-url">{{form ? (form.inventoryCost | numFilterTo0) : 0}}</text>
+          <text class="section1name">库存成本</text>
         </view>
         <view  @click="$navigateTo('/pages/store/index?backUrl=/pages/index/index')">
-          <p class="color-url" v-if="form.inventoryNum  && form.goodsPutInNum">
-            {{form.inventoryRatio}}%</p>
-          <p v-else> 0%</p>
-          <p class="section1name">库存比例</p>
+          <text class="color-url" v-if="form.inventoryNum  && form.goodsPutInNum">
+            {{form ? form.inventoryRatio : 0}}%</text>
+          <text v-else> 0%</text>
+          <text class="section1name">库存比例</text>
         </view>
         <view @click="$navigateTo('/pages/goodsBase/index?backUrl=/pages/index/index')">
-          <p class="color-url">{{form.goodsNum}}</p>
-          <p class="section1name">商品款式</p>
+          <text class="color-url">{{form ? form.goodsNum : 0}}</text>
+          <text class="section1name">商品款式</text>
         </view>
       </view>
       <view class="section1-list">
         <view @click="$navigateTo('/pages/store/index?backUrl=/pages/index/index&warehouseId=2')">
-          <p class="color-url">{{form.ytInventory | numFilterTo0}}</p>
-          <p class="section1name">云头库存</p>
+          <text class="color-url">{{form ? (form.ytInventory | numFilterTo0) : 0}}</text>
+          <text class="section1name">云头库存</text>
         </view>
         <view @click="$navigateTo('/pages/store/index?backUrl=/pages/index/index&warehouseId=2')">
-          <p class="color-url">{{form.ytAmount}}</p>
-          <p class="section1name">云头货值</p>
+          <text class="color-url">{{form ? form.ytAmount : 0}}</text>
+          <text class="section1name">云头货值</text>
         </view>
         <view @click="$navigateTo('/pages/store/index?backUrl=/pages/index/index&warehouseId=1')">
-          <p class="color-url">{{form.qpInventory }}</p>
-          <p class="section1name">前埔库存</p>
+          <text class="color-url">{{form ? form.qpInventory  : 0}}</text>
+          <text class="section1name">前埔库存</text>
         </view>
         <view @click="$navigateTo('/pages/store/index?backUrl=/pages/index/index&warehouseId=1')">
-          <p class="color-url">{{form.qpAmount | numFilterTo0}}</p>
-          <p class="section1name">前埔货值</p>
+          <text class="color-url">{{form ? (form.qpAmount | numFilterTo0) : 0}}</text>
+          <text class="section1name">前埔货值</text>
         </view>
       </view>
       <view class="section1-list">
         <view  @click="$navigateTo('/subPages/pages/report/putin')">
-          <p>{{form.goodsPutInNum}}</p>
-          <p class="section1name">入库商品</p>
+          <text>{{form ? form.goodsPutInNum : 0}}</text>
+          <text class="section1name">入库商品</text>
         </view>
         <view @click="$navigateTo('/subPages/pages/report/putin')">
-          <p>{{form.inventoryAmount | numFilterTo0}}</p>
-          <p class="section1name">入库总额</p>
+          <text>{{form ? (form.inventoryAmount | numFilterTo0) : 0}}</text>
+          <text class="section1name">入库总额</text>
         </view>
         <view @click="$navigateTo('/subPages/pages/report/sellList')">
-          <p>{{form.successNum}}</p>
-          <p class="section1name">交易成功</p>
+          <text>{{form ? form.successNum : 0}}</text>
+          <text class="section1name">交易成功</text>
         </view>
         <view @click="$navigateTo('/subPages/pages/report/sellList')">
-          <p>{{form.orderAmount | numFilterTo0}}</p>
-          <p class="section1name">成功总额</p>
+          <text>{{form ? (form.orderAmount | numFilterTo0) : 0}}</text>
+          <text class="section1name">成功总额</text>
         </view>
       </view>
       <view class="section1-list">
         <view  @click="$navigateTo('/pages/order/index?backUrl=/pages/index/index&current=8&status=7')">
-          <p>{{form.freight |numFilterTo0}}</p>
-          <p class="section1name">总运费</p>
+          <text>{{form ? (form.freight |numFilterTo0) : 0}}</text>
+          <text class="section1name">总运费</text>
         </view>
         <view  @click="$navigateTo('/pages/order/index?backUrl=/pages/index/index&current=8&status=7')">
-          <p>{{form.poundage | numFilterTo0}}</p>
-          <p class="section1name">手续费</p>
+          <text>{{form ? (form.poundage | numFilterTo0) : 0}}</text>
+          <text class="section1name">手续费</text>
         </view>
         <view  @click="$navigateTo('/subPages/pages/other/putin')">
-          <p>{{form.otherRevenue| numFilterTo0}}</p>
-          <p class="section1name">其他收支</p>
+          <text>{{form ? (form.otherRevenue| numFilterTo0) : 0}}</text>
+          <text class="section1name">其他收支</text>
         </view>
         <view  @click="$navigateTo('/subPages/pages/report/putin')">
-          <p>{{form.inboundAverage}}</p>
-          <p class="section1name">库存均价</p>
+          <text>{{form ? form.inboundAverage : 0}}</text>
+          <text class="section1name">库存均价</text>
         </view>
       </view>
       <view class="section1-list">
         <view @click="$navigateTo('/subPages/pages/report/sellList')">
-          <p>{{form.orderAmountAverage}}</p>
-          <p class="section1name">成功均价</p>
+          <text>{{form ? form.orderAmountAverage : 0}}</text>
+          <text class="section1name">成功均价</text>
         </view>
         <view  @click="$navigateTo('/pages/order/index?backUrl=/pages/index/index&current=8&status=7')">
-          <p>{{form.freightAverage}}</p>
-          <p class="section1name">运费均价</p>
+          <text>{{form ? form.freightAverage : 0}}</text>
+          <text class="section1name">运费均价</text>
         </view>
         <view  @click="$navigateTo('/pages/order/index?backUrl=/pages/index/index&current=8&status=7')">
-          <p>{{form.costAverage}}</p>
-          <p class="section1name">成本均价</p>
+          <text>{{form ? form.costAverage : 0}}</text>
+          <text class="section1name">成本均价</text>
         </view>
         <view  @click="$navigateTo('/pages/order/index?backUrl=/pages/index/index&current=8&status=7')">
-          <p>{{form.profitsProportion}}%</p>
-          <p class="section1name">利润比例</p>
+          <text>{{form ? form.profitsProportion : 0}}%</text>
+          <text class="section1name">利润比例</text>
         </view>
       </view>
       <view class="section1-list" style="padding-bottom: 5vw;">
         <view  @click="$navigateTo('/subPages/pages/goodsDefects/index')">
-          <p>{{form.defectsNum}}</p>
-          <p class="section1name">瑕疵数</p>
+          <text>{{form ? form.defectsNum : 0}}</text>
+          <text class="section1name">瑕疵数</text>
         </view>
         <view  @click="$navigateTo('/subPages/pages/report/sellList')">
-          <p>{{form.passRatio}} % </p>
-          <p class="section1name">通过比例</p>
+          <text>{{form ? form.passRatio : 0}} % </text>
+          <text class="section1name">通过比例</text>
         </view>
         <view @click="$navigateTo('/pages/order/index?backUrl=/pages/index/index&saleType=2')">
-          <p>{{orderIofo.countSd}}</p>
-          <p class="section1name">闪电直发</p>
+          <text>{{orderIofo.countSd ? orderIofo.countSd : 0}}</text>
+          <text class="section1name">闪电直发</text>
         </view>
         <view   @click="$navigateTo('/pages/order/index?backUrl=/pages/index/index&current=5&status=11')">
-          <p>{{orderIofo.count11}}</p>
-          <p class="section1name">寄售入库</p>
+          <text>{{orderIofo.count11 ? orderIofo.count11 : 0}}</text>
+          <text class="section1name">寄售入库</text>
         </view>
       </view>
     </view>
@@ -444,9 +443,8 @@
         showFrom: false,
         showTo: false,
         flag: false,
-        form: {},
+        form: '',
         pattern: {
-          // icon:'checkmarkempty',
           icon:'scan',
           color: '#7A7E83',
           backgroundColor: '#fff',
@@ -832,9 +830,9 @@
     }
   }
 
-  .section1name {
-    color: #8c8a8a;
-  }
+  /*.section1name {*/
+  /*  color: #8c8a8a;*/
+  /*}*/
 
   .index-list {
     display: flex;
@@ -852,11 +850,7 @@
       font-size: 4.2vw;
       -webkit-box-sizing: border-box;
       box-sizing: border-box;
-      /*img {*/
-      /*  width: 100%;*/
-      /*  display: block;*/
-      /*}*/
-
+      padding-bottom: 2vw;
       view {
         padding-top: 1vw;
       }
@@ -1216,7 +1210,13 @@
       -ms-flex-pack: distribute;
       justify-content: space-around;
       padding: 2vw 2vw 4vw 2vw;
-
+      display: -webkit-box;
+      flex-wrap: wrap;
+      padding-top: 0vw;
+      padding-right: 1vw;
+      padding-bottom: 0vw;
+      padding-left: 2vw;
+      color:#666;
       view {
         border-radius: 10px;
         background-color: #EEF2F7;
@@ -1227,19 +1227,13 @@
         font-size: 15px;
         -webkit-box-sizing: border-box;
         box-sizing: border-box;
-
-        p {
+        display: grid;
+        text {
           padding-top: 1vw;
         }
       }
 
-      display: -webkit-box;
-      flex-wrap: wrap;
-      /* padding: 0vw 1vw; */
-      padding-top: 0vw;
-      padding-right: 1vw;
-      padding-bottom: 0vw;
-      padding-left: 2vw;
+
     }
 
     .section1-banner {

@@ -93,9 +93,8 @@
                   订单号
                 </text>
               </view>
-              <view class="julishang10">
+              <view class="julishang10 saixuanInput">
                 <u--input
-                    class="saixuanInput"
                     placeholder="请输入订单号"
                     placeholderStyle="font-size: 14px;color:#c0c4cc"
                     v-model="queryParam.orderNo"
@@ -112,9 +111,8 @@
                   瑕疵原因
                 </text>
               </view>
-              <view class="julishang10">
+              <view class="julishang10 saixuanInput">
                 <u--input
-                    class="saixuanInput"
                     placeholder="请输入瑕疵原因"
                     placeholderStyle="font-size: 14px;color:#c0c4cc"
                     v-model="queryParam.reason"
@@ -209,7 +207,7 @@
     ></u-datetime-picker>
     <view
         style="height: 100vh"
-        @touchstart.stop="onTouchStart" @touchend.stop="handleTouchend" >
+        @touchstart="onTouchStart" @touchend="handleTouchend" >
       <view class="julibiaoti2" >
         <view class="dingdans_item_dw"
               v-for="(item,index) in tableData"

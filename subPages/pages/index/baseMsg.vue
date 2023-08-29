@@ -66,7 +66,6 @@
         @confirm="confirmTo"
         @cancel="cancelTo"
     ></u-datetime-picker>
-<!--    @touchstart.stop="onTouchStart" @touchend.stop="handleTouchend"-->
     <view
         style="height: 100vh"
         @touchstart="onTouchStart" @touchend="handleTouchend" >

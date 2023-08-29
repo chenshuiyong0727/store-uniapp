@@ -102,6 +102,7 @@
   export default {
     data(){
       return {
+        fileUrl: this.$fileUrl,
         fileList1: [],
         show_sx_type: false,
         defaultIndex: [1],
