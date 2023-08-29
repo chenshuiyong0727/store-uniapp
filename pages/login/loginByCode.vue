@@ -27,7 +27,7 @@
         </u--input>
         </view>
         </view>
-        <view class="baisebeijing xianglian"  style="width: 70vw;margin-top: 20px">
+        <view class="baisebeijing xianglian"  style="width: 70vw;margin-top: 10px">
           <view style="width: 70vw">
             <u--input
                 prefixIcon="lock-fill"
