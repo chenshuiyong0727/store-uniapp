@@ -556,21 +556,12 @@
       this.getData2()
     },
     onLoad() {
-      // let payload = uni.getStorageSync('appLaunchedByPush')
-      // console.info('页面加载' ,payload)
       this.initTime();
       this.time();
       this.getData();
       this.getData1();
       this.getData2()
     },
-    // created() {
-    //   this.initTime();
-    //   this.time();
-    //   this.getData();
-    //   this.getData1();
-    //   this.getData2()
-    // },
     methods: {
       cancelFrom() {
         this.showFrom = false;
