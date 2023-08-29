@@ -46,8 +46,7 @@
       </view>
     </view>
 
-
-    <view v-if="form.id" class="width92" style="margin-top :131px;">
+    <view  v-if="form.id" class="width92 baisebeijing" style="margin-top :131px;">
       <u--form
           style="background-color: white"
           class="julibiaoti"
@@ -117,21 +116,22 @@
                   <text>到手价</text>
                 </view>
               </view>
-              <view class="dingdans_top_dw" style="
+
+              <view v-if="tableData[0].inPrice" class="dingdans_top_dw" style="
           width: 15vw;       margin-left: 2px;       font-weight: 600;padding-bottom: 0px;
           border-bottom: 0; color: #333333">
                 <view class="dingdans_top_left_dw" style=" ">
                   <text>库存</text>
                 </view>
               </view>
-              <view class="dingdans_top_dw" style="
+              <view  v-if="tableData[0].inPrice" class="dingdans_top_dw" style="
           width: 20vw;          font-weight: 600;padding-bottom: 0px;margin-right: 5px;
           border-bottom: 0; color: #333333">
                 <view class="dingdans_top_left_dw" style=" ">
                   <text>入库价</text>
                 </view>
               </view>
-              <view class="dingdans_top_dw" style="
+              <view  v-if="tableData[0].inPrice" class="dingdans_top_dw" style="
           width: 15vw;    margin-left: 5px;        margin-right: 2px;  font-weight: 600;padding-bottom: 0px;
           border-bottom: 0; color: #333333">
                 <view class="dingdans_top_left_dw" style=" ">
@@ -171,14 +171,14 @@
                   <text v-if="item.price "> {{item.price | getThePrice}}</text>
                 </view>
               </view>
-              <view class="dingdans_top_dw" style="
+              <view  v-if="tableData[0].inPrice"  class="dingdans_top_dw" style="
           width: 15vw;padding-bottom: 0px;    margin-left: 5px;
           border-bottom: 0; ">
                 <view class="dingdans_top_left_dw" style=" color: #7a7a7a;margin-left: 7px;">
-                  <text>{{item.inventory }}</text>
+                  <text>{{item.inventory ? item.inventory : '' }}</text>
                 </view>
               </view>
-              <view class="dingdans_top_dw" style="
+              <view  v-if="tableData[0].inPrice" class="dingdans_top_dw" style="
           width: 20vw;padding-bottom: 0px;
           border-bottom: 0; ">
                 <view class="dingdans_top_left_dw" style=" color: #7a7a7a">
@@ -186,7 +186,7 @@
                   <text v-if="item.inPrice ">{{item.inPrice }}</text>
                 </view>
               </view>
-              <view class="dingdans_top_dw" style="
+              <view v-if="tableData[0].inPrice"  class="dingdans_top_dw" style="
           width: 25vw;padding-bottom: 0px;
           border-bottom: 0; ">
                 <view class="dingdans_top_left_dw" style="color: #7a7a7a ">
@@ -347,7 +347,6 @@
         sizeList: [],
         fileSize: 2,
         type: '',
-        id: '',
         photo: '',
         options: [],
         requestParam: {
