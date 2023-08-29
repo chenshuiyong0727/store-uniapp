@@ -9,12 +9,13 @@
       <view class="store-list-1" >
         <view  style="display:flex ;align-items:center; background-color: white;border: 2px solid #f1f1f1 ;" class="store-list-1-view">
           <view>
-            <img
+            <image
                 v-if="img"
                 :src="img"
+                mode="widthFix"
                 style="width: 100%;border-radius: 10px;"
                 @click="avatarShow(img)"
-            />
+            ></image>
           </view>
         </view>
         <view  class="store-list-1-view">
@@ -156,7 +157,7 @@
     </view>
     <view class="popContainer" v-if="pictureZoomShow" @click="pictureZoomShow = false">
       <view class="imageShow">
-        <img :src="imageZoom" alt="" class="showImg">
+        <image :src="imageZoom" alt="" mode="widthFix"   class="showImg"></image>
       </view>
     </view>
     <view v-show="tableData.length" class="meiyougengduo" style=" padding-bottom: 60px;">
