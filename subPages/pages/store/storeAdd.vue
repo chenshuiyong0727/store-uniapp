@@ -2,7 +2,7 @@
   <view class="login">
     <u-navbar title="库存添加">
       <view @click="$goBack" class="u-nav-slot" slot="left">
-        <u-icon name="arrow-left" size="20"></u-icon>
+        <image class="back_icon" :src="fileUrl +'/static/img/back3.png'"></image>
       </view>
       <view  @click="goAdd" class="u-nav-slot" slot="right" style="font-size: 15px;">
         提交

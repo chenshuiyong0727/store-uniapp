@@ -2,7 +2,7 @@
   <view class="login">
     <u-navbar title="新增商品" bgColor="#F3F4F5">
       <view @click="$goBack" class="u-nav-slot" slot="left">
-        <u-icon name="arrow-left" size="20"></u-icon>
+        <image class="back_icon" :src="fileUrl +'/static/img/back3.png'"></image>
       </view>
       <view  @click="gotoAdd" class="u-nav-slot" slot="right" style="font-size: 15px;">
         手动添加

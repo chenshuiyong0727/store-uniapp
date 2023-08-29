@@ -2,7 +2,7 @@
   <view>
     <u-navbar title="备忘录">
       <view @click="$goBack" class="u-nav-slot" slot="left">
-        <u-icon name="arrow-left" size="20"></u-icon>
+        <image class="back_icon" :src="fileUrl +'/static/img/back3.png'"></image>
       </view>
     </u-navbar>
     <view class="fenlei_top" style="display: flex;">

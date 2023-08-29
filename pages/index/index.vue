@@ -16,8 +16,7 @@
         <!-- #endif -->
     background-image: linear-gradient(#e5f4ff, #f3f2f8);">
         <view class="header">
-          <view class="width92 baisebeijing" style="margin-left: 4vw;
-        ">
+          <view class="width92 baisebeijing">
             <u--input
                 class="searchInputW"
                 prefixIcon="search"
@@ -447,7 +446,8 @@
         flag: false,
         form: {},
         pattern: {
-          icon:'scan',
+          icon:'checkmarkempty',
+          // icon:'scan',
           color: '#7A7E83',
           backgroundColor: '#fff',
           selectedColor: '#409eff',
@@ -593,14 +593,6 @@
         let timeValue = uni.$u.timeFormat(e.value, 'yyyy-mm');
         this.queryParam.createTimeTo = timeValue;
         this.getData1()
-      },
-      handleScroll() {
-        let scrollTop = this.$refs.hello.scrollTop;
-        if (scrollTop < 40) {
-          this.flag = false
-        } else {
-          this.flag = true
-        }
       },
       jumpGoods() {
         this.$navigateTo('/pages/store/index?backUrl=/pages/index/index&actNo='+ this.queryParamTop.actNo)

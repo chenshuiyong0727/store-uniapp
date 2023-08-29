@@ -2,13 +2,8 @@
   <view>
     <u-navbar title="待办消息"  bgColor="#f3faff">
       <view @click="goBack" class="u-nav-slot" slot="left">
-        <u-icon name="arrow-left" size="20"></u-icon>
+        <image class="back_icon" :src="fileUrl +'/static/img/back3.png'"></image>
       </view>
-<!--      <view class="u-nav-slot" style="font-size: 15px;" slot="right">-->
-<!--        <rudon-rowMenuDotDotDot :localdata="localdata" @change="menuAction($event)">-->
-<!--          <image style="height: 25px;width: 25px" :src="fileUrl +'/static/img/slh.png'"></image>-->
-<!--        </rudon-rowMenuDotDotDot>-->
-<!--      </view>-->
     </u-navbar>
     <view class="fenlei_top_tab"  style="display: flex;">
       <view style="width: 83vw" class="baisebeijing">
@@ -72,9 +67,7 @@
         @cancel="cancelTo"
     ></u-datetime-picker>
 <!--    @touchstart.stop="onTouchStart" @touchend.stop="handleTouchend"-->
-    <view
-        style="height: 100vh"
-         >
+    <view>
       <view class="julibiaoti3" >
       <view class="msg_table"
             v-for="(item,index) in tableData"
@@ -142,10 +135,10 @@
       <text style="font-size: 12px;">{{item.createTime | formateTime }} </text>
       <text style="font-size: 12px; margin-left: 3px; color: #333333">{{item.type | dictToDescTypeValue(52)}}</text>
     </view>
-    <view >
-      <text class="dw-button-common" v-if="item.waitType == 1">详情</text>
+    <view>
+      <text class="dw-button-common" v-if="item.inventoryId || item.orderId || item.type == 12">详情</text>
       <text class="dw-button-common" v-if="item.waitType == 1" style="margin-left: 2vw"  @click.stop="updateOneStatus(item.id)">已办</text>
-    </view >
+    </view>
   </view>
   <!--        尾部  end-->
       </view>
@@ -169,10 +162,7 @@
         <image :src="imageZoom" mode="widthFix"  class="showImg"></image>
       </view>
     </view>
-    <view v-if="showTab">
-      <uni-fab ref="fab" :pattern="pattern"  horizontal="right"  @fabClick="updateAllStatus" />
-    </view>
-      <view  @touchmove.stop.prevent="preventHandler">
+      <view>
       <u-popup :show="isShowDialog2" @close="isShowDialog2 = false"  :duration="100" mode="right">
         <view  style="height: 90vh;">
         <scroll-view  scroll-y="true"  class="saixuanquyu">
@@ -202,6 +192,11 @@
               </text>
             </view>
             <view class="julishang_10 saixuanxuanzhefuji">
+              <view class="saixuanxuanzhe julishang_10">
+                <u-button color="#f4f3f8" size="small" @click="chooseType('')">
+                  <text :class="!queryParam.waitType? 'xuanzhongziti' : 'putongziti'">全部</text>
+                </u-button>
+              </view>
               <view v-for="(item,index) in waitTypeList"
                     :key="index"
                     class="saixuanxuanzhe julishang_10">
@@ -241,6 +236,9 @@
         </view>
         </view>
       </u-popup>
+    </view>
+    <view v-if="showTab">
+      <uni-fab ref="fab" :pattern="pattern"  horizontal="right"  @fabClick="updateAllStatus" />
     </view>
   </view>
 </template>
@@ -467,6 +465,9 @@
         }
         if (item.orderId) {
            url = '/pages/order/index?backUrl=/subPages/pages/index/baseMsg&current=1&status=3&orderNo=' + item.orderNo
+        }
+        if (item.type== 12){
+          url = '/pages/order/index?backUrl=/subPages/pages/index/baseMsg&current=1&status=3'
         }
         if (url) {
           this.$navigateTo(url)
@@ -697,5 +698,14 @@
     padding-left: 3%;
     font-size: 13px;
     color: #8a8a8a;
+  }
+  .fab-circle-icon {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    transition: -webkit-transform 0.3s;
+    transition: transform 0.3s;
+    transition: transform 0.3s, -webkit-transform 0.3s;
+    font-weight: 200;
+    margin-bottom: 9px;
   }
 </style>

@@ -2,7 +2,7 @@
   <view class="hello">
     <u-navbar :title="actNo"  bgColor="#f3f2f8">
       <view @click="$goBack"  class="u-nav-slot" slot="left">
-        <u-icon name="arrow-left" size="20"></u-icon>
+        <image class="back_icon" :src="fileUrl +'/static/img/back3.png'"></image>
       </view>
     </u-navbar>
     <view style="padding: 10px 5px ;position: fixed" class="zuoyouduiqi baisebeijing">

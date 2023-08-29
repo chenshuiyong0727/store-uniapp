@@ -2,7 +2,7 @@
   <view class="login">
     <u-navbar :title="type==1 ? '查看' : type==2 ? '编辑' : '新增'" bgColor="#F3F4F5">
       <view @click="$goBack" class="u-nav-slot" slot="left">
-        <u-icon name="arrow-left" size="20"></u-icon>
+        <image class="back_icon" :src="fileUrl +'/static/img/back3.png'"></image>
       </view>
       <view v-if="type == 1" @click="type=2" class="u-nav-slot" slot="right"
             style="font-size: 15px;">
