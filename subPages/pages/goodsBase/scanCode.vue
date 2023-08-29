@@ -12,18 +12,18 @@
       <view class="shoudongtianjia" >
         <view  class="zuoyouduiqi width92">
           <text style="width: 25vw;">根据货号获取</text>
-          <u--input
-              class="searchInput"
-              style="width: 58vw;"
-              prefixIcon="search"
-              placeholder="请输入货号"
-              placeholderStyle="font-size: 14px;color:#c0c4cc"
-              v-model="form.actNo"
-              prefixIconStyle="font-size: 24px;color:#c0c4cc"
-              :show-action="false"
-              clearable
-          >
-          </u--input>
+          <view class="searchInput" style="width: 48vw;">
+            <u--input
+                prefixIcon="search"
+                placeholder="请输入货号"
+                placeholderStyle="font-size: 14px;color:#c0c4cc"
+                v-model="form.actNo"
+                prefixIconStyle="font-size: 24px;color:#c0c4cc"
+                :show-action="false"
+                clearable
+            >
+            </u--input>
+          </view>
           <text style="margin-left: 2vw;" class="color-url" @click="getImgUrl()">获取信息</text>
         </view>
       </view>
@@ -46,8 +46,8 @@
       </view>
     </view>
 
-
-    <view v-if="form.id" class="width92" style="margin-top :131px;">
+<!--    -->
+    <view  v-if="form.id" class="width92 baisebeijing" style="margin-top :160px;">
       <u--form
           style="background-color: white"
           class="julibiaoti"
@@ -117,21 +117,22 @@
                   <text>到手价</text>
                 </view>
               </view>
-              <view class="dingdans_top_dw" style="
+
+              <view v-if="tableData[0].inPrice" class="dingdans_top_dw" style="
           width: 15vw;       margin-left: 2px;       font-weight: 600;padding-bottom: 0px;
           border-bottom: 0; color: #333333">
                 <view class="dingdans_top_left_dw" style=" ">
                   <text>库存</text>
                 </view>
               </view>
-              <view class="dingdans_top_dw" style="
+              <view  v-if="tableData[0].inPrice" class="dingdans_top_dw" style="
           width: 20vw;          font-weight: 600;padding-bottom: 0px;margin-right: 5px;
           border-bottom: 0; color: #333333">
                 <view class="dingdans_top_left_dw" style=" ">
                   <text>入库价</text>
                 </view>
               </view>
-              <view class="dingdans_top_dw" style="
+              <view  v-if="tableData[0].inPrice" class="dingdans_top_dw" style="
           width: 15vw;    margin-left: 5px;        margin-right: 2px;  font-weight: 600;padding-bottom: 0px;
           border-bottom: 0; color: #333333">
                 <view class="dingdans_top_left_dw" style=" ">
@@ -171,14 +172,14 @@
                   <text v-if="item.price "> {{item.price | getThePrice}}</text>
                 </view>
               </view>
-              <view class="dingdans_top_dw" style="
+              <view  v-if="tableData[0].inPrice"  class="dingdans_top_dw" style="
           width: 15vw;padding-bottom: 0px;    margin-left: 5px;
           border-bottom: 0; ">
                 <view class="dingdans_top_left_dw" style=" color: #7a7a7a;margin-left: 7px;">
-                  <text>{{item.inventory }}</text>
+                  <text>{{item.inventory ? item.inventory : '' }}</text>
                 </view>
               </view>
-              <view class="dingdans_top_dw" style="
+              <view  v-if="tableData[0].inPrice" class="dingdans_top_dw" style="
           width: 20vw;padding-bottom: 0px;
           border-bottom: 0; ">
                 <view class="dingdans_top_left_dw" style=" color: #7a7a7a">
@@ -186,7 +187,7 @@
                   <text v-if="item.inPrice ">{{item.inPrice }}</text>
                 </view>
               </view>
-              <view class="dingdans_top_dw" style="
+              <view v-if="tableData[0].inPrice"  class="dingdans_top_dw" style="
           width: 25vw;padding-bottom: 0px;
           border-bottom: 0; ">
                 <view class="dingdans_top_left_dw" style="color: #7a7a7a ">
@@ -206,7 +207,7 @@
 
     <view class="popContainer" v-if="pictureZoomShow" @click="pictureZoomShow = false">
       <view class="imageShow">
-        <img :src="form.img" alt=""  class="showImg">
+        <image :src="form.img" alt="" mode="widthFix"   class="showImg"></image>
       </view>
     </view>
 
@@ -347,7 +348,6 @@
         sizeList: [],
         fileSize: 2,
         type: '',
-        id: '',
         photo: '',
         options: [],
         requestParam: {
@@ -616,7 +616,7 @@
     position: fixed;
     font-size: 14px;
     z-index: 99;
-    margin-top: 43px;
+    margin-top: 64px;
   }
 
 

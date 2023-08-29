@@ -11,9 +11,7 @@
 
       <view class="julibiaoti" style="
         padding-bottom: 40vw;
-         <!-- #ifdef MP-WEIXIN-->
           padding-top: 30px;
-        <!-- #endif -->
     background-image: linear-gradient(#e5f4ff, #f3f2f8);">
         <view class="header">
           <view class="width92 baisebeijing">
