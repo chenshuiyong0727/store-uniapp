@@ -206,7 +206,7 @@
 
     <view class="popContainer" v-if="pictureZoomShow" @click="pictureZoomShow = false">
       <view class="imageShow">
-        <img :src="form.img" alt=""  class="showImg">
+        <image :src="form.img" alt="" mode="widthFix"   class="showImg"></image>
       </view>
     </view>
 
