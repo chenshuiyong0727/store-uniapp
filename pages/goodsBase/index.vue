@@ -2,12 +2,7 @@
   <view>
     <u-navbar title="商品"  bgColor="#f3faff">
       <view @click="goBack" class="u-nav-slot" slot="left">
-        <u-icon name="arrow-left" size="20"></u-icon>
-      </view>
-      <view class="u-nav-slot" style="font-size: 15px;" slot="right">
-        <rudon-rowMenuDotDotDot :localdata="localdata" @change="menuAction($event)">
-          <image style="height: 25px;width: 25px" :src="fileUrl +'/static/img/slh.png'"></image>
-        </rudon-rowMenuDotDotDot>
+        <image class="back_icon" :src="fileUrl +'/static/img/back3.png'"></image>
       </view>
     </u-navbar>
     <view class="fenlei_top_tab"  style="display: flex;">

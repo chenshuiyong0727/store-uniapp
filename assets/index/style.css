@@ -212,10 +212,15 @@
   font-weight: 600;
   margin-top: 35px;
 }
-
+.back_icon{
+  height: 18px;
+  width: 18px;
+  margin-top: 4px;
+  margin-left: 1px;
+}
 /*导航栏*/
 .searchListnew {
-  width: 100vw;
+  width: 96vw;
   margin-top: 80px;
   /*#ifdef MP-WEIXIN*/
   margin-top: 110px;
