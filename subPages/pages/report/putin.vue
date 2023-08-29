@@ -8,10 +8,7 @@
           class="u-nav-slot"
           slot="left"
       >
-        <u-icon
-            name="arrow-left"
-            size="20"
-        ></u-icon>
+        <image class="back_icon"  style="  margin-bottom: 0px;" :src="fileUrl +'/static/img/back3.png'"></image>
       </view>
     </u-navbar>
 

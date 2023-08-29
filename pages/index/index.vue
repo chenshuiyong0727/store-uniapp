@@ -446,8 +446,8 @@
         flag: false,
         form: {},
         pattern: {
-          icon:'checkmarkempty',
-          // icon:'scan',
+          // icon:'checkmarkempty',
+          icon:'scan',
           color: '#7A7E83',
           backgroundColor: '#fff',
           selectedColor: '#409eff',

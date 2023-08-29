@@ -202,6 +202,7 @@
   export default {
     data(){
       return {
+        fileUrl: this.$fileUrl,
         form: {
           sizeVoList: '',
           name: '',

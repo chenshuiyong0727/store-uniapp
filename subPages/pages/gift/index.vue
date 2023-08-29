@@ -385,15 +385,6 @@
 <style>
 
   @import '@/assets/index/style.css';
-
-  strong{
-    font-weight: 600;
-  }
-  .mint-button--small {
-    display: inline-block;
-    font-size: 4vw;
-    height: 6vw;
-  }
   .dingdans_item {
     padding: 2.4vw 1.2vw;
     background: #ffffff;
@@ -410,45 +401,6 @@
     align-items: center;
     justify-content: space-between;
   }
-
-  .dingdans_con {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 1.3vw 0;
-  }
-
-  .dingdans_con_left {
-    width: 35vw;
-    height: 20vw;
-    display: flex;
-  }
-
-  .dingdans_con_left img {
-    width: 100%;
-    margin: auto;
-    border-radius: 10px;
-  }
-
-  .diangdans_con_right {
-    width: 130vw;
-    padding-left: 10px;
-  }
-
-  .dingdans_con_right_down {
-    margin-top: 1.4vw;
-    font-size: 13px;
-    margin-bottom: 2vw;
-  }
-  /*.dingdans_con_right_down_1 {*/
-  /*  !*margin-left: 55vw;*!*/
-  /*  margin-bottom: -7vw;*/
-  /*  font-size: 3.5vw;*/
-  /*  margin-top: -1vw;*/
-  /*}*/
-  /*
-   -----分割线---
-  */
   * {
     margin: 0;
     padding: 0;
@@ -461,78 +413,7 @@
   /* 这里直接设置 1rem = 50px end */
   html,
   body {
-    /*font-family: "微软雅黑";*/
-    /*color: #333;*/
-    /*background: #fff;*/
   }
-  /*ul,*/
-  /*li {*/
-  /*  list-style: none;*/
-  /*}*/
-  /* 给要上拉的容器设置 begin */
-  .hello {
-    background-color: #f3f2f8;
-    padding-top: 12vw;
-    font-size: 13px;
-    height: 100vh;
-    overflow-y: auto;
-  }
-  /* 给要上拉的容器设置 end */
-  /*.fl {*/
-  /*  float: left;*/
-  /*}*/
-  /*.fr {*/
-  /*  float: right;*/
-  /*}*/
-  /*.clearfix::before,*/
-  /*.clearfix::after {*/
-  /*  content: "";*/
-  /*  display: block;*/
-  /*  overflow: hidden;*/
-  /*  clear: both;*/
-  /*  visibility: hidden;*/
-  /*}*/
-  /*li {*/
-  /*  background: #fff;*/
-  /*}*/
-  /*.order-intr {*/
-  /*  position: relative;*/
-  /*  padding: 0.3rem 0.4rem;*/
-  /*  width: calc(100% - 0.6rem);*/
-  /*  margin: 0.4rem auto;*/
-  /*  border: 0.02rem solid #666;*/
-  /*  border-radius: 0.16rem;*/
-  /*}*/
-  /*.order-intr img {*/
-  /*  width: 3rem;*/
-  /*  height: 2.4rem;*/
-  /*}*/
-  /*.title {*/
-  /*  margin-left: 0.24rem;*/
-  /*  text-align: left;*/
-  /*}*/
-  /*.title h3 {*/
-  /*  font-size: 0.4rem;*/
-  /*}*/
-  /*.title p {*/
-  /*  font-size: 0.3rem;*/
-  /*}*/
-  /*.price {*/
-  /*  position: absolute;*/
-  /*  right: 0.3rem;*/
-  /*  bottom: 0.3rem;*/
-  /*  font-size: 0.5rem;*/
-  /*  color: #fe696b;*/
-  /*}*/
-  .mint-loadmore-top,
-  .mint-loadmore-bottom {
-    font-size: 0.28rem;
-  }
-
-
-
-
-
 
   .fenlei_top_1_1 {
     border-bottom: 1vw solid #eee;
@@ -572,7 +453,14 @@
     padding-bottom: 1px;
     padding-left: 3px;
   }
-  .overview2 {
-    padding: 3px;
+
+  .fab-circle-icon {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    transition: -webkit-transform 0.3s;
+    transition: transform 0.3s;
+    transition: transform 0.3s, -webkit-transform 0.3s;
+    font-weight: 200;
+    margin-bottom: 12px;
   }
 </style>

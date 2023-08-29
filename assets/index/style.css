@@ -395,7 +395,6 @@
 
 .dingdans_con_left_dw {
   width: 25vw;
-  /*height: 25vw;*/
   position: relative;
   border: 1px solid #f1f1f1 ;
   border-radius: 5px;
@@ -403,6 +402,7 @@
 
 .dingdans_con_left_dw image {
   width: 80%;
+  height: 80%;
   margin-top: 30px;
   margin-left: 10%;
   margin-bottom: 10px;
@@ -596,23 +596,11 @@
   border: 0px;
   width: 70vw;
 }
-/*左右对齐*/
 .julishang10{
-  /*#ifdef APP-PLUS*/
-  margin-top: 0vw;
-  /*#endif*/
-  /*#ifdef H5*/
   margin-top: 10px;
-  /*#endif*/
 }
-/*左右对齐*/
 .julishang_10{
-  /*#ifdef APP-PLUS*/
-  margin-top: 0vw;
-  /*#endif*/
-  /*#ifdef H5*/
   margin-top: 10px;
-  /*#endif*/
 }
 
 .saixuanxuanzhefuji{
@@ -620,29 +608,16 @@
 }
 
 .saixuanshijian{
-  /*#ifdef APP-PLUS*/
-  margin: -10px 0;
-  /*#endif*/
 }
 
 .saixuanquyu{
   width: 80vw;
   height: 100%;
   padding-left: 20px;
-  /*#ifdef APP-PLUS*/
-  margin-top: 0vw;
-  /*#endif*/
-  /*#ifdef H5*/
   padding-top: 4vw;
-  /*#endif*/
 }
 .saixuanquxiang{
-  /*#ifdef APP-PLUS*/
-  margin: -10px 0;
-  /*#endif*/
-  /*#ifdef H5*/
-  padding: 10px 0;
-  /*#endif*/
+  /*padding: 10px 0;*/
 }
 
 

@@ -67,7 +67,9 @@
         @cancel="cancelTo"
     ></u-datetime-picker>
 <!--    @touchstart.stop="onTouchStart" @touchend.stop="handleTouchend"-->
-    <view>
+    <view
+        style="height: 100vh"
+        @touchstart="onTouchStart" @touchend="handleTouchend" >
       <view class="julibiaoti3" >
       <view class="msg_table"
             v-for="(item,index) in tableData"
@@ -172,9 +174,8 @@
                 内容
               </text>
             </view>
-            <view class="julishang10">
+            <view class="julishang10 saixuanInput">
               <u--input
-                  class="saixuanInput"
                   placeholder="请输入内容"
                   placeholderStyle="font-size: 14px;color:#c0c4cc"
                   v-model="queryParam.content"
@@ -706,6 +707,6 @@
     transition: transform 0.3s;
     transition: transform 0.3s, -webkit-transform 0.3s;
     font-weight: 200;
-    margin-bottom: 9px;
+    margin-bottom: 10px;
   }
 </style>

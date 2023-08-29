@@ -5,7 +5,7 @@
         <image class="back_icon" :src="fileUrl +'/static/img/back3.png'"></image>
       </view>
       <view v-if="type == 1" @click="type=2" class="u-nav-slot" slot="right"
-            style="font-size: 15px;">
+            style="font-size: 15px;margin-right: 23vw">
         去修改
       </view>
     </u-navbar>

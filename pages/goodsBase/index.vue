@@ -68,7 +68,7 @@
     ></u-datetime-picker>
     <view
         style="height: 100vh"
-        @touchstart.stop="onTouchStart" @touchend.stop="handleTouchend" >
+        @touchstart="onTouchStart" @touchend="handleTouchend" >
       <view class="julibiaoti3" >
       <view class="dingdans_item_dw"
             v-for="(item,index) in tableData"
@@ -577,4 +577,13 @@
 
 <style>
   @import '@/assets/index/style.css';
+  .fab-circle-icon {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    transition: -webkit-transform 0.3s;
+    transition: transform 0.3s;
+    transition: transform 0.3s, -webkit-transform 0.3s;
+    font-weight: 200;
+    margin-bottom: 10px;
+  }
 </style>
