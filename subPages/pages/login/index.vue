@@ -25,7 +25,7 @@
           >
           </u--input>
         </view>
-        <view class="baisebeijing" style="width: 70vw;margin-top: 20px">
+        <view class="baisebeijing" style="width: 70vw;margin-top: 10px">
         <u--input
             :password-icon="passwordIcon"
             placeholder="请输入密码"
