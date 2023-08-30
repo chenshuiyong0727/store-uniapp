@@ -902,4 +902,24 @@
     color: #1ba5ad;
     margin-right: -3px;
   }
+  .dw-button-common-a2 {
+    display: inline-block;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    background: #FFF;
+    border: 1px solid #a2a2a2;
+    color: #a2a2a2;
+    -webkit-appearance: none;
+    text-align: center;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    outline: 0;
+    margin: 0;
+    -webkit-transition: .1s;
+    transition: .1s;
+    padding: 6px 16px;
+    font-size: 12px;
+    border-radius: 3px;
+  }
 </style>
