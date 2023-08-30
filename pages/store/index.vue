@@ -963,6 +963,7 @@
           pageSize: 10,
           pageNum: 1
         }
+        this.current = 0
         this.search1()
       },
       avatarShow(e) {
