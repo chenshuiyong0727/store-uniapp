@@ -121,7 +121,7 @@
             <image style="width: 30px; height: 30px" :src="fileUrl +'/static/img/timeout_2.png'"></image>
             <text style="color: #333;font-size: 15px;margin-left: 10px">即将到期订单</text>
           </view>
-          <view class="wenzitupduiqi" style="margin-right: 4vw;">
+          <view class="wenzitupduiqi " style="margin-right: 4vw;">
             <text class="color-font-strong" style="font-size: 25px;">{{orderIofo.countTheExpire ? orderIofo.countTheExpire : 0}}
             </text>
             <image style="width: 20px;height: 20px" :src="fileUrl +'/static/img/more.png'"></image>
@@ -306,7 +306,7 @@
           <text class="section1name">库存总数</text>
         </view>
         <view  @click="$navigateTo('/subPages/pages/report/sellList')">
-          <text class="color-url">{{ form ? (form.profitsAmount | numFilterTo0)  : 0}}</text>
+          <text class="color-url">{{ tFloat0(form.profitsAmount) }}</text>
           <text class="section1name">利润总额</text>
         </view>
       </view>
@@ -316,7 +316,7 @@
           <text class="section1name">平均利润</text>
         </view>
         <view  @click="$navigateTo('/pages/store/index?backUrl=/pages/index/index')">
-          <text class="color-url">{{form ? (form.inventoryCost | numFilterTo0) : 0}}</text>
+          <text class="color-url">{{tFloat0(form.inventoryCost) }}</text>
           <text class="section1name">库存成本</text>
         </view>
         <view  @click="$navigateTo('/pages/store/index?backUrl=/pages/index/index')">
@@ -332,11 +332,11 @@
       </view>
       <view class="section1-list">
         <view @click="$navigateTo('/pages/store/index?backUrl=/pages/index/index&warehouseId=2')">
-          <text class="color-url">{{form ? (form.ytInventory | numFilterTo0) : 0}}</text>
+          <text class="color-url">{{ form ? form.ytInventory : 0}}</text>
           <text class="section1name">云头库存</text>
         </view>
         <view @click="$navigateTo('/pages/store/index?backUrl=/pages/index/index&warehouseId=2')">
-          <text class="color-url">{{form ? form.ytAmount : 0}}</text>
+          <text class="color-url">{{ tFloat0(form.ytAmount )}}</text>
           <text class="section1name">云头货值</text>
         </view>
         <view @click="$navigateTo('/pages/store/index?backUrl=/pages/index/index&warehouseId=1')">
@@ -344,7 +344,7 @@
           <text class="section1name">前埔库存</text>
         </view>
         <view @click="$navigateTo('/pages/store/index?backUrl=/pages/index/index&warehouseId=1')">
-          <text class="color-url">{{form ? (form.qpAmount | numFilterTo0) : 0}}</text>
+          <text class="color-url">{{ tFloat0(form.qpAmount )}}</text>
           <text class="section1name">前埔货值</text>
         </view>
       </view>
@@ -354,7 +354,7 @@
           <text class="section1name">入库商品</text>
         </view>
         <view @click="$navigateTo('/subPages/pages/report/putin')">
-          <text>{{form ? (form.inventoryAmount | numFilterTo0) : 0}}</text>
+          <text>{{tFloat0(form.inventoryAmount )}}</text>
           <text class="section1name">入库总额</text>
         </view>
         <view @click="$navigateTo('/subPages/pages/report/sellList')">
@@ -362,21 +362,21 @@
           <text class="section1name">交易成功</text>
         </view>
         <view @click="$navigateTo('/subPages/pages/report/sellList')">
-          <text>{{form ? (form.orderAmount | numFilterTo0) : 0}}</text>
+          <text>{{tFloat0(form.orderAmount )}}</text>
           <text class="section1name">成功总额</text>
         </view>
       </view>
       <view class="section1-list">
         <view  @click="$navigateTo('/pages/order/index?backUrl=/pages/index/index&current=8&status=7')">
-          <text>{{form ? (form.freight |numFilterTo0) : 0}}</text>
+          <text>{{tFloat0(form.freight )}}</text>
           <text class="section1name">总运费</text>
         </view>
         <view  @click="$navigateTo('/pages/order/index?backUrl=/pages/index/index&current=8&status=7')">
-          <text>{{form ? (form.poundage | numFilterTo0) : 0}}</text>
+          <text>{{tFloat0(form.poundage )}}</text>
           <text class="section1name">手续费</text>
         </view>
         <view  @click="$navigateTo('/subPages/pages/other/putin')">
-          <text>{{form ? (form.otherRevenue| numFilterTo0) : 0}}</text>
+          <text>{{tFloat0(form.otherRevenue )}}</text>
           <text class="section1name">其他收支</text>
         </view>
         <view  @click="$navigateTo('/subPages/pages/report/putin')">
@@ -712,6 +712,12 @@
           }
         })
       },
+      tFloat0(value) {
+        if(!value){
+          return  0
+        }
+       return  parseFloat(value).toFixed(0)
+      },
       getData2() {
         this.$request({
           url: '/gw/op/v1/goodsOrder/todaySync',
@@ -735,6 +741,7 @@
           }
         })
       },
+
     }
   }
 </script>
