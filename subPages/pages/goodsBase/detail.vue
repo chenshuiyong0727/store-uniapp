@@ -11,7 +11,7 @@
       </view>
     </u-navbar>
     <view class="ui-flex justify-center center"
-         style="width: 100vw; height: 220px;background-color: white;margin-top: 10px;">
+         style="width: 100vw; height: 220px;background-color: white;margin-top: 34px;">
       <view class="cell">
         <image mode="widthFix"
                @click="avatarShow(form.img)"
@@ -38,7 +38,7 @@
     justify-content: space-between;
     align-items: center;
   ">
-        <view>
+        <view class="xianglian">
           <strong  style="color: #333;font-size: 18px;">¥</strong>
           <strong v-if="form.sellPrice && form.sellPrice != 0" style="color: #333;font-size: 24px;margin-left: 2px;" >{{form.sellPrice}}</strong>
           <strong v-else  style="color: #333;font-size: 24px;margin-left: 2px;">899</strong>
@@ -184,7 +184,7 @@
           width: 15vw;padding-bottom: 0px;    margin-left: 5px;
           border-bottom: 0; ">
             <view class="dingdans_top_left_dw" style=" color: #7a7a7a;margin-left: 7px;">
-              <text>{{item.inventory }}</text>
+              <text>{{item.inventory ? item.inventory : 0}}</text>
             </view>
           </view>
           <view  v-if="tableData[0].inPrice" class="dingdans_top_dw" style="

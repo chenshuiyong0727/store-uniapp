@@ -71,33 +71,50 @@
             <uni-th width="80" align="center">库存</uni-th>
             <uni-th width="80" align="center">进价</uni-th>
             <uni-th width="80" align="center">售价</uni-th>
-            <uni-th width="70" align="center">渠道</uni-th>
-            <uni-th width="70" align="center">到手价</uni-th>
-            <uni-th width="70" align="center">手续费</uni-th>
-            <uni-th width="70" align="center">利润</uni-th>
+            <uni-th width="80" align="center">到手价</uni-th>
+            <uni-th width="80" align="center">手续费</uni-th>
+            <uni-th width="80" align="center">利润</uni-th>
+            <uni-th width="90" align="center">渠道</uni-th>
           </uni-tr>
           <uni-tr v-for="(item, index) in tableData" :key="index">
-            <uni-td>
+            <uni-td width="60">
               <text>
                 {{ item.size }}
               </text>
             </uni-td>
-            <uni-td>
+            <uni-td width="80">
               <view>
                 <u-input type="number" v-model="item.inventory"></u-input>
               </view>
             </uni-td>
-            <uni-td align="center">
+            <uni-td width="80" align="center">
               <view>
                 <u-input  type="digit" v-model="item.price"></u-input>
               </view>
             </uni-td>
-            <uni-td align="center">
+            <uni-td  width="80" align="center">
               <view>
                 <u-input  type="digit" v-model="item.dwPrice"></u-input>
               </view>
             </uni-td>
-            <uni-td>
+            <uni-td width="80">
+              <text>
+                {{item.dwPrice | getThePrice}}
+              </text>
+            </uni-td>
+
+            <uni-td width="80">
+              <text>
+                {{item.dwPrice | getPoundage}}
+              </text>
+            </uni-td>
+
+            <uni-td width="80">
+              <text>
+                {{item.dwPrice | getProfits(item.price)}}
+              </text>
+            </uni-td>
+            <uni-td width="90">
               <view>
                 <uni-data-select
                     v-model="item.channelId"
@@ -106,84 +123,66 @@
                 ></uni-data-select>
               </view>
             </uni-td>
-
-            <uni-td>
-              <text>
-                {{item.dwPrice | getThePrice}}
-              </text>
-            </uni-td>
-
-            <uni-td>
-              <text>
-                {{item.dwPrice | getPoundage}}
-              </text>
-            </uni-td>
-
-            <uni-td>
-              <text>
-                {{item.dwPrice | getProfits(item.price)}}
-              </text>
-            </uni-td>
           </uni-tr>
         </uni-table>
       </view>
     </view>
 
-    <view>
-      <u-popup :show="isShowDialog1" @close="isShowDialog1=!isShowDialog1" :duration="100" mode="center">
-        <view style="width: 90vw;margin-left: 5vw;">
-          <u-navbar title="详情" :fixed="false" :border="true">
-            <view @click="isShowDialog1 = false" style="font-size: 15px;" class="u-nav-slot" slot="left">
-              <text>关闭</text>
-            </view>
-          </u-navbar>
-          <view>
-            <u--form >
-              <u-form-item label-width="25vw" label="尺码" borderBottom>
-                <u--input  :disabled="true" disabledColor="#fff" inputAlign="right"
-                           v-model="orderData1.size" border="none" color="#333333"></u--input>
-                <u-icon class="biaodan-gengduo" style="margin-right: 15px;" slot="right" name="arrow-right"></u-icon>
-              </u-form-item>
-              <u-form-item label-width="25vw" label="尺码" borderBottom>
-                <u--input  :disabled="true" disabledColor="#fff" inputAlign="right"
-                           v-model="orderData1.channelIdStr" border="none" color="#333333"></u--input>
-                <u-icon class="biaodan-gengduo" style="margin-right: 15px;" slot="right" name="arrow-right"></u-icon>
-              </u-form-item>
-              <u-form-item label-width="25vw" label="库存" borderBottom>
-                <u--input  :disabled="true" disabledColor="#fff" inputAlign="right"
-                           v-model="orderData1.inventory" border="none" color="#333333"></u--input>
-                <u-icon class="biaodan-gengduo" style="margin-right: 15px;" slot="right" name="arrow-right"></u-icon>
-              </u-form-item>
-              <u-form-item label-width="25vw" label="进价" borderBottom>
-                <u--input  :disabled="true" disabledColor="#fff" inputAlign="right"
-                           v-model="orderData1.price" border="none" color="#333333"></u--input>
-                <u-icon class="biaodan-gengduo" style="margin-right: 15px;" slot="right" name="arrow-right"></u-icon>
-              </u-form-item>
-              <u-form-item label-width="25vw" label="售价" borderBottom>
-                <u--input  :disabled="true" disabledColor="#fff" inputAlign="right"
-                           v-model="orderData1.dwPrice" border="none" color="#333333"></u--input>
-                <u-icon class="biaodan-gengduo" style="margin-right: 15px;" slot="right" name="arrow-right"></u-icon>
-              </u-form-item>
-              <u-form-item label-width="25vw" label="手续费" borderBottom>
-                <u--input  :disabled="true" disabledColor="#fff" inputAlign="right"
-                           v-model="orderData1.poundage" border="none" color="#333333"></u--input>
-                <u-icon class="biaodan-gengduo" style="margin-right: 15px;" slot="right" name="arrow-right"></u-icon>
-              </u-form-item>
-              <u-form-item label-width="25vw" label="到手价" borderBottom>
-                <u--input  :disabled="true" disabledColor="#fff" inputAlign="right"
-                           v-model="orderData1.theirPrice" border="none" color="#333333"></u--input>
-                <u-icon class="biaodan-gengduo" style="margin-right: 15px;" slot="right" name="arrow-right"></u-icon>
-              </u-form-item>
-              <u-form-item label-width="25vw" label="利润" borderBottom>
-                <u--input  :disabled="true" disabledColor="#fff" inputAlign="right"
-                           v-model="orderData1.profits" border="none" color="#333333"></u--input>
-                <u-icon class="biaodan-gengduo" style="margin-right: 15px;" slot="right" name="arrow-right"></u-icon>
-              </u-form-item>
-            </u--form>
-          </view>
-        </view>
-      </u-popup>
-    </view>
+<!--    <view1>-->
+<!--      <u-popup :show="isShowDialog1" @close="isShowDialog1=!isShowDialog1" :duration="100" mode="center">-->
+<!--        <view style="width: 90vw;margin-left: 5vw;">-->
+<!--          <u-navbar title="详情" :fixed="false" :border="true">-->
+<!--            <view @click="isShowDialog1 = false" style="font-size: 15px;" class="u-nav-slot" slot="left">-->
+<!--              <text>关闭</text>-->
+<!--            </view>-->
+<!--          </u-navbar>-->
+<!--          <view>-->
+<!--            <u&#45;&#45;form >-->
+<!--              <u-form-item label-width="25vw" label="尺码" borderBottom>-->
+<!--                <u&#45;&#45;input  :disabled="true" disabledColor="#fff" inputAlign="right"-->
+<!--                           v-model="orderData1.size" border="none" color="#333333"></u&#45;&#45;input>-->
+<!--                <u-icon class="biaodan-gengduo" style="margin-right: 15px;" slot="right" name="arrow-right"></u-icon>-->
+<!--              </u-form-item>-->
+<!--              <u-form-item label-width="25vw" label="尺码" borderBottom>-->
+<!--                <u&#45;&#45;input  :disabled="true" disabledColor="#fff" inputAlign="right"-->
+<!--                           v-model="orderData1.channelIdStr" border="none" color="#333333"></u&#45;&#45;input>-->
+<!--                <u-icon class="biaodan-gengduo" style="margin-right: 15px;" slot="right" name="arrow-right"></u-icon>-->
+<!--              </u-form-item>-->
+<!--              <u-form-item label-width="25vw" label="库存" borderBottom>-->
+<!--                <u&#45;&#45;input  :disabled="true" disabledColor="#fff" inputAlign="right"-->
+<!--                           v-model="orderData1.inventory" border="none" color="#333333"></u&#45;&#45;input>-->
+<!--                <u-icon class="biaodan-gengduo" style="margin-right: 15px;" slot="right" name="arrow-right"></u-icon>-->
+<!--              </u-form-item>-->
+<!--              <u-form-item label-width="25vw" label="进价" borderBottom>-->
+<!--                <u&#45;&#45;input  :disabled="true" disabledColor="#fff" inputAlign="right"-->
+<!--                           v-model="orderData1.price" border="none" color="#333333"></u&#45;&#45;input>-->
+<!--                <u-icon class="biaodan-gengduo" style="margin-right: 15px;" slot="right" name="arrow-right"></u-icon>-->
+<!--              </u-form-item>-->
+<!--              <u-form-item label-width="25vw" label="售价" borderBottom>-->
+<!--                <u&#45;&#45;input  :disabled="true" disabledColor="#fff" inputAlign="right"-->
+<!--                           v-model="orderData1.dwPrice" border="none" color="#333333"></u&#45;&#45;input>-->
+<!--                <u-icon class="biaodan-gengduo" style="margin-right: 15px;" slot="right" name="arrow-right"></u-icon>-->
+<!--              </u-form-item>-->
+<!--              <u-form-item label-width="25vw" label="手续费" borderBottom>-->
+<!--                <u&#45;&#45;input  :disabled="true" disabledColor="#fff" inputAlign="right"-->
+<!--                           v-model="orderData1.poundage" border="none" color="#333333"></u&#45;&#45;input>-->
+<!--                <u-icon class="biaodan-gengduo" style="margin-right: 15px;" slot="right" name="arrow-right"></u-icon>-->
+<!--              </u-form-item>-->
+<!--              <u-form-item label-width="25vw" label="到手价" borderBottom>-->
+<!--                <u&#45;&#45;input  :disabled="true" disabledColor="#fff" inputAlign="right"-->
+<!--                           v-model="orderData1.theirPrice" border="none" color="#333333"></u&#45;&#45;input>-->
+<!--                <u-icon class="biaodan-gengduo" style="margin-right: 15px;" slot="right" name="arrow-right"></u-icon>-->
+<!--              </u-form-item>-->
+<!--              <u-form-item label-width="25vw" label="利润" borderBottom>-->
+<!--                <u&#45;&#45;input  :disabled="true" disabledColor="#fff" inputAlign="right"-->
+<!--                           v-model="orderData1.profits" border="none" color="#333333"></u&#45;&#45;input>-->
+<!--                <u-icon class="biaodan-gengduo" style="margin-right: 15px;" slot="right" name="arrow-right"></u-icon>-->
+<!--              </u-form-item>-->
+<!--            </u&#45;&#45;form>-->
+<!--          </view>-->
+<!--        </view>-->
+<!--      </u-popup>-->
+<!--    </view1>-->
 
     <view class="popContainer" v-if="pictureZoomShow" @click="pictureZoomShow = false">
       <view class="imageShow">
@@ -193,7 +192,7 @@
     <view class="baisebeijing shuipingjuzhong" style="width:100%;position:fixed;bottom:0;
      border-top: solid #E2DDDD 1px;">
       <u-button style="width: 50vw; margin: 10px 15px;" type="primary"  @click="goAdd">
-        <text class="dibuanniuwenzi">确认修改</text>
+        <text class="dibuanniuwenzi">确认添加</text>
       </u-button>
     </view>
   </view>
@@ -223,7 +222,7 @@
           { value: 1, text: "线下" },
           { value: 2, text: "线上" }
         ],
-        isShowDialog1: false,
+        // isShowDialog1: false,
         orderData1: '',
         inventoryIndex:'',
         activeIndex: [],
@@ -252,25 +251,25 @@
             uni.getStorageSync('sysDictList')) : []
         this.channelIdList = sysDictList.filter(item => item.typeValue == 47)
       },
-      changeStatusDialog1(index,row) {
-        this.inventoryIndex = index
-        this.orderData1 = row
-        if (this.orderData1.dwPrice)  {
-          let poundage = this.$getPoundage(this.orderData1.dwPrice)
-          this.orderData1.poundage = parseFloat(poundage).toFixed(2)
-
-          let theirPrice =  this.orderData1.dwPrice
-              - poundage
-          this.orderData1.theirPrice = parseFloat(theirPrice).toFixed(2)
-        }
-        if (this.orderData1.theirPrice && this.orderData1.price)  {
-          let profits = this.orderData1.theirPrice - 10
-              - this.orderData1.price
-          this.orderData1.profits = parseFloat(profits).toFixed(2)
-        }
-        this.orderData1.channelIdStr = this.orderData1.channelId == 1 ? '线下' : '线上'
-        this.isShowDialog1 = true
-      },
+      // changeStatusDialog1(index,row) {
+      //   this.inventoryIndex = index
+      //   this.orderData1 = row
+      //   if (this.orderData1.dwPrice)  {
+      //     let poundage = this.$getPoundage(this.orderData1.dwPrice)
+      //     this.orderData1.poundage = parseFloat(poundage).toFixed(2)
+      //
+      //     let theirPrice =  this.orderData1.dwPrice
+      //         - poundage
+      //     this.orderData1.theirPrice = parseFloat(theirPrice).toFixed(2)
+      //   }
+      //   if (this.orderData1.theirPrice && this.orderData1.price)  {
+      //     let profits = this.orderData1.theirPrice - 10
+      //         - this.orderData1.price
+      //     this.orderData1.profits = parseFloat(profits).toFixed(2)
+      //   }
+      //   this.orderData1.channelIdStr = this.orderData1.channelId == 1 ? '线下' : '线上'
+      //   this.isShowDialog1 = true
+      // },
       goAdd() {
         for (let i = 0; i < this.tableData.length; i++) {
           let data1 = this.tableData[i]

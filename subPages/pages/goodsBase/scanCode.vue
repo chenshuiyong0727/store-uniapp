@@ -181,7 +181,7 @@
           width: 15vw;padding-bottom: 0px;    margin-left: 5px;
           border-bottom: 0; ">
                 <view class="dingdans_top_left_dw" style=" color: #7a7a7a;margin-left: 7px;">
-                  <text>{{item.inventory ? item.inventory : '' }}</text>
+                  <text>{{item.inventory ? item.inventory : 0 }}</text>
                 </view>
               </view>
               <view  v-if="tableData[0].inPrice" class="dingdans_top_dw" style="
