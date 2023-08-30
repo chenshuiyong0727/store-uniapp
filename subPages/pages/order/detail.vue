@@ -190,7 +190,6 @@
         <view style="margin-left: 10px;" class="xianglian">
           <image mode="widthFix" style="width: 28px;margin-top: -5px;"
                  :src="fileUrl +'/static/img/shouhuodizhi.png'"></image>
-          <strong style="font-size: 15px; margin-left: -1px;">收货人：得物App白冰冰</strong>
           <text style="font-size: 15px;font-weight: 600 ">收货人：得物App白冰冰</text>
         </view>
         <view style="margin-right: 15px;">
