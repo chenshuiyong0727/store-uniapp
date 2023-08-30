@@ -87,7 +87,7 @@
   ">
         <strong style="color: #333;font-size: 14px;">
           {{form.actNo}}
-          <image @click="$copyUrl(item.actNo)" style="margin-bottom: -3px;" class="fuzhitupian"
+          <image @click="$copyUrl(form.actNo)" style="margin-bottom: -3px;" class="fuzhitupian"
                  src="../../static/img/copy.png"></image>
         </strong>
       </view>
