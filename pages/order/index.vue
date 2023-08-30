@@ -69,7 +69,7 @@
         <view  style="height: 90vh;">
           <scroll-view  scroll-y="true"  class="saixuanquyu">
 
-            <view class="saixuanquxiang" >
+            <view class="saixuanquxiang" style="margin-top: 30px">
               <view>
                 <text class="zitijiachu zihao14">
                   订单号
@@ -130,10 +130,10 @@
                 </text>
               </view>
               <view class="julishang10 xianglian saixuanshijian">
-                <view  @click="showFrom= true;showTo= false">
+                <view class="searchInputFilter" @click="showFrom= true;showTo= false">
                   <u--input
                       readonly="readonly"
-                      class="searchInputFilter"
+
                       placeholder="开始时间"
                       placeholderStyle="font-size: 14px;color:#c0c4cc"
                       v-model="queryParam.successTimeFrom"
@@ -143,10 +143,9 @@
                 <view>
                   <image  class="hengtupian" :src="fileUrl +'/static/img/heng.png'"></image>
                 </view>
-                <view  @click="showTo= true;showFrom= false">
+                <view class="searchInputFilter" @click="showTo= true;showFrom= false">
                   <u--input
                       readonly="readonly"
-                      class="searchInputFilter"
                       placeholder="结束时间"
                       placeholderStyle="font-size: 14px;color:#c0c4cc"
                       v-model="queryParam.successTimeTo"

@@ -97,10 +97,7 @@
   width: 100vw;
   background: #f3faff;
   position: fixed;
-  top: 43px;
-  /*#ifdef MP-WEIXIN*/
   top: 63px;
-  /*#endif*/
   left: 0;
   z-index: 2;
 }
@@ -244,7 +241,7 @@
 /*导航栏*/
 .searchListSort{
   width: 100vw;
-  margin-top: 80px;
+  margin-top: 110px;
   background: #f3faff;
   padding: 2vw;
   position: fixed;
@@ -272,7 +269,7 @@
   padding: 2vw;
   color: #656565;
   font-size: 14px;
-  margin-top: 140px;
+  margin-top: 174px;
   border-top-left-radius: 5vw;
   border-top-right-radius: 5vw;
 }
@@ -289,7 +286,7 @@
   padding: 2vw;
   color: #656565;
   font-size: 14px;
-  margin-top: 170px;
+  margin-top: 210px;
   border-bottom-left-radius: 5vw;
   border-bottom-right-radius: 5vw;
 }
@@ -610,10 +607,10 @@
   width: 70vw;
 }
 .julishang10{
-  margin-top: 10px;
+  margin-top: 0vw;
 }
 .julishang_10{
-  margin-top: 10px;
+  margin-top: 0vw;
 }
 
 .saixuanxuanzhefuji{
@@ -621,16 +618,17 @@
 }
 
 .saixuanshijian{
+  margin: -10px 0;
 }
 
 .saixuanquyu{
   width: 80vw;
   height: 100%;
   padding-left: 20px;
-  padding-top: 4vw;
+  margin-top: 0vw;
 }
 .saixuanquxiang{
-  /*padding: 10px 0;*/
+  margin: -10px 0;
 }
 
 
@@ -685,26 +683,17 @@
   margin: 0 2px;
   width:20px;
   height: 20px;
-  /*#ifdef APP-PLUS*/
   margin-bottom: 10px;
-  /*#endif*/
 }
 .hengtupianbaobiao{
   vertical-align: middle;
   margin: 0 2px;
   width:18px;
   height: 18px;
-  /*#ifdef APP-PLUS*/
   margin-top: 3px;
-  /*#endif*/
 }
 .hongbaoquyu{
-  /*#ifdef APP-PLUS*/
   margin-top: 233px;
-  /*#endif*/
-  /*#ifdef H5*/
-  margin-top: 245px;
-  /*#endif*/
 }
 .zuoyouduiqi{
   display: flex;
@@ -712,9 +701,7 @@
   align-items: center;
 }
 .sdzf{
-  /*#ifdef APP-PLUS*/
   bottom: 0px;
-  /*#endif*/
   /*#ifdef H5*/
   bottom: 53px;
   /*#endif*/
@@ -831,7 +818,7 @@ a{
   padding-top: 6px;
 }
 .julibiaoti4{
-  padding-top: 184px;
+  padding-top: 216px;
 }
 .biaodan-gengduo{
   margin-bottom: -2px;

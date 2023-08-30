@@ -4,14 +4,14 @@
       <view @click="goBack"  class="u-nav-slot" slot="left">
         <image class="back_icon_0" :src="fileUrl +'/static/img/back3.png'"></image>
       </view>
-      <view class="u-nav-slot" style="font-size: 15px;" slot="right">
-        <rudon-rowMenuDotDotDot :localdata="localdata" @change="menuAction($event)">
-          <image style="height: 25px;width: 25px" :src="fileUrl +'/static/img/slh.png'"></image>
-        </rudon-rowMenuDotDotDot>
-      </view>
+<!--      <view class="u-nav-slot" style="font-size: 15px;" slot="right">-->
+<!--        <rudon-rowMenuDotDotDot :localdata="localdata" @change="menuAction($event)">-->
+<!--          <image style="height: 25px;width: 25px" :src="fileUrl +'/static/img/slh.png'"></image>-->
+<!--        </rudon-rowMenuDotDotDot>-->
+<!--      </view>-->
     </u-navbar>
     <view class="fenlei_top_tab" style="display: flex;">
-      <view style="width: 94vw">
+      <view style="width: 94vw" class="baisebeijing">
         <u--input
             class="searchInputW"
             prefixIcon="search"
@@ -98,7 +98,7 @@
       <u-popup :show="isShowDialog2" @close="isShowDialog2 = !isShowDialog2"  :duration="100" mode="right">
         <view  style="height: 90vh;">
           <scroll-view  scroll-y="true"  class="saixuanquyu">
-            <view class="saixuanquxiang" >
+            <view class="saixuanquxiang" style="margin-top: 30px">
               <view>
                 <text class="zitijiachu zihao14">
                   尺码
@@ -121,11 +121,10 @@
                   入库时间
                 </text>
               </view>
-              <view class="julishang10 xianglian saixuanshijian">
-                <view  @click="showFrom= true;showTo= false">
+              <view class=" xianglian saixuanshijian">
+                <view class="searchInputFilter" @click="showFrom= true;showTo= false">
                   <u--input
                       readonly="readonly"
-                      class="searchInputFilter"
                       placeholder="开始时间"
                       placeholderStyle="font-size: 14px;color:#c0c4cc"
                       v-model="queryParam.createTimeFrom"
@@ -135,10 +134,9 @@
                 <view>
                   <image  class="hengtupian" :src="fileUrl +'/static/img/heng.png'"></image>
                 </view>
-                <view  @click="showTo= true;showFrom= false">
+                <view  class="searchInputFilter" @click="showTo= true;showFrom= false">
                   <u--input
                       readonly="readonly"
-                      class="searchInputFilter"
                       placeholder="结束时间"
                       placeholderStyle="font-size: 14px;color:#c0c4cc"
                       v-model="queryParam.createTimeTo"
@@ -279,10 +277,10 @@
             <text>入库时间:</text>
             <text>{{item.createTime |formateTime}}</text>
           </view>
-          <view class="dingdans_top_right_dw" v-if="item.difference && item.thisTimePrice">
-            变更
-            <strong style="font-size: 13px;margin-left: 1vw;" v-if="item.difference > 0" class="color-danger"> +{{item.difference }}</strong>
-            <strong style="font-size: 13px;margin-left: 1vw;" v-else class="color-success">{{item.difference }}</strong>
+          <view class="dingdans_top_right_dw xianglian" v-if="item.difference && item.thisTimePrice">
+            <text>变更</text>
+            <text style="font-size: 13px;margin-left: 1vw;" v-if="item.difference > 0" class="color-font-strong"> +{{item.difference }}</text>
+            <text style="font-size: 13px;margin-left: 1vw;" v-else class="color-dw-strong">{{item.difference }}</text>
           </view>
         </view>
         <!--        中间-->
@@ -319,19 +317,19 @@
             <view class="dingdans_con_right_top_dw_2">
               <view>
                  <text>
-                {{item.size}} × {{item.inventory}}
-              </text>
+                  {{item.size}} × {{item.inventory}}
+                </text>
               </view>
-              <view>
-                <strong style="color: #333333">
+              <view class="xianglian">
+                <text class="color-font">
                   ¥
-                </strong>
-                <strong  v-if="item.thisTimeThePrice" style="font-size: 17px ;color: #333333">
+                </text>
+                <text class="color-font" v-if="item.thisTimeThePrice" style="font-size: 17px ;">
                   {{item.thisTimeThePrice}}
-                </strong>
-                <strong v-if="!item.thisTimeThePrice && item.theirPrice" style="font-size: 17px ;color: #333333">
+                </text>
+                <text v-if="!item.thisTimeThePrice && item.theirPrice" style="font-size: 17px ;">
                   {{item.theirPrice}}
-                </strong>
+                </text>
                 <text v-if="item.thisTimePrice" style="margin-left: 5px;text-decoration:line-through;">
                   {{item.thisTimePrice}}
                 </text>
@@ -691,18 +689,18 @@
           this.$goBack
         }
       },
-      menuAction(action, rowId) {
-        // 忽略初始化时的传入的空操作
-        if (action === '') {
-          return
-        }
-        if ('add' == action) {
-          this.add()
-        }
-        if ('resetHandle' == action) {
-          this.resetHandle()
-        }
-      },
+      // menuAction(action, rowId) {
+      //   // 忽略初始化时的传入的空操作
+      //   if (action === '') {
+      //     return
+      //   }
+      //   if ('add' == action) {
+      //     this.add()
+      //   }
+      //   if ('resetHandle' == action) {
+      //     this.resetHandle()
+      //   }
+      // },
       menuActionList(action, item) {
         if (action === '') {
           return

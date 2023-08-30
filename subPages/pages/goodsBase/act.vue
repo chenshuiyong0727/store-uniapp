@@ -92,16 +92,16 @@
       <u-popup :show="isShowDialog2" @close="isShowDialog2 = !isShowDialog2"  :duration="100" mode="right">
         <view style="height: 90vh;">
           <scroll-view scroll-y="true" class="saixuanquyu">
-            <view class="saixuanquxiang" >
+            <view class="saixuanquxiang" style="margin-top: 30px">
               <view>
                 <text class="zitijiachu zihao14">
                   价格
                 </text>
               </view>
               <view class="julishang10 xianglian saixuanshijian">
-                <view >
+                <view class="searchInputFilter">
                   <u--input
-                      class="searchInputFilter"
+
                       placeholder="最低价"
                       @change="search1"
                       placeholderStyle="font-size: 14px;color:#c0c4cc"
@@ -113,9 +113,8 @@
                 <view>
                   <image  class="hengtupian" :src="fileUrl +'/static/img/heng.png'"></image>
                 </view>
-                <view  >
+                <view  class="searchInputFilter" >
                   <u--input
-                      class="searchInputFilter"
                       placeholder="最高价"
                       @change="search1"
                       placeholderStyle="font-size: 14px;color:#c0c4cc"
@@ -134,9 +133,8 @@
                 </text>
               </view>
               <view class="julishang10 xianglian saixuanshijian">
-                <view >
+                <view  class="searchInputFilter">
                   <u--input
-                      class="searchInputFilter"
                       placeholder="最低利润"
                       @change="search1"
                       placeholderStyle="font-size: 14px;color:#c0c4cc"
@@ -148,9 +146,8 @@
                 <view>
                   <image  class="hengtupian" :src="fileUrl +'/static/img/heng.png'"></image>
                 </view>
-                <view  >
+                <view   class="searchInputFilter">
                   <u--input
-                      class="searchInputFilter"
                       placeholder="最高利润"
                       @change="search1"
                       placeholderStyle="font-size: 14px;color:#c0c4cc"
@@ -169,9 +166,8 @@
                 </text>
               </view>
               <view class="julishang10 xianglian saixuanshijian">
-                <view >
+                <view  class="searchInputFilter">
                   <u--input
-                      class="searchInputFilter"
                       placeholder="最低库存"
                       @change="search1"
                       placeholderStyle="font-size: 14px;color:#c0c4cc"
@@ -183,9 +179,8 @@
                 <view>
                   <image  class="hengtupian" :src="fileUrl +'/static/img/heng.png'"></image>
                 </view>
-                <view  >
+                <view   class="searchInputFilter">
                   <u--input
-                      class="searchInputFilter"
                       placeholder="最高库存"
                       @change="search1"
                       placeholderStyle="font-size: 14px;color:#c0c4cc"
@@ -204,9 +199,8 @@
                 </text>
               </view>
               <view class="julishang10 xianglian saixuanshijian">
-                <view >
+                <view  class="searchInputFilter">
                   <u--input
-                      class="searchInputFilter"
                       placeholder="最低销量"
                       @change="search1"
                       placeholderStyle="font-size: 14px;color:#c0c4cc"
@@ -218,9 +212,8 @@
                 <view>
                   <image  class="hengtupian" :src="fileUrl +'/static/img/heng.png'"></image>
                 </view>
-                <view  >
+                <view   class="searchInputFilter">
                   <u--input
-                      class="searchInputFilter"
                       placeholder="最高销量"
                       @change="search1"
                       placeholderStyle="font-size: 14px;color:#c0c4cc"

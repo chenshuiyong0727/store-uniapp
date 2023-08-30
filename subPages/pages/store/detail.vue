@@ -13,7 +13,7 @@
       </view>
     </u-navbar>
     <view class="ui-flex justify-center center"
-         style="width: 100vw; height: 220px;background-color: white;margin-top: 10px;">
+         style="width: 100vw; height: 220px;background-color: white;margin-top:34px;">
       <view class="cell">
         <image mode="widthFix"
                @click="avatarShow(form.img)"
@@ -40,7 +40,7 @@
     justify-content: space-between;
     align-items: center;
   ">
-        <view>
+        <view class="xianglian">
           <strong  style="color: #333;font-size: 18px;">¥</strong>
           <strong v-if="form.thisTimeThePrice" style="color: #333;font-size: 25px;margin-left: 2px;" >{{form.thisTimeThePrice}}</strong>
           <strong v-else  style="color: #333;font-size: 25px;" v-if="!form.thisTimeThePrice && form.theirPrice">{{form.theirPrice}}</strong>
@@ -54,14 +54,14 @@
         </view>
         <view>
           <text v-if="form.thisTimePrice"  >
-          <strong class="color-danger" style="font-size: 15px;margin-right: 1px;">{{form.thisTimeProfits}}</strong>
-          利润</text>
+          <text class="color-font-strong" style="font-size: 15px;margin-right: 1px;">{{form.thisTimeProfits}}</text>
+            利润</text>
           <text   v-else>
-          <strong class="color-danger" style="font-size: 15px;margin-right: 1px;">
+          <text class="color-font-strong" style="font-size: 15px;margin-right: 1px;">
             {{form.dwPrice | getProfits(form.price)}}
 
 <!--            {{(form.dwPrice - (form.dwPrice * 0.075 + 38 + 8.5) - form.price - 10) | numFilter}}-->
-          </strong>利润
+          </text>利润
         </text>
         </view>
 
@@ -80,10 +80,10 @@
            </text>
           <text style="color: #7a7a7a; margin-left: 2px;">入库价</text>
         </view>
-        <view  v-if="form.difference && form.thisTimePrice" style="">
-          变更
-          <strong v-if="form.difference > 0" class="color-danger"> +{{form.difference }}</strong>
-          <strong v-else class="color-success">{{form.difference }}</strong>
+        <view  v-if="form.difference && form.thisTimePrice" class="xianglian">
+          <text>变更</text>
+          <text v-if="form.difference > 0" class="color-font-strong"> +{{form.difference }}</text>
+          <text v-else class="color-dw-strong">{{form.difference }}</text>
         </view>
       </view>
       <view style="padding-top: 0px;
@@ -125,9 +125,9 @@
           <text>
             尺码
           </text>
-        <strong class="color-danger" style="font-size: 15px;margin-left: 3px;margin-top: 3px">
+        <text class="color-danger" style="font-size: 15px;margin-left: 3px;margin-top: 3px">
          {{form.size}}
-        </strong>
+        </text>
         </view>
       </view>
     </view>
@@ -199,6 +199,7 @@
         <image :src="imageZoom" mode="widthFix"  class="showImg"></image>
       </view>
     </view>
+    <view style="height: 70px"></view>
     <view v-if="form.inventory > form.galleryCount" class="baisebeijing shuipingjuzhong" style="width:100%;position:fixed;bottom:0;
      border-top: solid #E2DDDD 1px;">
       <u-button style="width: 50vw; margin: 10px 15px;" type="primary"   @click="gallery(form.id)">
@@ -215,6 +216,7 @@
       return {
         form: {
         },
+        fileUrl: this.$fileUrl,
         optionsOp: [
           {
             value: 'warehouseDetail',

@@ -167,7 +167,7 @@
       <u-popup :show="isShowDialog2" @close="isShowDialog2 = false"  :duration="100" mode="right">
         <view  style="height: 90vh;">
         <scroll-view  scroll-y="true"  class="saixuanquyu">
-          <view class="saixuanquxiang" >
+          <view class="saixuanquxiang" style="margin-top: 30px">
             <view>
               <text class="zitijiachu zihao14">
                 内容
