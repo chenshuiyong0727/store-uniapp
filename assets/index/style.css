@@ -216,6 +216,11 @@
   height: 18px;
   width: 18px;
   margin-left: 1px;
+}
+.back_icon_0{
+  height: 18px;
+  width: 18px;
+  margin-left: 1px;
   margin-bottom: 11px;
 }
 /*导航栏*/
@@ -591,7 +596,7 @@
 /*左右对齐*/
 .saixuanInput{
   background-color: #f4f3f8;
-  height: 35px;
+  /*height: 35px;*/
   border-radius: 0px;
   border: 0px;
   width: 70vw;
@@ -745,7 +750,6 @@
   margin-bottom: 10px;
   width: 100vw;
 }
-
 .fuzhitupian{
   width: 18px;
   height: 18px;

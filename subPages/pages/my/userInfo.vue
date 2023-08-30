@@ -4,7 +4,7 @@
       <view @click="goBackReflash" class="u-nav-slot" slot="left">
         <image class="back_icon" :src="fileUrl +'/static/img/back3.png'"></image>
       </view>
-      <view @click="submit" class="u-nav-slot" slot="right" style="font-size: 15px;">
+      <view @click="submit" class="u-nav-slot" slot="right" style="font-size: 15px;margin-right: 23vw">
         保存
       </view>
     </u-navbar>

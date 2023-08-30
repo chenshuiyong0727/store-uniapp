@@ -4,8 +4,8 @@
       <view @click="$goBack" class="u-nav-slot" slot="left">
         <image class="back_icon" :src="fileUrl +'/static/img/back3.png'"></image>
       </view>
-      <view  @click="gotoAdd" class="u-nav-slot" slot="right" style="font-size: 15px;">
-        手动添加
+      <view  @click="gotoAdd" class="u-nav-slot" slot="right" style="font-size: 15px;margin-right: 23vw">
+        手动
       </view>
     </u-navbar>
     <view class="fenlei_top_2">

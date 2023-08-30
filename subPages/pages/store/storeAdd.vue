@@ -4,9 +4,9 @@
       <view @click="$goBack" class="u-nav-slot" slot="left">
         <image class="back_icon" :src="fileUrl +'/static/img/back3.png'"></image>
       </view>
-      <view  @click="goAdd" class="u-nav-slot" slot="right" style="font-size: 15px;">
-        提交
-      </view>
+<!--      <view  @click="goAdd" class="u-nav-slot" slot="right" style="font-size: 15px;margin-right: 23vw">-->
+<!--        提交-->
+<!--      </view>-->
     </u-navbar>
     <view class="dingdans_item" style="margin-top: 50px; margin-bottom: 7px; border-bottom:0px ;padding:0" >
       <view class="dingdans_con" style="padding:5px">
@@ -192,6 +192,12 @@
       <view class="imageShow">
         <image :src="imageZoom" mode="widthFix"  class="showImg"></image>
       </view>
+    </view>
+    <view class="baisebeijing shuipingjuzhong" style="width:100%;position:fixed;bottom:0;
+     border-top: solid #E2DDDD 1px;">
+      <u-button style="width: 50vw; margin: 10px 15px;" type="primary"  @click="goAdd">
+        <text class="dibuanniuwenzi">确认修改</text>
+      </u-button>
     </view>
   </view>
 </template>

@@ -6,7 +6,7 @@
       </view>
       <view v-if="type == 1" @click="type=2" class="u-nav-slot" slot="right"
             style="font-size: 15px;margin-right: 23vw">
-        去修改
+        修改
       </view>
     </u-navbar>
     <u--form

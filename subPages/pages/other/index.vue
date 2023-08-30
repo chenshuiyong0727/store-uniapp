@@ -2,7 +2,7 @@
   <view>
     <u-navbar title="其他收支">
       <view @click="$goBack" class="u-nav-slot" slot="left">
-        <image class="back_icon" :src="fileUrl +'/static/img/back3.png'"></image>
+        <image class="back_icon_0" :src="fileUrl +'/static/img/back3.png'"></image>
       </view>
     </u-navbar>
     <view class="fenlei_top" style="display: flex;">

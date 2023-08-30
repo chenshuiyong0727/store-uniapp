@@ -2,7 +2,7 @@
   <view>
     <u-navbar title="商品"  bgColor="#f3faff">
       <view @click="goBack" class="u-nav-slot" slot="left">
-        <image class="back_icon" :src="fileUrl +'/static/img/back3.png'"></image>
+        <image class="back_icon_0" :src="fileUrl +'/static/img/back3.png'"></image>
       </view>
     </u-navbar>
     <view class="fenlei_top_tab"  style="display: flex;">

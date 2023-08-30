@@ -2,7 +2,7 @@
   <view>
     <u-navbar title="仓库" bgColor="#f3faff">
       <view @click="goBack"  class="u-nav-slot" slot="left">
-        <image class="back_icon" :src="fileUrl +'/static/img/back3.png'"></image>
+        <image class="back_icon_0" :src="fileUrl +'/static/img/back3.png'"></image>
       </view>
       <view class="u-nav-slot" style="font-size: 15px;" slot="right">
         <rudon-rowMenuDotDotDot :localdata="localdata" @change="menuAction($event)">

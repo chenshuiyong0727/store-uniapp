@@ -2,11 +2,11 @@
   <view>
     <u-navbar title="订单" bgColor="#f3faff">
       <view @click="goBack" class="u-nav-slot" slot="left">
-        <image class="back_icon" :src="fileUrl +'/static/img/back3.png'"></image>
+        <image class="back_icon_0" :src="fileUrl +'/static/img/back3.png'"></image>
       </view>
-      <view @click="showSd = !showSd"  class="u-nav-slot" slot="right" style="font-size: 15px;">
+      <view @click="showSd = !showSd"  class="u-nav-slot" slot="right" style="font-size: 15px;margin-right: 23vw">
         <text>
-          {{!showSd ? '批量操作' : '退出' }}
+          {{!showSd ? '批量' : '退出' }}
         </text>
       </view>
     </u-navbar>

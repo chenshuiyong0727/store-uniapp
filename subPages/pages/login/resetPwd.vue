@@ -75,6 +75,7 @@
 export default {
   data() {
     return {
+      fileUrl: this.$fileUrl,
       userName: uni.getStorageSync('user_name'),
       param: {
         oldPwd: '',
