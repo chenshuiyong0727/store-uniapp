@@ -4,9 +4,14 @@
       <view @click="$goBack" class="u-nav-slot" slot="left">
         <image class="back_icon" :src="fileUrl +'/static/img/back3.png'"></image>
       </view>
-      <view  @click="gotoAdd" class="u-nav-slot" slot="right" style="font-size: 15px;margin-right: 23vw">
-        手动
-      </view>
+<!--      <view  @click="gotoAdd" class="u-nav-slot" slot="right" style="font-size: 15px;margin-right: 23vw">-->
+<!--        手动-->
+<!--      </view>-->
+<!--      <view class="u-nav-slot navbar_right" slot="right">-->
+<!--        <rudon-rowMenuDotDotDot :localdata="localdata" @change="menuAction($event)">-->
+<!--          <image style="height: 25px;width: 25px" :src="fileUrl +'/static/img/gd1.png'"></image>-->
+<!--        </rudon-rowMenuDotDotDot>-->
+<!--      </view>-->
     </u-navbar>
     <view class="fenlei_top_2">
       <view class="shoudongtianjia" >
@@ -276,7 +281,9 @@
           </view>
         </view>
       </u-popup>
-
+    <view>
+      <uni-fab ref="fab" :pattern="pattern"  horizontal="right"  @fabClick="gotoAdd" />
+    </view>
   </view>
 </template>
 
@@ -291,6 +298,20 @@
     },
  data() {
       return {
+        localdata: [
+          {
+            value: 'gotoAdd',
+            text: '手动添加'
+          }
+        ],
+        pattern: {
+          icon:'personadd-filled',
+          color: '#7A7E83',
+          backgroundColor: '#fff',
+          selectedColor: '#409eff',
+          buttonColor: '#409eff',
+          iconColor: '#fff'
+        },
         fileUrl: this.$fileUrl,
         imgevent: '',
         fileList1: [],
@@ -377,6 +398,14 @@
       }
     },
     methods: {
+      // menuAction(action) {
+      //   if (action === '') {
+      //     return
+      //   }
+      //   if ('gotoAdd' == action) {
+      //     this.gotoAdd()
+      //   }
+      // },
       async afterRead(event) {
         uni.showLoading({title: '识别中'});
         this.imgevent = event;

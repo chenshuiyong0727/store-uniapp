@@ -4,9 +4,6 @@
       <view @click="$goBack" class="u-nav-slot" slot="left">
         <image class="back_icon" :src="fileUrl +'/static/img/back3.png'"></image>
       </view>
-<!--      <view  @click="goAdd" class="u-nav-slot" slot="right" style="font-size: 15px;margin-right: 23vw">-->
-<!--        提交-->
-<!--      </view>-->
     </u-navbar>
     <view class="dingdans_item" style="margin-top: 50px; margin-bottom: 7px; border-bottom:0px ;padding:0" >
       <view class="dingdans_con" style="padding:5px">
