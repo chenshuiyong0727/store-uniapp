@@ -9,13 +9,12 @@
       </view>
     </u-navbar>
     <u--form
-        style="background-color: white"
-        class="julibiaoti"
         labelPosition="left"
         :model="form"
         :rules="rules"
         ref="uForm"
     >
+      <view class="baisebeijing julibiaoti">
       <view style="width: 90vw;margin-left: 5vw;">
         <u-form-item
             label="头像"
@@ -117,6 +116,7 @@
               name="arrow-right"
           ></u-icon>
         </u-form-item>
+      </view>
       </view>
     </u--form>
   </view>

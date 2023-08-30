@@ -6,17 +6,16 @@
       </view>
     </u-navbar>
     <u--form
-        style="background-color: white"
-        class="julibiaoti"
         labelPosition="left"
         :model="form"
         ref="uForm"
     >
+      <view class="baisebeijing julibiaoti">
       <view style="width: 90vw;margin-left: 5vw;">
         <u-form-item
             label="图片"
             borderBottom
-            label-width="66vw"
+            label-width="62vw"
             ref="item1"
         >
           <u-upload
@@ -31,38 +30,46 @@
               :height="70"
           >
           </u-upload>
-          <u-icon v-if="type != 1" class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
+          <u-icon v-show="type != 1" class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
         </u-form-item>
         <u-form-item label-width="25vw"  label="类型" borderBottom @click="showSxType(); $hideKeyboard()">
           <u--input inputAlign="right" disabledColor="#fff"
                     placeholderStyle="font-size: 14px;color:#c0c4cc"
                     v-model="form.typeStr" border="none" disabled></u--input>
-          <u-icon v-if="type != 1"  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
+          <u-icon v-show="type != 1"  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
         </u-form-item>
         <u-form-item label-width="25vw" label="名称" borderBottom>
           <u--input :disabled="type == 1" disabledColor="#fff" inputAlign="right"
                     v-model="form.name" border="none"></u--input>
-          <u-icon v-if="type != 1" class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
+          <u-icon v-show="type != 1" class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
         </u-form-item>
         <u-form-item label-width="25vw" label="货号" borderBottom>
           <u--input :disabled="type == 1" disabledColor="#fff" inputAlign="right"
                     v-model="form.actNo" border="none"></u--input>
-          <u-icon v-if="type != 1" class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
+          <u-icon v-show="type != 1" class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
         </u-form-item>
         <u-form-item label-width="25vw" label="品牌" borderBottom>
           <u--input :disabled="type == 1" disabledColor="#fff" inputAlign="right"
                     v-model="form.brand" border="none"></u--input>
-          <u-icon v-if="type != 1" class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
+          <u-icon v-show="type != 1" class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
         </u-form-item>
         <u-form-item label-width="25vw" label="发售日期" borderBottom>
           <u--input :disabled="type == 1" disabledColor="#fff" inputAlign="right"
                     v-model="form.sellDate"  border="none"></u--input>
-          <u-icon v-if="type != 1" class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
+          <u-icon v-show="type != 1" class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
         </u-form-item>
         <u-form-item label-width="25vw" label="发售价格" borderBottom>
           <u--input :disabled="type == 1" disabledColor="#fff" inputAlign="right"
                     v-model="form.sellPrice" type="digit" border="none"></u--input>
-          <u-icon v-if="type != 1" class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
+          <u-icon v-show="type != 1" class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
+        </u-form-item>
+        <u-form-item label-width="25vw" label="备注" borderBottom>
+          <u--textarea
+              :disabled="type == 1"
+              v-model="form.remark"
+              count
+          ></u--textarea>
+          <u-icon v-show="type != 1" class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
         </u-form-item>
         <u-form-item label-width="25vw" label="尺码" borderBottom>
           <rudon-multiSelector :is_using_slot="true" :localdata="options" @change="whenChanged">
@@ -72,16 +79,9 @@
                         v-model="sizeListStr" border="none" disabled></u--input>
             </view>
           </rudon-multiSelector>
-          <u-icon v-if="type != 1" class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
+<!--          <u-icon v-show="type != 1" class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
         </u-form-item>
-        <u-form-item label-width="25vw" label="备注" borderBottom>
-          <u--textarea
-              :disabled="type == 1"
-              v-model="form.remark"
-              count
-          ></u--textarea>
-          <u-icon v-if="type != 1" class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
-        </u-form-item>
+      </view>
       </view>
     </u--form>
     <u-picker :show="show_sx_type" :columns="columns" @cancel="show_sx_type= false" :defaultIndex="defaultIndex"
@@ -137,6 +137,7 @@
     onLoad(options) {
       if (options) {
         this.type = options.type ? options.type : '';
+        console.info(this.type != 1)
         this.id = options.id ? options.id : '';
         if (this.id) {
           this.getDetailById(this.id)
@@ -147,17 +148,15 @@
     },
     methods:{
       whenChanged(e) {
+        this.sizeListStr = ''
         let sizeList = []
-        let sizeListStr = []
         for (let i = 0; i < e.length; i++) {
           let data = e[i]
           if (data.is_selected) {
             sizeList.push(data.value)
-            sizeListStr.push(data.text)
           }
         }
         this.form.sizeList = sizeList
-        this.sizeListStr = sizeListStr.join(",")
       },
       getDetailById(id) {
         if (id) {
