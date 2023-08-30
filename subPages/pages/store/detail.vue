@@ -4,8 +4,10 @@
       <view @click="$goBack"  class="u-nav-slot" slot="left">
         <image class="back_icon" :src="fileUrl +'/static/img/back3.png'"></image>
       </view>
-      <view class="u-nav-slot" style="font-size: 15px;margin-right: 23vw" slot="right">
-        <rudon-rowMenuDotDotDot :localdata="localdata" @change="menuAction($event)">
+      <view class="u-nav-slot" style="font-size: 15px;" slot="right">
+        <rudon-rowMenuDotDotDot :localdata="optionsOp" @change="menuActionList($event)">
+<!--          <text v-if="form.inventory > form.galleryCount" >更多</text>-->
+<!--          <text v-else >操作</text>-->
           <image style="height: 25px;width: 25px" :src="fileUrl +'/static/img/gd1.png'"></image>
         </rudon-rowMenuDotDotDot>
       </view>
@@ -197,6 +199,12 @@
         <image :src="imageZoom" mode="widthFix"  class="showImg"></image>
       </view>
     </view>
+    <view v-if="form.inventory > form.galleryCount" class="baisebeijing shuipingjuzhong" style="width:100%;position:fixed;bottom:0;
+     border-top: solid #E2DDDD 1px;">
+      <u-button style="width: 50vw; margin: 10px 15px;" type="primary"   @click="gallery(form.id)">
+        <text class="dibuanniuwenzi">上架</text>
+      </u-button>
+    </view>
   </view>
 </template>
 
@@ -205,17 +213,24 @@
   export default {
     data(){
       return {
-        fileUrl: this.$fileUrl,
         form: {
         },
-        localdata: [
+        optionsOp: [
           {
-            value: 'add',
-            text: '商品入库'
+            value: 'warehouseDetail',
+            text: '库存信息'
           },
           {
-            value: 'resetHandle',
-            text: '重置'
+            value: 'update',
+            text: '修改'
+          },
+          {
+            value: 'gotoDw',
+            text: '得物'
+          },
+          {
+            value: 'jumpOrder',
+            text: '订单'
           }
         ],
         imageZoom: '',
@@ -236,13 +251,6 @@
       }
     },
     methods:{
-      goodsDetail(id) {
-        if (!id) {
-          return
-        }
-        let url = '/subPages/pages/goodsBase/detail?id=' + id
-        this.$navigateTo(url)
-      },
       avatarShow(e) {
         this.imageZoom = e
         this.pictureZoomShow = true
@@ -259,6 +267,75 @@
           this.resetHandle()
         }
       },
+      menuActionList(action ) {
+        let item = this.form
+        if (action === '') {
+          return
+        }
+        if ('warehouseDetail' == action) {
+          this.warehouseDetail(item.goodsId ,item.actNo ,item.img )
+        }
+        if ('update' == action) {
+          this.update(item )
+        }
+        if ('gotoDw' == action) {
+          this.gotoDw(item.spuId )
+        }
+        if ('jumpOrder' == action) {
+          this.jumpOrder(item.actNo)
+        }
+      },
+      gallery(id) {
+        this.$navigateTo('/pages/store/storeUp?id=' + id)
+      },
+      goodsDetail(id) {
+        if (!id) {
+          return
+        }
+        let url = '/pages/goodsBase/detail?id=' + id
+        this.$navigateTo(url)
+      },
+      warehouseDetail(goodsId , actNo,img) {
+        this.$navigateTo('/pages/store/warehouseDetail?goodsId=' + goodsId +'&actNo=' +actNo +'&img=' +img)
+      },
+      update(row) {
+        this.$navigateTo('/pages/store/update?id=' + row.id)
+      },
+      gotoDw(spuId) {
+        if (!spuId){
+          return
+        }
+        let url = "https://m.dewu.com/router/product/ProductDetail?spuId="+ spuId;
+        // #ifdef APP-PLUS
+        plus.runtime.openURL(url) //这里默认使用外部浏览器打开而不是内部web-view组件打开
+        // #endif
+        // #ifdef H5
+        window.open(url)
+        // #endif
+      },
+      jumpOrder(actNo) {
+        let url= this.$getLocalPath()
+        uni.reLaunch({
+          url: '/pages/order/index?backUrl='+url+'&actNo=' + actNo
+        });
+      },
+      // getLocalPath(){
+      //   let curPage = getCurrentPages();
+      //   let route = curPage[curPage.length - 1].route; //获取当前页面的路由
+      //   let params = curPage[curPage.length - 1].options; //获取当前页面参数，如果有则返回参数的对象，没有参数返回空对象{}
+      //   let param = ''
+      //   for (let key in params) {
+      //     let flag = ''
+      //     if (param.indexOf("?") == -1){
+      //       flag = '?'
+      //     } else{
+      //       flag = '&'
+      //     }
+      //     param += flag + key + '=' + params[key]
+      //   }
+      //   let res = route + param
+      //   return '/'+ res
+      // },
       getDetailById(id) {
         if (id) {
           goodsInventoryApi.getDetailById(id).then(res => {

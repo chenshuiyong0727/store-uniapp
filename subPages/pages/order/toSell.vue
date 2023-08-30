@@ -241,8 +241,8 @@
         </view>
       </view>
       <view class="shuipingjuzhong">
-        <u-button style="width: 50vw; margin: 10px 15px;" type="primary" @click="confirmHandle">
-          <text style=" font-size: 17px;font-weight: 600">确认出售</text>
+        <u-button style="width: 50vw; margin: 10px 15px;"    type="primary" @click="confirmHandle">
+          <text class="dibuanniuwenzi">确认出售</text>
         </u-button>
       </view>
     </view>

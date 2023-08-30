@@ -109,8 +109,8 @@
     <view style="height: 70px"></view>
     <view class="baisebeijing shuipingjuzhong" style="width:100%;position:fixed;bottom:0;
      border-top: solid #E2DDDD 1px;">
-      <u-button style="width: 50vw; margin: 10px 15px;" type="primary" @click="confirmHandle3">
-        <text style=" font-size: 17px;font-weight: 600">确认提交</text>
+      <u-button style="width: 50vw; margin: 10px 15px;" type="primary"   @click="confirmHandle3">
+        <text class="dibuanniuwenzi">确认提交</text>
       </u-button>
     </view>
   </view>
