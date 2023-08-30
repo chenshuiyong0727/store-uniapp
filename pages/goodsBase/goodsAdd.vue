@@ -89,8 +89,8 @@
     <view class="baisebeijing " v-if="type != 1" style="width:100%;position:fixed;bottom:0;
      border-top: solid #E2DDDD 1px;">
       <view class="shuipingjuzhong">
-        <u-button style="width: 50vw; margin: 10px 15px;" type="primary" @click="submit">
-          <text style=" font-size: 17px;font-weight: 600">确认保存</text>
+        <u-button style="width: 50vw; margin: 10px 15px;"    type="primary" @click="submit">
+          <text class="dibuanniuwenzi">确认保存</text>
         </u-button>
       </view>
     </view>

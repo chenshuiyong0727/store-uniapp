@@ -207,8 +207,8 @@
       </view>
 
       <view class="shuipingjuzhong">
-        <u-button style="width: 50vw; margin: 10px 15px;" type="primary" @click="confirmHandle1">
-          <text style=" font-size: 17px;font-weight: 600">确认上架</text>
+        <u-button style="width: 50vw; margin: 10px 15px;"    type="primary" @click="confirmHandle1">
+          <text class="dibuanniuwenzi">确认上架</text>
         </u-button>
       </view>
     </view>

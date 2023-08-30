@@ -255,12 +255,31 @@ const throttle = (fn, wait) => {
   }
 }
 
+const getLocalPath = () => {
+  let curPage = getCurrentPages();
+  let route = curPage[curPage.length - 1].route; //获取当前页面的路由
+  let params = curPage[curPage.length - 1].options; //获取当前页面参数，如果有则返回参数的对象，没有参数返回空对象{}
+  let param = ''
+  for (let key in params) {
+    let flag = ''
+    if (param.indexOf("?") == -1){
+      flag = '?'
+    } else{
+      flag = '&'
+    }
+    param += flag + key + '=' + params[key]
+  }
+  let res = route + param
+  return '/'+ res
+}
+
 module.exports = {
   encrypt,
   navigateTo,
   isTokenExpire,
   pollIntervalManager,
   getQueryString,
+  getLocalPath,
   formatTime,
 	getUserInfoGlobal,
   isTimeExpire,

@@ -428,6 +428,7 @@
               <text v-else-if="item.status==4" class="dw-button-common" @click="changeStatusComfirm(item.id,5,'确认揽件')">揽件</text>
               <text v-else-if="item.status==5" class="dw-button-common" @click="changeStatusComfirm(item.id,6,'确认收货')">收货</text>
               <text v-else-if="[6,11].includes(item.status)"  class="dw-button-common" @click="update(item,'交易成功')">成功</text>
+
               <rudon-rowMenuDotDotDot :localdata="optionsOp" @change="menuActionList($event,item)">
                 <text v-if="[2,3,4,5,6,11].includes(item.status)"  class="dw-button-common">更多</text>
                 <text v-else class="dw-button-common">操作</text>

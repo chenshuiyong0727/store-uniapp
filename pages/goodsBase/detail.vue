@@ -126,21 +126,21 @@
               <text>到手价</text>
             </view>
           </view>
-          <view class="dingdans_top_dw" style="
+          <view  v-if="tableData[0].inPrice"  class="dingdans_top_dw" style="
           width: 15vw;       margin-left: 2px;       font-weight: 600;padding-bottom: 0px;
           border-bottom: 0; color: #333333">
             <view class="dingdans_top_left_dw" style=" ">
               <text>库存</text>
             </view>
           </view>
-          <view class="dingdans_top_dw" style="
+          <view  v-if="tableData[0].inPrice" class="dingdans_top_dw" style="
           width: 20vw;          font-weight: 600;padding-bottom: 0px;margin-right: 5px;
           border-bottom: 0; color: #333333">
             <view class="dingdans_top_left_dw" style=" ">
               <text>入库价</text>
             </view>
           </view>
-          <view class="dingdans_top_dw" style="
+          <view  v-if="tableData[0].inPrice" class="dingdans_top_dw" style="
           width: 15vw;    margin-left: 5px;        margin-right: 2px;  font-weight: 600;padding-bottom: 0px;
           border-bottom: 0; color: #333333">
             <view class="dingdans_top_left_dw" style=" ">
@@ -172,7 +172,7 @@
               <text>{{item.price }}</text>
             </view>
           </view>
-          <view class="dingdans_top_dw" style="
+          <view  class="dingdans_top_dw" style="
           width: 25vw;padding-bottom: 0px;
           border-bottom: 0; ">
             <view class="dingdans_top_left_dw" style="color: #7a7a7a ">
@@ -180,14 +180,14 @@
               <text v-if="item.price "> {{item.price | getThePrice}}</text>
             </view>
           </view>
-          <view class="dingdans_top_dw" style="
+          <view  v-if="tableData[0].inPrice" class="dingdans_top_dw" style="
           width: 15vw;padding-bottom: 0px;    margin-left: 5px;
           border-bottom: 0; ">
             <view class="dingdans_top_left_dw" style=" color: #7a7a7a;margin-left: 7px;">
               <text>{{item.inventory }}</text>
             </view>
           </view>
-          <view class="dingdans_top_dw" style="
+          <view  v-if="tableData[0].inPrice" class="dingdans_top_dw" style="
           width: 20vw;padding-bottom: 0px;
           border-bottom: 0; ">
             <view class="dingdans_top_left_dw" style=" color: #7a7a7a">
@@ -197,7 +197,7 @@
               </text>
             </view>
           </view>
-          <view class="dingdans_top_dw" style="
+          <view  v-if="tableData[0].inPrice"  class="dingdans_top_dw" style="
           width: 25vw;padding-bottom: 0px;
           border-bottom: 0; ">
             <view class="dingdans_top_left_dw" style="color: #7a7a7a ">

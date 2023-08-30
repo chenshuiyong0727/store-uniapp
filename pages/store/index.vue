@@ -423,10 +423,10 @@
             value: 'add',
             text: '商品入库'
           },
-          {
-            value: 'resetHandle',
-            text: '重置'
-          }
+          // {
+          //   value: 'resetHandle',
+          //   text: '重置'
+          // }
         ],
         optionsOp: [
           {
@@ -700,9 +700,9 @@
         if ('add' == action) {
           this.add()
         }
-        if ('resetHandle' == action) {
-          this.resetHandle()
-        }
+        // if ('resetHandle' == action) {
+        //   this.resetHandle()
+        // }
       },
       menuActionList(action, item) {
         if (action === '') {
@@ -784,21 +784,9 @@
         // #endif
       },
       jumpOrder(actNo) {
-        let url= this.getLocalPath()
         uni.reLaunch({
           url: '/pages/order/index?backUrl=/pages/store/index&actNo=' + actNo
         });
-      },
-      getLocalPath(){
-        let curPage = getCurrentPages();
-        let route = curPage[curPage.length - 1].route; //获取当前页面的路由
-        let params = curPage[curPage.length - 1].options; //获取当前页面参数，如果有则返回参数的对象，没有参数返回空对象{}
-        let param = ''
-        for (let key in params) {
-          param += '&' + key + '=' + params[key]
-        }
-        let res =route + param
-        return  res
       },
       converData(item) {
         let list = []

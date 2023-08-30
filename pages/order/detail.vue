@@ -4,6 +4,12 @@
       <view @click="$goBack" class="u-nav-slot" slot="left">
         <u-icon name="arrow-left" size="20"></u-icon>
       </view>
+      <view class="u-nav-slot" style="font-size: 15px;" slot="right">
+        <rudon-rowMenuDotDotDot :localdata="optionsOp" @change="menuActionList($event)">
+          <text v-if="[2,3,4,5,6,11].includes(form.status)">更多</text>
+          <text v-else >操作</text>
+        </rudon-rowMenuDotDotDot>
+      </view>
     </u-navbar>
     <view v-if="form.status == 3"
           style="color: white;width: 100vw; height: 140px;background-color: #2b2d3c;margin-top: -3.1px;">
@@ -145,18 +151,18 @@
         v-if="requestParamWl.waybillNo && ( form.status == 4 || form.status ==  5 || form.status == 6 || form.status == 7)"
         style="color: #333333;width: 100vw; height: 40px;background-color: white;">
       <view class="zuoyouduiqi" style="padding-top: 25px;">
-        <view style="margin-left: 10px;">
-          <image style="width: 28px;margin-top: -5px;" mode="widthFix"
+        <view style="margin-left: 10px;" class="xianglian">
+          <image style="width: 28px; margin-right: 3px" mode="widthFix"
                  src="../../static/img/ysz.png"></image>
           <strong v-if="form.status == 7" style="font-size: 15px;">查验鉴别通过</strong>
           <strong v-else style="font-size: 15px; ">{{ form.status | dictToDescTypeValue(37)
             }}</strong>
         </view>
-        <view v-if="requestParamWl.waybillNo" style="margin-right: 15px;">
+        <view v-if="requestParamWl.waybillNo" style="margin-right: 15px;" class="xianglian">
           <text v-if="!wldataLastDate" style="font-size: 15px; color: #5f6772">暂未物流信息</text>
           <text v-if="wldataLastDate" @click="gotoWl" style="font-size: 15px; color: #5f6772">查看物流
           </text>
-          <image mode="widthFix" v-if="wldataLastDate" @click="gotoWl" style="    margin-top: -6px;
+          <image mode="widthFix" v-if="wldataLastDate" @click="gotoWl" style="    margin-top: -2px;
     width: 18px;" src="../../static/img/more-dw.jpg"></image>
         </view>
       </view>
@@ -181,10 +187,10 @@
     <view v-if="form.addressId"
           style="color: #333333;width: 100vw; height: 40px;background-color: white;">
       <view class="zuoyouduiqi" style="padding-top: 25px;">
-        <view style="margin-left: 10px;">
+        <view style="margin-left: 10px;" class="xianglian">
           <image mode="widthFix" style="width: 28px;margin-top: -5px;"
                  src="../../static/img/shouhuodizhi.png"></image>
-          <strong style="font-size: 15px; margin-left: -1px;">收货人：得物App白冰冰</strong>
+          <text style="font-size: 15px;font-weight: 600 ">收货人：得物App白冰冰</text>
         </view>
         <view style="margin-right: 15px;">
           <strong style="font-size: 16px;">021-80392283</strong>
@@ -206,7 +212,7 @@
         <view style="
     text-align: right;
     margin-top: -19px;">
-          <text class="dw-button-common-a2" @click="$copyUrl(requestParamWl.waybillNo)"
+          <text class="dw-button-common-a2"  @click="$copyUrl(form.waybillNo )"
                   style="    padding: 1px 5px;">复制
           </text>
         </view>
@@ -472,6 +478,31 @@
         <image :src="imageZoom" mode="widthFix" class="showImg"></image>
       </view>
     </view>
+
+    <view style="height: 70px"></view>
+    <view class="baisebeijing shuipingjuzhong" style="width:100%;position:fixed;bottom:0;
+     border-top: solid #E2DDDD 1px;">
+      <u-button v-if="form.status==2" style="width: 50vw; margin: 10px 15px;" type="primary"  @click="toSell(form.id)">
+        <text class="dibuanniuwenzi">出售</text>
+      </u-button>
+      <u-button v-else-if="form.status==3" style="width: 50vw; margin: 10px 15px;" type="primary"  @click="toDelivery(form.id)">
+        <text class="dibuanniuwenzi">发货</text>
+      </u-button>
+      <u-button v-else-if="form.status==4" style="width: 50vw; margin: 10px 15px;" type="primary"   @click="changeStatusComfirm(form.id,5,'确认揽件')">
+        <text class="dibuanniuwenzi">揽件</text>
+      </u-button>
+      <u-button v-else-if="form.status==5" style="width: 50vw; margin: 10px 15px;" type="primary"   @click="changeStatusComfirm(form.id,6,'确认收货')">
+        <text class="dibuanniuwenzi">收货</text>
+      </u-button>
+      <u-button  v-else-if="[6,11].includes(form.status)"  style="width: 50vw; margin: 10px 15px;"   type="primary" @click="update(form,'交易成功')">
+        <text class="dibuanniuwenzi">成功</text>
+      </u-button>
+<!--      <text v-if="item.status==2" class="dw-button-common" @click="toSell(item.id)">出售</text>-->
+<!--      <text v-else-if="item.status==3" class="dw-button-common" @click="toDelivery(item.id)">发货</text>-->
+<!--      <text v-else-if="item.status==4" class="dw-button-common" @click="changeStatusComfirm(item.id,5,'确认揽件')">揽件</text>-->
+<!--      <text v-else-if="item.status==5" class="dw-button-common" @click="changeStatusComfirm(item.id,6,'确认收货')">收货</text>-->
+<!--      <text v-else-if="[6,11].includes(item.status)"  class="dw-button-common" @click="update(item,'交易成功')">成功</text>-->
+    </view>
   </view>
 </template>
 
@@ -483,6 +514,16 @@
  data() {
       return {
         fileUrl: this.$fileUrl,
+        optionsOp: [
+          {
+            value: 'update',
+            text: '修改'
+          },
+          {
+            value: 'gotoDw',
+            text: '得物'
+          }
+        ],
         form: {},
         days: 0,
         hours: 0,
@@ -517,6 +558,68 @@
       }
     },
     methods: {
+      menuActionList(action) {
+        let item = this.form
+        if (action === '') {
+          return
+        }
+        if ('update' == action) {
+          this.update(item )
+        }
+        if ('gotoDw' == action) {
+          this.gotoDw(item.spuId )
+        }
+      },
+      gotoDw(spuId) {
+        if (!spuId){
+          return
+        }
+        let url = "https://m.dewu.com/router/product/ProductDetail?spuId="+ spuId;
+        // #ifdef APP-PLUS
+        plus.runtime.openURL(url) //这里默认使用外部浏览器打开而不是内部web-view组件打开
+        // #endif
+        // #ifdef H5
+        window.open(url)
+        // #endif
+      },
+      changeStatusComfirm(id,status,msg) {
+        var _this = this;
+        uni.showModal({
+          title: '',
+          confirmColor: '#409eff',
+          content: msg,
+          success: function (res) {
+            if (res.confirm) {
+              _this.changeStatus(_this,id,status)
+            } else if (res.cancel) {
+            }
+          }
+        });
+      },
+      changeStatus(_this,id,status) {
+        let data={}
+        data.status = status
+        data.id = id
+        goodsOrderApi.update(data).then(res => {
+          this.$toast(res.subMsg)
+          if (res.subCode === 1000) {
+            _this.getDetailById(id)
+          }
+        })
+      },
+      toSell(id) {
+        this.$navigateTo('/pages/order/toSell?type=1&id=' +id)
+      },
+      toDelivery(id) {
+        this.$navigateTo('/pages/order/toDelivery?type=1&id=' +id)
+      },
+      update(row,titleName) {
+        let url = '/pages/order/update?type=1&id=' + row.id
+        if (titleName){
+          url = url + '&titleName=' +titleName
+        }
+        this.$navigateTo(url)
+      },
       jumpactNo(actNo) {
         let url = '/pages/store/index?actNo=' + actNo
         this.$navigateTo(url)
@@ -593,6 +696,7 @@
               this.form.successTime = this.form.successTime ? parseTime(this.form.successTime) : ''
               this.form.createTime = this.form.createTime ? parseTime(this.form.createTime) : ''
               this.form.updateTime = this.form.updateTime ? parseTime(this.form.updateTime) : ''
+              this.getWl()
             } else {
               this.$toast(res.subMsg)
             }
@@ -634,7 +738,13 @@
         })
       },
       gotoWl() {
-        this.isShowDialogWl = true
+        let orderData = this.form
+        if (!orderData.waybillNo) {
+          this.$toast('没有物流单号')
+          return
+        }
+        let url = '/pages/order/wlInfo?addressId=' + orderData.addressId + '&waybillNo=' +orderData.waybillNo+ '&id=' + orderData.id
+        this.$navigateTo(url)
       },
     }
   }
@@ -798,5 +908,26 @@
     font-weight: 600;
     color: #1ba5ad;
     margin-right: -3px;
+  }
+
+  .dw-button-common-a2 {
+    display: inline-block;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    background: #FFF;
+    border: 1px solid #a2a2a2;
+    color: #a2a2a2;
+    -webkit-appearance: none;
+    text-align: center;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    outline: 0;
+    margin: 0;
+    -webkit-transition: .1s;
+    transition: .1s;
+    padding: 6px 16px;
+    font-size: 12px;
+    border-radius: 3px;
   }
 </style>

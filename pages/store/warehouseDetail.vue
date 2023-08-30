@@ -5,15 +5,15 @@
         <u-icon name="arrow-left" size="20"></u-icon>
       </view>
     </u-navbar>
-    <view style="padding: 10px 5px ;position: fixed" class="zuoyouduiqi baisebeijing">
+    <view style="padding: 10px 5px ;position: fixed ;width: 100vw" class="zuoyouduiqi baisebeijing">
       <view class="store-list-1" >
         <view  style="display:flex ;align-items:center; background-color: white;border: 2px solid #f1f1f1 ;" class="store-list-1-view">
-          <view>
+          <view style="border-radius: 10px;">
             <image
                 v-if="img"
                 :src="img"
                 mode="widthFix"
-                style="width: 100%;border-radius: 10px;"
+                style="width: 17vw ; margin-top: 4vw;margin-left: 2vw"
                 @click="avatarShow(img)"
             ></image>
           </view>
@@ -484,7 +484,7 @@
     border-radius: 10px;
     text-align: center;
     background-color: #EEF2F7;
-    width: 22%;
+    width: 21.5vw;
     color: #333;
     font-size: 13px;
     -webkit-box-sizing: border-box;
