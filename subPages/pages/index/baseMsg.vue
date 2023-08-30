@@ -137,7 +137,7 @@
       <text style="font-size: 12px; margin-left: 3px; color: #333333">{{item.type | dictToDescTypeValue(52)}}</text>
     </view>
     <view>
-      <text class="dw-button-common" v-if="item.inventoryId || item.orderId || item.type == 12">详情</text>
+      <text class="dw-button-common" v-if="item.inventoryId || item.type== 3 || item.type== 10 || item.type == 12">详情</text>
       <text class="dw-button-common" v-if="item.waitType == 1" style="margin-left: 2vw"  @click.stop="updateOneStatus(item.id)">已办</text>
     </view>
   </view>
@@ -461,13 +461,10 @@
       gotoDetail(item) {
         let url = ''
         if (item.inventoryId && !item.orderId) {
-           url = '/pages/store/index?backUrl=/subPages/pages/index/baseMsg&current=1&today=7&actNo=' + item.actNo
+          url = '/pages/store/index?backUrl=/pages/index/baseMsg&current=1&today=7&actNo=' + item.actNo
         }
-        if (item.orderId) {
-           url = '/pages/order/index?backUrl=/subPages/pages/index/baseMsg&current=1&status=3&orderNo=' + item.orderNo
-        }
-        if (item.type== 12){
-          url = '/pages/order/index?backUrl=/subPages/pages/index/baseMsg&current=1&status=3'
+        if (item.type== 12 || item.type== 3  || item.type== 10){
+          url = '/pages/order/index?backUrl=/pages/index/baseMsg&current=1&status=3'
         }
         if (url) {
           this.$navigateTo(url)
