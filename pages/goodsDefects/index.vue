@@ -873,6 +873,7 @@
         this.getPage()
       },
       resetHandle() {
+        this.current = 0
         this.queryParam = {
           id: '',
           keyword: '',
