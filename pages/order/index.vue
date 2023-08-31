@@ -337,7 +337,7 @@
             </p>
           </view>
           <view class="diangdans_con_right_dw">
-            <view class="dingdans_con_right_top_dw" @click.stop="goodsDetail(item.goodsId)" >
+            <view class="dingdans_con_right_top_dw" >
               <text class="chaochu"  style="width: 65vw">
                 {{item.goodsName }}
               </text>
@@ -505,6 +505,10 @@ showFrom: false,
           }
         ],
         optionsOp: [
+          {
+            value: 'goodsDetail',
+            text: '商品详情'
+          },
           {
             value: 'update',
             text: '修改'
