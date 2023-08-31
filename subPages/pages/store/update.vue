@@ -225,7 +225,7 @@
                 url: '/pages/store/index',
               });
             }, 1000)
-        }
+          }
         })
       },
       handleClick() {

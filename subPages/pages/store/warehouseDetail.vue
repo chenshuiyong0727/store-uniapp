@@ -5,7 +5,7 @@
         <image class="back_icon" :src="fileUrl +'/static/img/back3.png'"></image>
       </view>
     </u-navbar>
-    <view style="padding: 10px 5px ;position: fixed ;width: 100vw" class="zuoyouduiqi baisebeijing">
+    <view style="padding: 10px 5px ;position: fixed ;    margin-top: 20px;width: 100vw" class="zuoyouduiqi baisebeijing">
       <view class="store-list-1" >
         <view  style="display:flex ;align-items:center; background-color: white;border: 2px solid #f1f1f1 ;" class="store-list-1-view">
           <view style="border-radius: 10px;">
@@ -50,7 +50,7 @@
         </view>
       </view>
     </view>
-    <view style="margin-top: 106px;">
+    <view style="margin-top: 128px;">
       <view class="dingdans_item_other" v-for="(item,index) in tableData" :key="index">
         <view class="dingdans_top_other zuoyouduiqi" style="border-left: 0px;">
           <view  style="width: 50px;
@@ -68,9 +68,9 @@
           </view>
 
 
-          <view style="margin-right: 12px;" @click="goDetail(item.id , 1)" >
+          <view class="xianglian" style="margin-right: 12px;" @click="goDetail(item.id , 1)" >
             <strong>尺码：</strong>
-            <strong style="color: #409eff"> {{item.size}} </strong>
+            <strong style="margin-top: 2px;color: #409eff"> {{item.size}} </strong>
           </view>
         </view>
 
@@ -341,8 +341,12 @@
         goodsInventoryApi.batchupdateStatus(this.requestParam).then((res) => {
           this.$toast(res.subMsg)
           if (res.subCode === 1000) {
-            this.getPage()
             this.isShowDialog = false
+            setTimeout(() => {
+              uni.reLaunch({
+                url: '/pages/store/index',
+              });
+            }, 1000)
           }
         })
       },
@@ -350,8 +354,12 @@
         goodsInventoryApi.batchupdateStatus(this.requestParamChannelId).then((res) => {
           this.$toast(res.subMsg)
           if (res.subCode === 1000) {
-            this.getPage()
             this.isShowDialog1 = false
+            setTimeout(() => {
+              uni.reLaunch({
+                url: '/pages/store/index',
+              });
+            }, 1000)
           }
         })
       },
@@ -495,7 +503,7 @@
     margin-left: 1vw;
     padding-top: 0px;
     padding-right: 0px;
-    padding-bottom: 0px;
+    padding-bottom: 2px;
     padding-left: 0px;
   }
 </style>
