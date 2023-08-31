@@ -378,7 +378,10 @@
       </view>
     </view>
     <view v-if="storeData.upCout">
-      <uni-fab ref="fab" :pattern="pattern"  horizontal="right" @fabClick="syncOldPriceToNew1" />
+      <uni-fab ref="fab" :pattern="pattern"  horizontal="left" @fabClick="syncOldPriceToNew1" />
+    </view>
+    <view>
+      <uni-fab ref="fab" :pattern="pattern1"  horizontal="right" @fabClick="add" />
     </view>
   </view>
 </template>
@@ -391,6 +394,13 @@
  data() {
       return {
         fileUrl: this.$fileUrl,
+        pattern1: {
+          color: '#7A7E83',
+          backgroundColor: '#fff',
+          selectedColor: '#409eff',
+          buttonColor: '#409eff',
+          iconColor: '#fff'
+        },
         pattern: {
           icon:'checkmarkempty',
           color: '#7A7E83',
@@ -745,15 +755,6 @@
         this.showTo = false;
         let timeValue = uni.$u.timeFormat(e.value, 'yyyy-mm-dd');
         this.queryParam.createTimeTo = timeValue
-        this.search1()
-      },
-      moveHandle() {},
-      confirm_sx_type(e) {
-        this.show_sx_type = false
-        let fieldValue = e.value[0].fieldValue
-        let fieldName = e.value[0].fieldName
-        this.queryParam.type = fieldValue
-        this.queryParam.typeStr = fieldName
         this.search1()
       },
       goodsDetail(id) {
