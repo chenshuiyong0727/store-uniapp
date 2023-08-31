@@ -10,12 +10,11 @@
       </view>
     </u-navbar>
     <u--form
-        style="background-color: white"
-        class="julibiaoti"
         labelPosition="left"
         :model="form"
         ref="uForm"
     >
+      <view class="baisebeijing julibiaoti">
       <view style="width: 90vw;margin-left: 5vw;">
         <u-form-item
             label="图片"
@@ -71,6 +70,7 @@
           ></u--textarea>
           <u-icon v-if="type != 1" class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
         </u-form-item>
+      </view>
       </view>
     </u--form>
     <u-picker :show="show_sx_type" :columns="columns" @cancel="show_sx_type= false" :defaultIndex="defaultIndex"

@@ -63,12 +63,12 @@
       </view>
     </view>
     <u--form
-        style="margin-top: 168px;background-color: white"
-        class="julibiaoti"
+        style="margin-top: 168px;"
         labelPosition="left"
         :model="form"
         ref="uForm"
     >
+      <view class="baisebeijing julibiaoti">
       <view style="width: 90vw;margin-left: 5vw;">
         <u-form-item label-width="25vw"  label="运单号" borderBottom>
           <u--input  disabledColor="#fff" inputAlign="right"
@@ -164,6 +164,7 @@
                      v-model="requestParam.subsidiesPrice" type="digit" border="none"></u--input>
           <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
         </u-form-item>
+      </view>
       </view>
     </u--form>
     <buuug7-simple-datetime-picker

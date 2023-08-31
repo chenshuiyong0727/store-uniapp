@@ -61,7 +61,6 @@
       <text style="font-size: 17px;margin-bottom: 12px; color: #333333">尺码列表</text>
       <view  style="margin-top: 12px; " class="clearfix btm-distance">
         <uni-table
-            :style="tableData.length?'padding-bottom: 25vw;':''"
             ref="table"
             border
             stripe
@@ -83,17 +82,17 @@
               </text>
             </uni-td>
             <uni-td width="80">
-              <view>
+              <view class="inputH">
                 <u-input type="number" v-model="item.inventory"></u-input>
               </view>
             </uni-td>
             <uni-td width="80" align="center">
-              <view>
+              <view class="inputH">
                 <u-input  type="digit" v-model="item.price"></u-input>
               </view>
             </uni-td>
             <uni-td  width="80" align="center">
-              <view>
+              <view class="inputH">
                 <u-input  type="digit" v-model="item.dwPrice"></u-input>
               </view>
             </uni-td>
@@ -115,7 +114,7 @@
               </text>
             </uni-td>
             <uni-td width="90">
-              <view>
+              <view class="inputs">
                 <uni-data-select
                     v-model="item.channelId"
                     :localdata="range"
@@ -476,6 +475,15 @@
     font-size: 16px;
     background-color: #BEBEBE;
     padding: 8px 0px;
+  }
+
+  .inputH {
+    height: 27.5px;
+    padding-bottom: 3px;
+  }
+  .inputs {
+    height: 26px;
+    padding-bottom: 3px;
   }
 
 

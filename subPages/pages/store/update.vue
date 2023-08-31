@@ -6,69 +6,69 @@
       </view>
     </u-navbar>
     <u--form
-        style="background-color: white"
-        class="julibiaoti"
         labelPosition="left"
         :model="form"
         ref="uForm"
     >
-      <view style="width: 90vw;margin-left: 5vw;">
-        <u-form-item label="货号" label-width="25vw" borderBottom>
-          <u--input :disabled="true" disabledColor="#fff" inputAlign="right" color="#d1d1d1"
-                    v-model="orderData.actNo" border="none"></u--input>
-        </u-form-item>
-        <u-form-item label-width="25vw"  label="尺码"  borderBottom>
-          <hpy-form-select v-if="sizeList"  :dataList="sizeList" :hideBorder="true" :hideArrow="true" text="size" name="id" v-model="requestParam.sizeId"/>
-          <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
-        </u-form-item>
-        <u-form-item label-width="25vw"  label="渠道"  borderBottom>
-          <hpy-form-select v-if="channelIdList"  :dataList="channelIdList" :hideBorder="true" :hideArrow="true" text="fieldName" name="fieldValue" v-model="requestParam.channelId"/>
-          <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
-        </u-form-item>
+      <view class="baisebeijing julibiaoti">
+        <view style="width: 90vw;margin-left: 5vw;">
+          <u-form-item label="货号" label-width="25vw" borderBottom>
+            <u--input :disabled="true" disabledColor="#fff" inputAlign="right" color="#d1d1d1"
+                      v-model="orderData.actNo" border="none"></u--input>
+          </u-form-item>
+          <u-form-item label-width="25vw"  label="尺码"  borderBottom>
+            <hpy-form-select v-if="sizeList"  :dataList="sizeList" :hideBorder="true" :hideArrow="true" text="size" name="id" v-model="requestParam.sizeId"/>
+            <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
+          </u-form-item>
+          <u-form-item label-width="25vw"  label="渠道"  borderBottom>
+            <hpy-form-select v-if="channelIdList"  :dataList="channelIdList" :hideBorder="true" :hideArrow="true" text="fieldName" name="fieldValue" v-model="requestParam.channelId"/>
+            <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
+          </u-form-item>
 
-        <u-form-item label-width="25vw"  label="原始库存" borderBottom>
-          <u--input  disabledColor="#fff" inputAlign="right"
-                    v-model="requestParam.oldInventory" type="number " border="none"></u--input>
-          <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
-        </u-form-item>
+          <u-form-item label-width="25vw"  label="原始库存" borderBottom>
+            <u--input  disabledColor="#fff" inputAlign="right"
+                      v-model="requestParam.oldInventory" type="number " border="none"></u--input>
+            <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
+          </u-form-item>
 
-        <u-form-item label-width="25vw"  label="剩余库存" borderBottom>
-          <u--input  disabledColor="#fff" inputAlign="right"
-                    v-model="requestParam.inventory" type="number " border="none"></u--input>
-          <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
-        </u-form-item>
+          <u-form-item label-width="25vw"  label="剩余库存" borderBottom>
+            <u--input  disabledColor="#fff" inputAlign="right"
+                      v-model="requestParam.inventory" type="number " border="none"></u--input>
+            <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
+          </u-form-item>
 
-        <u-form-item label-width="25vw" label="入库价" borderBottom>
-          <u--input  disabledColor="#fff" inputAlign="right" @change="keyup1"
-                    v-model="requestParam.price" type="digit" border="none"></u--input>
-          <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
-        </u-form-item>
+          <u-form-item label-width="25vw" label="入库价" borderBottom>
+            <u--input  disabledColor="#fff" inputAlign="right" @change="keyup1"
+                      v-model="requestParam.price" type="digit" border="none"></u--input>
+            <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
+          </u-form-item>
 
-        <u-form-item label-width="25vw" label="出售价格" borderBottom>
-          <u--input  disabledColor="#fff" inputAlign="right" @change="keyup1"
-                    v-model="requestParam.dwPrice" type="digit" border="none"></u--input>
-          <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
-        </u-form-item>
-        <u-form-item label-width="30vw" label="入库时间" @click="$refs.myPicker.show();$hideKeyboard" borderBottom>
-          <u--input inputAlign="right" disabledColor="#fff" placeholder="请选择"
-                    placeholderStyle="font-size: 14px;color:#808080"
-                    v-model="requestParam.createTime" border="none" disabled></u--input>
-          <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
-        </u-form-item>
-        <u-form-item label-width="25vw" label="手续费" borderBottom>
-          <u--input  :disabled="true" disabledColor="#fff" inputAlign="right"
-                    v-model="requestParam.poundage" type="digit" border="none" color="#d1d1d1"></u--input>
-        </u-form-item>
+          <u-form-item label-width="25vw" label="出售价格" borderBottom>
+            <u--input  disabledColor="#fff" inputAlign="right" @change="keyup1"
+                      v-model="requestParam.dwPrice" type="digit" border="none"></u--input>
+            <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
+          </u-form-item>
+          <u-form-item label-width="30vw" label="入库时间" @click="$refs.myPicker.show();$hideKeyboard" borderBottom>
+            <u--input inputAlign="right" disabledColor="#fff" placeholder="请选择"
+                      placeholderStyle="font-size: 14px;color:#808080"
+                      v-model="requestParam.createTime" border="none" disabled></u--input>
+            <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
+          </u-form-item>
+          <u-form-item label-width="25vw" label="手续费" borderBottom>
+            <u--input  :disabled="true" disabledColor="#fff" inputAlign="right"
+                      v-model="requestParam.poundage" type="digit" border="none" color="#d1d1d1"></u--input>
+          </u-form-item>
 
-        <u-form-item label-width="25vw" label="到手价" borderBottom>
-          <u--input  :disabled="true" disabledColor="#fff" inputAlign="right"
-                    v-model="requestParam.theirPrice" type="digit" border="none" color="#d1d1d1"></u--input>
-        </u-form-item>
+          <u-form-item label-width="25vw" label="到手价" borderBottom>
+            <u--input  :disabled="true" disabledColor="#fff" inputAlign="right"
+                      v-model="requestParam.theirPrice" type="digit" border="none" color="#d1d1d1"></u--input>
+          </u-form-item>
 
-        <u-form-item label-width="25vw" label="利润" borderBottom>
-          <u--input  :disabled="true" disabledColor="#fff" inputAlign="right"
-                    v-model="requestParam.profits" type="digit" border="none" color="#d1d1d1"></u--input>
-        </u-form-item>
+          <u-form-item label-width="25vw" label="利润" borderBottom>
+            <u--input  :disabled="true" disabledColor="#fff" inputAlign="right"
+                      v-model="requestParam.profits" type="digit" border="none" color="#d1d1d1"></u--input>
+          </u-form-item>
+        </view>
       </view>
     </u--form>
     <buuug7-simple-datetime-picker
