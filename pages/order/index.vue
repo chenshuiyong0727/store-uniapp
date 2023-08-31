@@ -344,7 +344,7 @@
             </view>
 
             <view class="dingdans_con_right_top_dw_3">
-              <text v-if="item.status == 3 && item.deliveryDeadlineTime" style="margin-left: 2px">
+              <text v-if="item.status == 3 && item.deliveryDeadlineTime" style="margin-left: 3px">
                 <text>发货截止时间</text>
               </text>
               <text  v-if="item.status == 3 && item.deliveryDeadlineTime" style="margin-left: 4px" class="dingdans_con_dw_time">
@@ -365,37 +365,39 @@
                 {{item.addressId | dictToDescTypeValue(38)}}
               </text>
             </view>
+
             <view v-if="item.surplusDay && item.saleType ==2  && item.status !=7"
-                  style="    margin-top: 12px;margin-bottom: 5px;">
+                  style="    margin-top: 12px;margin-bottom: 5px;" class="xianglian">
               <text v-if="item.surplusDay >12">剩余天数</text>
               <text v-if="item.surplusDay >=0 && item.surplusDay <=12" class="color-danger">剩余天数
               </text>
               <text v-if="item.surplusDay < 0" class="color-danger">到期天数</text>
-              <text v-if="item.surplusDay >12" style="margin-left: 2px">
+              <text v-if="item.surplusDay >12" style="margin-left: 3px">
                 {{item.surplusDay}}
               </text>
-              <strong style="margin-left: 2px" v-if="item.surplusDay >=0 && item.surplusDay <=12" class="color-danger">
+              <text style="margin-left: 3px" v-if="item.surplusDay >=0 && item.surplusDay <=12" class="color-font-strong">
                 {{item.surplusDay}}
-              </strong>
-              <strong style="margin-left: 2px" v-if="item.surplusDay < 0" class="color-danger">
+              </text>
+              <text style="margin-left: 3px" v-if="item.surplusDay < 0" class="color-font-strong">
                 {{ 0 - item.surplusDay}}
-              </strong>
+              </text>
             </view>
+
             <view class="dingdans_con_right_top_dw_2">
               <view>
                 <text>
                  尺码：{{item.size}}
                 </text>
               </view>
-              <view>
-                <strong v-if="item.theirPrice && ![2,11].includes(item.status)"
-                        style="color: #333333">
+              <view class="xianglian">
+                <text v-if="item.theirPrice && ![2,11].includes(item.status)"
+                        class="color-font">
                   ¥
-                </strong>
-                <strong  v-if="item.theirPrice && ![2,11].includes(item.status)"
-                        style="font-size: 17px ;margin-left: 2px;color: #333333">
+                </text>
+                <text class="color-font" v-if="item.theirPrice && ![2,11].includes(item.status)"
+                        style="font-size: 17px ;margin-left: 3px;color: #333333">
                   {{item.theirPrice}}
-                </strong>
+                </text>
                 <text v-if="![2,11].includes(item.status)"
                       style="margin-left: 3px;text-decoration:line-through;">
                   {{item.shelvesPrice}}
@@ -412,13 +414,13 @@
         <view class="dingdans_bottom_dw">
           <view v-if="[2,11].includes(item.status)" class="dingdans_top_left_dw">
             <text v-if="item.thisTimePrice">最低售价</text>
-            <text style="margin-left: 2px;"  v-if="item.thisTimePrice">{{item.thisTimePrice }} ,</text>
-            <text v-if="item.thisTimeProfits" style="margin-left: 2px">预估利润</text>
-            <text style="margin-left: 2px;"  v-if="item.thisTimeProfits">{{item.thisTimeProfits }}</text>
+            <text style="margin-left: 3px;"  v-if="item.thisTimePrice">{{item.thisTimePrice }} ,</text>
+            <text v-if="item.thisTimeProfits" style="margin-left: 3px">预估利润</text>
+            <text style="margin-left: 3px;"  v-if="item.thisTimeProfits">{{item.thisTimeProfits }}</text>
           </view>
           <view v-else class="dingdans_top_left_dw">
             <text>利润</text>
-            <text style="margin-left: 2px;"  class="color-danger">{{item.profits }}</text>
+            <text style="margin-left: 3px;"  class="color-danger">{{item.profits }}</text>
           </view>
           <!--          操作栏-->
           <view class="dingdans_top_right_dw">
