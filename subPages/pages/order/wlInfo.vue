@@ -5,7 +5,7 @@
         <image class="back_icon" :src="fileUrl +'/static/img/back3.png'"></image>
       </view>
     </u-navbar>
-    <view class="width92 baisebeijing" style="margin-top: 43px;">
+    <view class="width92 baisebeijing julibiaoti" >
       <view style="width: 85vw;margin-left: 4vw;    padding-top: 10px;">
         <text>
           <strong v-if="orderData.goodsId"

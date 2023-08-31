@@ -5,14 +5,14 @@
         <image class="back_icon" :src="fileUrl +'/static/img/back3.png'"></image>
       </view>
     </u-navbar>
-    <view class="width92 baisebeijing" style="margin-top: 43px;">
+    <view class="width92 baisebeijing julibiaoti">
       <view style="width: 85vw;margin-left: 4vw;    padding-top: 10px;">
         <text>
-          <strong v-if="orderData1.goodsId"
+          <text class="color-font"  v-if="orderData1.goodsId"
                   @click="goodsDetail(orderData1.goodsId) "
-                  style="  color: #333333;font-size: 14px;">
+                  style="font-size: 14px;">
             {{orderData1.goodsName }}
-          </strong>
+          </text>
         </text>
       </view>
       <view class="dingdans_item" style="margin-bottom: 7px; border-bottom:0px ;padding:10px">
@@ -90,7 +90,7 @@
           <text style="font-weight: 600;font-size: 14px;margin-top: 5px;">出售价格</text>
         </view>
         <view class="zuoyouduiqi"
-              style="font-weight: 600;caret-color:#409eff;  border-bottom: 2px solid #333333;margin-top: 10px;">
+              style="font-weight: 600;caret-color:#409eff;  border-bottom: 2px solid #333333;margin-top: 10px;padding-bottom: 9px;">
           <view style="width: 10vw">
             <u-text
                 size="20"
@@ -375,6 +375,7 @@
         })
       },
       goodsDetail(id) {
+        console.info(id)
         if (!id) {
           return
         }

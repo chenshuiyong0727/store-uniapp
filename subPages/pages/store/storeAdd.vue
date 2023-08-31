@@ -5,7 +5,7 @@
         <image class="back_icon" :src="fileUrl +'/static/img/back3.png'"></image>
       </view>
     </u-navbar>
-    <view class="dingdans_item" style="margin-top: 50px; margin-bottom: 7px; border-bottom:0px ;padding:0" >
+    <view class="dingdans_item" style="margin-top: 70px; margin-bottom: 7px; border-bottom:0px ;padding:0" >
       <view class="dingdans_con" style="padding:5px">
         <view style="  width: 200px;
   height: 84px;
