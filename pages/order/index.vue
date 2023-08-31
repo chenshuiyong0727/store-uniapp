@@ -4,11 +4,6 @@
       <view @click="goBack" class="u-nav-slot" slot="left">
         <u-icon name="arrow-left" size="20"></u-icon>
       </view>
-      <view @click="showSd = !showSd"  class="u-nav-slot" slot="right" style="font-size: 15px;">
-        <text>
-          {{!showSd ? '批量操作' : '退出' }}
-        </text>
-      </view>
     </u-navbar>
     <view class="fenlei_top_tab" style="display: flex;">
       <view style="width: 83vw" class="baisebeijing">
@@ -318,7 +313,7 @@
         </view>
         <!--        中间-->
         <view class="dingdans_con_dw"  @click="goDetail(item.id) ">
-          <view v-if="showSd" style="width: 50px;
+          <view v-if="showSd" style="
     margin-left: -2px;
     margin-right: 2px;">
             <u-checkbox-group>
@@ -476,10 +471,18 @@
         width: 20vw;
         margin-top: 8px;
     margin-bottom: 8px;
+    margin-left: 8px;" @click="sdzf">批量操作</u-button>
+        <u-button  type="primary" shape="circle" size="small" style="
+        width: 15vw;
+        margin-top: 8px;
+    margin-bottom: 8px;
     margin-left: 8px;
-        margin-right: 20px" @click="sdzf">批量操作
+        margin-right: 10px" @click="showSd = !showSd">退出
         </u-button>
       </view>
+    </view>
+    <view v-if="!showSd">
+      <uni-fab ref="fab" :pattern="pattern1"  horizontal="right" @fabClick="showSd = !showSd" />
     </view>
   </view>
 </template>
@@ -491,10 +494,18 @@
 
  data() {
       return {
+        pattern1: {
+          icon:'bars',
+          color: '#7A7E83',
+          backgroundColor: '#fff',
+          selectedColor: '#409eff',
+          buttonColor: '#409eff',
+          iconColor: '#fff'
+        },
         fileUrl: this.$fileUrl,
         backUrl: '',
         dateCurrent: parseInt(new Date().getTime()),
-showFrom: false,
+        showFrom: false,
         showTo: false,
         show_sx_type: false,
         emtityMsg: '',
