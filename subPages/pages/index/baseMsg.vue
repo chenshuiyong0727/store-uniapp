@@ -461,11 +461,11 @@
       gotoDetail(item) {
         let url = ''
         if (item.type== 2 ) {
-          url = '/pages/store/index?backUrl=/pages/index/baseMsg&current=1&today=7&actNo=' + item.actNo
+          url = '/pages/store/index?backUrl=/subPages/pages/index/baseMsg&current=1&today=7&actNo=' + item.actNo
         }else if(item.type== 13){
-          url = '/pages/store/index?backUrl=/pages/index/baseMsg&current=3&today=7&actNo=' + item.actNo
+          url = '/pages/store/index?backUrl=/subPages/pages/index/baseMsg&current=3&today=7&actNo=' + item.actNo
         } else if(item.type== 12 || item.type== 3  || item.type== 10){
-          url = '/pages/order/index?backUrl=/pages/index/baseMsg&current=1&status=3'
+          url = '/pages/order/index?backUrl=/subPages/pages/index/baseMsg&current=1&status=3'
         }
         if (url) {
           this.$navigateTo(url)
