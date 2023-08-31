@@ -106,7 +106,7 @@
               <view class="dingdans_top_right_dw">
                 <view class="dingdans_con_right_down_2_1">
                   <text class="dw-button-common" @click.stop="storeAdd(item.id)">选择</text>
-                  <text class="dw-button-common" v-if="item.spuId" style="margin-left: 2vw" @click.stop="gotoDw(item.spuId)">得物</text>
+<!--                  <text class="dw-button-common" v-if="item.spuId" style="margin-left: 2vw" @click.stop="gotoDw(item.spuId)">得物</text>-->
                 </view>
               </view>
             </view>
@@ -450,13 +450,7 @@
         if (!spuId){
           return
         }
-        let url = "https://m.dewu.com/router/product/ProductDetail?spuId="+ spuId;
-        // #ifdef APP-PLUS
-        plus.runtime.openURL(url) //这里默认使用外部浏览器打开而不是内部web-view组件打开
-        // #endif
-        // #ifdef H5
-        window.open(url)
-        // #endif
+        this.$navigateTo('/pages/webview/webview?spuId=' + spuId)
       },
       chooseType(type) {
         for (let i = 0; i < this.list2.length; i++) {

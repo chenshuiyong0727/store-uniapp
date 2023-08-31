@@ -4,11 +4,6 @@
       <view @click="goBack"  class="u-nav-slot" slot="left">
         <image class="back_icon_0" :src="fileUrl +'/static/img/back3.png'"></image>
       </view>
-<!--      <view class="u-nav-slot" style="font-size: 15px;" slot="right">-->
-<!--        <rudon-rowMenuDotDotDot :localdata="localdata" @change="menuAction($event)">-->
-<!--          <image style="height: 25px;width: 25px" :src="fileUrl +'/static/img/slh.png'"></image>-->
-<!--        </rudon-rowMenuDotDotDot>-->
-<!--      </view>-->
     </u-navbar>
     <view class="fenlei_top_tab" style="display: flex;">
       <view style="width: 94vw" class="baisebeijing">
@@ -273,11 +268,11 @@
       >
         <!--        头部-->
         <view class="dingdans_top_dw" @click="goDetail(item.id) ">
-          <view class="dingdans_top_left_dw">
-            <text>入库时间:</text>
-            <text>{{item.createTime |formateTime}}</text>
+          <view class="dingdans_top_left_dw ">
+            <text>入库时间：</text>
+            <text class="ml-3">{{item.createTime |formateTime}}</text>
           </view>
-          <view class="dingdans_top_right_dw xianglian" v-if="item.difference && item.thisTimePrice">
+          <view class="dingdans_top_right_dw xianglian jiagejiage" v-if="item.difference && item.thisTimePrice">
             <text>变更</text>
             <text style="font-size: 13px;margin-left: 1vw;" v-if="item.difference > 0" class="color-font-strong"> +{{item.difference }}</text>
             <text style="font-size: 13px;margin-left: 1vw;" v-else class="color-dw-strong">{{item.difference }}</text>
@@ -344,7 +339,7 @@
         <view class="dingdans_bottom_dw">
           <view class="dingdans_top_left_dw">
             <text >入库价</text>
-            <text style="margin-left: 2px;" class="color-danger">{{item.price}}</text>
+            <text style="margin-left: 3px;" class="color-danger">{{item.price}}</text>
             <text >, 预估利润</text>
             <text style="margin-left: 3px;"  :class="item.thisTimeProfits>= 0 ? 'color-danger': 'color-success'"  v-if="item.thisTimePrice" >{{item.thisTimeProfits }}</text>
             <text style="margin-left: 3px;"  v-else
@@ -434,10 +429,10 @@
             value: 'update',
             text: '修改'
           },
-          {
-            value: 'gotoDw',
-            text: '得物'
-          },
+          // {
+          //   value: 'gotoDw',
+          //   text: '得物'
+          // },
           {
             value: 'jumpOrder',
             text: '订单'
@@ -769,22 +764,9 @@
         this.$navigateTo(url)
       },
       gotoDw(spuId) {
-        if (!spuId){
-          return
-        }
-        let url = "https://m.dewu.com/router/product/ProductDetail?spuId="+ spuId;
-        // #ifdef APP-PLUS
-        plus.runtime.openURL(url) //这里默认使用外部浏览器打开而不是内部web-view组件打开
-        // #endif
-        // #ifdef H5
-        window.open(url)
-        // #endif
+        this.$gotoDw(spuId)
       },
       jumpOrder(actNo) {
-        // let url= this.getLocalPath()
-        // uni.reLaunch({
-        //   url: '/pages/order/index?backUrl=/pages/store/index&actNo=' + actNo
-        // });
         this.$navigateTo('/pages/order/index?backUrl=/pages/store/index&actNo=' + actNo)
       },
       getLocalPath(){

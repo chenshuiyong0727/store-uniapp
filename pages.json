@@ -305,6 +305,14 @@
 
         "enablePullDownRefresh": true
       }
+    },
+    {
+      "path" : "pages/webview/webview",
+      "style" :
+      {
+        "navigationBarTitleText": "",
+        "enablePullDownRefresh": false
+      }
     }
   ],
   "tabBar": {

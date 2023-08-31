@@ -323,13 +323,13 @@
                       class="color-danger" style="margin-left: 5px;font-size: 20px;">冲冲冲</strong>
             </view>
             <!--          操作栏-->
-            <view class="dingdans_top_right_dw">
-              <view class="dingdans_con_right_down_2_1">
-                <text @click="gotoDw(item.spuId)"
-                        class="dw-button-common">得物
-                </text>
-              </view>
-            </view>
+<!--            <view class="dingdans_top_right_dw">-->
+<!--              <view class="dingdans_con_right_down_2_1">-->
+<!--                <text @click="gotoDw(item.spuId)"-->
+<!--                        class="dw-button-common">得物-->
+<!--                </text>-->
+<!--              </view>-->
+<!--            </view>-->
           </view>
           <!--底部-->
         </view>
@@ -564,16 +564,10 @@
         this.$navigateTo(url)
       },
       gotoDw(spuId) {
-        if (!spuId) {
+        if (!spuId){
           return
         }
-        let url = "https://m.dewu.com/router/product/ProductDetail?spuId=" + spuId;
-        // #ifdef APP-PLUS
-        plus.runtime.openURL(url) //这里默认使用外部浏览器打开而不是内部web-view组件打开
-        // #endif
-        // #ifdef H5
-        window.open(url)
-        // #endif
+        this.$navigateTo('/pages/webview/webview?spuId=' + spuId)
       },
       chooseType(type) {
         for (let i = 0; i < this.list2.length; i++) {

@@ -275,8 +275,21 @@ const getLocalPath = () => {
   let res = route + param
   return '/'+ res
 }
+const gotoDw = (spuId)=>{
+  // uni.showToast({
+  //   title: '小程序端暂未开放此功能'
+  // });
+  toast('小程序端暂未开放此功能')
+  // if (!spuId){
+  //   return
+  // }
+  // uni.navigateTo({
+  //   url:'/pages/webview/webview?spuId=' + spuId
+  // })
+}
 
 module.exports = {
+  gotoDw,
   encrypt,
   navigateTo,
   isTokenExpire,

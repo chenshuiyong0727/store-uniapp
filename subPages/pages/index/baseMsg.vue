@@ -486,18 +486,6 @@
           }
         })
       },
-      gotoDw(spuId) {
-        if (!spuId){
-          return
-        }
-        let url = "https://m.dewu.com/router/product/ProductDetail?spuId="+ spuId;
-        // #ifdef APP-PLUS
-        plus.runtime.openURL(url) //这里默认使用外部浏览器打开而不是内部web-view组件打开
-        // #endif
-        // #ifdef H5
-        window.open(url)
-        // #endif
-      },
       chooseType(waitType) {
         this.current = 1
         for (let i = 0; i < this.list2.length; i++) {
@@ -508,14 +496,6 @@
         this.queryParam.waitType = waitType
         this.search1()
       },
-      // storeAdd(goodsId) {
-      //   let url = '/subPages/pages/store/storeAdd?goodsId=' + goodsId
-      //   this.$navigateTo(url)
-      // },
-      // jumpactNo(actNo) {
-      //   let url = '/pages/store/index?backUrl=/pages/goodsBase/index&actNo=' + actNo
-      //   this.$navigateTo(url)
-      // },
       updateAllStatus() {
         var _this = this;
         uni.showModal({

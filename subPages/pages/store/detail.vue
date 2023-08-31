@@ -226,10 +226,10 @@
             value: 'update',
             text: '修改'
           },
-          {
-            value: 'gotoDw',
-            text: '得物'
-          },
+          // {
+          //   value: 'gotoDw',
+          //   text: '得物'
+          // },
           {
             value: 'jumpOrder',
             text: '订单'
@@ -307,13 +307,7 @@
         if (!spuId){
           return
         }
-        let url = "https://m.dewu.com/router/product/ProductDetail?spuId="+ spuId;
-        // #ifdef APP-PLUS
-        plus.runtime.openURL(url) //这里默认使用外部浏览器打开而不是内部web-view组件打开
-        // #endif
-        // #ifdef H5
-        window.open(url)
-        // #endif
+        this.$navigateTo('/pages/webview/webview?spuId=' + spuId)
       },
       jumpOrder(actNo) {
         let url= this.$getLocalPath()
