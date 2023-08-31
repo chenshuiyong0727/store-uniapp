@@ -282,10 +282,9 @@
             <text v-else>{{ item.status | dictToDescTypeValue(37) }}</text>
           </view>
         </view>
-        <view v-if="item.status == 3 && item.deliveryDeadlineTime"  @click="goDetail(item.id) "
+        <view v-if="item.status == 3 && item.deliveryDeadlineTime && item.showtime"  @click="goDetail(item.id) "
               style="background-color: #fbfbfd;color: #333333;font-weight: 600;font-size: 13px;">
-          <view class="xianglian" style="padding: 6px;
-    margin-left: 5px;">
+          <view class="xianglian" style="padding: 6px;margin-left: 5px;">
             <image style=" margin-bottom: 1px; width: 18px;height: 18px;"
                    :src="fileUrl +'/static/img/djs.png'"></image>
             <text style="font-size: 14px;margin-left: 5px;">发货仅剩：</text>
@@ -297,14 +296,20 @@
               {{ item.hours}}
             </strong>
             <text v-if=" item.hours">时</text>
-            <strong style="font-size: 15px;">
+            <strong v-if=" item.minutes" style="font-size: 15px;">
               {{ item.minutes}}
             </strong>
-            <text>分</text>
-            <strong style="font-size: 15px;">
+            <text  v-if=" item.minutes">分</text>
+            <strong v-if=" item.seconds" style="font-size: 15px;">
               {{ item.seconds}}
             </strong>
-            <text>秒</text>
+            <text v-if=" item.seconds">秒</text>
+          </view>
+        </view>
+        <view v-if="item.status == 3 && item.deliveryDeadlineTime && !item.showtime"  @click="goDetail(item.id) "
+              style="background-color: #fbfbfd;color: #333333;font-weight: 600;font-size: 13px;">
+          <view class="xianglian" style="padding: 6px;margin-left: 5px;">
+            <text style="font-size: 14px;margin-left: 5px; " class="color-danger">超时发货</text>
           </view>
         </view>
         <!--        中间-->
@@ -980,6 +985,13 @@
       countdown(orderData) {
         if (orderData.status != 3) {
           return
+        }
+        let now = new Date();
+        let targetTime = new Date(orderData.deliveryDeadlineTime);
+        if (now > targetTime) {
+          orderData.showtime= false
+        } else {
+          orderData.showtime= true
         }
         orderData.days = 0
         orderData.hours = 0
