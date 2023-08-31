@@ -481,8 +481,10 @@
       return {
         fileUrl: this.$fileUrl,
         backUrl: '',
+        backKey: '',
+        backVal: '',
         dateCurrent: parseInt(new Date().getTime()),
-showFrom: false,
+        showFrom: false,
         showTo: false,
         show_sx_type: false,
         emtityMsg: '',
@@ -723,6 +725,8 @@ showFrom: false,
         this.queryParam.theExpire = options.theExpire ? +options.theExpire : '';
         this.months = options.months ? options.months : '';
         this.backUrl = options.backUrl ? options.backUrl : '';
+        this.backKey = options.backKey ? options.backKey : '';
+        this.backVal = options.backVal ? options.backVal : '';
         if (this.months) {
           this.queryParam.successTimeFrom = this.months
           this.queryParam.successTimeTo = this.months
@@ -806,7 +810,11 @@ showFrom: false,
       },
       goBack() {
         if (this.backUrl) {
-          this.$navigateTo(this.backUrl)
+          let url = this.backUrl
+          if(this.backVal && this.backKey){
+            url = this.backUrl +'?'+this.backKey+'='+this.backVal
+          }
+          this.$navigateTo(url)
         }else{
           this.$goBack
         }

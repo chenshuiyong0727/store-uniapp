@@ -4,10 +4,9 @@
       <view @click="$goBack" class="u-nav-slot" slot="left">
         <image class="back_icon" :src="fileUrl +'/static/img/back3.png'"></image>
       </view>
-      <view class="u-nav-slot" style="font-size: 15px;" slot="right">
+      <view class="u-nav-slot navbar_right"  slot="right">
         <rudon-rowMenuDotDotDot :localdata="optionsOp" @change="menuActionList($event)">
-          <text v-if="[2,3,4,5,6,11].includes(form.status)">更多</text>
-          <text v-else >操作</text>
+          <image class="navbar_right_image" :src="fileUrl +'/static/img/gd1.png'"></image>
         </rudon-rowMenuDotDotDot>
       </view>
     </u-navbar>

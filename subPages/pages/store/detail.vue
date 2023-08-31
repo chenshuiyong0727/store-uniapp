@@ -4,11 +4,9 @@
       <view @click="$goBack"  class="u-nav-slot" slot="left">
         <image class="back_icon" :src="fileUrl +'/static/img/back3.png'"></image>
       </view>
-      <view class="u-nav-slot" style="font-size: 15px;" slot="right">
+      <view class="u-nav-slot navbar_right" slot="right">
         <rudon-rowMenuDotDotDot :localdata="optionsOp" @change="menuActionList($event)">
-<!--          <text v-if="form.inventory > form.galleryCount" >更多</text>-->
-<!--          <text v-else >操作</text>-->
-          <image style="height: 25px;width: 25px" :src="fileUrl +'/static/img/gd1.png'"></image>
+          <image class="navbar_right_image" :src="fileUrl +'/static/img/gd1.png'"></image>
         </rudon-rowMenuDotDotDot>
       </view>
     </u-navbar>
@@ -288,20 +286,20 @@
         }
       },
       gallery(id) {
-        this.$navigateTo('/pages/store/storeUp?id=' + id)
+        this.$navigateTo('/subPages/pages/store/storeUp?id=' + id)
       },
       goodsDetail(id) {
         if (!id) {
           return
         }
-        let url = '/pages/goodsBase/detail?id=' + id
+        let url = '/subPages/pages/goodsBase/detail?id=' + id
         this.$navigateTo(url)
       },
       warehouseDetail(goodsId , actNo,img) {
-        this.$navigateTo('/pages/store/warehouseDetail?goodsId=' + goodsId +'&actNo=' +actNo +'&img=' +img)
+        this.$navigateTo('/subPages/pages/store/warehouseDetail?goodsId=' + goodsId +'&actNo=' +actNo +'&img=' +img)
       },
       update(row) {
-        this.$navigateTo('/pages/store/update?id=' + row.id)
+        this.$navigateTo('/subPages/pages/store/update?id=' + row.id)
       },
       gotoDw(spuId) {
         if (!spuId){
@@ -310,9 +308,8 @@
         this.$navigateTo('/pages/webview/webview?spuId=' + spuId)
       },
       jumpOrder(actNo) {
-        let url= this.$getLocalPath()
         uni.reLaunch({
-          url: '/pages/order/index?backUrl='+url+'&actNo=' + actNo
+          url: '/pages/order/index?backUrl=/subPages/pages/store/detail&actNo=' + actNo +'&backKey=id&backVal=' + this.id
         });
       },
       // getLocalPath(){

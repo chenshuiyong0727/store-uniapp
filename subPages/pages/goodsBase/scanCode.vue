@@ -4,14 +4,6 @@
       <view @click="$goBack" class="u-nav-slot" slot="left">
         <image class="back_icon" :src="fileUrl +'/static/img/back3.png'"></image>
       </view>
-<!--      <view  @click="gotoAdd" class="u-nav-slot" slot="right" style="font-size: 15px;margin-right: 23vw">-->
-<!--        手动-->
-<!--      </view>-->
-<!--      <view class="u-nav-slot navbar_right" slot="right">-->
-<!--        <rudon-rowMenuDotDotDot :localdata="localdata" @change="menuAction($event)">-->
-<!--          <image style="height: 25px;width: 25px" :src="fileUrl +'/static/img/gd1.png'"></image>-->
-<!--        </rudon-rowMenuDotDotDot>-->
-<!--      </view>-->
     </u-navbar>
     <view class="fenlei_top_2">
       <view class="shoudongtianjia" >

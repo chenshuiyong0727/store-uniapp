@@ -4,9 +4,9 @@
       <view @click="$goBack" class="u-nav-slot" slot="left">
         <image class="back_icon" :src="fileUrl +'/static/img/back3.png'"></image>
       </view>
-      <view class="u-nav-slot" style="font-size: 15px;margin-right: 23vw" slot="right">
+      <view class="u-nav-slot navbar_right"  slot="right">
         <rudon-rowMenuDotDotDot :localdata="localdata" @change="menuAction($event)">
-          <image style="height: 25px;width: 25px" :src="fileUrl +'/static/img/gd1.png'"></image>
+          <image  class="navbar_right_image"  :src="fileUrl +'/static/img/gd1.png'"></image>
         </rudon-rowMenuDotDotDot>
       </view>
     </u-navbar>
