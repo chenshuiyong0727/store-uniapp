@@ -291,7 +291,7 @@
             </p>
           </view>
           <view class="diangdans_con_right_dw">
-            <view class="dingdans_con_right_top_dw"  @click.stop="goodsDetail(item.goodsId)" >
+            <view class="dingdans_con_right_top_dw" >
               <text class="chaochu"  style="width: 65vw">
                 {{item.goodsName }}
               </text>
@@ -420,17 +420,21 @@
         current: 0,
         pictureZoomShow: false,
         imageZoom: '',
-        localdata: [
-          {
-            value: 'add',
-            text: '商品入库'
-          },
-          {
-            value: 'resetHandle',
-            text: '重置'
-          }
-        ],
+        // localdata: [
+        //   {
+        //     value: 'add',
+        //     text: '商品入库'
+        //   },
+        //   {
+        //     value: 'resetHandle',
+        //     text: '重置'
+        //   }
+        // ],
         optionsOp: [
+          {
+            value: 'goodsDetail',
+            text: '商品详情'
+          },
           {
             value: 'warehouseDetail',
             text: '库存信息'
