@@ -271,7 +271,7 @@
                 title="开始时间"
                 :show="showFrom"
         v-model="dateCurrent"
-        mode="year-month"
+        :mode="dataType==1 ? 'year-month' : 'date'"
         :minDate="1646064000000"
         @confirm="confirmFrom"
         @cancel="cancelFrom"
@@ -280,7 +280,7 @@
        title="结束时间"
                 :show="showTo"
         v-model="dateCurrent"
-        mode="year-month"
+        :mode="dataType==1 ? 'year-month' : 'date'"
         :minDate="1646064000000"
         @confirm="confirmTo"
         @cancel="cancelTo"
@@ -472,13 +472,13 @@
           color: ["#409eff", "#00c2c2", "#F56C6C", "#FAC858", "#73C0DE", "#3CA272", "#FC8452",
             "#9A60B4", "#ea7ccc"],
           padding: [15, 10, 0, 15],
-          enableScroll: true,
+          // enableScroll: true,
           dataLabel: false,
           legend: {},
           xAxis: {
             disableGrid: true,
             scrollShow: true,
-            itemCount: 4
+            labelCount: 3
           },
           yAxis: {
             gridType: "dash",
@@ -496,6 +496,7 @@
           color: ["#409eff", "#00c2c2", "#F56C6C", "#FAC858", "#73C0DE", "#3CA272", "#FC8452",
             "#9A60B4", "#ea7ccc"],
           padding: [15, 15, 0, 5],
+          touchMoveLimit: 24,
           enableScroll: true,
           legend: {},
           xAxis: {
@@ -593,13 +594,15 @@
       },
       confirmFrom(e) {
         this.showFrom = false;
-        let timeValue = uni.$u.timeFormat(e.value, 'yyyy-mm');
+        let dfm = this.dataType == 1 ?   'yyyy-mm' :  'yyyy-mm-dd'
+        let timeValue = uni.$u.timeFormat(e.value, dfm);
         this.queryParam.createTimeFrom = timeValue;
         this.getData1()
       },
       confirmTo(e) {
         this.showTo = false;
-        let timeValue = uni.$u.timeFormat(e.value, 'yyyy-mm');
+        let dfm = this.dataType == 1 ?   'yyyy-mm' :  'yyyy-mm-dd'
+        let timeValue = uni.$u.timeFormat(e.value, dfm);
         this.queryParam.createTimeTo = timeValue;
         this.getData1()
       },
@@ -627,7 +630,7 @@
         const startDate = dates.getFullYear() + '-' + curDate
         this.queryParam.createTimeTo = startDate
         this.startDate = startDate
-        dates.setMonth(dates.getMonth() - 3)
+        dates.setMonth(dates.getMonth() - 5)
         var pastMonth = dates.getMonth() + 1
         if (pastMonth >= 1 && pastMonth <= 9) {
           pastMonth = '0' + pastMonth
