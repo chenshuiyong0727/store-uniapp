@@ -105,7 +105,7 @@
               </view>
               <view class="dingdans_top_right_dw">
                 <view class="dingdans_con_right_down_2_1">
-                  <text class="dw-button-common" @click.stop="storeAdd(item.id)">选择</text>
+                  <text class="dw-button-common" @click.stop="storeAdd(item.id)">入库</text>
 <!--                  <text class="dw-button-common" v-if="item.spuId" style="margin-left: 2vw" @click.stop="gotoDw(item.spuId)">得物</text>-->
                 </view>
               </view>

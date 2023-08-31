@@ -420,16 +420,6 @@
         current: 0,
         pictureZoomShow: false,
         imageZoom: '',
-        // localdata: [
-        //   {
-        //     value: 'add',
-        //     text: '商品入库'
-        //   },
-        //   {
-        //     value: 'resetHandle',
-        //     text: '重置'
-        //   }
-        // ],
         optionsOp: [
           {
             value: 'goodsDetail',
