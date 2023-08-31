@@ -297,7 +297,8 @@
           }
         ],
         pattern: {
-          icon:'personadd-filled',
+          icon:'personadd',
+          // icon:'personadd-filled',
           color: '#7A7E83',
           backgroundColor: '#fff',
           selectedColor: '#409eff',
