@@ -341,8 +341,12 @@
         goodsInventoryApi.batchupdateStatus(this.requestParam).then((res) => {
           this.$toast(res.subMsg)
           if (res.subCode === 1000) {
-            this.getPage()
             this.isShowDialog = false
+            setTimeout(() => {
+              uni.reLaunch({
+                url: '/pages/store/index',
+              });
+            }, 1000)
           }
         })
       },
@@ -350,8 +354,12 @@
         goodsInventoryApi.batchupdateStatus(this.requestParamChannelId).then((res) => {
           this.$toast(res.subMsg)
           if (res.subCode === 1000) {
-            this.getPage()
             this.isShowDialog1 = false
+            setTimeout(() => {
+              uni.reLaunch({
+                url: '/pages/store/index',
+              });
+            }, 1000)
           }
         })
       },
