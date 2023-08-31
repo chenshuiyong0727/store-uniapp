@@ -7,7 +7,6 @@
     </u-navbar>
     <u--form
         labelPosition="left"
-        :model="form"
         ref="uForm"
     >
       <view class="baisebeijing julibiaoti">
@@ -16,14 +15,33 @@
             <u--input :disabled="true" disabledColor="#fff" inputAlign="right" color="#d1d1d1"
                       v-model="orderData.actNo" border="none"></u--input>
           </u-form-item>
-          <u-form-item label-width="25vw"  label="尺码"  borderBottom>
-            <hpy-form-select v-if="sizeList"  :dataList="sizeList" :hideBorder="true" :hideArrow="true" text="size" name="id" v-model="requestParam.sizeId"/>
+<!--          <u-form-item label-width="25vw"  label="尺码"  borderBottom>-->
+<!--            <hpy-form-select v-if="sizeList"  :dataList="sizeList" :hideBorder="true" :hideArrow="true" text="size" name="id" v-model="requestParam.sizeId"/>-->
+<!--            <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
+<!--          </u-form-item>-->
+<!--          <u-form-item label-width="25vw"  label="渠道"  borderBottom>-->
+<!--            <hpy-form-select v-if="channelIdList"  :dataList="channelIdList" :hideBorder="true" :hideArrow="true" text="fieldName" name="fieldValue" v-model="requestParam.channelId"/>-->
+<!--            <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>-->
+<!--          </u-form-item>-->
+
+          <u-form-item label-width="25vw"  label="尺码" borderBottom @click="showSxSize(); $hideKeyboard()">
+            <u-picker :show="show_sx_size" :columns="columnsSize" @cancel="show_sx_size= false" :defaultIndex="defaultIndexSize"
+                      @confirm="confirm_sx_size" keyName="fieldName"></u-picker>
+            <u--input inputAlign="right" disabledColor="#fff"
+                      placeholderStyle="font-size: 14px;color:#c0c4cc"
+                      v-model="requestParam.sizeIdStr" border="none" disabled></u--input>
             <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
           </u-form-item>
-          <u-form-item label-width="25vw"  label="渠道"  borderBottom>
-            <hpy-form-select v-if="channelIdList"  :dataList="channelIdList" :hideBorder="true" :hideArrow="true" text="fieldName" name="fieldValue" v-model="requestParam.channelId"/>
+
+          <u-form-item label-width="25vw"  label="渠道" borderBottom @click="showSxChannel(); $hideKeyboard()">
+            <u-picker :show="show_sx_channel" :columns="columnsChanel" @cancel="show_sx_channel= false" :defaultIndex="defaultIndexChannel"
+                      @confirm="confirm_sx_channel" keyName="fieldName"></u-picker>
+            <u--input inputAlign="right" disabledColor="#fff"
+                      placeholderStyle="font-size: 14px;color:#c0c4cc"
+                      v-model="requestParam.channelIdStr" border="none" disabled></u--input>
             <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
           </u-form-item>
+
 
           <u-form-item label-width="25vw"  label="原始库存" borderBottom>
             <u--input  disabledColor="#fff" inputAlign="right"
@@ -104,28 +122,34 @@
         dateCurrent:'',
         // showFrom: false,
         fileList1: [],
-        show_sx_type: false,
-        defaultIndex: [1],
-        form: {
-          type: 2,
-          typeStr: '支出',
-          actNo: '',
-          name: '',
-          imgUrl: '',
-          brand: '',
-          remark: '',
-          price: ''
-        },
+        show_sx_size: false,
+        show_sx_channel: false,
+        defaultIndexSize: [0],
+        defaultIndexChannel: [0],
+        // form: {
+        //   type: 2,
+        //   typeStr: '支出',
+        //   actNo: '',
+        //   name: '',
+        //   imgUrl: '',
+        //   brand: '',
+        //   remark: '',
+        //   price: ''
+        // },
         typeList: [],
-        // columns: [],
+        columnsSize: [],
+        columnsChanel: [],
         id: '',
         orderData: '',
         sizeList:'',
         channelIdList:'',
         requestParam: {
           id: '',
+          channelId: '',
+          channelIdStr: '',
           createTime: '',
           sizeId: '',
+          sizeIdStr: '',
           oldInventory: '',
           inventory: '',
           price: '',
@@ -163,18 +187,26 @@
             - this.requestParam.price
         this.requestParam.profits = parseFloat(profits).toFixed(2)
       },
-      showSxType() {
-        if (this.type ==1){
-          return
-        }
-        this.show_sx_type = true
+      showSxSize() {
+        this.show_sx_size = true
       },
-      confirm_sx_type(e) {
-        this.show_sx_type = false
+      confirm_sx_size(e) {
+        console.info(e)
+        this.show_sx_size = false
         let fieldValue = e.value[0].fieldValue
         let fieldName = e.value[0].fieldName
-        this.form.type = fieldValue
-        this.form.typeStr = fieldName
+        this.requestParam.sizeId = fieldValue
+        this.requestParam.sizeIdStr = fieldName
+      },
+      showSxChannel() {
+        this.show_sx_channel = true
+      },
+      confirm_sx_channel(e) {
+        this.show_sx_channel = false
+        let fieldValue = e.value[0].fieldValue
+        let fieldName = e.value[0].fieldName
+        this.requestParam.channelId = fieldValue
+        this.requestParam.channelIdStr = fieldName
       },
       handleSubmit(e) {
         this.requestParam.createTime = `${e.year}-${e.month}-${e.day} ${e.hour}:${e.minute}:${e.second}`;
@@ -199,6 +231,7 @@
       handleClick() {
         this.requestParam.id = this.orderData.id
         this.requestParam.sizeId = this.orderData.sizeId
+        this.requestParam.sizeIdStr = this.orderData.size
         this.requestParam.channelId = this.orderData.channelId
         if (this.orderData.createTime){
           this.requestParam.createTime  = uni.$u.timeFormat(this.orderData.createTime, 'yyyy-mm-dd hh:MM:ss');
@@ -232,6 +265,21 @@
         } else {
           this.requestParam.profits = this.orderData.profits
         }
+        if (this.requestParam.sizeId){
+          this.defaultIndexSize = [this.getSizeIndex(this.requestParam.sizeId)]
+        }
+        if (this.requestParam.channelId){
+          this.requestParam.channelIdStr = this.$typeToStr(47,this.requestParam.channelId)
+          this.defaultIndexChannel = [this.$getTypeIndex(47,this.requestParam.channelId)]
+        }
+      },
+      getSizeIndex(value) {
+        for (let i = 0; i < this.sizeList.length; i++) {
+          if (this.sizeList[i].fieldValue == value) {
+            return i
+          }
+        }
+        return 0
       },
       getDetailById(id) {
         if (id) {
@@ -249,17 +297,21 @@
         let sysDictList = uni.getStorageSync('sysDictList') ? JSON.parse(
             uni.getStorageSync('sysDictList')) : [];
         this.channelIdList = sysDictList.filter(item => item.typeValue == 47)
+        this.columnsChanel.push(this.channelIdList)
         goodsBaseApi.listDropDownSizes({ type: '' }, false).then(res => {
           if (res.subCode === 1000) {
             this.sizeList = res.data
             for (let i = 0; i < this.sizeList.length; i++) {
-              this.sizeList[i].value = this.sizeList[i].id
-              this.sizeList[i].text = this.sizeList[i].size
+              this.sizeList[i].fieldValue = this.sizeList[i].id
+              this.sizeList[i].fieldName = this.sizeList[i].size
+            }
+            this.columnsSize.push(this.sizeList)
+            if (this.requestParam.sizeId){
+              this.defaultIndexSize = [this.getSizeIndex(this.requestParam.sizeId)]
             }
           }
         })
       },
-
     }
   }
 

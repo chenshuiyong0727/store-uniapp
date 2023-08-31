@@ -17,7 +17,6 @@ const getTypeIndex = (type,value) => {
     }
   }
   return 0;
-  // return res.length ? res[0].fieldName : '--'
 }
 
 let sysDictList = uni.getStorageSync('sysDictList') ? JSON.parse(uni.getStorageSync('sysDictList')) : []
