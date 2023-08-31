@@ -323,13 +323,18 @@
                       class="color-danger" style="margin-left: 5px;font-size: 20px;">冲冲冲</strong>
             </view>
             <!--          操作栏-->
-<!--            <view class="dingdans_top_right_dw">-->
-<!--              <view class="dingdans_con_right_down_2_1">-->
-<!--                <text @click="gotoDw(item.spuId)"-->
-<!--                        class="dw-button-common">得物-->
-<!--                </text>-->
-<!--              </view>-->
-<!--            </view>-->
+            <view class="dingdans_top_right_dw">
+              <view class="dingdans_con_right_down_2_1">
+                <text @click="$copyUrl(item.actNo)"
+                        class="dw-button-common">复制货号
+                </text>
+<!--
+                <text @click="gotoDw(item.spuId)"
+                        class="dw-button-common">得物
+                </text>
+-->
+              </view>
+            </view>
           </view>
           <!--底部-->
         </view>
