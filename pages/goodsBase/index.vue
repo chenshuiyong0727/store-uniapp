@@ -4,8 +4,9 @@
       <view @click="goBack" class="u-nav-slot" slot="left">
         <u-icon name="arrow-left" size="20"></u-icon>
       </view>
-      <view class="u-nav-slot" style="font-size: 15px;" slot="right">
-          <image style="height: 25px;width: 25px" src="../../static/img/slh.png"></image>
+      <view  class="u-nav-slot" @click="isListMode = !isListMode" style="font-size: 15px;" slot="right">
+          <image v-if="!isListMode" style="height: 20px;width: 20px" src="../static/img/liebiaomoshi.png"></image>
+          <image v-else style="height: 20px;width: 20px" src="../static/img/pubuliumoshi.png"></image>
       </view>
     </u-navbar>
     <view class="fenlei_top_tab"  style="display: flex;">
@@ -73,7 +74,9 @@
         style="height: 100vh"
         @touchstart.stop="onTouchStart" @touchend.stop="handleTouchend" >
       <view class="julibiaoti3" >
+<!--        列表模式-->
       <view class="dingdans_item_dw"
+            v-if="isListMode"
             v-for="(item,index) in tableData"
             :key="index"  @click="goodsDetail(item.id) "
       >
@@ -116,6 +119,110 @@
             </view>
           </view>
         </view>
+      </view>
+
+        <!--        瀑布流  2排对齐-->
+        <view class="container"  v-if="!isListMode">
+
+          <view class="dingdans_item_dw_2pai"
+
+                v-for="(item,index) in tableData"
+                @click="goodsDetail(item.id) "
+          >
+          <view class="item">
+              <view  class="dingdans_con_left_dw_2p">
+                <image  mode="widthFix" :src="item.img" v-if="item.img" ></image>
+                <image  mode="widthFix" :src="fileUrl+item.imgUrl" style="margin-top: 10px;" v-if="!item.img && item.imgUrl" ></image>
+                                <p class="mark_dw">
+                                  <text class="text_dw">
+                                    {{ item.type | dictToDescTypeValue(20221108) }}
+                                  </text>
+                                </p>
+              </view>
+            <view style="justify-content: center;display: flex">
+              <view class="dingdans_con_right_top_dw_2p">
+                <view class="chaochu_2p">
+                  {{item.name}}
+                </view>
+              </view>
+            </view>
+            <view class="zuoyouduiqi" style="display: flex;padding: 2vw 0;margin:0 2vw">
+              <view class="dingdans_con_right_top_dw_1 xianglian">
+                <text @click.stop="jumpactNo(item.actNo)">
+                  {{item.actNo}}
+                </text>
+                <image @click.stop="$copyUrl(item.actNo)" class="fuzhitupian"
+                       src="../../static/img/copy.png"></image>
+              </view>
+              <text  style="font-size: 12px;
+              margin-left: 2vw;
+    background-color: #f3f2f8;
+    padding: 5px;
+    border-radius: 5px;">
+                {{item.brand}}
+              </text>
+            </view>
+
+            <view class="zuoyouduiqi" style=" margin-left: 2vw;margin-right: 2vw;padding-bottom: 2vw">
+<!--              <view>-->
+<!--                <text  style="font-size: 12px;-->
+<!--              margin-left: 2vw;-->
+<!--    background-color: #f3f2f8;-->
+<!--    padding: 5px;-->
+<!--    border-radius: 5px;">-->
+<!--                  {{item.type | dictToDescTypeValue(20221108)}}-->
+<!--                </text>-->
+<!--              </view>-->
+<!--              <view class="zuoyouduiqi" >-->
+                <text class="dw-button-common" @click.stop="storeAdd(item.id)">入库</text>
+                <text class="dw-button-common" v-if="item.spuId" style="margin-left: 2vw" @click.stop="gotoDw(item.spuId)">得物</text>
+<!--              </view>-->
+            </view>
+        </view>
+
+<!--          <view1 class="dingdans_con_dw">-->
+<!--            <view  class="dingdans_con_left_dw"-->
+<!--                   @click.stop="avatarShow(item.img)">-->
+<!--              <image mode="widthFix" :src="item.img" v-if="item.img" ></image>-->
+<!--              <image mode="widthFix" :src="fileUrl+item.imgUrl" style="margin-top: 10px;" v-if="!item.img && item.imgUrl" ></image>-->
+<!--              <p class="mark_dw">-->
+<!--                <text class="text_dw">-->
+<!--                  {{ item.type | dictToDescTypeValue(20221108) }}-->
+<!--                </text>-->
+<!--              </p>-->
+<!--            </view>-->
+<!--            <view class="diangdans_con_right_dw">-->
+<!--              <view class="dingdans_con_right_top_dw">-->
+<!--                <text>-->
+<!--&lt;!&ndash;                  {{item.name}}&ndash;&gt;-->
+<!--                </text>-->
+<!--              </view>-->
+<!--              <view class="dingdans_con_right_top_dw_1 xianglian">-->
+<!--                <text @click.stop="jumpactNo(item.actNo)">-->
+<!--                  {{item.actNo}}-->
+<!--                </text>-->
+<!--                <image @click.stop="$copyUrl(item.actNo)" class="fuzhitupian"-->
+<!--                       src="../../static/img/copy.png"></image>-->
+<!--              </view>-->
+<!--              <view class="dingdans_con_right_top_dw_2" style="margin-bottom: -10px;">-->
+<!--                <view  v-if="item.brand">-->
+<!--                  <text  class="dingdans_con_dw_address">-->
+<!--                    {{item.brand}}-->
+<!--                  </text>-->
+<!--                </view>-->
+<!--                <view class="dingdans_top_right_dw">-->
+<!--                  <view class="dingdans_con_right_down_2_1">-->
+<!--                    <text class="dw-button-common" @click.stop="storeAdd(item.id)">入库</text>-->
+<!--                    <text class="dw-button-common" v-if="item.spuId" style="margin-left: 2vw" @click.stop="gotoDw(item.spuId)">得物</text>-->
+<!--                  </view>-->
+<!--                </view>-->
+<!--              </view>-->
+<!--            </view>-->
+<!--          </view1>-->
+
+
+        </view>
+
       </view>
     </view>
 
@@ -302,6 +409,7 @@
         startX: 0, // 触摸开始时的x坐标
         startY: 0, // 触摸开始时的Y坐标
         startTimeTouch : 0, // 触摸开始时的Y坐标
+        isListMode: false,
         dwhref: false,
         isLoadMore: false,
         isLoading: false,
@@ -580,4 +688,60 @@
 
 <style>
   @import '@/assets/index/style.css';
+
+  /*列表*/
+  .dingdans_item_dw_2pai {
+    /*color: #333333;*/
+    /*background: #ffffff;*/
+    /*border: 1px solid #f4f3f8;*/
+    /*font-size: 12.5px;*/
+    /*width: 50%;*/
+    /*display: flex;*/
+    /*justify-content: space-between;*/
+    /*margin-bottom: 2vw;*/
+
+    color: #333333;
+    background: #ffffff;
+    border: 0.3vw solid #f4f3f8;
+    font-size: 12.5px;
+    width: 49.75vw;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1vw;
+  }
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+
+  .item {
+  }
+
+  .dingdans_con_left_dw_2p {
+    display: flex;
+    width: 49.75vw;
+    padding-top: 10vw;
+    padding-bottom: 5vw;
+    justify-content: center;
+    position: relative;
+  }
+
+  .dingdans_con_left_dw_2p image {
+    width: 65%;
+  }
+
+  .dingdans_con_right_top_dw_2p {
+    color: #333333;
+    font-size: 14.7px;
+    width: 45vw;
+  }
+  .chaochu_2p {
+    width: 45vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* 显示的行数 */
+    -webkit-box-orient: vertical;
+  }
 </style>

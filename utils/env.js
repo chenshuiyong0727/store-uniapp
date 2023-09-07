@@ -4,8 +4,8 @@
 
 const baseUrl = {
 	// test: 'http://192.168.43.245:28027',
-	// test: 'http://192.168.0.109:28027',
-	test: 'http://192.168.1.125:28027',
+	test: 'http://192.168.6.150:28027',
+	// test: 'http://localhost:28027',
 	// prod: 'https://www.zyqx312.asia'
 	prod: 'http://114.132.243.79:28027'
 }
@@ -18,8 +18,8 @@ const imgHost = {
 }
 
 // const env = process.env.NODE_ENV === 'production' ? 'prod' : 'test'
-// const env = 'test'
-const env = 'prod'
+const env = 'test'
+// const env = 'prod'
 
 export const envSetting = {
   baseURL: baseUrl[env],
