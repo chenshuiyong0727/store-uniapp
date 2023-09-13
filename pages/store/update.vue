@@ -49,6 +49,12 @@
                     v-model="requestParam.dwPrice" type="digit" border="none"></u--input>
           <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
         </u-form-item>
+
+        <u-form-item label-width="25vw" label="当前价格" borderBottom>
+          <u--input  disabledColor="#fff" inputAlign="right" @change="keyup1"
+                    v-model="requestParam.thisTimePrice" type="digit" border="none"></u--input>
+          <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
+        </u-form-item>
         <u-form-item label-width="30vw" label="入库时间" @click="$refs.myPicker.show();$hideKeyboard" borderBottom>
           <u--input inputAlign="right" disabledColor="#fff" placeholder="请选择"
                     placeholderStyle="font-size: 14px;color:#808080"
@@ -130,6 +136,7 @@
           inventory: '',
           price: '',
           dwPrice: '',
+          thisTimePrice: '',
           poundage: '',
           theirPrice: '',
           profits: '',
@@ -153,6 +160,7 @@
       changeLog(e) {
       },
       keyup1() {
+        this.requestParam.dwPrice = this.requestParam.thisTimePrice
         let poundage =  this.$getPoundage(this.requestParam.dwPrice)
         this.requestParam.poundage = parseFloat(poundage).toFixed(2)
 
@@ -210,6 +218,7 @@
         this.requestParam.inventory = this.orderData.inventory
         this.requestParam.price = this.orderData.price
         this.requestParam.dwPrice = this.orderData.dwPrice
+        this.requestParam.thisTimePrice = this.orderData.thisTimePrice
         this.requestParam.waybillNo = this.orderData.waybillNo
         this.requestParam.addressId = this.orderData.addressId
         if (!this.orderData.poundage) {

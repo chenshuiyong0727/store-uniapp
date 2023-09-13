@@ -12,23 +12,23 @@
           </u-badge>
         </view>
 <!--        <view @click="scanCode()" class="u-nav-slot" slot="right">-->
+<!--        @change="jumpGoods"           @keyup.enter="jumpGoods"-->
 <!--          <image style=" width: 26px;height: 26px;" src="../../static/img/photo2.png"></image>-->
 <!--        </view>-->
       </u-navbar>
       <view class="julibiaoti" style="
         padding-bottom: 40vw;
     background-image: linear-gradient(#e5f4ff, #f3f2f8);">
-        <view class="header">
+        <view class="header" @click="jumpGoods">
           <view class="width92" >
             <u--input
+                readonly="readonly"
                 class="searchInputW"
                 prefixIcon="search"
                 placeholder="请输入货号/商品名"
                 placeholderStyle="font-size: 14px;color:#c0c4cc"
                 v-model="queryParamTop.actNo"
                 prefixIconStyle="font-size: 24px;color:#c0c4cc"
-                :show-action="false"
-                @change="jumpGoods"
                 clearable
             >
             </u--input>
