@@ -437,7 +437,7 @@
         this.size = row.size
         this.queryParam1.goodsId = this.form.id
         this.queryParam1.sizeId = row.sizeId
-        this.getPriceData()
+        this.getPriceData(1)
       },
       avatarShow(e) {
         this.imageZoom = e
@@ -471,7 +471,7 @@
           })
         }
       },
-      getPriceData() {
+      getPriceData(flag) {
         goodsBaseSizePriceApi.getPriceData(this.queryParam1).then(res => {
           if (res.subCode === 1000) {
             this.priceData = res.data
@@ -490,7 +490,9 @@
             let theirPrice365 =  this.$getThePrice(res.data.price365)
             this.priceData.theirPrice365 = parseFloat(theirPrice365).toFixed(2)
             this.date = this.priceData.date
-            this.isShowDialog2 = true
+            if(flag){
+              this.isShowDialog2 = true
+            }
           } else if (res.subCode === 10086) {
             this.$toast(res.subMsg)
           }

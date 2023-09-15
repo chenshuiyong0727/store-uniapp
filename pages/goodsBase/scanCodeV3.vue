@@ -397,6 +397,7 @@
         this.$refs.uUpload.chooseFile()
       },
       uploadFilePromise(url) {
+        this.resetdata()
         var _this = this;
         return new Promise((resolve, reject) => {
           let a = uni.uploadFile({
@@ -411,15 +412,26 @@
               setTimeout(() => {
                 let resDta = JSON.parse(res.data);
                 if (resDta.sub_code != 1000) {
-                  this.$toast('识别失败，请上传10 MB 以内的图片');
+                  this.$toast(resDta.sub_msg);
+                  if (resDta.sub_code == 1234) {
+                    setTimeout(() => {
+                      this.gotoAdd(3)
+                    }, 2000)
+                  }
                   _this.deletePic(_this.imgevent)
                   resolve(res.data)
                 } else {
                   this.$toast('识别成功');
                   this.form = resDta.data ? resDta.data : {}
-                  if (this.form.id){
-                    this.queryParam.goodsId = this.form.id
+                  // if (this.form.id){
+                  //   this.queryParam.goodsId = this.form.id
+                  //   this.getPage()
+                  // }
+                  this.queryParam.goodsId = this.form.id
+                  if (this.form.sizeList && this.form.sizeList.length){
                     this.getPage()
+                  }else{
+                    this.getDetailById(this.form.id)
                   }
                   resolve(res.data.data)
                 }
@@ -501,8 +513,7 @@
         this.getTitle()
         this.queryParam1.goodsId = this.form.id
         this.queryParam1.sizeId = row.sizeId
-        this.getPriceData()
-        this.isShowDialog2 = true
+        this.getPriceData(1)
       },
       getTitle() {
         this.sizeTitle = '尺码：' + this.size  + ' 更新日期：' + this.date
@@ -513,7 +524,7 @@
           this.sizeTitle = this.sizeTitle  + ' 更新日期：' + this.date
         }
       },
-      getPriceData() {
+      getPriceData(flag) {
         goodsBaseSizePriceApi.getPriceData(this.queryParam1).then(res => {
           if (res.subCode === 1000) {
             this.priceData = res.data
@@ -533,6 +544,9 @@
             this.priceData.theirPrice365 = parseFloat(theirPrice365).toFixed(2)
             this.date = this.priceData.date
             this.getTitle()
+            if(flag){
+              this.isShowDialog2 = true
+            }
           } else if (res.subCode === 10086) {
           } else {
             this.$toast(res.subMsg)
