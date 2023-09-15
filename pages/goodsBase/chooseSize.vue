@@ -126,11 +126,12 @@
       return {
         queryParam: {
           sizeVoList: [],
-          type: ''
+          type: '01'
         },
         handelSize:'',
         goodsTypeSizeList: [],
         goodsId: '',
+        opType: 2,
         typeName: '',
         isShowDialog2: false,
         allChoose: false,
@@ -143,8 +144,17 @@
     onLoad(options) {
       if (options) {
         this.goodsId = options.goodsId ? options.goodsId : '';
+        this.queryParam.type = options.type ? options.type : '01';
         if (this.goodsId) {
+          this.opType = 2
           this.getDetailById(this.goodsId)
+        }else{
+          this.opType = 3
+          this.typeName = this.$typeToStr(20221108,this.queryParam.type)
+          let itemTypeData = {}
+          itemTypeData.fieldName =  this.typeName
+          itemTypeData.fieldValue = this.queryParam.type
+          this.chooseType(itemTypeData)
         }
       }
     },
@@ -184,16 +194,23 @@
           this.$toast('请选择尺码')
           return
         }
-        goodsBaseApi.update(this.queryParam).then(res => {
-          if (res.subCode === 1000) {
-            this.$toast('操作成功')
-            setTimeout(() => {
-              this.$navigateTo('/pages/goodsBase/index')
-            }, 1000)
-          } else {
-            this.$toast(res.subMsg)
-          }
-        })
+        if (this.opType == 2){
+          goodsBaseApi.update(this.queryParam).then(res => {
+            if (res.subCode === 1000) {
+              this.$toast('操作成功')
+              uni.setStorageSync('goodsAddForm', null);
+              setTimeout(() => {
+                // this.$goBack()
+                this.$navigateTo('/pages/goodsBase/index')
+              }, 1000)
+            } else {
+              this.$toast(res.subMsg)
+            }
+          })
+        } else {
+          let sizeListStr = this.tableData.map(item => item.size);
+          this.$navigateTo('/pages/goodsBase/goodsAdd?type=3&sizeList='+this.tableDataId+'&sizeListStr='+ sizeListStr)
+        }
       },
       chooseAll() {
         for (let i = 0; i < this.goodsTypeSizeList.length; i++) {

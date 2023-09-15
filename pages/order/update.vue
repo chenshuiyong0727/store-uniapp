@@ -371,8 +371,7 @@
         if (this.orderData.status == 7 || this.orderData.status ==11) {
           this.requestParam.status = 7
         }else{
-          this.requestParam.status = this.orderData.status + 1
-
+          this.requestParam.status = this.orderData.status
         }
         if (!this.orderData.poundage) {
           let poundage = this.$getPoundage(this.requestParam.shelvesPrice)

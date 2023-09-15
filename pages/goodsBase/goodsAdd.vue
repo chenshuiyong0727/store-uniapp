@@ -165,9 +165,16 @@
     },
     onLoad(options) {
       if (options) {
+        if(uni.getStorageSync('goodsAddForm')){
+          this.form =  JSON.parse(uni.getStorageSync('goodsAddForm'))
+          this.fileList1 = this.form.fileList1 ? this.form.fileList1 : [];
+        }
         this.type = options.type ? options.type : '';
         this.id = options.id ? options.id : '';
-        this.form.actNo = options.actNo ? options.actNo : '';
+        this.form.actNo = options.actNo ? options.actNo : this.form.actNo;
+        // let goodsAddForm = uni.getStorageSync('goodsAddForm')
+        this.form.sizeList = options.sizeList ? options.sizeList.split(",") : [];
+        this.sizeListStr = options.sizeListStr ? options.sizeListStr : '';
         if (this.id) {
           this.getDetailById(this.id)
         }else{
@@ -178,22 +185,14 @@
     },
     methods:{
       chooseSize() {
-        let url = '/pages/goodsBase/chooseSize?goodsId='+this.form.id
+        this.form.fileList1 = this.fileList1
+        uni.setStorageSync('goodsAddForm', JSON.stringify(this.form));
+        let url = '/pages/goodsBase/chooseSize?type='+this.form.type
+        if(this.form.id){
+          url = url + '&goodsId='+this.form.id
+        }
         this.$navigateTo(url)
       },
-      // whenChanged(e) {
-      //   let sizeList = []
-      //   let sizeListStr = []
-      //   for (let i = 0; i < e.length; i++) {
-      //     let data = e[i]
-      //     if (data.is_selected) {
-      //       sizeList.push(data.value)
-      //       sizeListStr.push(data.text)
-      //     }
-      //   }
-      //   this.form.sizeList = sizeList
-      //   this.sizeListStr = sizeListStr.join(",")
-      // },
       getDetailById(id) {
         if (id) {
           goodsBaseApi.getDetailById(id).then(res => {
@@ -242,6 +241,7 @@
           this.$toast('请选择尺码')
           return false
         }
+        uni.setStorageSync('goodsAddForm', null);
         if (this.type == 2) {
           goodsBaseApi.update(this.form).then(res => {
             if (res.subCode === 1000) {
