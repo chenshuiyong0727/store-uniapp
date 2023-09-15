@@ -4,10 +4,11 @@
       <view @click="$goBack" class="u-nav-slot" slot="left">
         <u-icon name="arrow-left" size="20"></u-icon>
       </view>
-      <view class="u-nav-slot" style="font-size: 15px;" slot="right">
-        <rudon-rowMenuDotDotDot :localdata="localdata" @change="menuAction($event)">
-          <image style="height: 25px;width: 25px" src="../../static/img/slh.png"></image>
-        </rudon-rowMenuDotDotDot>
+      <view class="u-nav-slot" style="font-size: 15px;" @click="update" slot="right">
+        更新
+<!-- token过期  v2      <rudon-rowMenuDotDotDot :localdata="localdata" @change="menuAction($event)">-->
+<!--          <image style="height: 25px;width: 25px" src="../../static/img/slh.png"></image>-->
+<!--        </rudon-rowMenuDotDotDot>-->
       </view>
     </u-navbar>
     <view class="ui-flex justify-center center"
@@ -269,7 +270,7 @@
                     style="margin-left: 10px" text="年度走势图" :plain="queryParam1.dayNum != 365"></u-button>
         </view>
 
-        <view class="charts-box">
+        <view class="charts-box" v-if="chartData && chartData.series && chartData.series.length">
           <qiun-data-charts
               type="line"
               :opts="opts"
@@ -437,7 +438,6 @@
         this.queryParam1.goodsId = this.form.id
         this.queryParam1.sizeId = row.sizeId
         this.getPriceData()
-        this.isShowDialog2 = true
       },
       avatarShow(e) {
         this.imageZoom = e
@@ -490,10 +490,11 @@
             let theirPrice365 =  this.$getThePrice(res.data.price365)
             this.priceData.theirPrice365 = parseFloat(theirPrice365).toFixed(2)
             this.date = this.priceData.date
+            this.isShowDialog2 = true
           } else if (res.subCode === 10086) {
-          } else {
             this.$toast(res.subMsg)
           }
+          console.info(this.chartData)
         })
       },
       getPage() {

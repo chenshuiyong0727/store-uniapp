@@ -680,7 +680,7 @@
         return
       },
       fabClick() {
-        this.$navigateTo('/pages/goodsBase/scanCode')
+        this.$navigateTo('/pages/goodsBase/scanCodeV3')
       },
     }
   };

@@ -55,6 +55,11 @@ export const goodsBaseApi = {
     method: 'post',
     data: body
   }),
+  addOrUpdateSize: (body) => request({
+    url: '/gw/op/v1/goodsBase/addOrUpdateSize',
+    method: 'post',
+    data: body
+  }),
   // 更新
   update: (body) => request({
     url: '/gw/op/v1/goodsBase',
@@ -76,6 +81,12 @@ export const goodsBaseApi = {
   }),
   getGoodsByActNoAndSizeH5: (body) => request({
     url: '/gw/op/v2/goodsBase/getGoodsByActNoAndSizeH5',
+    method: 'get',
+    data: body
+
+  }),
+  getGoodsByActNoAndSizeH5V3: (body) => request({
+    url: '/gw/op/v2/goodsBase/v3/getGoodsByActNoAndSizeH5',
     method: 'get',
     data: body
 

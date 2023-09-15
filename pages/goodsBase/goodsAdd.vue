@@ -1,10 +1,15 @@
 <template lang="html">
   <view class="login">
-    <u-navbar :title="type==1 ? '查看' : type==2 ? '编辑' : '新增'" bgColor="#F3F4F5">
+    <u-navbar :title="type==1 ? '查看' : type==2 ? '编辑' : '手动添加'" bgColor="#F3F4F5">
       <view @click="$goBack" class="u-nav-slot" slot="left">
         <u-icon name="arrow-left" size="20"></u-icon>
       </view>
     </u-navbar>
+    <view class="popContainer" v-if="pictureZoomShow" @click="pictureZoomShow = false">
+      <view class="imageShow">
+        <image :src="form.img" alt="" mode="widthFix"   class="showImg"></image>
+      </view>
+    </view>
     <u--form
         style="background-color: white"
         class="julibiaoti"
@@ -13,8 +18,13 @@
         ref="uForm"
     >
       <view style="width: 90vw;margin-left: 5vw;">
+        <u-form-item  v-if="form.img"  label-width="34vw"  label="网络图片" borderBottom>
+          <image  style="width: 50vw;" :src="form.img"
+                  @click="pictureZoomShow = true"
+                  mode="widthFix"></image>
+        </u-form-item>
         <u-form-item
-            label="图片"
+            label="本地图片"
             borderBottom
             label-width="66vw"
             ref="item1"
@@ -33,6 +43,11 @@
           </u-upload>
           <u-icon v-if="type != 1" class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
         </u-form-item>
+        <u-form-item label-width="25vw" label="货号" borderBottom>
+          <u--input :disabled="type == 1" disabledColor="#fff" inputAlign="right"
+                    v-model="form.actNo" border="none"></u--input>
+          <u-icon v-if="type != 1" class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
+        </u-form-item>
         <u-form-item label-width="25vw"  label="类型" borderBottom @click="showSxType(); $hideKeyboard()">
           <u--input inputAlign="right" disabledColor="#fff"
                     placeholderStyle="font-size: 14px;color:#c0c4cc"
@@ -40,13 +55,13 @@
           <u-icon v-if="type != 1"  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
         </u-form-item>
         <u-form-item label-width="25vw" label="名称" borderBottom>
-          <u--input :disabled="type == 1" disabledColor="#fff" inputAlign="right"
-                    v-model="form.name" border="none"></u--input>
-          <u-icon v-if="type != 1" class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
-        </u-form-item>
-        <u-form-item label-width="25vw" label="货号" borderBottom>
-          <u--input :disabled="type == 1" disabledColor="#fff" inputAlign="right"
-                    v-model="form.actNo" border="none"></u--input>
+<!--          <u&#45;&#45;input :disabled="type == 1" disabledColor="#fff" inputAlign="right"-->
+<!--                    v-model="form.name" border="none"></u&#45;&#45;input>-->
+          <u--textarea
+              :disabled="type == 1"
+              v-model="form.name"
+              count
+          ></u--textarea>
           <u-icon v-if="type != 1" class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
         </u-form-item>
         <u-form-item label-width="25vw" label="品牌" borderBottom>
@@ -64,14 +79,26 @@
                     v-model="form.sellPrice" type="digit" border="none"></u--input>
           <u-icon v-if="type != 1" class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
         </u-form-item>
-        <u-form-item label-width="25vw" label="尺码" borderBottom>
-          <rudon-multiSelector :is_using_slot="true" :localdata="options" @change="whenChanged">
-            <view>
-              <u--input inputAlign="right" disabledColor="#fff"
-                        placeholderStyle="font-size: 14px;color:#c0c4cc"
-                        v-model="sizeListStr" border="none" disabled></u--input>
-            </view>
-          </rudon-multiSelector>
+        <u-form-item label-width="25vw" label="尺码" borderBottom @click="chooseSize">
+<!--          <rudon-multiSelector :is_using_slot="true" :localdata="options" @change="whenChanged">-->
+<!--            <view>-->
+<!--              <u&#45;&#45;input inputAlign="right" disabledColor="#fff"-->
+<!--                        placeholderStyle="font-size: 14px;color:#c0c4cc"-->
+<!--                        v-model="sizeListStr" border="none" disabled></u&#45;&#45;input>-->
+<!--            </view>-->
+<!--          </rudon-multiSelector>-->
+<!--          <u&#45;&#45;input inputAlign="right" disabledColor="#fff"-->
+<!--                    placeholderStyle="font-size: 14px;color:#c0c4cc"-->
+<!--                    v-model="sizeListStr" border="none" disabled></u&#45;&#45;input>-->
+
+<!--          <u&#45;&#45;textarea-->
+<!--              :disabled="type == 1"-->
+<!--              v-model="sizeListStr"-->
+<!--              count-->
+<!--          ></u&#45;&#45;textarea>-->
+          <view>
+            <text style="display: inline-block; word-break: break-all; white-space: pre-wrap;">{{sizeListStr}}</text>
+          </view>
           <u-icon v-if="type != 1" class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
         </u-form-item>
         <u-form-item label-width="25vw" label="备注" borderBottom>
@@ -84,6 +111,7 @@
         </u-form-item>
       </view>
     </u--form>
+    <view style="height: 70px"></view>
     <u-picker :show="show_sx_type" :columns="columns" @cancel="show_sx_type= false" :defaultIndex="defaultIndex"
               @confirm="confirm_sx_type" keyName="fieldName"></u-picker>
     <view class="baisebeijing " v-if="type != 1" style="width:100%;position:fixed;bottom:0;
@@ -111,13 +139,15 @@
         },
         type: '',
         id: '',
-        options: [
-        ],
+        options: [],
+        goodsTypeSizeList: [],
         uploadData: {},
         typeList: [],
         sizeVoList: [],
         columns: [],
         sizeListStr: '',
+        pictureZoomShow: false,
+        imageZoom: '',
         form: {
           type: '01',
           typeStr: '男鞋',
@@ -137,45 +167,51 @@
       if (options) {
         this.type = options.type ? options.type : '';
         this.id = options.id ? options.id : '';
+        this.form.actNo = options.actNo ? options.actNo : '';
         if (this.id) {
           this.getDetailById(this.id)
         }else{
           this.listSysDict()
         }
       }
+
     },
     methods:{
-      whenChanged(e) {
-        let sizeList = []
-        let sizeListStr = []
-        for (let i = 0; i < e.length; i++) {
-          let data = e[i]
-          if (data.is_selected) {
-            sizeList.push(data.value)
-            sizeListStr.push(data.text)
-          }
-        }
-        this.form.sizeList = sizeList
-        this.sizeListStr = sizeListStr.join(",")
+      chooseSize() {
+        let url = '/pages/goodsBase/chooseSize?goodsId='+this.form.id
+        this.$navigateTo(url)
       },
+      // whenChanged(e) {
+      //   let sizeList = []
+      //   let sizeListStr = []
+      //   for (let i = 0; i < e.length; i++) {
+      //     let data = e[i]
+      //     if (data.is_selected) {
+      //       sizeList.push(data.value)
+      //       sizeListStr.push(data.text)
+      //     }
+      //   }
+      //   this.form.sizeList = sizeList
+      //   this.sizeListStr = sizeListStr.join(",")
+      // },
       getDetailById(id) {
         if (id) {
           goodsBaseApi.getDetailById(id).then(res => {
             if (res.subCode === 1000) {
               this.form = res.data ? res.data : {}
               this.form.sizeList = []
-              this.sizeVoList = res.data.sizeVoList
-
-              let sizeList = []
-              let sizeListStr = []
-              for (let i = 0; i <  this.sizeVoList.length; i++) {
-                let data =  this.sizeVoList[i]
+              if(res.data.sizeVoList && res.data.sizeVoList.length){
+                this.sizeVoList = res.data.sizeVoList
+                let sizeList = []
+                let sizeListStr = []
+                for (let i = 0; i <  this.sizeVoList.length; i++) {
+                  let data =  this.sizeVoList[i]
                   sizeList.push(data.id)
                   sizeListStr.push(data.size)
+                }
+                this.form.sizeList = sizeList
+                this.sizeListStr = sizeListStr.join(",")
               }
-              this.form.sizeList = sizeList
-              this.sizeListStr = sizeListStr.join(",")
-
               this.listSysDict()
               if (this.form.imgUrl) {
                 let url = this.$fileUrl + this.form.imgUrl;
@@ -246,6 +282,20 @@
                 text: item.size
               })
             })
+          }
+        })
+        let typedata = {}
+        typedata.type =  this.form.type
+        goodsBaseApi.listDropDownSizes(typedata).then(res => {
+          if (res.subCode === 1000) {
+            this.goodsTypeSizeList = res.data
+            // res.data.map(item => {
+            //   this.options.push( {
+            //     is_selected: false,
+            //     value: item.id,
+            //     text: item.size
+            //   })
+            // })
           }
         })
       },

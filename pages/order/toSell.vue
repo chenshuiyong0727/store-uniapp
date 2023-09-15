@@ -386,7 +386,7 @@
         if (shelvesPrice >= 200 && shelvesPrice < 300) {
           xfzyfbt = 6.5
         } else if (shelvesPrice >= 300) {
-          xfzyfbt = 8.5
+          xfzyfbt = 8.8
         }
         this.requestParam.xfzyfbt = parseFloat(xfzyfbt).toFixed(2)
 

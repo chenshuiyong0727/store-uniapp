@@ -222,6 +222,20 @@
       }
     },
     {
+      "path": "pages/goodsBase/scanCodeV3",
+      "style": {
+        "navigationBarTitleText": "商品添加",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/goodsBase/chooseSize",
+      "style": {
+        "navigationBarTitleText": "选择尺码",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
       "path": "pages/order/index",
       "style": {
         "navigationBarTitleText": "订单",

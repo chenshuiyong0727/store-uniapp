@@ -213,7 +213,7 @@
       },
 
       scanCode() {
-        this.$navigateTo('/pages/goodsBase/scanCode?photo=1')
+        this.$navigateTo('/pages/goodsBase/scanCodeV3?photo=1')
       },
       comfirm(type) {
         this.$navigateTo('/pages/login/logout?type=' + type)

@@ -559,8 +559,8 @@
           { fieldValue: 2, fieldName: '未上架' }
         ],
         sortList: [
-          { fieldValue: ' TRUNCATE(g.price - (g.price * 0.075 + 38 + 8.5) - a.price - 10 , 2 ) asc ,', fieldName: '利润升序' },
-          { fieldValue: ' TRUNCATE(g.price - (g.price * 0.075 + 38 + 8.5) - a.price - 10 , 2 ) desc ,', fieldName: '利润降序' },
+          { fieldValue: ' TRUNCATE(g.price - (g.price * 0.075 + 38 + 8.8) - a.price - 10 , 2 ) asc ,', fieldName: '利润升序' },
+          { fieldValue: ' TRUNCATE(g.price - (g.price * 0.075 + 38 + 8.8) - a.price - 10 , 2 ) desc ,', fieldName: '利润降序' },
           { fieldValue: '(g.price - a.dw_price ) desc  ,', fieldName: '涨价降序' },
           { fieldValue: '(g.price - a.dw_price ) asc  ,', fieldName: '降价降序' },
           { fieldValue: 'c.size asc ,', fieldName: '尺码升序' },
@@ -571,8 +571,8 @@
           { fieldValue: 'g.price desc ,', fieldName: '市场价降序' },
           { fieldValue: 'a.inventory asc ,', fieldName: '库存升序' },
           { fieldValue: 'a.inventory desc ,', fieldName: '库存降序' },
-          { fieldValue: ' TRUNCATE(g.price - (g.price * 0.075 + 38 + 8.5),2 ) desc ,', fieldName: '到手降序' },
-          { fieldValue: ' TRUNCATE(g.price - (g.price * 0.075 + 38 + 8.5),2 ) asc ,', fieldName: '到手升序' },
+          { fieldValue: ' TRUNCATE(g.price - (g.price * 0.075 + 38 + 8.8),2 ) desc ,', fieldName: '到手降序' },
+          { fieldValue: ' TRUNCATE(g.price - (g.price * 0.075 + 38 + 8.8),2 ) asc ,', fieldName: '到手升序' },
           { fieldValue: 'a.create_time asc ,', fieldName: '入库时间升序' },
           { fieldValue: 'a.create_time desc ,', fieldName: '入库时间降序' },
         ],
