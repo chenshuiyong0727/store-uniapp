@@ -10,7 +10,7 @@
     <view class="wrap" :class="{ show: open }">
       <view class="picker-header" @touchmove.stop.prevent catchtouchmove="true">
         <view class="btn-picker cancel" @click="open = false">取消</view>
-        <view class="btn-picker submit" @click="_onSubmit">确定</view>
+        <view class="btn-picker submit" @click="_onSubmit">完成</view>
       </view>
       <view class="picker-body">
         <picker-view :value="value" @change="_onChange">
@@ -252,7 +252,7 @@ export default {
 
 <style lang="scss">
 $transition: all 0.3s ease;
-$primary: #409eff;
+$primary: #007aff;
 
 .buuug7-simple-datetime-picker {
   position: relative;
@@ -321,15 +321,15 @@ $primary: #409eff;
     line-height: 2;
     -webkit-tap-highlight-color: transparent;
     overflow: hidden;
-    background-color: #eee;
-    font-size: 14px;
+    /*background-color: #eee;*/
+    font-size: 17px;
     border-radius: 3px;
-    color: #000;
+    color: #888;
     cursor: pointer;
   }
   .btn-picker.submit {
-    background-color: $primary;
-    color: #fff;
+    /* background-color: $primary;*/
+    color: $primary;
   }
 }
 </style>

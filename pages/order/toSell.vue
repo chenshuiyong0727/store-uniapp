@@ -292,7 +292,7 @@
         totalCount: 1,
         orderData: '',
         max1: '',
-        dateCurrent: parseInt(new Date().getTime()),
+        dateCurrent: 0,
         addressList: [],
         statusList: [],
         saleTypeList: [],
@@ -322,6 +322,9 @@
       }
     },
     onLoad(options) {
+      let currentDate = new Date();
+      currentDate.setHours(currentDate.getHours() + 36);
+      this.dateCurrent = parseInt(currentDate.getTime())
       this.listSysDict()
       if (options) {
         this.id = options.id ? options.id : '';
@@ -455,7 +458,14 @@
               this.orderData = res.data ? res.data : {}
               this.requestParam.addressId = this.orderData.addressId
               this.requestParam.id = this.orderData.id
-              this.requestParam.deliveryDeadlineTime =  parseTime(this.orderData.deliveryDeadlineTime)
+              if (this.orderData.deliveryDeadlineTime){
+                this.requestParam.deliveryDeadlineTime =  parseTime(this.orderData.deliveryDeadlineTime)
+              } else{
+                let currentDate = new Date();
+                currentDate.setHours(currentDate.getHours() + 36);
+                this.dateCurrent = parseInt(currentDate.getTime())
+                this.requestParam.deliveryDeadlineTime = parseTime(this.dateCurrent)
+              }
               this.requestParam.shelvesPrice = this.orderData.shelvesPrice
               this.requestParam.subsidiesPrice = this.orderData.subsidiesPrice
               this.keyup2()

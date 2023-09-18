@@ -363,12 +363,15 @@
           this.requestParam.deliveryDeadlineTime  = uni.$u.timeFormat(this.orderData.deliveryDeadlineTime, 'yyyy-mm-dd hh:MM:ss');
           this.dateCurrent1 = parseInt(new Date( this.orderData.deliveryDeadlineTime).getTime())
         }else{
-          this.dateCurrent1 = parseInt(new Date().getTime())
+          let currentDate = new Date();
+          currentDate.setHours(currentDate.getHours() + 36);
+          this.dateCurrent1 = parseInt(currentDate.getTime())
+          this.requestParam.deliveryDeadlineTime =  uni.$u.timeFormat(this.dateCurrent, 'yyyy-mm-dd hh:MM:ss');
         }
         this.requestParam.freight = this.orderData.freight
         this.requestParam.waybillNo = this.orderData.waybillNo
         this.requestParam.addressId = this.orderData.addressId ? this.orderData.addressId :''
-        if (this.orderData.status == 7 || this.orderData.status ==11) {
+        if (this.orderData.status == 7 || this.orderData.status == 11  || this.orderData.status == 6) {
           this.requestParam.status = 7
         }else{
           this.requestParam.status = this.orderData.status
