@@ -159,9 +159,11 @@
           <view>
             <text class="section1name">预计总数</text>
           </view>
-          <view>
+          <view class="qushi-img-div">
+            <image v-if="orderData.successNumRate<0" class="qushi-img"  mode="widthFix" src="../../static/img/xiangxia_1.png"></image>
+            <image v-else class="qushi-img"  mode="widthFix" src="../../static/img/xiangshang_1.png"></image>
             <text :class="orderData.successNumRate<0 ? 'color-success' : 'color-danger'">
-              {{orderData.successNumRate}} %
+              {{ orderData.successNumRate< 0 ? -orderData.successNumRate : orderData.successNumRate}} %
             </text>
           </view>
           <view>
@@ -182,9 +184,11 @@
           <view>
             <text class="section1name">预计利润</text>
           </view>
-          <view>
+          <view class="qushi-img-div">
+            <image v-if="orderData.profitsAmountRate<0" class="qushi-img"  mode="widthFix" src="../../static/img/xiangxia_1.png"></image>
+            <image v-else class="qushi-img"  mode="widthFix" src="../../static/img/xiangshang_1.png"></image>
             <text :class="orderData.profitsAmountRate<0 ? 'color-success' : 'color-danger'">
-              {{orderData.profitsAmountRate}} %
+              {{ orderData.profitsAmountRate< 0 ? -orderData.profitsAmountRate : orderData.profitsAmountRate}} %
             </text>
           </view>
           <view>
@@ -204,9 +208,11 @@
           <view>
             <text class="section1name">预计总额</text>
           </view>
-          <view>
+          <view class="qushi-img-div">
+            <image v-if="orderData.orderAmountRate<0" class="qushi-img"  mode="widthFix" src="../../static/img/xiangxia_1.png"></image>
+            <image v-else class="qushi-img"  mode="widthFix" src="../../static/img/xiangshang_1.png"></image>
             <text :class="orderData.orderAmountRate<0 ? 'color-success' : 'color-danger'">
-              {{orderData.orderAmountRate}} %
+              {{ orderData.orderAmountRate< 0 ? -orderData.orderAmountRate : orderData.orderAmountRate}} %
             </text>
           </view>
           <view>
@@ -722,15 +728,6 @@
             this.chartData = JSON.parse(JSON.stringify(res.data.lineVo));
             this.orderData = res.data;
             if (this.orderData) {
-              this.orderData.successNumRate = parseFloat(
-                  (this.orderData.successNum - this.orderData.successNumLast)
-                  / this.orderData.successNumLast * 100).toFixed(2);
-              this.orderData.profitsAmountRate = parseFloat(
-                  (this.orderData.profitsAmount - this.orderData.profitsAmountLast)
-                  / this.orderData.profitsAmountLast * 100).toFixed(2);
-              this.orderData.orderAmountRate = parseFloat(
-                  (this.orderData.orderAmount - this.orderData.orderAmountLast)
-                  / this.orderData.orderAmountLast * 100).toFixed(2);
               var date = new Date();
               let todaydate = date.getDate();
               let expectSuccessNum = this.orderData.successNum / (todaydate / 30);
@@ -739,6 +736,16 @@
               this.orderData.expectProfitsAmount = parseFloat(expectProfitsAmount).toFixed(2);
               let expectOrderAmount = this.orderData.orderAmount / (todaydate / 30);
               this.orderData.expectOrderAmount = parseFloat(expectOrderAmount).toFixed(2)
+
+              this.orderData.successNumRate = parseFloat(
+                  (this.orderData.expectSuccessNum - this.orderData.successNumLast)
+                  / this.orderData.successNumLast * 100).toFixed(2);
+              this.orderData.profitsAmountRate = parseFloat(
+                  (this.orderData.expectProfitsAmount - this.orderData.profitsAmountLast)
+                  / this.orderData.profitsAmountLast * 100).toFixed(2);
+              this.orderData.orderAmountRate = parseFloat(
+                  (this.orderData.expectOrderAmount - this.orderData.orderAmountLast)
+                  / this.orderData.orderAmountLast * 100).toFixed(2);
             }
           } else {
             this.$toast(res.subMsg)
@@ -1294,6 +1301,16 @@
     border-top: solid #E2DDDD 1.5px;
     margin-bottom: -15px;
     margin-top: 13px;
+  }
+
+  .qushi-img-div {
+    display: flex;
+    padding: 2px 0;
+    justify-content: center;
+  }
+
+  .qushi-img {
+    width: 20px;
   }
 
 </style>

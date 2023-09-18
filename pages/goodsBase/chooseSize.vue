@@ -58,13 +58,12 @@
     padding-left: 3vw;
     background: #ffffff;" >
         <view >
-
-          <view v-if="!queryParam.sizeVoList || !queryParam.sizeVoList.length" style="padding-bottom: 3vw;font-size: 16px;text-align: center;" class="color-danger">
-            <text>
-              请选择尺码
-            </text>
-          </view>
-          <view v-else style="text-align: center" @click="addSizeHandle(item, index)"
+<!--          <view v-if="!queryParam.sizeVoList || !queryParam.sizeVoList.length" style="padding-bottom: 3vw;font-size: 16px;text-align: center;" class="color-danger">-->
+<!--            <text>-->
+<!--              请选择尺码-->
+<!--            </text>-->
+<!--          </view>-->
+          <view  style="text-align: center" @click="addSizeHandle(item, index)"
                  :class="activeIndex.includes(index) ? 'city cityActive' : 'city'"
                  v-for="(item, index) in queryParam.sizeVoList" :key="item.id">
             <text>

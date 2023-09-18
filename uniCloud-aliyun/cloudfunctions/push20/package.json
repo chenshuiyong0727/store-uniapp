@@ -1,0 +1,7 @@
+{
+  "name": "push20",
+  "dependencies": {},
+  "extensions": {
+    "uni-cloud-push": {}
+  }
+}

@@ -126,6 +126,7 @@
           data: loginInfo
         }).then(res => {
           if (res.subCode === 1000) {
+            this.initSysDict()
             uni.showToast({title: '登录成功', icon: 'none',});
             if (res.data) {
               const {data} = res;
@@ -149,6 +150,22 @@
             }
           } else {
             uni.showToast({title: res.msg, icon: 'none',})
+          }
+        })
+      },
+      initSysDict() {
+        this.$request({
+          url: '/gw/op/v1/base/sys/dict/listSysDict',
+          method: 'post'
+        }).then(res => {
+          if (res.status === 1000) {
+            uni.setStorageSync('sysDictList', JSON.stringify(res.data))
+          } else {
+            uni.showToast({
+              title: res.msg,
+              icon: 'none',
+              duration: 2000
+            })
           }
         })
       },
