@@ -76,7 +76,7 @@
     <view></view>
     <view  @touchmove.stop.prevent="moveHandle" @click="isShowSort = !isShowSort"  v-if="isShowSort" class="mask">
     </view>
-    <view class="paixudiv" v-if="isShowSort" style="height: 43vh;">
+    <view class="paixudiv" v-if="isShowSort" style="height: 15vh;">
       <scroll-view   scroll-y="true"  class="width92" style="height: 100%">
         <view v-for="(item,index) in sortList"
               :key="index"
@@ -127,110 +127,110 @@
               </view>
             </view>
 
-            <view class="saixuanquxiang" >
-              <view>
-                <text class="zitijiachu zihao14">
-                  利润
-                </text>
-              </view>
-              <view class="julishang10 xianglian saixuanshijian">
-                <view >
-                  <u--input
-                      class="searchInputFilter"
-                      placeholder="最低利润"
-                      @change="search1"
-                      placeholderStyle="font-size: 14px;color:#c0c4cc"
-                      v-model="queryParam.profitsFrom"
-                      type="digit"
-                      clearable
-                  ></u--input>
-                </view>
-                <view>
-                  <image  class="hengtupian" src="../../static/img/heng.png"></image>
-                </view>
-                <view  >
-                  <u--input
-                      class="searchInputFilter"
-                      placeholder="最高利润"
-                      @change="search1"
-                      placeholderStyle="font-size: 14px;color:#c0c4cc"
-                      v-model="queryParam.profitsTo"
-                      type="digit"
-                      clearable
-                  ></u--input>
-                </view>
-              </view>
-            </view>
+<!--            <view class="saixuanquxiang" >-->
+<!--              <view>-->
+<!--                <text class="zitijiachu zihao14">-->
+<!--                  利润-->
+<!--                </text>-->
+<!--              </view>-->
+<!--              <view class="julishang10 xianglian saixuanshijian">-->
+<!--                <view >-->
+<!--                  <u&#45;&#45;input-->
+<!--                      class="searchInputFilter"-->
+<!--                      placeholder="最低利润"-->
+<!--                      @change="search1"-->
+<!--                      placeholderStyle="font-size: 14px;color:#c0c4cc"-->
+<!--                      v-model="queryParam.profitsFrom"-->
+<!--                      type="digit"-->
+<!--                      clearable-->
+<!--                  ></u&#45;&#45;input>-->
+<!--                </view>-->
+<!--                <view>-->
+<!--                  <image  class="hengtupian" src="../../static/img/heng.png"></image>-->
+<!--                </view>-->
+<!--                <view  >-->
+<!--                  <u&#45;&#45;input-->
+<!--                      class="searchInputFilter"-->
+<!--                      placeholder="最高利润"-->
+<!--                      @change="search1"-->
+<!--                      placeholderStyle="font-size: 14px;color:#c0c4cc"-->
+<!--                      v-model="queryParam.profitsTo"-->
+<!--                      type="digit"-->
+<!--                      clearable-->
+<!--                  ></u&#45;&#45;input>-->
+<!--                </view>-->
+<!--              </view>-->
+<!--            </view>-->
 
-            <view class="saixuanquxiang" >
-              <view>
-                <text class="zitijiachu zihao14">
-                  库存
-                </text>
-              </view>
-              <view class="julishang10 xianglian saixuanshijian">
-                <view >
-                  <u--input
-                      class="searchInputFilter"
-                      placeholder="最低库存"
-                      @change="search1"
-                      placeholderStyle="font-size: 14px;color:#c0c4cc"
-                      v-model="queryParam.numFrom"
-                      type="number"
-                      clearable
-                  ></u--input>
-                </view>
-                <view>
-                  <image  class="hengtupian" src="../../static/img/heng.png"></image>
-                </view>
-                <view  >
-                  <u--input
-                      class="searchInputFilter"
-                      placeholder="最高库存"
-                      @change="search1"
-                      placeholderStyle="font-size: 14px;color:#c0c4cc"
-                      v-model="queryParam.numTo"
-                      type="number"
-                      clearable
-                  ></u--input>
-                </view>
-              </view>
-            </view>
+<!--            <view class="saixuanquxiang" >-->
+<!--              <view>-->
+<!--                <text class="zitijiachu zihao14">-->
+<!--                  库存-->
+<!--                </text>-->
+<!--              </view>-->
+<!--              <view class="julishang10 xianglian saixuanshijian">-->
+<!--                <view >-->
+<!--                  <u&#45;&#45;input-->
+<!--                      class="searchInputFilter"-->
+<!--                      placeholder="最低库存"-->
+<!--                      @change="search1"-->
+<!--                      placeholderStyle="font-size: 14px;color:#c0c4cc"-->
+<!--                      v-model="queryParam.numFrom"-->
+<!--                      type="number"-->
+<!--                      clearable-->
+<!--                  ></u&#45;&#45;input>-->
+<!--                </view>-->
+<!--                <view>-->
+<!--                  <image  class="hengtupian" src="../../static/img/heng.png"></image>-->
+<!--                </view>-->
+<!--                <view  >-->
+<!--                  <u&#45;&#45;input-->
+<!--                      class="searchInputFilter"-->
+<!--                      placeholder="最高库存"-->
+<!--                      @change="search1"-->
+<!--                      placeholderStyle="font-size: 14px;color:#c0c4cc"-->
+<!--                      v-model="queryParam.numTo"-->
+<!--                      type="number"-->
+<!--                      clearable-->
+<!--                  ></u&#45;&#45;input>-->
+<!--                </view>-->
+<!--              </view>-->
+<!--            </view>-->
 
-            <view class="saixuanquxiang" >
-              <view>
-                <text class="zitijiachu zihao14">
-                  销量
-                </text>
-              </view>
-              <view class="julishang10 xianglian saixuanshijian">
-                <view >
-                  <u--input
-                      class="searchInputFilter"
-                      placeholder="最低销量"
-                      @change="search1"
-                      placeholderStyle="font-size: 14px;color:#c0c4cc"
-                      v-model="queryParam.sevenSaleCountFrom"
-                      type="number"
-                      clearable
-                  ></u--input>
-                </view>
-                <view>
-                  <image  class="hengtupian" src="../../static/img/heng.png"></image>
-                </view>
-                <view  >
-                  <u--input
-                      class="searchInputFilter"
-                      placeholder="最高销量"
-                      @change="search1"
-                      placeholderStyle="font-size: 14px;color:#c0c4cc"
-                      v-model="queryParam.sevenSaleCountTo"
-                      type="number"
-                      clearable
-                  ></u--input>
-                </view>
-              </view>
-            </view>
+<!--            <view class="saixuanquxiang" >-->
+<!--              <view>-->
+<!--                <text class="zitijiachu zihao14">-->
+<!--                  销量-->
+<!--                </text>-->
+<!--              </view>-->
+<!--              <view class="julishang10 xianglian saixuanshijian">-->
+<!--                <view >-->
+<!--                  <u&#45;&#45;input-->
+<!--                      class="searchInputFilter"-->
+<!--                      placeholder="最低销量"-->
+<!--                      @change="search1"-->
+<!--                      placeholderStyle="font-size: 14px;color:#c0c4cc"-->
+<!--                      v-model="queryParam.sevenSaleCountFrom"-->
+<!--                      type="number"-->
+<!--                      clearable-->
+<!--                  ></u&#45;&#45;input>-->
+<!--                </view>-->
+<!--                <view>-->
+<!--                  <image  class="hengtupian" src="../../static/img/heng.png"></image>-->
+<!--                </view>-->
+<!--                <view  >-->
+<!--                  <u&#45;&#45;input-->
+<!--                      class="searchInputFilter"-->
+<!--                      placeholder="最高销量"-->
+<!--                      @change="search1"-->
+<!--                      placeholderStyle="font-size: 14px;color:#c0c4cc"-->
+<!--                      v-model="queryParam.sevenSaleCountTo"-->
+<!--                      type="number"-->
+<!--                      clearable-->
+<!--                  ></u&#45;&#45;input>-->
+<!--                </view>-->
+<!--              </view>-->
+<!--            </view>-->
             <view class="saixuanquxiang">
               <view>
                 <text class="zitijiachu zihao14">
@@ -269,13 +269,13 @@
     <view
         style="height: 100vh"
         @touchstart.stop="onTouchStart" @touchend.stop="handleTouchend">
-      <view class="julibiaoti3">
-        <view class="dingdans_item_dw"
+      <view class="julibiaoti4">
+        <view class="dingdans_item_dw" style="padding: 0 1.2vw"
               v-for="(item,index) in tableData"
               :key="index"
         >
-          <view class="dingdans_con_dw">
-            <view  class="dingdans_con_left_dw"
+          <view class="dingdans_con_dw" style="padding-bottom: 0px">
+            <view  class="dingdans_con_left_dw" style="    margin-left: 2vw;"
                  @click="avatarShow(item.img)">
               <image mode="widthFix" :src="item.img" ></image>
               <p class="mark_dw">
@@ -284,13 +284,13 @@
               </text>
               </p>
             </view>
-            <view class="diangdans_con_right_dw">
+            <view class="diangdans_con_right_dw" style="width: 68vw">
               <view class="dingdans_con_right_top_dw" @click="goodsDetail(item.goodsId, 1,item.spuId)">
-                <text class="chaochu"  style="width: 65vw">
+                <text class="chaochu"  style="width: 66vw">
                   {{item.goodsName }}
                 </text>
               </view>
-              <view class="dingdans_con_right_top_dw_1 zuoyouduiqi">
+              <view class="dingdans_con_right_top_dw_1 zuoyouduiqi" style="margin-top: 7px;">
                 <view class="xianglian">
                    <text @click="jumpactNo(item.actNo)">
               {{item.actNo}}
@@ -298,46 +298,48 @@
                   <image @click="$copyUrl(item.actNo)" class="fuzhitupian"
                          src="../../static/img/copy.png"></image>
                 </view>
-                <view class="jiagejiage">
-                  <text style="font-weight: 400;">库存</text>
-                  <text :class="item.num > 50 ? 'color-danger' : ''" >{{item.num}} </text>
-                </view>
+<!--                <view class="jiagejiage">-->
+<!--                  <text style="font-weight: 400;">库存</text>-->
+<!--                  <text :class="item.num > 50 ? 'color-danger' : ''" >{{item.num}} </text>-->
+<!--                </view>-->
               </view>
               <view class="dingdans_con_right_top_dw_1 zuoyouduiqi" style="font-weight: 400;">
                 <view class="jiagejiage">
                   价格
                   <text  class="color-danger" >{{item.price}} </text>
-                  <text style="text-decoration:line-through;color: #7a7a7a;" >{{item.price/0.65  | numFilter0 }} </text>
+                  <text style="text-decoration:line-through;color: #7a7a7a;" >{{item.price/0.55  | numFilter0 }} </text>
                 </view>
                 <view class="jiagejiage">
-                  周均价
-                  <text class="color-danger" >{{item.thisTimeThePrice}} </text>
-                  <text style="text-decoration:line-through;color: #7a7a7a;" >{{item.sevenAveragePrice }} </text>
+                  <view class="dingdans_con_right_down_2_1">
+                    <text @click="gotoDw(item.spuId)"
+                          class="dw-button-common">得物
+                    </text>
+                  </view>
                 </view>
               </view>
             </view>
           </view>
 
           <!--底部-->
-          <view class="dingdans_bottom_dw">
-            <view class="dingdans_top_left_dw jiagejiage">
-              <text v-if="item.thisTimeProfits"> 利润</text>
-              <text :class="item.thisTimeProfits > 50 ? 'color-danger' : ''">{{item.thisTimeProfits }} </text>
-              <text v-if="item.sevenSaleCount">, 周销量</text>
-              <text :class="item.sevenSaleCount > 10 ? 'color-danger' : ''">{{item.sevenSaleCount }} </text>
-              <text v-if="item.thisTimeProfits <= 0" style="margin-left: 20px;">垃圾</text>
-              <strong v-if="item.thisTimeProfits >= 50 && item.sevenSaleCount >= 10 && item.num >= 10"
-                      class="color-danger" style="margin-left: 5px;font-size: 20px;">冲冲冲</strong>
-            </view>
-            <!--          操作栏-->
-            <view class="dingdans_top_right_dw">
-              <view class="dingdans_con_right_down_2_1">
-                <text @click="gotoDw(item.spuId)"
-                        class="dw-button-common">得物
-                </text>
-              </view>
-            </view>
-          </view>
+<!--          <view1 class="dingdans_bottom_dw">-->
+<!--            <view class="dingdans_top_left_dw jiagejiage">-->
+<!--              <text v-if="item.thisTimeProfits"> 利润</text>-->
+<!--              <text :class="item.thisTimeProfits > 50 ? 'color-danger' : ''">{{item.thisTimeProfits }} </text>-->
+<!--              <text v-if="item.sevenSaleCount">, 周销量</text>-->
+<!--              <text :class="item.sevenSaleCount > 10 ? 'color-danger' : ''">{{item.sevenSaleCount }} </text>-->
+<!--              <text v-if="item.thisTimeProfits <= 0" style="margin-left: 20px;">垃圾</text>-->
+<!--              <strong v-if="item.thisTimeProfits >= 50 && item.sevenSaleCount >= 10 && item.num >= 10"-->
+<!--                      class="color-danger" style="margin-left: 5px;font-size: 20px;">冲冲冲</strong>-->
+<!--            </view>-->
+<!--            &lt;!&ndash;          操作栏&ndash;&gt;-->
+<!--            <view class="dingdans_top_right_dw">-->
+<!--              <view class="dingdans_con_right_down_2_1">-->
+<!--                <text @click="gotoDw(item.spuId)"-->
+<!--                        class="dw-button-common">得物-->
+<!--                </text>-->
+<!--              </view>-->
+<!--            </view>-->
+<!--          </view1>-->
           <!--底部-->
         </view>
       </view>
@@ -359,10 +361,9 @@
         <image :src="imageZoom" mode="widthFix" class="showImg"></image>
       </view>
     </view>
-    <view>
-      <uni-fab ref="fab" :pattern="pattern" horizontal="right" @fabClick="fabClick"/>
-    </view>
-
+<!--    <view>-->
+<!--      <uni-fab ref="fab" :pattern="pattern" horizontal="right" @fabClick="fabClick"/>-->
+<!--    </view>-->
   </view>
 </template>
 <script>
@@ -477,12 +478,12 @@
         },
         sortList: [
           { fieldValue: '', fieldName: '请选择排序' },
-          { fieldValue: 1, fieldName: '利润降序' },
-          { fieldValue: 2, fieldName: '利润升序' },
-          { fieldValue: 3, fieldName: '销量降序' },
-          { fieldValue: 4, fieldName: '销量升序' },
-          { fieldValue: 5, fieldName: '库存降序' },
-          { fieldValue: 6, fieldName: '库存升序' },
+          // { fieldValue: 1, fieldName: '利润降序' },
+          // { fieldValue: 2, fieldName: '利润升序' },
+          // { fieldValue: 3, fieldName: '销量降序' },
+          // { fieldValue: 4, fieldName: '销量升序' },
+          // { fieldValue: 5, fieldName: '库存降序' },
+          // { fieldValue: 6, fieldName: '库存升序' },
           { fieldValue: 7, fieldName: '价格降序' },
           { fieldValue: 8, fieldName: '价格升序' }
         ],
