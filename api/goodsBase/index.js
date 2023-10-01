@@ -90,6 +90,12 @@ export const goodsBaseApi = {
     method: 'get',
     data: body
 
+  }),
+  getGoodsByActNoAndSizeH5V4: (body) => request({
+    url: '/gw/op/v1/dwGoods/getGoodsByActNo',
+    method: 'get',
+    data: body
+
   })
 
 }

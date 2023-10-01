@@ -4,7 +4,23 @@
       <view @click="$goBack" class="u-nav-slot" slot="left">
         <u-icon name="arrow-left" size="20"></u-icon>
       </view>
+      <view  v-if="form.id" @click="storeAdd" class="u-nav-slot" slot="right" style="font-size: 15px;">
+        商品入库
+      </view>
     </u-navbar>
+    <u-popup :show="true" :duration="100"  mode="center">
+      <view style="    width: 80vw;padding: 60px 4vw 60px 5vw;">
+        <view class="zuoyouduiqi" style="
+    padding-right: 20px;
+    padding-left: 20px;">
+          <u-button type="primary" size="small" shape="circle"
+                    style="margin-right: 10px" text="返回列表" ></u-button>
+          <u-button type="primary" size="small" shape="circle"
+                    style="margin-left: 10px" text="商品入库" ></u-button>
+        </view>
+
+      </view>
+    </u-popup>
     <view class="popContainer" v-if="pictureZoomShow" @click="pictureZoomShow = false">
       <view class="imageShow">
         <image :src="form.img" alt="" mode="widthFix"   class="showImg"></image>
@@ -246,9 +262,9 @@
           goodsBaseApi.update(this.form).then(res => {
             if (res.subCode === 1000) {
               this.$toast('操作成功')
-              setTimeout(() => {
-                this.$navigateTo('/pages/goodsBase/index')
-              }, 1000)
+              // setTimeout(() => {
+              //   this.$navigateTo('/pages/goodsBase/index')
+              // }, 1000)
             } else {
               this.$toast(res.subMsg)
             }
@@ -258,9 +274,9 @@
             if (res.subCode === 1000) {
               this.$toast('添加成功，即将返回列表')
               // this.goBack()
-              setTimeout(() => {
-                this.$navigateTo('/pages/goodsBase/index')
-              }, 1000)
+              // setTimeout(() => {
+              //   this.$navigateTo('/pages/goodsBase/index')
+              // }, 1000)
             } else {
               this.$toast(res.subMsg)
             }
@@ -329,6 +345,10 @@
       },
       deletePic(event) {
         this[`fileList${event.name}`].splice(event.index, 1)
+      },
+      storeAdd() {
+        let url = '/pages/store/storeAdd?goodsId=' + this.form.id
+        this.$navigateTo(url)
       },
       async afterRead(event) {
         uni.showLoading({title: '上传中'});
