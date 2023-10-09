@@ -91,6 +91,7 @@
               :hideArrow="true"
               text="fieldName"
               name="fieldValue"
+              @change="keyup2"
               v-model="requestParam.saleType"/>
           <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
         </u-form-item>
@@ -145,7 +146,7 @@
           </view>
         </view>
       </view>
-      <view v-if="requestParam.shelvesPrice"
+      <view v-if="requestParam.shelvesPrice && (requestParam.saleType == 1 || requestParam.saleType == 2 )"
             style="width: 85vw;margin-left: 4vw;color: #808080;font-size: 12px;padding-bottom: 18px;">
         <view class="zuoyouduiqi " style="margin-top: 5px;">
           <view>
@@ -346,6 +347,18 @@
         this.requestParam.profits = parseFloat(profits).toFixed(2)
       },
       keyup2() {
+        if(this.requestParam.saleType != 1 && this.requestParam.saleType != 2){
+          this.requestParam.poundage = 0
+          this.requestParam.theirPrice = this.requestParam.shelvesPrice
+
+          // let shelvesPrice = this.requestParam.shelvesPrice + ''
+          // let theirPrice = shelvesPrice - poundage
+          // this.requestParam.theirPrice = parseFloat(theirPrice).toFixed(2)
+          let profits = this.requestParam.theirPrice - 10
+              - this.orderData.price
+          this.requestParam.profits = parseFloat(profits).toFixed(2)
+          return
+        }
         let shelvesPrice = this.requestParam.shelvesPrice + ''
         if (shelvesPrice < 100) {
           this.tipMsg = '请提高价格'

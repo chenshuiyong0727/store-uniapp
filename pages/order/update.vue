@@ -105,6 +105,7 @@
               :hideArrow="true"
               text="fieldName"
               name="fieldValue"
+              @change="keyup1"
               v-model="requestParam.saleType"/>
           <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
         </u-form-item>
@@ -273,27 +274,51 @@
         this.pictureZoomShow = true
       },
       keyup2() {
-        let poundage = this.$getPoundage( this.requestParam.shelvesPrice)
-        this.requestParam.poundage = parseFloat(poundage).toFixed(2)
+        if(this.requestParam.saleType != 1 && this.requestParam.saleType != 2){
+          // let poundage =   this.requestParam.poundage
+          // this.requestParam.poundage = parseFloat(poundage).toFixed(2)
+          let profits = this.requestParam.theirPrice - this.requestParam.freight
+              - this.requestParam.price
+          this.requestParam.profits = parseFloat(profits).toFixed(2)
+        }else{
+          let poundage = this.$getPoundage( this.requestParam.shelvesPrice)
+          this.requestParam.poundage = parseFloat(poundage).toFixed(2)
 
-        let profits = this.requestParam.theirPrice - this.requestParam.freight
-            - this.requestParam.price
-        this.requestParam.profits = parseFloat(profits).toFixed(2)
+          let profits = this.requestParam.theirPrice - this.requestParam.freight
+              - this.requestParam.price
+          this.requestParam.profits = parseFloat(profits).toFixed(2)
+        }
+
       },
       handleSubmit(e) {
         this.requestParam.deliveryDeadlineTime = `${e.year}-${e.month}-${e.day} ${e.hour}:${e.minute}:${e.second}`;
       },
       keyup1() {
-        let poundage =  this.$getPoundage( this.requestParam.shelvesPrice)
-        this.requestParam.poundage = parseFloat(poundage).toFixed(2)
+        if(this.requestParam.saleType != 1 && this.requestParam.saleType != 2){
+          console.info("requestParam.shelvesPrice)",this.requestParam.shelvesPrice)
+          let poundage =   this.requestParam.poundage
 
-        let theirPrice = this.requestParam.subsidiesPrice * 1 + this.requestParam.shelvesPrice * 1
-            -  this.$getPoundage( this.requestParam.shelvesPrice)
-        this.requestParam.theirPrice = parseFloat(theirPrice).toFixed(2)
+          let theirPrice = this.requestParam.subsidiesPrice * 1 + this.requestParam.shelvesPrice * 1
+              -  poundage
+          this.requestParam.theirPrice = parseFloat(theirPrice).toFixed(2)
 
-        let profits = this.requestParam.theirPrice - this.requestParam.freight
-            - this.requestParam.price
-        this.requestParam.profits = parseFloat(profits).toFixed(2)
+          let profits = this.requestParam.theirPrice - this.requestParam.freight
+              - this.requestParam.price
+          this.requestParam.profits = parseFloat(profits).toFixed(2)
+        }else{
+          console.info("requestParam1.shelvesPrice)",this.requestParam.shelvesPrice)
+          let poundage =  this.$getPoundage( this.requestParam.shelvesPrice * 1)
+          this.requestParam.poundage = parseFloat(poundage).toFixed(2)
+
+          let theirPrice = this.requestParam.subsidiesPrice * 1 + this.requestParam.shelvesPrice * 1
+              -  this.$getPoundage( this.requestParam.shelvesPrice * 1)
+          this.requestParam.theirPrice = parseFloat(theirPrice).toFixed(2)
+
+          let profits = this.requestParam.theirPrice - this.requestParam.freight
+              - this.requestParam.price
+          this.requestParam.profits = parseFloat(profits).toFixed(2)
+        }
+        console.info("requestParam1",this.requestParam)
       },
       showSxType() {
         if (this.type ==1){
@@ -396,6 +421,7 @@
         } else {
           this.requestParam.profits = this.orderData.profits
         }
+        console.info("requestParam" , this.requestParam)
         this.isShowDialog = true
       },
       getDetailById(id) {
@@ -403,6 +429,7 @@
           goodsOrderApi.getDetailById(id).then(res => {
             if (res.subCode === 1000) {
               this.orderData = res.data ? res.data : {};
+              console.info(this.orderData)
               this.handleClick()
             } else {
               this.$toast(res.subMsg)
