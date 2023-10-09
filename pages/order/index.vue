@@ -476,6 +476,12 @@
         width: 15vw;
         margin-top: 8px;
     margin-bottom: 8px;
+    margin-left: 8px;" @click="plsc">删除
+        </u-button>
+        <u-button  type="primary" shape="circle" size="small" style="
+        width: 15vw;
+        margin-top: 8px;
+    margin-bottom: 8px;
     margin-left: 8px;
         margin-right: 10px" @click="showSd = !showSd">退出
         </u-button>
@@ -863,7 +869,7 @@
           this.gotoWl(item)
         }
         if ('goDel' == action) {
-          this.goDel(item.id)
+          this.goDel(item)
         }
       },
 
@@ -1178,7 +1184,13 @@
         this.queryParam.theExpire = item.theExpire
         this.search1()
       },
-      goDel(id) {
+      goDel(item) {
+        if (item.status != 0 && item.status != 1  && item.status != 2) {
+          let statusStr =  this.$typeToStr(37,item.status)
+          this.$toast(statusStr + '订单,不能删除')
+          return
+        }
+        let id = item.id
         var _this = this;
         uni.showModal({
           title: '',
@@ -1244,6 +1256,29 @@
         }
         let url = '/pages/order/batchUpdate?ids=' + this.ids
         this.$navigateTo(url)
+      },
+      plsc() {
+        if (!this.ids.length) {
+          this.$toast('请选择订单')
+          return
+        }
+        var _this = this;
+        uni.showModal({
+          title: '',
+          confirmColor: '#409eff',
+          content: '是否删除'+ _this.ids.length + "条订单",
+          success: function (res) {
+            if (res.confirm) {
+              goodsOrderApi.batchdelete(_this.ids).then(res => {
+                _this.$toast(res.subMsg)
+                if (res.subCode === 1000) {
+                  _this.search1()
+                }
+              })
+            } else if (res.cancel) {
+            }
+          }
+        });
       },
       gotoWl(orderData) {
         if (!orderData.waybillNo) {

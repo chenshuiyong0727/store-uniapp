@@ -438,6 +438,10 @@
             text: '库存信息'
           },
           {
+            value: 'syncPrice',
+            text: '同步价格'
+          },
+          {
             value: 'update',
             text: '修改'
           },
@@ -669,7 +673,21 @@
         }).then(res => {
           this.$toast(res.subMsg)
           if (res.subCode === 1000) {
-            this.getPage()
+            this.search1()
+            this.isShowDialog1 = false
+          }
+        })
+      },
+      syncPrice(actNo) {
+        let data = {actNo: actNo}
+        this.$request({
+          url: '/gw/op/v1/dwGoods/updateSkuPriceByActNo',
+          method: 'get',
+          data: data
+        }).then(res => {
+          this.$toast(res.subMsg)
+          if (res.subCode === 1000) {
+            this.search1()
             this.isShowDialog1 = false
           }
         })
@@ -732,6 +750,9 @@
         }
         if ('goDel' == action) {
           this.goDel(item.id)
+        }
+        if ('syncPrice' == action) {
+          this.syncPrice(item.actNo)
         }
       },
       preventHandler() {

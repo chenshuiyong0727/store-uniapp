@@ -8,14 +8,23 @@
         商品入库
       </view>
     </u-navbar>
-    <u-popup :show="true" :duration="100"  mode="center">
-      <view style="    width: 80vw;padding: 60px 4vw 60px 5vw;">
+    <u-popup :show="showPop" @close="showPop = !showPop" :duration="100" style=""  mode="center" :closeable="true">
+      <view style=" border-radius: 5px;   width: 80vw;padding: 60px 4vw 60px 5vw;">
+        <view style="    display: flex;
+    justify-content: center;
+    align-items: center;">
+          <image style="height: 23px;width: 23px ; margin-right: 5px;" src="../../static/img/success_1.png"></image>
+          <text class="color-dw-strong">
+            操作成功！
+          </text>
+        </view>
         <view class="zuoyouduiqi" style="
+        margin-top: 20px;
     padding-right: 20px;
     padding-left: 20px;">
-          <u-button type="primary" size="small" shape="circle"
+          <u-button type="primary" size="small" shape="circle" @click="$navigateTo('/pages/goodsBase/index')"
                     style="margin-right: 10px" text="返回列表" ></u-button>
-          <u-button type="primary" size="small" shape="circle"
+          <u-button   v-if="form.id"  type="primary" size="small" shape="circle" @click="storeAdd"
                     style="margin-left: 10px" text="商品入库" ></u-button>
         </view>
 
@@ -155,6 +164,7 @@
         },
         type: '',
         id: '',
+        showPop: false,
         options: [],
         goodsTypeSizeList: [],
         uploadData: {},
@@ -261,7 +271,8 @@
         if (this.type == 2) {
           goodsBaseApi.update(this.form).then(res => {
             if (res.subCode === 1000) {
-              this.$toast('操作成功')
+              this.showPop = true
+              // this.$toast('操作成功')
               // setTimeout(() => {
               //   this.$navigateTo('/pages/goodsBase/index')
               // }, 1000)
@@ -272,7 +283,9 @@
         } else {
           goodsBaseApi.add(this.form).then(res => {
             if (res.subCode === 1000) {
-              this.$toast('添加成功，即将返回列表')
+              this.form.id = res.data
+              this.showPop = true
+              // this.$toast('添加成功，即将返回列表')
               // this.goBack()
               // setTimeout(() => {
               //   this.$navigateTo('/pages/goodsBase/index')

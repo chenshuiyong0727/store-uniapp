@@ -96,6 +96,12 @@ export const goodsBaseApi = {
     method: 'get',
     data: body
 
+  }),
+  updateSkuPrice: (body) => request({
+    url: '/gw/op/v1/dwGoods/updateSkuPrice',
+    method: 'get',
+    data: body
+
   })
 
 }

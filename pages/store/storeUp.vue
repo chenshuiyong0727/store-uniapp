@@ -368,7 +368,7 @@
           if (res.subCode === 1000) {
             setTimeout(() => {
               uni.reLaunch({
-                url: '/pages/order/index',
+                url:'/pages/store/index?backUrl=/pages/index/index&current=2&today=2',
               });
             }, 1000)
           }
