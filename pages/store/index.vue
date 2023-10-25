@@ -368,6 +368,52 @@
       </view>
     </view>
 
+      <view>
+        <u-popup :show="isShowDialog" @close="isShowDialog != isShowDialog" :duration="0" mode="center">
+          <view style="width: 80vw;margin-left: 5vw;margin-right: 5vw;">
+            <u-navbar title="当前价格" :fixed="false" :border="true">
+              <view @click="isShowDialog = false" style="font-size: 15px;" class="u-nav-slot" slot="left">
+                <text>关闭</text>
+              </view>
+              <view @click="confirmHandle" class="u-nav-slot" style="font-size: 15px;" slot="right">
+                <text>确定</text>
+              </view>
+            </u-navbar>
+            <view>
+              <u--form>
+                <u-form-item label-width="20vw" label="当前价格" borderBottom>
+                  <u--input  disabledColor="#fff" inputAlign="right" @change="keyup1"
+                             v-model="requestParamDw.thisTimePrice" type="digit" border="none"></u--input>
+                  <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
+                </u-form-item>
+                <u-form-item :disabled="true"  label-width="20vw" label="出售价格" borderBottom>
+                  <u--input  disabledColor="#fff" inputAlign="right"   color="#d1d1d1"
+                             v-model="requestParamDw.dwPrice" type="digit" border="none"></u--input>
+                </u-form-item>
+                <u-form-item  :disabled="true" label-width="20vw" label="入库价" borderBottom>
+                  <u--input  disabledColor="#fff" inputAlign="right"  color="#d1d1d1"
+                             v-model="requestParamDw.price" type="digit" border="none"></u--input>
+                </u-form-item>
+                <u-form-item label-width="20vw" label="手续费" borderBottom>
+                  <u--input  :disabled="true" disabledColor="#fff" inputAlign="right"
+                             v-model="requestParamDw.poundage" type="digit" border="none" color="#d1d1d1"></u--input>
+                </u-form-item>
+
+                <u-form-item label-width="20vw" label="到手价" borderBottom>
+                  <u--input  :disabled="true" disabledColor="#fff" inputAlign="right"
+                             v-model="requestParamDw.theirPrice" type="digit" border="none" color="#d1d1d1"></u--input>
+                </u-form-item>
+
+                <u-form-item label-width="20vw" label="利润" borderBottom>
+                  <u--input  :disabled="true" disabledColor="#fff" inputAlign="right"
+                             v-model="requestParamDw.profits" type="digit" border="none" color="#d1d1d1"></u--input>
+                </u-form-item>
+              </u--form>
+            </view>
+          </view>
+        </u-popup>
+      </view>
+
     <view v-show="tableData.length" class="meiyougengduo">
       <u-loadmore fontSize="18"  color="#a6a6a6" nomoreText="最硬球鞋" :status="loadStatus"/>
     </view>
@@ -442,6 +488,10 @@
             text: '同步价格'
           },
           {
+            value: 'dwPrice',
+            text: '当前价格'
+          },
+          {
             value: 'update',
             text: '修改'
           },
@@ -507,6 +557,18 @@
           shelvesPrice: ''
         },
         sizeList:'',
+        requestParamDw: {
+          id: '',
+          sizeId: '',
+          oldInventory: '',
+          inventory: '',
+          price: '',
+          dwPrice: '',
+          thisTimePrice: '',
+          poundage: '',
+          theirPrice: '',
+          profits: ''
+        },
         requestParam: {
           id: '',
           createTime: '',
@@ -622,6 +684,76 @@
       }
     },
     methods: {
+      handleClick(row) {
+        this.orderData = row
+        this.requestParamDw.id = this.orderData.id
+        this.requestParamDw.sizeId = this.orderData.sizeId
+        this.requestParamDw.channelId = this.orderData.channelId
+        if (this.orderData.createTime){
+          this.requestParamDw.createTime  = uni.$u.timeFormat(this.orderData.createTime, 'yyyy-mm-dd hh:MM:ss');
+          this.dateCurrent = parseInt(new Date( this.orderData.createTime).getTime())
+        }else{
+          this.dateCurrent = parseInt(new Date().getTime())
+        }
+        this.requestParamDw.oldInventory = this.orderData.oldInventory
+        this.requestParamDw.inventory = this.orderData.inventory
+        this.requestParamDw.price = this.orderData.price
+        this.requestParamDw.dwPrice = this.orderData.dwPrice
+        this.requestParamDw.thisTimePrice = this.orderData.thisTimePrice ? this.orderData.thisTimePrice : null
+        this.requestParamDw.waybillNo = this.orderData.waybillNo
+        this.requestParamDw.addressId = this.orderData.addressId
+        if (!this.orderData.poundage) {
+          let poundage = this.$getPoundage(this.requestParamDw.dwPrice)
+          this.requestParamDw.poundage = parseFloat(poundage).toFixed(2)
+        } else {
+          this.requestParamDw.poundage = this.orderData.poundage
+        }
+        if (!this.orderData.theirPrice) {
+          let theirPrice =  this.requestParamDw.dwPrice
+              - this.$getPoundage(this.requestParamDw.dwPrice)
+          this.requestParamDw.theirPrice = parseFloat(theirPrice).toFixed(2)
+        } else {
+          this.requestParamDw.theirPrice = this.orderData.theirPrice
+        }
+        if (!this.orderData.profits) {
+          let profits = this.requestParamDw.theirPrice - 10
+              - this.requestParamDw.price
+          this.requestParamDw.profits = parseFloat(profits).toFixed(2)
+        } else {
+          this.requestParamDw.profits = this.orderData.profits
+        }
+        this.isShowDialog = !this.isShowDialog
+      },
+      keyup1() {
+        this.requestParamDw.dwPrice = this.requestParamDw.thisTimePrice
+        let poundage =  this.$getPoundage(this.requestParamDw.dwPrice)
+        this.requestParamDw.poundage = parseFloat(poundage).toFixed(2)
+
+        let theirPrice =  this.requestParamDw.dwPrice - poundage
+        this.requestParamDw.theirPrice = parseFloat(theirPrice).toFixed(2)
+
+        let profits = this.requestParamDw.theirPrice - 10
+            - this.requestParamDw.price
+        this.requestParamDw.profits = parseFloat(profits).toFixed(2)
+      },
+      confirmHandle() {
+        if(!this.requestParamDw.thisTimePrice) {
+          this.$toast('请输入当前价格')
+          return
+        }
+        goodsInventoryApi.update(this.requestParamDw).then(res => {
+          this.$toast(res.subMsg);
+          if (res.subCode === 1000) {
+            this.search1()
+            this.isShowDialog = false
+            // setTimeout(() => {
+            //   uni.reLaunch({
+            //     url: '/pages/store/index',
+            //   });
+            // }, 1000)
+          }
+        })
+      },
       onTouchStart(e) {
         this.startTimeTouch = Date.now();
         this.startX = e.changedTouches[0].clientX;
@@ -738,6 +870,9 @@
         }
         if ('update' == action) {
           this.update(item )
+        }
+        if ('dwPrice' == action) {
+          this.handleClick(item )
         }
         if ('gotoDw' == action) {
           this.gotoDw(item.spuId )

@@ -218,7 +218,7 @@
         this.requestParam.inventory = this.orderData.inventory
         this.requestParam.price = this.orderData.price
         this.requestParam.dwPrice = this.orderData.dwPrice
-        this.requestParam.thisTimePrice = this.orderData.thisTimePrice
+        this.requestParam.thisTimePrice = this.orderData.thisTimePrice ? this.orderData.thisTimePrice : null
         this.requestParam.waybillNo = this.orderData.waybillNo
         this.requestParam.addressId = this.orderData.addressId
         if (!this.orderData.poundage) {

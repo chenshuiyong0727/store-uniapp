@@ -74,7 +74,7 @@
     <view style="    padding-top: 44px;">
       <view @click="jumpDetail(item.months )" class="dingdans_item_rt" v-for="(item,index) in tableData" :key="index">
         <view class="dingdans_top_rt">
-          <strong style="margin-left: 12px;">月份：</strong>
+          <strong style="margin-left: 12px;">日期：</strong>
           <strong style="color: #409eff"> {{item.months}} </strong>
         </view>
         <view class="dingdans_con_rt">

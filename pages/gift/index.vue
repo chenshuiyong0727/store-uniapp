@@ -38,7 +38,7 @@
       </view>
     </view>
 
-    <view>
+    <view1>
       <u-popup :show="isShowDialog" @close="isShowDialog != isShowDialog" :duration="100" mode="bottom">
         <view style="width: 90vw;margin-left: 5vw;">
           <u-navbar :title="tabName" :fixed="false" :border="true">
@@ -77,7 +77,7 @@
           </view>
         </view>
       </u-popup>
-    </view>
+    </view1>
     <u-picker :show="show_sx_type" :columns="columns" @cancel="show_sx_type= false"
               @confirm="confirm_sx_type" keyName="fieldName"></u-picker>
     <u-picker :show="show_sx_label" :columns="columnsLabel" @cancel="show_sx_label= false"
