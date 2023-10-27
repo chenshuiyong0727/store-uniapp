@@ -56,6 +56,7 @@
         <view
             v-if="queryParam.priceFrom
                    || queryParam.priceTo
+                   || queryParam.discout
                    || queryParam.profitsFrom
                    || queryParam.profitsTo
                    || queryParam.numFrom
@@ -126,7 +127,25 @@
                 </view>
               </view>
             </view>
-
+            <view class="saixuanquxiang" >
+              <view>
+                <text class="zitijiachu zihao14">
+                  折扣
+                </text>
+              </view>
+              <view class="julishang10">
+                <u--input
+                    type="digit"
+                    class="saixuanInput"
+                    placeholder="请输入折扣"
+                    placeholderStyle="font-size: 14px;color:#c0c4cc"
+                    v-model="queryParam.discout"
+                    @change="search1"
+                    clearable
+                >
+                </u--input>
+              </view>
+            </view>
 <!--            <view class="saixuanquxiang" >-->
 <!--              <view>-->
 <!--                <text class="zitijiachu zihao14">-->
@@ -304,10 +323,14 @@
 <!--                </view>-->
               </view>
               <view class="dingdans_con_right_top_dw_1 zuoyouduiqi" style="font-weight: 400;">
-                <view class="jiagejiage">
+                <view class="jiagejiage" v-if="item.price">
                   价格
                   <text  class="color-danger" >{{item.price}} </text>
-                  <text style="text-decoration:line-through;color: #7a7a7a;" >{{item.price/0.55  | numFilter0 }} </text>
+                  <text v-if="item.discout" style="text-decoration:line-through;color: #7a7a7a;" >{{item.price/discout  | numFilter0 }} </text>
+                </view>
+                <view class="jiagejiage" v-if="item.discout">
+                  <strong  class="color-danger" >{{item.discout}} 折</strong>
+<!--                  <text v-if="item.discout" style="text-decoration:line-through;color: #7a7a7a;" >{{item.price/discout  | numFilter0 }} </text>-->
                 </view>
                 <view class="jiagejiage">
                   <view class="dingdans_con_right_down_2_1">
@@ -444,6 +467,7 @@
         sortName:'排序',
         queryParam: {
           type: '',
+          discout: '',
           sort: 1,
           keyword: '',
           priceFrom: '',
@@ -661,6 +685,7 @@
       resetHandle() {
         this.queryParam = {
           type: '',
+          discout: '',
           sort: 1,
           keyword: '',
           priceFrom: '',

@@ -62,6 +62,7 @@
             v-if="queryParam.size
                    || queryParam.createTimeFrom
                    || queryParam.createTimeTo
+                   || queryParam.createUserName
                    || queryParam.inventory != 1
                    || queryParam.warehouseId
                    || queryParam.channelId
@@ -169,6 +170,23 @@
             <view class="saixuanquxiang" >
               <view>
                 <text class="zitijiachu zihao14">
+                  退货状态
+                </text>
+              </view>
+              <view class="julishang_10 saixuanxuanzhefuji">
+                <view v-for="(item,index) in returnList"
+                      :key="index"
+                      class="saixuanxuanzhe julishang_10">
+                  <u-button color="#f4f3f8" size="small" @click="queryParam.status = item.fieldValue;search1();">
+                    <text :class="queryParam.status == item.fieldValue ? 'xuanzhongziti' : 'putongziti'">{{item.fieldName}}</text>
+                  </u-button>
+                </view>
+              </view>
+            </view>
+
+            <view class="saixuanquxiang" >
+              <view>
+                <text class="zitijiachu zihao14">
                   仓库
                 </text>
               </view>
@@ -231,6 +249,25 @@
                     <text :class="queryParam.goodType == item.fieldValue ? 'xuanzhongziti' : 'putongziti'">{{item.fieldName}}</text>
                   </u-button>
                 </view>
+              </view>
+            </view>
+
+            <view class="saixuanquxiang" >
+              <view>
+                <text class="zitijiachu zihao14">
+                  创建人
+                </text>
+              </view>
+              <view class="julishang10">
+                <u--input
+                    class="saixuanInput"
+                    placeholder="请输入创建人"
+                    placeholderStyle="font-size: 14px;color:#c0c4cc"
+                    v-model="queryParam.createUserName"
+                    @change="search1"
+                    clearable
+                >
+                </u--input>
               </view>
             </view>
 
@@ -304,12 +341,17 @@
                 {{item.goodsName }}
               </text>
             </view>
-            <view class="dingdans_con_right_top_dw_1 xianglian">
-              <text @click.stop="jumpOrder(item.actNo)">
-              {{item.actNo}}
+            <view class="dingdans_con_right_top_dw_1 zuoyouduiqi">
+              <view xianglian>
+                <text @click.stop="jumpOrder(item.actNo)">
+                  {{item.actNo}}
+                </text>
+                <image @click.stop="$copyUrl(item.actNo)" class="fuzhitupian"
+                       src="../../static/img/copy.png"></image>
+              </view>
+              <text>
+                <strong style="font-size: 13px;margin-left: 1vw;" v-if="item.status == 2" class="color-danger">需退货</strong>
               </text>
-              <image @click.stop="$copyUrl(item.actNo)" class="fuzhitupian"
-                     src="../../static/img/copy.png"></image>
             </view>
             <view v-if="item.warehouseId" style="margin-bottom: 5px;
     margin-top: 10px;">
@@ -603,10 +645,12 @@
           createTimeTo: '',
           id: '',
           warehouseId: '',
+          status: '',
           goodType: '',
           channelId: '',
           inventory: 1,
           sort:'',
+          createUserName: '',
           inventoryFrom: '',
           inventoryTo: '',
           size: '',
@@ -617,6 +661,7 @@
         },
         sortName:'排序',
         warehouseList: [],
+        returnList: [],
         channelIdList: [],
         addressList: [],
         todayList: [],
@@ -1018,6 +1063,8 @@
           sort:'',
           inventory: 1,
           inventoryFrom: '',
+          createUserName: '',
+          status: '',
           inventoryTo: '',
           size: '',
           actNo: '',
@@ -1034,6 +1081,7 @@
         this.statusList = sysDictList.filter(item => item.typeValue == 37)
         this.dataStatusList = sysDictList.filter(item => item.typeValue == 36)
         this.warehouseList = sysDictList.filter(item => item.typeValue == 40)
+        this.returnList = sysDictList.filter(item => item.typeValue == 55)
         this.channelIdList = sysDictList.filter(item => item.typeValue == 47)
         this.todayList = sysDictList.filter(item => item.typeValue == 44)
         this.typeList = sysDictList.filter(item => item.typeValue == 20221108)
@@ -1098,8 +1146,10 @@
           syncTimeFrom: '',
           goodType: '',
           syncTimeTo: '',
+          createUserName: '',
           createTimeFrom: '',
           createTimeTo: '',
+          status: '',
           id: '',
           sort:'',
           inventory: 1,
