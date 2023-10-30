@@ -39,14 +39,18 @@
     </view>
 
     <view1>
-      <u-popup :show="isShowDialog" @close="isShowDialog != isShowDialog" :duration="100" mode="bottom">
-        <view style="width: 90vw;margin-left: 5vw;">
+<!--      <u-popup :show="isShowDialog" @close="isShowDialog != isShowDialog" :duration="100" mode="bottom">-->
+        <u-popup :show="isShowDialog" @close="isShowDialog = false"  :duration="0" :closeable="true" mode="center">
+          <view style="width: 80vw;margin-left: 5vw;margin-right: 5vw;">
           <u-navbar :title="tabName" :fixed="false" :border="true">
-            <view @click="isShowDialog = false" style="font-size: 15px;" class="u-nav-slot" slot="left">
-              <text>关闭</text>
-            </view>
-            <view @click="confirmHandle" class="u-nav-slot" style="font-size: 15px;" slot="right">
-              <text>确定</text>
+<!--            <view @click="isShowDialog = false" style="font-size: 15px;" class="u-nav-slot" slot="left">-->
+<!--              <text>关闭</text>-->
+<!--            </view>-->
+<!--            <view @click="confirmHandle" class="u-nav-slot" style="font-size: 15px;" slot="right">-->
+<!--              <text>确定</text>-->
+<!--            </view>-->
+<!--          </u-navbar>-->
+            <view class="u-nav-slot" slot="left">
             </view>
           </u-navbar>
           <view>
@@ -73,6 +77,11 @@
                           v-model="requestParam.labelStr" border="none" disabled></u--input>
                 <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
               </u-form-item>
+              <view class="shuipingjuzhong">
+                <u-button style="width: 50vw; margin: 10px 15px;"  size="small"   type="primary" @click="confirmHandle">
+                  <text class="dibuanniuwenzi">确认</text>
+                </u-button>
+              </view>
             </u--form>
           </view>
         </view>

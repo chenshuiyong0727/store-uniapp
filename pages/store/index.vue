@@ -411,15 +411,19 @@
     </view>
 
       <view>
-        <u-popup :show="isShowDialog" @close="isShowDialog != isShowDialog" :duration="0" mode="center">
+        <u-popup :show="isShowDialog" @close="close"  :duration="0" :closeable="true" mode="center">
           <view style="width: 80vw;margin-left: 5vw;margin-right: 5vw;">
             <u-navbar title="当前价格" :fixed="false" :border="true">
-              <view @click="isShowDialog = false" style="font-size: 15px;" class="u-nav-slot" slot="left">
-                <text>关闭</text>
+              <view class="u-nav-slot" slot="left">
+<!--                <image style="width: 23px; height: 23px;"-->
+<!--                       src="../../static/img/logo/logo-333-1.png"></image>-->
               </view>
-              <view @click="confirmHandle" class="u-nav-slot" style="font-size: 15px;" slot="right">
-                <text>确定</text>
-              </view>
+<!--              <view @click="isShowDialog = false" style="font-size: 15px;" class="u-nav-slot" slot="left">-->
+<!--                <text>关闭</text>-->
+<!--              </view>-->
+<!--              <view @click="confirmHandle" class="u-nav-slot" style="font-size: 15px;" slot="right">-->
+<!--                <text>确定</text>-->
+<!--              </view>-->
             </u-navbar>
             <view>
               <u--form>
@@ -451,6 +455,11 @@
                              v-model="requestParamDw.profits" type="digit" border="none" color="#d1d1d1"></u--input>
                 </u-form-item>
               </u--form>
+              <view class="shuipingjuzhong">
+                <u-button style="width: 50vw; margin: 10px 15px;"  size="small"   type="primary" @click="confirmHandle">
+                  <text class="dibuanniuwenzi">确认</text>
+                </u-button>
+              </view>
             </view>
           </view>
         </u-popup>
@@ -525,10 +534,10 @@
             value: 'warehouseDetail',
             text: '库存信息'
           },
-          {
-            value: 'syncPrice',
-            text: '同步价格'
-          },
+          // {
+          //   value: 'syncPrice',
+          //   text: '同步价格'
+          // },
           {
             value: 'dwPrice',
             text: '当前价格'
@@ -729,6 +738,7 @@
       }
     },
     methods: {
+
       handleClick(row) {
         this.orderData = row
         this.requestParamDw.id = this.orderData.id
@@ -769,6 +779,9 @@
         }
         this.isShowDialog = !this.isShowDialog
       },
+      // close() {
+      //   this.isShowDialog2 = false
+      // },
       keyup1() {
         this.requestParamDw.dwPrice = this.requestParamDw.thisTimePrice
         let poundage =  this.$getPoundage(this.requestParamDw.dwPrice)
@@ -1096,8 +1109,7 @@
         this.getPage()
       },
       close() {
-        this.isShowDialog2 = false
-        console.log('close');
+        this.isShowDialog = false
       },
       changeCurrent() {
         this.search1()

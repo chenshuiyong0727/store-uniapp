@@ -38,14 +38,12 @@
               @confirm="confirm_sx_type" keyName="fieldName"></u-picker>
 
     <view>
-      <u-popup :show="isShowDialog" @close="isShowDialog=!isShowDialog" :duration="100" mode="bottom">
-        <view style="width: 90vw;margin-left: 5vw;">
+<!--      <u-popup :show="isShowDialog" @close="isShowDialog=!isShowDialog" :duration="100" mode="bottom">-->
+<!--        <view style="width: 90vw;margin-left: 5vw;">-->
+      <u-popup :show="isShowDialog" @close="isShowDialog = false"  :duration="0" :closeable="true" mode="center">
+        <view style="width: 80vw;margin-left: 5vw;margin-right: 5vw;">
           <u-navbar title="修改" :fixed="false" :border="true">
-            <view @click="isShowDialog = false" style="font-size: 15px;" class="u-nav-slot" slot="left">
-              <text>关闭</text>
-            </view>
-            <view @click="confirmHandle" class="u-nav-slot" style="font-size: 15px;" slot="right">
-              <text>确认修改</text>
+            <view class="u-nav-slot" slot="left">
             </view>
           </u-navbar>
           <view>
@@ -77,6 +75,11 @@
                 ></u--textarea>
               </u-form-item>
             </u--form>
+            <view class="shuipingjuzhong">
+              <u-button style="width: 50vw; margin: 10px 15px;"  size="small"   type="primary" @click="confirmHandle">
+                <text class="dibuanniuwenzi">确认</text>
+              </u-button>
+            </view>
           </view>
         </view>
       </u-popup>

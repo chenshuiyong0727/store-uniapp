@@ -189,19 +189,16 @@
     </view>
 
     <view>
-      <u-popup :show="isShowDialog" @close="isShowDialog != isShowDialog" :duration="100" mode="bottom">
-        <view style="width: 90vw;margin-left: 5vw;">
+<!--      <u-popup :show="isShowDialog" @close="isShowDialog != isShowDialog" :duration="100" mode="bottom">-->
+      <u-popup :show="isShowDialog" @close="isShowDialog = false"  :duration="0" :closeable="true" mode="center">
+        <view style="width: 80vw;margin-left: 5vw;margin-right: 5vw;">
           <u-navbar title="移动仓库" :fixed="false" :border="true">
-            <view @click="isShowDialog = false" style="font-size: 15px;" class="u-nav-slot" slot="left">
-              <text>关闭</text>
-            </view>
-            <view @click="confirmHandle" class="u-nav-slot" style="font-size: 15px;" slot="right">
-              <text>确定</text>
+            <view class="u-nav-slot" slot="left">
             </view>
           </u-navbar>
           <view>
             <u--form>
-              <u-form-item label-width="25vw" label="选中数" borderBottom>
+              <u-form-item label-width="20vw" label="选中数" borderBottom>
                 <u--input  :disabled="true" disabledColor="#fff" inputAlign="right"
                            v-model="ids.length" border="none" color="#F56C6C"></u--input>
               </u-form-item>
@@ -213,6 +210,11 @@
                 <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
               </u-form-item>
             </u--form>
+            <view class="shuipingjuzhong">
+              <u-button style="width: 50vw; margin: 10px 15px;"  size="small"   type="primary" @click="confirmHandle">
+                <text class="dibuanniuwenzi">确认</text>
+              </u-button>
+            </view>
           </view>
         </view>
       </u-popup>
@@ -220,14 +222,18 @@
     <u-picker :show="showWarehouseType" :columns="columnsWarehouse" @cancel="showWarehouseType= false" :defaultIndex="[1]"
               @confirm="confirmWarehouseType" keyName="fieldName"></u-picker>
     <view>
-      <u-popup :show="isShowDialog1" @close="isShowDialog1 != isShowDialog1" :duration="100" mode="bottom">
-        <view style="width: 90vw;margin-left: 5vw;">
-          <u-navbar title="选择渠道" :fixed="false" :border="true">
-            <view @click="isShowDialog1 = false" style="font-size: 15px;" class="u-nav-slot" slot="left">
-              <text>关闭</text>
-            </view>
-            <view @click="confirmHandleChannelId" class="u-nav-slot" style="font-size: 15px;" slot="right">
-              <text>确定</text>
+      <u-popup :show="isShowDialog1" @close="isShowDialog1 = false"  :duration="0" :closeable="true" mode="center">
+        <view style="width: 80vw;margin-left: 5vw;margin-right: 5vw;">
+<!--          <u-navbar title="选择渠道" :fixed="false" :border="true">-->
+<!--            <view @click="isShowDialog1 = false" style="font-size: 15px;" class="u-nav-slot" slot="left">-->
+<!--              <text>关闭</text>-->
+<!--            </view>-->
+<!--            <view @click="confirmHandleChannelId" class="u-nav-slot" style="font-size: 15px;" slot="right">-->
+<!--              <text>确定</text>-->
+<!--            </view>-->
+<!--          </u-navbar>-->
+          <u-navbar title="移动仓库" :fixed="false" :border="true">
+            <view class="u-nav-slot" slot="left">
             </view>
           </u-navbar>
           <view>
@@ -245,10 +251,15 @@
               </u-form-item>
             </u--form>
           </view>
+          <view class="shuipingjuzhong">
+            <u-button style="width: 50vw; margin: 10px 15px;"  size="small"   type="primary" @click="confirmHandleChannelId">
+              <text class="dibuanniuwenzi">确认</text>
+            </u-button>
+          </view>
         </view>
       </u-popup>
     </view>
-    <u-picker :show="showChannelIdType" :columns="columnsChannelId" @cancel="showChannelIdType= false" :defaultIndex="[0]"
+    <u-picker :show="showChannelIdType" :columns="columnsChannelId" @cancel="showChannelIdType= false" :defaultIndex="[1]"
               @confirm="confirmChannelIdType" keyName="fieldName"></u-picker>
 
   </view>
@@ -370,6 +381,7 @@
           return
         }
         this.isShowDialog = true
+        this.requestParam.warehouseIdStr = this.$typeToStr(40,2)
       },
       handleClickChannel() {
         this.requestParamChannelId.ids = this.ids
@@ -378,6 +390,7 @@
           return
         }
         this.isShowDialog1 = true
+        this.requestParamChannelId.channelIdStr = this.$typeToStr(47,2)
       },
       checkedAll() {
         this.checkAll = !this.checkAll

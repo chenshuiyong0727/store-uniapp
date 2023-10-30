@@ -589,7 +589,7 @@
         let url = '/pages/store/index?backUrl=/pages/goodsBase/index&actNo=' + actNo
         this.$navigateTo(url)
       },
-      getPage() {
+      getPage(flag) {
         this.isLoading = true
         this.emtityMsg = ''
         // goodsOtherApi.page(this.queryParam)
@@ -606,6 +606,9 @@
               this.loadStatus = 'nomore';
               this.isLoadMore = false
             } else {
+              if (flag) {
+                this.tableData = []
+              }
               res.data.list.forEach(e => {
                 this.tableData.push(e)
               })
@@ -640,13 +643,13 @@
         this.queryParam.pageNum = 1
         this.isLoadMore = false
         this.isShowDialog2 = false
-        this.getPage()
+        this.getPage(1)
       },
       search1() {
         this.tableData = []
         this.queryParam.pageNum = 1
         this.isLoadMore = false
-        this.getPage()
+        this.getPage(1)
       },
       resetHandle() {
         this.queryParam = {

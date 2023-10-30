@@ -25,6 +25,10 @@
           <hpy-form-select v-if="channelIdList"  :dataList="channelIdList" :hideBorder="true" :hideArrow="true" text="fieldName" name="fieldValue" v-model="requestParam.channelId"/>
           <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
         </u-form-item>
+        <u-form-item label-width="25vw"  label="退货状态"  borderBottom>
+          <hpy-form-select v-if="returnList"  :dataList="returnList" :hideBorder="true" :hideArrow="true" text="fieldName" name="fieldValue" v-model="requestParam.status"/>
+          <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
+        </u-form-item>
 
         <u-form-item label-width="25vw"  label="原始库存" borderBottom>
           <u--input  disabledColor="#fff" inputAlign="right"
@@ -128,10 +132,14 @@
         orderData: '',
         sizeList:'',
         channelIdList:'',
+        returnList:'',
         requestParam: {
           id: '',
           createTime: '',
+          channelId: '',
+          status: '',
           sizeId: '',
+          status: '',
           oldInventory: '',
           inventory: '',
           price: '',
@@ -139,9 +147,7 @@
           thisTimePrice: '',
           poundage: '',
           theirPrice: '',
-          profits: '',
-          waybillNo: '',
-          addressId: ''
+          profits: ''
         },
       }
     },
@@ -206,6 +212,7 @@
       },
       handleClick() {
         this.requestParam.id = this.orderData.id
+        this.requestParam.status = this.orderData.status ? this.orderData.status : 1
         this.requestParam.sizeId = this.orderData.sizeId
         this.requestParam.channelId = this.orderData.channelId
         if (this.orderData.createTime){
@@ -219,8 +226,6 @@
         this.requestParam.price = this.orderData.price
         this.requestParam.dwPrice = this.orderData.dwPrice
         this.requestParam.thisTimePrice = this.orderData.thisTimePrice ? this.orderData.thisTimePrice : null
-        this.requestParam.waybillNo = this.orderData.waybillNo
-        this.requestParam.addressId = this.orderData.addressId
         if (!this.orderData.poundage) {
           let poundage = this.$getPoundage(this.requestParam.dwPrice)
           this.requestParam.poundage = parseFloat(poundage).toFixed(2)
@@ -258,6 +263,7 @@
         let sysDictList = uni.getStorageSync('sysDictList') ? JSON.parse(
             uni.getStorageSync('sysDictList')) : [];
         this.channelIdList = sysDictList.filter(item => item.typeValue == 47)
+        this.returnList = sysDictList.filter(item => item.typeValue == 55)
         goodsBaseApi.listDropDownSizes({ type: '' }, false).then(res => {
           if (res.subCode === 1000) {
             this.sizeList = res.data
