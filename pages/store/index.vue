@@ -325,6 +325,21 @@
         </view>
         <!--        中间-->
         <view class="dingdans_con_dw" @click="goDetail(item.id) ">
+
+          <view v-if="showSd" style="
+    margin-left: -2px;
+    margin-right: 2px;">
+            <u-checkbox-group>
+              <u-checkbox  size="18"
+                           :checked="item.checked"
+                           @change="changeChecked(item)"
+                           activeColor="#409eff"
+                           shape="circle">
+
+              </u-checkbox>
+            </u-checkbox-group>
+          </view>
+
           <view  class="dingdans_con_left_dw"
                @click.stop="avatarShow(item.img)">
             <image mode="widthFix" :src="item.img" v-if="item.img"></image>
@@ -482,8 +497,32 @@
         <image :src="imageZoom" mode="widthFix"  class="showImg"></image>
       </view>
     </view>
-    <view v-if="storeData.upCout">
+    <view v-if="storeData.upCout && !showSd">
       <uni-fab ref="fab" :pattern="pattern"  horizontal="right" @fabClick="syncOldPriceToNew1" />
+    </view>
+
+    <view v-if="showSd" class="zuoyouduiqi sdzf">
+      <view style="margin-left: 20px;">
+        <u-checkbox-group>
+          <u-checkbox  size="20" :checked="checkAll"  @change="checkedAll" activeColor="#409eff"  shape="circle" label="全选"></u-checkbox>
+        </u-checkbox-group>
+      </view>
+      <view class="xianglian">
+        <text style="font-size: 14px;">已选</text>
+        <text class="color-url" style=" font-size: 17px;margin-left: 8px;font-weight: bolder">{{ids.length}}</text>
+        <u-button  type="primary" shape="circle" size="small" style="
+        width: 20vw;
+        margin-top: 8px;
+    margin-bottom: 8px;
+    margin-left: 8px;" @click="plsc">批量删除</u-button>
+        <u-button  type="primary" shape="circle" size="small" style="
+        width: 15vw;
+        margin-top: 8px;
+    margin-bottom: 8px;
+    margin-left: 8px;
+        margin-right: 10px" @click="showSd = !showSd">退出
+        </u-button>
+      </view>
     </view>
   </view>
 </template>
@@ -520,10 +559,10 @@
             value: 'add',
             text: '商品入库'
           },
-          // {
-          //   value: 'resetHandle',
-          //   text: '重置'
-          // }  @click.stop="goodsDetail(item.goodsId)"
+          {
+            value: 'batchOp',
+            text: '批量操作'
+          }
         ],
         optionsOp: [
           {
@@ -703,10 +742,13 @@
         selectedId: [],
         ids: [],
         tableData: [],
-        totalCount: 1
+        totalCount: 1,
+        showSd: false,
+        checkAll: false,
       }
     },
     onLoad(options) {
+      this.initBatch()
       this.listSysDict()
       this.resetData()
       if (options) {
@@ -912,9 +954,9 @@
         if ('add' == action) {
           this.add()
         }
-        // if ('resetHandle' == action) {
-        //   this.resetHandle()
-        // }
+        if ('batchOp' == action) {
+          this.batchOp()
+        }
       },
       menuActionList(action, item) {
         if (action === '') {
@@ -1193,12 +1235,6 @@
           url: '/pages/goodsBase/index'
         });
       },
-      warehouseDetail(goodsId , actNo,img) {
-        this.$navigateTo('/pages/store/warehouseDetail?goodsId=' + goodsId +'&actNo=' +actNo +'&img=' +img)
-      },
-      gallery(row) {
-        this.$navigateTo('/pages/store/storeUp?id=' + row.id)
-      },
 
       goDel(id) {
         var _this = this;
@@ -1221,6 +1257,85 @@
       },
       update(row) {
         this.$navigateTo('/pages/store/update?id=' + row.id)
+      },
+      batchOp() {
+        this.showSd = !this.showSd
+      },
+      warehouseDetail(goodsId , actNo,img) {
+        this.$navigateTo('/pages/store/warehouseDetail?goodsId=' + goodsId +'&actNo=' +actNo +'&img=' +img)
+      },
+      gallery(row) {
+        this.$navigateTo('/pages/store/storeUp?id=' + row.id)
+      },
+      delItem(id) {
+        for (let i = 0; i < this.ids.length; i++) {
+          if (this.ids[i] === id) {
+            this.ids.splice(i, 1)
+          }
+        }
+      },
+      checkedAll() {
+        this.checkAll = !this.checkAll
+        this.ids = []
+        this.tableData.map(item => {
+          if (this.checkAll) {
+            this.ids.push(item.id)
+          } else {
+            this.delItem(item.id)
+          }
+        })
+        this.tableData.forEach((obj) => (obj.checked = this.checkAll));
+      },
+      initBatch() {
+        this.showSd = false
+        this.checkAll = false
+        this.ids = []
+        this.tableData.forEach((obj) => (obj.checked = false));
+      },
+      changeChecked(row) {
+        row.checked = !row.checked
+        this.tableData.map(item => {
+          if (item.id === row.id) {
+            if (item.checked) {
+              this.ids.push(item.id)
+            } else {
+              this.delItem(item.id)
+            }
+          }
+        })
+        let idLength = this.ids.length
+        if (idLength == this.tableData.length) {
+        // if (idLength == this.totalCount) {
+          this.checkAll = true
+        } else {
+          this.checkAll = false
+        }
+      },
+      showSdClick() {
+        this.showSd = !this.showSd
+      },
+      plsc() {
+        if (!this.ids.length) {
+          this.$toast('请选择商品')
+          return
+        }
+        var _this = this;
+        uni.showModal({
+          title: '',
+          confirmColor: '#409eff',
+          content: '是否删除'+ _this.ids.length + "条商品",
+          success: function (res) {
+            if (res.confirm) {
+              goodsInventoryApi.batchdelete(_this.ids).then(res => {
+                _this.$toast(res.subMsg)
+                if (res.subCode === 1000) {
+                  _this.search1()
+                }
+              })
+            } else if (res.cancel) {
+            }
+          }
+        });
       }
     }
   };

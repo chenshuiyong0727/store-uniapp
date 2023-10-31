@@ -1240,7 +1240,9 @@
           }
         })
         let idLength = this.ids.length
-        if (idLength == this.totalCount) {
+        // 当前列表总数
+        if (idLength == this.tableData.length) {
+        // if (idLength == this.totalCount) {
           this.checkAll = true
         } else {
           this.checkAll = false
