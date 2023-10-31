@@ -16,6 +16,25 @@
 <!--          <image style=" width: 26px;height: 26px;" src="../../static/img/photo2.png"></image>-->
 <!--        </view>-->
       </u-navbar>
+
+      <view class="shoudongtianjia"  >
+        <view  class="xianglian width92">
+          <text style="width: 25vw;">根据图片获取</text>
+          <u-upload
+              style="border-radius: 100%;"
+              @afterRead="afterRead"
+              name="1"
+              multiple
+              :maxCount="1"
+              :width="70"
+              :height="70"
+              ref="uUpload"
+          >
+            <text style="margin-left: 2vw;" class="color-url">拍摄照片</text>
+          </u-upload>
+        </view>
+      </view>
+
       <view class="julibiaoti" style="
         padding-bottom: 40vw;
     background-image: linear-gradient(#e5f4ff, #f3f2f8);">
@@ -444,14 +463,18 @@
 </template>
 
 <script>
+  import { envSetting } from '@/utils/env.js'
   export default {
  data() {
       return {
         fileUrl: this.$fileUrl,
+        imgevent: '',
+        fileList1: [],
         dateCurrent: parseInt(new Date().getTime()),
         showFrom: false,
         showTo: false,
         flag: false,
+        goodsform: {},
         form: {},
         pattern: {
           icon:'scan',
@@ -623,6 +646,89 @@
       jumpGoods() {
         this.$navigateTo('/pages/store/index?backUrl=/pages/index/index&actNo='+ this.queryParamTop.actNo)
       },
+
+      async afterRead(event) {
+        uni.showLoading({title: '识别中'});
+        this.imgevent = event;
+        let lists = [].concat(event.file);
+        let fileListLen = this[`fileList${event.name}`].length;
+        lists.map((item) => {
+          this[`fileList${event.name}`].push({
+            ...item,
+            status: 'uploading',
+            message: '上传中'
+          })
+        });
+        for (let i = 0; i < lists.length; i++) {
+          await this.uploadFilePromise(lists[i].url);
+          uni.hideLoading();
+        }
+      },
+      resetdata() {
+        let actNo= this.goodsform.actNo
+        this.goodsform = {}
+        this.goodsform.actNo = actNo
+        // this.tableData =[]
+        // this.queryParam1 = {
+        //   goodsId: '',
+        //   sizeId: '',
+        //   dayNum: 30
+        // }
+      },
+      uploadFilePromise(url) {
+        this.resetdata()
+        var _this = this;
+        return new Promise((resolve, reject) => {
+          let a = uni.uploadFile({
+            url: envSetting.baseURL + '/gw/op/v1/file/v4/uploadFileStore',
+            filePath: url,
+            name: 'file',
+            formData: {
+              user: 'test'
+            },
+            success: (res) => {
+              //隐藏加载框
+              setTimeout(() => {
+                let resDta = JSON.parse(res.data);
+                if (resDta.sub_code != 1000) {
+                  this.$toast(resDta.sub_msg + "，请手动添加商品");
+                  setTimeout(() => {
+                    this.gotoAdd(3)
+                  }, 3000)
+                  // }
+                  _this.deletePic(_this.imgevent)
+                  resolve(res.data)
+                } else {
+                  this.goodsform = resDta.data ? resDta.data : {}
+                  resolve(res.data.data)
+                  if (this.goodsform.spuId){
+                    this.$toast('识别成功');
+                    this.gotoDw(this.goodsform.spuId)
+                  } else{
+                    this.$toast('识别失败');
+                  }
+                }
+              }, 1000)
+            },
+            fail: (res) => {
+              this.$toast('识别失败，请上传10 MB 以内的图片');
+              resolve(res)
+            }
+          });
+        })
+      },
+      gotoDw(spuId) {
+        if (!spuId){
+          return
+        }
+        let url = "https://m.dewu.com/router/product/ProductDetail?spuId="+ spuId;
+        // #ifdef APP-PLUS
+        plus.runtime.openURL(url) //这里默认使用外部浏览器打开而不是内部web-view组件打开
+        // #endif
+        // #ifdef H5
+        window.open(url)
+        // #endif
+      },
       initTime() {
         let myDate = new Date().getTime();
         let endTime = '2024/02/10 00:00:00';
@@ -707,7 +813,8 @@
         })
       },
       scanCode() {
-        this.$navigateTo('/pages/goodsBase/scanCodeV3?photo=1')
+        // this.$navigateTo('/pages/goodsBase/scanCodeV3?photo=1')
+        this.$refs.uUpload.chooseFile()
       },
       profitData(dataType) {
         this.dataType = dataType;
