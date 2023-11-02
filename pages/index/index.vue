@@ -17,20 +17,15 @@
 <!--        </view>-->
       </u-navbar>
 
-      <view class="shoudongtianjia"  >
-        <view  class="xianglian width92">
-          <text style="width: 25vw;">根据图片获取</text>
+      <view  v-show="false">
+        <view >
           <u-upload
-              style="border-radius: 100%;"
               @afterRead="afterRead"
               name="1"
               multiple
               :maxCount="1"
-              :width="70"
-              :height="70"
               ref="uUpload"
           >
-            <text style="margin-left: 2vw;" class="color-url">拍摄照片</text>
           </u-upload>
         </view>
       </view>
