@@ -24,6 +24,8 @@
               name="1"
               multiple
               :maxCount="1"
+              accept="image"
+              :capture="'camera'"
               ref="uUpload"
           >
           </u-upload>
