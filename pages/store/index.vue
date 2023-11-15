@@ -63,6 +63,8 @@
                    || queryParam.createTimeFrom
                    || queryParam.createTimeTo
                    || queryParam.createUserName
+                   || queryParam.profitsFrom
+                   || queryParam.profitsTo
                    || queryParam.inventory != 1
                    || queryParam.warehouseId
                    || queryParam.channelId
@@ -117,6 +119,40 @@
                 </u--input>
               </view>
             </view>
+              <view class="saixuanquxiang" >
+                <view>
+                  <text class="zitijiachu zihao14">
+                    利润
+                  </text>
+                </view>
+                <view class="julishang10 xianglian saixuanshijian">
+                  <view >
+                    <u--input
+                        class="searchInputFilter"
+                        placeholder="最低利润"
+                        @change="search1"
+                        placeholderStyle="font-size: 14px;color:#c0c4cc"
+                        v-model="queryParam.profitsFrom"
+                        type="digit"
+                        clearable
+                    ></u--input>
+                  </view>
+                  <view>
+                    <image  class="hengtupian" src="../../static/img/heng.png"></image>
+                  </view>
+                  <view  >
+                    <u--input
+                        class="searchInputFilter"
+                        placeholder="最高利润"
+                        @change="search1"
+                        placeholderStyle="font-size: 14px;color:#c0c4cc"
+                        v-model="queryParam.profitsTo"
+                        type="digit"
+                        clearable
+                    ></u--input>
+                  </view>
+                </view>
+              </view>
             <view class="saixuanquxiang" >
               <view>
                 <text class="zitijiachu zihao14">
@@ -698,6 +734,8 @@
           channelId: '',
           inventory: 1,
           sort:'',
+          profitsFrom: '',
+          profitsTo: '',
           createUserName: '',
           inventoryFrom: '',
           inventoryTo: '',
@@ -1119,6 +1157,8 @@
           inventory: 1,
           inventoryFrom: '',
           createUserName: '',
+          profitsFrom: '',
+          profitsTo: '',
           status: '',
           inventoryTo: '',
           size: '',
@@ -1209,6 +1249,8 @@
           inventory: 1,
           inventoryFrom: '',
           inventoryTo: '',
+          profitsFrom: '',
+          profitsTo: '',
           size: '',
           actNo: '',
           goodsId: '',
