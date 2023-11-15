@@ -15,7 +15,7 @@
         <u--input
             class="searchInputW"
             prefixIcon="search"
-            placeholder="请输入货号/商品名"
+            placeholder="请输入货号/商品名/尺码"
             placeholderStyle="font-size: 14px;color:#c0c4cc"
             v-model="queryParam.actNo"
             prefixIconStyle="font-size: 24px;color:#c0c4cc"
