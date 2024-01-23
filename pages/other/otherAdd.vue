@@ -104,7 +104,7 @@
           actNo: '',
           name: '',
           imgUrl: '',
-          brand: '',
+          brand: 'am6',
           remark: '',
           price: ''
         },

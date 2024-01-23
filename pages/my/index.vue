@@ -132,6 +132,21 @@
           </p>
         </view>
       </view>
+
+      <view  @click="$navigateTo('/pages/other/index')" class="zuoyouduiqi my-pay-211" v-if="orderIofo.am6Amout">
+        <view class="wenzitupduiqi" style="margin-left: 4vw;">
+          <image style="width: 30px; height: 30px" src="../../static/img/yingkui1.png"></image>
+          <text style="color: #333;font-size: 15px;margin-left: 10px">盈亏</text>
+        </view>
+        <view class="wenzitupduiqi" style="margin-right: 4vw;">
+          <text
+              :class="orderIofo.am6Amout > 0 ? 'color-font-strong' : 'color-dw-strong'"
+              style="font-size: 25px;">{{orderIofo.am6Amout > 0 ? '+' + orderIofo.am6Amout : orderIofo.am6Amout}}
+          </text>
+          <image style="width: 20px;height: 20px" src="../../static/img/more.png"></image>
+        </view>
+      </view>
+
       <view class="my-indent" style="    margin-bottom: -10px;">
         <text class="my-indent-left">服务</text>
       </view>
@@ -549,4 +564,15 @@
     font-size: 12px;
     height: 32px;
   }
+  .my-pay-211 {
+    background-color: #fff;
+    border-bottom-color: rgba(185, 185, 185, 0.14);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    margin-top: 4vw;
+    padding-top: 4vw;
+    padding-bottom: 4vw;
+    width: 92vw;
+  }
+
 </style>
