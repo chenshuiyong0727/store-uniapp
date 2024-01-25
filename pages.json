@@ -139,6 +139,18 @@
       }
     },
     {
+      "path": "pages/lotteryTicket/index",
+      "style": {
+        "navigationBarTitleText": "彩票",
+        "pullToRefresh":{
+          "color":"#409eff",
+          "offset":"56px"
+        },
+        "enablePullDownRefresh": true,
+        "onReachBottomDistance": 150
+      }
+    },
+    {
       "path": "pages/memo/index",
       "style": {
         "navigationBarTitleText": "备忘录",

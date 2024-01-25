@@ -133,19 +133,19 @@
         </view>
       </view>
 
-      <view  @click="$navigateTo('/pages/other/index')" class="zuoyouduiqi my-pay-211" v-if="orderIofo.am6Amout">
-        <view class="wenzitupduiqi" style="margin-left: 4vw;">
-          <image style="width: 30px; height: 30px" src="../../static/img/yingkui1.png"></image>
-          <text style="color: #333;font-size: 15px;margin-left: 10px">盈亏</text>
-        </view>
-        <view class="wenzitupduiqi" style="margin-right: 4vw;">
-          <text
-              :class="orderIofo.am6Amout > 0 ? 'color-font-strong' : 'color-dw-strong'"
-              style="font-size: 25px;">{{orderIofo.am6Amout > 0 ? '+' + orderIofo.am6Amout : orderIofo.am6Amout}}
-          </text>
-          <image style="width: 20px;height: 20px" src="../../static/img/more.png"></image>
-        </view>
-      </view>
+<!--      <view  @click="$navigateTo('/pages/other/index')" class="zuoyouduiqi my-pay-211" v-if="orderIofo.am6Amout">-->
+<!--        <view class="wenzitupduiqi" style="margin-left: 4vw;">-->
+<!--          <image style="width: 30px; height: 30px" src="../../static/img/yingkui1.png"></image>-->
+<!--          <text style="color: #333;font-size: 15px;margin-left: 10px">盈亏</text>-->
+<!--        </view>-->
+<!--        <view class="wenzitupduiqi" style="margin-right: 4vw;">-->
+<!--          <text-->
+<!--              :class="orderIofo.am6Amout > 0 ? 'color-font-strong' : 'color-dw-strong'"-->
+<!--              style="font-size: 25px;">{{orderIofo.am6Amout > 0 ? '+' + orderIofo.am6Amout : orderIofo.am6Amout}}-->
+<!--          </text>-->
+<!--          <image style="width: 20px;height: 20px" src="../../static/img/more.png"></image>-->
+<!--        </view>-->
+<!--      </view>-->
 
       <view class="my-indent" style="    margin-bottom: -10px;">
         <text class="my-indent-left">服务</text>
@@ -182,6 +182,12 @@
               style="margin-top: 7px;margin-bottom: -4px;width: 27px;height: 27px;"
               src="../../static/img/new/memo.png"></image>
           <p style="color: #333">备忘录</p>
+        </view>
+        <view @click="$navigateTo('/pages/lotteryTicket/index')">
+          <image
+              style="margin-top: 7px;margin-bottom: -4px;width: 27px;height: 27px;"
+              src="../../static/img/yingkui1.png"></image>
+          <p style="color: #333">彩票</p>
         </view>
       </view>
     </view>
@@ -524,7 +530,7 @@
 
     > view {
       display: block;
-      width: 33.33%;
+      width: 25%;
       color: #999;
       text-align: center;
 
