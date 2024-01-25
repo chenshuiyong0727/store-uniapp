@@ -169,11 +169,11 @@
               src="../../static/img/new/xiaci.png"></image>
           <p style="color: #333">瑕疵商品</p>
         </view>
-        <view @click="$navigateTo('/pages/gift/index')">
+        <view @click="$navigateTo('/pages/lotteryTicket/index')">
           <image
               style="margin-top: 7px;margin-bottom: -4px;width: 27px;height: 27px;"
-              src="../../static/img/new/hongbao.png"></image>
-          <p style="color: #333">红包</p>
+              src="../../static/img/caipiao7.png"></image>
+          <p style="color: #333">彩票</p>
         </view>
       </view>
       <view class="my-pay-1" style="padding-bottom: 5vw">
@@ -183,11 +183,11 @@
               src="../../static/img/new/memo.png"></image>
           <p style="color: #333">备忘录</p>
         </view>
-        <view @click="$navigateTo('/pages/lotteryTicket/index')">
+        <view @click="$navigateTo('/pages/gift/index')">
           <image
               style="margin-top: 7px;margin-bottom: -4px;width: 27px;height: 27px;"
-              src="../../static/img/yingkui1.png"></image>
-          <p style="color: #333">彩票</p>
+              src="../../static/img/new/hongbao.png"></image>
+          <p style="color: #333">红包</p>
         </view>
       </view>
     </view>

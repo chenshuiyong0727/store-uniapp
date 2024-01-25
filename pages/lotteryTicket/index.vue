@@ -97,7 +97,7 @@
       </view>
     </view>
 
-    <view1>
+    <view>
 <!--      <u-popup :show="isShowDialog" @close="isShowDialog != isShowDialog" :duration="100" mode="bottom">-->
         <u-popup :show="isShowDialog" @close="isShowDialog = false"  :duration="0" :closeable="true" mode="center">
           <view style="width: 80vw;margin-left: 5vw;margin-right: 5vw;">
@@ -158,7 +158,7 @@
           </view>
         </view>
       </u-popup>
-    </view1>
+    </view>
     <u-picker :show="show_sx_type" :columns="columns" @cancel="show_sx_type= false"
               @confirm="confirm_sx_type" keyName="fieldName"></u-picker>
     <u-picker :show="show_sx_status" :columns="columnsStatus" @cancel="show_sx_status= false"
@@ -171,10 +171,10 @@
           font-size: 13px;
     justify-content: space-between;
     align-items: center;">
-            <view style="width: 35vw;font-size: 14px; margin-left: 2vw">
+            <view style="width: 33vw;font-size: 14px; margin-left: 2vw">
               <strong> {{item.happenDate}} </strong>
             </view>
-            <view  style="width: 20vw">
+            <view  style="width: 15vw">
               <text style="margin-left: 10px"
                     :class="item.price > 0 ? 'color-danger' : 'color-dw'">
                 {{item.price > 0 ? '+' + item.price : item.price}}</text>
@@ -182,15 +182,15 @@
 <!--            <view  style="width: 20vw">-->
 <!--              <text style="margin-left: 10px"> {{item.type | dictToDescTypeValue(39)}} </text>-->
 <!--            </view>-->
-            <view  style="width: 20vw">
+            <view  style="width: 15vw">
               <text style="margin-left: 10px"
                     :class="item.status == 2 ? 'color-dw' : ''"
               > {{item.status | dictToDescTypeValue(59)}} </text>
             </view>
-            <view  style="width: 20vw; text-align: center">
+            <view  style="width: 30vw; text-align: center">
               <text style="padding: 6px 10px;" class="dw-button-common"@click="tabName='修改';handleClick(item);">修改</text>
-<!--              <text style="padding: 6px 10px;margin-left: 5px;  border: 1px solid #F56C6C;-->
-<!--  color: #F56C6C !important;" class="dw-button-common"@click="tabName='新增';handleClick(item);">删除</text>-->
+              <text style="padding: 6px 10px;margin-left: 5px;  border: 1px solid #F56C6C;
+  color: #F56C6C !important;" class="dw-button-common"@click="goDel(item.id);">删除</text>
             </view>
           </view>
         </view>
@@ -285,6 +285,25 @@
         let fieldName = e.value[0].fieldName
         this.requestParam.status = fieldValue
         this.requestParam.statusStr = fieldName
+      },
+      goDel(id) {
+        var _this = this;
+        uni.showModal({
+          title: '',
+          confirmColor: '#409eff',
+          content: '是否删除',
+          success: function (res) {
+            if (res.confirm) {
+              lotteryTicketApi.delById(id).then(res => {
+                _this.$toast(res.subMsg)
+                if (res.subCode === 1000) {
+                  _this.search1()
+                }
+              })
+            } else if (res.cancel) {
+            }
+          }
+        });
       },
       handleClick(orderData) {
         const now = new Date();
@@ -496,7 +515,7 @@
   }
   .hongbaoquyu1{
     /*#ifdef APP-PLUS*/
-    margin-top: 172px;
+    margin-top: 180px;
     /*#endif*/
     /*#ifdef H5*/
     margin-top: 172px;
@@ -531,6 +550,7 @@
     margin: 0 2px;
     width:18px;
     height: 18px;
+    margin-bottom: 10px;
   }
   * {
     margin: 0;
@@ -566,7 +586,12 @@
     width: 100vw;
     background: #fff;
     position: fixed;
+    /*#ifdef APP-PLUS*/
+    top: 100px;
+    /*#endif*/
+    /*#ifdef H5*/
     top: 88px;
+    /*#endif*/
     left: 0;
     z-index: 99;
   }
