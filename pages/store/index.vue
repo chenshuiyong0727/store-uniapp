@@ -380,7 +380,7 @@
             <image mode="widthFix"
                    @click.stop="avatarShow(item.img)" :src="item.img" v-if="item.img"></image>
             <image mode="widthFix"
-                   @click.stop="avatarShow(fileUrl+item.imgUrl)" :src="fileUrl+item.imgUrl" style="margin-top: 10px;" v-if="!item.img && item.imgUrl" ></image>
+                   @click.stop="avatarShow(fileUrl+item.imgUrl)" :src="fileUrl+item.imgUrl"  v-if="!item.img && item.imgUrl" ></image>
             <p class="mark_dw">
               <text class="text_dw">
                 {{ item.channelId | dictToDescTypeValue(47) }}
