@@ -21,9 +21,13 @@
     height: 100px;
     position: relative;
     border-radius: 5px;">
-            <image mode="widthFix" @click="avatarShow(orderData.img)" style="  width: 80%;
+            <image mode="widthFix" v-if="orderData.img"  @click="avatarShow(orderData.img)" style="  width: 80%;
     margin-top: 28px;
     margin-left: 10%;" :src="orderData.img"></image>
+            <image mode="widthFix" @click="avatarShow(fileUrl+orderData.imgUrl)" style="  width: 80%;
+    margin-top: 28px;
+    margin-left: 10%;" :src="fileUrl+orderData.imgUrl" v-if="!orderData.img && orderData.imgUrl"></image>
+
           </view>
           <view class="diangdans_con_right">
             <view class="dingdans_con_right_top xianglian">

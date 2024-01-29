@@ -267,6 +267,9 @@
           this.$toast('请选择尺码')
           return false
         }
+        if (!this.form.name) {
+          this.form.name = this.form.brand + " " + this.form.actNo
+        }
         uni.setStorageSync('goodsAddForm', null);
         if (this.type == 2) {
           goodsBaseApi.update(this.form).then(res => {

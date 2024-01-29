@@ -376,10 +376,11 @@
             </u-checkbox-group>
           </view>
 
-          <view  class="dingdans_con_left_dw"
-               @click.stop="avatarShow(item.img)">
-            <image mode="widthFix" :src="item.img" v-if="item.img"></image>
-            <image mode="widthFix" :src="fileUrl+item.imgUrl" style="margin-top: 10px;" v-if="!item.img && item.imgUrl" ></image>
+          <view  class="dingdans_con_left_dw">
+            <image mode="widthFix"
+                   @click.stop="avatarShow(item.img)" :src="item.img" v-if="item.img"></image>
+            <image mode="widthFix"
+                   @click.stop="avatarShow(fileUrl+item.imgUrl)" :src="fileUrl+item.imgUrl" style="margin-top: 10px;" v-if="!item.img && item.imgUrl" ></image>
             <p class="mark_dw">
               <text class="text_dw">
                 {{ item.channelId | dictToDescTypeValue(47) }}
@@ -1004,7 +1005,8 @@
           this.goodsDetail(item.goodsId)
         }
         if ('warehouseDetail' == action) {
-          this.warehouseDetail(item.goodsId ,item.actNo ,item.img )
+          let img = item.img ? item.img : item.imgUrl ? this.fileUrl + item.imgUrl : ''
+          this.warehouseDetail(item.goodsId ,item.actNo ,img )
         }
         if ('update' == action) {
           this.update(item )

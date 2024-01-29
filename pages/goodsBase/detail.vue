@@ -22,7 +22,7 @@
             :src="form.img"
         ></image>
         <image mode="widthFix"
-               @click="avatarShow(form.img)"
+               @click="avatarShow(fileUrl+form.imgUrl)"
             :disabled="true "
             style="width: 80vw;margin: 0 auto;"
                :src="fileUrl+form.imgUrl"
@@ -300,6 +300,7 @@
     },
     data(){
       return {
+        fileUrl: this.$fileUrl,
         isShowDialog2: false,
         pictureZoomShow: false,
         imageZoom: '',

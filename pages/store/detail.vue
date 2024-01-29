@@ -22,7 +22,7 @@
                :src="form.img"
         ></image>
         <image mode="widthFix"
-               @click="avatarShow(form.img)"
+               @click="avatarShow(fileUrl+form.imgUrl)"
                :disabled="true "
                style="width: 80vw;margin: 0 auto;"
                :src="fileUrl+form.imgUrl"
@@ -232,6 +232,7 @@
             text: '订单'
           }
         ],
+        fileUrl: this.$fileUrl,
         imageZoom: '',
         pictureZoomShow: false,
         addressList: [],
