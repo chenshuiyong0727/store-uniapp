@@ -443,12 +443,6 @@
         let actNo= this.form.actNo
         this.form = {}
         this.form.actNo = actNo
-        // this.tableData =[]
-        // this.queryParam1 = {
-        //   goodsId: '',
-        //   sizeId: '',
-        //   dayNum: 30
-        // }
       },
       getImgUrl() {
         if (!this.form.actNo) {
