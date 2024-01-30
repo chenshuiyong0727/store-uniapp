@@ -57,11 +57,14 @@
                        src="../../static/img/copy.png"></image>
               </view>
             </view>
-            <view v-if="requestParamWl.freight" class="dingdans_con_right_top xianglian">
+            <view v-if="requestParamWl.freight && requestParamWl.amout" class="dingdans_con_right_top xianglian">
               <view class="xianglian">
                 实际金额：
-                <text>
-                  {{requestParamWl.freight}}
+                <text v-if="requestParamWl.count > 1">
+                  {{ requestParamWl.amout  + ' / ' +requestParamWl.freight}}
+                </text>
+                <text v-else>
+                  {{ requestParamWl.freight}}
                 </text>
               </view>
             </view>
@@ -131,6 +134,8 @@
           receiverAddress: '',
           addressId: '',
           waybillNo: '',
+          amout: '',
+          count: '',
           freight: '',
         },
         wlDataSize: '',
@@ -181,6 +186,11 @@
               this.wlDataSize = res.data.list.length
               this.requestParamWl.receiverAddress = res.data.receiverAddress
               this.requestParamWl.freight = res.data.realAmount
+              this.requestParamWl.count = res.data.count
+              if (res.data.realAmount && res.data.count) {
+                this.requestParamWl.amout = res.data.realAmount / res.data.count
+                this.requestParamWl.amout = parseFloat(this.requestParamWl.amout).toFixed(2)
+              }
               this.wlData = []
               for (let i = 0; i < res.data.list.length; i++) {
                 let dataInfo = res.data.list[i]
