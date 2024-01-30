@@ -11,6 +11,28 @@
     <view class="fenlei_top_2">
       <view class="shoudongtianjia" >
         <view  class="zuoyouduiqi width92">
+          <text style="width: 25vw;">是否Nike商品</text>
+          <u-radio-group
+              activeColor="#007AFF"
+              v-model="radiovalue1"
+              placement="row"
+              @change="groupChange"
+          >
+            <u-radio
+                style="margin-right: 10px;"
+                activeColor="#007AFF"
+                v-for="(item, index) in radiolist1"
+                :key="index"
+                :label="item.name"
+                :name="item.name"
+                @change="radioChange"
+            >
+            </u-radio>
+          </u-radio-group>
+        </view>
+      </view>
+      <view class="shoudongtianjia" >
+        <view  class="zuoyouduiqi width92">
           <text style="width: 25vw;">根据货号获取</text>
           <u--input
               class="searchInput"
@@ -46,7 +68,7 @@
       </view>
     </view>
 <!--    v-if="form.id"-->
-    <view  class="width92 baisebeijing" style="margin-top :131px;">
+    <view  class="width92 baisebeijing" style="margin-top :170px;">
       <u--form
           style="background-color: white"
           class="julibiaoti"
@@ -98,119 +120,6 @@
               </text>
             </view>
           </view>
-<!--          <view1>-->
-<!--            <view class="dingdans_item_dw" style=" display: flex;    border-bottom: 2px solid #f4f3f8;-->
-<!--    justify-content: space-between;-->
-<!--    align-items: center;"-->
-<!--            >-->
-<!--              <view class="dingdans_top_dw" style="-->
-<!--          width: 20vw;-->
-<!--          font-weight: 600;-->
-<!--          padding-bottom: 0px;-->
-<!--          border-bottom: 0; color: #333333">-->
-<!--                <view class="dingdans_top_left_dw" style=" ">-->
-<!--                  <text>尺码</text>-->
-<!--                </view>-->
-<!--              </view>-->
-<!--              <view class="dingdans_top_dw" style="-->
-<!--          width: 20vw;          padding-bottom: 0px;    margin-left: -8px;-->
-<!--                    font-weight: 600;-->
-<!--          border-bottom: 0; color: #333333">-->
-<!--                <view class="dingdans_top_left_dw" style=" ">-->
-<!--                  <text>得物价</text>-->
-<!--                </view>-->
-<!--              </view>-->
-<!--              <view class="dingdans_top_dw" style="-->
-<!--          width: 20vw;    margin-left: 7px;      font-weight: 600;padding-bottom: 0px;-->
-<!--          border-bottom: 0; color: #333333">-->
-<!--                <view class="dingdans_top_left_dw" style=" ">-->
-<!--                  <text>到手价</text>-->
-<!--                </view>-->
-<!--              </view>-->
-
-<!--              <view v-if="tableData[0].inPrice" class="dingdans_top_dw" style="-->
-<!--          width: 15vw;       margin-left: 2px;       font-weight: 600;padding-bottom: 0px;-->
-<!--          border-bottom: 0; color: #333333">-->
-<!--                <view class="dingdans_top_left_dw" style=" ">-->
-<!--                  <text>库存</text>-->
-<!--                </view>-->
-<!--              </view>-->
-<!--              <view  v-if="tableData[0].inPrice" class="dingdans_top_dw" style="-->
-<!--          width: 20vw;          font-weight: 600;padding-bottom: 0px;margin-right: 5px;-->
-<!--          border-bottom: 0; color: #333333">-->
-<!--                <view class="dingdans_top_left_dw" style=" ">-->
-<!--                  <text>入库价</text>-->
-<!--                </view>-->
-<!--              </view>-->
-<!--              <view  v-if="tableData[0].inPrice" class="dingdans_top_dw" style="-->
-<!--          width: 15vw;    margin-left: 5px;        margin-right: 2px;  font-weight: 600;padding-bottom: 0px;-->
-<!--          border-bottom: 0; color: #333333">-->
-<!--                <view class="dingdans_top_left_dw" style=" ">-->
-<!--                  <text>利润</text>-->
-<!--                </view>-->
-<!--              </view>-->
-<!--            </view>-->
-<!--            <view class="dingdans_item_dw" style=" display: flex;-->
-<!--    justify-content: space-between;-->
-<!--    align-items: center;-->
-<!--    padding-top: 8px;-->
-<!--    border-bottom: 2px solid rgb(244, 243, 248);-->
-<!--"-->
-<!--                 v-for="(item,index) in tableData"-->
-<!--                 :key="index"-->
-<!--            >-->
-<!--              <view class="dingdans_top_dw" style="-->
-<!--          width: 20vw;padding-bottom: 0px;-->
-<!--          border-bottom: 0; ">-->
-<!--                <view class="dingdans_top_left_dw" style=" color: #7a7a7a">-->
-<!--                  <text style="font-weight: bolder;font-size: 14px;" class="color-url">{{item.size }}</text>-->
-<!--                </view>-->
-<!--              </view>-->
-<!--              <view class="dingdans_top_dw" style="-->
-<!--          width: 20vw;padding-bottom: 0px;-->
-<!--          border-bottom: 0; ">-->
-<!--                <view class="dingdans_top_left_dw" style="color: #7a7a7a ">-->
-<!--                  <text>¥</text>-->
-<!--                  <text>{{item.price }}</text>-->
-<!--                </view>-->
-<!--              </view>-->
-<!--              <view class="dingdans_top_dw" style="-->
-<!--          width: 25vw;padding-bottom: 0px;-->
-<!--          border-bottom: 0; ">-->
-<!--                <view class="dingdans_top_left_dw" style="color: #7a7a7a ">-->
-<!--                  <text v-if="item.price ">¥</text>-->
-<!--                  <text v-if="item.price "> {{item.price | getThePrice}}</text>-->
-<!--                </view>-->
-<!--              </view>-->
-<!--              <view  v-if="tableData[0].inPrice"  class="dingdans_top_dw" style="-->
-<!--          width: 15vw;padding-bottom: 0px;    margin-left: 5px;-->
-<!--          border-bottom: 0; ">-->
-<!--                <view class="dingdans_top_left_dw" style=" color: #7a7a7a;margin-left: 7px;">-->
-<!--                  <text>{{item.inventory ? item.inventory : '' }}</text>-->
-<!--                </view>-->
-<!--              </view>-->
-<!--              <view  v-if="tableData[0].inPrice" class="dingdans_top_dw" style="-->
-<!--          width: 20vw;padding-bottom: 0px;-->
-<!--          border-bottom: 0; ">-->
-<!--                <view class="dingdans_top_left_dw" style=" color: #7a7a7a">-->
-<!--                  <text v-if="item.inPrice ">¥</text>-->
-<!--                  <text v-if="item.inPrice ">{{item.inPrice }}</text>-->
-<!--                </view>-->
-<!--              </view>-->
-<!--              <view v-if="tableData[0].inPrice"  class="dingdans_top_dw" style="-->
-<!--          width: 25vw;padding-bottom: 0px;-->
-<!--          border-bottom: 0; ">-->
-<!--                <view class="dingdans_top_left_dw" style="color: #7a7a7a ">-->
-<!--                  <text v-if="item.inPrice ">¥</text>-->
-<!--                  <text  v-if="item.inPrice"-->
-<!--                         :class="$getProfits(item.price,item.inPrice) > 0 ? 'color-danger' : 'color-success'"-->
-<!--                  >-->
-<!--                    {{item.price | getProfits(item.inPrice)}}-->
-<!--                  </text>-->
-<!--                </view>-->
-<!--              </view>-->
-<!--            </view>-->
-<!--          </view1>-->
         </view>
       </view>
     </view>
@@ -220,72 +129,6 @@
         <image :src="form.img" alt="" mode="widthFix"   class="showImg"></image>
       </view>
     </view>
-
-<!--      <u-popup :show="isShowDialog2" @close="close" :duration="100" :closeable="true" mode="center">-->
-<!--        <view style="    width: 100vw;padding: 60px 4vw 0px 5vw;">-->
-<!--          <view style="" class="store-list-1-1" >-->
-<!--            <view  class="store-list-1-li-1">-->
-<!--              <view class="overview1">-->
-<!--                <p><strong>当前价格</strong></p>-->
-<!--                <p class="color-url">{{priceData.price}}</p>-->
-<!--              </view>-->
-<!--              <view class="overview2">-->
-<!--                <p><strong>到手价</strong></p>-->
-<!--                <p class="color-url">{{priceData.theirPrice}} </p>-->
-<!--              </view>-->
-<!--            </view>-->
-<!--            <view  class="store-list-1-li-1">-->
-<!--              <view class="overview1">-->
-<!--                <p><strong>年度最高</strong></p>-->
-<!--                <p class="color-url">{{priceData.price365}}</p>-->
-<!--              </view>-->
-<!--              <view class="overview2">-->
-<!--                <p><strong>到手价</strong></p>-->
-<!--                <p class="color-url">{{priceData.theirPrice365}}</p>-->
-<!--              </view>-->
-<!--            </view>-->
-<!--            <view  class="store-list-1-li-1">-->
-<!--              <view class="overview1">-->
-<!--                <p><strong>半年最高</strong></p>-->
-<!--                <p class="color-url">{{priceData.price180}}</p>-->
-<!--              </view>-->
-<!--              <view class="overview2">-->
-<!--                <p><strong>到手价</strong></p>-->
-<!--                <p class="color-url">{{priceData.theirPrice180}}</p>-->
-<!--              </view>-->
-<!--            </view>-->
-<!--            <view  class="store-list-1-li-1">-->
-<!--              <view class="overview1">-->
-<!--                <p><strong>30天最高</strong></p>-->
-<!--                <p class="color-url">{{priceData.price30}}</p>-->
-<!--              </view>-->
-<!--              <view class="overview2">-->
-<!--                <p><strong>到手价</strong></p>-->
-<!--                <p class="color-url">{{priceData.theirPrice30}}</p>-->
-<!--              </view>-->
-<!--            </view>-->
-<!--          </view>-->
-<!--          <view class="zuoyouduiqi" style="-->
-<!--    padding-right: 20px;-->
-<!--    padding-bottom: 14px;-->
-<!--    padding-left: 20px;">-->
-<!--            <u-button type="primary" size="small" shape="circle" @click="profitData(30)"-->
-<!--                      style="margin-right: 10px" text="30天走势图" :plain="queryParam1.dayNum != 30"></u-button>-->
-<!--            <u-button type="primary" size="small" shape="circle" @click="profitData(180)"-->
-<!--                      style="margin-left: 10px" text="半年走势图" :plain="queryParam1.dayNum != 180"></u-button>-->
-<!--            <u-button type="primary" size="small" shape="circle" @click="profitData(365)"-->
-<!--                      style="margin-left: 10px" text="年度走势图" :plain="queryParam1.dayNum != 365"></u-button>-->
-<!--          </view>-->
-
-<!--          <view class="charts-box">-->
-<!--            <qiun-data-charts-->
-<!--                type="line"-->
-<!--                :opts="opts"-->
-<!--                :chartData="chartData"-->
-<!--                :ontouch="true"/>-->
-<!--          </view>-->
-<!--        </view>-->
-<!--      </u-popup>-->
     <view v-if="form.listVoList && form.listVoList.length && form.id" style="height: 70px"></view>
     <view v-if="form.listVoList && form.listVoList.length && form.id" class="baisebeijing shuipingjuzhong" style="width:100%;position:fixed;bottom:0;
      border-top: solid #E2DDDD 1px;">
@@ -312,64 +155,25 @@
         pictureZoomShow: false,
         imageZoom: '',
         defaultIndex: [1],
-        // queryParam: {
-        //   goodsId: ''
-        // },
-        // priceData: {
-        // },
-        // isShowDialog2: false,
-        // // queryParam1: {
-        //   goodsId: '',
-        //   sizeId: '',
-        //   dayNum: 30
-        // },
+        radiolist1: [
+            {
+          name: '是',
+          disabled: false
+         },
+          {
+            name: '否',
+            disabled: false
+          }
+        ],
+        // u-radio-group的v-model绑定的值如果设置为某个radio的name，就会被默认选中
+        radiovalue1: '是',
+        isNike: 1,
         columns: [],
-        type: '',
         id: '',
-        // opts: {
-        //   color: ["#409eff", "#00c2c2", "#F56C6C", "#FAC858", "#73C0DE", "#3CA272", "#FC8452",
-        //     "#9A60B4", "#ea7ccc"],
-        //   padding: [15,10,0,15],
-        //   enableScroll: false,
-        //   dataPointShape: false,
-        //   dataLabel: false,
-        //   legend: {},
-        //   xAxis: {
-        //     labelCount: 4,
-        //     rotateLabel: true,
-        //     fontSize: 12,
-        //     rotateAngle: 45,
-        //     disableGrid: true
-        //   },
-        //   yAxis: {
-        //     gridType: "dash",
-        //     dashLength: 2
-        //   },
-        //   extra: {
-        //     line: {
-        //       type: "curve",
-        //       width: 2,
-        //       activeType: "hollow"
-        //     }
-        //   }
-        // },
-        // chartData: {},
-        // loading: false,
-        // dataEmpty: false,
-        // sizeTitle: '',
         size: '',
         date: '',
-        // tableData: [],
-        // sizeList: [],
-        // fileSize: 2,
         type: '',
         photo: '',
-        // options: [],
-        // requestParam: {
-        //   sizeId: '',
-        //   actNo: ''
-        // },
-        // reqCount: 0,
         form: {
           actNo: ''
         },
@@ -392,6 +196,17 @@
       }
     },
     methods: {
+      groupChange(n) {
+        console.log('groupChange', n);
+      },
+      radioChange(n) {
+        console.log('radioChange', n);
+        if (n == '是'){
+          this.isNike = 1
+        }else{
+          this.isNike = 0
+        }
+      },
       storeAdd() {
         let url = '/pages/store/storeAdd?goodsId=' + this.form.id
         this.$navigateTo(url)
@@ -643,17 +458,12 @@
         uni.showLoading({title: '获取中'});
         this.resetdata()
         let data = {actNo: this.form.actNo}
+        data.isNike = this.isNike
         goodsBaseApi.getGoodsByActNoAndSizeH5V4(data).then(res => {
           uni.hideLoading();
-          if (res.subCode === 1000) {
+          if (res.subCode == 1000) {
             this.$toast("获取成功")
             this.form = res.data ? res.data : {}
-            // this.queryParam.goodsId = this.form.id
-            // if (this.form.sizeList && this.form.sizeList.length){
-            //   this.getPage()
-            // // }else{
-            // //  this.getDetailById(this.form.id)
-            // }
           }else{
             this.$toast(res.subMsg + "，请手动添加商品")
             setTimeout(() => {
