@@ -517,6 +517,55 @@
         </u-popup>
       </view>
 
+      <view>
+        <u-popup :show="isShowDialogWare" @close="isShowDialogWare = false"  :duration="0" :closeable="true" mode="center">
+          <view style="width: 80vw;margin-left: 5vw;margin-right: 5vw;">
+            <u-navbar title="移动仓库" :fixed="false" :border="true">
+              <view class="u-nav-slot" slot="left">
+              </view>
+            </u-navbar>
+            <view>
+              <u--form>
+                <u-form-item label-width="20vw" label="选中数" borderBottom>
+                  <u--input  :disabled="true" disabledColor="#fff" inputAlign="right"
+                             v-model="ids.length" border="none" color="#F56C6C"></u--input>
+                </u-form-item>
+
+                <u-form-item label="仓库" borderBottom @click="showWarehouseType = true; $hideKeyboard()">
+<!--                  <u&#45;&#45;input inputAlign="right" placeholder="请选择仓库" disabledColor="#fff"-->
+<!--                            placeholderStyle="font-size: 14px;color:#c0c4cc"-->
+<!--                            v-model="requestParamWare.warehouseIdStr" border="none" disabled></u&#45;&#45;input>-->
+                  <u-radio-group
+                      activeColor="#409eff"
+                      v-model="radiovalueWare"
+                      placement="row"
+                  >
+                    <u-radio
+                        style="margin-right: 10px;"
+                        activeColor="#409eff"
+                        v-for="(item, index) in warehouseList"
+                        :key="index"
+                        :label="item.fieldName"
+                        :name="item.fieldValue"
+                        @change="radioChangeWare"
+                    >
+                    </u-radio>
+                  </u-radio-group>
+                  <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
+                </u-form-item>
+              </u--form>
+              <view class="shuipingjuzhong">
+                <u-button style="width: 50vw; margin: 10px 15px;"  size="small"   type="primary" @click="confirmHandleWare">
+                  <text class="dibuanniuwenzi">确认</text>
+                </u-button>
+              </view>
+            </view>
+          </view>
+        </u-popup>
+      </view>
+<!--      <u-picker :show="showWarehouseType" :columns="columnsWarehouse" @cancel="showWarehouseType= false" :defaultIndex="[1]"-->
+<!--                @confirm="confirmWarehouseType" keyName="fieldName"></u-picker>-->
+
     <view v-show="tableData.length" class="meiyougengduo">
       <u-loadmore fontSize="18"  color="#a6a6a6" nomoreText="最硬球鞋" :status="loadStatus"/>
     </view>
@@ -547,11 +596,29 @@
       <view class="xianglian">
         <text style="font-size: 14px;">已选</text>
         <text class="color-url" style=" font-size: 17px;margin-left: 8px;font-weight: bolder">{{ids.length}}</text>
+<!--        <u-button  type="primary" shape="circle" size="small" style="-->
+<!--        width: 20vw;-->
+<!--        margin-top: 8px;-->
+<!--    margin-bottom: 8px;-->
+<!--    margin-left: 8px;" @click="plsc">批量删除</u-button>-->
+<!--        <u-button  type="primary" shape="circle" size="small" style="-->
+<!--        width: 15vw;-->
+<!--        margin-top: 8px;-->
+<!--    margin-bottom: 8px;-->
+<!--    margin-left: 8px;-->
+<!--        margin-right: 10px" @click="showSd = !showSd">退出-->
+<!--        </u-button>-->
         <u-button  type="primary" shape="circle" size="small" style="
         width: 20vw;
         margin-top: 8px;
     margin-bottom: 8px;
-    margin-left: 8px;" @click="plsc">批量删除</u-button>
+    margin-left: 8px;" @click="moveStore">移动库存</u-button>
+        <u-button  type="primary" shape="circle" size="small" style="
+        width: 15vw;
+        margin-top: 8px;
+    margin-bottom: 8px;
+    margin-left: 8px;" @click="plsc">删除
+        </u-button>
         <u-button  type="primary" shape="circle" size="small" style="
         width: 15vw;
         margin-top: 8px;
@@ -587,7 +654,6 @@
         showFrom: false,
         showTo: false,
         show_sx_type: false,
-        emtityMsg: '',
         current: 0,
         pictureZoomShow: false,
         imageZoom: '',
@@ -713,6 +779,7 @@
         emtityMsg: '',
         orderData: '',
         isShowDialog: false,
+        isShowDialogWare: false,
         orderData1: '',
         isShowDialog1: false,
         orderData2: '',
@@ -784,6 +851,14 @@
         totalCount: 1,
         showSd: false,
         checkAll: false,
+        columnsWarehouse: [],
+        radiovalueWare: '1',
+        showWarehouseType: false,
+        requestParamWare: {
+          ids: [],
+          warehouseId: 2,
+          warehouseIdStr: ''
+        },
       }
     },
     onLoad(options) {
@@ -819,7 +894,11 @@
       }
     },
     methods: {
-
+      radioChangeWare(n) {
+        console.log('radioChange', n);
+        this.requestParamWare.warehouseId = n
+        this.requestParamWare.warehouseIdStr = this.$typeToStr(40,n)
+      },
       handleClick(row) {
         this.orderData = row
         this.requestParamDw.id = this.orderData.id
@@ -875,6 +954,20 @@
             - this.requestParamDw.price
         this.requestParamDw.profits = parseFloat(profits).toFixed(2)
       },
+      confirmHandleWare() {
+        goodsInventoryApi.batchupdateStatus(this.requestParamWare).then((res) => {
+          this.$toast(res.subMsg)
+          if (res.subCode === 1000) {
+            this.current = 3
+            this.queryParam.today = 3
+            this.isShowDialogWare = false
+            this.search1()
+            this.checkAll = false
+            this.ids = []
+            this.tableData.forEach((obj) => (obj.checked = false));
+          }
+        })
+      },
       confirmHandle() {
         if(!this.requestParamDw.thisTimePrice) {
           this.$toast('请输入当前价格')
@@ -885,11 +978,6 @@
           if (res.subCode === 1000) {
             this.search1()
             this.isShowDialog = false
-            // setTimeout(() => {
-            //   uni.reLaunch({
-            //     url: '/pages/store/index',
-            //   });
-            // }, 1000)
           }
         })
       },
@@ -1357,6 +1445,22 @@
       },
       showSdClick() {
         this.showSd = !this.showSd
+      },
+      moveStore() {
+        if (!this.ids.length) {
+          this.$toast('请选择商品')
+          return
+        }
+        this.requestParamWare.ids = this.ids
+        this.isShowDialogWare = true
+        this.requestParamWare.warehouseIdStr = this.$typeToStr(40,2)
+      },
+      confirmWarehouseType(e) {
+        this.showWarehouseType = false
+        let fieldValue = e.value[0].fieldValue
+        let fieldName = e.value[0].fieldName
+        this.requestParamWare.warehouseId = fieldValue
+        this.requestParamWare.warehouseIdStr = fieldName
       },
       plsc() {
         if (!this.ids.length) {

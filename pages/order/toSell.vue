@@ -299,12 +299,10 @@
         saleTypeList: [],
         requestParam: {
           poundage: '',
-          theirPrice: '',
           profits: '',
           inventoryId: '',
           type: 1,
           num: '',
-          shelvesPrice: '',
           jsfwf: 15,
           zzsxf: '',
           czfwf: 38,

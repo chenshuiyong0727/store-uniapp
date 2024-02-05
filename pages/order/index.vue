@@ -292,15 +292,15 @@
             </strong>
             <text v-if=" item.days">天</text>
             <strong v-if=" item.hours" style="font-size: 15px;">
-              {{ item.hours}}
+              {{ item.hours < 10 ? '0' + item.hours : item.hours }}
             </strong>
             <text v-if=" item.hours">时</text>
             <strong v-if=" item.minutes" style="font-size: 15px;">
-              {{ item.minutes}}
+              {{ item.minutes < 10 ? '0' + item.minutes : item.minutes }}
             </strong>
             <text  v-if=" item.minutes">分</text>
             <strong v-if=" item.seconds" style="font-size: 15px;">
-              {{ item.seconds}}
+              {{ item.seconds < 10 ? '0' + item.seconds : item.seconds }}
             </strong>
             <text v-if=" item.seconds">秒</text>
           </view>
@@ -513,9 +513,7 @@
         showFrom: false,
         showTo: false,
         show_sx_type: false,
-        emtityMsg: '',
         current: 0,
-        pictureZoomShow: false,
         imageZoom: '',
         localdata: [
           {
@@ -691,8 +689,6 @@
         isLoadMore: false,
         isLoading: false,
         loadStatus: 'loadmore',
-        tableData: [],
-        totalCount: 1,
         showSd: false,
         checkAll: false,
         orderIofo: {},
@@ -708,7 +704,6 @@
         isShowDialogWl: false,
         pictureZoomShow: false,
         saleType: '',
-        typeList: [],
         successTimeFrom: '',
         topStatus: "",
         bottomStatus: "",

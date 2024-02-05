@@ -189,7 +189,6 @@
     </view>
 
     <view>
-<!--      <u-popup :show="isShowDialog" @close="isShowDialog != isShowDialog" :duration="100" mode="bottom">-->
       <u-popup :show="isShowDialog" @close="isShowDialog = false"  :duration="0" :closeable="true" mode="center">
         <view style="width: 80vw;margin-left: 5vw;margin-right: 5vw;">
           <u-navbar title="移动仓库" :fixed="false" :border="true">
@@ -355,7 +354,7 @@
             this.isShowDialog = false
             setTimeout(() => {
               uni.reLaunch({
-                url: '/pages/store/index',
+                url: '/pages/store/index?current=3&today=3',
               });
             }, 1000)
           }

@@ -368,7 +368,7 @@
           if (res.subCode === 1000) {
             setTimeout(() => {
               uni.reLaunch({
-                url:'/pages/store/index?backUrl=/pages/index/index&current=2&today=2',
+                url:'/pages/store/index?current=2&today=2',
               });
             }, 1000)
           }
@@ -396,7 +396,7 @@
       },
       setUnifiedDwPrice() {
         if (!this.unifiedDwPrice) {
-          this.$toast('请输入售价格')
+          this.$toast('请输入出售价格')
           return
         }
         let table1 = []
@@ -406,13 +406,6 @@
           table1.push(data1)
         }
         this.tableData = table1
-      },
-      goodsDetail(id) {
-        if (!id) {
-          return
-        }
-        let url = '/pages/goodsBase/detail?id=' + id
-        this.$navigateTo(url)
       },
       avatarShow(e) {
         this.imageZoom = e

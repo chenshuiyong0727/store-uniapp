@@ -13,14 +13,14 @@
         <view  class="zuoyouduiqi width92">
           <text style="width: 25vw;">是否Nike商品</text>
           <u-radio-group
-              activeColor="#007AFF"
+              activeColor="#409eff"
               v-model="radiovalue1"
               placement="row"
               @change="groupChange"
           >
             <u-radio
                 style="margin-right: 10px;"
-                activeColor="#007AFF"
+                activeColor="#409eff"
                 v-for="(item, index) in radiolist1"
                 :key="index"
                 :label="item.name"
