@@ -75,19 +75,19 @@
     <view class="fenlei_top_1_1">
       <view class="store-list-1_1" >
 
-        <view  class="store-list-1-li_123"  :key="index">
+        <view  class="store-list-1-li_123"  >
           <view class="overview1">
             <p style= "padding-top: 5px;"><strong>总盈亏 </strong></p>
             <p :class="headerData.amout > 0 ? 'color-danger' : 'color-dw'" style="padding-top: 8px"><strong>{{ headerData.amout > 0 ? '+'+ headerData.amout : headerData.amout}}</strong></p>
           </view>
         </view>
-        <view  class="store-list-1-li_123"  :key="index">
+        <view  class="store-list-1-li_123" >
           <view class="overview1">
             <p style= "padding-top: 5px;"><strong>未结算 </strong></p>
             <p :class="headerData.noSettledAmout > 0 ? 'color-danger' : 'color-dw'"  style="padding-top: 8px"><strong>{{ headerData.noSettledAmout >0 ? '+'+ headerData.noSettledAmout : headerData.noSettledAmout }}</strong></p>
           </view>
         </view>
-        <view  class="store-list-1-li_123"  :key="index">
+        <view  class="store-list-1-li_123" >
           <view class="overview1">
             <p style= "padding-top: 5px;"><strong>胜率 </strong></p>
             <p style="padding-top: 8px"><strong>{{ headerData.winRate}}</strong></p>
@@ -98,30 +98,21 @@
     </view>
 
     <view>
-<!--      <u-popup :show="isShowDialog" @close="isShowDialog != isShowDialog" :duration="100" mode="bottom">-->
         <u-popup :show="isShowDialog" @close="isShowDialog = false"  :duration="0" :closeable="true" mode="center">
           <view style="width: 80vw;margin-left: 5vw;margin-right: 5vw;">
           <u-navbar :title="tabName" :fixed="false" :border="true">
-<!--            <view @click="isShowDialog = false" style="font-size: 15px;" class="u-nav-slot" slot="left">-->
-<!--              <text>关闭</text>-->
-<!--            </view>-->
-<!--            <view @click="confirmHandle" class="u-nav-slot" style="font-size: 15px;" slot="right">-->
-<!--              <text>确定</text>-->
-<!--            </view>-->
-<!--          </u-navbar>-->
             <view class="u-nav-slot" slot="left">
             </view>
           </u-navbar>
           <view>
             <u--form>
               <u-form-item label-width="25vw" label="日期" borderBottom>
-<!--                <u&#45;&#45;input  disabledColor="#fff" inputAlign="right"-->
-<!--                           v-model="requestParam.happenDate" border="none" color="#333333"></u&#45;&#45;input>-->
                 <view @click="showDate= true;isShowDialog = false">
                   <u--input
                       style="width: 43vw;"
                       readonly="readonly"
                       prefixIcon="calendar"
+                      inputAlign="right"
                       prefixIconStyle="font-size: 20px;color:#c0c4cc"
                       placeholder="日期"
                       placeholderStyle="font-size: 15px;color:#c0c4cc"
@@ -137,16 +128,44 @@
                            v-model="requestParam.price" border="none" type="digit" color="#333333"></u--input>
                 <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
               </u-form-item>
-              <u-form-item label="类型" borderBottom @click="show_sx_type = true; $hideKeyboard()">
-                <u--input inputAlign="right" placeholder="请选择类型" disabledColor="#fff"
-                          placeholderStyle="font-size: 14px;color:#c0c4cc"
-                          v-model="requestParam.typeStr" border="none" disabled></u--input>
+              <u-form-item label="类型" borderBottom>
+              <u-radio-group
+                    activeColor="#409eff"
+                    v-model="requestParam.type"
+                    placement="row"
+                    style="flex-direction: row-reverse;"
+              >
+                  <u-radio
+                      style="margin-right: 10px;"
+                      activeColor="#409eff"
+                      v-for="(item, index) in typeList"
+                      :key="index"
+                      :label="item.fieldName"
+                      :name="item.fieldValue"
+                      @change="radioChangeType"
+                  >
+                  </u-radio>
+                </u-radio-group>
                 <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
               </u-form-item>
-              <u-form-item label-width="25vw"  label="状态" borderBottom @click="show_sx_status = true; $hideKeyboard()">
-                <u--input inputAlign="right" placeholder="请选择状态" disabledColor="#fff"
-                          placeholderStyle="font-size: 14px;color:#c0c4cc"
-                          v-model="requestParam.statusStr" border="none" disabled></u--input>
+              <u-form-item label="状态" borderBottom>
+              <u-radio-group
+                    activeColor="#409eff"
+                    v-model="requestParam.status"
+                    placement="row"
+                    style="flex-direction: row-reverse;"
+              >
+                  <u-radio
+                      style="margin-right: 10px;"
+                      activeColor="#409eff"
+                      v-for="(item, index) in statusList"
+                      :key="index"
+                      :label="item.fieldName"
+                      :name="item.fieldValue"
+                      @change="radioChangeStatus"
+                  >
+                  </u-radio>
+                </u-radio-group>
                 <u-icon class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
               </u-form-item>
               <view class="shuipingjuzhong">
@@ -159,10 +178,6 @@
         </view>
       </u-popup>
     </view>
-    <u-picker :show="show_sx_type" :columns="columns" @cancel="show_sx_type= false"
-              @confirm="confirm_sx_type" keyName="fieldName"></u-picker>
-    <u-picker :show="show_sx_status" :columns="columnsStatus" @cancel="show_sx_status= false"
-              @confirm="confirm_sx_status" keyName="fieldName"></u-picker>
 
     <view  class="hongbaoquyu1">
       <view  class="dingdans_item" v-for="(item,index) in tableData" :key="index">
@@ -179,9 +194,6 @@
                     :class="item.price > 0 ? 'color-danger' : 'color-dw'">
                 {{item.price > 0 ? '+' + item.price : item.price}}</text>
             </view>
-<!--            <view  style="width: 20vw">-->
-<!--              <text style="margin-left: 10px"> {{item.type | dictToDescTypeValue(39)}} </text>-->
-<!--            </view>-->
             <view  style="width: 15vw">
               <text style="margin-left: 10px"
                     :class="item.status == 2 ? 'color-dw' : ''"
@@ -233,17 +245,11 @@
           pageSize: 100,
           pageNum: 1
         },
-        columns: [],
-        columnsStatus: [],
-        show_sx_type: false,
-        show_sx_status: false,
         requestParam: {
           happenDate: '',
           price: '',
-          type: 1,
-          typeStr: '收入',
-          status: 1,
-          statusStr: '',
+          type: '1',
+          status: '1',
         },
         typeList: [],
         statusList: [],
@@ -269,22 +275,8 @@
       this.listSysDict()
     },
     methods: {
-      confirm_sx_type(e) {
-        this.show_sx_type = false
-        let fieldValue = e.value[0].fieldValue
-        let fieldName = e.value[0].fieldName
-        this.requestParam.type = fieldValue
-        this.requestParam.typeStr = fieldName
-      },
       preventHandler() {
         return
-      },
-      confirm_sx_status(e) {
-        this.show_sx_status = false
-        let fieldValue = e.value[0].fieldValue
-        let fieldName = e.value[0].fieldName
-        this.requestParam.status = fieldValue
-        this.requestParam.statusStr = fieldName
       },
       goDel(id) {
         var _this = this;
@@ -314,20 +306,8 @@
         this.requestParam.id = orderData.id
         this.requestParam.happenDate = orderData.happenDate ? orderData.happenDate : formattedDate
         this.requestParam.price = orderData.price
-        this.requestParam.type = orderData.type
-        this.requestParam.status = orderData.status
-        for (let i = 0; i < this.statusList.length; i++) {
-          if(orderData.status == this.statusList[i].fieldValue){
-            this.requestParam.statusStr =  this.statusList[i].fieldName
-            this.requestParam.statusIndex = [i]
-          }
-        }
-        for (let i = 0; i < this.typeList.length; i++) {
-          if(orderData.type == this.typeList[i].fieldValue){
-            this.requestParam.typeStr =  this.typeList[i].fieldName
-            this.requestParam.typeIndex = [i]
-          }
-        }
+        this.requestParam.type = orderData.type + ''
+        this.requestParam.status = orderData.status + ''
         this.isShowDialog = true
       },
       handleClick1() {
@@ -340,16 +320,21 @@
           id: '',
           happenDate: formattedDate,
           price: '',
-          typeIndex: [0],
-          statusIndex: [0],
-          type: 1,
-          typeStr: '收入',
-          status: 1,
-          statusStr: '未结账',
+          type: '1',
+          status: '1',
         },
         this.isShowDialog = true
       },
+      radioChangeType(n) {
+        console.log(n)
+        this.requestParam.type = n
+      },
+      radioChangeStatus(n) {
+        console.log(n)
+        this.requestParam.status = n
+      },
       confirmHandle() {
+        console.log(this.requestParam)
         if(!this.requestParam.happenDate) {
           this.$toast('请选择日期')
           return
@@ -362,6 +347,7 @@
           this.$toast('请选择类型')
           return
         }
+        debugger
         if(!this.requestParam.status) {
           this.$toast('请选择状态')
           return
@@ -372,7 +358,6 @@
         }
         if (this.requestParam.id) {
           lotteryTicketApi.update(this.requestParam).then(res => {
-            // this.$toast(res.subMsg)
             uni.showToast({title: res.msg, icon: 'none',})
             if (res.subCode === 1000) {
               this.resetHandle()
@@ -432,9 +417,8 @@
         let sysDictList = uni.getStorageSync('sysDictList') ? JSON.parse(
             uni.getStorageSync('sysDictList')) : []
         this.typeList = sysDictList.filter(item => item.typeValue == 39)
-        this.columns.push(this.typeList)
         this.statusList = sysDictList.filter(item => item.typeValue == 59)
-        this.columnsStatus.push(this.statusList)
+        console.log('statusList', this.statusList)
       },
       search() {
         if (!this.queryParam.name ) {
