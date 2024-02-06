@@ -736,7 +736,7 @@
       this.listSysDict()
       this.resetData()
       if (options) {
-        this.queryParam.keyword = options.actNo ? options.actNo : '';
+        this.queryParam.keyword = options.keyword ? options.keyword : '';
         this.saleType = options.saleType ? options.saleType : '';
         this.queryParam.saleType = options.saleType ? options.saleType : '';
         this.queryParam.orderNo = options.orderNo ? options.orderNo : '';

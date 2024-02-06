@@ -316,7 +316,7 @@
       jumpOrder(actNo) {
         let url= this.$getLocalPath()
         uni.reLaunch({
-          url: '/pages/order/index?backUrl='+url+'&actNo=' + actNo
+          url: '/pages/order/index?backUrl='+url+'&keyword=' + actNo
         });
       },
       // getLocalPath(){

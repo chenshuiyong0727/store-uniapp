@@ -54,9 +54,20 @@
   background: #fff;
   border-radius: 10px;
 }
+.imageShowLong {
+  margin: auto !important;
+  width: 85vw;
+  height: 85vw;
+  border-radius: 10px;
+}
 
 .imageShow .showImg{
   margin-top: 80px;
+  width: 90%;
+  margin-left: 5%;
+  text-align: center;
+}
+.imageShowLong .showImg{
   width: 90%;
   margin-left: 5%;
   text-align: center;

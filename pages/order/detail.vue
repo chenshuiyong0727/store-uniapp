@@ -389,7 +389,29 @@
         </view>
         <view style="text-align: right; ">
           <text>{{form.orderNo}}</text>
-          <text class="dw-button-common-a2" @click="$copyUrl(form.orderNo )"
+          <text class="dw-button-common-a2" @click="$copyUrl(form.orderNo ,'订单编号')"
+                  style=" margin-left: 3px;   padding: 1px 5px;">复制
+          </text>
+        </view>
+      </view>
+      <view v-if="form.dwOrderNo" class="zuoyouduiqi orderInfoleft">
+        <view style="width: 30vw;">
+          <text>得物单号：</text>
+        </view>
+        <view style="text-align: right; ">
+          <text>{{form.dwOrderNo}}</text>
+          <text class="dw-button-common-a2" @click="$copyUrl(form.dwOrderNo,'得物单号' )"
+                  style=" margin-left: 3px;   padding: 1px 5px;">复制
+          </text>
+        </view>
+      </view>
+      <view v-if="form.outOrderNo" class="zuoyouduiqi orderInfoleft">
+        <view style="width: 30vw;">
+          <text>出售单号：</text>
+        </view>
+        <view style="text-align: right; ">
+          <text>{{form.outOrderNo}}</text>
+          <text class="dw-button-common-a2" @click="$copyUrl(form.outOrderNo,'出售单号' )"
                   style=" margin-left: 3px;   padding: 1px 5px;">复制
           </text>
         </view>
@@ -400,7 +422,7 @@
         </view>
         <view style="text-align: right; ">
           <text>{{form.waybillNo}}</text>
-          <text class="dw-button-common-a2" @click="$copyUrl(form.waybillNo )"
+          <text class="dw-button-common-a2" @click="$copyUrl(form.waybillNo  ,'物流单号')"
                   style=" margin-left: 3px;   padding: 1px 5px;">复制
           </text>
         </view>

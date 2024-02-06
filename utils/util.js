@@ -66,17 +66,18 @@ const toast = (title) => {
     icon: 'none'
   })
 }
-const copyUrl = (url) => {
+const copyUrl = (url, msg) => {
+  msg = msg || ''
   uni.setClipboardData({
     data: url ,
     success: function () {
       uni.showToast({
-        title: '复制成功',
+        title: '复制'+msg+'成功',
       });
     },
     fail:function () {
       uni.showToast({
-        title: '复制失败',
+        title: '复制'+msg+'失败',
       });
     }
   });

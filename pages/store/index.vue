@@ -1173,7 +1173,7 @@
       },
       jumpOrder(actNo) {
         uni.reLaunch({
-          url: '/pages/order/index?backUrl=/pages/store/index&actNo=' + actNo
+          url: '/pages/order/index?backUrl=/pages/store/index&keyword=' + actNo
         });
       },
       converData(item) {

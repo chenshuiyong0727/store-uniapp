@@ -137,7 +137,6 @@
           id: '',
           createTime: '',
           channelId: '',
-          status: '',
           sizeId: '',
           status: '',
           oldInventory: '',
@@ -194,6 +193,10 @@
         this.requestParam.createTime = `${e.year}-${e.month}-${e.day} ${e.hour}:${e.minute}:${e.second}`;
       },
       confirmHandle() {
+        if (!this.requestParam.thisTimePrice) {
+          this.$toast('当前价格不能为空')
+          return
+        }
         if (this.requestParam.oldInventory < this.requestParam.inventory) {
           this.$toast('原始库存小于剩余库存')
           return

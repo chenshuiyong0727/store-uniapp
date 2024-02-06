@@ -87,8 +87,16 @@
 <!--        头部  end-->
 <!--        内容  beg-->
       <view v-if="!item.inventoryId && !item.orderId " style="border-top: 1px solid #eee; padding: 10px 0 10px 0">
-        <view>
+        <view v-if="item.type != 8">
           <text>{{item.content}}</text>
+        </view>
+        <view v-else class="zuoyouduiqi">
+          <view style="width: 25vw;" @click.stop="avatarShowLong(fileUrl + chengimg)">
+            <image style=" width: 80%;margin-left: 10%;" mode="widthFix" :src="fileUrl + chengimg" v-if="chengimg"></image>
+          </view >
+          <view style="width: 65vw">
+            <text>{{item.content}}</text>
+          </view>
         </view>
       </view>
       <view v-if="item.inventoryId" style="border-top: 1px solid #eee; padding: 10px 0 10px 0">
@@ -161,6 +169,11 @@
     <view class="popContainer" v-if="pictureZoomShow" @click="pictureZoomShow = false">
       <view class="imageShow">
         <image :src="imageZoom" mode="widthFix"  class="showImg"></image>
+      </view>
+    </view>
+    <view class="popContainer" v-if="pictureZoomShowLong" @click="pictureZoomShowLong = false">
+      <view class="imageShowLong">
+        <image :src="imageZoomLong" mode="widthFix"  class="showImg"></image>
       </view>
     </view>
     <view v-if="this.list2[0].badge.value">
@@ -248,6 +261,7 @@
  data() {
       return {
         fileUrl: this.$fileUrl,
+        chengimg: uni.getStorageSync('userIcon'),
         dateCurrent: parseInt(new Date().getTime()),
         showFrom: false,
         showTo: false,
@@ -257,6 +271,8 @@
         current: 0,
         pictureZoomShow: false,
         imageZoom: '',
+        pictureZoomShowLong: false,
+        imageZoomLong: '',
         localdata: [
           {
             value: 'add',
@@ -466,6 +482,8 @@
           url = '/pages/store/index?backUrl=/pages/index/baseMsg&current=3&today=7&actNo=' + item.actNo
         } else if(item.type== 12 || item.type== 3  || item.type== 10){
           url = '/pages/order/index?backUrl=/pages/index/baseMsg&current=1&status=3'
+        } else if(item.orderNo){
+          url = '/pages/order/index?backUrl=/pages/index/baseMsg&keyword=' + item.orderNo
         }
         if (url) {
           this.$navigateTo(url)
@@ -662,6 +680,10 @@
       avatarShow(e) {
         this.imageZoom = e
         this.pictureZoomShow = true
+      },
+      avatarShowLong(e) {
+        this.imageZoomLong = e
+        this.pictureZoomShowLong = true
       },
       tabClick(item) {
         this.current = item.index
