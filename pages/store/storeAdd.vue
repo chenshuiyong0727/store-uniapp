@@ -190,7 +190,7 @@
 
     <view class="popContainer" v-if="pictureZoomShow" @click="pictureZoomShow = false">
       <view class="imageShow">
-        <image :src="imageZoom" mode="widthFix"  class="showImg"></image>
+        <image :src="imageZoom" mode="widthFix" @longpress="$saveImage(imageZoom)"  class="showImg"></image>
       </view>
     </view>
   </view>

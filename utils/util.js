@@ -66,6 +66,40 @@ const toast = (title) => {
     icon: 'none'
   })
 }
+const saveImage = (url) => {
+  uni.showModal({
+    title: '',
+    confirmColor: '#409eff',
+    content: '是否保存到相册',
+    success: function (res1) {
+      if (res1.cancel){
+        return
+      }
+      uni.downloadFile({
+        url: url,
+        success: (res) =>{
+          if (res.statusCode === 200){
+            uni.saveImageToPhotosAlbum({
+              filePath: res.tempFilePath,
+              success: function() {
+                uni.showToast({
+                  title: "保存成功",
+                  icon: "none"
+                });
+              },
+              fail: function() {
+                uni.showToast({
+                  title: "保存失败",
+                  icon: "none"
+                });
+              }
+            });
+          }
+        }
+      })
+    }
+  });
+}
 const copyUrl = (url, msg) => {
   msg = msg || ''
   uni.setClipboardData({
@@ -73,11 +107,13 @@ const copyUrl = (url, msg) => {
     success: function () {
       uni.showToast({
         title: '复制'+msg+'成功',
+        icon: 'none'
       });
     },
     fail:function () {
       uni.showToast({
         title: '复制'+msg+'失败',
+        icon: 'none'
       });
     }
   });
@@ -287,6 +323,7 @@ module.exports = {
   throttle,
   toast,
   copyUrl,
+  saveImage,
   hideKeyboard,
   goBack,
   debounce

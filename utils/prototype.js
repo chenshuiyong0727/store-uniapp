@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import { request } from '@/utils/request.js' // 引入api文件
 import { envSetting } from '@/utils/env.js'
-import { formatTime ,navigateTo,toast,getLocalPath,goBack,hideKeyboard,copyUrl,reLaunch} from '@/utils/util.js'
+import { formatTime ,navigateTo,toast,getLocalPath,goBack,hideKeyboard,copyUrl,reLaunch,saveImage} from '@/utils/util.js'
 
 // #ifdef H5
 // import "@/utils/iosNoScale.js"
@@ -31,6 +31,7 @@ Vue.prototype.$hideKeyboard = hideKeyboard // 挂载到原型上
 Vue.prototype.$copyUrl = copyUrl // 挂载到原型上
 Vue.prototype.$getLocalPath = getLocalPath // 挂载到原型上
 Vue.prototype.$toast = toast // 挂载到原型上
+Vue.prototype.$saveImage = saveImage // 挂载到原型上
 Vue.prototype.$goBack = goBack // 挂载到原型上
 
 
