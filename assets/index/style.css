@@ -50,9 +50,11 @@
 .imageShow {
   margin: auto !important;
   width: 85vw;
-  height: 85vw;
   background: #fff;
   border-radius: 10px;
+}
+.imageShowChil {
+  padding: 80px 0 40px 0
 }
 .imageShowLong {
   margin: auto !important;
@@ -62,7 +64,7 @@
 }
 
 .imageShow .showImg{
-  margin-top: 80px;
+  /*margin-top: 80px;*/
   width: 90%;
   margin-left: 5%;
   text-align: center;

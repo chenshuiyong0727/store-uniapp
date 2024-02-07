@@ -75,6 +75,16 @@
                      v-model="requestParam.waybillNo" border="none"></u--input>
           <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
         </u-form-item>
+        <u-form-item label-width="25vw"  label="得物单号" borderBottom>
+          <u--input  disabledColor="#fff" inputAlign="right"
+                     v-model="requestParam.dwOrderNo" border="none"></u--input>
+          <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
+        </u-form-item>
+        <u-form-item label-width="25vw"  label="出售单号" borderBottom>
+          <u--input  disabledColor="#fff" inputAlign="right"
+                     v-model="requestParam.outOrderNo" border="none"></u--input>
+          <u-icon  class="biaodan-gengduo" slot="right" name="arrow-right"></u-icon>
+        </u-form-item>
         <u-form-item label-width="25vw"  label="地址"  borderBottom>
           <hpy-form-select
               v-if="addressList"
@@ -251,6 +261,8 @@
           theirPrice: '',
           profits: '',
           waybillNo: '',
+          dwOrderNo: '',
+          outOrderNo: '',
           reason: '色差',
           addressId: ''
         },
@@ -395,6 +407,8 @@
         }
         this.requestParam.freight = this.orderData.freight
         this.requestParam.waybillNo = this.orderData.waybillNo
+        this.requestParam.dwOrderNo = this.orderData.dwOrderNo
+        this.requestParam.outOrderNo = this.orderData.outOrderNo
         this.requestParam.addressId = this.orderData.addressId ? this.orderData.addressId :''
         if (this.orderData.status == 7 || this.orderData.status == 11  || this.orderData.status == 6) {
           this.requestParam.status = 7
