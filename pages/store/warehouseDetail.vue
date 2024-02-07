@@ -157,7 +157,9 @@
     </view>
     <view class="popContainer" v-if="pictureZoomShow" @click="pictureZoomShow = false">
       <view class="imageShow">
-        <image :src="imageZoom" alt="" mode="widthFix" @longpress="$saveImage(imageZoom)"  class="showImg"></image>
+        <view class="imageShowChil">
+          <image :src="imageZoom" mode="widthFix"  class="showImg" @longpress="$saveImage(imageZoom)"></image>
+        </view>
       </view>
     </view>
     <view v-show="tableData.length" class="meiyougengduo" style=" padding-bottom: 60px;">
