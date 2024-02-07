@@ -12,8 +12,8 @@
       </view>
     </u-navbar>
     <view class="ui-flex justify-center center"
-         style="width: 100vw; height: 220px;background-color: white;margin-top: 10px;">
-      <view class="cell">
+         style="width: 100vw; background-color: white;margin-top: 10px;">
+      <view class="detail-cell">
         <image mode="widthFix"
                @click="avatarShow(form.img)"
             :disabled="true "

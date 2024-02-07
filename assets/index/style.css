@@ -60,6 +60,9 @@
   margin: auto !important;
   width: 85vw;
 }
+.detail-cell {
+  padding:  30px 0 20px 0;
+}
 
 .imageShow .showImg{
   /*margin-top: 80px;*/
