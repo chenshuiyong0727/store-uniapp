@@ -577,11 +577,11 @@
     },
     onPullDownRefresh() {
       uni.stopPullDownRefresh();
-      this.initTime();
+      // this.initTime();
+      this.getData2()
       this.time();
       this.getData();
       this.getData1();
-      this.getData2()
     },
     // onShow() {
     //   let payload = uni.getStorageSync('appLaunchedByPush')
@@ -594,19 +594,12 @@
     onLoad() {
       // let payload = uni.getStorageSync('appLaunchedByPush')
       // console.info('页面加载' ,payload)
-      this.initTime();
+      // this.initTime();
+      this.getData2()
       this.time();
       this.getData();
       this.getData1();
-      this.getData2()
     },
-    // created() {
-    //   this.initTime();
-    //   this.time();
-    //   this.getData();
-    //   this.getData1();
-    //   this.getData2()
-    // },
     methods: {
       cancelFrom() {
         this.showFrom = false;
@@ -727,8 +720,9 @@
         // #endif
       },
       initTime() {
+        debugger
         let myDate = new Date().getTime();
-        let endTime = '2025/01/29 00:00:00';
+        let endTime = this.storeData.newYear ? this.storeData.newYear : '2025/01/29 00:00:00';
         let timestamp2 = Date.parse(new Date(endTime));
         this.seconds = (timestamp2 - myDate) / 1000
         const dates = new Date()
@@ -864,6 +858,7 @@
         }).then(res => {
           if (res.subCode === 1000) {
             this.storeData = res.data
+            this.initTime()
           } else {
             this.$toast(res.subMsg)
           }
