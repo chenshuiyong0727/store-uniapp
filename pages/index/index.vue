@@ -720,7 +720,6 @@
         // #endif
       },
       initTime() {
-        debugger
         let myDate = new Date().getTime();
         let endTime = this.storeData.newYear ? this.storeData.newYear : '2025/01/29 00:00:00';
         let timestamp2 = Date.parse(new Date(endTime));

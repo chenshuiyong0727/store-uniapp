@@ -452,9 +452,9 @@
           <view class="dingdans_top_right_dw">
             <view class="dingdans_con_right_down_2_1 xianglian">
               <text v-if="item.inventory > item.galleryCount"  class="dw-button-common" @click="gallery(item)">上架</text>
+              <text class="dw-button-common" v-if="item.spuId" style="margin-left: 2vw" @click.stop="gotoDw(item.spuId)">得物</text>
               <rudon-rowMenuDotDotDot :localdata="optionsOp" @change="menuActionList($event,item)">
-                <text v-if="item.inventory > item.galleryCount"  class="dw-button-common">更多</text>
-                <text v-else class="dw-button-common">操作</text>
+                <text class="dw-button-common">更多</text>
               </rudon-rowMenuDotDotDot>
             </view>
           </view>
@@ -1104,9 +1104,9 @@
         if ('dwPrice' == action) {
           this.handleClick(item )
         }
-        if ('gotoDw' == action) {
-          this.gotoDw(item.spuId )
-        }
+        // if ('gotoDw' == action) {
+        //   this.gotoDw(item.spuId )
+        // }
         if ('jumpOrder' == action) {
           this.jumpOrder(item.actNo)
         }

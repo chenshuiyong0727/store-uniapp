@@ -199,7 +199,7 @@
     <view class="baisebeijing shuipingjuzhong" style="width:100%;position:fixed;bottom:0;
      border-top: solid #E2DDDD 1px;">
       <u-button style="width: 50vw; margin: 10px 15px;" type="primary"   @click="confirmHandle">
-        <text class="dibuanniuwenzi">确认修改</text>
+        <text class="dibuanniuwenzi">{{ this.requestParam.status == 7 ? '交易成功' : '确认修改' }}</text>
       </u-button>
     </view>
     <view class="popContainer" v-if="pictureZoomShow" @click="pictureZoomShow = false">
@@ -288,7 +288,7 @@
         this.pictureZoomShow = true
       },
       keyup2() {
-        if(this.requestParam.saleType != 1 && this.requestParam.saleType != 2){
+        if(this.requestParam.saleType != 2){
           // let poundage =   this.requestParam.poundage
           // this.requestParam.poundage = parseFloat(poundage).toFixed(2)
           let profits = this.requestParam.theirPrice - this.requestParam.freight
@@ -308,7 +308,7 @@
         this.requestParam.deliveryDeadlineTime = `${e.year}-${e.month}-${e.day} ${e.hour}:${e.minute}:${e.second}`;
       },
       keyup1() {
-        if(this.requestParam.saleType != 1 && this.requestParam.saleType != 2){
+        if(this.requestParam.saleType != 2){
           console.info("requestParam.shelvesPrice)",this.requestParam.shelvesPrice)
           let poundage =   this.requestParam.poundage
 
