@@ -439,7 +439,21 @@
         </view>
         <!--底部-->
         <view class="dingdans_bottom_dw">
-          <view class="dingdans_top_left_dw">
+          <view class="dingdans_top_left_dw"v-if="item.inventory > item.galleryCount">
+            <view>
+              <text >入库价</text>
+              <text style="margin-left: 2px;" class="color-danger">{{item.price}}</text>
+            </view>
+            <view>
+              <text >预估利润</text>
+              <text style="margin-left: 3px;"  :class="item.thisTimeProfits>= 0 ? 'color-danger': 'color-success'"  v-if="item.thisTimePrice" >{{item.thisTimeProfits }}</text>
+              <text style="margin-left: 3px;"  v-else
+                    :class="$getProfits(item.dwPrice,item.price) > 0 ? 'color-danger' : 'color-success'">
+                {{item.dwPrice | getProfits(item.price)}}
+              </text>
+            </view>
+          </view>
+          <view class="dingdans_top_left_dw"  v-else >
             <text >入库价</text>
             <text style="margin-left: 2px;" class="color-danger">{{item.price}}</text>
             <text >, 预估利润</text>
@@ -858,7 +872,7 @@
         showWarehouseType: false,
         requestParamWare: {
           ids: [],
-          warehouseId: 2,
+          warehouseId: 1,
           warehouseIdStr: ''
         },
       }
